@@ -2,7 +2,7 @@ ApprovalTests.Java
 ==================
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid unit testing.
 
-It is compatiable with JUnit3 & JUnit4.
+It is compatiable with JUnit 3 & JUnit 4.
 
 What can it be used for?
 ---
@@ -19,14 +19,14 @@ Approval Tests can be used for verifing objects that require more than a simple 
 - Json
 
 
-[Video Tutorials](http://www.youtube.com/playlist?list=PL0C32F89E8BBB5368)
+[Video Tutorials]http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
 
-You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PL0C32F89E8BBB5368) at youtube
+You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube
 
 Podcasts
 ---
-If you prefer auditory learning, you might enjoy the following podcast 
+If you prefer auditory learning, you might enjoy the following podcast (Note: Some of these talk about the .net side)
 
 - [Hanselminutes] (http://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
 - [Herding Code](http://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
@@ -35,14 +35,14 @@ If you prefer auditory learning, you might enjoy the following podcast
 
 Download 
 ---
-You can download the ApprovalTests jar at: [http://www.approvaltests.com]
+You can download the ApprovalTests jar at: [http://sourceforge.net/projects/approvaltests/files/ApprovalTests.Java/]
 
 
 Examples
 ---
 ApprovalTests eats it own dogfood, so the best examples are in the source code itself.
 
-None the less,  Here's a quick look
+None the less,  Here's a quick look at some
 [Sample Code](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/tests/demos/SampleArrayTest.java)
    	
 	public class SampleArrayTest extends TestCase
@@ -72,7 +72,7 @@ More Info
 
 - [Website](http://approvaltests.sourceforge.net/)
 - [Blog](http://blog.approvaltests.com/)
-- [Getting Started Doc](https://github.com/approvals/ApprovalTests.Net/blob/master/build/Documentation/Approval%20Tests%20-%20Getting%20Started.pdf?raw=true)
+- [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/raw/master/build/resources/approval_tests/documentation/ApprovalTest%20-%20Getting%20Started.pdf)
 
 	
 ## LICENSE
