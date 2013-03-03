@@ -42,7 +42,8 @@ Examples
 ---
 ApprovalTests eats it own dogfood, so the best examples are in the source code itself.
 
- Here's a quick look 
+None the less,  Here's a quick look
+[Sample Code](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/tests/demos/SampleArrayTest.java)
    	
 	public class SampleArrayTest extends TestCase
 	{
@@ -63,7 +64,7 @@ Will Produce a File
     [3] = Katrina
     [4] = Llewellyn
 
-Simply rename this to SampleTest.testList. **approved** .txt and the test will now pass.
+Simply rename this to SampleTest.testList.approved.txt and the test will now pass.
 
 
 More Info
