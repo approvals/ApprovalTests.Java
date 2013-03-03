@@ -1,0 +1,4 @@
+Image: a.png = true
+Image: a.viz.png = true
+Image: a.bitmap = false
+Image: a.txt = false

@@ -1,0 +1,1 @@
+/Applications/TkDiff.app/Contents/MacOS/tkdiff %s %s

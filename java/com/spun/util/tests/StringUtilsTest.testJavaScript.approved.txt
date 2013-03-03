@@ -1,0 +1,10 @@
+"
+
+ => 
+"\"\r\n"
+------------------------------------
+this is a note "'
+another liner
+ => 
+"this is a note \"'\r\nanother liner"
+------------------------------------

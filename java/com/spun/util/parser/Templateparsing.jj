@@ -1,0 +1,438 @@
+options
+{
+  LOOKAHEAD=3;
+  STATIC = false;
+  CHOICE_AMBIGUITY_CHECK = 4;     
+}
+PARSER_BEGIN(TemplateParsing)
+package com.spun.util.parser;
+
+import java.util.Vector;
+import com.spun.util.My_System;
+
+public class TemplateParsing 
+{
+  public static final String TEST_FILE ="";//com.spun.set.website.WWWConfig.TEMPLATE_DIRECTORY + "\\quiddlerscores.htm";
+  /************************************************************************/
+  public static void main(String args[])
+  {
+    try 
+    {
+      String file = TEST_FILE;
+      if (args.length == 1) 
+      {
+        System.out.println("Java Parser Version 1.1:  Reading from file " + args[0] + " . . .");
+        file = args[0];
+      }
+      try 
+      {
+        TemplateParsing parser = new TemplateParsing(new java.io.FileInputStream(file));
+        Vector v = parser.input();
+        My_System.variable(v.toString());
+      } 
+      catch (java.io.FileNotFoundException e) 
+      {
+        System.out.println("Java Parser Version 1.1:  File " + args[0] + " not found.");
+        return;
+      }
+    }
+    catch (Exception e)
+    {
+      My_System.warning(e);
+    }
+  }
+  /************************************************************************/
+}
+PARSER_END(TemplateParsing)
+
+/************************************************************************/
+TOKEN [IGNORE_CASE] :
+{
+  <PLAIN_TEXT:    (~["<"])+  > : DEFAULT |
+  <IN: "<TemplateParser"> : TEMPLATE_PARSER |
+  <PLAIN_TEXT_EXCEPTION : "<"> : DEFAULT
+}
+
+
+<TEMPLATE_PARSER> SKIP :
+{
+  <( " " | "\t" | "\n" | "\r" )+    >
+}
+<TEMPLATE_PARSER> TOKEN :
+{
+  <SET:    "SET " >  |
+  <LET:    "LET " >  |
+  <LETVAR: "LET VAR " >  |
+  <IF:     "IF " >  |
+  <IFN:    "IFN ">  |
+  <THEN:   "THEN "> |
+  <FOR:    "FOR ">  |
+  <END:    "END" >  |
+  <ELSE:   "ELSE" >  |
+  <ELSEIF: "ELSEIF " >  |
+  <ELSEIFN: "ELSEIFN " >  |
+  <IDENTIFIER:  ["a" - "z", "A" - "Z"] (["a" - "z", "A" - "Z", "_"]|["0" - "9"]|".")*> |
+  <SEPERATOR: ";"   > | 
+  <START_PARAMS:    "("> |
+  <END_PARAMS:      ")"> |
+  <SEPERATE_PARAMS: ",">  |
+  <NUMBER : ["0"-"9"] (["0"-"9"])* (".")? (["0"-"9"])* > |
+  <COMPARE_EQUAL:    "=="> | 
+  <SET_EQUALS:    "="> | 
+  <STRING : 
+     "\""
+     (   (~["\"","\\","\n","\r"])
+         | 
+         (
+             "\\"
+             ( 
+                 ["n","t","b","r","f","\\","'","\""]
+                 | ["0"-"7"] ( ["0"-"7"] )?
+                 | ["0"-"3"] ["0"-"7"] ["0"-"7"]
+             )
+         )
+    )*
+    "\""
+  > |
+  <CLOSE:     ">"   > : DEFAULT
+}
+
+  /************************************************************************/
+
+  Method method() :
+  {
+    Token t;
+    Vector v =null;
+  }
+  {
+    t = <IDENTIFIER>     [v = params()]
+    {
+      Method m = new Method(t.image, v);
+      //My_System.variable("Method = " + m.toString());
+      return m;
+    }
+  }
+
+  /************************************************************************/
+  Object param() :
+  {
+    Token t;
+    Object s;
+  }
+  {
+    (t = <STRING> 
+    {
+      s = t.image.substring(1,t.image.length()-1);
+    }
+
+    | t = <NUMBER>
+    {
+      s = t.image;
+    }
+
+    | s = method()
+    )
+    {
+      return s;
+    }    
+  }
+  /************************************************************************/
+  Vector params() :
+  {
+    Vector v = new Vector();
+    Object t;
+  }
+  {
+    <START_PARAMS> [t = param() 
+    {
+      v.addElement(t);
+    }
+    (<SEPERATE_PARAMS> t = param()
+    {
+      v.addElement(t);
+    }
+    )*] <END_PARAMS>    
+    {
+      return v;
+    }
+  }
+
+  /************************************************************************/
+  String plainText() :
+  {
+    Token t;
+    boolean isNull = false;
+  }
+  {        
+    (t = <PLAIN_TEXT>|t = <PLAIN_TEXT_EXCEPTION>)
+    {
+      return t.image; 
+    }
+  }
+
+  /************************************************************************/
+  Vector text() :
+  {
+      Vector v = new Vector();
+      Object o = null;
+  }
+  {
+      
+      [(o = plainText()
+      {
+          v.addElement(o);
+      }
+      | o = templateParser()
+      {
+          v.addElement(o);
+      }
+      )+]
+      {
+          return v;
+      }
+  }
+  /************************************************************************/
+
+  Object templateParser() :
+  {
+      Object o = null;
+  }
+  {
+    ( 
+			o = variable() | o = ifStatement() | o = forStatement() |
+			o = setStatement() | o = letStatement() | o = letVarStatement()
+	  )
+    {
+      return o;
+    }
+  }
+  /************************************************************************/
+  VariableStatement variable() :
+  {
+    Method m;
+    //My_System.markerIn("variableStatement");
+  }
+  {
+    <IN> m = method() <CLOSE>
+    {
+      //My_System.markerOut("variableStatement");
+      return new VariableStatement(m);
+    }
+  }
+  /************************************************************************/
+  IfStatement ifConditional() :
+  {
+      Method m;
+      Object compare = null;
+  }
+  {
+      m = method() [<COMPARE_EQUAL> compare = param()] 
+      {
+        return new IfStatement(false, m, compare, null, null);
+      }
+  }
+  /************************************************************************/
+  IfStatement elseIfStatement() :
+  {
+    IfStatement holder = null;
+    Vector thenV;
+    boolean ifn = false;
+  }
+  {
+    <IN> (<ELSEIF>|<ELSEIFN>{ifn = true;}) holder = ifConditional() <CLOSE>
+    thenV = text() 
+    {
+      holder.setThenStatement(thenV);
+      holder.setIfNot(ifn);
+      return holder;
+    }
+  }
+  /************************************************************************/
+  IfStatement ifStatement() :
+  {
+    Vector ifStatements = new Vector();
+    Vector thenStatements = new Vector();
+    IfStatement holder = null;
+    Vector thenV;
+    Vector elseV = null;
+    Object thenO = null;
+    Object elseO = null;
+    boolean ifn = false;
+//    My_System.markerIn("ifStatement");
+  }
+  {
+    <IN> (<IF>|<IFN>{ifn = true;}) holder = ifConditional() 
+    (
+    (
+      <CLOSE>
+      thenV = text() 
+      {
+        holder.setThenStatement(thenV);
+        holder.setIfNot(ifn);
+        ifStatements.addElement(holder);
+      }
+
+      [(holder = elseIfStatement()
+      {
+        ifStatements.addElement(holder);
+      }
+      )+]
+
+      [elseV = elseStatement()] 
+      <IN> <END> <CLOSE>
+      {
+        while (ifStatements.size() !=0 )
+        {
+          holder = (IfStatement)ifStatements.remove(ifStatements.size() - 1);
+          holder.setElseStatement(elseV);
+          if (ifStatements.size() != 0)
+          {
+            elseV = new Vector();
+            elseV.add(holder); 
+          }
+        }
+        return holder;
+      }
+    )
+    |
+    (
+      <THEN> thenO = param() 
+      <ELSE> elseO = param()
+      <CLOSE>
+      {
+        holder.setIfNot(ifn);
+        //Add Then
+        Vector temp = new Vector();
+        if (thenO instanceof Method)
+        {
+          thenO = new VariableStatement((Method)thenO);
+        }
+        temp.add(thenO);
+        holder.setThenStatement(temp);
+        //Add Else
+        temp = new Vector();
+        if (elseO instanceof Method)
+        {
+          elseO = new VariableStatement((Method)elseO);
+        }
+        temp.add(elseO);
+        holder.setElseStatement(temp);
+        return holder;
+      }
+    ))
+  }
+  /************************************************************************/
+  Vector elseStatement() :
+  {
+      Vector v;
+  }
+  {
+    <IN> <ELSE> <CLOSE> v = text()
+    {
+      return v;
+    }
+  }
+  /************************************************************************/
+  ForStatement forStatement() :
+  {
+    Method init;
+    Method check;
+    Method inc;
+    Vector v;
+    //My_System.markerIn("forStatement");
+  }
+  {
+    <IN> <FOR> init = method() <SEPERATOR> check = method() <SEPERATOR> inc = method()  <CLOSE> v = text() <IN> <END> <CLOSE>
+    {
+      //My_System.markerOut("forStatement");
+      return new ForStatement(init,check,inc, v);
+    }
+  }
+  /************************************************************************/
+  SetStatement setStatement() :
+  {
+    Method var;
+    Object val;
+    Vector vVal;
+    //My_System.markerIn("setStatement");
+  }
+  {
+    <IN> <SET> var = method() 
+    (
+      (
+        <SET_EQUALS> val = param() <CLOSE>
+        {
+          vVal = new Vector();
+          vVal.add(val);
+        }
+      )
+      |
+      (
+        <CLOSE> vVal = text() <IN> <END> <CLOSE>
+      )
+    )
+    {
+      //My_System.markerOut("setStatement");
+      return new SetStatement(var, vVal);
+    }
+  }
+
+  /************************************************************************/
+  LetStatement letVarStatement() :
+  {
+    Method var;
+    Object val;
+    Vector vVal;
+    //My_System.markerIn("setStatement");
+  }
+  {
+    <IN> <LETVAR> var = method() 
+    (
+      (
+        <SET_EQUALS> val = param() <CLOSE>
+        {
+          vVal = new Vector();
+          vVal.add(val);
+        }
+      )
+      |
+      (
+        <CLOSE> vVal = text() <IN> <END> <CLOSE>
+      )
+    )
+    {
+      //My_System.markerOut("setStatement");
+      return new LetStatement(var, vVal, true);
+    }
+  }
+
+  /************************************************************************/
+  LetStatement letStatement() :
+  {
+    Method var;
+    Object val;
+    Vector vVal;
+  }
+  {
+    <IN> <LET> var = method() <SET_EQUALS> val = param() <CLOSE>
+    {
+      vVal = new Vector();
+      vVal.add(val);
+      return new LetStatement(var, vVal, false);
+    }
+  }
+
+  /************************************************************************/
+  Vector input() :
+  {
+    Vector v;
+  }
+  {
+    v = text()<EOF>
+    {
+      //My_System.variable(v.toString());
+      return v;
+    }
+  }
+  /************************************************************************/
+  /************************************************************************/

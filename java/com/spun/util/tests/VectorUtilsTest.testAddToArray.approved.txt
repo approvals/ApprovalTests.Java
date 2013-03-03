@@ -1,0 +1,4 @@
+numbers[0] = 5
+numbers[1] = 6
+numbers[2] = 7
+numbers[3] = 1

@@ -1,0 +1,13 @@
+#foreach($key in $keys)
+<table border="1">
+	<tr>
+		<th>$key</th>
+	</tr>
+	#foreach($color in $colors.get($key))
+	<tr>
+		<td bgcolor="$color.getSecond()">$color.getFirst()</td>
+		<td bgcolor="$color.getSecond()">$finder.getOtherColors($colors, $key, $color.getFirst())</td>
+	</tr>
+	#end
+</table>
+#end

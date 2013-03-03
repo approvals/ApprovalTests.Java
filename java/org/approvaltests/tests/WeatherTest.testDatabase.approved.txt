@@ -1,0 +1,3 @@
+SELECT a.* 
+FROM member AS a 
+WHERE (a.name LIKE 'Ll%')

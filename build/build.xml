@@ -1,0 +1,79 @@
+<project name="OpenSource" basedir="." default="createDownload">
+	<target name="compile" depends="cleanUp">
+		<mkdir dir="${build}" />
+		<delete dir="${build}/com/spun" />
+		<echo>${targetJavaClass}</echo>
+		<javac srcdir="${src}" destdir="${build}" debug="true" includes="${targetJavaClass}" target="1.6" listfiles="true">
+			<exclude name="**/tests/**" if="excludeTests" />
+			<classpath>
+				<fileset dir="${src}/jars">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	<target name="cleanUp">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="buildJarFile" depends="compile">
+		<mkdir dir="${build}/src" />
+		<copy todir="${build}/src">
+			<fileset dir="${src}" includes="${targetJavaClass}/*.java">
+				<exclude name="**/tests/**" if="excludeTests" />
+			</fileset>
+		</copy>
+		<copy todir="${build}">
+			<fileset dir="${src}" includes="${targetJavaClass}/*.png" />
+		</copy>
+		<delete file="${jar}" failonerror="false" />
+		<jar destfile="${jar}" update="false">
+			<fileset dir="${build}" includes="**" />
+
+		</jar>
+	</target>
+	<target name="createDownload" depends="buildJarFile">
+		<zip destfile="${zip}" basedir="${build}" includes="*.jar,*.txt">
+			<fileset dir="${documentation}" includes="**" />
+		</zip>
+	</target>
+
+	<target name="Publish    Lambdas">
+		<property file="properties/lambda.properties" />
+		<antcall target="createDownload" />
+	</target>
+
+	<target name="Publish    ApprovalTests">
+		<property file="properties/approvaltests.properties" />
+		<antcall target="createDownload" />
+	</target>
+
+	<target name="Publish    ExtensionMethods">
+		<property file="properties/extension_methods.properties" />
+		<antcall target="createDownload" />
+	</target>
+
+	<target name="Publish    TeachingKidsProgramming">
+		<property file="properties/teaching_kids_programming.properties" />
+		<antcall target="createTeachingKidsProgramming" />
+	</target>
+	
+	<target name="cleanTeachingKidsProgramming">
+		<delete dir="${tkp_project}/bin" failonerror="false" />
+		<delete dir="${tkp_project}/src" failonerror="false" />
+	</target>
+
+	<target name="createTeachingKidsProgramming" depends="cleanTeachingKidsProgramming, buildJarFile">
+		<copy file="${build}/TeachingKidsProgramming.jar" todir="${tkp_project}/src/jars" />
+		<copy todir="${tkp_project}/src" verbose="true">
+			<fileset dir="${src}">
+				<include name="org/teachingkidsprogramming/**/*.java" />
+				<exclude name="**/tests/**" />
+				<exclude name="**/completed/**" />
+			</fileset>
+		</copy>
+		<zip destfile="${build}/tkp_workspace.v${version}.zip" basedir="${tkp_workspace}" includes="**">
+		</zip>
+	</target>
+</project>
+

@@ -1,0 +1,6 @@
+#foreach($key in $keys)
+$key
+#foreach($color in $colors.get($key))
+  $color.getFirst() $color.getSecond()
+#end
+#end

@@ -1,0 +1,25 @@
+package org.teachingextensions.logo;
+
+import java.awt.Color;
+
+import com.spun.util.NumberUtils;
+
+/**
+ * Every color under the
+ *  <font color="red">r</font><font color="yellow">a</font><font color="orange">i</font><font color="green">n</font><font color="blue">b</font><font color="purple">o</font><font color="blue">w</font>,
+ *   and different ways to get them. 
+ */
+ public class Colors
+{
+#foreach($key in $keys)
+public static class $key
+  {
+ #foreach($color in $colors.get($key))
+  /**
+      *  The color <font color="$color.getSecond()"> $color.getFirst() </font>
+      **/
+    public static final Color $color.getFirst()     = Color.decode("$color.getSecond()");
+ #end
+  }
+  #end
+  }

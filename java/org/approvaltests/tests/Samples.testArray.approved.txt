@@ -1,0 +1,2 @@
+Text[0] = Approval
+Text[1] = Tests

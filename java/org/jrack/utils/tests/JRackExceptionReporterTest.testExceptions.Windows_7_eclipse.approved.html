@@ -1,0 +1,43 @@
+
+<html>
+<header>
+<style type="text/css">
+body{
+background-color:blue;
+color:white;
+font-family:Monospace;
+}
+</style>
+</header>
+
+<body>
+An error has occurred<br/>
+Message: My purpose is to throw errors<br/>
+Error occurred at <br/>
+<pre size="-2">
+java.lang.Error: My purpose is to throw errors
+	at org.jrack.utils.tests.JRackExceptionReporterTest$JRackError.call(JRackExceptionReporterTest.java:26)
+	at org.jrack.utils.JRackExceptionReporter.call(JRackExceptionReporter.java:26)
+	at org.jrack.utils.tests.JRackExceptionReporterTest.testExceptions(JRackExceptionReporterTest.java:31)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:83)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+</pre>
+</body>
+</html>

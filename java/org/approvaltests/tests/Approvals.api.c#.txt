@@ -1,0 +1,75 @@
+ApprovalApprover
+        Approve()
+        CleanUpAfterSucess()
+        Fail()
+        ReportFailure(ApprovalFailureReporter)
+ApprovalControlWriter
+        GetApprovalFilename(String)
+        GetReceivedFilename(String)
+        WriteReceivedFile(String)
+ApprovalException
+        GetApproved()
+        GetReceived()
+ApprovalFailureReporter
+        ApprovedWhenReported()
+        Report(String,String)
+ApprovalMismatchException
+        GetMessage()
+ApprovalMissingException
+        GetMessage()
+ApprovalNamer
+        GetApprovalName()
+        GetSourceFilePath()
+Approvals
+        Approve(Enumerable,String)
+        Approve(Control)
+        Approve(ApprovalApprover,ApprovalFailureReporter)
+        Approve(String)
+        Approve(ApprovalWriter,ApprovalNamer,ApprovalFailureReporter)
+        GetDefaultReporter()
+        RegisterReporter(ApprovalFailureReporter)
+        UnregisterLastReporter()
+        UnregisterReporter(ApprovalFailureReporter)
+ApprovalTextWriter
+        GetApprovalFilename(String)
+        GetReceivedFilename(String)
+        WriteReceivedFile(String)
+ApprovalWriter
+        GetApprovalFilename(String)
+        GetReceivedFilename(String)
+        WriteReceivedFile(String)
+EnumerableWriter
+        write(String,Enumerable)
+FileApprover
+        Approve()
+        CleanUpAfterSucess()
+        Fail()
+        ReportFailure(ApprovalFailureReporter)
+ListExtensions
+        IsEmpty(List`1)
+        Pop(List`1)
+        Push(List`1,T)
+MSpecStackTraceParser
+        GetBasePath()
+        GetDeclaringType()
+        GetTypeName()
+        ParseLabel(StackTrace)
+NunitStackTraceNamer
+        GetApprovalName()
+        GetSourceFilePath()
+NUnitStackTraceParser
+        GetBasePath()
+        GetMethod()
+        GetTypeName()
+        ParseApprovalName(StackTrace)
+        ParseLabel(StackTrace)
+OpenReceivedFileReporter
+        ApprovedWhenReported()
+        Report(String,String)
+QuietReporter
+        ApprovedWhenReported()
+        Report(String,String)
+StackTraceParser
+        GetLabel(StackTrace)
+StackTraceParser
+        ParseLabel(StackTrace)
