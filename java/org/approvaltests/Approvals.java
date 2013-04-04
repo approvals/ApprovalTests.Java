@@ -55,6 +55,10 @@ public class Approvals
   {
     verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
   }
+  public static void verify(Object o) throws Exception
+  {
+    verify("" + o);
+  }
   /**
    * @deprecated Use verifyAll()
    */
@@ -75,7 +79,8 @@ public class Approvals
   }
   public static <T> void verifyAll(String header, String label, T[] array) throws Exception
   {
-    verify(new ApprovalTextWriter(header + "\r\n" + StringUtils.toString(label, array), "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
+        FileTypes.Text);
   }
   /**
    * @deprecated Use verifyAll()
@@ -102,8 +107,12 @@ public class Approvals
   }
   public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1)
   {
-    String text = header + "\r\n" + ArrayUtils.toString(array, f1);
+    String text = formatHeader(header) + ArrayUtils.toString(array, f1);
     verify(new ApprovalTextWriter(text, "txt"), FileTypes.Text);
+  }
+  private static String formatHeader(String header)
+  {
+    return StringUtils.isEmpty(header) ? "" : header + "\r\n\r\n\r\n";
   }
   /**
    * @deprecated Use verifyAll()
@@ -125,7 +134,8 @@ public class Approvals
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array) throws Exception
   {
-    verify(new ApprovalTextWriter(header + "\r\n" + StringUtils.toString(label, array), "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
+        FileTypes.Text);
   }
   /**
    * @deprecated Use verify()
@@ -169,7 +179,7 @@ public class Approvals
   }
   public static void verify(Image image)
   {
-    approve(ImageWriter.toBufferedImage(image), newApprovalNamer());
+    approve(ImageWriter.toBufferedImage(image), createApprovalNamer());
   }
   /**
    * @deprecated Use verify()
@@ -202,7 +212,7 @@ public class Approvals
   }
   public static void verify(ApprovalWriter writter, String fileType)
   {
-    verify(writter, newApprovalNamer(), ReporterFactory.get(fileType));
+    verify(writter, createApprovalNamer(), ReporterFactory.get(fileType));
   }
   /**
    * @deprecated Use verifyXml()
@@ -322,7 +332,7 @@ public class Approvals
     String type = response.getHeaders().get(RackResponseUtils.CONTENT_TYPE);
     return RackResponseUtils.CONTENT_TYPE_IMAGE.equals(type);
   }
-  private static ApprovalNamer newApprovalNamer()
+  public static ApprovalNamer createApprovalNamer()
   {
     return new JUnitStackTraceNamer();
   }
@@ -344,7 +354,7 @@ public class Approvals
   }
   private static void verifyEachFileAgainstMasterDirectory(File[] files) throws Error
   {
-    ApprovalNamer namer = newApprovalNamer();
+    ApprovalNamer namer = createApprovalNamer();
     String dirName = namer.getSourceFilePath() + Path.SEPARATOR + namer.getApprovalName() + ".Files";
     File approvedDirectory = new File(dirName);
     List<File> mismatched = new ArrayList<File>();

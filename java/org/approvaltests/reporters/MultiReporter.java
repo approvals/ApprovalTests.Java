@@ -24,4 +24,8 @@ public class MultiReporter implements ApprovalFailureReporter
       reporter.report(received, approved);
     }
   }
+  public ApprovalFailureReporter[] getReporters()
+  {
+    return reporters.toArray(new ApprovalFailureReporter[0]);
+  }
 }
