@@ -13,10 +13,10 @@ public class JUnitStackTraceNamerTest extends TestCase
     JUnitStackTraceNamer name = new JUnitStackTraceNamer();
     assertEquals("JUnitStackTraceNamerTest.testGetApprovalName", name.getApprovalName());
   }
-  public void testGetSourceFilePath() throws Exception
+  public void testGetApprovalBasePath() throws Exception
   {
     JUnitStackTraceNamer name = new JUnitStackTraceNamer();
-    File file = new File(name.getSourceFilePath() + "JUnitStackTraceNamerTest.java");
+    File file = new File(name.getApprovalFileBasePath() + "JUnitStackTraceNamerTest.java");
     assertTrue(file.exists());
   }
   public void testEmbeddedStackName()
