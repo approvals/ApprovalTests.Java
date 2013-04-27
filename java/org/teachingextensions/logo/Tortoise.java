@@ -66,7 +66,7 @@ public class Tortoise
   }
   /**
    * Turns the Tortoise to the right (clockwise) the degrees specified. <br/>
-   * <div><b>Example:</b> {@code Tortoise.turn(90)}</div> 
+   * <div><b>Example:</b> {@code Tortoise.turn(90)}</div>
    * 
    * @param degreesToTheRight
    *          The degrees to turn. Negative numbers will move the Tortoise to
@@ -124,7 +124,7 @@ public class Tortoise
    * @param y
    *          the position in pixels of the Tortoise on the Y axis
    */
-  private static void setY(int y)
+  public static void setY(int y)
   {
     turtle().setY(y);
   }
@@ -220,5 +220,17 @@ public class Tortoise
   private static Turtle turtle()
   {
     return TortoiseUtils.getTurtle();
+  }
+  /**
+   * Sets the angle the Tortoise is facing. <br/>
+   * 0 is straight up (like 'North') <br/>
+   * <div><b>Example:</b> {@code  Tortoise.setAngle(42);}</div>
+   * 
+   * @param angle
+   *          the angle in degrees
+   */
+  public static void setAngle(int angle)
+  {
+    turtle().setAngleInDegrees(angle);
   }
 }

@@ -8,6 +8,7 @@ import org.approvaltests.reporters.UseReporter;
 import org.teachingextensions.logo.Tortoise;
 import org.teachingextensions.logo.Turtle;
 import org.teachingextensions.logo.utils.TortoiseUtils;
+import org.teachingextensions.windows.MessageBox;
 import org.teachingkidsprogramming.recipes.quizzes.graders.HiLowQuiz;
 import org.teachingkidsprogramming.recipes.quizzes.graders.HiLowQuizGrader;
 
@@ -45,6 +46,7 @@ public class HiLowQuizTest extends TestCase
     public void question3()
     {
       //        display the message "elcomeway omehay!"
+      MessageBox.showMessage("elcomeway omehay!");
     }
     @Override
     public void question4()
