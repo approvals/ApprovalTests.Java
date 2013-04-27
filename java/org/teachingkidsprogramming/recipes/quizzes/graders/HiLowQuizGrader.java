@@ -2,6 +2,7 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 
 import java.awt.Graphics2D;
 
+import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
 import org.teachingextensions.logo.Tortoise;
 import org.teachingextensions.logo.utils.TortoiseUtils;
@@ -10,9 +11,10 @@ import org.teachingextensions.windows.MessageBox.MessageBoxInstance;
 
 public class HiLowQuizGrader implements Paintable
 {
-  private boolean[] answers;
-  public static int TURTLE_SPEED = 9;
-  private HiLowQuiz quiz;
+  private boolean[]                answers;
+  public static int                TURTLE_SPEED = 9;
+  public static MessageBoxInstance MESSAGE_BOX  = new MessageBoxInstance();
+  private HiLowQuiz                quiz;
   private void displayScreen()
   {
     QuizUtils.prepareScoringScreen(answers, this, TURTLE_SPEED);
@@ -24,6 +26,30 @@ public class HiLowQuizGrader implements Paintable
   }
   private void drawRewardShape()
   {
+    int[] angles = {
+        90, -90, -90, 135, -45, 90, 90, -135, 90, 135, -90, 90, 90, 90, -90, -90, -90, -90, -90, 90, 90, 90, -90,
+        90, 90, -90, -90, -90};
+    int[] lengths = {
+        70, 85, 25, 43, 40, 18, 26, 50, 113, 25, 85, 40, 30, 30, 20, 20, 20, 10, 20, 10, 10, 20, 10, 10, 30, 30,
+        60, 183};
+    Tortoise.setX(20);
+    Tortoise.setPenColor(Colors.Greens.LawnGreen);
+    for (int i = 0; i < lengths.length; i++)
+    {
+      Tortoise.turn(angles[i]);
+      addChaos();
+      Tortoise.move(lengths[i]);
+    }
+    quiz.question3();
+  }
+  private void addChaos()
+  {
+    reverseQuestion1();
+    quiz.question1();
+    reverseQuestion2();
+    quiz.question2();
+    reverseQuestion4();
+    quiz.question4();
   }
   public void grade(HiLowQuiz quiz)
   {
@@ -82,7 +108,7 @@ public class HiLowQuizGrader implements Paintable
     MessageBoxMock mock = new MessageBoxMock();
     MessageBox.mock(mock);
     quiz.question3();
-    MessageBox.mock(new MessageBoxInstance());
+    MessageBox.mock(MESSAGE_BOX);
     return "elcomeway omehay!".equals(mock.lastMessage);
   }
   private boolean gradeQuestion4()

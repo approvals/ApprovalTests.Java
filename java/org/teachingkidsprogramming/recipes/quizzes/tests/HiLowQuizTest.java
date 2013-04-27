@@ -11,6 +11,7 @@ import org.teachingextensions.logo.utils.TortoiseUtils;
 import org.teachingextensions.windows.MessageBox;
 import org.teachingkidsprogramming.recipes.quizzes.graders.HiLowQuiz;
 import org.teachingkidsprogramming.recipes.quizzes.graders.HiLowQuizGrader;
+import org.teachingkidsprogramming.recipes.quizzes.graders.MessageBoxMock;
 
 @UseReporter({DelayedClipboardReporter.class, DiffReporter.class})
 public class HiLowQuizTest extends TestCase
@@ -62,6 +63,7 @@ public class HiLowQuizTest extends TestCase
   public void testCorrect() throws Exception
   {
     HiLowQuizGrader.TURTLE_SPEED = Turtle.TEST_SPEED;
+    HiLowQuizGrader.MESSAGE_BOX = new MessageBoxMock();
     new HiLowQuizGrader().grade(new HiLowCorrectQuiz());
     TortoiseUtils.verifyForOs();
   }
