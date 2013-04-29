@@ -10,9 +10,19 @@ public class Homework03Test extends TestCase
   {
     assertQuestion("doesABear", "woods");
     assertQuestion("neverEverEver", "chocolate");
+    assertQuestion("notEverEverEver", true);
     assertQuestion("isThePopeCatholic", true);
     assertQuestion("trueOrFalse", true);
     assertQuestion("letSleepingBabiesLie", false);
+    assertQuestion("howCoachThinks", 110);
+    assertQuestion("lessThan", 15);
+    assertQuestion("greaterThan", 5);
+    assertQuestion("notEqual", 52);
+    assertQuestion("equalsForStrings", "bananas");
+    assertCurrentlyFailing("thisAndThat");
+    assertQuestion("theBeginningOrEnd", 92);
+    assertQuestion("ifInHighSchool", 16);
+    assertQuestion("nestedIfOrPigsInABlanket", false);
   }
   public void assertQuestion(String methodName, Object answer) throws Exception
   {
