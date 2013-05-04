@@ -2,7 +2,6 @@ package org.teachingkidsprogramming.recipes;
 
 public class TurtleTree
 {
-  private static int branch;
   public static void main(String[] args)
   {
     //    Make the tortoise go as fast as possible
@@ -34,6 +33,14 @@ public class TurtleTree
     //                          drawShorterBranch 
     //                          Turn the Tortoise 30 degrees to the right
     //                          adjustColor 
+    //                          ------------- Recipe for CreateBranchColors
+    //                                  A 10 pixel long branch is lime
+    //                                  A 20 pixel long branch is forest green
+    //                                  A 30 pixel long branch is dark green
+    //                                  A 40 pixel long branch is olive
+    //                                  A 50 pixel long branch is sienna
+    //                                  A 60 pixel long branch is saddle brown
+    //                          ------------- End of CreateBranchColors
     //                  Move the tortoise backward the length of the current branch
     //                  ------------- End of drawLowerBranches recipe
     //    ------------- End of drawBranch recipe 
