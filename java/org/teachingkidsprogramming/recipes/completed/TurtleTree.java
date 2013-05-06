@@ -7,83 +7,89 @@ public class TurtleTree
 {
   public static void main(String[] args)
   {
-    //    Make the tortoise go as fast as possible
+    //    Make the tortoise go as fast as possible --#11
     Tortoise.setSpeed(10);
-    //    Turn the background black
+    //    Turn the background black --#22
     Tortoise.getBackgroundWindow().setBackground(Colors.Grays.Black);
-    //    The current branch length = 60
-    int length = 60;
-    //    CreateBranchColors (recipe below)
-    setBranchColors(length);
-    //    DrawBranch(recipe below)
-    drawBranch(length);
+    //    The current branch length = 60 --#1.2
+    int branchLength = 60;
+    //    drawBranch(recipe below) --#2
+    drawBranch(branchLength);
   }
-  //    ------------- Recipe for DrawBranch
-  private static void drawBranch(int length)
+  public static void drawBranch(int branchLength)
   {
-    //    If the current branch length is greater than zero
-    if (length > 0)
+    //    ------------- Recipe for drawBranch --#2
+    //          If the current branch length is greater than zero --#6
+    if (branchLength > 0)
     {
-      //         setBranchColors (recipe below)
-      setBranchColors(length);
-      //         Move the tortoise the length of the current branch
-      Tortoise.move(length);
-      //         DrawLowerBranches with length 10 pixels shorter (recipe below)
-      drawLowerBranches(length - 10);
-      //         setBranchColors (recipe below)
-      setBranchColors(length);
-      //         Move the tortoise backward the length of the current branch
-      Tortoise.move(-length);
+      //                          adjustColor --#16
+      adjustColor(branchLength);
+      //                  Move the tortoise the length of the current branch --#1.1
+      Tortoise.move(branchLength);
+      //                  drawLowerBranches (recipe below) --#7
+      drawLowerBranches(branchLength);
     }
+    //    ------------- End of drawBranch recipe --#2
   }
-  //    ------------- End of DrawBranch recipe 
-  //    ------------- Recipe for DrawLowerBranches
-  private static void drawLowerBranches(int length)
+  public static void adjustColor(int branchLength)
   {
-    //     Turn the Tortoise 30 degrees to the right
-    Tortoise.turn(30);
-    //     DrawBranch (recipe above)
-    drawBranch(length);
-    //     Turn the Tortoise 60 degrees to the left
-    Tortoise.turn(-60);
-    //     DrawBranch (recipe above)
-    drawBranch(length);
-    //     Turn the Tortoise 30 degrees to the right
-    Tortoise.turn(30);
-  }
-  //    ------------- End of DrawLowerBranches recipe
-  //    ------------- Recipe for CreateBranchColors
-  public static void setBranchColors(int length)
-  {
-    //     A 10 pixel long branch is lime
-    if (length == 10)
+    //                          ------------- Recipe for adjustColor --#16
+    //                                  A 10 pixel long branch is lime --#21
+    if (branchLength == 10)
     {
       Tortoise.setPenColor(Colors.Greens.Lime);
     }
-    //     A 20 pixel long branch is forest green
-    if (length == 20)
+    //                                  A 20 pixel long branch is forest green --#20
+    if (branchLength == 20)
     {
       Tortoise.setPenColor(Colors.Greens.ForestGreen);
     }
-    //     A 30 pixel long branch is dark green
-    if (length == 30)
+    //                                  A 30 pixel long branch is dark green --#19
+    if (branchLength == 30)
     {
       Tortoise.setPenColor(Colors.Greens.DarkGreen);
     }
-    //     A 40 pixel long branch is olive
-    if (length == 40)
+    //                                  A 40 pixel long branch is olive --#18
+    if (branchLength == 40)
     {
       Tortoise.setPenColor(Colors.Greens.Olive);
     }
-    //     A 50 pixel long branch is sienna
-    if (length == 50)
+    //                                  A 50 pixel long branch is sienna --#15
+    if (branchLength == 50)
     {
       Tortoise.setPenColor(Colors.Browns.Sienna);
     }
-    //     A 60 pixel long branch is saddle brown
-    if (length == 60)
+    //                                  A 60 pixel long branch is saddle brown --#14
+    if (branchLength == 60)
     {
       Tortoise.setPenColor(Colors.Browns.SaddleBrown);
     }
+    //                          ------------- End of adjustColor --#16
+  }
+  public static void drawLowerBranches(int branchLength)
+  {
+    //                  ------------- Recipe for drawLowerBranches --#7
+    //                          Turn the Tortoise 30 degrees to the right --#3
+    Tortoise.turn(30);
+    //                          drawShorterBranch (recipe below) --#9
+    drawShorterBranches(branchLength);
+    //                          Turn the Tortoise 60 degrees to the left --#8
+    Tortoise.turn(-60);
+    //                          drawShorterBranch --#10
+    drawShorterBranches(branchLength);
+    //                          Turn the Tortoise 30 degrees to the right --#13
+    Tortoise.turn(30);
+    //adjustColor --#17
+    adjustColor(branchLength);
+    //                  Move the tortoise backward the length of the current branch --#12
+    Tortoise.move(-branchLength);
+    //                  ------------- End of drawLowerBranches recipe --#7
+  }
+  public static void drawShorterBranches(int branchLength)
+  {
+    //                          ------------- Recipe for drawShorterBranch --#9
+    //                                  drawBranch (10 pixels shorter) --#4
+    drawBranch(branchLength - 10);
+    //                          ------------- End of drawShorterBranch recipe --#9
   }
 }

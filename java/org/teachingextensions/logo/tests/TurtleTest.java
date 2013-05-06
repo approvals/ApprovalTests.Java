@@ -6,13 +6,14 @@ import junit.framework.TestCase;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.DelayedClipboardReporter;
-import org.approvaltests.reporters.FileLauncherReporter;
+import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.lambda.functions.Function1;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Turtle;
 import org.teachingextensions.logo.Wheel;
 
-@UseReporter({FileLauncherReporter.class, DelayedClipboardReporter.class})
+@UseReporter({DiffReporter.class, DelayedClipboardReporter.class})
 public class TurtleTest extends TestCase
 {
   public void testShow() throws Exception
@@ -101,5 +102,26 @@ public class TurtleTest extends TestCase
     turtle.move(50);
     turtle.hide();
     Approvals.verify(turtle.getImage());
+  }
+  public void testSpeed() throws Exception
+  {
+    Integer[] speeds = {-5, 5, 15, Turtle.TEST_SPEED};
+    Approvals.verifyAll("Speeds", speeds, new Function1<Integer, String>()
+    {
+      @Override
+      public String call(Integer speed)
+      {
+        try
+        {
+          Turtle turtle = TurtleUtils.getTurtle();
+          turtle.setSpeed(speed);
+          return speed + " => " + turtle.getSpeed();
+        }
+        catch (Exception e)
+        {
+          return speed + " => " + e.getMessage();
+        }
+      }
+    });
   }
 }

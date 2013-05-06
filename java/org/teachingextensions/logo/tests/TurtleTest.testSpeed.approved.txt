@@ -1,0 +1,11 @@
+Speeds
+
+
+-5 => I call shenanigans!!!
+The speed '-5' is not between the acceptable range of [1-10]
+Perhaps you should read the documentation
+5 => 5
+15 => I call shenanigans!!!
+The speed '15' is not between the acceptable range of [1-10]
+Perhaps you should read the documentation
+-2147483648 => -2147483648

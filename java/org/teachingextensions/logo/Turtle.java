@@ -137,9 +137,15 @@ public class Turtle
   }
   public void turn(double amount)
   {
-    double max = MAX_TURN_AMOUNT;
+    double max = getTurnAmount(amount);
     Saver<Double> s = new Turner();
     animate(amount, max, s);
+  }
+  private double getTurnAmount(double amount)
+  {
+    amount = Math.abs(amount);
+    if (getSpeed() == TEST_SPEED) { return amount; }
+    return amount / (11 - getSpeed());
   }
   private void animate(double amount, double max, Saver<Double> s)
   {
@@ -184,8 +190,11 @@ public class Turtle
   {
     if (speed != TEST_SPEED)
     {
-      speed = Math.max(1, speed);
-      speed = Math.min(10, speed);
+      if (speed < 1 || 10 < speed) { throw new RuntimeException(
+          String
+              .format(
+                  "I call shenanigans!!!\nThe speed '%s' is not between the acceptable range of [1-10]\nPerhaps you should read the documentation",
+                  speed)); }
     }
     this.speed = speed;
   }
