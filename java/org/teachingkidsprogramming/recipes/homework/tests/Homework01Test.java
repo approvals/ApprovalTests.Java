@@ -25,6 +25,7 @@ public class Homework01Test extends TestCase
     assertQuestion("forLoopsEndAtTheEnd", 5);
     assertQuestion("forLoopsCanStartAnywhere", 7);
     assertQuestion("forLoopsCanSkip", 2);
+    assertQuestion("forLoopsCanSkipUpAndDown", -3);
     assertQuestion("forLoopsCanGoBackwards", -1);
   }
   public void assertQuestion(String methodName, Object answer) throws Exception

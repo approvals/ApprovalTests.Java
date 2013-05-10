@@ -116,6 +116,7 @@ public class Homework01
     for (int i = 1; i <= ____; i++)
     {
       numbers += i;
+      preventInfiniteLoops();
     }
     Assert.assertEquals("# 12345", numbers);
   }
@@ -126,6 +127,7 @@ public class Homework01
     for (int i = ____; i <= 9; i++)
     {
       answer += i;
+      preventInfiniteLoops();
     }
     // 'Question: Why is 7 the most feared number?
     Assert.assertEquals("Because 789", answer);
@@ -137,8 +139,20 @@ public class Homework01
     for (int i = 1; i <= 20; i += ____)
     {
       numbers = numbers + i + ",";
+      preventInfiniteLoops();
     }
     Assert.assertEquals("# 1,3,5,7,9,11,13,15,17,19,", numbers);
+  }
+  @Test
+  public void forLoopsCanSkipUpAndDown() throws Exception
+  {
+    String numbers = "# ";
+    for (int i = 20; 0 < i && i <= 40; i += ____)
+    {
+      numbers = numbers + i + ",";
+      preventInfiniteLoops();
+    }
+    Assert.assertEquals("# 20,17,14,11,8,5,2,", numbers);
   }
   @Test
   public void forLoopsCanGoBackwards() throws Exception
