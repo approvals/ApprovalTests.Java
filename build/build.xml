@@ -72,6 +72,7 @@
 				<exclude name="**/completed/**" />
 			</fileset>
 		</copy>
+		<replace dir="${tkp_project}/src" token="@Ignore" value=""/>
 		<zip destfile="${build}/tkp_workspace.v${version}.zip" basedir="${tkp_workspace}" includes="**">
 		</zip>
 	</target>
