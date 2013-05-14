@@ -28,6 +28,18 @@ public class MessageBox
     return messageBox.askForNumericalInput(message);
   }
   /**
+   * Prints a request for a text input to the window. <br/>
+   * <b>Example:</b> {@code  String name = MessageBox.askForTextInput("What is your nickname?");}
+   * 
+   * @param message
+   *          the text to be displayed
+   * @return the user input
+   */
+  public static String askForTextInput(String message)
+  {
+    return messageBox.askForTextInput(message);
+  }
+  /**
    * Prints the message to the window. <br/>
    * <b>Example:</b> {@code  MessageBox.showMessage("Girl programmers rule!");}
    * 
@@ -46,8 +58,12 @@ public class MessageBox
   {
     public int askForNumericalInput(String message)
     {
-      String input = JOptionPane.showInputDialog(message);
+      String input = askForTextInput(message);
       return NumberUtils.load(input, 0);
+    }
+    public String askForTextInput(String message)
+    {
+      return JOptionPane.showInputDialog(message);
     }
     public void showMessage(String message)
     {
