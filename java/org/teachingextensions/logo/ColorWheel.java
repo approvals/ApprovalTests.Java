@@ -43,6 +43,12 @@ public class ColorWheel
   {
     return wheel.next();
   }
+  /**
+   * This method returns the a random color from the options on the ColorWheel. <br/>
+   * <b>Example:</b> {@code  Color penColor = ColorWheel.getNextColor();}
+   * 
+   * @return A random color from the ColorWheel
+   */
   public static Color getRandomColorFromWheel()
   {
     return wheel.getRandomFrom();

@@ -5,6 +5,23 @@ import java.util.List;
 
 import com.spun.util.NumberUtils;
 
+/**
+ * A Wheel is a List with no ending on beginning <br/>
+ * 
+ * <b>Example:</b> {@code  
+ *    Wheel<String> names = new Wheel<String>();  
+ *    names.add("Chocolate"); 
+ *    names.add("Peanut Butter"); 
+ *    for(int i = 0; i < 6; i++)  > {
+ * String name = names.next();
+ * System.out.print(name + " ");
+ * }
+ * }
+ * Would result in : <br/>
+ * Chocolate Peanut Butter Chocolate Peanut Butter Chocolate Peanut Butter
+ * 
+ * @param <T>
+ */
 public class Wheel<T>
 {
   private List<T> list  = new ArrayList<T>();
