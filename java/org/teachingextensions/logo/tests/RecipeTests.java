@@ -52,7 +52,7 @@ public class RecipeTests extends TestCase
     {
       turtle.setPenColor(color);
       turtle.move(3 * i);
-      turtle.turnRight();
+      turtle.turn(90);
       color = Colors.darken(color);
     }
     Approvals.verify(turtle.getImage());
@@ -65,7 +65,7 @@ public class RecipeTests extends TestCase
     for (int i = 0; i < 4; i++)
     {
       drawSquare(turtle);
-      turtle.turnRight();
+      turtle.turn(90);
     }
     Approvals.verify(turtle.getImage());
   }

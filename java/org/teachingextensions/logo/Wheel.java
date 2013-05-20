@@ -3,6 +3,8 @@ package org.teachingextensions.logo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.spun.util.NumberUtils;
+
 public class Wheel<T>
 {
   private List<T> list  = new ArrayList<T>();
@@ -23,13 +25,27 @@ public class Wheel<T>
   }
   public T next()
   {
-    if (list.isEmpty()) { return null; }
+    assertNonEmpty();
     if (index >= list.size())
     {
       index = 0;
     }
     T t = list.get(index++);
     return t;
+  }
+  private void assertNonEmpty()
+  {
+    if (list.isEmpty())
+    {
+      String message = "I call shenanigans!!!\nThis Wheel is empty\nYou can get something from the Wheel before you've added anything to it.";
+      throw new RuntimeException(message);
+    }
+  }
+  public T getRandomFrom()
+  {
+    assertNonEmpty();
+    int index = NumberUtils.getRandomInt(0, list.size());
+    return list.get(index);
   }
   public void empty()
   {

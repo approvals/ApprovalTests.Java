@@ -4,19 +4,19 @@ import java.awt.Color;
 
 /**
  * ColorWheel is a place to store a color palette. <br/>
- * <b>Example:</b> If you have a palette of 
- * <font color="blue">blue</font>, 
- * <font color="red">red</font>, 
+ * <b>Example:</b> If you have a palette of
+ * <font color="blue">blue</font>,
+ * <font color="red">red</font>,
  * and <font color="purple">purple</font> <br/>
  * and then used it to print out the numbers, you would get <br/>
- * <font color="blue">1</font> 
- * <font color="red">2</font> 
+ * <font color="blue">1</font>
+ * <font color="red">2</font>
  * <font color="purple">3</font>
- * <font color="blue">4</font> 
- * <font color="red">5</font> 
+ * <font color="blue">4</font>
+ * <font color="red">5</font>
  * <font color="purple">6</font>
- * <font color="blue">7</font> 
- * <font color="red">8</font> 
+ * <font color="blue">7</font>
+ * <font color="red">8</font>
  * <font color="purple">9</font>
  */
 public class ColorWheel
@@ -27,7 +27,7 @@ public class ColorWheel
    * <b>Example:</b> {@code  ColorWheel.addColor(Colors.Reds.Red);}
    * 
    * @param color
-   *            the color to add to the wheel
+   *          the color to add to the wheel
    */
   public static void addColor(Color color)
   {
@@ -42,6 +42,10 @@ public class ColorWheel
   public static Color getNextColor()
   {
     return wheel.next();
+  }
+  public static Color getRandomColorFromWheel()
+  {
+    return wheel.getRandomFrom();
   }
   public static void removeAllColors()
   {

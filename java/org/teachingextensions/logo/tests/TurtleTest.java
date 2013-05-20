@@ -24,7 +24,7 @@ public class TurtleTest extends TestCase
   public void testRotate() throws Exception
   {
     Turtle turtle = TurtleUtils.getTurtle();
-    turtle.turnRight();
+    turtle.turn(90);
     Approvals.verify(turtle.getImage());
   }
   public void testRotate45() throws Exception

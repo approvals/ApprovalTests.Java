@@ -131,10 +131,6 @@ public class Turtle
   {
     this.y = y.doubleValue();
   }
-  public void turnRight()
-  {
-    turn(90);
-  }
   public void turn(double amount)
   {
     double max = getTurnAmount(amount);

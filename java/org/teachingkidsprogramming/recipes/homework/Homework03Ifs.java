@@ -2,9 +2,10 @@ package org.teachingkidsprogramming.recipes.homework;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
-//@Ignore
+@Ignore
 public class Homework03Ifs
 {
   //  'How to do homework:
