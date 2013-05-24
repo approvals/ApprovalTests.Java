@@ -19,7 +19,7 @@ Approval Tests can be used for verifing objects that require more than a simple 
 - Json
 
 
-[Video Tutorials]http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
+[Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
 
 You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube
