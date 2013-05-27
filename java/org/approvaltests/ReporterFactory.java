@@ -78,7 +78,7 @@ public class ReporterFactory
         annotation = method.getAnnotation(annotationClass);
       }
       if (annotation != null) { return annotation; }
-      annotation = clazz.getAnnotation(annotationClass);
+      annotation = clazz!=null ? clazz.getAnnotation(annotationClass) : null;
       if (annotation != null) { return annotation; }
     }
     return null;
