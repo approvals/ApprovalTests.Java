@@ -14,7 +14,7 @@ public class ParserTest extends TestCase
   private String b = "howdy";
   public void testSimpleParse() throws Exception
   {
-    String text = Parser.Parse("This should show \r\n  a = {a} \r\n  b = {b}", this);
+    String text = Parser.parse("This should show \r\n  a = {a} \r\n  b = {b}", this);
     Approvals.verify(text);
   }
 }
