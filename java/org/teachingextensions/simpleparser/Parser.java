@@ -1,4 +1,4 @@
-package org.simpleparser;
+package org.teachingextensions.simpleparser;
 
 import java.lang.reflect.Field;
 import java.util.List;

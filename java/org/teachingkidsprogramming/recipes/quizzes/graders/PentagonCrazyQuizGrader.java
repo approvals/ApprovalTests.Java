@@ -1,5 +1,6 @@
 package org.teachingkidsprogramming.recipes.quizzes.graders;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 import org.teachingextensions.logo.ColorWheel;
@@ -72,13 +73,24 @@ public class PentagonCrazyQuizGrader implements Paintable
   {
     ColorWheel.removeAllColors();
     quiz.question3();
-    return ColorWheel.getNextColor() == Colors.Greens.Lime;
+    return getSafeColor() == Colors.Greens.Lime;
+  }
+  public Color getSafeColor()
+  {
+    try
+    {
+      return ColorWheel.getNextColor();
+    }
+    catch (Exception e)
+    {
+      return null;
+    }
   }
   private boolean grade4Red()
   {
     ColorWheel.removeAllColors();
     quiz.question4();
-    return ColorWheel.getNextColor() == Colors.Reds.Red;
+    return getSafeColor() == Colors.Reds.Red;
   }
   public void setColors()
   {
@@ -94,7 +106,7 @@ public class PentagonCrazyQuizGrader implements Paintable
     }
     else
     {
-      Tortoise.setPenColor(ColorWheel.getNextColor());
+      Tortoise.setPenColor(getSafeColor());
       Tortoise.turn(wheel.next());
       Tortoise.penDown();
       quiz.thread();

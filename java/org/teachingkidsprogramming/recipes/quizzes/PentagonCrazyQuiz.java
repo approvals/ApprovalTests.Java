@@ -3,7 +3,7 @@ package org.teachingkidsprogramming.recipes.quizzes;
 import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonCrazyQuizGrader;
 import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuiz;
 
-public class PentagonCrazyQuiz extends PentagonCrazyQuizGrader
+public class PentagonCrazyQuiz extends PentagonQuiz
 {
   //      Question1
   //      Create a method called thread
@@ -11,7 +11,7 @@ public class PentagonCrazyQuiz extends PentagonCrazyQuizGrader
   public void question2()
   {
     //        Do the following 76 times
-    //        Quiz.Stitch()
+    //           call stitch
     //        Repeat
   }
   public void question3()
@@ -24,6 +24,6 @@ public class PentagonCrazyQuiz extends PentagonCrazyQuizGrader
   }
   public static void main(String[] args)
   {
-    new PentagonCrazyQuizGrader().grade(new PentagonQuiz());
+    new PentagonCrazyQuizGrader().grade(new PentagonCrazyQuiz());
   }
 }

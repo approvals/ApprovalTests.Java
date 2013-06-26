@@ -1,11 +1,11 @@
-package org.simpleparser.tests;
+package org.teachingextensions.simpleparser.tests;
 
 import junit.framework.TestCase;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.simpleparser.Parser;
+import org.teachingextensions.simpleparser.Parser;
 
 @UseReporter(DiffReporter.class)
 public class ParserTest extends TestCase
