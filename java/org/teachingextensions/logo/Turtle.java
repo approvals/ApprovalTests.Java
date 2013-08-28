@@ -82,17 +82,16 @@ public class Turtle
   public BufferedImage getImage()
   {
     BufferedImage image = ComponentApprovalWriter.drawComponent(getPanel());
-    cleanUpWindow();
+    clear();
     return image;
   }
-  public void cleanUpWindow()
+  public void clear()
   {
-    if (frame != null)
+    trail.clear();
+    if (panel != null)
     {
-      frame.setVisible(false);
-      frame = null;
+      panel.removeAdditional();
     }
-    panel = null;
   }
   private Component getPanel()
   {

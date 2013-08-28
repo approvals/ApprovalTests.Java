@@ -205,9 +205,9 @@ public class Tortoise
    * Removes everything from the window. <br/>
    * <b>Example:</b> {@code  Tortoise.cleanUpWindow()}
    */
-  public static void cleanUpWindow()
+  public static void clear()
   {
-    turtle().cleanUpWindow();
+    turtle().clear();
   }
   /**
    * Hides the tortoise, you will still see the pen markings it made before and after it hid. <br/>

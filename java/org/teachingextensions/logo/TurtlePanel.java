@@ -90,5 +90,11 @@ public class TurtlePanel extends JPanel
   public void addAdditional(Paintable additional)
   {
     this.additional.add(additional);
+    repaint();
+  }
+  public void removeAdditional()
+  {
+    additional.clear();
+    repaint();
   }
 }

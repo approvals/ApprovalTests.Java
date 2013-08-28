@@ -12,6 +12,7 @@ import org.teachingextensions.logo.ColorWheel;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Tortoise;
 import org.teachingextensions.logo.shapes.Circle;
+import org.teachingextensions.logo.shapes.Text;
 
 import com.spun.util.WindowUtils;
 
@@ -25,18 +26,9 @@ public class Dots implements MouseListener
     //  Set the clickMouse recipe (below) to be called when the mouse is clicked #3
     Tortoise.getBackgroundWindow().addMouseListener(new Dots());
     //  clearTheScreen (recipe below)
-    //
+    clearTheScreen();
     //  prepareColorPalette (recipe below)
     prepareColorPalette();
-    //
-    //
-    //
-    //  ------------- Recipe for clearTheScreen
-    //   Clear the Program Window
-    //
-    //   Write "Right click to clear" on the screen at position 100, 100
-    //
-    //
   }
   private static void prepareColorPalette()
   { //  ------------- Recipe for prepareColorPalette
@@ -64,21 +56,6 @@ public class Dots implements MouseListener
   @Override
   public void mouseClicked(MouseEvent m)
   {
-    //    ------- Recipe for clickMouse #4
-    //   Play a chime #1
-    System.out.println("clicked");
-    //   If the right mouse button is clicked, then #5
-    if (SwingUtilities.isRightMouseButton(m))
-    {
-      //      clearTheScreen() #6
-      clearTheScreen();
-    }
-    //    Otherwise
-    else
-    {
-      //      connectTheDots()
-      connectTheDots(m.getX(), m.getY());
-    }
   }
   private void connectTheDots(int x, int y)
   {
@@ -103,8 +80,13 @@ public class Dots implements MouseListener
     circle.setCenter(x, y);
     circle.addTo(Tortoise.getBackgroundWindow());
   }
-  private void clearTheScreen()
+  private static void clearTheScreen()
   {
+    //  ------------- Recipe for clearTheScreen
+    //   Clear the Program Window
+    Tortoise.clear();
+    //   Write "Right click to clear" on the screen at position 100, 100
+    new Text("Right click to clear").setTopLeft(100, 100).addTo(Tortoise.getBackgroundWindow());
   }
   @Override
   public void mouseEntered(MouseEvent arg0)
@@ -125,5 +107,20 @@ public class Dots implements MouseListener
   public void mouseReleased(MouseEvent arg0)
   {
     //    System.out.println("released");
+    //    ------- Recipe for clickMouse #4
+    //   Play a chime #1
+    System.out.println("clicked");
+    //   If the right mouse button is clicked, then #5
+    if (SwingUtilities.isRightMouseButton(arg0))
+    {
+      //      clearTheScreen() #6
+      clearTheScreen();
+    }
+    //    Otherwise
+    else
+    {
+      //      connectTheDots()
+      connectTheDots(arg0.getX(), arg0.getY());
+    }
   }
 }
