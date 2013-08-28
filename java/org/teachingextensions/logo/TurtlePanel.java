@@ -15,6 +15,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import org.teachingextensions.logo.Turtle.Animals;
+import org.teachingextensions.windows.LeftClickMouseAdapter;
+import org.teachingextensions.windows.MouseLeftClickListener;
+import org.teachingextensions.windows.MouseRightClickListener;
+import org.teachingextensions.windows.RightClickMouseAdapter;
 
 public class TurtlePanel extends JPanel
 {
@@ -96,5 +100,13 @@ public class TurtlePanel extends JPanel
   {
     additional.clear();
     repaint();
+  }
+  public void addMouseRightClickListener(MouseRightClickListener listener)
+  {
+    addMouseListener(new RightClickMouseAdapter(listener));
+  }
+  public void addMouseLeftClickListener(MouseLeftClickListener listener)
+  {
+    addMouseListener(new LeftClickMouseAdapter(listener));
   }
 }

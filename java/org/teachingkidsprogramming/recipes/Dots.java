@@ -1,30 +1,28 @@
 package org.teachingkidsprogramming.recipes;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import org.teachingextensions.logo.ColorWheel;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Tortoise;
 import org.teachingextensions.logo.shapes.Circle;
 import org.teachingextensions.logo.shapes.Text;
+import org.teachingextensions.windows.MouseLeftClickListener;
+import org.teachingextensions.windows.MouseRightClickListener;
 
-import com.spun.util.WindowUtils;
-
-public class Dots implements MouseListener
+public class Dots implements MouseRightClickListener, MouseLeftClickListener
 {
   public static void main(String[] args)
   {
-    // createWindow() #2
-    Tortoise.show();
-    Tortoise.setSpeed(10);
+    Dots dots = new Dots();
+  }
+  public Dots()
+  {
     //  Set the clickMouse recipe (below) to be called when the mouse is clicked #3
-    Tortoise.getBackgroundWindow().addMouseListener(new Dots());
+    Tortoise.getBackgroundWindow().addMouseRightClickListener(this);
+    Tortoise.getBackgroundWindow().addMouseLeftClickListener(this);
+    //Make the Tortoise go as fast as possible.
+    Tortoise.setSpeed(10);
     //  clearTheScreen (recipe below)
     clearTheScreen();
     //  prepareColorPalette (recipe below)
@@ -45,17 +43,6 @@ public class Dots implements MouseListener
     ColorWheel.addColor(Colors.Pinks.Pink);
     //   Add teal to the color wheel
     ColorWheel.addColor(Colors.Greens.Teal);
-  }
-  public static JPanel createWindow()
-  {
-    JPanel panel = new JPanel();
-    panel.setPreferredSize(new Dimension(640, 480));
-    WindowUtils.testPanel(panel);
-    return panel;
-  }
-  @Override
-  public void mouseClicked(MouseEvent m)
-  {
   }
   private void connectTheDots(int x, int y)
   {
@@ -89,38 +76,13 @@ public class Dots implements MouseListener
     new Text("Right click to clear").setTopLeft(100, 100).addTo(Tortoise.getBackgroundWindow());
   }
   @Override
-  public void mouseEntered(MouseEvent arg0)
+  public void onRightMouseClick(int x, int y)
   {
-    //    System.out.println("entered");
+    clearTheScreen();
   }
   @Override
-  public void mouseExited(MouseEvent arg0)
+  public void onLeftMouseClick(int x, int y)
   {
-    //    System.out.println("exited");
-  }
-  @Override
-  public void mousePressed(MouseEvent arg0)
-  {
-    //    System.out.println("pressed");
-  }
-  @Override
-  public void mouseReleased(MouseEvent arg0)
-  {
-    //    System.out.println("released");
-    //    ------- Recipe for clickMouse #4
-    //   Play a chime #1
-    System.out.println("clicked");
-    //   If the right mouse button is clicked, then #5
-    if (SwingUtilities.isRightMouseButton(arg0))
-    {
-      //      clearTheScreen() #6
-      clearTheScreen();
-    }
-    //    Otherwise
-    else
-    {
-      //      connectTheDots()
-      connectTheDots(arg0.getX(), arg0.getY());
-    }
+    connectTheDots(x, y);
   }
 }
