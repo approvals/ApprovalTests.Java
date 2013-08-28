@@ -10,7 +10,9 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import org.approvaltests.writers.ComponentApprovalWriter;
+import org.lambda.actions.Action0;
 
+import com.spun.util.ThreadLauncher;
 import com.spun.util.WindowUtils;
 import com.spun.util.persistence.Saver;
 import com.spun.util.persistence.SavingException;
@@ -274,5 +276,34 @@ public class Turtle
   public boolean isHidden()
   {
     return hidden;
+  }
+  public void moveTo(final int x, final int y)
+  {
+    ThreadLauncher.launch(new Action0()
+    {
+      @Override
+      public void call()
+      {
+        moveSynchronized(x, y);
+      }
+    });
+  }
+  public void moveSynchronized(int x, int y)
+  {
+    double angleOfWherePointIs = angleCalculator(getX(), getY(), x, y);
+    double direction = angleOfWherePointIs - getAngleInDegrees();
+    turn(direction);
+    // move the turtle the distance to the x y point
+    double distance = new Point(x, y).distance(getX(), getY());
+    move(distance);
+  }
+  public static double angleCalculator(int x1, int y1, int x2, int y2)
+  {
+    int delta_x = x1 - x2;
+    int delta_y = y1 - y2;
+    double theta_radians = Math.atan2(delta_y, delta_x);
+    double degrees = Math.toDegrees(theta_radians);
+    double degreesWith0North = degrees - 90;
+    return degreesWith0North;
   }
 }

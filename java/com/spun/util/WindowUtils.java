@@ -1,7 +1,10 @@
 package com.spun.util;
 
-import javax.swing.*;
 import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class WindowUtils
 {
@@ -22,8 +25,7 @@ public class WindowUtils
   {
     JFrame test = new JFrame("Testing Frame");
     test.getContentPane().add(panel);
-    testFrame(test,true);
-    while(true){}
+    testFrame(test, true);
   }
   /***********************************************************************/
   public static void testFrame(JFrame frame)

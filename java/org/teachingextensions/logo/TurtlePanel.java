@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -17,9 +18,9 @@ import org.teachingextensions.logo.Turtle.Animals;
 
 public class TurtlePanel extends JPanel
 {
-  private Turtle    turtle;
-  private Paintable additional = Paintable.NOTHING;
-  private Image     image;
+  private Turtle               turtle;
+  private ArrayList<Paintable> additional = new ArrayList<Paintable>();
+  private Image                image;
   public TurtlePanel()
   {
     setPreferredSize(new Dimension(627, 442));
@@ -35,7 +36,10 @@ public class TurtlePanel extends JPanel
     super.paint(g);
     paintLines((Graphics2D) g);
     paintTurtle((Graphics2D) g);
-    additional.paint((Graphics2D) g);
+    for (Paintable p : additional)
+    {
+      p.paint((Graphics2D) g);
+    }
   }
   private void paintLines(Graphics2D g)
   {
@@ -83,8 +87,8 @@ public class TurtlePanel extends JPanel
   {
     setBackground(backgroundColor);
   }
-  public void setAdditional(Paintable additional)
+  public void addAdditional(Paintable additional)
   {
-    this.additional = additional;
+    this.additional.add(additional);
   }
 }

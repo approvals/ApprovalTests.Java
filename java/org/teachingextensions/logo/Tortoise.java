@@ -233,4 +233,8 @@ public class Tortoise
   {
     turtle().setAngleInDegrees(angle);
   }
+  public static void moveTo(int x, int y)
+  {
+    turtle().moveTo(x, y);
+  }
 }

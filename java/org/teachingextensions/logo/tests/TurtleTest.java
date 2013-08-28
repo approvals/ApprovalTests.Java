@@ -64,6 +64,11 @@ public class TurtleTest extends TestCase
     }
     Approvals.verify(out);
   }
+  public void testCalculateAngle() throws Exception
+  {
+    assertEquals(-90.0, Turtle.angleCalculator(0, 0, -1, 0), 0.005);
+    assertEquals(90.0, Turtle.angleCalculator(0, 0, 1, 0), 0.005);
+  }
   public void testPentagonCrazy() throws Exception
   {
     Turtle turtle = TurtleUtils.getTurtle();

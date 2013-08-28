@@ -1,6 +1,6 @@
 package org.teachingkidsprogramming.recipes.completed;
 
-import org.simpleparser.Parser;
+import org.teachingextensions.simpleparser.Parser;
 import org.teachingextensions.utils.Viewer;
 import org.teachingextensions.windows.MessageBox;
 
