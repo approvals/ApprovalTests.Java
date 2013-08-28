@@ -32,7 +32,6 @@ public class Dots implements MouseListener
     //
     //
     //  ------------- Recipe for clearTheScreen
-    //
     //   Clear the Program Window
     //
     //   Write "Right click to clear" on the screen at position 100, 100
@@ -44,16 +43,16 @@ public class Dots implements MouseListener
     //
     //   Add red to the color wheel
     ColorWheel.addColor(Colors.Reds.Red);
-    //
     //   Add green to the color wheel
-    //
+    ColorWheel.addColor(Colors.Greens.Green);
     //   Add blue to the color wheel
-    //
+    ColorWheel.addColor(Colors.Blues.Blue);
     //   Add purple to the color wheel
-    //
+    ColorWheel.addColor(Colors.Purples.Purple);
     //   Add pink to the color wheel
-    //
+    ColorWheel.addColor(Colors.Pinks.Pink);
     //   Add teal to the color wheel
+    ColorWheel.addColor(Colors.Greens.Teal);
   }
   public static JPanel createWindow()
   {
@@ -66,10 +65,8 @@ public class Dots implements MouseListener
   public void mouseClicked(MouseEvent m)
   {
     //    ------- Recipe for clickMouse #4
-    //
     //   Play a chime #1
     System.out.println("clicked");
-    //
     //   If the right mouse button is clicked, then #5
     if (SwingUtilities.isRightMouseButton(m))
     {
@@ -86,30 +83,23 @@ public class Dots implements MouseListener
   private void connectTheDots(int x, int y)
   {
     //  ------------- Recipe for connectTheDots
-    //
     //   addACircle (recipe below)
-    //
     addCircle(x, y);
     //   Move the tortoise to the current position of the mouse # 8
     Tortoise.moveTo(x, y);
-    //
-    //
   }
   private void addCircle(int x, int y)
   {
     //  ------------- Recipe for addACircle
-    //
     //   The width of the circle is 15
-    int width = 15;
+    int radius = 7;
     //   Change the color for the next shape to the next color from the color wheel
     Color color = ColorWheel.getNextColor();
-    //
     //   Create a circle
-    Circle circle = new Circle(width, color);
+    Circle circle = new Circle(radius, color);
     //   Change the circle to be 40% opaque
-    //
+    circle.setTransparency(60);
     //   Move the center of the circle to the current position of the mouse
-    //
     circle.setCenter(x, y);
     circle.addTo(Tortoise.getBackgroundWindow());
   }

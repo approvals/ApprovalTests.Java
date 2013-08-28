@@ -713,4 +713,14 @@ public class Colors
   {
     RANDOM.setSeed(5);
   }
+  public static int calculateTransparency(int percentTransparent)
+  {
+    int opacity = (percentTransparent * 255) / 100;
+    return (255 - opacity);
+  }
+  public static Color getTransparentVersion(Color color, int percentTransparency)
+  {
+    return new Color(color.getRed(), color.getGreen(), color.getBlue(),
+        calculateTransparency(percentTransparency));
+  }
 }
