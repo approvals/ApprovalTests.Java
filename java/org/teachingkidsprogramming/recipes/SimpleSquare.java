@@ -1,6 +1,5 @@
 package org.teachingkidsprogramming.recipes;
 
-
 public class SimpleSquare
 {
   public static void main(String[] args) throws Exception
@@ -13,4 +12,7 @@ public class SimpleSquare
     //      Turn the tortoise to the right (90 degrees) --#3
     //  Repeat --#5.2
   }
+  /*
+   * After you finish, watch the video recap at http://youtu.be/5bqUZEsJh_Q
+   */
 }
