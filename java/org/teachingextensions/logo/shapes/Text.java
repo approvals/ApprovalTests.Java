@@ -1,5 +1,6 @@
 package org.teachingextensions.logo.shapes;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 import org.teachingextensions.logo.Paintable;
@@ -27,6 +28,9 @@ public class Text implements Paintable
   @Override
   public void paint(Graphics2D g)
   {
+    Font font = g.getFont();
+    Font font2 = new Font(font.getName(), font.getStyle() | Font.BOLD, font.getSize());
+    g.setFont(font2);
     g.drawString(string, x, y);
   }
 }

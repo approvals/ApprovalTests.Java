@@ -14,12 +14,14 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
 {
   public static void main(String[] args)
   {
+    //Create a Dots window.
     Dots dots = new Dots();
   }
   public Dots()
   {
-    //  Set the clickMouse recipe (below) to be called when the mouse is clicked #3
+    // Listen for right clicks on the window for the tortoise 
     Tortoise.getBackgroundWindow().addMouseRightClickListener(this);
+    // Listen for left clicks on the window for the tortoise 
     Tortoise.getBackgroundWindow().addMouseLeftClickListener(this);
     //Make the Tortoise go as fast as possible.
     Tortoise.setSpeed(10);
