@@ -203,7 +203,7 @@ public class Tortoise
   }
   /**
    * Removes everything from the window. <br/>
-   * <b>Example:</b> {@code  Tortoise.cleanUpWindow()}
+   * <b>Example:</b> {@code  Tortoise.clear()}
    */
   public static void clear()
   {
