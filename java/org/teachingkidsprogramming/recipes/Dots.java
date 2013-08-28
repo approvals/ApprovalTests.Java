@@ -26,13 +26,14 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     //Make the Tortoise go as fast as possible.
     Tortoise.setSpeed(10);
     //  clearTheScreen (recipe below)
-    clearTheScreen();
+    //  ------------- Recipe for clearTheScreen
+    //   Clear the Tortoise
+    Tortoise.clear();
+    //   Write "Right click to clear" on the screen at position 100, 100
+    new Text("Right click to clear").setTopLeft(100, 100).addTo(Tortoise.getBackgroundWindow());
+    //  ------------- End of clearTheScreen Recipe
     //  prepareColorPalette (recipe below)
-    prepareColorPalette();
-  }
-  private static void prepareColorPalette()
-  { //  ------------- Recipe for prepareColorPalette
-    //
+    //  ------------- Recipe for prepareColorPalette
     //   Add red to the color wheel
     ColorWheel.addColor(Colors.Reds.Red);
     //   Add green to the color wheel
@@ -45,6 +46,7 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     ColorWheel.addColor(Colors.Pinks.Pink);
     //   Add teal to the color wheel
     ColorWheel.addColor(Colors.Greens.Teal);
+    //  ------------- End of prepareColorPalette Recipe
   }
   private void connectTheDots(int x, int y)
   {
@@ -53,6 +55,7 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     addCircle(x, y);
     //   Move the tortoise to the current position of the mouse # 8
     Tortoise.moveTo(x, y);
+    //  ------------- End of connectTheDots Recipe
   }
   private void addCircle(int x, int y)
   {
@@ -68,23 +71,16 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     //   Move the center of the circle to the current position of the mouse
     circle.setCenter(x, y);
     circle.addTo(Tortoise.getBackgroundWindow());
-  }
-  private static void clearTheScreen()
-  {
-    //  ------------- Recipe for clearTheScreen
-    //   Clear the Program Window
-    Tortoise.clear();
-    //   Write "Right click to clear" on the screen at position 100, 100
-    new Text("Right click to clear").setTopLeft(100, 100).addTo(Tortoise.getBackgroundWindow());
+    //  ------------- End of addACircle Recipe
   }
   @Override
   public void onRightMouseClick(int x, int y)
   {
-    clearTheScreen();
+    //  clearTheScreen (recipe below)
   }
   @Override
   public void onLeftMouseClick(int x, int y)
   {
-    connectTheDots(x, y);
+    //  connectTheDots (recipe below)
   }
 }
