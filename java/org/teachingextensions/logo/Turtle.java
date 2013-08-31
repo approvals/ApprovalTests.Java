@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.lambda.actions.Action0;
 
+import com.spun.util.FrameCloser;
 import com.spun.util.ThreadLauncher;
 import com.spun.util.WindowUtils;
 import com.spun.util.persistence.Saver;
@@ -103,10 +104,14 @@ public class Turtle
       {
         frame = new JFrame("Turtle");
         frame.getContentPane().add(panel);
-        WindowUtils.testFrame(frame, true);
+        createStandardFrame(frame);
       }
     }
     return panel;
+  }
+  private void createStandardFrame(JFrame frame)
+  {
+    WindowUtils.testFrame(frame, new VirtualProctor(), new FrameCloser());
   }
   public int getX()
   {

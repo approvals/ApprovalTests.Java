@@ -1,6 +1,7 @@
 package com.spun.util;
 
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -51,13 +52,24 @@ public class WindowUtils
   /***********************************************************************/
   public static void testFrame(JFrame frame, boolean closeOnExit)
   {
-    frame.pack();
     if (closeOnExit)
     {
-      frame.addWindowListener(new FrameCloser());
+      testFrame(frame, new FrameCloser());
+    }
+    else
+    {
+      testFrame(frame);
+    }
+  }
+  /***********************************************************************/
+  public static void testFrame(JFrame frame, WindowAdapter... array)
+  {
+    frame.pack();
+    for (WindowAdapter closer : array)
+    {
+      frame.addWindowListener(closer);
     }
     WindowUtils.centerWindow(frame);
     frame.setVisible(true);
   }
-  /***********************************************************************/
 }
