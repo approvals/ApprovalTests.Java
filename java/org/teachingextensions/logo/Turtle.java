@@ -68,7 +68,6 @@ public class Turtle
   }
   private static final double MAX_MOVE_AMOUNT = 5.0;
   public static final int     TEST_SPEED      = Integer.MIN_VALUE;
-  private static double       MAX_TURN_AMOUNT = 5.0;
   private double              x               = 640 / 2;
   private double              y               = 480 / 2;
   private double              angleInDegrees  = 0;
@@ -111,7 +110,7 @@ public class Turtle
   }
   private void createStandardFrame(JFrame frame)
   {
-    WindowUtils.testFrame(frame, new VirtualProctor(), new FrameCloser());
+    WindowUtils.testFrame(frame, new VirtualProctorWeb(), new FrameCloser());
   }
   public int getX()
   {

@@ -19,7 +19,7 @@ import com.spun.util.ThreadLauncher;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 
-public class VirtualProctor extends WindowAdapter
+public class VirtualProctorWeb extends WindowAdapter
 {
   private boolean finished = false;
   @Override
@@ -36,6 +36,12 @@ public class VirtualProctor extends WindowAdapter
       }
     });
   }
+  public void sendImageToDisk(BufferedImage image) throws IOException
+  {
+    String filename = "C:\\temp\\VirtualProctor.png";
+    ImageIO.write(image, "png", new File(filename));
+    //TestUtils.displayFile(filename);
+  }
   @Override
   public void windowClosed(WindowEvent e)
   {
@@ -43,12 +49,6 @@ public class VirtualProctor extends WindowAdapter
     {
       ThreadUtils.sleep(50);
     }
-  }
-  public void sendImageToDisk(BufferedImage image) throws IOException
-  {
-    String filename = "C:\\temp\\VirtualProctor.png";
-    ImageIO.write(image, "png", new File(filename));
-    //TestUtils.displayFile(filename);
   }
   public void sendImageToWeb(BufferedImage image)
   {
@@ -70,7 +70,7 @@ public class VirtualProctor extends WindowAdapter
       MySystem.warning(e);
     }
   }
-  public String getComputerName()
+  public static String getComputerName()
   {
     return System.getenv("COMPUTERNAME");
   }
