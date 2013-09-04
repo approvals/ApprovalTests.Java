@@ -54,7 +54,7 @@ public class Wheel<T>
   {
     if (list.isEmpty())
     {
-      String message = "I call shenanigans!!!\nThis Wheel is empty\nYou can get something from the Wheel before you've added anything to it.";
+      String message = "I call shenanigans!!!\nThis Wheel is empty\nYou can NOT get something from the Wheel before you've added anything to it.";
       throw new RuntimeException(message);
     }
   }
