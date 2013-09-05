@@ -10,14 +10,14 @@ import org.teachingextensions.logo.shapes.Text;
 import org.teachingextensions.windows.MouseLeftClickListener;
 import org.teachingextensions.windows.MouseRightClickListener;
 
-public class Dots implements MouseRightClickListener, MouseLeftClickListener
+public class ConnectTheDots implements MouseRightClickListener, MouseLeftClickListener
 {
   public static void main(String[] args)
   {
-    //Create a Dots window.
-    Dots dots = new Dots();
+    //Create a Connect the Dots window.
+    ConnectTheDots dots = new ConnectTheDots();
   }
-  public Dots()
+  public ConnectTheDots()
   {
     // Listen for right clicks on the window for the tortoise 
     Tortoise.getBackgroundWindow().addMouseRightClickListener(this);
@@ -46,9 +46,9 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     //   Add teal to the color wheel
     ColorWheel.addColor(Colors.Greens.Teal);
   }
-  private void connectTheDots(int x, int y)
+  private void addDot(int x, int y)
   {
-    //  ------------- Recipe for connectTheDots
+    //  ------------- Recipe for addDot
     //   addACircle (recipe below)
     addCircle(x, y);
     //   Move the tortoise to the current position of the mouse # 8
@@ -85,6 +85,6 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
   @Override
   public void onLeftMouseClick(int x, int y)
   {
-    connectTheDots(x, y);
+    addDot(x, y);
   }
 }

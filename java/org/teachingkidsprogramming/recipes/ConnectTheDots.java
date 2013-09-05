@@ -3,13 +3,13 @@ package org.teachingkidsprogramming.recipes;
 import org.teachingextensions.windows.MouseLeftClickListener;
 import org.teachingextensions.windows.MouseRightClickListener;
 
-public class Dots implements MouseRightClickListener, MouseLeftClickListener
+public class ConnectTheDots implements MouseRightClickListener, MouseLeftClickListener
 {
   public static void main(String[] args)
   {
-    //Create a Dots window. --#1.1
+    //Create a Connect The Dots window. --#1.1
   }
-  public Dots()
+  public ConnectTheDots()
   {
     // Listen for right clicks on the window for the tortoise  --#20.2
     // Listen for left clicks on the window for the tortoise  --#1.2
@@ -37,8 +37,8 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
   @Override
   public void onLeftMouseClick(int x, int y)
   {
-    //  connectTheDots (recipe below) --#11
-    //  ------------- Recipe for connectTheDots --#11
+    //  addDot (recipe below) --#11
+    //  ------------- Recipe for addDot --#11
     //   addACircle (recipe below) --#10
     //  ------------- Recipe for addACircle --#10
     //   Create a circle with a radius of 7 which is the same color as the next color on the colorwheel --#5
@@ -47,6 +47,6 @@ public class Dots implements MouseRightClickListener, MouseLeftClickListener
     //Place the circle on the tortoise's window. --#7
     //  ------------- End of addACircle Recipe --#10
     //   Move the tortoise to the current position of the mouse --#2
-    //  ------------- End of connectTheDots Recipe --#11
+    //  ------------- End of addDot Recipe --#11
   }
 }
