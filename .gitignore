@@ -1,9 +1,10 @@
 *.class
 /bin
 
-# Package Files #
-
 *.war
 *.ear
 .gradle
 build
+.settings
+.classpath
+.project
