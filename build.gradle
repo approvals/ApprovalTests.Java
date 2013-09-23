@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+version = '0.14-SNAPSHOT'
+description = 'ApprovalTests for Java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'junit:junit:4.11', fileTree(dir: 'lib', include: '*.jar')
+}
