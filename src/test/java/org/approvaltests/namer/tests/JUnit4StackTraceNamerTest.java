@@ -18,7 +18,7 @@ public class JUnit4StackTraceNamerTest
   public void testGetSourceFilePath() throws Exception
   {
     JUnitStackTraceNamer name = new JUnitStackTraceNamer();
-    File file = new File(name.getSourceFilePath() + "JUnitStackTraceNamerTest.java");
+    File file = new File(name.getApprovalFileBasePath() + "JUnitStackTraceNamerTest.java");
     Assert.assertTrue(file.exists());
   }
 }

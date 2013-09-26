@@ -1,7 +1,5 @@
 package org.approvaltests;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +12,7 @@ import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 
+import com.spun.util.AnnotationUtils;
 import com.spun.util.ClassUtils;
 
 public class ReporterFactory
@@ -41,7 +40,7 @@ public class ReporterFactory
   }
   public static ApprovalFailureReporter getFromAnnotation()
   {
-    UseReporter reporter = getAnnotationFromStackTrace(UseReporter.class);
+    UseReporter reporter = AnnotationUtils.getAnnotationFromStackTrace(UseReporter.class);
     return reporter == null ? null : getReporter(reporter);
   }
   private static ApprovalFailureReporter getReporter(UseReporter reporter)
@@ -54,34 +53,6 @@ public class ReporterFactory
       reporters.add(instance);
     }
     return reporters.size() == 1 ? reporters.get(0) : new MultiReporter(reporters);
-  }
-  private static <T extends Annotation> T getAnnotationFromStackTrace(Class<T> annotationClass)
-  {
-    StackTraceElement[] trace = Thread.currentThread().getStackTrace();
-    for (StackTraceElement stack : trace)
-    {
-      Method method = null;
-      Class<?> clazz = null;
-      try
-      {
-        String methodName = stack.getMethodName();
-        clazz = Class.forName(stack.getClassName());
-        method = clazz.getMethod(methodName, null);
-      }
-      catch (Exception e)
-      {
-        //ignore
-      }
-      T annotation = null;
-      if (method != null)
-      {
-        annotation = method.getAnnotation(annotationClass);
-      }
-      if (annotation != null) { return annotation; }
-      annotation = clazz!=null ? clazz.getAnnotation(annotationClass) : null;
-      if (annotation != null) { return annotation; }
-    }
-    return null;
   }
   private static ApprovalFailureReporter tryFor(ApprovalFailureReporter returned,
       Class<? extends ApprovalFailureReporter> trying)
