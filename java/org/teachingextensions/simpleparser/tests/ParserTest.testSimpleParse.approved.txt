@@ -1,3 +1,0 @@
-This should show 
-  a = 1 
-  b = howdy
