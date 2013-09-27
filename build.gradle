@@ -22,3 +22,7 @@ tasks.withType(Test) {
 compileTestJava {
 	options.compilerArgs = ["-Xbootclasspath/p:" + file('lib/ExtensionMethods.jar').getPath()]
 }
+
+test {
+	jvmArgs "-Xbootclasspath/p:" + file('lib/ExtensionMethods.jar').getPath()
+}
