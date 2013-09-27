@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+version = '0.14'
+description = 'ApprovalTests for Java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'junit:junit:4.11', 'sshtools:j2ssh-core:0.2.9', 'org.easymock:easymockclassextension:3.2', 'org.apache.mrunit:mrunit:1.0.0:hadoop1@jar', 'org.apache.hadoop:hadoop-test:1.0.4', 'org.apache.hadoop:hadoop-mapred-test:0.22.0', 'org.apache.hadoop:hadoop-common:0.22.0', 'org.quartz-scheduler:quartz:1.7.2', 'org.mortbay.jetty:jetty-distribution:7.0.0.RC2', 'org.mockito:mockito-all:1.9.5', fileTree(dir: 'lib', include: '*.jar')
+}
+
+// Temporary workaround until all classes under src/test/java have @Test annotations
+tasks.withType(Test) {
+    scanForTestClasses = false
+    include "**/*Test.class"
+}
+
+// This script should generate ExtensionMethods.jar, lambdas.jar etc. separately
+compileTestJava {
+	options.compilerArgs = ["-Xbootclasspath/p:" + file('lib/ExtensionMethods.jar').getPath()]
+}
+
+test {
+	jvmArgs "-Xbootclasspath/p:" + file('lib/ExtensionMethods.jar').getPath()
+}
