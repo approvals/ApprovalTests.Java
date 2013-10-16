@@ -1,6 +1,5 @@
 package org.teachingkidsprogramming.recipes;
 
-
 public class TriangleShell
 {
   private static int length;

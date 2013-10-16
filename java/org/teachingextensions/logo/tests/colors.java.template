@@ -16,8 +16,9 @@ public static class $key
   {
  #foreach($color in $colors.get($key))
   /**
-      *  The color <font color="$color.getSecond()"> $color.getFirst() </font>
-      **/
+    *  The color <font color="$color.getSecond()"> $color.getFirst() </font>
+    * <table bgcolor="$color.getSecond()" width="25" height="25"><tr><td> &nbsp;</td></tr> </table>
+    **/
     public static final Color $color.getFirst()     = Color.decode("$color.getSecond()");
  #end
   }
