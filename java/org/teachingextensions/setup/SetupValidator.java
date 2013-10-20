@@ -3,38 +3,40 @@ package org.teachingextensions.setup;
 import java.io.File;
 
 import com.spun.util.io.FileUtils;
-import com.spun.util.servlets.ValidationError;
 
 public class SetupValidator
 {
   public enum SetupCheckPoints {
-    MetadataUnzipped
+    MetadataUnzipped, EclipseIsInstalled
   }
   public static void main(String[] args)
   {
-    ValidationError setup = new ValidationError(SetupCheckPoints.values());
-    validateEclipse();
-    validateWorkspace(setup);
-    if (!setup.isOk()) { throw setup; }
+    SetupConfig config = new SetupConfig();
+    validateEclipse(config);
+    validateWorkspace(config);
+    launchEclipse(config);
+    config.assertSetupIsCorrect();
   }
-  private static void validateWorkspace(ValidationError setup)
+  private static void launchEclipse(SetupConfig config)
+  {
+  }
+  private static void validateWorkspace(SetupConfig config)
   {
     boolean codeExists = isCodeUnpacked();
-    String path = "C:\\Users\\Llewellyn\\workspace\\ApprovalTestsKoans\\TeachingKidsProgramming.Java";
-    boolean workSpaceExists = isWorkSpaceConfigured(path, setup);
-    System.out.println("The WorkSpace is installed " + workSpaceExists);
+    boolean workSpaceExists = isWorkSpaceConfigured(config);
+    System.out.println("The Teaching Kids Programming WorkSpace is installed " + workSpaceExists);
   }
-  private static boolean isWorkSpaceConfigured(String path, ValidationError setup)
+  private static boolean isWorkSpaceConfigured(SetupConfig config)
   {
-    String metadataPath = path + File.separator + ".metadata";
+    String metadataPath = config.workspacePath + File.separator + ".metadata";
     boolean metadata = new File(metadataPath).exists();
     if (metadata)
     {
       String configPath = metadataPath + File.separator
           + ".plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.ui.editors.prefs";
-      String config = FileUtils.readFileWithSuppressedExceptions(new File(configPath));
-      metadata = config.contains("lineNumberRuler=true");
-      setup.set(SetupCheckPoints.MetadataUnzipped, metadata,
+      String configText = FileUtils.readFileWithSuppressedExceptions(new File(configPath));
+      metadata = configText.contains("lineNumberRuler=true");
+      config.setup.set(SetupCheckPoints.MetadataUnzipped, metadata,
           "The metadata was not unzipped correctly, you need to delete: " + metadataPath);
     }
     return metadata;
@@ -43,15 +45,10 @@ public class SetupValidator
   {
     return false;
   }
-  private static void validateEclipse()
+  private static void validateEclipse(SetupConfig config)
   {
-    //check that the eclipse.exe exists
-    boolean exists = isEclipseInstalled();
-    System.out.println("Eclipse is installed " + exists);
-  }
-  private static boolean isEclipseInstalled()
-  {
-    File f = new File("c:\\eclipse\\eclipse.exe");
-    return f.exists();
+    boolean exists = new File(config.eclipsePath).exists();
+    config.setup.set(SetupCheckPoints.EclipseIsInstalled, exists, "could not find Eclipse at "
+        + config.eclipsePath);
   }
 }
