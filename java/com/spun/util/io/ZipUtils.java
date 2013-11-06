@@ -15,23 +15,17 @@ import java.util.zip.ZipOutputStream;
 public class ZipUtils
 {
   /***********************************************************************/
-  public static File zipDirectory(String directory, String zipFileName)
-      throws IOException
+  public static File zipDirectory(String directory, String zipFileName) throws IOException
   {
     return zipDirectory(new File(directory), new File(zipFileName));
   }
-
   /***********************************************************************/
-  public static File zipDirectory(File directory, File zipFileName)
-      throws IOException
+  public static File zipDirectory(File directory, File zipFileName) throws IOException
   {
-    return doCreateZipFile(FileUtils.getRecursiveFileList(directory),
-        zipFileName);
+    return doCreateZipFile(FileUtils.getRecursiveFileList(directory), zipFileName);
   }
-
   /***********************************************************************/
-  public static File doCreateZipFile(File[] files, File zipFile)
-      throws IOException
+  public static File doCreateZipFile(File[] files, File zipFile) throws IOException
   {
     byte[] buf = new byte[1024];
     zipFile.getParentFile().mkdirs();
@@ -57,10 +51,8 @@ public class ZipUtils
     fileOut.close();
     return zipFile;
   }
-
   /***********************************************************************/
-  public static File[] doUnzip(File destination, File zipFile)
-      throws IOException
+  public static File[] doUnzip(File destination, File zipFile) throws IOException
   {
     ArrayList<File> list = new ArrayList<File>();
     byte[] buf = new byte[1024];
@@ -71,17 +63,24 @@ public class ZipUtils
     while (entry != null)
     {
       File file = new File(destination, entry.getName());
-      list.add(file);
-      FileOutputStream out = new FileOutputStream(file);
-      // Transfer bytes from the file to the ZIP file
-      int len;
-      while ((len = in.read(buf)) > 0)
+      if (entry.isDirectory())
       {
-        out.write(buf, 0, len);
+        file.mkdirs();
       }
-      // Complete the entry
-      in.closeEntry();
-      out.close();
+      else
+      {
+        list.add(file);
+        FileOutputStream out = new FileOutputStream(file);
+        // Transfer bytes from the file to the ZIP file
+        int len;
+        while ((len = in.read(buf)) > 0)
+        {
+          out.write(buf, 0, len);
+        }
+        // Complete the entry
+        in.closeEntry();
+        out.close();
+      }
       entry = in.getNextEntry();
     }
     // Complete the ZIP file
@@ -89,7 +88,6 @@ public class ZipUtils
     fileIn.close();
     return list.toArray(new File[0]);
   }
-
   /***********************************************************************/
   public static void main(String args[]) throws IOException
   {

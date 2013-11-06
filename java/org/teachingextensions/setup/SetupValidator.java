@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+import com.spun.util.io.ZipUtils;
 
 public class SetupValidator
 {
@@ -33,13 +34,13 @@ public class SetupValidator
   }
   private static void validateWorkspace(SetupConfig config)
   {
-    boolean codeExists = isCodeUnpacked(config);
-    boolean workSpaceExists = isWorkSpaceConfigured(config);
-    System.out.println("The Teaching Kids Programming WorkSpace is installed " + workSpaceExists);
+    isCodeUnpacked(config);
+    isWorkSpaceConfigured(config);
   }
-  private static boolean isWorkSpaceConfigured(SetupConfig config)
+  private static void isWorkSpaceConfigured(SetupConfig config)
   {
     String metadataPath = config.workspacePath + File.separator + ".metadata";
+    unpackWorkspaceIfNeeded(config, metadataPath);
     boolean metadata = new File(metadataPath).exists();
     if (metadata)
     {
@@ -50,9 +51,24 @@ public class SetupValidator
       config.setup.set(SetupCheckPoints.MetadataUnzipped, metadata,
           "The metadata was not unzipped correctly, you need to delete: " + metadataPath);
     }
-    return metadata;
   }
-  private static boolean isCodeUnpacked(SetupConfig config)
+  private static void unpackWorkspaceIfNeeded(SetupConfig config, String metadataPath)
+  {
+    try
+    {
+      boolean metadata = new File(metadataPath).exists();
+      if (!metadata)
+      {
+        ZipUtils.doUnzip(new File(config.workspacePath), new File(config.workspacePath + File.separator
+            + "eclipse_workspace.zip"));
+      }
+    }
+    catch (IOException e)
+    {
+      ObjectUtils.throwAsError(e);
+    }
+  }
+  private static void isCodeUnpacked(SetupConfig config)
   {
     try
     {
@@ -66,7 +82,6 @@ public class SetupValidator
     {
       ObjectUtils.throwAsError(e);
     }
-    return true;
   }
   private static void validateEclipse(SetupConfig config)
   {

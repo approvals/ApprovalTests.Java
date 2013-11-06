@@ -329,4 +329,12 @@ public class FileUtils
     File file = new File(approved);
     return file.exists() && file.length() > 0;
   }
+  public static void ensureParentDirectoriesExist(File file)
+  {
+    File dir = file.getParentFile();
+    if (!dir.exists())
+    {
+      dir.mkdirs();
+    }
+  }
 }
