@@ -1,13 +1,15 @@
 package org.teachingextensions.setup;
 
 import java.io.File;
+import java.io.IOException;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 
 public class SetupValidator
 {
   public enum SetupCheckPoints {
-    MetadataUnzipped, EclipseIsInstalled
+    MetadataUnzipped, EclipseIsInstalled, WorkspaceFound
   }
   public static void main(String[] args)
   {
@@ -19,10 +21,19 @@ public class SetupValidator
   }
   private static void launchEclipse(SetupConfig config)
   {
+    try
+    {
+      Process exec = Runtime.getRuntime().exec(
+          String.format("%s -data %s", config.eclipsePath, config.workspacePath));
+    }
+    catch (IOException e)
+    {
+      ObjectUtils.throwAsError(e);
+    }
   }
   private static void validateWorkspace(SetupConfig config)
   {
-    boolean codeExists = isCodeUnpacked();
+    boolean codeExists = isCodeUnpacked(config);
     boolean workSpaceExists = isWorkSpaceConfigured(config);
     System.out.println("The Teaching Kids Programming WorkSpace is installed " + workSpaceExists);
   }
@@ -41,9 +52,21 @@ public class SetupValidator
     }
     return metadata;
   }
-  private static boolean isCodeUnpacked()
+  private static boolean isCodeUnpacked(SetupConfig config)
   {
-    return false;
+    try
+    {
+      config.workspacePath = new File(".").getCanonicalPath();
+      File simpleSquare = new File(config.workspacePath
+          + "TeachingKidsProgramming/src/org/teachingkidsprogramming/recipes/SimpleSquare.java");
+      config.setup.set(SetupCheckPoints.WorkspaceFound, simpleSquare.exists(),
+          "could not find the TKP workspace at " + config.workspacePath);
+    }
+    catch (IOException e)
+    {
+      ObjectUtils.throwAsError(e);
+    }
+    return true;
   }
   private static void validateEclipse(SetupConfig config)
   {

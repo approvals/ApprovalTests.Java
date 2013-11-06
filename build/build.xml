@@ -57,7 +57,7 @@
 		<property file="properties/teaching_kids_programming.properties" />
 		<antcall target="createTeachingKidsProgramming" />
 	</target>
-	
+
 	<target name="cleanTeachingKidsProgramming">
 		<delete dir="${tkp_project}/bin" failonerror="false" />
 		<delete dir="${tkp_project}/src" failonerror="false" />
@@ -74,10 +74,22 @@
 				<exclude name="**/completed/**" />
 			</fileset>
 		</copy>
-		<replace dir="${tkp_project}/src" token="@Ignore" value=""/>
+		<replace dir="${tkp_project}/src" token="@Ignore" value="" />
 		<zip destfile="${build}/tkp_workspace.v${version}.zip" basedir="${tkp_workspace}" includes="**">
 		</zip>
 	</target>
-	
+	<target name="Publish    TKP Launcher">
+		<property file="properties/tkplauncher.properties" />
+		<antcall target="buildExecutableTkpJarFile" />
+
+	</target>
+	<target name="buildExecutableTkpJarFile" depends="compile">
+		<jar destfile="${jar}" update="false">
+			<fileset dir="${build}" includes="**" />
+			<manifest>
+				<attribute name="Main-Class" value="org.teachingextensions.setup.SetupValidator" />
+			</manifest>
+		</jar>
+	</target>
 </project>
 
