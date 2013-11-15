@@ -3,6 +3,8 @@ package org.teachingextensions.setup;
 import java.io.File;
 import java.io.IOException;
 
+import org.teachingextensions.windows.MessageBox;
+
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.ZipUtils;
@@ -14,14 +16,22 @@ public class SetupValidator
   }
   public static void main(String[] args)
   {
-    SetupConfig config = new SetupConfig();
-    validateEclipse(config);
-    validateWorkspace(config);
-    launchEclipse(config);
-    config.assertSetupIsCorrect();
+    try
+    {
+      SetupConfig config = new SetupConfig();
+      validateEclipse(config);
+      validateWorkspace(config);
+      launchEclipse(config);
+      config.assertSetupIsCorrect();
+    }
+    catch (Throwable t)
+    {
+      MessageBox.showMessage("Something went wrong: \r\n" + t.getMessage());
+    }
   }
   private static void launchEclipse(SetupConfig config)
   {
+    if (!config.setup.isOk()) { return; }
     try
     {
       Process exec = Runtime.getRuntime().exec(
@@ -45,7 +55,7 @@ public class SetupValidator
     if (metadata)
     {
       String configPath = metadataPath + File.separator
-          + ".plugins\\org.eclipse.core.runtime\\.settings\\org.eclipse.ui.editors.prefs";
+          + ".plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.editors.prefs";
       String configText = FileUtils.readFileWithSuppressedExceptions(new File(configPath));
       metadata = configText.contains("lineNumberRuler=true");
       config.setup.set(SetupCheckPoints.MetadataUnzipped, metadata,
@@ -73,10 +83,12 @@ public class SetupValidator
     try
     {
       config.workspacePath = new File(".").getCanonicalPath();
-      File simpleSquare = new File(config.workspacePath
-          + "TeachingKidsProgramming/src/org/teachingkidsprogramming/recipes/SimpleSquare.java");
+      String realtivePath = "TeachingKidsProgramming/src/org/teachingkidsprogramming/recipes/SimpleSquare.java"
+          .replace('/', File.separatorChar);
+      File simpleSquare = new File(config.workspacePath + File.separator + realtivePath);
       config.setup.set(SetupCheckPoints.WorkspaceFound, simpleSquare.exists(),
-          "could not find the TKP workspace at " + config.workspacePath);
+          "could not find the TKP workspace at " + config.workspacePath + "\r\n The Following File should exist:"
+              + simpleSquare.getAbsolutePath());
     }
     catch (IOException e)
     {
@@ -86,7 +98,7 @@ public class SetupValidator
   private static void validateEclipse(SetupConfig config)
   {
     boolean exists = new File(config.eclipsePath).exists();
-    config.setup.set(SetupCheckPoints.EclipseIsInstalled, exists, "could not find Eclipse at "
-        + config.eclipsePath);
+    String base = config.eclipsePath.substring(0, config.eclipsePath.indexOf(File.separator, 3));
+    config.setup.set(SetupCheckPoints.EclipseIsInstalled, exists, "could not find Eclipse at " + base);
   }
 }
