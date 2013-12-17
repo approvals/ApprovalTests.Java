@@ -30,4 +30,6 @@ public class PentagonCrazy
     //    Repeat
     //    ------------- End of drawPentagon recipe
   }
+  // Related Videos:
+  // Sub recipe-> Method : http://youtu.be/C6fnqjceVcs
 }
