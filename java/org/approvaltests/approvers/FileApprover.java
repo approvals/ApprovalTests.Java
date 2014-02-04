@@ -23,7 +23,7 @@ public class FileApprover implements ApprovalApprover
   public FileApprover(ApprovalWriter writter, ApprovalNamer namer)
   {
     this.writter = writter;
-    String base = String.format("%s%s%s", namer.getSourceFilePath(), namer.getApprovalName(),
+    String base = String.format("%s%s%s", namer.getApprovalFileBasePath(), namer.getApprovalName(),
         NamerFactory.getAndClearAdditionalInformation());
     received = new File(writter.getReceivedFilename(base));
     approved = new File(writter.getApprovalFilename(base));

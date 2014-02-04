@@ -25,7 +25,7 @@ public class JUnitStackTraceNamer implements ApprovalNamer
     return String.format("%s.%s", info.getClassName(), info.getMethodName());
   }
   @Override
-  public String getSourceFilePath()
+  public String getApprovalFileBasePath()
   {
     return info.getSourceFile().getAbsolutePath() + File.separator;
   }
@@ -59,7 +59,8 @@ public class JUnitStackTraceNamer implements ApprovalNamer
       }
       return junit3;
     }
-    private boolean isTestAttribute(Class<?> clazz, String methodName) throws ClassNotFoundException, SecurityException
+    private boolean isTestAttribute(Class<?> clazz, String methodName) throws ClassNotFoundException,
+        SecurityException
     {
       Method method;
       try
@@ -69,8 +70,7 @@ public class JUnitStackTraceNamer implements ApprovalNamer
       catch (Throwable e)
       {
         return false;
-      } 
-      
+      }
       return method.isAnnotationPresent(Test.class);
     }
   }

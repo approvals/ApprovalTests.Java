@@ -19,6 +19,7 @@ import org.approvaltests.core.ApprovalFailureOverrider;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.ApprovalNamerFactory;
 import org.approvaltests.namer.JUnitStackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
 import org.approvaltests.writers.ApprovalBinaryFileWriter;
@@ -334,7 +335,7 @@ public class Approvals
   }
   public static ApprovalNamer createApprovalNamer()
   {
-    return new JUnitStackTraceNamer();
+    return ApprovalNamerFactory.getApprovalNamer();
   }
   private static void approve(BufferedImage bufferedImage, ApprovalNamer namer)
   {
@@ -355,7 +356,7 @@ public class Approvals
   private static void verifyEachFileAgainstMasterDirectory(File[] files) throws Error
   {
     ApprovalNamer namer = createApprovalNamer();
-    String dirName = namer.getSourceFilePath() + Path.SEPARATOR + namer.getApprovalName() + ".Files";
+    String dirName = namer.getApprovalFileBasePath() + Path.SEPARATOR + namer.getApprovalName() + ".Files";
     File approvedDirectory = new File(dirName);
     List<File> mismatched = new ArrayList<File>();
     for (File f : files)
