@@ -17,7 +17,7 @@ public class SpiderWeb
     //    Change the color of the line the tortoise draws to silver --#13
     Tortoise.setPenColor(Colors.Grays.Silver);
     //    The current length of a line is 10 pixels --#1.2                  
-    int length = 10;
+    double length = 10.5;
     //    The current zoom is 1.1 --#8.2
     double zoom = 1.1;
     //    Do the following 10 times --#10
@@ -31,7 +31,7 @@ public class SpiderWeb
     }
   }
   //    ------------- Recipe for WeaveOneLayer --#9
-  public static int weaveOneLayer(int length, double zoom)
+  public static double weaveOneLayer(double length, double zoom)
   {
     //    Do the following 6 times --#5
     for (int i = 1; i <= 6; i++)
@@ -48,7 +48,7 @@ public class SpiderWeb
   }
   //    ------------- End of WeaveOneLayer recipe --#9
   //    ------------- Recipe for DrawTriangle --#4
-  public static void drawTriangle(int length)
+  public static void drawTriangle(double length)
   {
     //    Do the following 3 times --#3
     for (int i = 1; i <= 3; i++)

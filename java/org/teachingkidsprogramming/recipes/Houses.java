@@ -18,11 +18,15 @@ public class Houses
     //   Turn the tortoise 90 degrees to the left --#6
     //   Move the tortoise 20 pixels --#7
     //   Turn the tortoise 90 degrees to the left --#8
-    //   ------------- End of drawHouse recipe
-    //   DrawHouse with height 120 (recipe below) --#10
-    //   DrawHouse with height 90 (recipe below) --#12
-    //   DrawHouse with height 20 (recipe below) --#13
+    //   ------------- End of drawHouse recipe --#9
+    //   drawHouse with height 120 (recipe below) --#10
+    //   drawHouse with height 90 (recipe below) --#12
+    //   drawHouse with height 20 (recipe below) --#13
   }
-  // Related Videos:
-  // Sub recipe-> Method : http://youtu.be/C6fnqjceVcs
+  /*
+   * After you finish, watch the video recap at http://youtu.be/nQlsrnaMeuw
+   * 
+   * Other Related Videos:
+   * Sub recipe-> Method : http://youtu.be/C6fnqjceVcs
+   */
 }
