@@ -100,6 +100,12 @@ public class Homework01
     Assert.assertEquals(name, ___);
   }
   @Test
+  public void textIsTextEvenWhenItsNumbers() throws Exception
+  {
+    String age = "3" + "4";
+    Assert.assertEquals(age, ___);
+  }
+  @Test
   public void combiningTextInALoop() throws Exception
   {
     String sound = "A";
