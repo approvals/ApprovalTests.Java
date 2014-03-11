@@ -1,38 +1,48 @@
 package org.teachingkidsprogramming.recipes.quizzes;
 
+import org.teachingkidsprogramming.recipes.quizzes.graders.HousesQuizAdapter;
 import org.teachingkidsprogramming.recipes.quizzes.graders.HousesQuizGrader;
 
-public class HousesQuiz extends org.teachingkidsprogramming.recipes.quizzes.graders.HousesQuiz
+public class HousesQuiz extends HousesQuizAdapter
 {
-  public void question1()
+  public void questions1Thru6()
   {
-    //  The current length is 7
+    // Question 1 
+    //   small (recipe below) 
+    //   ------------- Recipe for small 
+    length = 7;
+    //  ------------- End of small recipe
+    //
+    // Question2
+    //   medium (recipe below) 
+    //   ------------- Recipe for medium 
+    //       set the current length to 21
+    //  ------------- End of medium recipe
+    //
+    // Question3
+    //   large (recipe below) 
+    //   ------------- Recipe for large 
+    //       set the current length to 63
+    //  ------------- End of large recipe
+    //
+    // Question4
+    //   moveTheLength (recipe below) 
+    //   ------------- Recipe for moveTheLength 
+    //       move the Tortoise the current length
+    //  ------------- End of moveTheLength recipe
+    //
+    // Question5
+    //   turnTheCorner (recipe below) 
+    //   ------------- Recipe for turnTheCorner 
+    //       turn the Tortoise 1/3 of 360 degrees to the left
+    //  ------------- End of turnTheCorner recipe
+    //
+    // Question6
+    //   drawASide (recipe below) 
+    //   ------------- Recipe for drawASide 
+    //      calls moveTheLength and turnTheCorner
+    //  ------------- End of drawASide recipe
   }
-  //
-  //      Question2
-  //      Create a method called medium
-  //       that sets the current length to 21
-  //
-  //
-  //      Question3
-  //      Create a method called large
-  //       that sets the current length to 63
-  //
-  //
-  //      Question4
-  //      Create a method called moveTheLength
-  //       that moves the Tortoise the current length
-  //
-  //
-  //      Question5
-  //      Create a method called turnTheCorner
-  //       that turns the Tortoise 1/3 of 360 degrees to the left
-  //
-  //
-  //      Question6
-  //      Create a method called drawASide
-  //       that calls moveTheLength and turnTheCorner 
-  //
   public static void main(String[] args)
   {
     new HousesQuizGrader().grade(new HousesQuiz());

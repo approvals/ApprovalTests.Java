@@ -3,22 +3,22 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 public class HousesQuiz
 {
   public int length = 0;
-  public void medium()
+  public void question2()
   {
   }
-  public void large()
+  public void question3()
   {
   }
-  public void turnTheCorner()
+  public void question5()
   {
   }
-  public void moveTheLength()
+  public void question4()
   {
   }
   public void question1()
   {
   }
-  public void drawASide()
+  public void question6()
   {
   }
 }

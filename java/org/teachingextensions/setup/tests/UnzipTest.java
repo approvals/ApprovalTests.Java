@@ -2,11 +2,9 @@ package org.teachingextensions.setup.tests;
 
 import java.io.File;
 
-import junit.framework.TestCase;
-
 import com.spun.util.io.ZipUtils;
 
-public class UnzipTest extends TestCase
+public class UnzipTest // extends TestCase
 {
   public void ptestUnzip() throws Exception
   {
