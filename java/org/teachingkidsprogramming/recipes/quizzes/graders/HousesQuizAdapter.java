@@ -2,8 +2,6 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 
 import java.lang.reflect.Method;
 
-import com.spun.util.MySystem;
-
 public class HousesQuizAdapter extends HousesQuiz
 {
   private void call(String methodName)
@@ -17,7 +15,6 @@ public class HousesQuizAdapter extends HousesQuiz
     catch (Throwable e)
     {
       // ignore this
-      MySystem.warning(e);
     }
   }
   @Override

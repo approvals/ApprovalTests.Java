@@ -1520,6 +1520,17 @@ public class Colors
   {
     return Math.max(0, amount - decreaseBy);
   }
+  public static Color lighten(Color color)
+  {
+    int red = increase(color.getRed(), 10);
+    int green = increase(color.getGreen(), 10);
+    int blue = increase(color.getBlue(), 10);
+    return new Color(red, green, blue);
+  }
+  private static int increase(int amount, int increaseBy)
+  {
+    return Math.min(255, amount + increaseBy);
+  }
   public static Color getRandomColor()
   {
     return new Color(RANDOM.nextInt(255), RANDOM.nextInt(255), RANDOM.nextInt(255));
