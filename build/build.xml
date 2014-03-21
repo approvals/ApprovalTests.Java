@@ -85,10 +85,24 @@
 
 	</target>
 	<target name="buildExecutableTkpJarFile" depends="compile">
-		<jar destfile="${jar}" update="false">
+		<jar destfile="${jar}/TKP_Launcher.jar" update="false">
 			<fileset dir="${build}" includes="**" />
 			<manifest>
 				<attribute name="Main-Class" value="org.teachingextensions.setup.SetupValidator" />
+			</manifest>
+		</jar>
+	</target>
+	<target name="Publish    TKP ThumbDriveInstaller">
+		<property file="properties/tkplauncher.properties" />
+		<antcall target="buildThumbDriveInstaller" />
+
+	</target>
+	
+	<target name="buildThumbDriveInstaller" depends="compile">
+		<jar destfile="${jar}/TKP_Installer.jar" update="false">
+			<fileset dir="${build}" includes="**" />
+			<manifest>
+				<attribute name="Main-Class" value="org.teachingextensions.setup.ThumbDriveInstaller" />
 			</manifest>
 		</jar>
 	</target>

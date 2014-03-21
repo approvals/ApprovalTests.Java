@@ -32,15 +32,7 @@ public class SetupValidator
   private static void launchEclipse(SetupConfig config)
   {
     if (!config.setup.isOk()) { return; }
-    try
-    {
-      Process exec = Runtime.getRuntime().exec(
-          String.format("%s -data %s", config.eclipsePath, config.workspacePath));
-    }
-    catch (IOException e)
-    {
-      ObjectUtils.throwAsError(e);
-    }
+    CommandLineUtils.launch("%s -data %s", config.eclipsePath, config.workspacePath);
   }
   private static void validateWorkspace(SetupConfig config)
   {
