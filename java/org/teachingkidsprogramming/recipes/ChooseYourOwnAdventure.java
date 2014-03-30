@@ -10,12 +10,12 @@ public class ChooseYourOwnAdventure
     //      animateStartStory (recipe below) --#38
     //      ------------- Recipe for animateStartStory --#38
     //         Show the Tortoise --#37
-    //         The current color is black --#39
-    //         Do the following 25 times --#43
-    //         Turn the background to the current color --#41
-    //         lighten the current color --#44
-    //         wait for 100 milliseconds --#42  
-    //         Repeat --#43
+    //         The current color is black --#39.2
+    //         Do the following 25 times --#41
+    //         Turn the background to the current color --#39.1
+    //         lighten the current color --#42
+    //         wait for 100 milliseconds --#40  
+    //         Repeat --#41
     //      ------------- End of animateStartStory recipe --#38
     //      Ask the user "Do you want to 'wake up' or 'explore' the dream?" --#3
     //      If they answer "wake up" --#6
@@ -56,6 +56,7 @@ public class ChooseYourOwnAdventure
     //            Otherwise, if they answer "scream" --#26
     //            startStory (recipe below) --#25
     //            Otherwise, if they answer anything else --#28
+    //         badAnswer (recipe below) --#27
     //         ------------- End of pourIntoBackyard recipe --#18
     //         Otherwise, if they answer anything else --#20
     //         badAnswer (recipe below) --#19
