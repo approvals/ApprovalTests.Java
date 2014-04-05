@@ -1,7 +1,6 @@
-package org.teachingkidsprogramming.recipes.homework;
+package org.teachingkidsprogramming.recipes.deepdives;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,16 +9,17 @@ import org.teachingextensions.logo.Turtle;
 import org.teachingextensions.logo.utils.TortoiseUtils;
 
 @Ignore
-public class Homework01
+public class DeepDive01ForLoops
 {
-  //  'How to do homework:
-  //  'Step 1: Press the Run Button
+  //  How to do deep dive:
+  //  Step 1: Select the method name (numbersDoNotNeedQuotes on line 23) Press the Run Button
   //            PC: Ctrl+F11 
   //            Mac: Command+fn+F11
-  //  'Step 2: Read the name of the Method (Sub) that Failed
-  //  'Step 3: Fill in the blank (___) to make it pass
-  //  'Step 4: Repeat Until Enlightenment
-  //  ' Do not change anything except the blank (___)
+  //  Step 2: Read the name of the method that failed
+  //  Step 3: Fill in the blank (___) to make it pass
+  //  Step 4: Consider at least one thing you just learned
+  //  Step 5: Advance to the next method
+  //  Do not change anything except the blank (___)
   //
   @Test
   public void numbersDoNotNeedQuotes()
@@ -59,14 +59,14 @@ public class Homework01
   public void theTortoiseTurns21() throws Exception
   {
     Tortoise.turn(____);
-    Assert.assertEquals(21.0, Tortoise.getAngle());
+    Assert.assertEquals(21.0, Tortoise.getAngle(), 0.01);
   }
   @Test
   public void theTortoiseTurns15Twice() throws Exception
   {
     Tortoise.turn(____);
     Tortoise.turn(____);
-    Assert.assertEquals(30.0, Tortoise.getAngle());
+    Assert.assertEquals(30.0, Tortoise.getAngle(), 0.01);
   }
   @Test
   public void howFastCanTheTortoiseGo() throws Exception
@@ -170,6 +170,16 @@ public class Homework01
       preventInfiniteLoops();
     }
     Assert.assertEquals("Countdown: 987654321", numbers);
+  }
+  @Test
+  public void semicolonsMessUpForLoops() throws Exception
+  {
+    String sound = "A";
+    for (int i = 1; i <= 13; i++);
+    {
+      sound += "H";
+    }
+    Assert.assertEquals(sound, ___);
   }
   /**
    * Ignore the following, it's needed to run the homework

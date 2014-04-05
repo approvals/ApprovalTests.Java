@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes.homework;
+package org.teachingkidsprogramming.recipes.deepdives;
 
 import junit.framework.Assert;
 

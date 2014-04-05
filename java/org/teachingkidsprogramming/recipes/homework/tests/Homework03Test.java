@@ -2,7 +2,7 @@ package org.teachingkidsprogramming.recipes.homework.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.homework.Homework03Ifs;
+import org.teachingkidsprogramming.recipes.deepdives.Homework03Ifs;
 
 public class Homework03Test extends TestCase
 {

@@ -2,9 +2,9 @@ package org.teachingkidsprogramming.recipes.homework.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.homework.Homework01;
+import org.teachingkidsprogramming.recipes.deepdives.DeepDive01ForLoops;
 
-public class Homework01Test extends TestCase
+public class DeepDive01Test extends TestCase
 {
   public void testQuestions() throws Exception
   {
@@ -21,12 +21,14 @@ public class Homework01Test extends TestCase
     assertQuestion("combiningNumbers", 7);
     assertQuestion("combiningText", "Peter Pan");
     assertQuestion("combiningTextAndNumbers", "Henry The 8");
+    assertQuestion("textIsTextEvenWhenItsNumbers", "34");
     assertQuestion("combiningTextInALoop", "AHHH");
     assertQuestion("forLoopsEndAtTheEnd", 5);
     assertQuestion("forLoopsCanStartAnywhere", 7);
     assertQuestion("forLoopsCanSkip", 2);
     assertQuestion("forLoopsCanSkipUpAndDown", -3);
     assertQuestion("forLoopsCanGoBackwards", -1);
+    assertQuestion("semicolonsMessUpForLoops", "AH");
   }
   public void assertQuestion(String methodName, Object answer) throws Exception
   {
@@ -37,7 +39,7 @@ public class Homework01Test extends TestCase
   {
     try
     {
-      Homework01 h = new Homework01();
+      DeepDive01ForLoops h = new DeepDive01ForLoops();
       h.init();
       if (answer instanceof Integer)
       {
@@ -47,7 +49,7 @@ public class Homework01Test extends TestCase
       {
         h.___ = (String) answer;
       }
-      Homework01.class.getMethod(methodName).invoke(h);
+      DeepDive01ForLoops.class.getMethod(methodName).invoke(h);
     }
     catch (Exception e)
     {
@@ -60,9 +62,9 @@ public class Homework01Test extends TestCase
     boolean failed = false;
     try
     {
-      Homework01 h = new Homework01();
+      DeepDive01ForLoops h = new DeepDive01ForLoops();
       h.init();
-      Homework01.class.getMethod(methodName).invoke(h);
+      DeepDive01ForLoops.class.getMethod(methodName).invoke(h);
     }
     catch (Throwable e)
     {

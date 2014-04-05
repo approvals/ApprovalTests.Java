@@ -2,7 +2,7 @@ package org.teachingkidsprogramming.recipes.homework.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.homework.Homework02;
+import org.teachingkidsprogramming.recipes.deepdives.Homework02;
 
 public class Homework02Test extends TestCase
 {
