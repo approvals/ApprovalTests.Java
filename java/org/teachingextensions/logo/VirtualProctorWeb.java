@@ -9,10 +9,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 import javax.imageio.ImageIO;
 
 import org.lambda.actions.Action0;
+import org.teachingextensions.utils.VirtualProctor;
 
 import com.spun.util.MySystem;
 import com.spun.util.ThreadLauncher;
@@ -55,7 +57,8 @@ public class VirtualProctorWeb extends WindowAdapter
     try
     {
       String urlFormat = "http://virtualproctor-tkp.appspot.com/org.teachingkidsprogramming.virtualproctor.UploadImageRack?fileName=%s.png";
-      URL url = new URL(String.format(urlFormat, getComputerName()));
+      String name = URLEncoder.encode(VirtualProctor.internals.getName(), "ISO-8859-1");
+      URL url = new URL(String.format(urlFormat, name));
       URLConnection connection = url.openConnection();
       connection.setDoOutput(true);
       connection.setDoInput(true);
@@ -69,9 +72,5 @@ public class VirtualProctorWeb extends WindowAdapter
     {
       MySystem.warning(e);
     }
-  }
-  public static String getComputerName()
-  {
-    return System.getenv("COMPUTERNAME");
   }
 }

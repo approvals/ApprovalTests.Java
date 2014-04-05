@@ -11,15 +11,18 @@ import org.teachingextensions.logo.Tortoise;
 import org.teachingextensions.logo.Turtle;
 import org.teachingextensions.logo.utils.TortoiseUtils;
 import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonCrazyQuizGrader;
-import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuiz;
+import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuizAdapter;
 
 @UseReporter({DelayedClipboardReporter.class, FileLauncherReporter.class})
 public class PentagonCrazyQuizTest extends TestCase
 {
-  public static class PentagonCrazyCorrectQuiz extends PentagonQuiz
+  public static class PentagonCrazyCorrectQuiz extends PentagonQuizAdapter
   {
     //      Create a method called thread
-    @Override
+    public void question1()
+    {
+      thread();
+    }
     public void thread()
     {
       //       that moves the tortoise 6 pixels
@@ -54,8 +57,12 @@ public class PentagonCrazyQuizTest extends TestCase
     new PentagonCrazyQuizGrader().grade(new PentagonCrazyCorrectQuiz());
     TortoiseUtils.verifyForOs();
   }
-  public static class PentagonCrazyIncorrectQuiz extends PentagonQuiz
+  public static class PentagonCrazyIncorrectQuiz extends PentagonQuizAdapter
   {
+    public void question1()
+    {
+      thread();
+    }
     public void thread()
     {
       Tortoise.move(2);

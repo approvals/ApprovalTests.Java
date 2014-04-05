@@ -12,22 +12,19 @@ import com.spun.util.NumberUtils;
 
 public class HousesQuizGrader implements Paintable
 {
-  private boolean[]  answers;
-  public static int  TURTLE_SPEED = 9;
-  private HousesQuiz quiz;
+  private boolean[]         answers;
+  public static int         TURTLE_SPEED = 9;
+  private HousesQuizAdapter quiz;
   private void displayScreen()
   {
     QuizUtils.prepareScoringScreen(answers, this, TURTLE_SPEED);
     drawRewardShape();
   }
-  public void grade(HousesQuiz quiz)
+  public void grade(HousesQuizAdapter quiz)
   {
     this.quiz = quiz;
-    answers = new boolean[]{grade1Small(),
-        grade2Medium(),
-        grade3Large(),
-        grade4moveTheLength(),
-        grade5turnTheCorner(),
+    answers = new boolean[]{
+        grade1Small(), grade2Medium(), grade3Large(), grade4moveTheLength(), grade5turnTheCorner(),
         grade6drawASide()};
     displayScreen();
   }

@@ -5,9 +5,14 @@ import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuiz;
 
 public class PentagonCrazyQuiz extends PentagonQuiz
 {
-  //      Question1
-  //      Create a method called thread
-  //       that moves the tortoise 6 pixels
+  public void question1()
+  {
+    // Question 1 
+    //   thread (recipe below) 
+    //   ------------- Recipe for thread
+    //       that moves the tortoise 6 pixels
+    //   ------------- End of thread recipe
+  }
   public void question2()
   {
     //        Do the following 76 times

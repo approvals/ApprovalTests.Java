@@ -2,8 +2,9 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 
 import java.lang.reflect.Method;
 
-public class HousesQuizAdapter extends HousesQuiz
+public class HousesQuizAdapter
 {
+  public int length = 0;
   private void call(String methodName)
   {
     try
@@ -17,32 +18,26 @@ public class HousesQuizAdapter extends HousesQuiz
       // ignore this
     }
   }
-  @Override
   public void question1()
   {
     call("small");
   }
-  @Override
   public void question2()
   {
     call("medium");
   }
-  @Override
   public void question3()
   {
     call("large");
   }
-  @Override
   public void question4()
   {
     call("moveTheLength");
   }
-  @Override
   public void question5()
   {
     call("turnTheCorner");
   }
-  @Override
   public void question6()
   {
     call("drawASide");
