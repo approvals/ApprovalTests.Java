@@ -1,10 +1,10 @@
-package org.teachingkidsprogramming.recipes.homework.tests;
+package org.teachingkidsprogramming.recipes.deepdives.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.deepdives.Homework02;
+import org.teachingkidsprogramming.recipes.deepdives.DeepDive02Variables;
 
-public class Homework02Test extends TestCase
+public class DeepDive02Test extends TestCase
 {
   public void testQuestions() throws Exception
   {
@@ -32,7 +32,7 @@ public class Homework02Test extends TestCase
   {
     try
     {
-      Homework02 h = new Homework02();
+      DeepDive02Variables h = new DeepDive02Variables();
       if (answer instanceof Integer)
       {
         h.____ = (Integer) answer;
@@ -41,7 +41,7 @@ public class Homework02Test extends TestCase
       {
         h.___ = (String) answer;
       }
-      Homework02.class.getMethod(methodName).invoke(h);
+      DeepDive02Variables.class.getMethod(methodName).invoke(h);
     }
     catch (Exception e)
     {
@@ -54,8 +54,8 @@ public class Homework02Test extends TestCase
     boolean failed = false;
     try
     {
-      Homework02 h = new Homework02();
-      Homework02.class.getMethod(methodName).invoke(h);
+      DeepDive02Variables h = new DeepDive02Variables();
+      DeepDive02Variables.class.getMethod(methodName).invoke(h);
     }
     catch (Throwable e)
     {

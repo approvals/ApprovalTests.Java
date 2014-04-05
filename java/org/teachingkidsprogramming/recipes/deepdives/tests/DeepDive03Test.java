@@ -1,10 +1,10 @@
-package org.teachingkidsprogramming.recipes.homework.tests;
+package org.teachingkidsprogramming.recipes.deepdives.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.deepdives.Homework03Ifs;
+import org.teachingkidsprogramming.recipes.deepdives.DeepDive03Ifs;
 
-public class Homework03Test extends TestCase
+public class DeepDive03Test extends TestCase
 {
   public void testQuestions() throws Exception
   {
@@ -23,6 +23,7 @@ public class Homework03Test extends TestCase
     assertQuestion("theBeginningOrEnd", 92);
     assertQuestion("ifInHighSchool", 16);
     assertQuestion("nestedIfOrPigsInABlanket", false);
+    assertQuestion("semicolonsMessUpIfStatements", "ketchup");
   }
   public void assertQuestion(String methodName, Object answer) throws Exception
   {
@@ -33,7 +34,7 @@ public class Homework03Test extends TestCase
   {
     try
     {
-      Homework03Ifs h = new Homework03Ifs();
+      DeepDive03Ifs h = new DeepDive03Ifs();
       if (answer instanceof Integer)
       {
         h.____ = (Integer) answer;
@@ -47,7 +48,7 @@ public class Homework03Test extends TestCase
         h._____ = (Boolean) answer;
         h.______ = (Boolean) answer;
       }
-      Homework03Ifs.class.getMethod(methodName).invoke(h);
+      DeepDive03Ifs.class.getMethod(methodName).invoke(h);
     }
     catch (Exception e)
     {
@@ -60,8 +61,8 @@ public class Homework03Test extends TestCase
     boolean failed = false;
     try
     {
-      Homework03Ifs h = new Homework03Ifs();
-      Homework03Ifs.class.getMethod(methodName).invoke(h);
+      DeepDive03Ifs h = new DeepDive03Ifs();
+      DeepDive03Ifs.class.getMethod(methodName).invoke(h);
     }
     catch (Throwable e)
     {

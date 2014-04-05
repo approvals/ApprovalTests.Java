@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes.homework.tests;
+package org.teachingkidsprogramming.recipes.deepdives.tests;
 
 import junit.framework.TestCase;
 

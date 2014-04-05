@@ -12,7 +12,7 @@ import org.teachingextensions.logo.utils.TortoiseUtils;
 public class DeepDive01ForLoops
 {
   //  How to do deep dive:
-  //  Step 1: Select the method name (numbersDoNotNeedQuotes on line 23) Press the Run Button
+  //  Step 1: Select the method name (numbersDoNotNeedQuotes on line 24) Press the Run Button
   //            PC: Ctrl+F11 
   //            Mac: Command+fn+F11
   //  Step 2: Read the name of the method that failed
