@@ -1,9 +1,9 @@
 package org.teachingkidsprogramming.recipes.quizzes;
 
 import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonCrazyQuizGrader;
-import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuiz;
+import org.teachingkidsprogramming.recipes.quizzes.graders.PentagonQuizAdapter;
 
-public class PentagonCrazyQuiz extends PentagonQuiz
+public class PentagonCrazyQuiz extends PentagonQuizAdapter
 {
   public void question1()
   {

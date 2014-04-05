@@ -5,13 +5,13 @@ import java.lang.reflect.Method;
 public class HousesQuizAdapter
 {
   public int length = 0;
-  private void call(String methodName)
+  public static void call(Object that, String methodName)
   {
     try
     {
-      Method method = this.getClass().getDeclaredMethod(methodName);
+      Method method = that.getClass().getDeclaredMethod(methodName);
       method.setAccessible(true);
-      method.invoke(this);
+      method.invoke(that);
     }
     catch (Throwable e)
     {
@@ -20,26 +20,26 @@ public class HousesQuizAdapter
   }
   public void question1()
   {
-    call("small");
+    call(this, "small");
   }
   public void question2()
   {
-    call("medium");
+    call(this, "medium");
   }
   public void question3()
   {
-    call("large");
+    call(this, "large");
   }
   public void question4()
   {
-    call("moveTheLength");
+    call(this, "moveTheLength");
   }
   public void question5()
   {
-    call("turnTheCorner");
+    call(this, "turnTheCorner");
   }
   public void question6()
   {
-    call("drawASide");
+    call(this, "drawASide");
   }
 }
