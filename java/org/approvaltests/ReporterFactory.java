@@ -66,7 +66,7 @@ public class ReporterFactory
       {
         String methodName = stack.getMethodName();
         clazz = Class.forName(stack.getClassName());
-        method = clazz.getMethod(methodName, null);
+        method = clazz.getMethod(methodName, (Class<?>[]) null);
       }
       catch (Exception e)
       {

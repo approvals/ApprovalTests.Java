@@ -10,7 +10,8 @@ public class CommandLineUtils
   {
     try
     {
-      Process exec = Runtime.getRuntime().exec(String.format(commandLine, formattingArguments));
+      String command = String.format(commandLine, (Object[]) formattingArguments);
+      Process exec = Runtime.getRuntime().exec(command);
     }
     catch (IOException e)
     {
