@@ -3,6 +3,8 @@ package org.teachingextensions.logo.shapes;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JPanel;
+
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
 import org.teachingextensions.logo.TurtlePanel;
@@ -29,7 +31,7 @@ public class Circle implements Paintable
     panel.addAdditional(this);
   }
   @Override
-  public void paint(Graphics2D g)
+  public void paint(Graphics2D g, JPanel caller)
   {
     Color color2 = Colors.getTransparentVersion(mainColor, percentTransparent);
     g.setColor(color2);

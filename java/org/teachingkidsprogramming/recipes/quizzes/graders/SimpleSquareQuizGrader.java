@@ -3,6 +3,8 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JPanel;
+
 import org.teachingextensions.logo.Paintable;
 import org.teachingextensions.logo.Turtle;
 import org.teachingextensions.logo.utils.TortoiseUtils;
@@ -25,7 +27,7 @@ public class SimpleSquareQuizGrader implements Paintable
     answers = new boolean[]{grade1Turn(), grade2Move(), grade3Color(), grade4Width()};
     displayScreen();
   }
-  public void paint(Graphics2D g)
+  public void paint(Graphics2D g, JPanel caller)
   {
     QuizUtils.displayScores(g, 200, answers);
   }

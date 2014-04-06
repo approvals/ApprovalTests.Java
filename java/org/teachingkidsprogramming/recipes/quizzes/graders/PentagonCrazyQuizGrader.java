@@ -3,6 +3,8 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import javax.swing.JPanel;
+
 import org.teachingextensions.logo.ColorWheel;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
@@ -34,7 +36,7 @@ public class PentagonCrazyQuizGrader implements Paintable
     answers = new boolean[]{gradeThread(), grade2Stitch76(), grade3Lime(), grade4Red()};
     displayScreen();
   }
-  public void paint(Graphics2D g)
+  public void paint(Graphics2D g, JPanel caller)
   {
     QuizUtils.displayScores(g, 300, answers);
   }

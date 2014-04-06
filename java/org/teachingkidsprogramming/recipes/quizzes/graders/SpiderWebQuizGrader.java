@@ -2,6 +2,8 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 
 import java.awt.Graphics2D;
 
+import javax.swing.JPanel;
+
 import org.teachingextensions.logo.ColorWheel;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
@@ -83,7 +85,7 @@ public class SpiderWebQuizGrader implements Paintable
     quiz.expand();
     return quiz.number == -100;
   }
-  public void paint(Graphics2D g)
+  public void paint(Graphics2D g, JPanel caller)
   {
     QuizUtils.displayScores(g, 400, answers);
   }

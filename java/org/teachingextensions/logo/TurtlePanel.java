@@ -38,12 +38,12 @@ public class TurtlePanel extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
-    paintLines((Graphics2D) g);
-    paintTurtle((Graphics2D) g);
     for (Paintable p : additional)
     {
-      p.paint((Graphics2D) g);
+      p.paint((Graphics2D) g, this);
     }
+    paintLines((Graphics2D) g);
+    paintTurtle((Graphics2D) g);
   }
   private void paintLines(Graphics2D g)
   {
@@ -108,5 +108,9 @@ public class TurtlePanel extends JPanel
   public void addMouseLeftClickListener(MouseLeftClickListener listener)
   {
     addMouseListener(new LeftClickMouseAdapter(listener));
+  }
+  public void setBackgroundImage(String url)
+  {
+    addAdditional(new ImageBackground(url));
   }
 }

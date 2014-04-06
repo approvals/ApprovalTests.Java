@@ -2,6 +2,8 @@ package org.teachingkidsprogramming.recipes.quizzes.graders;
 
 import java.awt.Graphics2D;
 
+import javax.swing.JPanel;
+
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
 import org.teachingextensions.logo.Tortoise;
@@ -20,7 +22,7 @@ public class HiLowQuizGrader implements Paintable
     QuizUtils.prepareScoringScreen(answers, this, TURTLE_SPEED);
     drawRewardShape();
   }
-  public void paint(Graphics2D g)
+  public void paint(Graphics2D g, JPanel caller)
   {
     QuizUtils.displayScores(g, 300, answers);
   }
