@@ -8,6 +8,9 @@ public class HiLow
   {
     //    Choose a random number between 1 and 100 --#4.1 (fake!) & --#13 ***Math does not permit the generation of a random number between an interval
     int answer = 34;
+    //    An alternative is to use Java's Random number generator as shown below
+    Random rand = new Random();
+    int answer = rand.nextInt(99) + 1;
     //    Do the following 8 times --#9
     for (int i = 1; i <= 8; i++)
     {
