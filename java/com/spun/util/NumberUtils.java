@@ -21,7 +21,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * Loads an int from a String. 
+   * Loads an int from a String.
    **/
   public static int load(String i, int defaultValue)
   {
@@ -29,7 +29,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * Loads an int from a String. 
+   * Loads an int from a String.
    **/
   public static int load(String i, int defaultValue, boolean stripNonNumeric)
   {
@@ -39,13 +39,12 @@ public class NumberUtils
       defaultValue = Integer.parseInt(i);
     }
     catch (Exception e)
-    {
-    }
+    {}
     return defaultValue;
   }
   /***********************************************************************/
   /**
-   * Loads an int from a String. 
+   * Loads an int from a String.
    **/
   public static long load(String i, long defaultValue)
   {
@@ -54,8 +53,7 @@ public class NumberUtils
       defaultValue = Long.parseLong(i);
     }
     catch (Exception e)
-    {
-    }
+    {}
     return defaultValue;
   }
   /***********************************************************************/
@@ -70,8 +68,7 @@ public class NumberUtils
       defaultValue = Double.parseDouble(i);
     }
     catch (Exception e)
-    {
-    }
+    {}
     return defaultValue;
   }
   /***********************************************************************/
@@ -101,7 +98,7 @@ public class NumberUtils
   }
   /************************************************************************/
   /**
-   *  a unit test of sorts :-)
+   * a unit test of sorts :-)
    **/
   public static void main(String args[])
   {
@@ -162,9 +159,8 @@ public class NumberUtils
     try
     {
       if (attribs == null || attribs.length == 0) { return 0.00; }
-      Method method = MethodExecutionPath.Parameters.getBestFitMethod(attribs[0].getClass(), methodName, params == null
-          ? null
-          : (Class[]) ObjectUtils.extractArray(params, "getClass"));
+      Method method = MethodExecutionPath.Parameters.getBestFitMethod(attribs[0].getClass(), methodName,
+          params == null ? null : (Class[]) ObjectUtils.extractArray(params, "getClass"));
       double sum = 0;
       for (int i = 0; i < attribs.length; i++)
       {
@@ -194,7 +190,7 @@ public class NumberUtils
   /**
    * @deprecated use Query.sum()
    */
- public static double sum(Collection onCollection, String forMethodName)
+  public static double sum(Collection onCollection, String forMethodName)
   {
     return sum(onCollection.toArray(), forMethodName, null);
   }
@@ -206,7 +202,7 @@ public class NumberUtils
     {
       shuffles[i] = new Shuffler(i);
     }
-    Arrays.sort(shuffles,new Shuffler(0));
+    Arrays.sort(shuffles, new Shuffler(0));
     ArrayList<T> list = new ArrayList<T>(numberToReturn);
     for (int i = 0; i < numberToReturn; i++)
     {
@@ -225,6 +221,16 @@ public class NumberUtils
     return (T[]) list.toArray(objects2);
   }
   /***********************************************************************/
+  /**
+   * randomly chooses a number between the minimum and maximum
+   * <div><b>Example:</b> {@code int grade =  NumberUtils.getRandomInt(1,100);} </div>
+   * 
+   * @param minimum
+   *          The lowest possible value (inclusive)
+   * @param maximum
+   *          The highest possible value (inclusive)
+   * @return the random number
+   */
   public static int getRandomInt(int minimum, int maximum)
   {
     int diff = maximum - minimum;
@@ -258,7 +264,7 @@ public class NumberUtils
     return percent / 100;
   }
   /***********************************************************************/
-  /*                   INNER CLASS                                       */
+  /* INNER CLASS */
   /***********************************************************************/
   public static class Shuffler implements java.util.Comparator<Shuffler>, Serializable
   {
@@ -273,7 +279,6 @@ public class NumberUtils
     {
       return Double.compare(s1.newPosition, (s2).newPosition);
     }
-  
   }
   /***********************************************************************/
 }
