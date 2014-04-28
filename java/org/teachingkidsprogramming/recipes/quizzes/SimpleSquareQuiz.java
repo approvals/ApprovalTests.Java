@@ -7,11 +7,11 @@ public class SimpleSquareQuiz implements SquareQuiz
 {
   public void question1()
   {
-    //  Turn the tortoise 1/5 of 360 degrees to the right
+    //  Move the tortoise 110 pixels
   }
   public void question2()
   {
-    //  Move the tortoise 110 pixels
+    //  Turn the tortoise 1/5 of 360 degrees to the right
   }
   public void question3()
   {

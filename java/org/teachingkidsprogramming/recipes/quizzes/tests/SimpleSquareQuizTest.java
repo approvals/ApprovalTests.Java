@@ -3,7 +3,7 @@ package org.teachingkidsprogramming.recipes.quizzes.tests;
 import junit.framework.TestCase;
 
 import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.FileLauncherReporter;
+import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Tortoise;
@@ -12,20 +12,20 @@ import org.teachingextensions.logo.utils.TortoiseUtils;
 import org.teachingkidsprogramming.recipes.quizzes.graders.SimpleSquareQuizGrader;
 import org.teachingkidsprogramming.recipes.quizzes.graders.SquareQuiz;
 
-@UseReporter({ClipboardReporter.class, FileLauncherReporter.class})
+@UseReporter({ClipboardReporter.class, DiffReporter.class})
 public class SimpleSquareQuizTest extends TestCase
 {
   public static class SimpleSquareCorrectQuiz implements SquareQuiz
   {
     public void question1()
     {
-      //  Turn the tortoise 1/5 of 360 degrees to the right
-      Tortoise.turn(360 / 5);
+      //  Move the tortoise 110 pixels
+      Tortoise.move(110);
     }
     public void question2()
     {
-      //  Move the tortoise 110 pixels
-      Tortoise.move(110);
+      //  Turn the tortoise 1/5 of 360 degrees to the right
+      Tortoise.turn(360 / 5);
     }
     public void question3()
     {
@@ -48,13 +48,13 @@ public class SimpleSquareQuizTest extends TestCase
   {
     public void question1()
     {
-      //  Turn the tortoise 1/5 of 360 degrees to the right
-      Tortoise.turn(360.0 / 6);
+      //  Move the tortoise 110 pixels
+      Tortoise.move(75);
     }
     public void question2()
     {
-      //  Move the tortoise 110 pixels
-      Tortoise.move(75);
+      //  Turn the tortoise 1/5 of 360 degrees to the right
+      Tortoise.turn(360.0 / 6);
     }
     public void question3()
     {
