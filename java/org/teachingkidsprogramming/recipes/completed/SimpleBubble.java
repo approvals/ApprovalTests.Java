@@ -11,53 +11,51 @@ import com.spun.util.NumberUtils;
 public class SimpleBubble implements MouseLeftClickListener
 {
   private ProgramWindow programWindow;
-  public static void main(String[] args)
-  {
-    //Create a new SimpleBubble --#3
-    new SimpleBubble();
-  }
   public SimpleBubble()
   {
-    //Create a new ProgramWindow (field) --#3
+    //Create a ProgramWindow titled Bubbles --#1
     programWindow = new ProgramWindow("Bubbles");
-    //Set the CreateBubble recipe (below) to be called when the mouse is clicked --#3
+    //Have SimpleBubble listen for when the left mouse button is clicked in your program window --#2.2
     programWindow.addMouseLeftClickListener(this);
-    //prepareColorPalette (recipe below) --#10
+    //prepareColorPalette (recipe below) --#7
     prepareColorPalette();
   }
-  public void prepareColorPalette()
+  private void prepareColorPalette()
   {
-    //------------- Recipe for PrepareColorPalette --#9
-    // Add alice blue to the color wheel --#5
+    //------------- Recipe for prepareColorPalette --#7
+    // Add alice blue to the color wheel --#4
     ColorWheel.addColor(Colors.Blues.AliceBlue);
-    // Add blue to the color wheel --#6
+    // Add blue to the color wheel --#5
     ColorWheel.addColor(Colors.Blues.Blue);
-    // Add dark blue to the color wheel --#7
+    // Add dark blue to the color wheel --#6
     ColorWheel.addColor(Colors.Blues.DarkBlue);
-    // Add purple to the color wheel --#8
+    // Add purple to the color wheel --#2.3
     ColorWheel.addColor(Colors.Purples.Purple);
-    //------------- End of PrepareColorPalette recipe --#9
+    //------------- End of prepareColorPalette recipe --#7
   }
   @Override
   public void onLeftMouseClick(int x, int y)
   {
-    // createBubble (recipe below) --#
+    // createBubble (recipe below) --#8
     createBubble(x, y);
   }
-  public void createBubble(int x, int y)
+  private void createBubble(int x, int y)
   {
-    //------------- Recipe for CreateBubble --#2
-    // Remove previous bubbles --#11
-    programWindow.removeAdditional();
-    // Change the color for the next circle to the next color from the color wheel --#4
-    // Set the radius for the circle to a random number between 10 and 50 --#1.2
+    //------------- Recipe for createBubble --#8
+    // Remove previous bubbles from your program window --#9
+    programWindow.removePaintable();
+    // Set the radius for the circle to a random number between 10 and 50 --#2.5
     int radius = NumberUtils.getRandomInt(10, 50);
-    // Create the bubble --#1.1
+    // Create a circle with the radius and the next color from the color wheel --#2.1
     Circle circle = new Circle(radius, ColorWheel.getNextColor());
-    // Move the center of the bubble to the current position of the mouse on the window --#1.0 
+    // Move the center of the bubble to the current position of the mouse on the window --#3
     circle.setCenter(x, y);
-    // Add the circle to the programWindow
+    // Add the circle to your program window --#2.4
     circle.addTo(programWindow);
-    //------------- End of CreateBubble recipe --#2
+    //------------- End of createBubble recipe --#8
+  }
+  public static void main(String[] args)
+  {
+    new SimpleBubble();
   }
 }

@@ -87,7 +87,7 @@ public class Turtle
     trail.clear();
     if (panel != null)
     {
-      panel.removeAdditional();
+      panel.removePaintable();
     }
   }
   private Component getPanel()

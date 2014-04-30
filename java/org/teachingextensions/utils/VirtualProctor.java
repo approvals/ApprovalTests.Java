@@ -17,6 +17,10 @@ public class VirtualProctor
       {
         name = getComputerName();
       }
+      if (name == null)
+      {
+        name = getUserName();
+      }
       return name;
     }
     private static String getCustomName()
@@ -28,6 +32,10 @@ public class VirtualProctor
     public static String getComputerName()
     {
       return System.getenv("COMPUTERNAME");
+    }
+    public static String getUserName()
+    {
+      return System.getenv("USER");
     }
     public static void resetName()
     {

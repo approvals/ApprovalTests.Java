@@ -25,7 +25,7 @@ public class Text implements Paintable
   }
   public void addTo(TurtlePanel panel)
   {
-    panel.addAdditional(this);
+    panel.addPaintable(this);
   }
   @Override
   public void paint(Graphics2D g, JPanel caller)

@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Paintable;
-import org.teachingextensions.logo.TurtlePanel;
+import org.teachingextensions.windows.ProgramWindow;
 
 public class Circle implements Paintable
 {
@@ -26,9 +26,9 @@ public class Circle implements Paintable
     this.x = x;
     this.y = y;
   }
-  public void addTo(TurtlePanel panel)
+  public void addTo(ProgramWindow panel)
   {
-    panel.addAdditional(this);
+    panel.addPaintable(this);
   }
   @Override
   public void paint(Graphics2D g, JPanel caller)

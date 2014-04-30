@@ -1,34 +1,24 @@
 package org.teachingextensions.logo;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 import org.teachingextensions.logo.Turtle.Animals;
-import org.teachingextensions.windows.LeftClickMouseAdapter;
-import org.teachingextensions.windows.MouseLeftClickListener;
-import org.teachingextensions.windows.MouseRightClickListener;
-import org.teachingextensions.windows.RightClickMouseAdapter;
+import org.teachingextensions.windows.ProgramWindow;
 
-public class TurtlePanel extends JPanel
+public class TurtlePanel extends ProgramWindow
 {
-  private Turtle               turtle;
-  private ArrayList<Paintable> additional = new ArrayList<Paintable>();
-  private Image                image;
+  private Turtle turtle;
+  private Image  image;
   public TurtlePanel()
   {
-    setPreferredSize(new Dimension(627, 442));
-    setColor(Colors.Whites.White);
   }
   public void setTurtle(Turtle turtle)
   {
@@ -38,10 +28,6 @@ public class TurtlePanel extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
-    for (Paintable p : additional)
-    {
-      p.paint((Graphics2D) g, this);
-    }
     paintLines((Graphics2D) g);
     paintTurtle((Graphics2D) g);
   }
@@ -87,31 +73,5 @@ public class TurtlePanel extends JPanel
   public synchronized void setAnimal(Animals animal)
   {
     image = new ImageIcon(this.getClass().getResource(animal + ".png")).getImage();
-  }
-  public void setColor(Color backgroundColor)
-  {
-    setBackground(backgroundColor);
-  }
-  public void addAdditional(Paintable additional)
-  {
-    this.additional.add(additional);
-    repaint();
-  }
-  public void removeAdditional()
-  {
-    additional.clear();
-    repaint();
-  }
-  public void addMouseRightClickListener(MouseRightClickListener listener)
-  {
-    addMouseListener(new RightClickMouseAdapter(listener));
-  }
-  public void addMouseLeftClickListener(MouseLeftClickListener listener)
-  {
-    addMouseListener(new LeftClickMouseAdapter(listener));
-  }
-  public void setBackgroundImage(String url)
-  {
-    addAdditional(new ImageBackground(url));
   }
 }
