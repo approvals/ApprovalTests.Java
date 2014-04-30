@@ -47,6 +47,7 @@ public class TurtlePanel extends JPanel
   }
   private void paintLines(Graphics2D g)
   {
+    if (turtle == null) { return; }
     g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     g.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
     g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
@@ -63,7 +64,7 @@ public class TurtlePanel extends JPanel
   }
   private void paintTurtle(Graphics2D g)
   {
-    if (turtle.isHidden()) { return; }
+    if (turtle == null || turtle.isHidden()) { return; }
     Image image = getImage();
     int xCenter = image.getWidth(null) / 2;
     int yCenter = image.getHeight(null) / 2;

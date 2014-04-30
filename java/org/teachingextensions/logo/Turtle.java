@@ -11,10 +11,9 @@ import javax.swing.JFrame;
 
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.lambda.actions.Action0;
+import org.teachingextensions.windows.ProgramWindow;
 
-import com.spun.util.FrameCloser;
 import com.spun.util.ThreadLauncher;
-import com.spun.util.WindowUtils;
 import com.spun.util.persistence.Saver;
 import com.spun.util.persistence.SavingException;
 
@@ -22,7 +21,6 @@ public class Turtle
 {
   /**
    * Current types are: Turtle, Spider
-   * 
    */
   public enum Animals {
     Turtle, Spider
@@ -72,7 +70,6 @@ public class Turtle
   private double              y               = 480 / 2;
   private double              angleInDegrees  = 0;
   private TurtlePanel         panel;
-  private JFrame              frame;
   private int                 speed           = 1;
   private List<LineSegment>   trail           = new ArrayList<LineSegment>();
   private Color               color           = Color.black;
@@ -97,20 +94,17 @@ public class Turtle
   {
     if (panel == null)
     {
+      String title = "Turtle";
       panel = new TurtlePanel();
-      panel.setTurtle(this);
       if (speed != TEST_SPEED)
       {
-        frame = new JFrame("Turtle");
+        JFrame frame = new JFrame(title);
         frame.getContentPane().add(panel);
-        createStandardFrame(frame);
+        ProgramWindow.createStandardFrame(frame);
       }
+      panel.setTurtle(this);
     }
     return panel;
-  }
-  private void createStandardFrame(JFrame frame)
-  {
-    WindowUtils.testFrame(frame, new VirtualProctorWeb(), new FrameCloser());
   }
   public int getX()
   {
