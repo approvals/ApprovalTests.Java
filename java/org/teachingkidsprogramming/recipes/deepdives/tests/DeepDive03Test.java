@@ -2,7 +2,7 @@ package org.teachingkidsprogramming.recipes.deepdives.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.deepdives.DeepDive03Ifs;
+import org.teachingkidsprogramming.section03ifs.DeepDive03Ifs;
 
 public class DeepDive03Test extends TestCase
 {

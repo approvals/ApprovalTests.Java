@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes.deepdives;
+package org.teachingkidsprogramming.section03ifs;
 
 import org.junit.Assert;
 import org.junit.Ignore;

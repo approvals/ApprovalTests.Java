@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes;
+package org.teachingkidsprogramming.section04mastery;
 
 public class PentagonCrazy
 {

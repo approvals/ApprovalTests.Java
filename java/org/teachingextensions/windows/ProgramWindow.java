@@ -19,7 +19,7 @@ import com.spun.util.WindowUtils;
 
 public class ProgramWindow extends JPanel
 {
-  private ArrayList<Paintable> paintables = new ArrayList<Paintable>();
+  private ArrayList<Paintable> additional = new ArrayList<Paintable>();
   public ProgramWindow(String title)
   {
     this();
@@ -40,7 +40,7 @@ public class ProgramWindow extends JPanel
   public void paint(Graphics g)
   {
     super.paint(g);
-    for (Paintable p : paintables)
+    for (Paintable p : additional)
     {
       p.paint((Graphics2D) g, this);
     }
@@ -51,12 +51,12 @@ public class ProgramWindow extends JPanel
   }
   public void addPaintable(Paintable additional)
   {
-    this.paintables.add(additional);
+    this.additional.add(additional);
     repaint();
   }
   public void removePaintable()
   {
-    paintables.clear();
+    additional.clear();
     repaint();
   }
   public void addMouseRightClickListener(MouseRightClickListener listener)

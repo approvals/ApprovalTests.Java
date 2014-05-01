@@ -75,7 +75,7 @@ public class SetupValidator
     try
     {
       config.workspacePath = new File(".").getCanonicalPath();
-      String realtivePath = "TeachingKidsProgramming/src/org/teachingkidsprogramming/recipes/SimpleSquare.java"
+      String realtivePath = "TeachingKidsProgramming/src/org/teachingkidsprogramming/section01forloops/SimpleSquare.java"
           .replace('/', File.separatorChar);
       File simpleSquare = new File(config.workspacePath + File.separator + realtivePath);
       config.setup.set(SetupCheckPoints.WorkspaceFound, simpleSquare.exists(),

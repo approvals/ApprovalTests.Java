@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes;
+package org.teachingkidsprogramming.section01forloops;
 
 public class Spiral
 {

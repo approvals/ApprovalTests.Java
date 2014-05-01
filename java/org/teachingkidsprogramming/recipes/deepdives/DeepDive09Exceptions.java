@@ -31,7 +31,7 @@ public class DeepDive09Exceptions
   public void exceptionsShouldExplainPreconditions() throws Exception
   {
     Game game = new Game();
-    /* Fix This Line */
+    /* Add needed line here */
     int fun = game.play();
     Assert.assertEquals(11, fun);
   }
@@ -110,6 +110,10 @@ public class DeepDive09Exceptions
   private static class Game
   {
     boolean on = false;
+    public void turnOn()
+    {
+      on = true;
+    }
     public int play()
     {
       if (!on) { throw new FormattedException("Before you can play a game you need to turn it on.\n game.turnOn()"); }

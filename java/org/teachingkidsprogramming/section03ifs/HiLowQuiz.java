@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes.quizzes;
+package org.teachingkidsprogramming.section03ifs;
 
 import org.teachingkidsprogramming.recipes.quizzes.graders.HiLowQuizGrader;
 

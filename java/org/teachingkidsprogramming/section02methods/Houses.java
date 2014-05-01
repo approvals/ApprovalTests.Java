@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes;
+package org.teachingkidsprogramming.section02methods;
 
 public class Houses
 {

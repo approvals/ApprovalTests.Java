@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes;
+package org.teachingkidsprogramming.section07events;
 
 import org.teachingextensions.windows.MouseLeftClickListener;
 import org.teachingextensions.windows.MouseRightClickListener;

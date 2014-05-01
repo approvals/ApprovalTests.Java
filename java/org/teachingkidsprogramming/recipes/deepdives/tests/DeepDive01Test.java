@@ -2,7 +2,7 @@ package org.teachingkidsprogramming.recipes.deepdives.tests;
 
 import junit.framework.TestCase;
 
-import org.teachingkidsprogramming.recipes.deepdives.DeepDive01ForLoops;
+import org.teachingkidsprogramming.section01forloops.DeepDive01ForLoops;
 
 public class DeepDive01Test extends TestCase
 {

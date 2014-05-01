@@ -1,4 +1,4 @@
-package org.teachingkidsprogramming.recipes.quizzes;
+package org.teachingkidsprogramming.section01forloops;
 
 import org.teachingkidsprogramming.recipes.quizzes.graders.SimpleSquareQuizGrader;
 import org.teachingkidsprogramming.recipes.quizzes.graders.SquareQuiz;
