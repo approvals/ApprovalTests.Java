@@ -6,6 +6,7 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.approvaltests.Approvals;
+import org.extensionmethods.ExtendableUtilities;
 import org.lambda.functions.implementations.F1;
 import org.lambda.query.extensions.Queryyy;
 
@@ -14,6 +15,7 @@ public class ExtensionTest extends TestCase
   @SuppressWarnings("unchecked")
   public void testHighestDivisorOf3() throws Exception
   {
+    if (ExtendableUtilities.isNotConfigured()) { return; }
     List<Integer> list = Arrays.asList(30, 46, 60);
     Approvals.verifyAll("", list.use(Queryyy.class).where(new F1<Integer, Boolean>(0)
     {
