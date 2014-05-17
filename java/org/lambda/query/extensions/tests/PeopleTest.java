@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import junit.framework.TestCase;
 
+import org.extensionmethods.ExtendableUtilities;
 import org.lambda.actions.implementations.A1;
 import org.lambda.functions.implementations.F1;
 import org.lambda.functions.implementations.S1;
@@ -17,6 +18,9 @@ public class PeopleTest extends TestCase
 {
   public void testBrainy() throws Exception
   {
+    if (ExtendableUtilities.isNotConfigured()) {
+      return;
+    }
     List<Person> people = getStudents();
     Person brainy = (Person) people.use(Queryyy.class).where(new F1<Person, Boolean>(Person.Null)
     {

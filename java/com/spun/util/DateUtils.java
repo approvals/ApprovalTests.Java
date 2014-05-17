@@ -1,11 +1,14 @@
 package com.spun.util;
 
+import static org.mockito.Mockito.times;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 /**
  * A static class of convence functions for database access
@@ -281,4 +284,14 @@ public class DateUtils
   }
   /************************************************************************/
   /************************************************************************/
+  
+  public static boolean doesDaylightSavingsTimeStartOn(String date) {
+    Timestamp day = parse(date);
+    TimeZone timeZone = GregorianCalendar.getInstance().getTimeZone();
+    boolean inDaylightTime = timeZone.inDaylightTime(day);
+    Calendar tomorrow = asCalendar(day);
+    tomorrow.add(Calendar.DATE, 1);
+    Date time = tomorrow.getTime();
+    return !inDaylightTime && timeZone.inDaylightTime(time);
+  }
 }

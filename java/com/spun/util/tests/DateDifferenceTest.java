@@ -82,6 +82,9 @@ public class DateDifferenceTest extends TestCase
   /***********************************************************************/
   public void testFeburaryAndDaylightSavingsTime() throws Exception
   {
+    if (ignoreIfOutSideUS()) {
+      return;  
+    }
     StringBuffer buffer = new StringBuffer();
     DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
     for (int i = 1; i <= 28; i++)
@@ -94,9 +97,16 @@ public class DateDifferenceTest extends TestCase
     }
     Approvals.verify(buffer.toString());
   }
+  protected boolean ignoreIfOutSideUS()
+  {
+    return !DateUtils.doesDaylightSavingsTimeStartOn("2010/03/14");
+  }
   /***********************************************************************/
   public void testGetTimeText()
   {
+    if (ignoreIfOutSideUS()) {
+      return;  
+    }
     for (int i = 0; i < getTimeTextUseCases.length; i++)
     {
       int amount = getTimeTextUseCases[i].amount;
