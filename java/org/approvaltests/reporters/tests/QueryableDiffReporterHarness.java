@@ -28,7 +28,7 @@ public class QueryableDiffReporterHarness implements ExecutableQuery
     {
       Runtime.getRuntime().exec(query);
     }
-    catch (Exception e)
+    catch (Throwable e)
     {
       return e.toString();
     }
