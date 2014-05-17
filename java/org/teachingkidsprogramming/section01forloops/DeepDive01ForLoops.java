@@ -72,7 +72,7 @@ public class DeepDive01ForLoops
   public void howFastCanTheTortoiseGo() throws Exception
   {
     Tortoise.setSpeed(____);
-    Assert.assertEquals(Tortoise.getSpeed(), topSpeed);
+    Assert.assertEquals(topSpeed, Tortoise.getSpeed());
     // 'Hint: Click SetSpeed then read the documentation on the left ----->
   }
   @Test

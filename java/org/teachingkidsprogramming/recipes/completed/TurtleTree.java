@@ -1,5 +1,8 @@
 package org.teachingkidsprogramming.recipes.completed;
 
+import java.awt.Color;
+import java.util.HashMap;
+
 import org.teachingextensions.logo.Colors;
 import org.teachingextensions.logo.Tortoise;
 
@@ -33,37 +36,21 @@ public class TurtleTree
   }
   public static void adjustColor(int branchLength)
   {
+    HashMap<Integer, Color> colors = new HashMap<Integer, Color>();
+    colors.put(10, Colors.Greens.Lime);
+    colors.put(20, Colors.Greens.ForestGreen);
+    colors.put(30, Colors.Greens.DarkGreen);
+    colors.put(40, Colors.Greens.Olive);
+    colors.put(50, Colors.Browns.Sienna);
+    colors.put(60, Colors.Browns.SaddleBrown);
     //                          ------------- Recipe for adjustColor --#16
     //                                  A 10 pixel long branch is lime --#21
-    if (branchLength == 10)
-    {
-      Tortoise.setPenColor(Colors.Greens.Lime);
-    }
     //                                  A 20 pixel long branch is forest green --#20
-    if (branchLength == 20)
-    {
-      Tortoise.setPenColor(Colors.Greens.ForestGreen);
-    }
     //                                  A 30 pixel long branch is dark green --#19
-    if (branchLength == 30)
-    {
-      Tortoise.setPenColor(Colors.Greens.DarkGreen);
-    }
     //                                  A 40 pixel long branch is olive --#18
-    if (branchLength == 40)
-    {
-      Tortoise.setPenColor(Colors.Greens.Olive);
-    }
     //                                  A 50 pixel long branch is sienna --#15
-    if (branchLength == 50)
-    {
-      Tortoise.setPenColor(Colors.Browns.Sienna);
-    }
     //                                  A 60 pixel long branch is saddle brown --#14
-    if (branchLength == 60)
-    {
-      Tortoise.setPenColor(Colors.Browns.SaddleBrown);
-    }
+    Tortoise.setPenColor(colors.get(branchLength));
     //                          ------------- End of adjustColor --#16
   }
   public static void drawLowerBranches(int branchLength)
