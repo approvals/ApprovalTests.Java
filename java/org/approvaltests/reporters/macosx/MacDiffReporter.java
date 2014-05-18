@@ -7,7 +7,6 @@ public class MacDiffReporter extends FirstWorkingReporter
   public static final MacDiffReporter INSTANCE = new MacDiffReporter();
   public MacDiffReporter()
   {
-    super(DiffMergeReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE, TkDiffReporter.INSTANCE,
-        P4MergeReporter.INSTANCE);
+    super(DiffMergeReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE,  P4MergeReporter.INSTANCE, TkDiffReporter.INSTANCE);
   }
 }

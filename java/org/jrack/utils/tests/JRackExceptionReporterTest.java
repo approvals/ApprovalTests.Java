@@ -8,6 +8,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.namer.IdeLabeller;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.namer.OsEnvironmentLabeller;
+import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.jrack.JRack;
@@ -15,7 +16,7 @@ import org.jrack.RackResponse;
 import org.jrack.utils.JRackExceptionReporter;
 import org.lambda.functions.Function0;
 
-@UseReporter(DiffReporter.class)
+@UseReporter({DiffReporter.class, ClipboardReporter.class})
 public class JRackExceptionReporterTest extends TestCase
 {
   public static class JRackError implements JRack
