@@ -82,9 +82,7 @@ public class DateDifferenceTest extends TestCase
   /***********************************************************************/
   public void testFeburaryAndDaylightSavingsTime() throws Exception
   {
-    if (ignoreIfOutSideUS()) {
-      return;  
-    }
+    if (ignoreIfOutSideUS()) { return; }
     StringBuffer buffer = new StringBuffer();
     DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
     for (int i = 1; i <= 28; i++)
@@ -92,7 +90,8 @@ public class DateDifferenceTest extends TestCase
       Timestamp a = DateUtils.parse("2010/02/0" + i);
       Timestamp b = DateUtils.parse("2010/03/0" + i);
       DateDifference dif = new DateDifference(a, b);
-      String out = Printer.printLine(f.format(a) + ", " + f.format(b), dif.getStandardTimeText(2, "days", "seconds", null, null));
+      String out = Printer.printLine(f.format(a) + ", " + f.format(b),
+          dif.getStandardTimeText(2, "days", "seconds", null, null));
       buffer.append(out);
     }
     Approvals.verify(buffer.toString());
@@ -104,9 +103,7 @@ public class DateDifferenceTest extends TestCase
   /***********************************************************************/
   public void testGetTimeText()
   {
-    if (ignoreIfOutSideUS()) {
-      return;  
-    }
+    if (ignoreIfOutSideUS()) { return; }
     for (int i = 0; i < getTimeTextUseCases.length; i++)
     {
       int amount = getTimeTextUseCases[i].amount;
