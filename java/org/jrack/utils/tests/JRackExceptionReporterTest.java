@@ -30,16 +30,20 @@ public class JRackExceptionReporterTest extends TestCase
   public void testExceptions() throws Exception
   {
     RackResponse response = new JRackExceptionReporter(new JRackError()).call(null);
-      NamerFactory.asMachineSpecificTest(new OsEnvironmentAndIdeLabeller());
-      Approvals.verify(response);
+    NamerFactory.asMachineSpecificTest(new OsEnvironmentAndIdeLabeller());
+    String html = response.getResponse().toString();
+    Approvals.verifyHtml(clearLineNumbers(html));
   }
-
-    public static class OsEnvironmentAndIdeLabeller implements Function0<String>
+  private String clearLineNumbers(String html)
+  {
+    return html.replaceAll(":\\d+", ":[Line Number]");
+  }
+  public static class OsEnvironmentAndIdeLabeller implements Function0<String>
+  {
+    @Override
+    public String call()
     {
-        @Override
-        public String call()
-        {
-            return new OsEnvironmentLabeller().call() + "_" + new IdeLabeller().call();
-        }
+      return new OsEnvironmentLabeller().call() + "_" + new IdeLabeller().call();
     }
+  }
 }
