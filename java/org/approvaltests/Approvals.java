@@ -44,13 +44,6 @@ import com.spun.util.persistence.SqlLoader;
 
 public class Approvals
 {
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(String response) throws Exception
-  {
-    verify(response);
-  }
   public static void verify(String response) throws Exception
   {
     verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
@@ -59,47 +52,19 @@ public class Approvals
   {
     verify("" + o);
   }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(String label, T[] array) throws Exception
-  {
-    verifyAll(label, array);
-  }
   public static <T> void verifyAll(String label, T[] array) throws Exception
   {
     verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), FileTypes.Text);
-  }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(String header, String label, T[] array) throws Exception
-  {
-    verifyAll(header, label, array);
   }
   public static <T> void verifyAll(String header, String label, T[] array) throws Exception
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
         FileTypes.Text);
   }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(T[] values, Function1<T, String> f1)
-  {
-    verifyAll(values, f1);
-  }
   public static <T> void verifyAll(T[] values, Function1<T, String> f1)
   {
     String text = ArrayUtils.toString(values, f1);
     verify(new ApprovalTextWriter(text, "txt"), FileTypes.Text);
-  }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(String header, T[] values, Function1<T, String> f1)
-  {
-    verifyAll(header, values, f1);
   }
   public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1)
   {
@@ -114,123 +79,46 @@ public class Approvals
   {
     return StringUtils.isEmpty(header) ? "" : header + "\r\n\r\n\r\n";
   }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(String label, Iterable<T> array) throws Exception
-  {
-    verifyAll(label, array);
-  }
   public static <T> void verifyAll(String label, Iterable<T> array) throws Exception
   {
     verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), FileTypes.Text);
-  }
-  /**
-   * @deprecated Use verifyAll()
-   */
-  public static <T> void approve(String header, String label, Iterable<T> array) throws Exception
-  {
-    verifyAll(header, label, array);
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array) throws Exception
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
         FileTypes.Text);
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(Component c) throws Exception
-  {
-    verify(c);
-  }
   public static void verify(Component c) throws Exception
   {
     verify(new ComponentApprovalWriter(c), FileTypes.Image);
-  }
-  /**
-   * @deprecated Use verifyHtml()
-   */
-  public static void approveHtml(String response) throws Exception
-  {
-    verifyHtml(response);
   }
   public static void verifyHtml(String response) throws Exception
   {
     verify(new ApprovalTextWriter(response, "html"), FileTypes.Html);
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(File generateFile)
-  {
-    verify(generateFile);
-  }
   public static void verify(File generateFile)
   {
     verify(new FileApprovalWriter(generateFile), FileTypes.File);
-  }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(Image image)
-  {
-    verify(image);
   }
   public static void verify(Image image)
   {
     approve(ImageWriter.toBufferedImage(image), createApprovalNamer());
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(BufferedImage bufferedImage)
-  {
-    verify(bufferedImage);
-  }
   public static void verify(BufferedImage bufferedImage)
   {
     verify(new ImageApprovalWriter(bufferedImage), FileTypes.Image);
-  }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(ApprovalWriter writter, ApprovalNamer namer, ApprovalFailureReporter reporter)
-  {
-    verify(writter, namer, reporter);
   }
   public static void verify(ApprovalWriter writter, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
     verify(new FileApprover(writter, namer), reporter);
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(ApprovalWriter writter, String fileType)
-  {
-    verify(writter, fileType);
-  }
   public static void verify(ApprovalWriter writter, String fileType)
   {
     verify(writter, createApprovalNamer(), ReporterFactory.get(fileType));
   }
-  /**
-   * @deprecated Use verifyXml()
-   */
-  public static void approveXml(String xml) throws Exception
-  {
-    verifyXml(xml);
-  }
   public static void verifyXml(String xml) throws Exception
   {
     verify(new ApprovalXmlWriter(xml), FileTypes.Text);
-  }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(FileApprover approver, ApprovalFailureReporter reporter)
-  {
-    verify(approver, reporter);
   }
   public static void verify(FileApprover approver, ApprovalFailureReporter reporter)
   {
@@ -263,35 +151,14 @@ public class Approvals
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(ExecutableQuery query) throws Exception
-  {
-    verify(query);
-  }
   public static void verify(ExecutableQuery query) throws Exception
   {
     verify(new ApprovalTextWriter(query.getQuery(), "txt"), new JUnitStackTraceNamer(),
         new ExecutableQueryFailure(query));
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(Map map) throws Exception
-  {
-    verify(map);
-  }
   public static void verify(Map map) throws Exception
   {
     verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"), FileTypes.Text);
-  }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(RackResponse response) throws Exception
-  {
-    verify(response);
   }
   public static void verify(RackResponse response) throws Exception
   {
@@ -305,23 +172,9 @@ public class Approvals
       verifyHtml(response.getResponse().toString());
     }
   }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(ResultSet rs) throws Exception
-  {
-    verify(rs);
-  }
   public static void verify(ResultSet rs) throws Exception
   {
     verify(new ResultSetApprovalWriter(rs), "csv");
-  }
-  /**
-   * @deprecated Use verify()
-   */
-  public static void approve(SqlLoader loader) throws Exception
-  {
-    verify(loader);
   }
   public static void verify(SqlLoader loader) throws Exception
   {
