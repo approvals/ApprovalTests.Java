@@ -153,8 +153,8 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query) throws Exception
   {
-    verify(new ApprovalTextWriter(query.getQuery(), "txt"), new JUnitStackTraceNamer(),
-        new ExecutableQueryFailure(query));
+    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(), new ExecutableQueryFailure(
+        query));
   }
   public static void verify(Map map) throws Exception
   {
