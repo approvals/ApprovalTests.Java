@@ -1,5 +1,7 @@
 package org.approvaltests.reporters;
 
+import java.io.File;
+
 public class ExecutableFinder
 {
   private String diffProgram;
@@ -16,5 +18,9 @@ public class ExecutableFinder
   public String getDiffProgramNotFoundMessage()
   {
     return diffProgramNotFoundMessage;
+  }
+  protected boolean exists()
+  {
+    return new File(getDiffProgram()).exists();
   }
 }

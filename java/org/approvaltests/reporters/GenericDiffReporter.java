@@ -1,6 +1,5 @@
 package org.approvaltests.reporters;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,7 +8,7 @@ import com.spun.util.io.FileUtils;
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
   protected String           arguments;
-  private final ExecutableFinder executableFinder;
+  final ExecutableFinder executableFinder;
   private List<String>       validExtensions;
   public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml",
                                                        ".eml", ".java", ".css", ".js");
@@ -50,7 +49,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
-    return new File(executableFinder.getDiffProgram()).exists() && isFileExtensionHandled(forFile);
+    return executableFinder.exists() && isFileExtensionHandled(forFile);
   }
   public boolean isFileExtensionHandled(String forFile)
   {
