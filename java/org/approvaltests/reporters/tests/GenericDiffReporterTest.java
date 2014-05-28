@@ -15,7 +15,6 @@ import org.approvaltests.strings.Printer;
 
 import com.spun.util.ClassUtils;
 
-@UseReporter(P4MergeReporter.class)
 public class GenericDiffReporterTest extends TestCase
 {
   public void testFileExtensions() throws Exception
