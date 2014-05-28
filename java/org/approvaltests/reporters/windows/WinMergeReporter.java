@@ -11,8 +11,10 @@ public class WinMergeReporter extends GenericDiffReporter
   static final String                  MESSAGE      = MessageFormat.format("Unable to find WinMerge at {0}"
                                                         + "\nYou can install it at http://winmerge.org/",
                                                         DIFF_PROGRAM);
+  private static final String[] POSSIBLE_LOCATIONS = { DIFF_PROGRAM} ;
   public WinMergeReporter()
   {
-    super(DIFF_PROGRAM, MESSAGE);
+    super(POSSIBLE_LOCATIONS);
+//    super(DIFF_PROGRAM, MESSAGE);
   }
 }

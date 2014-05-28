@@ -29,6 +29,10 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     this.arguments = argumentsFormat;
     validExtensions = validFileExtensions;
   }
+  public GenericDiffReporter(String[] possibleLocations)
+  {
+    // TODO Auto-generated constructor stub
+  }
   @Override
   public void report(String received, String approved) throws Exception
   {
