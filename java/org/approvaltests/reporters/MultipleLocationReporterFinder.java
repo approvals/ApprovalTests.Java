@@ -6,13 +6,14 @@ import java.util.Arrays;
 public class MultipleLocationReporterFinder implements ReporterFinder
 {
 
+  private static final String NO_REPORTER_FOUND = "";
   private String reporterPath;
   private String[] possibles;
 
-  public MultipleLocationReporterFinder(String[] possibles)
+  public MultipleLocationReporterFinder(String[] possibleAbsolutePaths)
   {
-    this.possibles = possibles;
-    this.reporterPath = getFirstExistingReporter(possibles);
+    this.possibles = possibleAbsolutePaths;
+    this.reporterPath = getFirstExistingReporter(possibleAbsolutePaths);
   }
 
   @Override
@@ -24,7 +25,7 @@ public class MultipleLocationReporterFinder implements ReporterFinder
   @SuppressWarnings("unchecked")
   private static String getFirstExistingReporter(String[] possibles)
   {
-    String path = "";
+    String path = NO_REPORTER_FOUND;
     for (int j = 0; j < possibles.length; j++) {
       if (new File(possibles[j]).exists()) {
         path = possibles[j];
@@ -43,8 +44,7 @@ public class MultipleLocationReporterFinder implements ReporterFinder
   @Override
   public boolean exists()
   {
-    // TODO Auto-generated method stub
-    return false;
+    return ! NO_REPORTER_FOUND.equals(reporterPath);
   }
   
 }

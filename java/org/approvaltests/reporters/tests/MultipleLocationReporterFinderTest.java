@@ -1,5 +1,6 @@
 package org.approvaltests.reporters.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -41,13 +42,18 @@ public class MultipleLocationReporterFinderTest
     Assert.assertTrue(finder.notFoundMessage().contains("anothernonexistingfile"));
   }
   
-  @Ignore @Test public void 
+  @Test public void 
   exists_forExistingReporter_returnsTrue() throws Exception {
-     
+    File existingFile = root.newFile();
+    String[] possibles = {"/tmp/nonexisting", existingFile.getAbsolutePath()};
+    finder = new MultipleLocationReporterFinder(possibles);
+    Assert.assertTrue(finder.exists());
   }
 
-  @Ignore @Test public void 
+  @Test public void 
   exists_forInexistantReporter_returnsFalse() throws Exception {
-    
+    String[] possibles = {"/tmp/nonexisting", "anothernonexistingfile"};
+    finder = new MultipleLocationReporterFinder(possibles);
+    assertFalse(finder.exists());
   }
 }
