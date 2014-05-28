@@ -1,16 +1,15 @@
 package org.approvaltests.reporters.tests;
 
+import static org.junit.Assert.fail;
+
 import java.io.File;
 
-import org.approvaltests.Approvals;
 import org.approvaltests.reporters.MultipleLocationReporterFinder;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import com.spun.util.io.FileUtils;
 
 
 public class MultipleLocationReporterFinderTest 
@@ -34,9 +33,12 @@ public class MultipleLocationReporterFinderTest
      
   }
   
-  @Ignore @Test public void 
+  @Test public void 
   notFoundMessage_reportsAllTriedLocations() throws Exception {
-     
+    String[] possibles = {"/tmp/nonexisting", "anothernonexistingfile"};
+    finder = new MultipleLocationReporterFinder(possibles);
+    Assert.assertTrue(finder.notFoundMessage().contains("/tmp/nonexisting"));
+    Assert.assertTrue(finder.notFoundMessage().contains("anothernonexistingfile"));
   }
   
   @Ignore @Test public void 
