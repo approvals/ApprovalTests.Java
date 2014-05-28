@@ -2,25 +2,29 @@ package org.approvaltests.reporters;
 
 import java.io.File;
 
-public class ExecutableFinder
+public class SingleLocationReporterFinder implements ReporterFinder
 {
   private String diffProgram;
   private String diffProgramNotFoundMessage;
-  public ExecutableFinder(String diffProgram, String diffProgramNotFoundMessage)
+  public SingleLocationReporterFinder(String diffProgram, String diffProgramNotFoundMessage)
   {
     this.diffProgram = diffProgram;
     this.diffProgramNotFoundMessage = diffProgramNotFoundMessage;
   }
-  public String getDiffProgram()
+  public String fullPath()
   {
     return diffProgram;
   }
-  public String getDiffProgramNotFoundMessage()
+  
+  @Override
+  public String notFoundMessage()
   {
     return diffProgramNotFoundMessage;
   }
-  protected boolean exists()
+  
+  @Override
+  public boolean exists()
   {
-    return new File(getDiffProgram()).exists();
+    return new File(fullPath()).exists();
   }
 }

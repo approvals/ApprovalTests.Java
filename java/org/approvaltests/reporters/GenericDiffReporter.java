@@ -8,7 +8,7 @@ import com.spun.util.io.FileUtils;
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
   protected String           arguments;
-  final ExecutableFinder executableFinder;
+  final ReporterFinder reporterFinder;
   private List<String>       validExtensions;
   public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml",
                                                        ".eml", ".java", ".css", ".js");
@@ -25,14 +25,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   public GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage,
       List<String> validFileExtensions)
   {
-    executableFinder = new ExecutableFinder(diffProgram, diffProgramNotFoundMessage);
+    reporterFinder = new SingleLocationReporterFinder(diffProgram, diffProgramNotFoundMessage);
     this.arguments = argumentsFormat;
     validExtensions = validFileExtensions;
   }
   @Override
   public void report(String received, String approved) throws Exception
   {
-    if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(executableFinder.getDiffProgramNotFoundMessage()); }
+    if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(reporterFinder.notFoundMessage()); }
     FileUtils.createIfNeeded(approved);
     Process exec = Runtime.getRuntime().exec(getCommandLine(received, approved));
     //    int waitFor = exec.waitFor();
@@ -42,14 +42,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   public String getCommandLine(String received, String approved)
   {
     String command = "%s " + arguments;
-    command = String.format(command, executableFinder.getDiffProgram(), received, approved);
+    command = String.format(command, reporterFinder.fullPath(), received, approved);
     System.out.println(command);
     return command;
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
-    return executableFinder.exists() && isFileExtensionHandled(forFile);
+    return reporterFinder.exists() && isFileExtensionHandled(forFile);
   }
   public boolean isFileExtensionHandled(String forFile)
   {
