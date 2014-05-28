@@ -59,4 +59,8 @@ public class GenericDiffReporterTest extends TestCase
       }
     });
   }
+
+  public void testCanFindExistingProgramInArrayOfPossibilities() {
+//    GenericDiffReporter.
+  }
 }

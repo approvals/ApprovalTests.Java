@@ -8,9 +8,8 @@ import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
-  protected String           diffProgram;
   protected String           arguments;
-  protected String           diffProgramNotFoundMessage;
+  private final ExecutableFinder executableFinder;
   private List<String>       validExtensions;
   public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml",
                                                        ".eml", ".java", ".css", ".js");
@@ -27,15 +26,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   public GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage,
       List<String> validFileExtensions)
   {
-    this.diffProgram = diffProgram;
+    executableFinder = new ExecutableFinder(diffProgram, diffProgramNotFoundMessage);
     this.arguments = argumentsFormat;
-    this.diffProgramNotFoundMessage = diffProgramNotFoundMessage;
     validExtensions = validFileExtensions;
   }
   @Override
   public void report(String received, String approved) throws Exception
   {
-    if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(diffProgramNotFoundMessage); }
+    if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(executableFinder.getDiffProgramNotFoundMessage()); }
     FileUtils.createIfNeeded(approved);
     Process exec = Runtime.getRuntime().exec(getCommandLine(received, approved));
     //    int waitFor = exec.waitFor();
@@ -45,14 +43,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   public String getCommandLine(String received, String approved)
   {
     String command = "%s " + arguments;
-    command = String.format(command, diffProgram, received, approved);
+    command = String.format(command, executableFinder.getDiffProgram(), received, approved);
     System.out.println(command);
     return command;
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
-    return new File(diffProgram).exists() && isFileExtensionHandled(forFile);
+    return new File(executableFinder.getDiffProgram()).exists() && isFileExtensionHandled(forFile);
   }
   public boolean isFileExtensionHandled(String forFile)
   {
