@@ -1,20 +1,15 @@
 package org.approvaltests.reporters.windows;
 
-import java.text.MessageFormat;
-
 import org.approvaltests.reporters.GenericDiffReporter;
 
 public class WinMergeReporter extends GenericDiffReporter
 {
   public static final WinMergeReporter INSTANCE     = new WinMergeReporter();                       ;
-  static final String                  DIFF_PROGRAM = "C:\\Program Files\\WinMerge\\WinMergeU.exe";
-  static final String                  MESSAGE      = MessageFormat.format("Unable to find WinMerge at {0}"
-                                                        + "\nYou can install it at http://winmerge.org/",
-                                                        DIFF_PROGRAM);
-  private static final String[] POSSIBLE_LOCATIONS = { DIFF_PROGRAM} ;
+  private static final String[] POSSIBLE_LOCATIONS = { "C:\\Program Files\\WinMerge\\WinMergeU.exe",
+                                                       "C:\\Program Files (x86)\\WinMerge\\WinMergeU.exe",
+                                                       "C:\\Programs\\WinMerge\\WinMergeU.exe"} ;
   public WinMergeReporter()
   {
-    super(POSSIBLE_LOCATIONS);
-//    super(DIFF_PROGRAM, MESSAGE);
+    super(POSSIBLE_LOCATIONS, GenericDiffReporter.WINDOWS_ARGUMENT_FORMAT);
   }
 }

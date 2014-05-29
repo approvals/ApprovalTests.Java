@@ -7,6 +7,7 @@ import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
+  public static final String WINDOWS_ARGUMENT_FORMAT = "\"%s\" \"%s\"";
   protected String           arguments;
   final ReporterFinder reporterFinder;
   private List<String>       validExtensions;
@@ -16,7 +17,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
                                                        ".tif", ".tiff");
   public GenericDiffReporter(String diffProgram, String diffProgramNotFoundMessage)
   {
-    this(diffProgram, "\"%s\" \"%s\"", diffProgramNotFoundMessage);
+    this(diffProgram, WINDOWS_ARGUMENT_FORMAT, diffProgramNotFoundMessage);
   }
   private GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage)
   {
@@ -29,9 +30,11 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     this.arguments = argumentsFormat;
     validExtensions = validFileExtensions;
   }
-  public GenericDiffReporter(String[] possibleLocations)
+  public GenericDiffReporter(String[] possibleLocations, String argumentFormat)
   {
-    // TODO Auto-generated constructor stub
+    reporterFinder = new MultipleLocationReporterFinder(possibleLocations);
+    arguments = argumentFormat;
+    validExtensions = TEXT_FILE_EXTENSIONS;
   }
   @Override
   public void report(String received, String approved) throws Exception
