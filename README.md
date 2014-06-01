@@ -28,7 +28,7 @@ Podcasts
 ---
 If you prefer auditory learning, you might enjoy the following podcast (Note: Some of these talk about the .net side)
 
-- [Hanselminutes] (http://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
+- [Hanselminutes](http://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
 - [Herding Code](http://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
 - [The Watir Podcast](http://watirpodcast.com/podcast-53/)
 
@@ -84,6 +84,12 @@ More Info
 ## LICENSE
 [Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
 
+## Developing ApprovalTests.Java
+ApprovalTests.Java uses the Gradle build system. It understands the following commands:
+
+	./gradlew build   # Build jar file
+	./gradlew test    # Run test suite
+	./gradlew eclipse # Generate Eclipse .project and .classpath files
 
 Questions?
 ---
