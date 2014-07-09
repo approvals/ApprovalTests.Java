@@ -2,6 +2,7 @@ package org.lambda.query;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -104,7 +105,7 @@ public class Query<In>
   {
     return sum(Arrays.asList(list), f1);
   }
-  public static <In, Out extends Number> Double sum(List<In> list, Function1<In, Out> f1)
+  public static <In, Out extends Number> Double sum(Collection<In> list, Function1<In, Out> f1)
   {
     double sum = 0;
     for (In in : list)
@@ -113,7 +114,7 @@ public class Query<In>
     }
     return sum;
   }
-  public static <Out extends Number> Double sum(List<Out> list)
+  public static <Out extends Number> Double sum(Collection<Out> list)
   {
     return sum(list, new Echo1<Out>());
   }
