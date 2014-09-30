@@ -29,7 +29,9 @@
 		<delete file="${jar}" failonerror="false" />
 		<jar destfile="${jar}" update="false">
 			<fileset dir="${build}" includes="**" />
-
+			<manifest>
+					<attribute name="Main-Class" value="${executableMainClass}" />
+				</manifest>
 		</jar>
 	</target>
 	<target name="createDownload" depends="buildJarFile">
@@ -37,7 +39,6 @@
 			<fileset dir="${documentation}" includes="**" />
 		</zip>
 	</target>
-
 	<target name="Publish    Lambdas">
 		<property file="properties/lambda.properties" />
 		<antcall target="createDownload" />
@@ -51,6 +52,10 @@
 	<target name="Publish    ExtensionMethods">
 		<property file="properties/extension_methods.properties" />
 		<antcall target="createDownload" />
+	</target>
+	<target name="Publish    HtmlLocker">
+		<property file="properties/html_locker.properties" />
+		<antcall target="buildJarFile" />
 	</target>
 
 </project>
