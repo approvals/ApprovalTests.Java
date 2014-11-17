@@ -8,6 +8,7 @@ import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
+  public static boolean      REPORT_MISSING_FILES  = false;
   protected String           diffProgram;
   protected String           arguments;
   protected String           diffProgramNotFoundMessage;
@@ -52,7 +53,16 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
-    return new File(diffProgram).exists() && isFileExtensionHandled(forFile);
+    return checkFileExists() && isFileExtensionHandled(forFile);
+  }
+  public boolean checkFileExists()
+  {
+    boolean exists = new File(diffProgram).exists();
+    if (REPORT_MISSING_FILES && !exists)
+    {
+      System.out.println(String.format("%s can't find '%s'", this.getClass().getSimpleName(), diffProgram));
+    }
+    return exists;
   }
   public boolean isFileExtensionHandled(String forFile)
   {

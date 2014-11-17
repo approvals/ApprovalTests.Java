@@ -20,6 +20,6 @@ public class WebPageTest extends TestCase
   }
   public void testChangeDetectorUI() throws Exception
   {
-    Approvals.verify(new WebPageChangeDetector());
+    Approvals.verify(new WebPageChangeDetector().gui);
   }
 }

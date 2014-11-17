@@ -19,11 +19,11 @@ import com.spun.util.WindowUtils;
 
 public class WebPageChangeDetector implements ActionListener
 {
-  private boolean                  keyPressed = false;
-  private URI                      url;
-  private boolean                  validUrl;
-  private Boolean                  filesMatched;
-  private WebPageChangeDetectorGui gui;
+  private boolean                 keyPressed = false;
+  private URI                     url;
+  private boolean                 validUrl;
+  private Boolean                 filesMatched;
+  public WebPageChangeDetectorGui gui;
   public WebPageChangeDetector()
   {
     gui = new WebPageChangeDetectorGui(this);

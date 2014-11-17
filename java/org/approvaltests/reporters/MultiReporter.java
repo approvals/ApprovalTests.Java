@@ -1,5 +1,6 @@
 package org.approvaltests.reporters;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -19,10 +20,19 @@ public class MultiReporter implements ApprovalFailureReporter
   @Override
   public void report(String received, String approved) throws Exception
   {
+    ArrayList<Throwable> exceptions = new ArrayList<Throwable>();
     for (ApprovalFailureReporter reporter : reporters)
     {
-      reporter.report(received, approved);
+      try
+      {
+        reporter.report(received, approved);
+      }
+      catch (Throwable t)
+      {
+        exceptions.add(t);
+      }
     }
+    MultipleExceptions.rethrowExceptions(exceptions);
   }
   public ApprovalFailureReporter[] getReporters()
   {
