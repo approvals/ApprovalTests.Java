@@ -1,5 +1,6 @@
 package org.approvaltests.reporters.tests;
 
+import org.apache.hadoop.util.StringUtils;
 import org.approvaltests.reporters.GenericDiffReporter;
 
 import com.spun.util.persistence.ExecutableQuery;
@@ -18,7 +19,8 @@ public class QueryableDiffReporterHarness implements ExecutableQuery
   @Override
   public String getQuery() throws Exception
   {
-    return reporter.getCommandLine("%s", "%s");
+    String[] commandLine = reporter.getCommandLine("%s", "%s");
+    return StringUtils.join(" ", commandLine);
   }
   @Override
   public String executeQuery(String query) throws Exception

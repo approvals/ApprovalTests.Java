@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 
@@ -58,25 +57,6 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     String[] commands = new String[]{diffProgram, r, a};
     System.out.println(Arrays.toString(commands));
     return commands;
-  }
-  public static String convertFileForCommandLine(String fileName)
-  {
-    return convertFileForCommandLine(fileName, SystemUtils.isWindowsEnviroment());
-  }
-  public static String convertFileForCommandLine(String fileName, boolean windowsOs)
-  {
-    if (!fileName.contains(" "))
-    {
-      return fileName;
-    }
-    else if (windowsOs)
-    {
-      return String.format("\"%s\"", fileName);
-    }
-    else
-    {
-      return fileName.replace(" ", "\\ ");
-    }
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

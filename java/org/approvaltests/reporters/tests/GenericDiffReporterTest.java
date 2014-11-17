@@ -14,6 +14,7 @@ import org.approvaltests.reporters.windows.WinMergeReporter;
 import org.approvaltests.strings.Printer;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.SystemUtils;
 
 public class GenericDiffReporterTest extends TestCase
 {
@@ -49,7 +50,7 @@ public class GenericDiffReporterTest extends TestCase
   }
   public String getFileName(String name, Boolean osType)
   {
-    return GenericDiffReporter.convertFileForCommandLine(name, osType);
+    return SystemUtils.convertFileForCommandLine(name, osType);
   }
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter) throws Exception
   {
