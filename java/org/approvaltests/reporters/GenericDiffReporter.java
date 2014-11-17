@@ -1,10 +1,12 @@
 package org.approvaltests.reporters;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 import com.spun.util.SystemUtils;
+import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
@@ -40,11 +42,22 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   {
     if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(diffProgramNotFoundMessage); }
     FileUtils.createIfNeeded(approved);
-    Process exec = Runtime.getRuntime().exec(
-        getCommandLine(convertFileForCommandLine(received), convertFileForCommandLine(approved)));
-    //    int waitFor = exec.waitFor();
-    //    String text = DatabaseLifeCycleUtils.extractText(exec.getErrorStream());
-    //    System.out.println(waitFor + text);
+    launch(received, approved);
+  }
+  private void launch(String received, String approved) throws IOException
+  {
+    ProcessBuilder builder = new ProcessBuilder(getCommandLine(received, approved));
+    Process process = builder.start();
+    ThreadUtils.sleep(500); //Give program time to start
+  }
+  public String[] getCommandLine(String received, String approved)
+  {
+    String[] p = arguments.split(" ");
+    String r = String.format(p[0], received);
+    String a = String.format(p[1], approved);
+    String[] commands = new String[]{diffProgram, r, a};
+    System.out.println(Arrays.toString(commands));
+    return commands;
   }
   public static String convertFileForCommandLine(String fileName)
   {
@@ -64,13 +77,6 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     {
       return fileName.replace(" ", "\\ ");
     }
-  }
-  public String getCommandLine(String received, String approved)
-  {
-    String command = "%s " + arguments;
-    command = String.format(command, diffProgram, received, approved);
-    System.out.println(command);
-    return command;
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
