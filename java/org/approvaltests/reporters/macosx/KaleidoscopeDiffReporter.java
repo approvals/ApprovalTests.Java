@@ -19,6 +19,6 @@ public class KaleidoscopeDiffReporter extends GenericDiffReporter
   public static final KaleidoscopeDiffReporter INSTANCE     = new KaleidoscopeDiffReporter();
   public KaleidoscopeDiffReporter()
   {
-    super(DIFF_PROGRAM, "%s %s", MESSAGE, fileTypes);
+    super(DIFF_PROGRAM, GenericDiffReporter.STANDARD_ARGUMENTS, MESSAGE, fileTypes);
   }
 }

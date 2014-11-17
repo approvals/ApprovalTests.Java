@@ -12,6 +12,6 @@ public class TkDiffReporter extends GenericDiffReporter
   public static final TkDiffReporter INSTANCE     = new TkDiffReporter();
   public TkDiffReporter()
   {
-    super(DIFF_PROGRAM, "%s %s", MESSAGE, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
+    super(DIFF_PROGRAM, GenericDiffReporter.STANDARD_ARGUMENTS, MESSAGE, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
   }
 }

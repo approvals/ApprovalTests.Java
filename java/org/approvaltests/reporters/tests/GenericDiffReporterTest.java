@@ -5,8 +5,8 @@ import java.io.File;
 import junit.framework.TestCase;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.CombinationApprovals;
 import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
@@ -15,7 +15,6 @@ import org.approvaltests.strings.Printer;
 
 import com.spun.util.ClassUtils;
 
-@UseReporter(P4MergeReporter.class)
 public class GenericDiffReporterTest extends TestCase
 {
   public void testFileExtensions() throws Exception
@@ -41,6 +40,16 @@ public class GenericDiffReporterTest extends TestCase
   public void testP4Merge() throws Exception
   {
     approveGenericReporter("a.png", "b.png", new P4MergeReporter());
+  }
+  public void testCommandLineFileNames() throws Exception
+  {
+    String[] names = {"regular.txt", "with spaces.txt"};
+    Boolean[] osTypes = {true, false};
+    CombinationApprovals.verifyAllCombinations(this, "getFileName", names, osTypes);
+  }
+  public String getFileName(String name, Boolean osType)
+  {
+    return GenericDiffReporter.convertFileForCommandLine(name, osType);
   }
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter) throws Exception
   {

@@ -4,10 +4,12 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {
+  public static final String STANDARD_ARGUMENTS    = "%s %s";
   public static boolean      REPORT_MISSING_FILES  = false;
   protected String           diffProgram;
   protected String           arguments;
@@ -19,7 +21,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
                                                        ".tif", ".tiff");
   public GenericDiffReporter(String diffProgram, String diffProgramNotFoundMessage)
   {
-    this(diffProgram, "\"%s\" \"%s\"", diffProgramNotFoundMessage);
+    this(diffProgram, STANDARD_ARGUMENTS, diffProgramNotFoundMessage);
   }
   private GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage)
   {
@@ -38,10 +40,30 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   {
     if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(diffProgramNotFoundMessage); }
     FileUtils.createIfNeeded(approved);
-    Process exec = Runtime.getRuntime().exec(getCommandLine(received, approved));
+    Process exec = Runtime.getRuntime().exec(
+        getCommandLine(convertFileForCommandLine(received), convertFileForCommandLine(approved)));
     //    int waitFor = exec.waitFor();
     //    String text = DatabaseLifeCycleUtils.extractText(exec.getErrorStream());
     //    System.out.println(waitFor + text);
+  }
+  public static String convertFileForCommandLine(String fileName)
+  {
+    return convertFileForCommandLine(fileName, SystemUtils.isWindowsEnviroment());
+  }
+  public static String convertFileForCommandLine(String fileName, boolean windowsOs)
+  {
+    if (!fileName.contains(" "))
+    {
+      return fileName;
+    }
+    else if (windowsOs)
+    {
+      return String.format("\"%s\"", fileName);
+    }
+    else
+    {
+      return fileName.replace(" ", "\\ ");
+    }
   }
   public String getCommandLine(String received, String approved)
   {

@@ -21,6 +21,6 @@ public class P4MergeReporter extends GenericDiffReporter
   public static final P4MergeReporter INSTANCE     = new P4MergeReporter();
   public P4MergeReporter()
   {
-    super(DIFF_PROGRAM, "%s %s", P4MergeReporter.MESSAGE, fileTypes);
+    super(DIFF_PROGRAM, GenericDiffReporter.STANDARD_ARGUMENTS, P4MergeReporter.MESSAGE, fileTypes);
   }
 }
