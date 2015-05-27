@@ -1,4 +1,4 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -6,7 +6,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import com.spun.util.ObjectUtils;
 import com.spun.util.introspection.ClassGetter;
 
 public class UniversalTestSuite

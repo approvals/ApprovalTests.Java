@@ -3,7 +3,7 @@ package org.approvaltests.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import com.spun.util.tests.UniversalTestSuite;
+import com.spun.util.UniversalTestSuite;
 
 public class TestApprovals extends TestSuite
 {

@@ -1,5 +1,7 @@
 package com.spun.util.tests;
 
+import com.spun.util.UniversalTestSuite;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

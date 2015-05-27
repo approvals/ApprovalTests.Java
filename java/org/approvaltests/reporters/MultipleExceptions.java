@@ -20,7 +20,7 @@ public class MultipleExceptions extends RuntimeException
     {
       return;
     }
-    else if (exceptions.size() == 0)
+    else if (exceptions.size() == 1)
     {
       Throwable t = exceptions.get(0);
       if (t instanceof Exception) { throw ((Exception) t); }
