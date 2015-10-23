@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import java.util.List;
 
+import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
 public class FirstWorkingReporter implements EnvironmentAwareReporter
@@ -34,6 +35,12 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
   }
   public List<EnvironmentAwareReporter> getWorkingReportersForEnviroment()
   {
-    return Query.where(reporters, r -> r.isWorkingInThisEnvironment("a.txt"));
+    return Query.where(reporters, new Function1<EnvironmentAwareReporter, Boolean>()
+    {
+      public Boolean call(EnvironmentAwareReporter r)
+      {
+        return r.isWorkingInThisEnvironment("a.txt");
+      }
+    });
   }
 }
