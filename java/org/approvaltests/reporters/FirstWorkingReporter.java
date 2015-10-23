@@ -1,5 +1,9 @@
 package org.approvaltests.reporters;
 
+import java.util.List;
+
+import org.lambda.query.Query;
+
 public class FirstWorkingReporter implements EnvironmentAwareReporter
 {
   private final EnvironmentAwareReporter[] reporters;
@@ -27,5 +31,9 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
       if (reporter.isWorkingInThisEnvironment(forFile)) { return true; }
     }
     return false;
+  }
+  public List<EnvironmentAwareReporter> getWorkingReportersForEnviroment()
+  {
+    return Query.where(reporters, r -> r.isWorkingInThisEnvironment("a.txt"));
   }
 }

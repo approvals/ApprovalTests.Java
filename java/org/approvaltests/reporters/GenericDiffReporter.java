@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 
@@ -46,8 +47,17 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   private void launch(String received, String approved) throws IOException
   {
     ProcessBuilder builder = new ProcessBuilder(getCommandLine(received, approved));
+    preventProcessFromClosing(builder);
     Process process = builder.start();
-    ThreadUtils.sleep(500); //Give program time to start
+    ThreadUtils.sleep(800); //Give program time to start
+  }
+  private void preventProcessFromClosing(ProcessBuilder builder)
+  {
+    if (!SystemUtils.isWindowsEnviroment())
+    {
+      File output = new File("/dev/null");
+      builder.redirectError(output).redirectOutput(output);
+    }
   }
   public String[] getCommandLine(String received, String approved)
   {
