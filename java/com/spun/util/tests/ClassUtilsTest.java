@@ -16,7 +16,7 @@ public class ClassUtilsTest extends TestCase
   }
   public void testSourceDirectory() throws Exception
   {
-    File dir = ClassUtils.getSourceDirectory(getClass(), fileName);
+    File dir = ClassUtils.getSourceDirectory(getClass());
     assertNotNull(dir);
     assertTrue(dir.isDirectory());
   }
