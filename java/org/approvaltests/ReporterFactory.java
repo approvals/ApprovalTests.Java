@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.FileLauncherReporter;
@@ -65,7 +66,7 @@ public class ReporterFactory
       try
       {
         String methodName = stack.getMethodName();
-        clazz = Class.forName(stack.getClassName());
+        clazz = ObjectUtils.loadClass(stack.getClassName());
         method = clazz.getMethod(methodName, (Class<?>[]) null);
       }
       catch (Exception e)

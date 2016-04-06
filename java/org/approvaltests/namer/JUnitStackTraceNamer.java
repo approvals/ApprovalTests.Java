@@ -50,8 +50,14 @@ public class JUnitStackTraceNamer implements ApprovalNamer
     }
     private boolean isTestCase(StackTraceElement element) throws ClassNotFoundException
     {
+
       String fullClassName = element.getClassName();
-      Class<?> clazz = Class.forName(fullClassName);
+      Class<?> clazz = null;
+      try {
+        clazz = ObjectUtils.loadClass( fullClassName );
+      } catch (ClassNotFoundException e) {
+        return false;
+      }
       boolean junit3 = ObjectUtils.isThisInstanceOfThat(clazz, TestCase.class);
       if (!junit3)
       {

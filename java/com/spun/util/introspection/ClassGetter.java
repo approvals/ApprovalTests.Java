@@ -3,6 +3,7 @@ package com.spun.util.introspection;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.filefilters.JavaClassFileFilter;
 
@@ -15,7 +16,7 @@ public class ClassGetter
     String pathHead = packageName.substring(0, packageName.indexOf('.'));
     for (int i = 0; i < testFiles.length; i++)
     {
-      Class<?> clazz = Class.forName(getJavaName(testFiles[i], pathHead));
+      Class<?> clazz = ObjectUtils.loadClass(getJavaName(testFiles[i], pathHead));
       classes.add(clazz);
     }
     return classes;
