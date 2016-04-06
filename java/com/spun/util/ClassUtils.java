@@ -1,5 +1,7 @@
 package com.spun.util;
 
+import org.lambda.functions.Function1;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -82,12 +84,29 @@ public class ClassUtils
   }
   public static File getSourceDirectory(Class<?> clazz)
   {
+    return getSourceDirectory(clazz, new Function1<String, String>() {
+      public String call(String fileName) {
+        return fileName + ".java";
+      }
+    });
+  }
+
+  public static File getSourceDirectory(Class<?> clazz, Function1<String, String> createLastFileName)
+  {
     final String name = clazz.getName();
     String[] split = name.split("\\.");
-    split[split.length - 1] = split[split.length - 1] + ".java";
+    split[split.length - 1] = createLastFileName.call( split[split.length - 1] );
     File found = find(new File("."), Arrays.asList(split));
     if (found == null) { throw new FormattedException("Didn't find %s under %s", name, new File(".")); }
     return found.getParentFile();
+  }
+
+  public static File getSourceDirectory(Class<?> clazz, final String fileName) {
+    return getSourceDirectory(clazz, new Function1<String, String>() {
+      public String call(String _) {
+        return fileName;
+      }
+    });
   }
   public static File find(File file, List<String> matches)
   {
