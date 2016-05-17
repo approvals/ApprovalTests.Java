@@ -12,6 +12,6 @@ public class DiffMergeReporter extends GenericDiffReporter
   public static final DiffMergeReporter INSTANCE     = new DiffMergeReporter();
   public DiffMergeReporter()
   {
-    super(DIFF_PROGRAM, GenericDiffReporter.STANDARD_ARGUMENTS, MESSAGE, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
+    super(DIFF_PROGRAM, "--nosplash %s %s", MESSAGE, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
   }
 }
