@@ -11,6 +11,10 @@ import java.util.List;
  **/
 public class ObjectUtils
 {
+  public static Class<?> loadClass(String className) throws ClassNotFoundException {
+    return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
+  }
+
   public static int generateHashCode(Object... relevantMembers)
   {
     final int PRIME = 31;
