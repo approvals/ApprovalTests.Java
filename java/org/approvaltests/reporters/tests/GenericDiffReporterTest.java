@@ -7,6 +7,9 @@ import junit.framework.TestCase;
 import org.approvaltests.Approvals;
 import org.approvaltests.CombinationApprovals;
 import org.approvaltests.reporters.GenericDiffReporter;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.macosx.DiffMergeReporter;
+import org.approvaltests.reporters.macosx.MacDiffReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
@@ -18,6 +21,11 @@ import com.spun.util.SystemUtils;
 
 public class GenericDiffReporterTest extends TestCase
 {
+  @UseReporter(DiffMergeReporter.class)
+  public void testGetWorkingReportesForEnviroment() throws Exception
+  {
+    Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment());
+  }
   public void testFileExtensions() throws Exception
   {
     assertTrue(new GenericDiffReporter("", "").isFileExtensionHandled("a.txt"));
