@@ -5,7 +5,7 @@ import java.io.File;
 import junit.framework.TestCase;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.CombinationApprovals;
+import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
