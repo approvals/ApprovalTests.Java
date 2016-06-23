@@ -4,7 +4,7 @@ import org.lambda.functions.Function0;
 
 public class NamerFactory
 {
-  private static String additionalInformation;
+  public static String additionalInformation;
   public static String getAndClearAdditionalInformation()
   {
     if (additionalInformation == null) { return ""; }
@@ -12,9 +12,13 @@ public class NamerFactory
     additionalInformation = null;
     return out;
   }
-  public static void asMachineSpecificTest(Function0<String> environmentLabeller)
-  {
-    additionalInformation = environmentLabeller.call();
-  }
   public static ApprovalResults ApprovalResults = new ApprovalResults();
+  public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)
+  {
+    return new NamedEnvironment(environmentLabeller.call());
+  }
+  public static NamedEnvironment asOsSpecificTest()
+  {
+    return asMachineSpecificTest(new OsEnvironmentLabeller());
+  }
 }

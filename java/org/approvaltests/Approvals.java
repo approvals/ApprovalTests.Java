@@ -18,6 +18,8 @@ import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.NamedEnvironment;
+import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
 import org.approvaltests.writers.ApprovalBinaryFileWriter;
@@ -46,12 +48,12 @@ import com.spun.util.persistence.SqlLoader;
 public class Approvals
 {
   public static Loader<ApprovalNamer> namerCreater = new Loader<ApprovalNamer>()
-                                                   {
-                                                     public ApprovalNamer load()
-                                                     {
-                                                       return new StackTraceNamer();
-                                                     }
-                                                   };
+  {
+    public ApprovalNamer load()
+    {
+      return new StackTraceNamer();
+    }
+  };
   public static void verify(String response) throws Exception
   {
     verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
@@ -98,7 +100,10 @@ public class Approvals
   }
   public static void verify(Component c) throws Exception
   {
-    verify(new ComponentApprovalWriter(c), FileTypes.Image);
+    try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
+    {
+      verify(new ComponentApprovalWriter(c), FileTypes.Image);
+    }
   }
   public static void verifyHtml(String response) throws Exception
   {
@@ -149,8 +154,8 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query) throws Exception
   {
-    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(), new ExecutableQueryFailure(
-        query));
+    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
+        new ExecutableQueryFailure(query));
   }
   public static void verify(Map map) throws Exception
   {

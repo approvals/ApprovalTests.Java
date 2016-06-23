@@ -1,8 +1,11 @@
 package com.spun.util.extensions.tests;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
 
-public class ExtensionsTest extends TestCase
+@Ignore
+public class ExtensionsTest
 {
   public static class MyStringUtils extends ExtendableBase<String>
   {
@@ -26,9 +29,10 @@ public class ExtensionsTest extends TestCase
       return b.toString();
     }
   }
+  @Test
   public void testname() throws Exception
   {
     String name = "Hello World".use(MyStringUtils.class).removeVowels();
-    assertEquals("Hll Wrld", name);
+    Assert.assertEquals("Hll Wrld", name);
   }
 }
