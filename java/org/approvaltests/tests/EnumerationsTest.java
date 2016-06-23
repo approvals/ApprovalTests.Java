@@ -1,9 +1,9 @@
 package org.approvaltests.tests;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printer;
+
+import junit.framework.TestCase;
 
 public class EnumerationsTest extends TestCase
 {

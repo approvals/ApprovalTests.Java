@@ -18,7 +18,7 @@ public class ApprovalsTest extends TestCase
   public void testApproveComponent() throws Exception
   {
     ApprovalResults.UniqueForOs();
-    JButton b = new JButton("Approval Tests 1Rule");
+    JButton b = new JButton("Approval Tests Rule");
     b.setSize(150, 20);
     Approvals.verify(b);
   }
