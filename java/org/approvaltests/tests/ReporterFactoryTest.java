@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.reporters.DiffReporter;
+import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.QuietReporter;
 
 public class ReporterFactoryTest extends TestCase
@@ -16,6 +17,6 @@ public class ReporterFactoryTest extends TestCase
   }
   private Class getClassFor(String type)
   {
-    return ReporterFactory.get(type).getClass();
+    return ((FirstWorkingReporter) ReporterFactory.get(type)).getWorkingReportersForEnviroment().get(0).getClass();
   }
 }

@@ -22,7 +22,7 @@ import com.spun.util.SystemUtils;
 public class GenericDiffReporterTest extends TestCase
 {
   @UseReporter(DiffMergeReporter.class)
-  public void testGetWorkingReportesForEnviroment() throws Exception
+  public void ptestGetWorkingReportesForEnviroment() throws Exception
   {
     Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment());
   }

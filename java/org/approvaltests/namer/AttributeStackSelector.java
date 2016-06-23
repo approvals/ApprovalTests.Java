@@ -18,7 +18,7 @@ public class AttributeStackSelector implements StackElementSelector
   private List<Class<? extends Annotation>> getAvailableAttributes()
   {
     String classNames[] = {"org.testng.annotations.Test", "org.junit.Test"};
-    ArrayList<Class<? extends Annotation>> attributes = new ArrayList<>();
+    ArrayList<Class<? extends Annotation>> attributes = new ArrayList<Class<? extends Annotation>>();
     for (String className : classNames)
     {
       Class<? extends Annotation> clazz = loadClass(className);
@@ -69,8 +69,8 @@ public class AttributeStackSelector implements StackElementSelector
     Class<?> testcase = loadClass("junit.framework.TestCase");
     return testcase != null && ObjectUtils.isThisInstanceOfThat(clazz, testcase);
   }
-  private boolean isTestAttribute(Class<?> clazz, String methodName)
-      throws ClassNotFoundException, SecurityException
+  private boolean isTestAttribute(Class<?> clazz, String methodName) throws ClassNotFoundException,
+      SecurityException
   {
     Method method;
     try

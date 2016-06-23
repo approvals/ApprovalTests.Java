@@ -3,7 +3,6 @@ package org.approvaltests.approvers;
 import java.io.File;
 import java.io.IOException;
 
-import org.approvaltests.core.ApprovalFailureOverrider;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
@@ -54,9 +53,5 @@ public class FileApprover implements ApprovalApprover
     String t1 = FileUtils.readFile(expected);
     String t2 = FileUtils.readFile(actual);
     return ObjectUtils.isEqual(t1, t2);
-  }
-  public boolean askToChangeReceivedToApproved(ApprovalFailureOverrider reporter) throws Exception
-  {
-    return reporter.askToChangeReceivedToApproved(received.getAbsolutePath(), approved.getAbsolutePath());
   }
 }

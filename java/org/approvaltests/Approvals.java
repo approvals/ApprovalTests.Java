@@ -15,7 +15,6 @@ import java.util.Map;
 import org.apache.hadoop.fs.Path;
 import org.approvaltests.ReporterFactory.FileTypes;
 import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.core.ApprovalFailureOverrider;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
@@ -47,12 +46,12 @@ import com.spun.util.persistence.SqlLoader;
 public class Approvals
 {
   public static Loader<ApprovalNamer> namerCreater = new Loader<ApprovalNamer>()
-  {
-    public ApprovalNamer load()
-    {
-      return new StackTraceNamer();
-    }
-  };
+                                                   {
+                                                     public ApprovalNamer load()
+                                                     {
+                                                       return new StackTraceNamer();
+                                                     }
+                                                   };
   public static void verify(String response) throws Exception
   {
     verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
@@ -135,20 +134,8 @@ public class Approvals
     {
       if (!approver.approve())
       {
-        boolean passed = false;
-        if (reporter instanceof ApprovalFailureOverrider)
-        {
-          passed = approver.askToChangeReceivedToApproved((ApprovalFailureOverrider) reporter);
-        }
-        if (!passed)
-        {
-          approver.reportFailure(reporter);
-          approver.fail();
-        }
-        else
-        {
-          approver.cleanUpAfterSuccess(reporter);
-        }
+        approver.reportFailure(reporter);
+        approver.fail();
       }
       else
       {
@@ -162,8 +149,8 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query) throws Exception
   {
-    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
-        new ExecutableQueryFailure(query));
+    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(), new ExecutableQueryFailure(
+        query));
   }
   public static void verify(Map map) throws Exception
   {

@@ -91,7 +91,7 @@ public class CombinationApprovals
         parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, EMPTY, EMPTY);
   }
   /**
-  /**
+   * /**
    * Use SkipCombination exception for invalid combinations
    */
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, OUT> void verifyAllCombinations(
@@ -158,7 +158,7 @@ public class CombinationApprovals
   }
   private static List<Object> extracted(Object... objects)
   {
-    List<Object> list = new ArrayList<>();
+    List<Object> list = new ArrayList<Object>();
     for (Object object : objects)
     {
       if (object != EMPTY_ENTRY)
