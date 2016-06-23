@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import java.util.List;
 
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
@@ -11,6 +12,15 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
   public FirstWorkingReporter(EnvironmentAwareReporter... reporters)
   {
     this.reporters = reporters;
+  }
+  public static FirstWorkingReporter combine(EnvironmentAwareReporter front, ApprovalFailureReporter last)
+  {
+    return new FirstWorkingReporter(front, wrap(last));
+  }
+  private static EnvironmentAwareReporter wrap(ApprovalFailureReporter last)
+  {
+    if (last instanceof EnvironmentAwareReporter) { return (EnvironmentAwareReporter) last; }
+    return new AlwaysWorkingReporter(last);
   }
   @Override
   public void report(String received, String approved) throws Exception

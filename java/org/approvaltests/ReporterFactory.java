@@ -6,16 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.reporters.DefaultFrontLoadedReporter;
 import org.approvaltests.reporters.DiffReporter;
+import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FileLauncherReporter;
+import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.ObjectUtils;
 
 public class ReporterFactory
 {
@@ -38,7 +41,11 @@ public class ReporterFactory
     ApprovalFailureReporter returned = getFromAnnotation();
     returned = tryFor(returned, reporters.get(string));
     returned = tryFor(returned, reporters.get(FileTypes.Default));
-    return returned;
+    return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
+  }
+  private static EnvironmentAwareReporter getFrontLoadedReporter()
+  {
+    return DefaultFrontLoadedReporter.INSTANCE;
   }
   public static ApprovalFailureReporter getFromAnnotation()
   {
