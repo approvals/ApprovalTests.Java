@@ -8,6 +8,11 @@ import org.approvaltests.legacycode.LegacyApprovals;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
+import org.lambda.functions.Function4;
+import org.lambda.functions.Function5;
+import org.lambda.functions.Function6;
+import org.lambda.functions.Function7;
+import org.lambda.functions.Function8;
 import org.lambda.functions.Function9;
 
 public class CombinationApprovals
@@ -44,6 +49,59 @@ public class CombinationApprovals
   {
     verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3), parameters1, parameters2,
         parameters3, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY);
+  }
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, OUT> void verifyAllCombinations(Function4<IN1, IN2, IN3, IN4, OUT> call,
+      IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4) throws Exception
+  {
+    verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4), parameters1,
+        parameters2, parameters3, parameters4, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY);
+  }
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, IN5, OUT> void verifyAllCombinations(
+      Function5<IN1, IN2, IN3, IN4, IN5, OUT> call, IN1[] parameters1, IN2[] parameters2, IN3[] parameters3,
+      IN4[] parameters4, IN5[] parameters5) throws Exception
+  {
+    verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5), parameters1,
+        parameters2, parameters3, parameters4, parameters5, EMPTY, EMPTY, EMPTY, EMPTY);
+  }
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, OUT> void verifyAllCombinations(
+      Function6<IN1, IN2, IN3, IN4, IN5, IN6, OUT> call, IN1[] parameters1, IN2[] parameters2, IN3[] parameters3,
+      IN4[] parameters4, IN5[] parameters5, IN6[] parameters6) throws Exception
+  {
+    verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6), parameters1,
+        parameters2, parameters3, parameters4, parameters5, parameters6, EMPTY, EMPTY, EMPTY);
+  }
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, OUT> void verifyAllCombinations(
+      Function7<IN1, IN2, IN3, IN4, IN5, IN6, IN7, OUT> call, IN1[] parameters1, IN2[] parameters2,
+      IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7)
+      throws Exception
+  {
+    verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6, n7),
+        parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, EMPTY, EMPTY);
+  }
+  /**
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, OUT> void verifyAllCombinations(
+      Function8<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, OUT> call, IN1[] parameters1, IN2[] parameters2,
+      IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
+      IN8[] parameters8) throws Exception
+  {
+    verifyAllCombinations((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6, n7, n8),
+        parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8,
+        EMPTY);
   }
   /**
    * Use SkipCombination exception for invalid combinations
