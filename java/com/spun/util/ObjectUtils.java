@@ -11,10 +11,10 @@ import java.util.List;
  **/
 public class ObjectUtils
 {
-  public static Class<?> loadClass(String className) throws ClassNotFoundException {
+  public static Class<?> loadClass(String className) throws ClassNotFoundException
+  {
     return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
   }
-
   public static int generateHashCode(Object... relevantMembers)
   {
     final int PRIME = 31;
@@ -49,8 +49,8 @@ public class ObjectUtils
     }
   }
   /***********************************************************************/
-  public static Method[] getMethodsForObject(Object o2, String[] passedMethods) throws SecurityException,
-      NoSuchMethodException
+  public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
+      throws SecurityException, NoSuchMethodException
   {
     Method methods[] = new Method[passedMethods.length];
     Class clazz = o2.getClass();
@@ -103,8 +103,8 @@ public class ObjectUtils
   /***********************************************************************/
   public static <T> T getForMethod(T[] onArray, Object forValue, String onMethod, Object[] params)
   {
-    return getForMethod(onArray, forValue, new MethodExecutionPath(null, onMethod,
-        new MethodExecutionPath.Parameters(params)));
+    return getForMethod(onArray, forValue,
+        new MethodExecutionPath(null, onMethod, new MethodExecutionPath.Parameters(params)));
   }
   /***********************************************************************/
   public static <T> T getForMethod(T[] onArray, Object forValue, MethodExecutionPath path)
@@ -151,7 +151,7 @@ public class ObjectUtils
     return array[NumberUtils.RANDOM.nextInt(array.length)];
   }
   /***********************************************************************/
- /** 
+  /** 
   * @deprecated use Query.select()
   */
   public static Object[] extractArray(Object[] from, String methodName)
@@ -182,8 +182,8 @@ public class ObjectUtils
     }
   }
   /***********************************************************************/
-  public static Method getGreatestCommonDenominator(Object[] from, String methodName) throws SecurityException,
-      NoSuchMethodException
+  public static Method getGreatestCommonDenominator(Object[] from, String methodName)
+      throws SecurityException, NoSuchMethodException
   {
     List<Class> classes = new ArrayList<Class>();
     ArrayUtils.addArray(classes, getAllCastableClasses(from[0]));
@@ -235,14 +235,14 @@ public class ObjectUtils
   /***********************************************************************/
   public static void assertInstance(Class classes[], Object object)
   {
-    if (object == null) { throw new NullPointerException("Expected Object of Type "
-        + Arrays.asList(extractArray(classes, "getName")) + " but was null"); }
+    if (object == null) { throw new NullPointerException(
+        "Expected Object of Type " + Arrays.asList(extractArray(classes, "getName")) + " but was null"); }
     for (int i = 0; i < classes.length; i++)
     {
       if (ClassUtils.getWrapperClass(classes[i]).isInstance(object)) { return; }
     }
-    throw new IllegalArgumentException("Expected Object of Type "
-        + Arrays.asList(extractArray(classes, "getName")) + " but got " + object.getClass().getName());
+    throw new IllegalArgumentException("Expected Object of Type " + Arrays.asList(extractArray(classes, "getName"))
+        + " but got " + object.getClass().getName());
   }
   /***********************************************************************/
   public static String getClassName(Object o)
@@ -283,4 +283,16 @@ public class ObjectUtils
   }
   /************************************************************************/
   /************************************************************************/
+  public static boolean isClassPresent(String className)
+  {
+    try
+    {
+      Class<?> loadClass = loadClass(className);
+      return loadClass != null;
+    }
+    catch (ClassNotFoundException e)
+    {
+      return false;
+    }
+  }
 }
