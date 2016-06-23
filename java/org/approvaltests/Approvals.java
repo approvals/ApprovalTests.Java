@@ -19,7 +19,7 @@ import org.approvaltests.core.ApprovalFailureOverrider;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.JUnitStackTraceNamer;
+import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
 import org.approvaltests.writers.ApprovalBinaryFileWriter;
 import org.approvaltests.writers.ApprovalTextWriter;
@@ -187,7 +187,7 @@ public class Approvals
   }
   public static ApprovalNamer createApprovalNamer()
   {
-    return new JUnitStackTraceNamer();
+    return new StackTraceNamer();
   }
   private static void approve(BufferedImage bufferedImage, ApprovalNamer namer)
   {

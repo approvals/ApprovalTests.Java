@@ -6,7 +6,7 @@ import java.util.Arrays;
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.ReporterFactory.FileTypes;
-import org.approvaltests.namer.JUnitStackTraceNamer;
+import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 
 import com.spun.util.MethodExecutionPath.Parameters;
@@ -37,7 +37,7 @@ public class LegacyApprovals
       }
       sb.append(String.format("%s = %s \r\n", Arrays.toString(p), out));
     }
-    Approvals.verify(new ApprovalTextWriter(sb.toString(), "txt"), new JUnitStackTraceNamer(), ReporterFactory
+    Approvals.verify(new ApprovalTextWriter(sb.toString(), "txt"), new StackTraceNamer(), ReporterFactory
         .get(FileTypes.Text));
   }
   private static Object[] getParameters(Object[][] parametersVariations, Integer[] index)

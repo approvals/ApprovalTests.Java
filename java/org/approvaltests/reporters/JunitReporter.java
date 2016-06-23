@@ -2,9 +2,10 @@ package org.approvaltests.reporters;
 
 import java.io.File;
 
-import junit.framework.TestCase;
-
+import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+
+import junit.framework.TestCase;
 
 public class JunitReporter implements EnvironmentAwareReporter
 {
@@ -23,7 +24,7 @@ public class JunitReporter implements EnvironmentAwareReporter
   {
     try
     {
-      TestCase.assertTrue(true);
+      ObjectUtils.loadClass("junit.framework.TestCase");
     }
     catch (Throwable t)
     {

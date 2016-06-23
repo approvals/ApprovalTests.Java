@@ -4,28 +4,28 @@ import java.io.File;
 
 import junit.framework.TestCase;
 
-import org.approvaltests.namer.JUnitStackTraceNamer;
+import org.approvaltests.namer.StackTraceNamer;
 
 public class JUnitStackTraceNamerTest extends TestCase
 {
   public void testGetApprovalName() throws Exception
   {
-    JUnitStackTraceNamer name = new JUnitStackTraceNamer();
+    StackTraceNamer name = new StackTraceNamer();
     assertEquals("JUnitStackTraceNamerTest.testGetApprovalName", name.getApprovalName());
   }
   public void testGetSourceFilePath() throws Exception
   {
-    JUnitStackTraceNamer name = new JUnitStackTraceNamer();
+    StackTraceNamer name = new StackTraceNamer();
     File file = new File(name.getSourceFilePath() + "JUnitStackTraceNamerTest.java");
     assertTrue(file.exists());
   }
   public void testEmbeddedStackName()
   {
-    JUnitStackTraceNamer namer = createJUnitStackNamer();
+    StackTraceNamer namer = createJUnitStackNamer();
     assertEquals("JUnitStackTraceNamerTest.testEmbeddedStackName", namer.getApprovalName());
   }
-  private JUnitStackTraceNamer createJUnitStackNamer()
+  private StackTraceNamer createJUnitStackNamer()
   {
-    return new JUnitStackTraceNamer();
+    return new StackTraceNamer();
   }
 }

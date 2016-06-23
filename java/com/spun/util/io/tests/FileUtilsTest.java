@@ -3,12 +3,12 @@ package com.spun.util.io.tests;
 import java.io.File;
 import java.io.FileWriter;
 
-import junit.framework.TestCase;
-
 import com.spun.util.io.FileUtils;
 
+import junit.framework.TestCase;
+
 /**
- * A static class of convence functions for Files
+ * A static class of convenience functions for Files
  **/
 public class FileUtilsTest extends TestCase
 {

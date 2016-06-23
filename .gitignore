@@ -6,3 +6,4 @@
 
 *.war
 *.ear
+test-output/
