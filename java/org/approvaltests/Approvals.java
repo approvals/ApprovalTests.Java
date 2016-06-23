@@ -40,10 +40,18 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.images.ImageWriter;
 import com.spun.util.persistence.ExecutableQuery;
+import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
 
 public class Approvals
 {
+  public static Loader<ApprovalNamer> namerCreater = new Loader<ApprovalNamer>()
+  {
+    public ApprovalNamer load()
+    {
+      return new StackTraceNamer();
+    }
+  };
   public static void verify(String response) throws Exception
   {
     verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
@@ -153,8 +161,8 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query) throws Exception
   {
-    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(), new ExecutableQueryFailure(
-        query));
+    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
+        new ExecutableQueryFailure(query));
   }
   public static void verify(Map map) throws Exception
   {
@@ -187,7 +195,7 @@ public class Approvals
   }
   public static ApprovalNamer createApprovalNamer()
   {
-    return new StackTraceNamer();
+    return namerCreater.load();
   }
   private static void approve(BufferedImage bufferedImage, ApprovalNamer namer)
   {

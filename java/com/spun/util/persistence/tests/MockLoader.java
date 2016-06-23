@@ -9,7 +9,7 @@ public class MockLoader<T> implements Loader<T>
   {
     this.item = item;
   }
-  public T load() throws Exception
+  public T load()
   {
     return item;
   }
