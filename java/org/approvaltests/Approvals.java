@@ -36,6 +36,7 @@ import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
 import com.spun.util.ArrayUtils;
+import com.spun.util.JsonUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.images.ImageWriter;
@@ -247,5 +248,9 @@ public class Approvals
         ret(a.getName());
       }
     }).toString();
+  }
+  public static void verifyJson(String json) throws Exception
+  {
+    verify(JsonUtils.prettyPrint(json));
   }
 }
