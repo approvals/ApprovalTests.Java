@@ -13,6 +13,11 @@ public class CombinationTest
         new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
   @Test
+  public void test1Parameter() throws Exception
+  {
+    CombinationApprovals.verifyAllCombinations(i -> i * i, new Integer[]{1, 2, 3, 4, 5});
+  }
+  @Test
   public void testPassMethod() throws Exception
   {
     CombinationApprovals.verifyAllCombinations(this::processCall, new Integer[]{1, 2, 3, 4, 5},
