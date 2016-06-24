@@ -76,7 +76,7 @@ public class ReporterFactory
         clazz = ObjectUtils.loadClass(stack.getClassName());
         method = clazz.getMethod(methodName, (Class<?>[]) null);
       }
-      catch (Exception e)
+      catch (Throwable e)
       {
         //ignore
       }
