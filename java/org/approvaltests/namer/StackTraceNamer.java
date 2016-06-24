@@ -15,7 +15,8 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public String getApprovalName()
   {
-    return String.format("%s.%s", info.getClassName(), info.getMethodName());
+    return String.format("%s.%s%s", info.getClassName(), info.getMethodName(),
+        NamerFactory.getAndClearAdditionalInformation());
   }
   @Override
   public String getSourceFilePath()

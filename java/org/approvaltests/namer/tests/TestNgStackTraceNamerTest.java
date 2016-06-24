@@ -3,6 +3,9 @@ package org.approvaltests.namer.tests;
 import java.io.File;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.NamedEnvironment;
+import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.namer.StackTraceNamer;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -31,8 +34,11 @@ public class TestNgStackTraceNamerTest
   @Test(dataProvider = "MyDataProvider")
   public void testDataProvider(String data) throws Exception
   {
-    StackTraceNamer name = new StackTraceNamer();
-    Assert.assertEquals("TestNgStackTraceNamerTest.testDataProvider", name.getApprovalName());
+    try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(data))
+    {
+      ApprovalNamer name = Approvals.createApprovalNamer();
+      Assert.assertEquals("TestNgStackTraceNamerTest.testDataProvider.hello", name.getApprovalName());
+    }
   }
   @DataProvider(name = "MyDataProvider")
   public Object[][] data()

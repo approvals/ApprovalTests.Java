@@ -7,7 +7,6 @@ import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.NamerFactory;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
@@ -20,8 +19,7 @@ public class FileApprover implements ApprovalApprover
   public FileApprover(ApprovalWriter writter, ApprovalNamer namer)
   {
     this.writter = writter;
-    String base = String.format("%s%s%s", namer.getSourceFilePath(), namer.getApprovalName(),
-        NamerFactory.getAndClearAdditionalInformation());
+    String base = String.format("%s%s", namer.getSourceFilePath(), namer.getApprovalName());
     received = new File(writter.getReceivedFilename(base));
     approved = new File(writter.getApprovalFilename(base));
   }

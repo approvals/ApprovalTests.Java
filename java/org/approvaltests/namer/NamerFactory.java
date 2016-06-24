@@ -15,10 +15,14 @@ public class NamerFactory
   public static ApprovalResults ApprovalResults = new ApprovalResults();
   public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)
   {
-    return new NamedEnvironment(environmentLabeller.call());
+    return asMachineSpecificTest(environmentLabeller.call());
   }
   public static NamedEnvironment asOsSpecificTest()
   {
     return asMachineSpecificTest(new OsEnvironmentLabeller());
+  }
+  public static NamedEnvironment asMachineSpecificTest(String environmentName)
+  {
+    return new NamedEnvironment(environmentName);
   }
 }
