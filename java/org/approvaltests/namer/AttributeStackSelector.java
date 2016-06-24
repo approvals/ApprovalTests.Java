@@ -69,22 +69,34 @@ public class AttributeStackSelector implements StackElementSelector
     Class<?> testcase = loadClass("junit.framework.TestCase");
     return testcase != null && ObjectUtils.isThisInstanceOfThat(clazz, testcase);
   }
-  private boolean isTestAttribute(Class<?> clazz, String methodName) throws ClassNotFoundException,
-      SecurityException
+  private boolean isTestAttribute(Class<?> clazz, String methodName)
+      throws ClassNotFoundException, SecurityException
   {
-    Method method;
-    try
-    {
-      method = clazz.getMethod(methodName);
-    }
-    catch (Throwable e)
-    {
-      return false;
-    }
+    Method method = getMethodByName(clazz, methodName);
+    if (method == null) { return false; }
     for (Class<? extends Annotation> attribute : attributes)
     {
       if (method.isAnnotationPresent(attribute)) { return true; }
     }
     return false;
+  }
+  public Method getMethodByName(Class<?> clazz, String methodName)
+  {
+    Method method = null;
+    try
+    {
+      Method[] declaredMethods = clazz.getDeclaredMethods();
+      for (Method m : declaredMethods)
+      {
+        if (m.getName().equals(methodName))
+        {
+          method = m;
+        }
+      }
+    }
+    catch (Throwable e)
+    {
+    }
+    return method;
   }
 }

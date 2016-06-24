@@ -5,6 +5,7 @@ import java.io.File;
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.StackTraceNamer;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TestNgStackTraceNamerTest
@@ -26,5 +27,16 @@ public class TestNgStackTraceNamerTest
   public void testName() throws Exception
   {
     Approvals.verify("foo");
+  }
+  @Test(dataProvider = "MyDataProvider")
+  public void testDataProvider(String data) throws Exception
+  {
+    StackTraceNamer name = new StackTraceNamer();
+    Assert.assertEquals("TestNgStackTraceNamerTest.testDataProvider", name.getApprovalName());
+  }
+  @DataProvider(name = "MyDataProvider")
+  public Object[][] data()
+  {
+    return new Object[][]{{"hello"}};
   }
 }
