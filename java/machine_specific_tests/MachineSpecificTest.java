@@ -22,7 +22,7 @@ public class MachineSpecificTest
     {
       DISPLAYED = true;
       String message = String.format(
-          "This machine isn't configured to run machine_specific_tests.\n" + "To run these ethier\n"
+          "This machine isn't configured to run machine_specific_tests.\n" + "To run these either\n"
               + "  1) Set machine_specific_tests.MachineSpecific.FORCE_RUN=true\n"
               + "  2) Add \"%s\" to machine_specific_tests.MachineSpecific.MACHINES",
           SystemUtils.getComputerName());
