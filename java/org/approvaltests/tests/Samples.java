@@ -1,12 +1,11 @@
 package org.approvaltests.tests;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalResults;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
+
+import junit.framework.TestCase;
 
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 public class Samples extends TestCase
@@ -30,12 +29,5 @@ public class Samples extends TestCase
     s[0] = "Approval";
     s[1] = "Tests";
     Approvals.verifyAll("Text", s);
-  }
-  public void testSwing() throws Exception
-  {
-    TvGuide tv = new TvGuide();
-    tv.selectTime("3pm");
-    ApprovalResults.UniqueForOs();
-    Approvals.verify(tv);
   }
 }

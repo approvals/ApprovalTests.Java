@@ -1,17 +1,19 @@
-package com.spun.util.tests;
+package machine_specific_tests.approvaltests.tests;
 
 import javax.swing.JButton;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.reporters.DelayedClipboardReporter;
+import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.junit.Test;
 
-import junit.framework.TestCase;
+import machine_specific_tests.MachineSpecificTest;
 
-@UseReporter({DiffReporter.class, DelayedClipboardReporter.class})
-public class TestUtilsTest extends TestCase
+@UseReporter({DiffReporter.class, ClipboardReporter.class})
+public class ApprovalsTest extends MachineSpecificTest
 {
+  @Test
   public void testApproveComponent() throws Exception
   {
     JButton b = new JButton("Approval Tests Rule");
