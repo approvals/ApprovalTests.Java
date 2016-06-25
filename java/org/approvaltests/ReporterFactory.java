@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.DefaultFrontLoadedReporter;
@@ -16,13 +17,16 @@ import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.packagesettings.PackageLevelSettings;
+import org.packagesettings.Settings;
 
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 
 public class ReporterFactory
 {
-  private static HashMap<String, Class<? extends ApprovalFailureReporter>> reporters = new HashMap<String, Class<? extends ApprovalFailureReporter>>();
+  public static final String                                               FRONTLOADED_REPORTER = "FrontloadedReporter";
+  private static HashMap<String, Class<? extends ApprovalFailureReporter>> reporters            = new HashMap<String, Class<? extends ApprovalFailureReporter>>();
   public static class FileTypes
   {
     public static final String  Text    = "txt";
@@ -43,9 +47,21 @@ public class ReporterFactory
     returned = tryFor(returned, reporters.get(FileTypes.Default));
     return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
   }
-  private static EnvironmentAwareReporter getFrontLoadedReporter()
+  /**
+   * Loaded from PackageSettings.FrontloadedReporter
+   */
+  public static EnvironmentAwareReporter getFrontLoadedReporter()
   {
-    return DefaultFrontLoadedReporter.INSTANCE;
+    Map<String, Settings> settings = PackageLevelSettings.get();
+    Settings value = settings.get(FRONTLOADED_REPORTER);
+    if (value != null && value.getValue() instanceof EnvironmentAwareReporter)
+    {
+      return (EnvironmentAwareReporter) value.getValue();
+    }
+    else
+    {
+      return DefaultFrontLoadedReporter.INSTANCE;
+    }
   }
   public static ApprovalFailureReporter getFromAnnotation()
   {

@@ -13,12 +13,9 @@ public class EfficiencyTest extends TestCase
   {
     int times = 1000000;
     final Integer matching = 18;
-    System.out.println(getTimeStotistics("org.lamba", times, new F1<Integer, Boolean>(0, matching)
-    {
-      {
-        ret(a == matching);
-      }
-    }));
+ // @formatter:off
+    System.out.println(getTimeStotistics("org.lamba", times, new F1<Integer, Boolean>(0, matching){{ret(a == matching);}}));
+ // @formatter:on
     System.out.println(getTimeStotistics("Lambda8", times, a -> a == matching));
   }
   private String getTimeStotistics(String name, int times, Function1<Integer, Boolean> function)
