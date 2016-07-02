@@ -40,6 +40,12 @@ public class ReporterFactory
   {
     setupReporters();
   }
+  public static ApprovalFailureReporter get()
+  {
+    ApprovalFailureReporter returned = getFromAnnotation();
+    returned = tryFor(returned, reporters.get(FileTypes.Default));
+    return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
+  }
   public static ApprovalFailureReporter get(String string)
   {
     ApprovalFailureReporter returned = getFromAnnotation();

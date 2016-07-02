@@ -243,6 +243,14 @@ public class Approvals
   }
   public static void verifyJson(String json) throws Exception
   {
-    verify(JsonUtils.prettyPrint(json));
+    verify(JsonUtils.prettyPrint(json), "json");
+  }
+  public static void verify(Object actual, String fileExtensionWithoutDot) throws Exception
+  {
+    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot), FileTypes.Text);
+  }
+  public static ApprovalFailureReporter getReporter()
+  {
+    return ReporterFactory.get();
   }
 }
