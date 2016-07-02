@@ -38,7 +38,7 @@ public class ArrayUtils
     StringBuffer b = new StringBuffer();
     for (T t : values)
     {
-      b.append(formatter.call(t) + "\r\n");
+      b.append(formatter.call(t) + "\n");
     }
     return b.toString();
   }

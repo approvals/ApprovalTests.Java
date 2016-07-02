@@ -14,10 +14,10 @@ public class ResultSetWriter
     List<String[]> results = extractResults(rs);
     List<String> metaData = extractMetaData(rs);
     StringBuffer sb = new StringBuffer();
-    sb.append(metaData.toString() + "\r\n");
+    sb.append(metaData.toString() + "\n");
     for (String[] strings : results)
     {
-      sb.append(Arrays.toString(strings) + "\r\n");
+      sb.append(Arrays.toString(strings) + "\n");
     }
     return sb.toString();
   }

@@ -47,8 +47,7 @@ public class HadoopApprovals
     mapDriver.withInput(writableKey, writableValue);
     List results = mapDriver.run();
     Collections.sort(results, PairComparer.INSTANCE);
-    String header = String.format("[%s]\r\n\r\n -> maps via %s to -> \r\n", input, mapper.getClass()
-        .getSimpleName());
+    String header = String.format("[%s]\n\n -> maps via %s to -> \n", input, mapper.getClass().getSimpleName());
     Approvals.verifyAll(header, results, Echo.INSTANCE);
   }
   public static <KeyIn, ValueIn, KeyOut, ValueOut> void verifyReducer(
@@ -64,8 +63,8 @@ public class HadoopApprovals
     reduceDriver.setReducer(reducer);
     List results = reduceDriver.run();
     Collections.sort(results, PairComparer.INSTANCE);
-    String header = String.format("(%s, %s)\r\n\r\n -> reduces via %s to -> \r\n", key, list, reducer.getClass()
-        .getSimpleName());
+    String header = String.format("(%s, %s)\n\n -> reduces via %s to -> \n", key, list,
+        reducer.getClass().getSimpleName());
     Approvals.verifyAll(header, results, Echo.INSTANCE);
   }
   public static void verifyMapReduce(SmartMapper mapper, SmartReducer reducer, Object key, Object input)
@@ -87,10 +86,9 @@ public class HadoopApprovals
     mapReduceDriver.setMapper(mapper);
     mapReduceDriver.setReducer(reducer);
     List finalResults = mapReduceDriver.run();
-    String text = String.format(
-        "[%s]\r\n\r\n -> maps via %s to -> \r\n\r\n%s\r\n\r\n -> reduces via %s to -> \r\n\r\n%s", input, mapper
-            .getClass().getSimpleName(), ArrayUtils.toString(results, Echo.INSTANCE), reducer.getClass()
-            .getSimpleName(), ArrayUtils.toString(finalResults, Echo.INSTANCE));
+    String text = String.format("[%s]\n\n -> maps via %s to -> \n\n%s\n\n -> reduces via %s to -> \n\n%s", input,
+        mapper.getClass().getSimpleName(), ArrayUtils.toString(results, Echo.INSTANCE),
+        reducer.getClass().getSimpleName(), ArrayUtils.toString(finalResults, Echo.INSTANCE));
     Approvals.verify(text);
   }
 }

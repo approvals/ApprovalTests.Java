@@ -16,7 +16,7 @@ public class Grid
         c = c == null ? " " : c;
         b.append(c + " ");
       }
-      b.append("\r\n");
+      b.append("\n");
     }
     return b.toString();
   }

@@ -143,7 +143,7 @@ public class CombinationApprovals
                       {
                         result = e.getMessage();
                       }
-                      output.append(String.format("%s => %s \r\n",
+                      output.append(String.format("%s => %s \n",
                           extracted(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
                     }
                   }

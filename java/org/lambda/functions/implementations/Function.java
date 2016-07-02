@@ -40,8 +40,8 @@ public class Function<In1, In2, In3, In4, In5, In6, In7, In8, In9, Out>
     }
     catch (IllegalArgumentException e)
     {
-      throw new RuntimeException(e.getMessage() + "\r\nExpected "
-          + Arrays.toString(constructor.getParameterTypes()) + "\r\nGot " + Arrays.toString(parameters));
+      throw new RuntimeException(e.getMessage() + "\nExpected " + Arrays.toString(constructor.getParameterTypes())
+          + "\nGot " + Arrays.toString(parameters));
     }
     catch (Throwable e)
     {

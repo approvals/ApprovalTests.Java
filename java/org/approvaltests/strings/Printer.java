@@ -10,11 +10,11 @@ public class Printer<T> extends F1<T, String>
   }
   public void multiline(String from, String to)
   {
-    ret(from + "\r\n => \r\n" + to + "\r\n" + "------------------------------------");
+    ret(from + "\n => \n" + to + "\n" + "------------------------------------");
   }
   public static String printLine(Object from, Object to)
   {
-    return from + " => " + to + "\r\n";
+    return from + " => " + to + "\n";
   }
   public void print(Object from, Object to)
   {

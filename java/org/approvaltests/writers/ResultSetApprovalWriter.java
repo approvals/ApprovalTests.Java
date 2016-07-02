@@ -31,11 +31,10 @@ public class ResultSetApprovalWriter implements ApprovalWriter
   @Override
   public String writeReceivedFile(String received) throws Exception
   {
-    String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\r\n"
-        + "\r\n"
-        + "#foreach ($row in $results)\r\n"
-        + "#foreach ($column in $commons.asArray($row))$commons.asExcel($column.get())#if (!$column.isLast()),#end#end \r\n"
-        + "\r\n" + "#end ";
+    String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\n"
+        + "\n" + "#foreach ($row in $results)\n"
+        + "#foreach ($column in $commons.asArray($row))$commons.asExcel($column.get())#if (!$column.isLast()),#end#end \n"
+        + "\n" + "#end ";
     ContextAwareMap map = new ContextAware.ContextAwareMap("metaData", ResultSetWriter.extractMetaData(resultSet));
     map.put("results", ResultSetWriter.extractResults(resultSet));
     String output = VelocityParser.parseString(template, map);

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.spun.util.StringUtils;
 
 public class CommaDelimitedFileParser
@@ -43,7 +44,7 @@ public class CommaDelimitedFileParser
         {
           if (pastLines != null)
           {
-            pastLines.append("\r\n");
+            pastLines.append("\n");
             pastLines.append(line);
             line = pastLines.toString();
           }

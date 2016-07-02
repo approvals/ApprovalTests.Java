@@ -2,18 +2,18 @@ package com.spun.util.tests;
 
 import java.util.Arrays;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printer;
 
 import com.spun.util.StringUtils;
 
+import junit.framework.TestCase;
+
 public class StringUtilsTest extends TestCase
 {
-
   ReplaceUseCase[] replaceUseCases = {new ReplaceUseCase("quick brown fox", "brown", "white", "quick white fox"),
-      new ReplaceUseCase("quick brown quick fox brown", "quick", "slow", "slow brown slow fox brown"),};
+                                      new ReplaceUseCase("quick brown quick fox brown", "quick", "slow",
+                                          "slow brown slow fox brown"),};
   /***********************************************************************/
   public void testJoin() throws Exception
   {
@@ -30,18 +30,26 @@ public class StringUtilsTest extends TestCase
   public void testSplit()
   {
     SplitUseCase[] split = {new SplitUseCase("quick brown fox", " "),
-        new SplitUseCase("quick/brown/ fox", "/"),
-        new SplitUseCase("quick**brown**fox", "**"),
-        new SplitUseCase(" quick   brown fox ", " "),
-        new SplitUseCase("quick brown fox", "brown"),};
-
-    Approvals.verifyAll(split, new Printer<SplitUseCase>(split[0]){{format("'%s'.split(%s) => %s", a.start,a.splitOn, Arrays.toString(StringUtils.split(a.start, a.splitOn)));}});
+                            new SplitUseCase("quick/brown/ fox", "/"),
+                            new SplitUseCase("quick**brown**fox", "**"),
+                            new SplitUseCase(" quick   brown fox ", " "),
+                            new SplitUseCase("quick brown fox", "brown"),};
+    Approvals.verifyAll(split, new Printer<SplitUseCase>(split[0])
+    {
+      {
+        format("'%s'.split(%s) => %s", a.start, a.splitOn, Arrays.toString(StringUtils.split(a.start, a.splitOn)));
+      }
+    });
   }
- 
   public void testJavaScript()
   {
-    String[] strings = {"\"\r\n", "this is a note \"\'\r\nanother liner"};
-    Approvals.verifyAll(strings, new Printer<String>(""){{multiline(a,StringUtils.toJavaScriptEncode(a));}});
+    String[] strings = {"\"\n", "this is a note \"\'\nanother liner"};
+    Approvals.verifyAll(strings, new Printer<String>("")
+    {
+      {
+        multiline(a, StringUtils.toJavaScriptEncode(a));
+      }
+    });
   }
   /***********************************************************************/
   public void testReplace()

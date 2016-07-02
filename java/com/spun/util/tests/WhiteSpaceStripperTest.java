@@ -1,19 +1,19 @@
 package com.spun.util.tests;
 
-import junit.framework.TestCase;
-
 import com.spun.util.WhiteSpaceStripper;
 
-public class WhiteSpaceStripperTest
-  extends TestCase 
+import junit.framework.TestCase;
+
+public class WhiteSpaceStripperTest extends TestCase
 {
   private static final int STRIP_BLANK_LINES = 0;
-  UseCase[] useCases = {new UseCase(STRIP_BLANK_LINES, "  hello \r\n    \r\n   \r\n","  hello "),
-                        new UseCase(STRIP_BLANK_LINES, "  hello \r\n    \r\n a \r\n","  hello \r\n a "),
-                        new UseCase(STRIP_BLANK_LINES, "  hello  ","  hello  ")};
-
+  UseCase[]                useCases          = {new UseCase(STRIP_BLANK_LINES, "  hello \n    \n   \n",
+      "  hello "),
+                                                new UseCase(STRIP_BLANK_LINES, "  hello \r\n    \n a \n",
+                                                    "  hello \n a "),
+                                                new UseCase(STRIP_BLANK_LINES, "  hello  ", "  hello  ")};
   /***********************************************************************/
-  public void test() 
+  public void test()
   {
     for (int i = 0; i < useCases.length; i++)
     {
@@ -21,36 +21,34 @@ public class WhiteSpaceStripperTest
     }
   }
   /***********************************************************************/
-	private void testUseCase(UseCase useCase, int i)
-	{
-		switch (useCase.functionCall)
-    {
-      case STRIP_BLANK_LINES : 
-        assertEquals("Stripped For [" + i +"]", useCase.expectedString, WhiteSpaceStripper.stripBlankLines(useCase.startingString));
-        break;
-    }  
-		
-	}
-  /***********************************************************************/
-  public static void main(String[] args) 
+  private void testUseCase(UseCase useCase, int i)
   {
-		junit.textui.TestRunner.run(WhiteSpaceStripperTest.class);
-	}
+    switch (useCase.functionCall)
+    {
+      case STRIP_BLANK_LINES :
+        assertEquals("Stripped For [" + i + "]", useCase.expectedString,
+            WhiteSpaceStripper.stripBlankLines(useCase.startingString));
+        break;
+    }
+  }
+  /***********************************************************************/
+  public static void main(String[] args)
+  {
+    junit.textui.TestRunner.run(WhiteSpaceStripperTest.class);
+  }
   /************************************************************************/
   public static class UseCase
   {
     String startingString;
     String expectedString;
-    int functionCall;
+    int    functionCall;
     public UseCase(int functionCall, String startingString, String expectedString)
     {
       this.startingString = startingString;
-      this.functionCall= functionCall;
+      this.functionCall = functionCall;
       this.expectedString = expectedString;
     }
   }
-  
   /***********************************************************************/
- /***********************************************************************/
+  /***********************************************************************/
 }
-

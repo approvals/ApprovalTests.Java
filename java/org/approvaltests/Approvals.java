@@ -87,7 +87,7 @@ public class Approvals
   }
   private static String formatHeader(String header)
   {
-    return StringUtils.isEmpty(header) ? "" : header + "\r\n\r\n\r\n";
+    return StringUtils.isEmpty(header) ? "" : header + "\n\n\n";
   }
   public static <T> void verifyAll(String label, Iterable<T> array) throws Exception
   {

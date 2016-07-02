@@ -90,8 +90,8 @@ public class StringUtils
   /************************************************************************/
   public static String replace(String string, String find, String replace)
   {
-    if ((string == null) || (find == null) || (replace == null)) { throw new NullPointerException(String.format(
-        "[string,find,replace] = [%s,%s,%s]", string, find, replace)); }
+    if ((string == null) || (find == null) || (replace == null)) { throw new NullPointerException(
+        String.format("[string,find,replace] = [%s,%s,%s]", string, find, replace)); }
     String parts[] = split(string, find, false);
     if (parts.length == 1) { return string; }
     String result = "";
@@ -362,8 +362,8 @@ public class StringUtils
       }
       else
       {
-        throw new Error("toArray[" + i + "] is not an instance of String but a "
-            + ObjectUtils.getClassName(rowObject));
+        throw new Error(
+            "toArray[" + i + "] is not an instance of String but a " + ObjectUtils.getClassName(rowObject));
       }
     }
     return array;
@@ -425,8 +425,8 @@ public class StringUtils
   public static void assertIn(String target, String[] fromList, boolean allowNulls)
   {
     boolean valid = isIn(target, fromList, allowNulls);
-    if (!valid) { throw new IllegalArgumentException("The value '" + target + "' not in "
-        + Arrays.asList(fromList)); }
+    if (!valid) { throw new IllegalArgumentException(
+        "The value '" + target + "' not in " + Arrays.asList(fromList)); }
   }
   public static void assertIn(String target, boolean allowNulls, String... options)
   {
@@ -475,8 +475,8 @@ public class StringUtils
   {
     Properties props = new Properties();
     if (properties == null) { return props; }
-    if (properties.length % 2 != 0) { throw new Error("number of strings must be even. found ["
-        + properties.length + "] = " + Arrays.asList(properties)); }
+    if (properties.length % 2 != 0) { throw new Error(
+        "number of strings must be even. found [" + properties.length + "] = " + Arrays.asList(properties)); }
     for (int i = 0; i < properties.length; i += 2)
     {
       if (properties[i + 1] != null)
@@ -504,7 +504,7 @@ public class StringUtils
       int maxPadding = ("" + array.length).length();
       for (int i = 0; i < array.length; i++)
       {
-        buffer.append(name + "[" + padNumber(i, maxPadding) + "] = " + array[i] + "\r\n");
+        buffer.append(name + "[" + padNumber(i, maxPadding) + "] = " + array[i] + "\n");
       }
     }
     return buffer.toString();
@@ -519,7 +519,7 @@ public class StringUtils
       int count = 0;
       for (T t : array)
       {
-        buffer.append(name + "[" + count + "] = " + arrayStringHelper(t) + "\r\n");
+        buffer.append(name + "[" + count + "] = " + arrayStringHelper(t) + "\n");
         count++;
       }
     }
@@ -579,7 +579,7 @@ public class StringUtils
     Arrays.sort(keySet);
     for (Object key : keySet)
     {
-      b.append(String.format("%s : %s \r\n", key, map.get(key)));
+      b.append(String.format("%s : %s \n", key, map.get(key)));
     }
     return b.toString();
   }

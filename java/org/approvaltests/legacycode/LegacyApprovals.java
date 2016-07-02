@@ -25,7 +25,6 @@ public class LegacyApprovals
       {
         m = new Parameters(p).getBestFitMethod(call.getClass(), method);
       }
-      
       Object out;
       try
       {
@@ -35,10 +34,10 @@ public class LegacyApprovals
       {
         out = t;
       }
-      sb.append(String.format("%s = %s \r\n", Arrays.toString(p), out));
+      sb.append(String.format("%s = %s \n", Arrays.toString(p), out));
     }
-    Approvals.verify(new ApprovalTextWriter(sb.toString(), "txt"), new StackTraceNamer(), ReporterFactory
-        .get(FileTypes.Text));
+    Approvals.verify(new ApprovalTextWriter(sb.toString(), "txt"), new StackTraceNamer(),
+        ReporterFactory.get(FileTypes.Text));
   }
   private static Object[] getParameters(Object[][] parametersVariations, Integer[] index)
   {

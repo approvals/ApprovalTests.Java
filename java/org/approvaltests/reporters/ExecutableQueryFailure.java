@@ -30,7 +30,7 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     String newQuery = FileUtils.readFile(filename).trim();
     String newResult = query.executeQuery(newQuery);
     File newFile = new File(filename + FILE_ADDITION);
-    String header = "\t\tDo NOT approve\r\n\t\tThis File will be Deleted\r\n\t\tit is for feedback purposes only\r\n";
+    String header = "\t\tDo NOT approve\n\t\tThis File will be Deleted\n\t\tit is for feedback purposes only\n";
     FileUtils.writeFile(newFile, String.format("%squery:\n%s\n\nresult:\n%s", header, newQuery, newResult));
     return newFile.getAbsolutePath();
   }
