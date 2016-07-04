@@ -43,6 +43,10 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
     }
     return false;
   }
+  public EnvironmentAwareReporter[] getReporters()
+  {
+    return reporters;
+  }
   public List<EnvironmentAwareReporter> getWorkingReportersForEnviroment()
   {
     return Query.where(reporters, new Function1<EnvironmentAwareReporter, Boolean>()

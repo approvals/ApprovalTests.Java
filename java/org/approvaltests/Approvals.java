@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.hadoop.fs.Path;
-import org.approvaltests.ReporterFactory.FileTypes;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
@@ -56,7 +55,7 @@ public class Approvals
   };
   public static void verify(String response) throws Exception
   {
-    verify(new ApprovalTextWriter(response, "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(response, "txt"));
   }
   public static void verify(Object o) throws Exception
   {
@@ -64,17 +63,16 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, T[] array) throws Exception
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
   }
   public static <T> void verifyAll(String header, String label, T[] array) throws Exception
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
-        FileTypes.Text);
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
   public static <T> void verifyAll(T[] values, Function1<T, String> f1)
   {
     String text = ArrayUtils.toString(values, f1);
-    verify(new ApprovalTextWriter(text, "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(text, "txt"));
   }
   public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1)
   {
@@ -83,7 +81,7 @@ public class Approvals
   public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1)
   {
     String text = formatHeader(header) + ArrayUtils.toString(array, f1);
-    verify(new ApprovalTextWriter(text, "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(text, "txt"));
   }
   private static String formatHeader(String header)
   {
@@ -91,27 +89,26 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, Iterable<T> array) throws Exception
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array) throws Exception
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"),
-        FileTypes.Text);
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
   public static void verify(Component c) throws Exception
   {
     try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
     {
-      verify(new ComponentApprovalWriter(c), FileTypes.Image);
+      verify(new ComponentApprovalWriter(c));
     }
   }
   public static void verifyHtml(String response) throws Exception
   {
-    verify(new ApprovalTextWriter(response, "html"), FileTypes.Html);
+    verify(new ApprovalTextWriter(response, "html"));
   }
   public static void verify(File generateFile)
   {
-    verify(new FileApprovalWriter(generateFile), FileTypes.File);
+    verify(new FileApprovalWriter(generateFile));
   }
   public static void verify(Image image)
   {
@@ -119,19 +116,19 @@ public class Approvals
   }
   public static void verify(BufferedImage bufferedImage)
   {
-    verify(new ImageApprovalWriter(bufferedImage), FileTypes.Image);
+    verify(new ImageApprovalWriter(bufferedImage));
   }
   public static void verify(ApprovalWriter writter, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
     verify(new FileApprover(writter, namer), reporter);
   }
-  public static void verify(ApprovalWriter writter, String fileType)
+  public static void verify(ApprovalWriter writter)
   {
-    verify(writter, createApprovalNamer(), ReporterFactory.get(fileType));
+    verify(writter, createApprovalNamer(), getReporter());
   }
   public static void verifyXml(String xml) throws Exception
   {
-    verify(new ApprovalXmlWriter(xml), FileTypes.Text);
+    verify(new ApprovalXmlWriter(xml));
   }
   public static void verify(FileApprover approver, ApprovalFailureReporter reporter)
   {
@@ -159,14 +156,14 @@ public class Approvals
   }
   public static void verify(Map map) throws Exception
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"), FileTypes.Text);
+    verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"));
   }
   public static void verify(RackResponse response) throws Exception
   {
     if (isImage(response))
     {
       String fileType = "png";
-      verify(new ApprovalBinaryFileWriter(response.getResponse(), fileType), fileType);
+      verify(new ApprovalBinaryFileWriter(response.getResponse(), fileType));
     }
     else
     {
@@ -175,7 +172,7 @@ public class Approvals
   }
   public static void verify(ResultSet rs) throws Exception
   {
-    verify(new ResultSetApprovalWriter(rs), "csv");
+    verify(new ResultSetApprovalWriter(rs));
   }
   public static void verify(SqlLoader loader) throws Exception
   {
@@ -192,7 +189,7 @@ public class Approvals
   }
   private static void approve(BufferedImage bufferedImage, ApprovalNamer namer)
   {
-    verify(new ImageApprovalWriter(bufferedImage), FileTypes.Image);
+    verify(new ImageApprovalWriter(bufferedImage));
   }
   public static void verifyEachFileInDirectory(File directory)
   {
@@ -218,7 +215,7 @@ public class Approvals
       {
         try
         {
-          verify(new DirectoryToDirectoryWriter(f, approvedDirectory), FileTypes.File);
+          verify(new DirectoryToDirectoryWriter(f, approvedDirectory));
         }
         catch (Throwable e)
         {
@@ -247,7 +244,7 @@ public class Approvals
   }
   public static void verify(Object actual, String fileExtensionWithoutDot) throws Exception
   {
-    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot), FileTypes.Text);
+    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot));
   }
   public static ApprovalFailureReporter getReporter()
   {

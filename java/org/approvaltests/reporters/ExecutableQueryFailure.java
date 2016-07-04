@@ -20,7 +20,7 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
   }
   public void report(String received, String approved) throws Exception
   {
-    ApprovalFailureReporter reporter = ReporterFactory.get(ReporterFactory.FileTypes.Text);
+    ApprovalFailureReporter reporter = ReporterFactory.get();
     reporter.report(runQueryAndGetPath(received), runQueryAndGetPath(approved));
     reporter.report(received, approved);
   }

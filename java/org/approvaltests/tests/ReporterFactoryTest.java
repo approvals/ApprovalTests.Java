@@ -1,22 +1,41 @@
 package org.approvaltests.tests;
 
+import org.approvaltests.Approvals;
+import org.approvaltests.ReporterFactory;
+import org.approvaltests.StackListings;
+import org.approvaltests.reporters.ClipboardReporter;
+import org.approvaltests.reporters.DiffReporter;
+import org.approvaltests.reporters.EnvironmentAwareReporter;
+import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.PitReporter;
+import org.approvaltests.reporters.UseReporter;
+
 import junit.framework.TestCase;
 
-import org.approvaltests.ReporterFactory;
-import org.approvaltests.reporters.DiffReporter;
-import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.QuietReporter;
-
+@UseReporter(ClipboardReporter.class)
 public class ReporterFactoryTest extends TestCase
 {
-  public void testReporters() throws Exception
+  public void testReportersAtClassLevel() throws Exception
   {
-    assertEquals(DiffReporter.class, getClassFor("txt"));
-    assertEquals(DiffReporter.class, getClassFor("html"));
-    assertEquals(QuietReporter.class, getClassFor("other"));
+    assertEquals(ClipboardReporter.class, getClassFor());
   }
-  private Class getClassFor(String type)
+  @UseReporter(PitReporter.class)
+  public void testReportersAtMethodLevel() throws Exception
   {
-    return ((FirstWorkingReporter) ReporterFactory.get(type)).getWorkingReportersForEnviroment().get(0).getClass();
+    oneLayerDown();
+    assertEquals(PitReporter.class, getClassFor());
+  }
+  @UseReporter(DiffReporter.class)
+  public void oneLayerDown() throws Exception
+  {
+    StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class);
+    Approvals.verify(listings);
+    assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
+  }
+  public static Class getClassFor()
+  {
+    FirstWorkingReporter reporter = (FirstWorkingReporter) ReporterFactory.get();
+    EnvironmentAwareReporter[] working = reporter.getReporters();
+    return working[1].getClass();
   }
 }
