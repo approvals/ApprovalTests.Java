@@ -22,14 +22,32 @@ import com.spun.util.ObjectUtils;
 public class ReporterFactory
 {
   public static final String FRONTLOADED_REPORTER = "FrontloadedReporter";
+  public static final String USE_REPORTER         = "UseReporter";
   public static ApprovalFailureReporter get()
   {
     ApprovalFailureReporter returned = getFromAnnotation();
     if (returned == null)
     {
+      returned = getFromPackageSettings();
+    }
+    if (returned == null)
+    {
       returned = DiffReporter.INSTANCE;
     }
     return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
+  }
+  private static ApprovalFailureReporter getFromPackageSettings()
+  {
+    Map<String, Settings> settings = PackageLevelSettings.get();
+    Settings value = settings.get(USE_REPORTER);
+    if (value != null && value.getValue() instanceof ApprovalFailureReporter)
+    {
+      return (ApprovalFailureReporter) value.getValue();
+    }
+    else
+    {
+      return null;
+    }
   }
   /**
    * Loaded from PackageSettings.FrontloadedReporter

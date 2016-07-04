@@ -17,13 +17,13 @@ public class ReporterFactoryTest extends TestCase
 {
   public void testReportersAtClassLevel() throws Exception
   {
-    assertEquals(ClipboardReporter.class, getClassFor());
+    assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
   @UseReporter(PitReporter.class)
   public void testReportersAtMethodLevel() throws Exception
   {
     oneLayerDown();
-    assertEquals(PitReporter.class, getClassFor());
+    assertEquals(PitReporter.class, ReporterFactoryHelper.getClassFor());
   }
   @UseReporter(DiffReporter.class)
   public void oneLayerDown() throws Exception
@@ -32,6 +32,10 @@ public class ReporterFactoryTest extends TestCase
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
   }
+}
+
+class ReporterFactoryHelper
+{
   public static Class getClassFor()
   {
     FirstWorkingReporter reporter = (FirstWorkingReporter) ReporterFactory.get();
