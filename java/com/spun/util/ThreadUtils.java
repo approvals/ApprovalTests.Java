@@ -13,4 +13,8 @@ public class ThreadUtils
       // ignore
     }
   }
+  public static StackTraceElement[] getStackTrace()
+  {
+    return Thread.currentThread().getStackTrace();
+  }
 }

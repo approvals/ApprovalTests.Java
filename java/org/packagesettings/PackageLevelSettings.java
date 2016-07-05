@@ -7,15 +7,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import com.spun.util.ThreadUtils;
+
 public class PackageLevelSettings
 {
   public static Map<String, Settings> get()
+  {
+    return getForStackTrace(ThreadUtils.getStackTrace());
+  }
+  public static Map<String, Settings> getForStackTrace(StackTraceElement[] trace) throws Error
   {
     Map<String, Settings> settings = new HashMap<String, Settings>();
     try
     {
       HashSet<String> done = new HashSet<String>();
-      StackTraceElement trace[] = new Error().getStackTrace();
       for (StackTraceElement element : trace)
       {
         String packageName = getNextLevel(element.getClassName());

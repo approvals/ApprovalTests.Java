@@ -10,6 +10,8 @@ import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.PitReporter;
 import org.approvaltests.reporters.UseReporter;
 
+import com.spun.util.ThreadUtils;
+
 import junit.framework.TestCase;
 
 @UseReporter(ClipboardReporter.class)
@@ -28,7 +30,8 @@ public class ReporterFactoryTest extends TestCase
   @UseReporter(DiffReporter.class)
   public void oneLayerDown() throws Exception
   {
-    StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class);
+    StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class,
+        ThreadUtils.getStackTrace());
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
   }
@@ -36,7 +39,7 @@ public class ReporterFactoryTest extends TestCase
 
 class ReporterFactoryHelper
 {
-  public static Class getClassFor()
+  public static Class<? extends EnvironmentAwareReporter> getClassFor()
   {
     FirstWorkingReporter reporter = (FirstWorkingReporter) ReporterFactory.get();
     EnvironmentAwareReporter[] working = reporter.getReporters();

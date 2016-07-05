@@ -3,13 +3,13 @@ package org.approvaltests.approvers.tests;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.approvers.FileApprover;
 
 import com.spun.util.io.FileUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
+
+import junit.framework.TestCase;
 
 public class FileApproverTest extends TestCase
 {
@@ -35,7 +35,6 @@ public class FileApproverTest extends TestCase
     assertFalse(f2.exists());
     assertFalse(FileApprover.approveTextFile(f1, f2));
   }
-
   private File createFile(String string) throws IOException
   {
     File f = File.createTempFile("avc", "t");

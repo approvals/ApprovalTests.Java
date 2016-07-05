@@ -5,31 +5,28 @@ import java.util.Vector;
 
 /**
  * A class for printing comments in a standardized format.
- * @author Llewellyn
- * @version 2.0
  **/
 public class MySystem
 {
-  public static boolean           USE_LOG_FILE            = false;
-  public static final String      CLIENT_OUTPUT_FILE      = "logs\\CCS_ClientLog.txt";
-  public static final String      SERVER_OUTPUT_FILE      = "logs\\ServerLog.txt";
-  public static final String      LOGGER_OUTPUT_FILE      = "logs\\Logger.txt";
-  public static final String      SERVLET_OUTPUT_FILE     = "logs\\ServletLog.txt";
-  public static String            ROOT_DIR                = "C:\\temp\\";
-  public static final int         IN                      = 1;
-  public static final int         OUT                     = -1;
-  private static boolean          useStackTraceInspection = true;
-  public static boolean           marker                  = true;
-  public static boolean           event                   = true;
-  public static boolean           variable                = true;
-  public static boolean           query                   = true;
-  public static int               hourGlass               = 0;
-  public static int               hourGlassWrap           = 100;
-  private static int              m_indent                = 0;
-  private static long             lastTime                = System.currentTimeMillis();
+  public static boolean           USE_LOG_FILE        = false;
+  public static final String      CLIENT_OUTPUT_FILE  = "logs\\CCS_ClientLog.txt";
+  public static final String      SERVER_OUTPUT_FILE  = "logs\\ServerLog.txt";
+  public static final String      LOGGER_OUTPUT_FILE  = "logs\\Logger.txt";
+  public static final String      SERVLET_OUTPUT_FILE = "logs\\ServletLog.txt";
+  public static String            ROOT_DIR            = "C:\\temp\\";
+  public static final int         IN                  = 1;
+  public static final int         OUT                 = -1;
+  public static boolean           marker              = true;
+  public static boolean           event               = true;
+  public static boolean           variable            = true;
+  public static boolean           query               = true;
+  public static int               hourGlass           = 0;
+  public static int               hourGlassWrap       = 100;
+  private static int              m_indent            = 0;
+  private static long             lastTime            = System.currentTimeMillis();
   private static DualOutputStream cos;
-  private static String           logFileUsed             = null;
-  private static PrintWriter      SYSTEM_OUT_WRITER       = new PrintWriter(System.out, true);
+  private static String           logFileUsed         = null;
+  private static PrintWriter      SYSTEM_OUT_WRITER   = new PrintWriter(System.out, true);
   /***********************************************************************/
   public static void toggleAll(boolean t)
   {
@@ -80,8 +77,8 @@ public class MySystem
     long diff = (System.currentTimeMillis() - startTime);
     if (diff > maxTime)
     {
-      MySystem.warning("Time Limit Exceeded - " + function + " ["
-          + new DateDifference(diff).getStandardTimeText(2) + " > " + maxTime + "]");
+      MySystem.warning("Time Limit Exceeded - " + function + " [" + new DateDifference(diff).getStandardTimeText(2)
+          + " > " + maxTime + "]");
     }
   }
   /***********************************************************************/
@@ -114,9 +111,11 @@ public class MySystem
       System.setOut(p);
     }
     catch (SecurityException e)
-    {}
+    {
+    }
     catch (Exception e)
-    {}
+    {
+    }
   }
   /***********************************************************************/
   /**
@@ -139,7 +138,8 @@ public class MySystem
       cos.close();
     }
     catch (Exception e)
-    {}
+    {
+    }
   }
   /***********************************************************************/
   /**
@@ -147,7 +147,7 @@ public class MySystem
    **/
   public synchronized static void markerOut()
   {
-    markerOut(null);
+    markerOut(extractMarkerText());
   }
   /***********************************************************************/
   /**
@@ -155,25 +155,12 @@ public class MySystem
    **/
   public synchronized static void markerIn()
   {
-    markerIn(null);
+    markerIn(extractMarkerText());
   }
-  /***********************************************************************/
-  /**
-   * Prints to screen the marker specifying function entered.
-   * @param Statement The statement to print
-   * @param int IN/OUT
-   **/
-  public synchronized static void markerIn(String statement)
+  public static void markerIn(String statement)
   {
     if (!marker) { return; }
-    if (useStackTraceInspection)
-    {
-      System.out.println(timeStamp() + "**** " + extractMarkerText() + " - IN");
-    }
-    else
-    {
-      System.out.println(timeStamp() + "**** " + statement + " - IN");
-    }
+    System.out.println(timeStamp() + "**** " + statement + " - IN");
     m_indent++;
   }
   /***********************************************************************/
@@ -181,8 +168,8 @@ public class MySystem
   {
     try
     {
-      StackTraceElement trace[] = new Error().getStackTrace();
-      StackTraceElement element = trace[3];
+      StackTraceElement trace[] = ThreadUtils.getStackTrace();
+      StackTraceElement element = trace[4];
       String text = element.getMethodName();
       String className = element.getClassName();
       className = className.substring(className.lastIndexOf(".") + 1);
@@ -191,7 +178,6 @@ public class MySystem
     }
     catch (Throwable t)
     {
-      useStackTraceInspection = false;
       return "Can't Inspect Stack Trace";
     }
   }
@@ -253,13 +239,12 @@ public class MySystem
   /***********************************************************************/
   /**
    * Prints to screen the marker specifying function exited.
-   * @param Statement The statement to print
    **/
-  public synchronized static void markerOut(String Statement)
+  public synchronized static void markerOut(String text)
   {
     if (!marker) { return; }
     m_indent--;
-    System.out.println(timeStamp() + "**** " + extractMarkerText() + " - OUT");
+    System.out.println(timeStamp() + "**** " + text + " - OUT");
   }
   /***********************************************************************/
   /**
@@ -328,8 +313,8 @@ public class MySystem
     {
       for (int i = 0; i < array.length; i++)
       {
-        System.out.println(timeStamp() + "*=> " + name + "[" + i + "] = "
-            + ((array[i] == null) ? "null" : array[i].toString()));
+        System.out.println(
+            timeStamp() + "*=> " + name + "[" + i + "] = " + ((array[i] == null) ? "null" : array[i].toString()));
       }
     }
   }
@@ -416,11 +401,6 @@ public class MySystem
     {
       out.println(string);
     }
-  }
-  /***********************************************************************/
-  private static void printFullTrace(Throwable throwable, boolean causedBy)
-  {
-    printFullTrace(throwable, causedBy, SYSTEM_OUT_WRITER);
   }
   /***********************************************************************/
   private static void printFullTrace(Throwable throwable, boolean causedBy, PrintWriter out)
@@ -515,6 +495,20 @@ public class MySystem
     buffer.delete(buffer.length() - 3, buffer.length());
     buffer.append("]");
     return buffer.toString();
+  }
+  /**
+   * <pre>
+   * {@code
+   * try (Markers m = MySystem.useMarkers();)
+   * {
+   * }
+   * 
+   * </pre> 
+   */
+  public static Markers useMarkers()
+  {
+    final String text = extractMarkerText();
+    return new Markers(text);
   }
   /***********************************************************************/
   /***********************************************************************/

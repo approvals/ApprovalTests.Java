@@ -18,6 +18,7 @@ import org.packagesettings.Settings;
 
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
 
 public class ReporterFactory
 {
@@ -25,10 +26,11 @@ public class ReporterFactory
   public static final String USE_REPORTER         = "UseReporter";
   public static ApprovalFailureReporter get()
   {
-    ApprovalFailureReporter returned = getFromAnnotation();
+    StackTraceElement[] trace = ThreadUtils.getStackTrace();
+    ApprovalFailureReporter returned = getFromAnnotation(trace);
     if (returned == null)
     {
-      returned = getFromPackageSettings();
+      returned = getFromPackageSettings(trace);
     }
     if (returned == null)
     {
@@ -36,9 +38,9 @@ public class ReporterFactory
     }
     return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
   }
-  private static ApprovalFailureReporter getFromPackageSettings()
+  private static ApprovalFailureReporter getFromPackageSettings(StackTraceElement[] trace)
   {
-    Map<String, Settings> settings = PackageLevelSettings.get();
+    Map<String, Settings> settings = PackageLevelSettings.getForStackTrace(trace);
     Settings value = settings.get(USE_REPORTER);
     if (value != null && value.getValue() instanceof ApprovalFailureReporter)
     {
@@ -65,9 +67,9 @@ public class ReporterFactory
       return DefaultFrontLoadedReporter.INSTANCE;
     }
   }
-  public static ApprovalFailureReporter getFromAnnotation()
+  public static ApprovalFailureReporter getFromAnnotation(StackTraceElement[] trace)
   {
-    UseReporter reporter = getAnnotationsFromStackTrace(UseReporter.class).getFirst();
+    UseReporter reporter = getAnnotationsFromStackTrace(UseReporter.class, trace).getFirst();
     return reporter == null ? null : getReporter(reporter);
   }
   private static ApprovalFailureReporter getReporter(UseReporter reporter)
@@ -81,10 +83,10 @@ public class ReporterFactory
     }
     return reporters.size() == 1 ? reporters.get(0) : new MultiReporter(reporters);
   }
-  public static <T extends Annotation> StackListings<T> getAnnotationsFromStackTrace(Class<T> annotationClass)
+  public static <T extends Annotation> StackListings<T> getAnnotationsFromStackTrace(Class<T> annotationClass,
+      StackTraceElement[] trace)
   {
     StackListings<T> listings = new StackListings<>();
-    StackTraceElement[] trace = Thread.currentThread().getStackTrace();
     for (StackTraceElement stack : trace)
     {
       Method method = null;

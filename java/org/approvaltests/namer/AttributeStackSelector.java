@@ -99,4 +99,9 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return method;
   }
+  @Override
+  public void increment()
+  {
+    //ignore
+  }
 }

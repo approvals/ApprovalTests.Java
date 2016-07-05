@@ -14,16 +14,17 @@ import javax.mail.Message;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import junit.framework.TestCase;
-
+import com.spun.util.ArrayUtils;
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
-import com.spun.util.ArrayUtils;
+import com.spun.util.ThreadUtils;
 import com.spun.util.WindowUtils;
 import com.spun.util.images.ImageWriter;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.StackElementLevelSelector;
 import com.spun.util.io.StackElementSelector;
+
+import junit.framework.TestCase;
 
 public class TestUtils
 {
@@ -67,8 +68,7 @@ public class TestUtils
     return Long.toString(Math.abs(random.nextLong()), 36);
   }
   /***********************************************************************/
-  public static void displayHtml(String htmlOutput) throws FileNotFoundException, IOException,
-      InterruptedException
+  public static void displayHtml(String htmlOutput) throws FileNotFoundException, IOException, InterruptedException
   {
     displayHtml(null, ".html", htmlOutput, 3);
   }
@@ -83,8 +83,8 @@ public class TestUtils
     displayHtmlFile(file.getAbsolutePath());
   }
   /***********************************************************************/
-  public static void displayHtml(String outputFile, String htmlOutput) throws FileNotFoundException, IOException,
-      InterruptedException
+  public static void displayHtml(String outputFile, String htmlOutput)
+      throws FileNotFoundException, IOException, InterruptedException
   {
     displayHtml(outputFile, ".html", htmlOutput, 15);
   }
@@ -249,14 +249,19 @@ public class TestUtils
   }
   public static StackTraceReflectionResult getCurrentFileForMethod(int ignoreLevels)
   {
-    return getCurrentFileForMethod(new StackElementLevelSelector(ignoreLevels + 1));
+    return getCurrentFileForMethod(new StackElementLevelSelector(ignoreLevels + 2));
   }
   public static StackTraceReflectionResult getCurrentFileForMethod(StackElementSelector stackElementSelector)
-      throws Error
+  {
+    StackTraceElement trace[] = ThreadUtils.getStackTrace();
+    stackElementSelector.increment();
+    return getCurrentFileForMethod(stackElementSelector, trace);
+  }
+  public static StackTraceReflectionResult getCurrentFileForMethod(StackElementSelector stackElementSelector,
+      StackTraceElement[] trace)
   {
     try
     {
-      StackTraceElement trace[] = new Error().getStackTrace();
       StackTraceElement element = stackElementSelector.selectElement(trace);
       return getInfo(element);
     }
@@ -270,7 +275,7 @@ public class TestUtils
     String fullClassName = element.getClassName();
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     String fileName = element.getFileName();
-    File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass( fullClassName), fileName);
+    File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass(fullClassName), fileName);
     return new StackTraceReflectionResult(dir, className, element.getMethodName());
   }
 }

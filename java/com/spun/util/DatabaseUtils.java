@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import com.spun.util.database.DatabaseObject;
 import com.spun.util.database.DatabaseTransactionInfo;
 import com.spun.util.database.SqlConnectionException;
@@ -30,13 +31,13 @@ public class DatabaseUtils
   public static final int                           MY_SQL           = 6;
   public static final int                           SQLSERVER2005    = 7;
   public static final String                        DATABASE_TYPES[] = {"Access",
-      "PostgreSQL",
-      "Sybase",
-      "Oracle",
-      "Microsoft SQL Server  7.00",
-      "Microsoft SQL Server  2000",
-      "MySQL",
-      "Microsoft SQL Server"                                         };
+                                                                        "PostgreSQL",
+                                                                        "Sybase",
+                                                                        "Oracle",
+                                                                        "Microsoft SQL Server  7.00",
+                                                                        "Microsoft SQL Server  2000",
+                                                                        "MySQL",
+                                                                        "Microsoft SQL Server"};
   /***********************************************************************/
   public static String getDatabaseType(int type)
   {
@@ -462,8 +463,8 @@ public class DatabaseUtils
   public static String toEscapeSQL(String unformattedString)
   {
     if ((unformattedString == null)
-        || ((unformattedString.indexOf('\'') == -1) && (unformattedString.indexOf('\"') == -1) && (unformattedString
-            .indexOf('\\') == -1))) { return unformattedString; }
+        || ((unformattedString.indexOf('\'') == -1) && (unformattedString.indexOf('\"') == -1)
+            && (unformattedString.indexOf('\\') == -1))) { return unformattedString; }
     StringBuffer b = new StringBuffer(unformattedString);
     for (int i = 0; i < b.length(); i++)
     {
@@ -483,12 +484,12 @@ public class DatabaseUtils
   /***********************************************************************/
   public static void beginTransaction(Statement stmt) throws SQLException
   {
-    beginTransaction(stmt.getConnection(), 1);
+    beginTransaction(stmt.getConnection(), 2);
   }
   /***********************************************************************/
   public static void beginTransaction(Connection con) throws SQLException
   {
-    beginTransaction(con, 1);
+    beginTransaction(con, 2);
   }
   /***********************************************************************/
   private static void beginTransaction(Connection con, int offset) throws SQLException
@@ -520,12 +521,12 @@ public class DatabaseUtils
   /***********************************************************************/
   public static void commit(Statement stmt) throws SQLException
   {
-    commit(stmt.getConnection(), 1);
+    commit(stmt.getConnection(), 2);
   }
   /***********************************************************************/
   public static void commit(Connection con) throws SQLException
   {
-    commit(con, 1);
+    commit(con, 2);
   }
   /***********************************************************************/
   private static void commit(Connection con, int offset) throws SQLException

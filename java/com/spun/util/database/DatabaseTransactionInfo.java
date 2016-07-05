@@ -4,6 +4,8 @@ import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.spun.util.ThreadUtils;
+
 public class DatabaseTransactionInfo
 {
   private WeakReference<Connection> connectionReference;
@@ -23,8 +25,8 @@ public class DatabaseTransactionInfo
   /***********************************************************************/
   public static String getOriginatorText(int offset)
   {
-    StackTraceElement trace[] = new Error().getStackTrace();
-    offset = offset + 1;
+    StackTraceElement trace[] = ThreadUtils.getStackTrace();
+    offset = offset + 2;
     StackTraceElement element = trace[offset];
     int size = trace.length - offset;
     String text = "[" + size + "]" + element.getClassName() + "." + element.getMethodName();

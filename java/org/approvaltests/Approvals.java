@@ -154,7 +154,7 @@ public class Approvals
     verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
         new ExecutableQueryFailure(query));
   }
-  public static void verify(Map map) throws Exception
+  public static void verify(Map<?, ?> map) throws Exception
   {
     verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"));
   }
@@ -174,7 +174,7 @@ public class Approvals
   {
     verify(new ResultSetApprovalWriter(rs));
   }
-  public static void verify(SqlLoader loader) throws Exception
+  public static void verify(SqlLoader<?> loader) throws Exception
   {
     verify(new SqlLoader.ExecutableWrapper(loader));
   }
