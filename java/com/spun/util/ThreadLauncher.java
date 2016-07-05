@@ -4,6 +4,8 @@ import java.lang.reflect.Method;
 
 import org.lambda.actions.Action0;
 
+import com.spun.util.logger.SimpleLogger;
+
 public class ThreadLauncher implements Runnable
 {
   private Object   object       = null;
@@ -25,8 +27,7 @@ public class ThreadLauncher implements Runnable
     this(object, method, objectParams, 0);
   }
   /***********************************************************************/
-  public ThreadLauncher(Class clazz, String methodName, long delay) throws SecurityException,
-      NoSuchMethodException
+  public ThreadLauncher(Class clazz, String methodName, long delay) throws SecurityException, NoSuchMethodException
   {
     this(null, clazz.getMethod(methodName, (Class[]) null), null, delay);
   }
@@ -36,8 +37,8 @@ public class ThreadLauncher implements Runnable
     this(null, clazz.getMethod(methodName, (Class[]) null), null, 0);
   }
   /***********************************************************************/
-  public ThreadLauncher(Object object, String methodName, long delay) throws SecurityException,
-      NoSuchMethodException
+  public ThreadLauncher(Object object, String methodName, long delay)
+      throws SecurityException, NoSuchMethodException
   {
     this(object, object.getClass().getMethod(methodName, (Class[]) null), null, delay);
   }
@@ -74,7 +75,7 @@ public class ThreadLauncher implements Runnable
     }
     catch (Throwable t)
     {
-      MySystem.warning("Caught throwable exception ", t);
+      SimpleLogger.warning("Caught throwable exception ", t);
     }
   }
   /***********************************************************************/

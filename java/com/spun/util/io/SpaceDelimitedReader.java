@@ -4,16 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
 /**
   * A static class of convence functions for Files
   **/
 public class SpaceDelimitedReader
 {
-  private BufferedReader reader = null;
-  private String lastRead = null;
-  public boolean trim = false;
+  private BufferedReader reader   = null;
+  private String         lastRead = null;
+  public boolean         trim     = false;
   /************************************************************************/
   public SpaceDelimitedReader(String input, boolean trim)
   {
@@ -35,26 +35,22 @@ public class SpaceDelimitedReader
       reader.close();
       reader = null;
     }
-    MySystem.variable(lastRead);
+    SimpleLogger.variable(lastRead);
     return lastRead;
   }
   /***********************************************************************/
   public String[] readLine(int i) throws IOException
   {
-     return readLine(new int[] {i});
+    return readLine(new int[]{i});
   }
   /***********************************************************************/
   public String[] readLine(int[] breakPoints) throws IOException
   {
     if (lastRead == null)
     {
-      if (prepNext() == null)
-      {
-        return null;
-      }
+      if (prepNext() == null) { return null; }
     }
     String[] found = splitStringAtPoints(breakPoints, lastRead, trim);
-    
     lastRead = null;
     return found;
   }
@@ -62,7 +58,7 @@ public class SpaceDelimitedReader
   public static String[] splitStringAtPoints(int[] breakPoints, String line, boolean trim)
   {
     if (line == null) { return null; }
-    if (breakPoints == null) 
+    if (breakPoints == null)
     {
       breakPoints = new int[0];
     }
@@ -82,8 +78,7 @@ public class SpaceDelimitedReader
     if (start >= string.length()) { return null; }
     String found = string.substring(start, end);
     return trim ? found.trim() : found;
-  }  
+  }
   /***********************************************************************/
   /***********************************************************************/
-  
 }

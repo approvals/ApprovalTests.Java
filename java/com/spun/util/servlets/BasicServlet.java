@@ -2,7 +2,6 @@ package com.spun.util.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -18,16 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
-
 import com.spun.util.DateUtils;
-import com.spun.util.MySystem;
 import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
+import com.spun.util.logger.SimpleLogger;
 import com.spun.util.parser.TemplateError;
 import com.spun.util.velocity.ParseCall;
 import com.spun.util.velocity.VelocityParser;
@@ -35,7 +29,7 @@ import com.spun.util.velocity.VelocityParser;
 /**
  * This is the top level servlet which all others extend.
  **/
-public class BasicServlet extends HttpServlet
+public abstract class BasicServlet extends HttpServlet
 {
   private TemplateError         error           = null;
   private static ServletContext servletContext;
@@ -47,12 +41,12 @@ public class BasicServlet extends HttpServlet
     super.init(config);
     try
     {
-      MySystem.useOutputFile(getLogFile(), true);
+      SimpleLogger.useOutputFile(getLogFile(), true);
       servletContext = getServletContext();
     }
     catch (Exception e)
     {
-      // just in case
+      SimpleLogger.warning(e);
     }
   }
   public static ServletContext getContext()
@@ -174,10 +168,7 @@ public class BasicServlet extends HttpServlet
     return StringUtils.loadNullableString(value);
   }
   /***********************************************************************/
-  protected String getLogFile()
-  {
-    return null;
-  }
+  abstract protected String getLogFile();
   /***********************************************************************/
   protected ParseCall getParser()
   {
@@ -197,44 +188,17 @@ public class BasicServlet extends HttpServlet
   {
     try
     {
+      PrintWriter writer = (PrintWriter) ServletLogWriterFactory.getWriter(this);
+      SimpleLogger.logTo(writer);
       error = new TemplateError(t, this);
       String servletInfo = extractServletInformation(req);
-      MySystem.warning(servletInfo, t instanceof ServletParameterException ? null : t, ServletLogWriterFactory
-          .getWriter(this));
-      //      postErrorToLogServer(t, servletInfo);
+      SimpleLogger.warning(servletInfo, t instanceof ServletParameterException ? null : t);
+      writer.flush();
       return getParser().parse(getErrorTemplate(), error);
     }
     catch (Throwable t2)
     {
       return secondardErrorProcessor.processError(error, t2);
-    }
-  }
-  /***********************************************************************/
-  private void postErrorToLogServer(Throwable t, String servletInfo)
-  {
-    HttpClient client = new HttpClient();
-    PostMethod post = new PostMethod("http://mgwap.com:9090/Log/Insert");
-    post.addParameter(new NameValuePair("level", "Severe"));
-    post.addParameter(new NameValuePair("message", t.getMessage()));
-    post.addParameter(new NameValuePair("process", servletInfo));
-    StringWriter sw = new StringWriter();
-    t.printStackTrace(new PrintWriter(sw));
-    post.addParameter(new NameValuePair("stacktrace", sw.toString()));
-    try
-    {
-      client.executeMethod(post);
-    }
-    catch (HttpException e)
-    {
-      throw new Error("Unable to contact logging server: " + e.getMessage(), e);
-    }
-    catch (IOException e)
-    {
-      throw new Error("Unable to contact logging server: " + e.getMessage(), e);
-    }
-    finally
-    {
-      post.releaseConnection();
     }
   }
   /***********************************************************************/

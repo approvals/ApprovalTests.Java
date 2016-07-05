@@ -11,6 +11,7 @@ import java.util.Iterator;
 import com.spun.util.database.DatabaseObject;
 import com.spun.util.database.DatabaseTransactionInfo;
 import com.spun.util.database.SqlConnectionException;
+import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convenience functions for database access
@@ -95,7 +96,7 @@ public class DatabaseUtils
         name = "varchar";
         break;
       default :
-        MySystem.warning("The Type not found(" + i + ")");
+        SimpleLogger.warning("The Type not found(" + i + ")");
         break;
     }
     return name;
@@ -200,7 +201,7 @@ public class DatabaseUtils
         name = "java.lang.String";
         break;
       default :
-        MySystem.warning("The Type not found(" + i + ")");
+        SimpleLogger.warning("The Type not found(" + i + ")");
         printSQLValues();
         break;
     }
@@ -292,7 +293,7 @@ public class DatabaseUtils
     {
       driver = (StringUtils.isNonZero(driver)) ? (driver) : "sun.jdbc.odbc.JdbcOdbcDriver";
       theURL = makeURL(protocol, server, port, database, type);
-      MySystem.variable("URL = " + theURL);
+      SimpleLogger.variable("URL = " + theURL);
       //       My_System.variable(driver);
       Class.forName(driver).newInstance();
       con = DriverManager.getConnection(theURL, userName, password);
@@ -304,7 +305,7 @@ public class DatabaseUtils
     }
     catch (Exception e)
     {
-      MySystem.warning("URL : " + theURL);
+      SimpleLogger.warning("URL : " + theURL);
       ObjectUtils.throwAsError(e);
     }
     return con;
@@ -312,34 +313,34 @@ public class DatabaseUtils
   /***********************************************************************/
   public static void printSQLValues()
   {
-    MySystem.variable("java.sql.Types.BIT           = " + java.sql.Types.BIT);
-    MySystem.variable("java.sql.Types.TINYINT       = " + java.sql.Types.TINYINT);
-    MySystem.variable("java.sql.Types.BIGINT        = " + java.sql.Types.BIGINT);
-    MySystem.variable("java.sql.Types.LONGVARBINARY = " + java.sql.Types.LONGVARBINARY);
-    MySystem.variable("java.sql.Types.VARBINARY     = " + java.sql.Types.VARBINARY);
-    MySystem.variable("java.sql.Types.BINARY        = " + java.sql.Types.BINARY);
-    MySystem.variable("java.sql.Types.LONGVARCHAR   = " + java.sql.Types.LONGVARCHAR);
-    MySystem.variable("java.sql.Types.NULL          = " + java.sql.Types.NULL);
-    MySystem.variable("java.sql.Types.CHAR          = " + java.sql.Types.CHAR);
-    MySystem.variable("java.sql.Types.NUMERIC       = " + java.sql.Types.NUMERIC);
-    MySystem.variable("java.sql.Types.DECIMAL       = " + java.sql.Types.DECIMAL);
-    MySystem.variable("java.sql.Types.INTEGER       = " + java.sql.Types.INTEGER);
-    MySystem.variable("java.sql.Types.SMALLINT      = " + java.sql.Types.SMALLINT);
-    MySystem.variable("java.sql.Types.FLOAT         = " + java.sql.Types.FLOAT);
-    MySystem.variable("java.sql.Types.REAL          = " + java.sql.Types.REAL);
-    MySystem.variable("java.sql.Types.DOUBLE        = " + java.sql.Types.DOUBLE);
-    MySystem.variable("java.sql.Types.VARCHAR       = " + java.sql.Types.VARCHAR);
-    MySystem.variable("java.sql.Types.DATE          = " + java.sql.Types.DATE);
-    MySystem.variable("java.sql.Types.TIME          = " + java.sql.Types.TIME);
-    MySystem.variable("java.sql.Types.TIMESTAMP     = " + java.sql.Types.TIMESTAMP);
-    MySystem.variable("java.sql.Types.OTHER         = " + java.sql.Types.OTHER);
-    MySystem.variable("java.sql.Types.JAVA_OBJECT   = " + java.sql.Types.JAVA_OBJECT);
-    MySystem.variable("java.sql.Types.DISTINCT      = " + java.sql.Types.DISTINCT);
-    MySystem.variable("java.sql.Types.STRUCT        = " + java.sql.Types.STRUCT);
-    MySystem.variable("java.sql.Types.ARRAY         = " + java.sql.Types.ARRAY);
-    MySystem.variable("java.sql.Types.BLOB          = " + java.sql.Types.BLOB);
-    MySystem.variable("java.sql.Types.CLOB          = " + java.sql.Types.CLOB);
-    MySystem.variable("java.sql.Types.REF           = " + java.sql.Types.REF);
+    SimpleLogger.variable("java.sql.Types.BIT           = " + java.sql.Types.BIT);
+    SimpleLogger.variable("java.sql.Types.TINYINT       = " + java.sql.Types.TINYINT);
+    SimpleLogger.variable("java.sql.Types.BIGINT        = " + java.sql.Types.BIGINT);
+    SimpleLogger.variable("java.sql.Types.LONGVARBINARY = " + java.sql.Types.LONGVARBINARY);
+    SimpleLogger.variable("java.sql.Types.VARBINARY     = " + java.sql.Types.VARBINARY);
+    SimpleLogger.variable("java.sql.Types.BINARY        = " + java.sql.Types.BINARY);
+    SimpleLogger.variable("java.sql.Types.LONGVARCHAR   = " + java.sql.Types.LONGVARCHAR);
+    SimpleLogger.variable("java.sql.Types.NULL          = " + java.sql.Types.NULL);
+    SimpleLogger.variable("java.sql.Types.CHAR          = " + java.sql.Types.CHAR);
+    SimpleLogger.variable("java.sql.Types.NUMERIC       = " + java.sql.Types.NUMERIC);
+    SimpleLogger.variable("java.sql.Types.DECIMAL       = " + java.sql.Types.DECIMAL);
+    SimpleLogger.variable("java.sql.Types.INTEGER       = " + java.sql.Types.INTEGER);
+    SimpleLogger.variable("java.sql.Types.SMALLINT      = " + java.sql.Types.SMALLINT);
+    SimpleLogger.variable("java.sql.Types.FLOAT         = " + java.sql.Types.FLOAT);
+    SimpleLogger.variable("java.sql.Types.REAL          = " + java.sql.Types.REAL);
+    SimpleLogger.variable("java.sql.Types.DOUBLE        = " + java.sql.Types.DOUBLE);
+    SimpleLogger.variable("java.sql.Types.VARCHAR       = " + java.sql.Types.VARCHAR);
+    SimpleLogger.variable("java.sql.Types.DATE          = " + java.sql.Types.DATE);
+    SimpleLogger.variable("java.sql.Types.TIME          = " + java.sql.Types.TIME);
+    SimpleLogger.variable("java.sql.Types.TIMESTAMP     = " + java.sql.Types.TIMESTAMP);
+    SimpleLogger.variable("java.sql.Types.OTHER         = " + java.sql.Types.OTHER);
+    SimpleLogger.variable("java.sql.Types.JAVA_OBJECT   = " + java.sql.Types.JAVA_OBJECT);
+    SimpleLogger.variable("java.sql.Types.DISTINCT      = " + java.sql.Types.DISTINCT);
+    SimpleLogger.variable("java.sql.Types.STRUCT        = " + java.sql.Types.STRUCT);
+    SimpleLogger.variable("java.sql.Types.ARRAY         = " + java.sql.Types.ARRAY);
+    SimpleLogger.variable("java.sql.Types.BLOB          = " + java.sql.Types.BLOB);
+    SimpleLogger.variable("java.sql.Types.CLOB          = " + java.sql.Types.CLOB);
+    SimpleLogger.variable("java.sql.Types.REF           = " + java.sql.Types.REF);
   }
   /***********************************************************************/
   public static String getMethodName(String databaseName)

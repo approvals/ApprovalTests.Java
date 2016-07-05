@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
+import com.spun.util.logger.SimpleLogger;
+
 /**
  * A static class of convenience functions for Manipulating numbers
  **/
@@ -39,7 +41,8 @@ public class NumberUtils
       defaultValue = Integer.parseInt(i);
     }
     catch (Exception e)
-    {}
+    {
+    }
     return defaultValue;
   }
   /***********************************************************************/
@@ -53,7 +56,8 @@ public class NumberUtils
       defaultValue = Long.parseLong(i);
     }
     catch (Exception e)
-    {}
+    {
+    }
     return defaultValue;
   }
   /***********************************************************************/
@@ -68,7 +72,8 @@ public class NumberUtils
       defaultValue = Double.parseDouble(i);
     }
     catch (Exception e)
-    {}
+    {
+    }
     return defaultValue;
   }
   /***********************************************************************/
@@ -107,7 +112,7 @@ public class NumberUtils
     {
       double d = r.nextDouble();
       int s = r.nextInt(5);
-      MySystem.event(d + " , " + s + " -> " + setSignificantDigit(d, s));
+      SimpleLogger.event(d + " , " + s + " -> " + setSignificantDigit(d, s));
     }
   }
   /***********************************************************************/
@@ -215,7 +220,7 @@ public class NumberUtils
     }
     catch (Exception e)
     {
-      MySystem.warning(e);
+      SimpleLogger.warning(e);
       objects2 = new Object[numberToReturn];
     }
     return (T[]) list.toArray(objects2);

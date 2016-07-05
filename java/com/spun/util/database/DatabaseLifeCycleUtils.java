@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 import com.spun.util.DatabaseConfiguration;
 import com.spun.util.DatabaseUtils;
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
 public class DatabaseLifeCycleUtils
 {
@@ -64,8 +64,8 @@ public class DatabaseLifeCycleUtils
       }
       if (System.getProperty("os.name").indexOf("Windows") >= 0)
       {
-        commandLine = "pg_dump --clean --username=" + config.getUserName() + " --file=\""
-            + file.getCanonicalPath() + "\" " + databaseName;
+        commandLine = "pg_dump --clean --username=" + config.getUserName() + " --file=\"" + file.getCanonicalPath()
+            + "\" " + databaseName;
       }
       else
       {
@@ -83,7 +83,7 @@ public class DatabaseLifeCycleUtils
     }
     catch (IOException e)
     {
-      MySystem.variable("CommandLine", commandLine);
+      SimpleLogger.variable("CommandLine", commandLine);
       throw e;
     }
   }
@@ -113,7 +113,7 @@ public class DatabaseLifeCycleUtils
         timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
       }
     }
-    MySystem.variable("prompt", prompt.toString());
+    SimpleLogger.variable("prompt", prompt.toString());
     return prompt.toString().startsWith("Password");
   }
   private static void sendPassword(Process process, String password) throws Exception
@@ -128,7 +128,7 @@ public class DatabaseLifeCycleUtils
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName) throws SQLException
   {
     String sql = "BACKUP DATABASE " + databaseName + " TO DISK = '" + fileName + "'";
-    MySystem.query("BACKUP", sql);
+    SimpleLogger.query("BACKUP", sql);
     stmt.execute(sql);
   }
   /***********************************************************************/
@@ -156,7 +156,7 @@ public class DatabaseLifeCycleUtils
   private static void restoreMySQL(Statement stmt, String databaseName, String fileName) throws SQLException
   {
     String restoreCommand = "LOAD DATA INFILE '" + fileName + "' REPLACE ...";
-    MySystem.query(restoreCommand);
+    SimpleLogger.query(restoreCommand);
     stmt.execute(restoreCommand);
   }
   /***********************************************************************/
@@ -172,7 +172,7 @@ public class DatabaseLifeCycleUtils
     {
       commandLine = "psql -f " + fileName + " " + databaseName;
     }
-    MySystem.event("RUNNING : " + commandLine);
+    SimpleLogger.event("RUNNING : " + commandLine);
     Process process = Runtime.getRuntime().exec(commandLine);
     if (getPasswordPrompt(process))
     {
@@ -185,7 +185,7 @@ public class DatabaseLifeCycleUtils
     {
       while ((string = reader.readLine()) != null)
       {
-        MySystem.variable(string);
+        SimpleLogger.variable(string);
       }
     }
     reader.close();
@@ -194,7 +194,7 @@ public class DatabaseLifeCycleUtils
     {
       while ((string = reader.readLine()) != null)
       {
-        MySystem.variable(string);
+        SimpleLogger.variable(string);
       }
     }
     process.waitFor();
@@ -206,7 +206,7 @@ public class DatabaseLifeCycleUtils
   {
     stmt.execute("USE master");
     String restoreCommand = "RESTORE DATABASE " + databaseName + " FROM DISK =  '" + fileName + "'";
-    MySystem.query(restoreCommand);
+    SimpleLogger.query(restoreCommand);
     stmt.execute(restoreCommand);
     stmt.execute("USE " + databaseName);
   }
@@ -284,7 +284,7 @@ public class DatabaseLifeCycleUtils
   private static void resetPostgreIndex(String tableName, Statement stmt) throws SQLException
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
-    MySystem.query("reset index", sql);
+    SimpleLogger.query("reset index", sql);
     stmt.executeQuery(sql);
   }
   /***********************************************************************/

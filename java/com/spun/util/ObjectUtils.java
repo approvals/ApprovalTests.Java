@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.spun.util.logger.SimpleLogger;
+
 /**
  * A static class of convenience functions for Manipulating objects
  **/
@@ -177,7 +179,7 @@ public class ObjectUtils
     }
     catch (Exception e)
     {
-      MySystem.warning(e);
+      SimpleLogger.warning(e);
       throw ObjectUtils.throwAsError(e);
     }
   }

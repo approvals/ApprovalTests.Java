@@ -37,8 +37,8 @@ public class DateUtilsTest
       Timestamp last = DateUtils.getLastOrCurrent(day);
       assertEquals("next thrusday",day, DateUtils.asCalendar(next).get(Calendar.DAY_OF_WEEK));
       assertEquals("last thrusday",day, DateUtils.asCalendar(last).get(Calendar.DAY_OF_WEEK));
-      //MySystem.variable("next",next);
-      //MySystem.variable("last",last);
+      //SimpleLogger.variable("next",next);
+      //SimpleLogger.variable("last",last);
       assertTrue("order for " + next + " after" + last, next.after(last));
     }
 	/***********************************************************************/

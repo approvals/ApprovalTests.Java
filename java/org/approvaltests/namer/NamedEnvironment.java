@@ -7,7 +7,7 @@ public class NamedEnvironment implements AutoCloseable
     NamerFactory.additionalInformation = info;
   }
   @Override
-  public void close() throws Exception
+  public void close()
   {
     NamerFactory.getAndClearAdditionalInformation();
   }

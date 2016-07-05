@@ -1,4 +1,6 @@
-package com.spun.util;
+package com.spun.util.logger;
+
+import com.spun.util.logger.SimpleLogger;
 
 public class Markers implements AutoCloseable
 {
@@ -6,11 +8,11 @@ public class Markers implements AutoCloseable
   public Markers(String text)
   {
     this.text = text;
-    MySystem.markerIn(text);
+    SimpleLogger.markerIn(text);
   }
   @Override
   public void close()
   {
-    MySystem.markerOut(text);
+    SimpleLogger.markerOut(text);
   }
 }

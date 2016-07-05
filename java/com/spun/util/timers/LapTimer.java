@@ -1,8 +1,9 @@
 package com.spun.util.timers;
 
 import java.util.ArrayList;
+
 import com.spun.util.DateDifference;
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
 /**
  * A Utility for timing things. this is NOT multi-thread safe.
@@ -85,7 +86,7 @@ public class LapTimer
   {
     long newTime = getCurrentTime();
     long difference = newTime - lapTime;
-    MySystem.variable("difference", difference);
+    SimpleLogger.variable("difference", difference);
     lapTimes.add(new LapTime(difference, label));
     lapTime = newTime;
     endTime = (end) ? newTime : 0;
@@ -143,11 +144,10 @@ public class LapTimer
   /************************************************************************/
   public String toString()
   {
-    String value = String
-        .format(
-            "com.spun.util.timers.LapTimer[ Label = '%s',\n isPaused = %s ,\n  Lap Times = %s ,\n Total Paused Time = %s ,\n Total Time = %s]",
-            label, isPaused(), getPrintableLapTimesArray(), new DateDifference(pausedTotalTime)
-                .getStandardTimeText(1), getTotalTimeAsDateDifference().getStandardTimeText(1));
+    String value = String.format(
+        "com.spun.util.timers.LapTimer[ Label = '%s',\n isPaused = %s ,\n  Lap Times = %s ,\n Total Paused Time = %s ,\n Total Time = %s]",
+        label, isPaused(), getPrintableLapTimesArray(), new DateDifference(pausedTotalTime).getStandardTimeText(1),
+        getTotalTimeAsDateDifference().getStandardTimeText(1));
     return value;
   }
   /************************************************************************/

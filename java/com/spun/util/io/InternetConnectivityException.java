@@ -4,23 +4,21 @@ import java.net.InetAddress;
 
 import org.apache.commons.net.EchoTCPClient;
 
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convenience functions for Files
  **/
 public class InternetConnectivityException extends Error
 {
-  private String htmlText;
+  private String    htmlText;
   private Throwable cause;
-
   /***********************************************************************/
   public void setCause(Throwable t)
   {
     this.cause = t;
   }
   /***********************************************************************/
-  
   public InternetConnectivityException(String string)
   {
     super(string);
@@ -39,21 +37,18 @@ public class InternetConnectivityException extends Error
   public static InternetConnectivityException testInternetConnectivity()
   {
     String[] sites = {"www.google.com", "www.yahoo.com", "www.msn.com"};
-    
     for (int i = 0; i < sites.length; i++)
     {
       if (pingSite(sites[i])) { return null; }
     }
     return new InternetConnectivityException("There is no internet connection.");
   }
-
   /***********************************************************************/
   public String toString()
   {
     return super.toString() + "\n" + (cause == null ? "" : "Causation:  " + cause.toString());
   }
   /***********************************************************************/
-
   private static boolean pingSite(String site)
   {
     try
@@ -66,12 +61,10 @@ public class InternetConnectivityException extends Error
     }
     catch (Exception e)
     {
-      MySystem.warning(site, e);
+      SimpleLogger.warning(site, e);
       return false;
     }
-
   }
   /***********************************************************************/
   /************************************************************************/
-
 }

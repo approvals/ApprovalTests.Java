@@ -6,8 +6,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import junit.framework.TestCase;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.parser.TemplateError;
@@ -15,23 +13,29 @@ import com.spun.util.servlets.BasicServlet;
 import com.spun.util.servlets.SecondaryErrorProcessor;
 import com.spun.util.servlets.ServletLogWriterFactory;
 
-public class ServletLogFileTest
-  extends TestCase
+import junit.framework.TestCase;
+
+public class ServletLogFileTest extends TestCase
 {
-  
   /***********************************************************************/
   public void testLogFileCreation() throws Exception
   {
     File directory = setupTempLogDirectory();
     File logTemplate = createLogTemplate(directory);
-    String logToFile = directory.getAbsolutePath() + File.separator + "logs" + File.separator + "ErrorThrowingServlet.log";
+    String logToFile = directory.getAbsolutePath() + File.separator + "logs" + File.separator
+        + "ErrorThrowingServlet.log";
     ServletLogWriterFactory.reset();
-    new ErrorThrowingServlet(logTemplate.getAbsolutePath()).doGet(new MockHttpServletRequest(), new MockHttpServletResponse());
-    
+    new ErrorThrowingServlet(logTemplate.getAbsolutePath()).doGet(new MockHttpServletRequest(),
+        new MockHttpServletResponse());
+    verifyLogFile(logToFile);
+    FileUtils.deleteDirectory(directory);
+  }
+  private void verifyLogFile(String logToFile) throws IOException
+  {
     File file = new File(logToFile);
     assertTrue(file.exists());
-    assertTrue(FileUtils.readFile(file).contains("supposed to happen"));
-    FileUtils.deleteDirectory(directory);
+    boolean contains = FileUtils.readFile(file).contains("supposed to happen");
+    assertTrue("File: " + file.getAbsolutePath() + "\nshould have contained 'supposed to happen'", contains);
   }
   public void testTwice() throws Exception
   {
@@ -56,7 +60,6 @@ public class ServletLogFileTest
   public static class ErrorThrowingServlet extends BasicServlet implements SecondaryErrorProcessor
   {
     String errorTemplate = null;
-    
     public ErrorThrowingServlet(String errorTemplate)
     {
       this.errorTemplate = errorTemplate;
@@ -72,9 +75,9 @@ public class ServletLogFileTest
       {
         try
         {
-          processError(t, req,this);
+          processError(t, req, this);
         }
-        catch(Throwable t2)
+        catch (Throwable t2)
         {
           ObjectUtils.throwAsError(t2);
         }
@@ -90,8 +93,13 @@ public class ServletLogFileTest
     {
       throw ObjectUtils.throwAsError(t2);
     }
+    @Override
+    protected String getLogFile()
+    {
+      // TODO Auto-generated method stub
+      return null;
+    }
   }
-  
   /***********************************************************************/
   /***********************************************************************/
 }

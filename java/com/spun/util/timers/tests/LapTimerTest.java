@@ -1,10 +1,10 @@
 package com.spun.util.timers.tests;
 
-import junit.framework.TestCase;
-
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 import com.spun.util.timers.LapTime;
 import com.spun.util.timers.LapTimer;
+
+import junit.framework.TestCase;
 
 public class LapTimerTest extends TestCase
 {
@@ -27,7 +27,7 @@ public class LapTimerTest extends TestCase
     }
     catch (Exception e)
     {
-      MySystem.warning(e);
+      SimpleLogger.warning(e);
       fail(e.getMessage());
     }
   }

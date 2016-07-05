@@ -18,12 +18,14 @@ package com.spun.util.servlets;
  */
 import java.io.IOException;
 import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.spun.util.MySystem;
+
 import com.spun.util.ObjectUtils;
+import com.spun.util.logger.SimpleLogger;
 
 /**
  * The default servlet-invoking servlet for most web applications,
@@ -41,13 +43,11 @@ public final class InvokerServlet extends HttpServlet
   {
     serveRequest(request, response);
   }
-  public void doHead(HttpServletRequest request, HttpServletResponse response) throws IOException,
-      ServletException
+  public void doHead(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
   {
     serveRequest(request, response);
   }
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException,
-      ServletException
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
   {
     serveRequest(request, response);
   }
@@ -57,7 +57,7 @@ public final class InvokerServlet extends HttpServlet
   public void init() throws ServletException
   {
     mask = getServletConfig().getInitParameter("mask");
-    MySystem.variable("Mask", mask);
+    SimpleLogger.variable("Mask", mask);
   }
   /***********************************************************************/
   public void destroy()
@@ -69,8 +69,8 @@ public final class InvokerServlet extends HttpServlet
     super.destroy();
   }
   /***********************************************************************/
-  public void serveRequest(HttpServletRequest request, HttpServletResponse response) throws IOException,
-      ServletException
+  public void serveRequest(HttpServletRequest request, HttpServletResponse response)
+      throws IOException, ServletException
   {
     String pathInfo = request.getPathInfo();
     String servletClass = pathInfo.substring(1);

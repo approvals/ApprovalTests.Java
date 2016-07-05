@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.spun.util.logger.SimpleLogger;
+
 public class WindowUtils
 {
   /***********************************************************************/
@@ -18,7 +20,7 @@ public class WindowUtils
     int dy = (int) w.getHeight();
     int x = (int) ((d.getWidth() - dx) / 2);
     int y = (int) ((d.getHeight() - dy) / 2);
-    MySystem.variable(" size (" + x + "," + y + "," + dx + "," + dy + ")");
+    SimpleLogger.variable(" size (" + x + "," + y + "," + dx + "," + dy + ")");
     window.setBounds(x, y, dx, dy + 1);
   }
   /***********************************************************************/

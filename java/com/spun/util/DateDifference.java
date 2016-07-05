@@ -3,9 +3,26 @@ package com.spun.util;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.spun.util.logger.SimpleLogger;
+
 public class DateDifference
 {
-  public static final String STANDARD_TIME_TEXT[] = {"Year", "Years", "Month", "Months", "Week", "Weeks", "Day", "Days", "Hour", "Hours", "Min", "Mins", "Sec", "Secs", "Milli", "Millis"};
+  public static final String STANDARD_TIME_TEXT[] = {"Year",
+                                                     "Years",
+                                                     "Month",
+                                                     "Months",
+                                                     "Week",
+                                                     "Weeks",
+                                                     "Day",
+                                                     "Days",
+                                                     "Hour",
+                                                     "Hours",
+                                                     "Min",
+                                                     "Mins",
+                                                     "Sec",
+                                                     "Secs",
+                                                     "Milli",
+                                                     "Millis"};
   public static final String MILLISECONDS         = "milliseconds";
   public static final String SECONDS              = "seconds";
   public static final String MINUTES              = "minutes";
@@ -14,10 +31,31 @@ public class DateDifference
   public static final String WEEKS                = "weeks";
   public static final String MONTHS               = "months";
   public static final String YEARS                = "years";
-  public static String       TIME_UNITS[]         = {YEARS, MONTHS, WEEKS, DAYS, HOURS, MINUTES, SECONDS, MILLISECONDS};
+  public static String       TIME_UNITS[]         = {YEARS,
+                                                     MONTHS,
+                                                     WEEKS,
+                                                     DAYS,
+                                                     HOURS,
+                                                     MINUTES,
+                                                     SECONDS,
+                                                     MILLISECONDS};
   // assumes a 30 day month
-  private static int         TIME_SCALE[]         = {Calendar.YEAR, Calendar.MONTH, Calendar.WEEK_OF_YEAR, Calendar.DATE, Calendar.HOUR, Calendar.MINUTE, Calendar.SECOND, Calendar.MILLISECOND};
-  private static long        DIVIDERS[]           = {1000 * 60 * 60 * 24 * 365L, 1000 * 60 * 60 * 24 * 30L, 1000 * 60 * 60 * 24 * 7L, 1000 * 60 * 60 * 24L, 1000 * 60 * 60L, 1000 * 60L, 1000L, 1L};
+  private static int         TIME_SCALE[]         = {Calendar.YEAR,
+                                                     Calendar.MONTH,
+                                                     Calendar.WEEK_OF_YEAR,
+                                                     Calendar.DATE,
+                                                     Calendar.HOUR,
+                                                     Calendar.MINUTE,
+                                                     Calendar.SECOND,
+                                                     Calendar.MILLISECOND};
+  private static long        DIVIDERS[]           = {1000 * 60 * 60 * 24 * 365L,
+                                                     1000 * 60 * 60 * 24 * 30L,
+                                                     1000 * 60 * 60 * 24 * 7L,
+                                                     1000 * 60 * 60 * 24L,
+                                                     1000 * 60 * 60L,
+                                                     1000 * 60L,
+                                                     1000L,
+                                                     1L};
   /************************************************************************/
   private long               milli;
   /************************************************************************/
@@ -41,10 +79,10 @@ public class DateDifference
    **/
   public static void printDividers()
   {
-    MySystem.variable("max long = " + Long.MAX_VALUE);
+    SimpleLogger.variable("max long = " + Long.MAX_VALUE);
     for (int i = 0; i < DIVIDERS.length; i++)
     {
-      MySystem.variable("" + DIVIDERS[i]);
+      SimpleLogger.variable("" + DIVIDERS[i]);
     }
   }
   /************************************************************************/
@@ -67,12 +105,12 @@ public class DateDifference
   /************************************************************************/
   public long getRoundedDifference(String unit)
   {
-    return getRoundedDifference(convertUnitString(unit),this.milli);
+    return getRoundedDifference(convertUnitString(unit), this.milli);
   }
   /************************************************************************/
   public long getRoundedDifference(int unit)
   {
-    return getRoundedDifference(unit,this.milli);
+    return getRoundedDifference(unit, this.milli);
   }
   /************************************************************************/
   public static long getAbsoluteDifference(int unit, long time)
@@ -83,7 +121,7 @@ public class DateDifference
   /************************************************************************/
   public static long getRoundedDifference(int unit, long time)
   {
-    return Math.round(((double)time) / DIVIDERS[getTimeScaleIndex(unit)]);
+    return Math.round(((double) time) / DIVIDERS[getTimeScaleIndex(unit)]);
   }
   /************************************************************************/
   /**
@@ -103,7 +141,8 @@ public class DateDifference
   {
     int wantedIndex = getTimeScaleIndex(wantedUnit);
     int roundToIndex = getTimeScaleIndex(roundTo);
-    if (wantedIndex < roundToIndex) { throw new Error("Can't round with a smaller Unit.[" + TIME_UNITS[wantedIndex] + ", " + TIME_UNITS[roundToIndex] + "]"); }
+    if (wantedIndex < roundToIndex) { throw new Error(
+        "Can't round with a smaller Unit.[" + TIME_UNITS[wantedIndex] + ", " + TIME_UNITS[roundToIndex] + "]"); }
     //roundedDifference = (millis % (roundTo in millis)) / (unit in millis)
     return (time % DIVIDERS[roundToIndex]) / DIVIDERS[wantedIndex];
   }
@@ -208,7 +247,8 @@ public class DateDifference
   /***********************************************************************/
   public String getStandardTimeText(int amount, String maxUnit, String minUnit, String nowText, String agoText)
   {
-    return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText, STANDARD_TIME_TEXT);
+    return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText,
+        STANDARD_TIME_TEXT);
   }
   /***********************************************************************/
   public String getTimeText(int amount, int maxUnit, int minUnit, String nowText, String agoText, String units[])

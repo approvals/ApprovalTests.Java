@@ -1,7 +1,5 @@
 package org.approvaltests.tests;
 
-
-
 import com.spun.util.io.NetUtils;
 import com.spun.util.persistence.ExecutableQuery;
 
@@ -23,7 +21,7 @@ public class WeatherLoader implements ExecutableQuery
   /* (non-Javadoc)
    * @see org.approvaltests.tests.ExecutableQuery#executeQuery(java.lang.String)
    */
-  public String executeQuery(String query) throws Exception
+  public String executeQuery(String query)
   {
     String url = "HTTP://api.wunderground.com/weatherstation/WXCurrentObXML.asp";
     String html = NetUtils.loadWebPage(url, query);

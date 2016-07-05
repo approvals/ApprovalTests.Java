@@ -1,14 +1,14 @@
 package com.spun.util;
 
-import static org.mockito.Mockito.times;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+
+import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convence functions for database access
@@ -16,13 +16,13 @@ import java.util.TimeZone;
 public class DateUtils
 {
   private static int TIME_SCALE[] = {Calendar.YEAR,
-      Calendar.MONTH,
-      Calendar.DATE,
-      Calendar.HOUR_OF_DAY,
-      Calendar.HOUR,
-      Calendar.MINUTE,
-      Calendar.SECOND,
-      Calendar.MILLISECOND        };
+                                     Calendar.MONTH,
+                                     Calendar.DATE,
+                                     Calendar.HOUR_OF_DAY,
+                                     Calendar.HOUR,
+                                     Calendar.MINUTE,
+                                     Calendar.SECOND,
+                                     Calendar.MILLISECOND};
   /************************************************************************/
   /**
    *
@@ -209,13 +209,13 @@ public class DateUtils
   /************************************************************************/
   public static void main(String args[])
   {
-    MySystem.variable("Calendar.DATE = " + Calendar.DATE);
-    MySystem.variable("Year", setSignificantDigit(new GregorianCalendar(), Calendar.YEAR).getTime());
-    MySystem.variable("Month", setSignificantDigit(new GregorianCalendar(), Calendar.MONTH).getTime());
-    MySystem.variable("Day", setSignificantDigit(new GregorianCalendar(), Calendar.DAY_OF_MONTH).getTime());
-    MySystem.variable("Hour", setSignificantDigit(new GregorianCalendar(), Calendar.HOUR).getTime());
-    MySystem.variable("Minute", setSignificantDigit(new GregorianCalendar(), Calendar.MINUTE).getTime());
-    MySystem.variable("End Of Day", rollToEndOfDay(new Date()).getTime());
+    SimpleLogger.variable("Calendar.DATE = " + Calendar.DATE);
+    SimpleLogger.variable("Year", setSignificantDigit(new GregorianCalendar(), Calendar.YEAR).getTime());
+    SimpleLogger.variable("Month", setSignificantDigit(new GregorianCalendar(), Calendar.MONTH).getTime());
+    SimpleLogger.variable("Day", setSignificantDigit(new GregorianCalendar(), Calendar.DAY_OF_MONTH).getTime());
+    SimpleLogger.variable("Hour", setSignificantDigit(new GregorianCalendar(), Calendar.HOUR).getTime());
+    SimpleLogger.variable("Minute", setSignificantDigit(new GregorianCalendar(), Calendar.MINUTE).getTime());
+    SimpleLogger.variable("End Of Day", rollToEndOfDay(new Date()).getTime());
   }
   /************************************************************************/
   public static GregorianCalendar rollToEndOfDay(Date date)
@@ -249,7 +249,7 @@ public class DateUtils
   public static Timestamp getLastOrCurrent(int dayOfWeek)
   {
     return getDayOfWeek(dayOfWeek, false);
-    }
+  }
   /************************************************************************/
   public static Timestamp getNextOrCurrent(int dayOfWeek)
   {
@@ -258,13 +258,13 @@ public class DateUtils
   /************************************************************************/
   private static Timestamp getDayOfWeek(int dayOfWeek, boolean foward) throws Error
   {
-    int multiplier = foward  ? -1 : 1 ;
+    int multiplier = foward ? -1 : 1;
     for (int i = 0; i < 7; i++)
     {
       Timestamp day = getStartOfXDaysAgo(i * multiplier);
       if (asCalendar(day).get(Calendar.DAY_OF_WEEK) == dayOfWeek) { return day; }
     }
-    throw new Error(String.format("didn't find a %s in the %s 7 days", dayOfWeek, foward ? "next":"last"));
+    throw new Error(String.format("didn't find a %s in the %s 7 days", dayOfWeek, foward ? "next" : "last"));
   }
   /************************************************************************/
   /**
@@ -284,8 +284,8 @@ public class DateUtils
   }
   /************************************************************************/
   /************************************************************************/
-  
-  public static boolean doesDaylightSavingsTimeStartOn(String date) {
+  public static boolean doesDaylightSavingsTimeStartOn(String date)
+  {
     Timestamp day = parse(date);
     TimeZone timeZone = GregorianCalendar.getInstance().getTimeZone();
     boolean inDaylightTime = timeZone.inDaylightTime(day);

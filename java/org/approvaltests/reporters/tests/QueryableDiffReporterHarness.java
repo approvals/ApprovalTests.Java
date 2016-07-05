@@ -17,13 +17,13 @@ public class QueryableDiffReporterHarness implements ExecutableQuery
     this.file2 = file2;
   }
   @Override
-  public String getQuery() throws Exception
+  public String getQuery()
   {
     String[] commandLine = reporter.getCommandLine("%s", "%s");
     return StringUtils.join(" ", commandLine);
   }
   @Override
-  public String executeQuery(String query) throws Exception
+  public String executeQuery(String query)
   {
     query = String.format(query, file1, file2);
     try

@@ -1,9 +1,8 @@
 package com.spun.util.tests;
 
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
-public final class TimeOut
-  implements Runnable
+public final class TimeOut implements Runnable
 {
   private long time;
   /***********************************************************************/
@@ -13,16 +12,16 @@ public final class TimeOut
     new Thread(this).start();
   }
   /***********************************************************************/
-  public void run()  
+  public void run()
   {
-    MySystem.event("launched");
+    SimpleLogger.event("launched");
     try
     {
       Thread.sleep(time);
     }
     catch (InterruptedException e)
     {
-      MySystem.warning(e);
+      SimpleLogger.warning(e);
     }
     System.exit(0);
   }

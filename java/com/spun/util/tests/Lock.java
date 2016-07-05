@@ -1,27 +1,24 @@
 package com.spun.util.tests;
 
-import com.spun.util.MySystem;
+import com.spun.util.logger.SimpleLogger;
 
 public class Lock
-
 {
   /***********************************************************************/
   public Lock()
   {
     try
     {
-      while(true) 
+      while (true)
       {
-        Thread.sleep(100000); 
+        Thread.sleep(100000);
       }
     }
     catch (InterruptedException e)
     {
-      MySystem.warning(e);
-    }  
+      SimpleLogger.warning(e);
+    }
   }
-
   /***********************************************************************/
-
   /***********************************************************************/
 }

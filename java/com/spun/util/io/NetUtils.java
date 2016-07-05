@@ -6,13 +6,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 
-import com.spun.util.MySystem;
+import com.spun.util.ObjectUtils;
+import com.spun.util.logger.SimpleLogger;
 import com.sshtools.j2ssh.SftpClient;
 import com.sshtools.j2ssh.SshClient;
 import com.sshtools.j2ssh.authentication.PasswordAuthenticationClient;
@@ -83,17 +83,17 @@ public class NetUtils
     if (FTPReply.isPositiveCompletion(code))
     {
       //good
-      MySystem.variable("Good Completion code " + code);
+      SimpleLogger.variable("Good Completion code " + code);
     }
     else if (FTPReply.isPositiveIntermediate(code))
     {
       // do nothing
-      MySystem.variable("Good Intermediate code " + code);
+      SimpleLogger.variable("Good Intermediate code " + code);
     }
     else if (FTPReply.isPositivePreliminary(code))
     {
       // do nothing
-      MySystem.variable("Good Preliminary code " + code);
+      SimpleLogger.variable("Good Preliminary code " + code);
     }
     else
     {
@@ -104,13 +104,20 @@ public class NetUtils
   }
   /***********************************************************************/
   /************************************************************************/
-  public static String loadWebPage(String url, String parameters) throws IOException, HttpException
+  public static String loadWebPage(String url, String parameters)
   {
-    HttpClient client = new HttpClient();
-    GetMethod method = new GetMethod(url);
-    method.setQueryString(parameters);
-    client.executeMethod(method);
-    String html = method.getResponseBodyAsString();
-    return html;
+    try
+    {
+      HttpClient client = new HttpClient();
+      GetMethod method = new GetMethod(url);
+      method.setQueryString(parameters);
+      client.executeMethod(method);
+      String html = method.getResponseBodyAsString();
+      return html;
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
 }

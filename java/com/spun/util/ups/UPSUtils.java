@@ -9,9 +9,11 @@ package com.spun.util.ups;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -20,8 +22,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import com.spun.util.MySystem;
+
 import com.spun.util.NumberUtils;
+import com.spun.util.logger.SimpleLogger;
 import com.spun.util.parser.MassAmount;
 import com.spun.util.velocity.ContextAware;
 import com.spun.util.velocity.VelocityParser;
@@ -44,22 +47,22 @@ public class UPSUtils
     UPSUtils.quoteRetriever = quoteRetriever;
   }
   /***********************************************************************/
-  public static UPSQuote[] getQuote(UPSConfig config, UPSPackage package1) throws SAXException, IOException, ParserConfigurationException,
-      FactoryConfigurationError
+  public static UPSQuote[] getQuote(UPSConfig config, UPSPackage package1)
+      throws SAXException, IOException, ParserConfigurationException, FactoryConfigurationError
   {
     return getQuote(config, new UPSPackage[]{package1});
   }
   /***********************************************************************/
-  public static UPSQuote[] getQuote(UPSConfig config, UPSPackage packages[]) throws SAXException, ParserConfigurationException,
-      FactoryConfigurationError, HttpException, IOException
+  public static UPSQuote[] getQuote(UPSConfig config, UPSPackage packages[])
+      throws SAXException, ParserConfigurationException, FactoryConfigurationError, HttpException, IOException
   {
     packages = createAcceptablePackages(packages);
     String reqbody = constructRequestBody(config, packages);
     return getQuote(config, reqbody);
   }
   /***********************************************************************/
-  public static UPSQuote[] getQuote(UPSConfig config, String reqbody) throws SAXException, ParserConfigurationException,
-      FactoryConfigurationError, HttpException, IOException
+  public static UPSQuote[] getQuote(UPSConfig config, String reqbody)
+      throws SAXException, ParserConfigurationException, FactoryConfigurationError, HttpException, IOException
   {
     HttpClient client = new HttpClient();
     PostMethod post = new PostMethod(UPS_URL);
@@ -77,29 +80,32 @@ public class UPSUtils
       UPSPackage pack = packages[i];
       if (pack.getPackageWeightInPounds() < 1)
       {
-        pack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(), pack.getToCountryCode(), 1, MassAmount.POUNDS, pack
-            .getPackageLength(), pack.getPackageWidth(), pack.getPackageHeight(), pack.isResidential());
+        pack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(), pack.getToCountryCode(), 1,
+            MassAmount.POUNDS, pack.getPackageLength(), pack.getPackageWidth(), pack.getPackageHeight(),
+            pack.isResidential());
       }
       if (pack.getPackageWeightInPounds() > 150)
       {
         double weight = pack.getPackageWeightInPounds();
         while (weight > 150)
         {
-          UPSPackage newPack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(), pack.getToCountryCode(), 150, MassAmount.POUNDS,
-              pack.getPackageLength(), pack.getPackageWidth(), pack.getPackageHeight(), pack.isResidential());
+          UPSPackage newPack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(),
+              pack.getToCountryCode(), 150, MassAmount.POUNDS, pack.getPackageLength(), pack.getPackageWidth(),
+              pack.getPackageHeight(), pack.isResidential());
           list.add(newPack);
           weight -= 150;
         }
-        pack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(), pack.getToCountryCode(), weight, MassAmount.POUNDS, pack
-            .getPackageLength(), pack.getPackageWidth(), pack.getPackageHeight(), pack.isResidential());
+        pack = new UPSPackage(pack.getOriginatingZipCode(), pack.getToZipCode(), pack.getToCountryCode(), weight,
+            MassAmount.POUNDS, pack.getPackageLength(), pack.getPackageWidth(), pack.getPackageHeight(),
+            pack.isResidential());
       }
       list.add(pack);
     }
     return UPSPackage.toArray(list);
   }
   /***********************************************************************/
-  private static UPSQuote[] extractQuotes(InputStream response) throws SAXException, IOException, ParserConfigurationException,
-      FactoryConfigurationError
+  private static UPSQuote[] extractQuotes(InputStream response)
+      throws SAXException, IOException, ParserConfigurationException, FactoryConfigurationError
   {
     Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(response);
     ArrayList<UPSQuote> quotes = new ArrayList<UPSQuote>();
@@ -110,7 +116,7 @@ public class UPSUtils
     }
     if (quotes.size() == 0)
     {
-      MySystem.warning("Couldn't find quote in response " + getDocument(document));
+      SimpleLogger.warning("Couldn't find quote in response " + getDocument(document));
     }
     return UPSQuote.toArray(quotes);
   }
@@ -153,8 +159,8 @@ public class UPSUtils
   /***********************************************************************/
   public static void main(String[] args)
   {
-    MySystem.variable(HEADER);
-    MySystem.variable(REQUEST);
+    SimpleLogger.variable(HEADER);
+    SimpleLogger.variable(REQUEST);
   }
   /***********************************************************************/
   public static class UPSRequest implements ContextAware

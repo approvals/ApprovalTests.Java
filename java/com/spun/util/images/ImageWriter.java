@@ -9,9 +9,9 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import Acme.JPM.Encoders.GifEncoder;
+import com.spun.util.logger.SimpleLogger;
 
-import com.spun.util.MySystem;
+import Acme.JPM.Encoders.GifEncoder;
 
 /**
  * An Interface for graphic objects
@@ -19,7 +19,7 @@ import com.spun.util.MySystem;
 public class ImageWriter
 {
   public enum Encoding {
-    JPEG, GIF
+                        JPEG, GIF
   }
   private OutputStream  out   = null;
   private ImageObject   image = null;
@@ -39,7 +39,8 @@ public class ImageWriter
   }
   public static BufferedImage toBufferedImage(Image image)
   {
-    BufferedImage bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
+    BufferedImage bimage = new BufferedImage(image.getWidth(null), image.getHeight(null),
+        BufferedImage.TYPE_INT_RGB);
     Graphics g = bimage.createGraphics();
     g.drawImage(image, 0, 0, null);
     g.dispose();
@@ -62,7 +63,7 @@ public class ImageWriter
     }
     catch (IOException e)
     {
-      MySystem.warning(e);
+      SimpleLogger.warning(e);
     }
   }
   /***********************************************************************/
@@ -74,7 +75,7 @@ public class ImageWriter
   /***********************************************************************/
   private void encodeGIF() throws IOException
   {
-    MySystem.variable("making GIF");
+    SimpleLogger.variable("making GIF");
     BufferedImage bi = image.render();
     GifEncoder encoder = new GifEncoder(bi, out, true);
     encoder.encode();

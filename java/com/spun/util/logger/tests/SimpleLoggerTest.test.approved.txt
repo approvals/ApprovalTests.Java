@@ -1,0 +1,18 @@
+=> SimpleLoggerTest.test() - IN
+   => SimpleLoggerTest.test() - IN
+      Event: Starting Logging
+      Variable: name = 'llewellyn'
+      Sql: Select * from people
+      .........1.........2.........3.........4..
+      Variable: Numbers.length = 5
+      Numbers[0] = 1
+      Numbers[1] = 2
+      Numbers[2] = 3
+      Numbers[3] = 4
+      Numbers[4] = 5
+******************************************************************************************
+      
+java.lang.Error -  null
+******************************************************************************************
+   <= SimpleLoggerTest.test() - OUT
+<= SimpleLoggerTest.test() - OUT

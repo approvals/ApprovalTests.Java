@@ -23,7 +23,7 @@ public class DatabaseLifecycleTest extends TestCase
    * public void ptestLifeCycle() throws Exception { Connection con = null;
    * DatabaseConfiguration config = null; FILE =
    * FileUtils.createTempDirectory().getAbsolutePath() + File.separator +
-   * "database.bak"; try { MySystem.toggleAll(true); //Create Database config =
+   * "database.bak"; try { SimpleLogger.toggleAll(true); //Create Database config =
    * Config.DATABASE_CONFIGURATION; DatabaseInfo info = createDatabase(config,
    * DATABASE1, true); // Backup and Destroy Database con =
    * config.makeConnection(); Statement stmt = con.createStatement();
@@ -34,7 +34,7 @@ public class DatabaseLifecycleTest extends TestCase
    * DATABASE2, Config.DATABASE_CONFIGURATION, FILE); stmt.close(); con.close();
    * assertDataIntegrity(config, DATABASE2, info); } finally { try {
    * tearDown(config); } catch (SQLException e) {
-   * MySystem.warning("Failed in tearDown", e); } } } /
+   * SimpleLogger.warning("Failed in tearDown", e); } } } /
    ***********************************************************************/
   private void tearDown(DatabaseConfiguration config) throws SQLException
   {

@@ -4,8 +4,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.spun.util.MySystem;
 import com.spun.util.NumberUtils;
+import com.spun.util.logger.SimpleLogger;
 
 public class StageServletUtils
 {
@@ -52,7 +52,7 @@ public class StageServletUtils
     }
     catch (Throwable t2)
     {
-      MySystem.warning(t2);
+      SimpleLogger.warning(t2);
     }
     garbageCollect();
   }

@@ -2,7 +2,7 @@ package com.spun.util.database;
 
 import java.sql.SQLException;
 
-public class SQLInformationException extends SQLException
+public class SQLInformationException extends RuntimeException
 {
   private static class SQL_SERVER_CODES
   {
@@ -28,14 +28,11 @@ public class SQLInformationException extends SQLException
     return query;
   }
   /***********************************************************************/
-   public String getMessage()
+  public String getMessage()
   {
-     return "The SQL :'" + query + "'\n" + 
-            "caused the exception :'" + exception.getMessage() + "'\n" +
-            "Vendor code :'" + exception.getErrorCode() + "'\n" +
-            "SQL state :'" + exception.getSQLState() + "'\n" ;
+    return "The SQL :'" + query + "'\n" + "caused the exception :'" + exception.getMessage() + "'\n"
+        + "Vendor code :'" + exception.getErrorCode() + "'\n" + "SQL state :'" + exception.getSQLState() + "'\n";
   }
-  
   /***********************************************************************/
   /***********************************************************************/
 }

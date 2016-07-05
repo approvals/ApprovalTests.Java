@@ -53,19 +53,19 @@ public class Approvals
       return new StackTraceNamer();
     }
   };
-  public static void verify(String response) throws Exception
+  public static void verify(String response)
   {
     verify(new ApprovalTextWriter(response, "txt"));
   }
-  public static void verify(Object o) throws Exception
+  public static void verify(Object o)
   {
     verify("" + o);
   }
-  public static <T> void verifyAll(String label, T[] array) throws Exception
+  public static <T> void verifyAll(String label, T[] array)
   {
     verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
   }
-  public static <T> void verifyAll(String header, String label, T[] array) throws Exception
+  public static <T> void verifyAll(String header, String label, T[] array)
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
@@ -87,22 +87,22 @@ public class Approvals
   {
     return StringUtils.isEmpty(header) ? "" : header + "\n\n\n";
   }
-  public static <T> void verifyAll(String label, Iterable<T> array) throws Exception
+  public static <T> void verifyAll(String label, Iterable<T> array)
   {
     verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
   }
-  public static <T> void verifyAll(String header, String label, Iterable<T> array) throws Exception
+  public static <T> void verifyAll(String header, String label, Iterable<T> array)
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
-  public static void verify(Component c) throws Exception
+  public static void verify(Component c)
   {
     try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
     {
       verify(new ComponentApprovalWriter(c));
     }
   }
-  public static void verifyHtml(String response) throws Exception
+  public static void verifyHtml(String response)
   {
     verify(new ApprovalTextWriter(response, "html"));
   }
@@ -126,7 +126,7 @@ public class Approvals
   {
     verify(writter, createApprovalNamer(), getReporter());
   }
-  public static void verifyXml(String xml) throws Exception
+  public static void verifyXml(String xml)
   {
     verify(new ApprovalXmlWriter(xml));
   }
@@ -149,16 +149,16 @@ public class Approvals
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static void verify(ExecutableQuery query) throws Exception
+  public static void verify(ExecutableQuery query)
   {
     verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
         new ExecutableQueryFailure(query));
   }
-  public static void verify(Map<?, ?> map) throws Exception
+  public static void verify(Map<?, ?> map)
   {
     verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"));
   }
-  public static void verify(RackResponse response) throws Exception
+  public static void verify(RackResponse response)
   {
     if (isImage(response))
     {
@@ -170,11 +170,11 @@ public class Approvals
       verifyHtml(response.getResponse().toString());
     }
   }
-  public static void verify(ResultSet rs) throws Exception
+  public static void verify(ResultSet rs)
   {
     verify(new ResultSetApprovalWriter(rs));
   }
-  public static void verify(SqlLoader<?> loader) throws Exception
+  public static void verify(SqlLoader<?> loader)
   {
     verify(new SqlLoader.ExecutableWrapper(loader));
   }
@@ -238,11 +238,11 @@ public class Approvals
       }
     }).toString();
   }
-  public static void verifyJson(String json) throws Exception
+  public static void verifyJson(String json)
   {
     verify(JsonUtils.prettyPrint(json), "json");
   }
-  public static void verify(Object actual, String fileExtensionWithoutDot) throws Exception
+  public static void verify(Object actual, String fileExtensionWithoutDot)
   {
     verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot));
   }
