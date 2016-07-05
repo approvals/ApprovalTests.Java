@@ -370,4 +370,8 @@ public class SimpleLogger
   {
     logTo = writer;
   }
+  public static Appendable getLogTo()
+  {
+    return logTo;
+  }
 }

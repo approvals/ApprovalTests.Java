@@ -186,6 +186,7 @@ public abstract class BasicServlet extends HttpServlet
   }
   public String processError(Throwable t, HttpServletRequest req, SecondaryErrorProcessor secondardErrorProcessor)
   {
+    Appendable logTo = SimpleLogger.getLogTo();
     try
     {
       PrintWriter writer = (PrintWriter) ServletLogWriterFactory.getWriter(this);
@@ -199,6 +200,10 @@ public abstract class BasicServlet extends HttpServlet
     catch (Throwable t2)
     {
       return secondardErrorProcessor.processError(error, t2);
+    }
+    finally
+    {
+      SimpleLogger.logTo(logTo);
     }
   }
   /***********************************************************************/

@@ -48,7 +48,6 @@ public class ServletLogWriterFactory
         ? name.substring(name.lastIndexOf(".") + 1)
         : name.substring(name.lastIndexOf("$") + 1);
     String logName = TOMCAT_LOGS_PATH + File.separator + shortName + ".log";
-    SimpleLogger.variable("Log", logName);
     File file = new File(logName);
     file.getParentFile().mkdirs();
     BufferedWriter writer = new BufferedWriter(new FileWriter(file));
