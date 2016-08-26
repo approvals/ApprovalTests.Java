@@ -57,6 +57,10 @@
 		<property file="properties/html_locker.properties" />
 		<antcall target="buildJarFile" />
 	</target>
+	<target name="Publish    CounterDisplay">
+		<property file="properties/counter_display.properties" />
+		<antcall target="buildJarFile" />
+	</target>
 
 </project>
 

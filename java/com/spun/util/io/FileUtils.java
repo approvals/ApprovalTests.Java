@@ -249,7 +249,8 @@ public class FileUtils
         }
       }
       catch (IOException e)
-      {}
+      {
+      }
     }
     return file;
   }
@@ -340,6 +341,17 @@ public class FileUtils
     if (!dir.exists())
     {
       dir.mkdirs();
+    }
+  }
+  public static String readFile(File file, String defaultText)
+  {
+    try
+    {
+      return readFile(file);
+    }
+    catch (IOException e)
+    {
+      return defaultText;
     }
   }
 }
