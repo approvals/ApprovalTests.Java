@@ -1,13 +1,13 @@
 package com.spun.util;
 
-import org.lambda.functions.Function1;
-
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.lambda.functions.Function1;
 
 public class ClassUtils
 {
@@ -84,26 +84,29 @@ public class ClassUtils
   }
   public static File getSourceDirectory(Class<?> clazz)
   {
-    return getSourceDirectory(clazz, new Function1<String, String>() {
-      public String call(String fileName) {
+    return getSourceDirectory(clazz, new Function1<String, String>()
+    {
+      public String call(String fileName)
+      {
         return fileName + ".java";
       }
     });
   }
-
   public static File getSourceDirectory(Class<?> clazz, Function1<String, String> createLastFileName)
   {
     final String name = clazz.getName();
     String[] split = name.split("\\.");
-    split[split.length - 1] = createLastFileName.call( split[split.length - 1] );
+    split[split.length - 1] = createLastFileName.call(split[split.length - 1]);
     File found = find(new File("."), Arrays.asList(split));
     if (found == null) { throw new FormattedException("Didn't find %s under %s", name, new File(".")); }
     return found.getParentFile();
   }
-
-  public static File getSourceDirectory(Class<?> clazz, final String fileName) {
-    return getSourceDirectory(clazz, new Function1<String, String>() {
-      public String call(String _) {
+  public static File getSourceDirectory(Class<?> clazz, final String fileName)
+  {
+    return getSourceDirectory(clazz, new Function1<String, String>()
+    {
+      public String call(String __)
+      {
         return fileName;
       }
     });
@@ -146,10 +149,11 @@ public class ClassUtils
   }
   public static boolean IsPublicStatic(Field field)
   {
-      return field != null && Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers());
+    return field != null && Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers());
   }
   public static boolean isPrimitiveField(Field field)
   {
-    return field != null && (field.getType().isArray() || field.getType().isPrimitive() || field.getType().isAssignableFrom(String.class));
+    return field != null && (field.getType().isArray() || field.getType().isPrimitive()
+        || field.getType().isAssignableFrom(String.class));
   }
 }

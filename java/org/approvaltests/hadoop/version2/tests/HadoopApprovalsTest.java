@@ -3,8 +3,6 @@ package org.approvaltests.hadoop.version2.tests;
 import java.io.IOException;
 import java.util.Iterator;
 
-import junit.framework.TestCase;
-
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.MapReduceBase;
@@ -21,6 +19,8 @@ import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 
 import com.spun.util.ArrayUtils;
+
+import junit.framework.TestCase;
 
 @UseReporter({DiffReporter.class})
 public class HadoopApprovalsTest extends TestCase
@@ -60,11 +60,9 @@ public class HadoopApprovalsTest extends TestCase
       context.collect(token, new LongWritable(n));
     }
   }
-  private static class WordCountMap extends MapReduceBase
-      implements
-        Mapper<LongWritable, Text, Text, LongWritable>
+  private static class WordCountMap extends MapReduceBase implements Mapper<LongWritable, Text, Text, LongWritable>
   {
-    public void map(LongWritable _, Text text, OutputCollector<Text, LongWritable> context, Reporter reporter)
+    public void map(LongWritable __, Text text, OutputCollector<Text, LongWritable> context, Reporter reporter)
         throws IOException
     {
       for (String token : text.toString().split("\\s+"))
