@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +37,11 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     this.arguments = argumentsFormat;
     this.diffProgramNotFoundMessage = diffProgramNotFoundMessage;
     validExtensions = validFileExtensions;
+  }
+  public GenericDiffReporter(DiffInfo info)
+  {
+    this(info.diffProgram, info.parameters,
+        MessageFormat.format("Unable to find program at {0}", info.diffProgram), info.fileExtensions);
   }
   @Override
   public void report(String received, String approved) throws Exception
