@@ -13,4 +13,8 @@ public class DiffInfo
     this.parameters = parameters;
     this.fileExtensions = fileExtensions;
   }
+  public DiffInfo(String diffProgram, List<String> fileExtensions)
+  {
+    this(diffProgram, GenericDiffReporter.STANDARD_ARGUMENTS, fileExtensions);
+  }
 }
