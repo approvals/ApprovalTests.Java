@@ -26,4 +26,14 @@ public class DiffPrograms
         TEXT_AND_IMAGE);
     public static DiffInfo TK_DIFF        = new DiffInfo("/Applications/TkDiff.app/Contents/MacOS/tkdiff", TEXT);
   }
+  public static class Windows
+  {
+    public static DiffInfo BEYOND_COMPARE_3    = new DiffInfo("C:\\Program Files\\Beyond Compare 3\\BCompare.exe",
+        TEXT_AND_IMAGE);
+    public static DiffInfo TORTOISE_IMAGE_DIFF = new DiffInfo(
+        "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseIDiff.exe", "/left:%s /right:%s", IMAGE);
+    public static DiffInfo TORTOISE_TEXT_DIFF  = new DiffInfo(
+        "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseMerge.exe", TEXT);
+    public static DiffInfo WIN_MERGE_REPORTER  = new DiffInfo("C:\\Program Files\\WinMerge\\WinMergeU.exe", TEXT);
+  }
 }
