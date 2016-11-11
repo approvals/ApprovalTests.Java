@@ -39,7 +39,7 @@ If you prefer auditory learning, you might enjoy the following podcast (Note: So
 
 Download 
 ---
-You can download the ApprovalTests jar at: [http://sourceforge.net/projects/approvaltests/files/ApprovalTests.Java/]
+You can find the latest ApprovalTests release under https://github.com/approvals/ApprovalTests.Java/releases.
 
 
 Examples
