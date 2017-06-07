@@ -79,7 +79,6 @@ public class ThreadLauncher implements Runnable
     }
   }
   /***********************************************************************/
-  /***********************************************************************/
   public static void launch(Action0 action)
   {
     new LambdaThreadLauncher(action);

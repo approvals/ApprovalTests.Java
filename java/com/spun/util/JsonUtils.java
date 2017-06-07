@@ -24,4 +24,9 @@ public class JsonUtils
       return String.format("Error:%s\nJson:\n%s", e.getMessage(), json);
     }
   }
+  public static String asJson(Object o)
+  {
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    return gson.toJson(o);
+  }
 }

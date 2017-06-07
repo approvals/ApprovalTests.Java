@@ -250,4 +250,8 @@ public class Approvals
   {
     return ReporterFactory.get();
   }
+  public static void verifyAsJson(Object o)
+  {
+    verify(JsonUtils.asJson(o), "json");
+  }
 }

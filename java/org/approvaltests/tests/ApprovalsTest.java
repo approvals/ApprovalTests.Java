@@ -16,4 +16,8 @@ public class ApprovalsTest extends TestCase
   {
     Approvals.verify(new Rectangle(5, 10, 100, 200));
   }
+  public void testAsJson() throws Exception
+  {
+    Approvals.verifyAsJson(new Rectangle(5, 10, 100, 200));
+  }
 }

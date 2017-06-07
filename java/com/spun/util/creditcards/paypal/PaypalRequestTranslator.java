@@ -31,7 +31,7 @@ public class PaypalRequestTranslator
   private String formatZipCode(String zip)
   {
     if (zip == null) { return null; }
-    if (zip.length() > 9)
+    if (9 < zip.length())
     {
       zip = zip.substring(0, 9);
     }
@@ -40,7 +40,7 @@ public class PaypalRequestTranslator
   private String formatAddress(String street)
   {
     if (street == null) { return null; }
-    if (street.length() > 30)
+    if (30 < street.length())
     {
       street = street.substring(0, 30);
     }
