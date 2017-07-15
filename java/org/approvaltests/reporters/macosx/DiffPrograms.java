@@ -34,7 +34,7 @@ public class DiffPrograms
         "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseIDiff.exe", "/left:%s /right:%s", IMAGE);
     public static DiffInfo TORTOISE_TEXT_DIFF  = new DiffInfo(
         "C:\\Program Files\\TortoiseSVN\\bin\\TortoiseMerge.exe", TEXT);
-    public static DiffInfo WIN_MERGE_REPORTER  = new DiffInfo("C:\\Program Files\\WinMerge\\WinMergeU.exe", TEXT);
+    public static DiffInfo WIN_MERGE_REPORTER  = new DiffInfo("{ProgramFiles}WinMerge\\WinMergeU.exe", TEXT);
     // From .Net
     //        public static DiffInfo BEYOND_COMPARE_3 = new DiffInfo("{ProgramFiles}Beyond Compare 3\\BCompare.exe",
     //            TEXT_AND_IMAGE);
