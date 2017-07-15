@@ -38,7 +38,7 @@ public class DiffInfo
     String fullPath = path;
     for (String p : paths)
     {
-      fullPath = p + File.pathSeparatorChar + path;
+      fullPath = p + File.separatorChar + path;
       if (new File(fullPath).exists())
       {
         break;
