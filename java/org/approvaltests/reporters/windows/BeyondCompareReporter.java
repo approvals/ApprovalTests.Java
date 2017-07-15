@@ -1,13 +1,12 @@
 package org.approvaltests.reporters.windows;
 
-import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.macosx.DiffPrograms.Windows;
+import org.approvaltests.reporters.FirstWorkingReporter;
 
-public class BeyondCompareReporter extends GenericDiffReporter
+public class BeyondCompareReporter extends FirstWorkingReporter
 {
   public static final BeyondCompareReporter INSTANCE = new BeyondCompareReporter();
   public BeyondCompareReporter()
   {
-    super(Windows.BEYOND_COMPARE_3);
+    super(BeyondCompare4Reporter.INSTANCE, BeyondCompare3Reporter.INSTANCE);
   }
 }
