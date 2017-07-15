@@ -27,15 +27,15 @@ public class DiffInfo
   private static String getPathInProgramFilesX86(String path)
   {
     String[] paths = getProgramFilesPaths();
-    return getFirstWorking(path, paths);
+    return getFirstWorking(path, paths, "C:\\Program Files\\");
   }
   public DiffInfo(String diffProgram, List<String> fileExtensions)
   {
     this(diffProgram, GenericDiffReporter.STANDARD_ARGUMENTS, fileExtensions);
   }
-  public static String getFirstWorking(String path, String[] paths)
+  public static String getFirstWorking(String path, String[] paths, String ifNotFoundDefault)
   {
-    String fullPath = path;
+    String fullPath = ifNotFoundDefault + path;
     for (String p : paths)
     {
       fullPath = p + File.separatorChar + path;
