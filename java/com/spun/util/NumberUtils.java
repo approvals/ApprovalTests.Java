@@ -6,7 +6,11 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 import com.spun.util.logger.SimpleLogger;
 
@@ -286,4 +290,40 @@ public class NumberUtils
     }
   }
   /***********************************************************************/
+  public static IntStream toIntStream(int[] numbers)
+  {
+    return IntStream.of(numbers);
+  }
+  public static IntStream toIntStream(Integer[] numbers)
+  {
+    return Arrays.stream(numbers).mapToInt(Integer::intValue);
+  }
+  public static IntStream toIntStream(List<Integer> numbers)
+  {
+    return numbers.stream().mapToInt(Integer::intValue);
+  }
+  public static LongStream toLongStream(long[] numbers)
+  {
+    return LongStream.of(numbers);
+  }
+  public static LongStream toLongStream(Long[] numbers)
+  {
+    return Arrays.stream(numbers).mapToLong(Long::longValue);
+  }
+  public static LongStream toLongStream(List<Long> numbers)
+  {
+    return numbers.stream().mapToLong(Long::longValue);
+  }
+  public static DoubleStream toDoubleStream(double[] numbers)
+  {
+    return DoubleStream.of(numbers);
+  }
+  public static DoubleStream toDoubleStream(Double[] numbers)
+  {
+    return Arrays.stream(numbers).mapToDouble(Double::doubleValue);
+  }
+  public static DoubleStream toDoubleStream(List<Double> numbers)
+  {
+    return numbers.stream().mapToDouble(Double::doubleValue);
+  }
 }

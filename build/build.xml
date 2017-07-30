@@ -19,7 +19,7 @@
 	<target name="buildJarFile" depends="compile">
 		<mkdir dir="${build}/src" />
 		<copy todir="${build}/src">
-			<fileset dir="${src}" includes="${targetJavaClass}/*.java">
+			<fileset dir="${src}" includes="**/*.java">
 				<exclude name="**/tests/**" if="excludeTests" />
 			</fileset>
 		</copy>
