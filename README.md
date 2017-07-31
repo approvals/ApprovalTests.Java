@@ -83,7 +83,7 @@ More Info
 
 - [Website](http://approvaltests.sourceforge.net/)
 - [Blog](http://blog.approvaltests.com/)
-- [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/raw/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20Getting%20Started.md)
+- [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/blob/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20GettingStarted.md)
 
 
 ## LICENSE
