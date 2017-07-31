@@ -20,4 +20,11 @@ public class ApprovalsTest extends MachineSpecificTest
     b.setSize(150, 20);
     Approvals.verify(b);
   }
+  @Test
+  public void testTvGuide() throws Exception
+  {
+    TvGuide tv = new TvGuide();
+    tv.selectTime("3pm");
+    Approvals.verify(tv);
+  }
 }

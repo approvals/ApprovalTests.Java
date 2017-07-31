@@ -13,6 +13,13 @@ public class CombinationTest
         new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
   @Test
+  public void testCombinations() throws Exception
+  {
+    Integer[] points = new Integer[]{4, 5, 10};
+    String[] words = new String[]{"Bookkeeper", "applesauce"};
+    CombinationApprovals.verifyAllCombinations((i, s) -> s.substring(0, i), points, words);
+  }
+  @Test
   public void test1Parameter() throws Exception
   {
     CombinationApprovals.verifyAllCombinations(i -> i * i, new Integer[]{1, 2, 3, 4, 5});

@@ -7,7 +7,7 @@ import com.spun.util.SystemUtils;
 
 public class MachineSpecific
 {
-  public static final boolean FORCE_RUN = false;
+  public static boolean       FORCE_RUN = true;
   private static List<String> MACHINES  = Arrays.asList("LLEWELLYN-FALCOs-MacBook-Pro.local",
       "llewellalcosmbp.lan", "LLEWELLLCOsMBP2.lan");
   public static boolean isMachineConfiguredForTesting()
