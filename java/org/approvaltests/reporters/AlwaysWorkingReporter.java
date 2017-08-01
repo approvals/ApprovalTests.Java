@@ -12,11 +12,15 @@ public class AlwaysWorkingReporter implements EnvironmentAwareReporter
   @Override
   public void report(String received, String approved) throws Exception
   {
-    wrapped.report(received, approved);
+    getWrapped().report(received, approved);
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
     return true;
+  }
+  public ApprovalFailureReporter getWrapped()
+  {
+    return wrapped;
   }
 }
