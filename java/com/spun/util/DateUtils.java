@@ -3,6 +3,9 @@ package com.spun.util;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -293,5 +296,17 @@ public class DateUtils
     tomorrow.add(Calendar.DATE, 1);
     Date time = tomorrow.getTime();
     return !inDaylightTime && timeZone.inDaylightTime(time);
+  }
+  public static Date toDateInLocalTimeZone(LocalDateTime dateTime)
+  {
+    return toDate(dateTime, ZoneId.systemDefault());
+  }
+  public static Date toDateInUTC(LocalDateTime dateTime)
+  {
+    return toDate(dateTime, ZoneOffset.UTC);
+  }
+  public static Date toDate(LocalDateTime dateTime, ZoneId zoneId)
+  {
+    return Date.from(dateTime.atZone(zoneId).toInstant());
   }
 }
