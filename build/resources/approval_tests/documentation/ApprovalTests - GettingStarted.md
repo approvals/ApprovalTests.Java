@@ -227,8 +227,12 @@ To use a reporter that is not in the above list, you will need to create a class
 
 To specify a particular reporter to be used for a test method, add the following annotation just before the test method definition:
 
+```java
     @UseReporter(MyWinMergeReporter.class)
+```
 
 Multiple reporters can be specified for a method as follows:
 
+```java
     @UseReporter({BEYOND_COMPARE, ClipboardReporter.class})
+```
