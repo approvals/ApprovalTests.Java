@@ -68,12 +68,12 @@ Letʼs say you wanted to test an array of Strings:
         ////////// Do  ///////////
         // create a String Array and set values in the indexes
         String[] s = new String[2];
-        s[0] = "Approval"
-        s[1] = "Tests"
+        s[0] = "Approval";
+        s[1] = "Tests";
 
         ////////// Verify  ///////////
         // Verify the array
-        Approvals.verifyAll("Text", x);
+        Approvals.verifyAll("Text", s);
     }
 ```
 
