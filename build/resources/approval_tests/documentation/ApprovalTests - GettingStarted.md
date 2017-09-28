@@ -5,11 +5,20 @@ Installation
 All you need to do to use ApprovalTests is simply include the ApprovalTests.jar in your class path. Then use it with your favorite Testing Framework.
 
 Parts of a Test
----All tests (unit and otherwise) contain 2 parts:- Do
-- VerifyApprovalTests is a way to handle the second part: Verification. All calls will look about the same:
+---
+All tests (unit and otherwise) contain 2 parts:
 
-    Approvals.verify(objectToBeVerified)Strings---Letʼs say you wanted to test if a string was being built correctly:
+- Do
+- Verify
 
+ApprovalTests is a way to handle the second part: Verification. All calls will look about the same:
+
+    Approvals.verify(objectToBeVerified)
+
+Strings
+---
+Letʼs say you wanted to test if a string was being built correctly:
+```java
     public void testBuildString() {
         ////////// Do  ///////////
         // create a string with "Approval" and append "Tests" to it
@@ -20,12 +29,22 @@ Parts of a Test
         // Verify the resulting string
         Approvals.verify(s);
     }
-Will Produce the following File:    SampleTest.testBuildString.received.txt          ApprovalTestsThis is the 'actual result'.   The 'expected' result is in the file SampleTest.testBuildString.**received**.txt   [(This is described in detail below.)](#ApprovingTheResult)
+```
+
+Will Produce the following File:    
+SampleTest.testBuildString.received.txt  
+
+        ApprovalTests
+
+This is the 'actual result'.   
+The 'expected' result is in the file SampleTest.testBuildString.**received**.txt   
+[(This is described in detail below.)](#ApprovingTheResult)
 When you see the results you want (“ApprovalTests”) as the result, simply [Approve The Result](#ApprovingTheResult).
-Objects
+
+Objects
 ---
 Let's say that you wanted to test that a customized StringBuilder was creating text correctly:
-
+```java
     public void testStringBuilder() {
         ////////// Do  ///////////
         // create my String Builder and append some strings
@@ -37,11 +56,14 @@ Let's say that you wanted to test that a customized StringBuilder was creating t
         // Verify the object
         Approvals.verify(sb.toString());
     }
+```
 
 If you see “ApprovalTests” as the result, simply [Approve The Result](#ApprovingTheResult). Itʼs important to note that you will need to create a useful instance of the toString() Method for objects you want to use.
-Arrays
----Letʼs say you wanted to test an array of Strings:
 
+Arrays
+---
+Letʼs say you wanted to test an array of Strings:
+```java
     public void testArray() {
         ////////// Do  ///////////
         // create a String Array and set values in the indexes
@@ -53,6 +75,7 @@ If you see “ApprovalTests” as the result, simply [Approve The Result](#Appro
         // Verify the array
         Approvals.verifyAll("Text", x);
     }
+```
 
 Note the use of the label, "Text". This is used to make the generated output easier to read:    
 SampleTest.testArray.received.txt  
@@ -63,8 +86,10 @@ SampleTest.testArray.received.txt
 Again, simply [Approve The Result](#ApprovingTheResult)
 
 Swing / AWT
----Letʼs say you wanted to test that youʼve created a JPanel correctly. (This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
+---
+Letʼs say you wanted to test that youʼve created a JPanel correctly. (This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
 
+```java
     public void testTvGuide() {
         ////////// Do  ///////////
         // create a TV Guide and select a show for 3pm
@@ -75,14 +100,15 @@ Swing / AWT
         // Verify the TvGuide
         Approvals.verify(tv);
     }
-
+```
 
 SampleTest.testTvGuide.Mac_OS_X.approved.png  
 ![Expected  Image](ApprovalsTest.testTvGuide.Mac_OS_X.approved.png)
 
 
 __First__, I want to note that even though there is a UI and a select box for times, Iʼm not “poking” it to select the time. Just because we are looking at the UI at the end, doesnʼt mean I need to manipulate it directly. We are programmers, and are not limited by the constraints of the UI. I simply expose a selectTime(String value) function.
-__Second__, this will produce a .png file containing a screen shot of the JPanel as a result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
+
+__Second__, this will produce a .png file containing a screen shot of the JPanel as a result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
 
 __Thrid__, because these will render differently on different operating systems. These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
 
@@ -92,14 +118,14 @@ To simplify getting more comprehensive sets of test cases, or expanding code cov
 
 To do this, create an array of possible values for each parameter passed to a function (up to nine parameters). Call the CombinationApprovals.verifyAllCombinations() method passing the method to be called as a lambda. An example follows:
 
-
+```java
     Integer[] points = new Integer[]{4, 5, 10};
     String[] words = new String[]{"Bookkeeper", "applesauce"};
     CombinationApprovals.verifyAllCombinations(
         (i, s) -> s.substring(0, i),
         points,
         words);
-
+```
 
 SampleTest.testSubstring.recieved.txt  
 u
@@ -116,20 +142,33 @@ This will generate potentally hundreds or thousands of possible combinations of 
 
 <a name='ApprovingTheResult'></a>
 Approving The Result
----When you run a test using ApprovalTests, it will generate a file named “YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same directory as your test.
-For the test to pass, this file must match:
+---
+When you run a test using ApprovalTests, it will generate a file named “YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same directory as your test.
+
+For the test to pass, this file must match:
 
 YourTestClass.youTestMethod.__approved__.txt
-There are many ways to do this:
+
+There are many ways to do this:
 
 1. Rename the .received file
-2. Run the "move" command that is displayed (also added to your clipboard) in the command line3. Use "use whole file" on a diff reporter4. Use the "approve" command with the approval plugin (available for Eclipse)Itʼs doesnʼt matter how you do it.
-__Note__: If the files match, then the received file will be deleted.<br>
+2. Run the "move" command that is displayed (also added to your clipboard) in the command line
+3. Use "use whole file" on a diff reporter
+4. Use the "approve" command with the approval plugin (available for Eclipse)
+
+Itʼs doesnʼt matter how you do it.
+
+__Note__: If the files match, then the received file will be deleted.<br>
 __Note__: You must include the received files in your source control.
 
 Reporters
----If an approval fails, then a report will be called that will report the “.received” and “.approved” files. There are many reporters, and you can create your own.
-The simplest way to have your reporter called is to use the Annotation @UseReporter(Reporter.class)You can annotate at either the method or class level.Here are some common Reporters and uses
+---
+If an approval fails, then a report will be called that will report the “.received” and “.approved” files. There are many reporters, and you can create your own.
+
+The simplest way to have your reporter called is to use the Annotation @UseReporter(Reporter.class)
+You can annotate at either the method or class level.
+
+Here are some common Reporters and uses
 
 Reporter             | Description
 --------             | -----------
@@ -169,6 +208,7 @@ KDiff3              | KDIFF3
 
 To use a reporter that is not in the above list, you will need to create a class of the following form:
 
+```java
     public static class MyWinMergeReporter extends GenericDiffReporter {
 
         public static final MyWinMergeReporter INSTANCE     = new MyWinMergeReporter();
@@ -183,6 +223,7 @@ To use a reporter that is not in the above list, you will need to create a class
             super(diffProgram, diffProgramNotFoundMessage);
         }
     }
+```
 
 To specify a particular reporter to be used for a test method, add the following annotation just before the test method definition:
 
