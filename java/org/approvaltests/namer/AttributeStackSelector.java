@@ -17,7 +17,7 @@ public class AttributeStackSelector implements StackElementSelector
   }
   private List<Class<? extends Annotation>> getAvailableAttributes()
   {
-    String classNames[] = {"org.testng.annotations.Test", "org.junit.Test"};
+    String classNames[] = {"org.testng.annotations.Test", "org.junit.Test", "org.junit.jupiter.api.Test"};
     ArrayList<Class<? extends Annotation>> attributes = new ArrayList<Class<? extends Annotation>>();
     for (String className : classNames)
     {
