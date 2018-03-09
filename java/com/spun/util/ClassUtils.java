@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.lambda.functions.Function1;
 
+import com.spun.util.io.FileUtils;
+
 public class ClassUtils
 {
   /************************************************************************/
@@ -98,7 +100,8 @@ public class ClassUtils
     String[] split = name.split("\\.");
     split[split.length - 1] = createLastFileName.call(split[split.length - 1]);
     File found = find(new File("."), Arrays.asList(split));
-    if (found == null) { throw new FormattedException("Didn't find %s under %s", name, new File(".")); }
+    if (found == null) { throw new FormattedException("Didn't find %s under %s", name,
+        FileUtils.getCurrentDirectory()); }
     return found.getParentFile();
   }
   public static File getSourceDirectory(Class<?> clazz, final String fileName)

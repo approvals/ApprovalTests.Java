@@ -354,4 +354,15 @@ public class FileUtils
       return defaultText;
     }
   }
+  public static String getCurrentDirectory()
+  {
+    try
+    {
+      return new File(".").getCanonicalPath();
+    }
+    catch (Throwable e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
+  }
 }
