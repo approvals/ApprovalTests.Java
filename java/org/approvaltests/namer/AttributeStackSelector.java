@@ -10,6 +10,9 @@ import com.spun.util.io.StackElementSelector;
 
 public class AttributeStackSelector implements StackElementSelector
 {
+  public static String                      classNames[] = {"org.testng.annotations.Test",
+                                                            "org.junit.Test",
+                                                            "org.junit.jupiter.api.Test"};
   private List<Class<? extends Annotation>> attributes;
   public AttributeStackSelector()
   {
@@ -17,7 +20,6 @@ public class AttributeStackSelector implements StackElementSelector
   }
   private List<Class<? extends Annotation>> getAvailableAttributes()
   {
-    String classNames[] = {"org.testng.annotations.Test", "org.junit.Test"};
     ArrayList<Class<? extends Annotation>> attributes = new ArrayList<Class<? extends Annotation>>();
     for (String className : classNames)
     {
