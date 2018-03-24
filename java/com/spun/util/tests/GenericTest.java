@@ -2,11 +2,12 @@ package com.spun.util.tests;
 
 import java.util.ArrayList;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-public class GenericTest extends TestCase
+public class GenericTest
 {
   @SuppressWarnings({"unchecked", "rawtypes"})
+  @Test
   public void test()
   {
     ArrayList<Integer> ints = new ArrayList<Integer>();
@@ -35,17 +36,14 @@ public class GenericTest extends TestCase
     // big question why would I EVER want the method sumNumber over sumGeneric
     // ????
   }
-
   private double sumInteger(ArrayList<Integer> nums)
   {
     return sumGeneric(nums);
   }
-
   private double sumNumber(ArrayList<Number> nums)
   {
     return sumGeneric(nums);
   }
-
   private double sumGeneric(ArrayList<? extends Number> nums)
   {
     double total = 0;

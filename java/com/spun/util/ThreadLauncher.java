@@ -7,14 +7,13 @@ import org.lambda.actions.Action0;
 /**
  * @deprecated use  LambdaThreaLauncher( ()-> object.method(params))
  */
-public class ThreadLauncher implements Runnable
+public class ThreadLauncher
 {
   /***********************************************************************/
   public ThreadLauncher(Object object, Method method, Object[] objectParams, long delay)
   {
     String params = StringUtils.join(objectParams, ",", o -> "" + o);
-    throw new DeprecatedException("new LambdaThreadLauncher(()-> object.%s(%s))", method.getName(),
-        params);
+    throw new DeprecatedException("new LambdaThreadLauncher(()-> object.%s(%s))", method.getName(), params);
   }
   /***********************************************************************/
   public ThreadLauncher(Object object, Method method, Object[] objectParams)

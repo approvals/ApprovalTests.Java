@@ -1,4 +1,4 @@
-package com.spun.util.stacktrace;
+package com.spun.util.introspection;
 
 import com.spun.util.ThreadUtils;
 

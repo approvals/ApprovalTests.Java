@@ -5,13 +5,11 @@ import com.spun.util.logger.SimpleLogger;
 public final class TimeOut implements Runnable
 {
   private long time;
-  /***********************************************************************/
   public TimeOut(long time)
   {
     this.time = time;
     new Thread(this).start();
   }
-  /***********************************************************************/
   public void run()
   {
     SimpleLogger.event("launched");
@@ -25,6 +23,4 @@ public final class TimeOut implements Runnable
     }
     System.exit(0);
   }
-  /***********************************************************************/
-  /***********************************************************************/
 }

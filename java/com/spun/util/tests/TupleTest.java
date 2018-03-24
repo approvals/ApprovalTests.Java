@@ -1,13 +1,18 @@
 package com.spun.util.tests;
 
-import com.spun.util.Tuple;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
 
-public class TupleTest extends TestCase
+import org.junit.Test;
+
+import com.spun.util.Tuple;
+
+public class TupleTest
 {
-  public void test() {
-   Tuple tupleOne = new Tuple<String, Integer>("foo", 1);
-   assertEquals("string first", "foo", tupleOne.getFirst());
-   assertEquals("integer second", 1, tupleOne.getSecond());
+  @Test
+  public void test()
+  {
+    Tuple<String, Integer> tupleOne = new Tuple<String, Integer>("foo", 1);
+    assertEquals("string first", "foo", tupleOne.getFirst());
+    assertEquals("integer second", 1, tupleOne.getSecond().intValue());
   }
 }

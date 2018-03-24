@@ -9,6 +9,6 @@ public class UtilsTestSuite extends TestSuite
 {
   public static Test suite() throws Exception
   {
-    return UniversalTestSuite.createFor("com.spun.util");
+    return UniversalTestSuite.createFor("com.spun.util.date");
   }
 }

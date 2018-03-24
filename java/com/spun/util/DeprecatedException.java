@@ -1,6 +1,6 @@
 package com.spun.util;
 
-import com.spun.util.stacktrace.Caller;
+import com.spun.util.introspection.Caller;
 
 public class DeprecatedException extends FormattedException
 {
