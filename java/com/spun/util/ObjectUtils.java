@@ -1,14 +1,11 @@
 package com.spun.util;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.lambda.actions.Action0;
-
-import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convenience functions for Manipulating objects
@@ -33,7 +30,7 @@ public class ObjectUtils
   /**
    * tests if two objects are equal for all functions passed.
    **/
-  public static boolean isEqualForMethods(Object o1, Object o2, String[] methods)
+  public static boolean isEqualForMethods(Object o1, Object o2, String... methods)
   {
     try
     {
@@ -96,12 +93,12 @@ public class ObjectUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.where(onArray, o -> forValue.equals(o.onMethod()))
+   * @deprecated use Query.first(onArray, o -> forValue.equals(o.onMethod()))
    */
   @Deprecated
   public static <T> T getForMethod(T[] onArray, Object forValue, String... onMethods)
   {
-    throw new DeprecatedException("Query.where(onArray, o -> %s.equals(o.%s()))", forValue,
+    throw new DeprecatedException("Query.first(onArray, o -> %s.equals(o.%s()))", forValue,
         StringUtils.join(onMethods, "().", m -> m));
   }
   /***********************************************************************/
@@ -133,34 +130,11 @@ public class ObjectUtils
   }
   /***********************************************************************/
   /** 
-  * @deprecated use Query.select()
+  * @deprecated use Query.select(from, m -> m.methodName())
   */
   public static Object[] extractArray(Object[] from, String methodName)
   {
-    try
-    {
-      if (from == null || from.length == 0) { return new Object[0]; }
-      Method method = getGreatestCommonDenominator(from, methodName);
-      Object[] array = null;
-      if (Object.class.isAssignableFrom(method.getReturnType()))
-      {
-        array = (Object[]) Array.newInstance(method.getReturnType(), from.length);
-      }
-      else
-      {
-        array = (Object[]) Array.newInstance(ClassUtils.getWrapperClass(method.getReturnType()), from.length);
-      }
-      for (int i = 0; i < from.length; i++)
-      {
-        array[i] = method.invoke(from[i], (Object[]) null);
-      }
-      return array;
-    }
-    catch (Exception e)
-    {
-      SimpleLogger.warning(e);
-      throw ObjectUtils.throwAsError(e);
-    }
+    throw new DeprecatedException("Query.select(from, m -> m.%s())", methodName);
   }
   /***********************************************************************/
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)

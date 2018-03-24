@@ -1,6 +1,7 @@
 package com.spun.util;
 
 import com.spun.util.introspection.Caller;
+import com.spun.util.logger.SimpleLogger;
 
 public class DeprecatedException extends FormattedException
 {
@@ -8,6 +9,7 @@ public class DeprecatedException extends FormattedException
   {
     super("%s is Depercated.\n Instead, please use :\n %s", methodName(Caller.get(1)),
         String.format(useNewMethod, formattingParams));
+    SimpleLogger.message(getMessage());
   }
   private static Object methodName(StackTraceElement trace)
   {

@@ -34,4 +34,10 @@ public class DepercatedTest
     Integer[] array = {1, 2, 3};
     Approvals.verifyException(() -> ObjectUtils.getForMethod(array, "2", "toString", "toString"));
   }
+  @Test
+  public void ObjectUtils_extractArray() throws Exception
+  {
+    Integer[] array = {1, 2, 3};
+    Approvals.verifyException(() -> ObjectUtils.extractArray(array, "toString"));
+  }
 }

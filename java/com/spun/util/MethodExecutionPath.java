@@ -118,7 +118,7 @@ public class MethodExecutionPath implements Serializable
       if (!ArrayUtils.isEmpty(values))
       {
         this.values = values;
-        this.definitions = (Class[]) ObjectUtils.extractArray(values, "getClass");
+        this.definitions = Query.select(values, m -> m.getClass()).toArray(new Class<?>[0]);
       }
     }
     /***********************************************************************/

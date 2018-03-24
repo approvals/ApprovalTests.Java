@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: extractArray is Depercated.
+ Instead, please use :
+ Query.select(from, m -> m.toString())

@@ -38,12 +38,24 @@ public class Query<In>
     }
     return out;
   }
-  public static <In> List<In> where(In[] list, Function1<In, Boolean> funct)
+  public static <In> In first(In[] list, Function1<In, Boolean> filter)
+  {
+    return first(ArrayUtils.asList(list), filter);
+  }
+  public static <In> In first(Iterable<In> list, Function1<In, Boolean> filter)
+  {
+    for (In i : list)
+    {
+      if (filter.call(i)) { return i; }
+    }
+    return null;
+  }
+  public static <In> List<In> where(In[] list, Function1<In, Boolean> filter)
   {
     ArrayList<In> out = new ArrayList<In>();
     for (In i : list)
     {
-      if (funct.call(i))
+      if (filter.call(i))
       {
         out.add(i);
       }
