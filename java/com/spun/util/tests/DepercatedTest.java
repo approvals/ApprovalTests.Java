@@ -20,8 +20,7 @@ public class DepercatedTest
   @Test
   public void ThreadLauncher() throws Exception
   {
-    Approvals
-        .verifyException(() -> new com.spun.util.ThreadLauncher("text", "replaceAll", new Object[]{"A", "B"}, 0));
+    Approvals.verifyException(() -> new com.spun.util.ThreadLauncher("text", "length", 0));
   }
   @Test
   public void DateRange_getFilter() throws Exception
@@ -39,5 +38,10 @@ public class DepercatedTest
   {
     Integer[] array = {1, 2, 3};
     Approvals.verifyException(() -> ObjectUtils.extractArray(array, "toString"));
+  }
+  @Test
+  public void MethodSorter() throws Exception
+  {
+    Approvals.verifyException(() -> new com.spun.util.MethodSorter<>(String.class, "length", false));
   }
 }

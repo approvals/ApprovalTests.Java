@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: com.spun.util.MethodSorter is Depercated.
+ Instead, please use :
+ OrderBy.descending((java.lang.String a) -> a.length())

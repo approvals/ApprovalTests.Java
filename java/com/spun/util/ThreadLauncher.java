@@ -7,6 +7,7 @@ import org.lambda.actions.Action0;
 /**
  * @deprecated use  LambdaThreaLauncher( ()-> object.method(params))
  */
+@Deprecated
 public class ThreadLauncher
 {
   /***********************************************************************/
@@ -39,12 +40,6 @@ public class ThreadLauncher
   public ThreadLauncher(Object object, String methodName)
   {
     this(object, ClassUtils.getMethod(object.getClass(), methodName), null, 0);
-  }
-  /***********************************************************************/
-  public ThreadLauncher(Object object, String methodName, Object[] objectParams, long delay)
-  {
-    this(object, MethodExecutionPath.Parameters.getBestFitMethod(object.getClass(), methodName,
-        getClassArray(objectParams)), objectParams, delay);
   }
   /***********************************************************************/
   private static Class[] getClassArray(Object[] objectParams)
