@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.lambda.functions.Function1;
+
 import com.spun.util.DateUtils;
-import com.spun.util.MethodExecutionPath;
+import com.spun.util.DeprecatedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.filters.Filter;
 import com.spun.util.parser.TemplateDate;
@@ -24,12 +26,12 @@ public class DateRange
   /************************************************************************/
   public Filter getFilter(Class<?> clazz, String... methodCalls)
   {
-    return getFilter(new MethodExecutionPath(clazz, methodCalls));
+    throw new DeprecatedException("getFilter(t -> t.%s())", methodCalls[0]);
   }
   /************************************************************************/
-  public Filter getFilter(MethodExecutionPath path)
+  public <T> Filter<T> getFilter(Function1<T, Date> converter)
   {
-    return new DateRangeFilter(this, path);
+    return new DateRangeFilter<T>(this, converter);
   }
   /************************************************************************/
   public boolean contains(Date time)
@@ -87,8 +89,8 @@ public class DateRange
   @Override
   public String toString()
   {
-    return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(), new TemplateDate(end)
-        .getDateAndTime());
+    return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(),
+        new TemplateDate(end).getDateAndTime());
   }
   /***********************************************************************/
   public DateRange[] getWeeks()
@@ -138,18 +140,18 @@ public class DateRange
   /************************************************************************/
   /*                            INNER CLASSES                             */
   /************************************************************************/
-  public static class DateRangeFilter implements Filter
+  public static class DateRangeFilter<T> implements Filter<T>
   {
-    private final MethodExecutionPath path;
-    private final DateRange           range;
-    public DateRangeFilter(DateRange range, MethodExecutionPath path)
+    private final Function1<T, Date> converter;
+    private final DateRange          range;
+    public DateRangeFilter(DateRange range, Function1<T, Date> converter)
     {
       this.range = range;
-      this.path = path;
+      this.converter = converter;
     }
-    public boolean isExtracted(Object object) throws IllegalArgumentException
+    public boolean isExtracted(T t) throws IllegalArgumentException
     {
-      return range.contains((Date) path.extractValue(object));
+      return range.contains(converter.call(t));
     }
   }
   public static interface UnitAware

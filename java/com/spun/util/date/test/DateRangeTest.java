@@ -4,14 +4,13 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 
 import com.spun.util.DateUtils;
 import com.spun.util.date.DateRange;
 import com.spun.util.filters.FilterUtils;
-import com.spun.util.tests.TestUtils;
+
+import junit.framework.TestCase;
 
 public class DateRangeTest extends TestCase
 {
@@ -29,7 +28,7 @@ public class DateRangeTest extends TestCase
   {
     DateRange range = new DateRange(date(40), date(20));
     Timestamp dates[] = {date(50), date(40), date(30), date(20), date(10)};
-    TestUtils.assertLength(2, FilterUtils.retainExtracted(dates, range.getFilter(Timestamp.class, "clone")));
+    Approvals.verifyAll("Dates", FilterUtils.retainExtracted(dates, range.getFilter((Timestamp t) -> t)));
   }
   /************************************************************************/
   public static Timestamp date(int daysAgo)
@@ -75,7 +74,6 @@ public class DateRangeTest extends TestCase
     DateRange containing = DateRange.getRangeContaining(d.getQuarters(), d.getMonths()[0]);
     Approvals.verify(containing.toString());
   }
-  
   /************************************************************************/
   /************************************************************************/
 }

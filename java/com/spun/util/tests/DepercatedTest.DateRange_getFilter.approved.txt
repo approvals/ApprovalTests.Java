@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: getFilter is Depercated.
+ Instead, please use :
+ getFilter(t -> t.clone())
