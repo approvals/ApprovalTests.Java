@@ -6,6 +6,7 @@ import org.approvaltests.Approvals;
 import org.junit.Test;
 
 import com.spun.util.NumberUtils;
+import com.spun.util.ObjectUtils;
 import com.spun.util.date.DateRange;
 
 @SuppressWarnings("deprecation")
@@ -26,5 +27,11 @@ public class DepercatedTest
   public void DateRange_getFilter() throws Exception
   {
     Approvals.verifyException(() -> new DateRange(null, null).getFilter(Timestamp.class, "clone"));
+  }
+  @Test
+  public void ObjectUtils_getForMethod() throws Exception
+  {
+    Integer[] array = {1, 2, 3};
+    Approvals.verifyException(() -> ObjectUtils.getForMethod(array, "2", "toString", "toString"));
   }
 }

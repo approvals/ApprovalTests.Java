@@ -95,37 +95,14 @@ public class ObjectUtils
     return false;
   }
   /***********************************************************************/
+  /**
+   * @deprecated use Query.where(onArray, o -> forValue.equals(o.onMethod()))
+   */
+  @Deprecated
   public static <T> T getForMethod(T[] onArray, Object forValue, String... onMethods)
   {
-    return getForMethod(onArray, forValue, new MethodExecutionPath(null, onMethods));
-  }
-  /***********************************************************************/
-  public static <T> T getForMethod(T[] onArray, Object forValue, String onMethod)
-  {
-    return getForMethod(onArray, forValue, new MethodExecutionPath(null, onMethod, null));
-  }
-  /***********************************************************************/
-  public static <T> T getForMethod(T[] onArray, Object forValue, String onMethod, Object[] params)
-  {
-    return getForMethod(onArray, forValue,
-        new MethodExecutionPath(null, onMethod, new MethodExecutionPath.Parameters(params)));
-  }
-  /***********************************************************************/
-  public static <T> T getForMethod(T[] onArray, Object forValue, MethodExecutionPath path)
-  {
-    if (onArray == null || (onArray.length == 0)) { return null; }
-    try
-    {
-      for (int i = 0; i < onArray.length; i++)
-      {
-        if (isEqual(forValue, path.extractValue(onArray[i]))) { return onArray[i]; }
-      }
-      return null;
-    }
-    catch (Throwable t)
-    {
-      throw throwAsError(t);
-    }
+    throw new DeprecatedException("Query.where(onArray, o -> %s.equals(o.%s()))", forValue,
+        StringUtils.join(onMethods, "().", m -> m));
   }
   /***********************************************************************/
   public static boolean isThisInstanceOfThat(Class<?> thiz, Class<?> that)

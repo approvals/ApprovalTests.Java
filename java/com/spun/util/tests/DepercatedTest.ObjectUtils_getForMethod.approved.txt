@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: getForMethod is Depercated.
+ Instead, please use :
+ Query.where(onArray, o -> 2.equals(o.toString().toString()))
