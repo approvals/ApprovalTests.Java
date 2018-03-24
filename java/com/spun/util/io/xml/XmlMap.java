@@ -4,23 +4,20 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
 
+import org.lambda.query.Query;
+
 import com.spun.util.ObjectUtils;
 import com.spun.util.filters.Filter;
-import com.spun.util.filters.FilterUtils;
 
 /***********************************************************************/
-
 public class XmlMap
 {
-
-  
-  private String settingFunction;
-  private String xmlName;
+  private String       settingFunction;
+  private String       xmlName;
   private XmlExtractor extractor;
-  private Method settingMethod;
-  private Class<?> type;
+  private Method       settingMethod;
+  private Class<?>     type;
   /***********************************************************************/
-  
   public XmlMap(String xmlName, String settingFunction, Class<?> type)
   {
     this.xmlName = xmlName;
@@ -33,21 +30,18 @@ public class XmlMap
     this.settingFunction = settingFunction;
   }
   /***********************************************************************/
-  
   public Method getSettingMethod()
   {
     return settingMethod;
   }
   /***********************************************************************/
-  
   public String getNodeName()
   {
     return xmlName;
-  }/***********************************************************************/
-  
+  }
+  /***********************************************************************/
   public XmlMap(String xmlName, String settingFunction, XmlExtractor extractor)
   {
-    
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
     this.extractor = extractor;
@@ -55,8 +49,8 @@ public class XmlMap
   /***********************************************************************/
   public void initialize(Class<?> clazz) throws InstantiationException, IllegalAccessException
   {
-    
-    List methods = FilterUtils.retainExtracted(clazz.getMethods(), new SingleSetterMethodFilter(settingFunction, type));
+    List<Method> methods = Query.where(clazz.getMethods(),
+        m -> new SingleSetterMethodFilter(settingFunction, type).isExtracted(m));
     settingMethod = getBestMethodFit(methods);
     if (extractor == null)
     {
@@ -65,13 +59,13 @@ public class XmlMap
     }
   }
   /***********************************************************************/
-  
-  private XmlExtractor getExtractorFor(Class<?> takes) throws InstantiationException, IllegalAccessException 
+  private XmlExtractor getExtractorFor(Class<?> takes) throws InstantiationException, IllegalAccessException
   {
     XmlExtractor extractor = BasicExtractor.get(takes);
     // basic type get basic type extractor
-    if(extractor != null)
-    {}
+    if (extractor != null)
+    {
+    }
     else if (XmlExtractable.class.isAssignableFrom(takes))
     {
       extractor = new XmlMapExtractor(takes);
@@ -83,7 +77,6 @@ public class XmlMap
     return extractor;
   }
   /***********************************************************************/
-  
   private Method getBestMethodFit(List methods)
   {
     if (methods.size() == 0)
@@ -92,7 +85,7 @@ public class XmlMap
     }
     else if (methods.size() == 1)
     {
-      return (Method)methods.get(0);
+      return (Method) methods.get(0);
     }
     else
     {
@@ -105,28 +98,25 @@ public class XmlMap
     return extractor;
   }
   /***********************************************************************/
-
   public class SingleSetterMethodFilter implements Filter
   {
-
-    private String methodName = null;
-    private Class<?> argument = null;
+    private String   methodName = null;
+    private Class<?> argument   = null;
     public SingleSetterMethodFilter(String methodName, Class<?> argument)
     {
       this.methodName = methodName;
       this.argument = argument;
     }
     /***********************************************************************/
-
     public boolean isExtracted(Object object) throws IllegalArgumentException
     {
       ObjectUtils.assertInstance(Method.class, object);
-      Method method = (Method)object;
-      return method.getParameterTypes().length == 1 && (argument == null || method.getParameterTypes()[0] == argument) && Modifier.isPublic(method.getModifiers()) && method.getName().equals(methodName); 
+      Method method = (Method) object;
+      return method.getParameterTypes().length == 1
+          && (argument == null || method.getParameterTypes()[0] == argument)
+          && Modifier.isPublic(method.getModifiers()) && method.getName().equals(methodName);
     }
-
   }
   /***********************************************************************/
   /***********************************************************************/
-  
 }

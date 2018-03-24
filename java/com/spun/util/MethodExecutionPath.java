@@ -3,9 +3,11 @@ package com.spun.util;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
+
+import org.lambda.query.Query;
 
 import com.spun.util.filters.Filter;
-import com.spun.util.filters.FilterUtils;
 
 public class MethodExecutionPath implements Serializable
 {
@@ -139,13 +141,12 @@ public class MethodExecutionPath implements Serializable
       }
       catch (NoSuchMethodException e)
       {
-        Method[] methods = (Method[]) FilterUtils
-            .retainExtracted(clazz.getMethods(), new MethodParameterFilter(currentMethodName, definitions))
-            .toArray(new Method[0]);
-        if (methods.length == 0) { throw ObjectUtils.throwAsError(e); }
-        if (methods.length == 1)
+        List<Method> methods = Query.where(clazz.getMethods(),
+            m -> new MethodParameterFilter(currentMethodName, definitions).isExtracted(m));
+        if (methods.isEmpty()) { throw ObjectUtils.throwAsError(e); }
+        if (methods.size() == 1)
         {
-          return methods[0];
+          return methods.get(0);
         }
         else
         {

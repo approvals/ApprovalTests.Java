@@ -15,7 +15,6 @@ import com.spun.util.database.Syncable;
 import com.spun.util.database.TemporaryCache;
 import com.spun.util.database.XmlDatabaseMapExtractor;
 import com.spun.util.filters.ClassFilter;
-import com.spun.util.filters.FilterUtils;
 import com.spun.util.io.XMLUtils;
 
 /***********************************************************************/
@@ -62,7 +61,7 @@ public class DatabaseObjectXMLUtils
   /***********************************************************************/
   public static <T extends DatabaseObject> T[] extractClass(Class<T> clazz, DatabaseObject[] databaseObjects)
   {
-    List<DatabaseObject> list = FilterUtils.retainExtracted(databaseObjects, new ClassFilter(clazz));
+    List<DatabaseObject> list = Query.where(databaseObjects, d -> new ClassFilter(clazz).isExtracted(d));
     return list.toArray((T[]) Array.newInstance(clazz, list.size()));
   }
   public static void mockOld(DatabaseObject[] objects)

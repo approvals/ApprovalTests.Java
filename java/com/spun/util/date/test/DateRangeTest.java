@@ -5,10 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.approvaltests.Approvals;
+import org.lambda.query.Query;
 
 import com.spun.util.DateUtils;
 import com.spun.util.date.DateRange;
-import com.spun.util.filters.FilterUtils;
 
 import junit.framework.TestCase;
 
@@ -28,7 +28,7 @@ public class DateRangeTest extends TestCase
   {
     DateRange range = new DateRange(date(40), date(20));
     Timestamp dates[] = {date(50), date(40), date(30), date(20), date(10)};
-    Approvals.verifyAll("Dates", FilterUtils.retainExtracted(dates, range.getFilter((Timestamp t) -> t)));
+    Approvals.verifyAll("Dates", Query.where(dates, d -> range.contains(d)));
   }
   /************************************************************************/
   public static Timestamp date(int daysAgo)
