@@ -586,6 +586,6 @@ public class StringUtils
   }
   public static <T> String join(T[] list, String delimiter, Function1<T, String> convertor)
   {
-    return String.join(delimiter, ArrayUtils.toString(list, convertor));
+    return String.join(delimiter, Query.select(list, convertor));
   }
 }

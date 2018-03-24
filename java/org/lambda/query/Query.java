@@ -24,7 +24,7 @@ public class Query<In>
   }
   public static <In, Out> List<Out> select(In[] list, Function1<In, Out> function)
   {
-    return select(Arrays.asList(list), function);
+    return select(ArrayUtils.asList(list), function);
   }
   public static <In> List<In> where(Iterable<In> list, Function1<In, Boolean> funct)
   {
@@ -103,7 +103,7 @@ public class Query<In>
   }
   public static <In, Out extends Number> Double sum(In[] list, Function1<In, Out> f1)
   {
-    return sum(Arrays.asList(list), f1);
+    return sum(ArrayUtils.asList(list), f1);
   }
   public static <In, Out extends Number> Double sum(Collection<In> list, Function1<In, Out> f1)
   {
@@ -128,7 +128,7 @@ public class Query<In>
   }
   public static <T extends Number> T max(T[] numbers)
   {
-    return max(Arrays.asList(numbers));
+    return max(ArrayUtils.asList(numbers));
   }
   public static <T extends Number> T min(List<T> numbers)
   {

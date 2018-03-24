@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: com.spun.util.ThreadLauncher is Depercated.
+ Instead, please use :
+ new LambdaThreadLauncher(()-> object.replaceAll(A,B))

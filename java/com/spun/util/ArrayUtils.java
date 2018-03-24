@@ -33,7 +33,7 @@ public class ArrayUtils
   {
     return toString(asList(values), formatter);
   }
-  private static <T> List<T> asList(T[] values)
+  public static <T> List<T> asList(T[] values)
   {
     return values == null ? Collections.emptyList() : Arrays.asList(values);
   }
@@ -282,7 +282,7 @@ public class ArrayUtils
   }
   public static <T> Iterable<T> asIterable(Iterator<T> iterator)
   {
-    return new IterableWrapper(iterator);
+    return new IterableWrapper<T>(iterator);
   }
   public static class IterableWrapper<T> implements Iterable<T>
   {

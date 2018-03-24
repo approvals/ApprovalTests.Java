@@ -132,7 +132,6 @@ public class MethodExecutionPath implements Serializable
     }
     /***********************************************************************/
     public static Method getBestFitMethod(Class<?> clazz, String currentMethodName, Class[] definitions)
-        throws NoSuchMethodException
     {
       try
       {
@@ -143,7 +142,7 @@ public class MethodExecutionPath implements Serializable
         Method[] methods = (Method[]) FilterUtils
             .retainExtracted(clazz.getMethods(), new MethodParameterFilter(currentMethodName, definitions))
             .toArray(new Method[0]);
-        if (methods.length == 0) { throw e; }
+        if (methods.length == 0) { throw ObjectUtils.throwAsError(e); }
         if (methods.length == 1)
         {
           return methods[0];

@@ -2,6 +2,7 @@ package com.spun.util;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -158,5 +159,16 @@ public class ClassUtils
   {
     return field != null && (field.getType().isArray() || field.getType().isPrimitive()
         || field.getType().isAssignableFrom(String.class));
+  }
+  public static Method getMethod(Class<?> clazz, String methodName)
+  {
+    try
+    {
+      return clazz.getMethod(methodName, (Class[]) null);
+    }
+    catch (NoSuchMethodException | SecurityException e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
 }

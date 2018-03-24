@@ -27,7 +27,7 @@ public class TimedObject
       this.lastTimeAccessed = System.currentTimeMillis();
       if (launch)
       {
-        new ThreadLauncher(this, "clean");
+        new LambdaThreadLauncher(() -> this.clean());
       }
     }
     catch (Throwable t)

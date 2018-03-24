@@ -4,22 +4,17 @@ import java.lang.reflect.Method;
 
 import org.lambda.actions.Action0;
 
-import com.spun.util.logger.SimpleLogger;
-
+/**
+ * @deprecated use  LambdaThreaLauncher( ()-> object.method(params))
+ */
 public class ThreadLauncher implements Runnable
 {
-  private Object   object       = null;
-  private Object[] objectParams = null;
-  private Method   method       = null;
-  private long     delay;
   /***********************************************************************/
   public ThreadLauncher(Object object, Method method, Object[] objectParams, long delay)
   {
-    this.delay = delay;
-    this.object = object;
-    this.method = method;
-    this.objectParams = objectParams;
-    new Thread(this).start();
+    String params = StringUtils.join(objectParams, ",", o -> "" + o);
+    throw new DeprecatedException("new LambdaThreadLauncher(()-> object.%s(%s))", method.getName(),
+        params);
   }
   /***********************************************************************/
   public ThreadLauncher(Object object, Method method, Object[] objectParams)
@@ -27,29 +22,27 @@ public class ThreadLauncher implements Runnable
     this(object, method, objectParams, 0);
   }
   /***********************************************************************/
-  public ThreadLauncher(Class<?> clazz, String methodName, long delay) throws SecurityException, NoSuchMethodException
+  public ThreadLauncher(Class<?> clazz, String methodName, long delay)
   {
-    this(null, clazz.getMethod(methodName, (Class[]) null), null, delay);
+    this(null, ClassUtils.getMethod(clazz, methodName), null, delay);
   }
   /***********************************************************************/
-  public ThreadLauncher(Class<?> clazz, String methodName) throws SecurityException, NoSuchMethodException
+  public ThreadLauncher(Class<?> clazz, String methodName)
   {
-    this(null, clazz.getMethod(methodName, (Class[]) null), null, 0);
+    this(null, ClassUtils.getMethod(clazz, methodName), null, 0);
   }
   /***********************************************************************/
   public ThreadLauncher(Object object, String methodName, long delay)
-      throws SecurityException, NoSuchMethodException
   {
-    this(object, object.getClass().getMethod(methodName, (Class[]) null), null, delay);
+    this(object, ClassUtils.getMethod(object.getClass(), methodName), null, delay);
   }
   /***********************************************************************/
-  public ThreadLauncher(Object object, String methodName) throws SecurityException, NoSuchMethodException
+  public ThreadLauncher(Object object, String methodName)
   {
-    this(object, object.getClass().getMethod(methodName, (Class[]) null), null, 0);
+    this(object, ClassUtils.getMethod(object.getClass(), methodName), null, 0);
   }
   /***********************************************************************/
   public ThreadLauncher(Object object, String methodName, Object[] objectParams, long delay)
-      throws SecurityException, NoSuchMethodException
   {
     this(object, MethodExecutionPath.Parameters.getBestFitMethod(object.getClass(), methodName,
         getClassArray(objectParams)), objectParams, delay);
@@ -64,21 +57,6 @@ public class ThreadLauncher implements Runnable
     }
     return classes;
   }
-  /***********************************************************************/
-  public void run()
-  {
-    try
-    {
-      Thread.sleep(delay);
-      //My_System.event("Running " + method.getName());
-      method.invoke(object, objectParams);
-    }
-    catch (Throwable t)
-    {
-      SimpleLogger.warning("Caught throwable exception ", t);
-    }
-  }
-  /***********************************************************************/
   public static void launch(Action0 action)
   {
     new LambdaThreadLauncher(action);

@@ -10,6 +10,11 @@ public class LambdaThreadLauncher implements Runnable
   private long          delay = 0;
   public LambdaThreadLauncher(Action0 function)
   {
+    this(function, 0);
+  }
+  public LambdaThreadLauncher(Action0 function, long delay)
+  {
+    this.delay = delay;
     this.function = function;
     new Thread(this).start();
   }
