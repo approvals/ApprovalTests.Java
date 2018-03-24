@@ -2,7 +2,6 @@ package com.spun.util;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -161,26 +160,12 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum()
+   * @deprecated use Query.sum(list, l -> l.methodName(params));
    */
-  public static double sum(Object[] attribs, String methodName, Object[] params)
+  public static double sum(Object[] list, String methodName, Object[] params)
   {
-    try
-    {
-      if (attribs == null || attribs.length == 0) { return 0.00; }
-      Method method = MethodExecutionPath.Parameters.getBestFitMethod(attribs[0].getClass(), methodName,
-          params == null ? null : (Class[]) ObjectUtils.extractArray(params, "getClass"));
-      double sum = 0;
-      for (int i = 0; i < attribs.length; i++)
-      {
-        sum += ((Number) method.invoke(attribs[i], params)).doubleValue();
-      }
-      return sum;
-    }
-    catch (Throwable t)
-    {
-      throw ObjectUtils.throwAsError(t);
-    }
+    throw new DeprecatedException("Query.sum(list, l -> l.%s(%s))", methodName,
+        StringUtils.join(params, ",", p -> "" + p));
   }
   /***********************************************************************/
   public static boolean isEven(int number)
@@ -189,7 +174,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum()
+   * @deprecated use Query.sum(list, l -> l.methodName(params));
    */
   public static double sum(Object[] onArray, String forMethodName)
   {
@@ -197,7 +182,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum()
+   * @deprecated use Query.sum(list, l -> l.methodName(params));
    */
   public static double sum(Collection onCollection, String forMethodName)
   {

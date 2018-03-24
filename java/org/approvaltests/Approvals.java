@@ -31,11 +31,13 @@ import org.approvaltests.writers.ImageApprovalWriter;
 import org.approvaltests.writers.ResultSetApprovalWriter;
 import org.jrack.RackResponse;
 import org.jrack.RackResponseUtils;
+import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
 import com.spun.util.ArrayUtils;
+import com.spun.util.FormattedException;
 import com.spun.util.JsonUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
@@ -253,5 +255,11 @@ public class Approvals
   public static void verifyAsJson(Object o)
   {
     verify(JsonUtils.asJson(o), "json");
+  }
+  public static void verifyException(Action0 runnableBlock)
+  {
+    Throwable t = ObjectUtils.captureException(runnableBlock);
+    if (t == null) { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
+    Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
   }
 }

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
+import org.lambda.functions.Function1;
 import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
@@ -582,5 +583,9 @@ public class StringUtils
       b.append(String.format("%s : %s \n", key, map.get(key)));
     }
     return b.toString();
+  }
+  public static <T> String join(T[] list, String delimiter, Function1<T, String> convertor)
+  {
+    return String.join(delimiter, ArrayUtils.toString(list, convertor));
   }
 }

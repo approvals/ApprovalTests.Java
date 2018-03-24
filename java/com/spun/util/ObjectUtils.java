@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.lambda.actions.Action0;
+
 import com.spun.util.logger.SimpleLogger;
 
 /**
@@ -283,8 +285,6 @@ public class ObjectUtils
   {
     return value == null ? method.getReturnType() : value.getClass();
   }
-  /************************************************************************/
-  /************************************************************************/
   public static boolean isClassPresent(String className)
   {
     try
@@ -296,5 +296,17 @@ public class ObjectUtils
     {
       return false;
     }
+  }
+  public static Throwable captureException(Action0 runnableBlock)
+  {
+    try
+    {
+      runnableBlock.call();
+    }
+    catch (Throwable t)
+    {
+      return t;
+    }
+    return null;
   }
 }

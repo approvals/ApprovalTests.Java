@@ -1,0 +1,3 @@
+com.spun.util.DeprecatedException: sum is Depercated.
+ Instead, please use :
+ Query.sum(list, l -> l.intValue())

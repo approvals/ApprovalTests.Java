@@ -9,7 +9,7 @@ import com.spun.util.filters.FilterUtils;
 
 public class MethodExecutionPath implements Serializable
 {
-  public static final Object NULL_ENCOUNTERED_ON_PATH = new Object();
+  public static final Object      NULL_ENCOUNTERED_ON_PATH = new Object();
   private Class<? extends Object> classType, returnType;
   private String                  methodNames[];
   private Parameters[]            parameters;
@@ -62,16 +62,17 @@ public class MethodExecutionPath implements Serializable
     }
     catch (Exception e)
     {
-      throw new Error("Unable to get method for " + clazz.getName() + "." + currentMethodName + "(" + parameter
-          + ")", e);
+      throw new Error(
+          "Unable to get method for " + clazz.getName() + "." + currentMethodName + "(" + parameter + ")", e);
     }
   }
   /***********************************************************************/
   public Object extractValue(Object object)
   {
     if (object == null) { return NULL_ENCOUNTERED_ON_PATH; }
-    Method[] methods = this.methods == null ? getRecursiveMethods(object.getClass(), this.methodNames,
-        this.parameters) : this.methods;
+    Method[] methods = this.methods == null
+        ? getRecursiveMethods(object.getClass(), this.methodNames, this.parameters)
+        : this.methods;
     for (int i = 0; i < methods.length; i++)
     {
       if (object == null) { return NULL_ENCOUNTERED_ON_PATH; }
@@ -88,7 +89,8 @@ public class MethodExecutionPath implements Serializable
     }
     catch (Exception e)
     {
-      throw new Error("Problems extracting values from " + object.getClass().getName() + "." + method.getName(), e);
+      throw new Error("Problems extracting values from " + object.getClass().getName() + "." + method.getName(),
+          e);
     }
   }
   /************************************************************************/
@@ -106,7 +108,7 @@ public class MethodExecutionPath implements Serializable
   public static class Parameters
   {
     public static final Parameters EMPTY = new Parameters(null, null);
-    public Class[]                 definitions;
+    public Class<?>[]              definitions;
     public Object[]                values;
     /***********************************************************************/
     public Parameters(Object... values)
@@ -118,7 +120,7 @@ public class MethodExecutionPath implements Serializable
       }
     }
     /***********************************************************************/
-    public Parameters(Class[] definitions, Object[] values)
+    public Parameters(Class<?>[] definitions, Object[] values)
     {
       this.definitions = definitions;
       this.values = values;
@@ -138,8 +140,9 @@ public class MethodExecutionPath implements Serializable
       }
       catch (NoSuchMethodException e)
       {
-        Method[] methods = (Method[]) FilterUtils.retainExtracted(clazz.getMethods(),
-            new MethodParameterFilter(currentMethodName, definitions)).toArray(new Method[0]);
+        Method[] methods = (Method[]) FilterUtils
+            .retainExtracted(clazz.getMethods(), new MethodParameterFilter(currentMethodName, definitions))
+            .toArray(new Method[0]);
         if (methods.length == 0) { throw e; }
         if (methods.length == 1)
         {

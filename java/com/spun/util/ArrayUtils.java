@@ -31,7 +31,11 @@ public class ArrayUtils
   }
   public static <T> String toString(T[] values, Function1<T, String> formatter)
   {
-    return toString(Arrays.asList(values), formatter);
+    return toString(asList(values), formatter);
+  }
+  private static <T> List<T> asList(T[] values)
+  {
+    return values == null ? Collections.emptyList() : Arrays.asList(values);
   }
   public static <T> String toString(Iterable<T> values, Function1<T, String> formatter)
   {

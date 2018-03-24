@@ -5,6 +5,8 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
+import org.approvaltests.Approvals;
+
 import com.spun.util.NumberUtils;
 
 import junit.framework.TestCase;
@@ -45,6 +47,10 @@ public class NumberUtilsTest extends TestCase
   private void assertLongStream(LongStream stream)
   {
     assertTrue(stream instanceof LongStream);
+  }
+  public void testSum() throws Exception
+  {
+    Approvals.verifyException(() -> NumberUtils.sum(new Integer[]{1, 2, 3}, "intValue"));
   }
   public void testDoubleStream() throws Exception
   {
