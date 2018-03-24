@@ -15,7 +15,7 @@ public class UniversalTestSuite
       NoSuchMethodException
   {
     TestSuite suite = new TestSuite("Test for " + path);
-    for (Class c : ClassGetter.getClasses(path, "Test"))
+    for (Class<?> c : ClassGetter.getClasses(path, "Test"))
     {
       addClassToSuite(suite, c);
     }

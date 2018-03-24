@@ -4,13 +4,13 @@ import javax.swing.JButton;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.DiffReporter;
+import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.Test;
 
 import machine_specific_tests.MachineSpecificTest;
 
-@UseReporter({DiffReporter.class, ClipboardReporter.class})
+@UseReporter({ImageReporter.class, ClipboardReporter.class})
 public class ApprovalsTest extends MachineSpecificTest
 {
   @Test

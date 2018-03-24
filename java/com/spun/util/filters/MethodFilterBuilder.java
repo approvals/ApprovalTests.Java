@@ -12,7 +12,7 @@ public class MethodFilterBuilder
   private Object value;
   private CallMethod path;
 
-  public MethodFilterBuilder(Class clazz)
+  public MethodFilterBuilder(Class<?> clazz)
   {
     this.path = new CallMethod(clazz);
   }

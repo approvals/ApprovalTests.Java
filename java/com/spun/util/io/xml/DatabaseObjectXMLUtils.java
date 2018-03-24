@@ -54,7 +54,7 @@ public class DatabaseObjectXMLUtils
     return list.toArray(new DatabaseObject[list.size()]);
   }
   /***********************************************************************/
-  public static XmlMap map(Class clazz)
+  public static XmlMap map(Class<?> clazz)
   {
     return new XmlMap(ClassUtils.getClassName(clazz), "add", new XmlDatabaseMapExtractor(clazz));
   }

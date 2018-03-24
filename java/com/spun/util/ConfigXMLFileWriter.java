@@ -26,7 +26,7 @@ import org.w3c.dom.Element;
 public class ConfigXMLFileWriter
 {
   /************************************************************************/
-  public static void writeToFile(Class clazz, String fileName, String exclude[]) throws Exception
+  public static void writeToFile(Class<?> clazz, String fileName, String exclude[]) throws Exception
   {
     Document domDocument = createDocument();
     Field fields[] = getFields(clazz, exclude);
@@ -56,7 +56,7 @@ public class ConfigXMLFileWriter
     domDocument.getDocumentElement().appendChild(elem);
   }
   /***********************************************************************/
-  public static Field[] getFields(Class clazz, String... exclude)
+  public static Field[] getFields(Class<?> clazz, String... exclude)
   {
     Field fields[] = clazz.getFields();
     Field a = fields[0];

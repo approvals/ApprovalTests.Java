@@ -2,9 +2,9 @@ package com.spun.util.filters;
 
 public class ClassFilter implements Filter
 {
-  private Class clazz;
+  private Class<?> clazz;
   /***********************************************************************/
-  public ClassFilter(Class clazz)
+  public ClassFilter(Class<?> clazz)
   {
     this.clazz = clazz;
   }

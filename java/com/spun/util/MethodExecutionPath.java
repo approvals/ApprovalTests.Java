@@ -43,7 +43,7 @@ public class MethodExecutionPath implements Serializable
   {
     return new MethodExecutionPath(class1, new String[]{method}, new Parameters[]{new Parameters(paramaters)});
   }
-  public static Method[] getRecursiveMethods(Class clazz, String[] methodNames, Parameters[] parameters)
+  public static Method[] getRecursiveMethods(Class<?> clazz, String[] methodNames, Parameters[] parameters)
   {
     if (clazz == null) { return null; }
     Method methods[] = new Method[methodNames.length];
@@ -97,7 +97,7 @@ public class MethodExecutionPath implements Serializable
     return classType;
   }
   /***********************************************************************/
-  public Class getReturnType()
+  public Class<?> getReturnType()
   {
     return returnType;
   }
@@ -124,12 +124,12 @@ public class MethodExecutionPath implements Serializable
       this.values = values;
     }
     /***********************************************************************/
-    public Method getBestFitMethod(Class clazz, String currentMethodName) throws NoSuchMethodException
+    public Method getBestFitMethod(Class<?> clazz, String currentMethodName) throws NoSuchMethodException
     {
       return getBestFitMethod(clazz, currentMethodName, definitions);
     }
     /***********************************************************************/
-    public static Method getBestFitMethod(Class clazz, String currentMethodName, Class[] definitions)
+    public static Method getBestFitMethod(Class<?> clazz, String currentMethodName, Class[] definitions)
         throws NoSuchMethodException
     {
       try

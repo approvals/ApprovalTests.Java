@@ -6,7 +6,7 @@ public class ColumnMetadata
 {
   private Metadata       tableMetadata;
   private String         name;
-  private Class          type;
+  private Class<?>          type;
   private int            length;
   private boolean        nullable;
   private int            sqlType;
@@ -16,13 +16,13 @@ public class ColumnMetadata
   private String         foreignTable;
   private ColumnMetadata foreignColumn;
   /**************************************************************************/
-  public ColumnMetadata(Metadata tableMetadata, String name, Class type, int length, int columnPosition, boolean nullable, int sqlType,
+  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
       int decimalDigits, String comments)
   {
     this(tableMetadata, name, type, length, columnPosition, nullable, sqlType, decimalDigits, comments, null, null);
   }
   /**************************************************************************/
-  public ColumnMetadata(Metadata tableMetadata, String name, Class type, int length, int columnPosition, boolean nullable, int sqlType,
+  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
       int decimalDigits, String comments, String foreignTable, ColumnMetadata foreignColumn)
   {
     this.columnPosition = columnPosition;
@@ -79,7 +79,7 @@ public class ColumnMetadata
     return nullable;
   }
   /***********************************************************************/
-  public Class getType()
+  public Class<?> getType()
   {
     return type;
   }

@@ -22,7 +22,7 @@ public class DateRange
     this.end = end;
   }
   /************************************************************************/
-  public Filter getFilter(Class clazz, String... methodCalls)
+  public Filter getFilter(Class<?> clazz, String... methodCalls)
   {
     return getFilter(new MethodExecutionPath(clazz, methodCalls));
   }

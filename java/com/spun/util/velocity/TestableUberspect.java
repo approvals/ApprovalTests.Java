@@ -210,7 +210,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       return method.getName();
     }
-    public Class getReturnType()
+    public Class<?> getReturnType()
     {
       return method.getReturnType();
     }

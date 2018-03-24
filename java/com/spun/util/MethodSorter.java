@@ -38,12 +38,12 @@ public class MethodSorter<T> implements java.util.Comparator<T>, Serializable
     this(new MethodExecutionPath(classType, methodNames), SortOrder.isAscending(ascending));
   }
   /************************************************************************/
-  public Class getClassType()
+  public Class<?> getClassType()
   {
     return path.getClassType();
   }
   /************************************************************************/
-  private static Comparator<Object> getComparatorForType(Class type, boolean ascending)
+  private static Comparator<Object> getComparatorForType(Class<?> type, boolean ascending)
   {
     if (String.class.isAssignableFrom(type))
     {

@@ -13,7 +13,7 @@ public class JettyUtils
     RackServlet.setDefaultRack(rack);
     startJettyServlet(port, RackServlet.class);
   }
-  public static void startJettyServlet(int port, Class servlet)
+  public static void startJettyServlet(int port, Class<RackServlet> servlet)
   {
     try
     {

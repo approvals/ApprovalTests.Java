@@ -6,6 +6,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.tests.ReportInjectionTest.MyReporter;
 
 @UseReporter(QuietReporter.class)
 public class ReportInjectionTest extends TestCase
@@ -18,7 +19,7 @@ public class ReportInjectionTest extends TestCase
       called = getClass();
     }
   }
-  private static Class called = null;
+  private static Class<? extends MyReporter> called = null;
   @UseReporter(MyReporter.class)
   public void testOverrideReporterByParameter() throws Exception
   {

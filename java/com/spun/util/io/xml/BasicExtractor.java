@@ -1,13 +1,15 @@
 package com.spun.util.io.xml;
 
 import java.sql.Timestamp;
+
 import org.w3c.dom.Node;
+
 import com.spun.util.io.XMLUtils;
 
 public class BasicExtractor
 {
   /***********************************************************************/
-  public static XmlExtractor get(Class clazz)
+  public static XmlExtractor get(Class<?> clazz)
   {
     XmlExtractor extractor = null;
     if (String.class.isAssignableFrom(clazz))

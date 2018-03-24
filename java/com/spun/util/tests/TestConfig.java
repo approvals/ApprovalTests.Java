@@ -36,7 +36,7 @@ public class TestConfig
     }
   }
   /***********************************************************************/
-  public static int getTestingLevel(Class clazz)
+  public static int getTestingLevel(Class<?> clazz)
   {
     String name = clazz.getName();
     Object o = overrides.get(name); 

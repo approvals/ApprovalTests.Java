@@ -18,17 +18,17 @@ public class MethodFilter implements com.spun.util.filters.Filter
 
 
   /************************************************************************/
-  public MethodFilter(Class clazz, Object value, String... methodNames)
+  public MethodFilter(Class<?> clazz, Object value, String... methodNames)
   {
     this(new MethodExecutionPath(clazz, methodNames), CompareBy.EQUAL, value);
   }
   /************************************************************************/
-  public MethodFilter(Class clazz, Object value, CompareBy operation, String... methodNames)
+  public MethodFilter(Class<?> clazz, Object value, CompareBy operation, String... methodNames)
   {
     this(new MethodExecutionPath(clazz, methodNames), operation, value);
   }
   /************************************************************************/
-  public MethodFilter(Class clazz, Object value, MethodExecutionPath path)
+  public MethodFilter(Class<?> clazz, Object value, MethodExecutionPath path)
   {
     this(path, CompareBy.EQUAL, value);
   }
@@ -40,7 +40,7 @@ public class MethodFilter implements com.spun.util.filters.Filter
     this.operation = operation;
     ObjectUtils.assertInstanceOrNull(path.getReturnType(), value);
   }
-  public MethodFilter(Class clazz, Object value, String method, Object parameter)
+  public MethodFilter(Class<?> clazz, Object value, String method, Object parameter)
   {
     this(MethodExecutionPath.method(clazz, method, parameter), CompareBy.EQUAL, value);
   }
@@ -68,7 +68,7 @@ public class MethodFilter implements com.spun.util.filters.Filter
     }
     
   }
-  public static MethodFilterBuilder on(Class clazz)
+  public static MethodFilterBuilder on(Class<?> clazz)
   {
     return new MethodFilterBuilder(clazz);
   }

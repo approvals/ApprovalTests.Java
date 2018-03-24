@@ -14,20 +14,20 @@ import com.spun.util.io.XMLUtils;
 public class ConfigXMLFileReader
 {
   /***********************************************************************/
-  public static String loadXML(Class clazz, String exclude[], String fileLocation, String[] backupPaths) throws Exception
+  public static String loadXML(Class<?> clazz, String exclude[], String fileLocation, String[] backupPaths) throws Exception
   {
     String fileNameUsed = XMLUtils.locateFile(fileLocation, backupPaths);
     loadXML(clazz, exclude,fileNameUsed);
     return fileNameUsed;
   }
   /***********************************************************************/
-  public static void loadXML(Class clazz, String exclude[], String knownFileLocation) throws Exception
+  public static void loadXML(Class<?> clazz, String exclude[], String knownFileLocation) throws Exception
   {
     HashMap<String, Object> properties = XMLUtils.parseProperties(knownFileLocation, new ConfigXMLNodeExtractor());
     loadClass(clazz, exclude, properties);
   }
   /***********************************************************************/
-  private static void loadClass(Class clazz, String exclude[], HashMap<String, Object> properties) throws IllegalArgumentException, IllegalAccessException
+  private static void loadClass(Class<?> clazz, String exclude[], HashMap<String, Object> properties) throws IllegalArgumentException, IllegalAccessException
   {
     Field[] fields = ConfigXMLFileWriter.getFields(clazz, exclude);
     for (int i = 0; i < fields.length; i++)

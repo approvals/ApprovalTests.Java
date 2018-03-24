@@ -27,12 +27,12 @@ public class ThreadLauncher implements Runnable
     this(object, method, objectParams, 0);
   }
   /***********************************************************************/
-  public ThreadLauncher(Class clazz, String methodName, long delay) throws SecurityException, NoSuchMethodException
+  public ThreadLauncher(Class<?> clazz, String methodName, long delay) throws SecurityException, NoSuchMethodException
   {
     this(null, clazz.getMethod(methodName, (Class[]) null), null, delay);
   }
   /***********************************************************************/
-  public ThreadLauncher(Class clazz, String methodName) throws SecurityException, NoSuchMethodException
+  public ThreadLauncher(Class<?> clazz, String methodName) throws SecurityException, NoSuchMethodException
   {
     this(null, clazz.getMethod(methodName, (Class[]) null), null, 0);
   }

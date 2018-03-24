@@ -53,6 +53,7 @@
 	<classpathentry kind="lib" path="java/jars/hadoop/hadoop-core-0.20.2.jar"/>
 	<classpathentry kind="lib" path="java/jars/hadoop/hadoop-mapred-test-0.22.0.jar"/>
 	<classpathentry kind="lib" path="java/jars/gson-2.7.jar" sourcepath="/Users/llewellyn/.m2/repository/com/google/code/gson/gson/2.7/gson-2.7-sources.jar"/>
+	<classpathentry kind="lib" path="java/jars/testng-6.9.10.jar"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

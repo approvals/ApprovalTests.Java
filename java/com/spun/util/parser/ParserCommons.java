@@ -23,7 +23,7 @@ public class ParserCommons
   }
 
   /***********************************************************************/
-  public static Class getClass(String clazz) throws ClassNotFoundException
+  public static Class<?> getClass(String clazz) throws ClassNotFoundException
   {
     return Class.forName(clazz);
   }

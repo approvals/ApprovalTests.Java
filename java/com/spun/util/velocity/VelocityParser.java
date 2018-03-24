@@ -179,7 +179,7 @@ public class VelocityParser
   }
   /***********************************************************************/
   /***********************************************************************/
-  public static String parseFromClassPath(Class clazz, String string, ContextAware context)
+  public static String parseFromClassPath(Class<?> clazz, String string, ContextAware context)
   {
     String resource = FileUtils.readFromClassPath(clazz, string);
     return parseString(resource, context);

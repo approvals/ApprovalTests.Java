@@ -14,11 +14,11 @@ import com.spun.util.io.xml.XmlTranslator;
 /***********************************************************************/
 public class XmlDatabaseMapExtractor implements XmlExtractor
 {
-  private Class         clazz;
+  private Class<?>         clazz;
   private XmlTranslator translator;
   private Method        creator = null;
   /***********************************************************************/
-  public XmlDatabaseMapExtractor(Class clazz)
+  public XmlDatabaseMapExtractor(Class<?> clazz)
   {
     this.clazz = clazz;
   }

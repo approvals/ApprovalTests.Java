@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T>
 {
-  private Map<Integer,T>     cache        = null;
-  private Class   defaultClass = null;
-  private boolean linkBack     = true;
+  private Map<Integer, T> cache        = null;
+  private Class<T>        defaultClass = null;
+  private boolean         linkBack     = true;
   /**************************************************************************/
   public TemporaryCache(T object)
   {
@@ -22,7 +22,7 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
     this.linkBack = linkBack;
     if (object != null)
     {
-      defaultClass = object.getClass();
+      defaultClass = (Class<T>) object.getClass();
       cache = Collections.singletonMap(object.getPkey(), object);
     }
     else
@@ -39,13 +39,13 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   public TemporaryCache(T objects[], boolean linkBack)
   {
     this.linkBack = linkBack;
-    cache = new HashMap<Integer,T>(objects.length);
+    cache = new HashMap<Integer, T>(objects.length);
     for (int i = 0; i < objects.length; i++)
     {
       cache.put(objects[i].getPkey(), objects[i]);
       if (i == 0)
       {
-        defaultClass = objects[i].getClass();
+        defaultClass = (Class<T>) objects[i].getClass();
       }
       else if (defaultClass != objects[i].getClass())
       {
@@ -59,7 +59,7 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
     defaultClass = null;
   }
   /**************************************************************************/
-  public Class getObjectType()
+  public Class<T> getObjectType()
   {
     return defaultClass;
   }

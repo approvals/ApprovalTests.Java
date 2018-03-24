@@ -49,10 +49,6 @@
 		<antcall target="createDownload" />
 	</target>
 
-	<target name="Publish    ExtensionMethods">
-		<property file="properties/extension_methods.properties" />
-		<antcall target="createDownload" />
-	</target>
 	<target name="Publish    HtmlLocker">
 		<property file="properties/html_locker.properties" />
 		<antcall target="buildJarFile" />

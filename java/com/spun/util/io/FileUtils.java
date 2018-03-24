@@ -57,7 +57,7 @@ public class FileUtils
     // delete self.
     directory.delete();
   }
-  public static String readFromClassPath(Class clazz, String string)
+  public static String readFromClassPath(Class<?> clazz, String string)
   {
     final InputStream resourceAsStream = clazz.getResourceAsStream(string);
     if (resourceAsStream == null)
@@ -306,7 +306,7 @@ public class FileUtils
     }
     return resource;
   }
-  public static char[] loadResourceFromClasspathAsBytes(Class clazz, String name) throws IOException
+  public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name) throws IOException
   {
     return extractBytes(clazz.getResourceAsStream(name));
   }

@@ -29,7 +29,7 @@ public final class DatabaseLoader
   /**************************************************************************/
   /*                     UNSUPPORTED METHODS                                */
   /**************************************************************************/
-  public Class getObjectType()                           {throw new UnsupportedOperationException(ERROR_TEXT);}
+  public Class<?> getObjectType()                           {throw new UnsupportedOperationException(ERROR_TEXT);}
   public boolean isLinkBackOn()                          {throw new UnsupportedOperationException(ERROR_TEXT);}
   public void load(Statement stmt)  throws SQLException  {throw new UnsupportedOperationException(ERROR_TEXT);}
   public void reset(Statement stmt) throws SQLException  {throw new UnsupportedOperationException(ERROR_TEXT);}

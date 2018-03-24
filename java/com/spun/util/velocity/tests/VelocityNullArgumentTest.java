@@ -18,7 +18,7 @@ public class VelocityNullArgumentTest extends TestCase implements ContextAware
     context.put("nullValue", null);
   }
   /***********************************************************************/
-  public static String getClass(Class c)
+  public static String getClass(Class<?> c)
   {
     return c == null ? "you got null" : c.getName();
   }

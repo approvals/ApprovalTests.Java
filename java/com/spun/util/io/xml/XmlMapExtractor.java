@@ -9,10 +9,10 @@ import com.spun.util.ClassUtils;
 
 public class XmlMapExtractor implements XmlExtractor
 {
-  private Class clazz;
+  private Class<?> clazz;
   private XmlTranslator translator;
   /***********************************************************************/
-  public XmlMapExtractor(XmlMap[] xmlMaps, Class clazz) throws InstantiationException, IllegalAccessException
+  public XmlMapExtractor(XmlMap[] xmlMaps, Class<?> clazz) throws InstantiationException, IllegalAccessException
   {
     this.clazz = clazz;
     this.translator = XmlMapTranslator.get(clazz, xmlMaps);
@@ -20,7 +20,7 @@ public class XmlMapExtractor implements XmlExtractor
     
   }
   /***********************************************************************/
-  public XmlMapExtractor(Class clazz) throws InstantiationException, IllegalAccessException 
+  public XmlMapExtractor(Class<?> clazz) throws InstantiationException, IllegalAccessException 
   {
     
     this(((XmlExtractable)clazz.newInstance()).getXmlMap(), clazz);

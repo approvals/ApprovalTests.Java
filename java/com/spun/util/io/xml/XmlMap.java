@@ -18,10 +18,10 @@ public class XmlMap
   private String xmlName;
   private XmlExtractor extractor;
   private Method settingMethod;
-  private Class type;
+  private Class<?> type;
   /***********************************************************************/
   
-  public XmlMap(String xmlName, String settingFunction, Class type)
+  public XmlMap(String xmlName, String settingFunction, Class<?> type)
   {
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
@@ -53,20 +53,20 @@ public class XmlMap
     this.extractor = extractor;
   }
   /***********************************************************************/
-  public void initialize(Class clazz) throws InstantiationException, IllegalAccessException
+  public void initialize(Class<?> clazz) throws InstantiationException, IllegalAccessException
   {
     
     List methods = FilterUtils.retainExtracted(clazz.getMethods(), new SingleSetterMethodFilter(settingFunction, type));
     settingMethod = getBestMethodFit(methods);
     if (extractor == null)
     {
-      Class takes = settingMethod.getParameterTypes()[0];
+      Class<?> takes = settingMethod.getParameterTypes()[0];
       extractor = getExtractorFor(takes);
     }
   }
   /***********************************************************************/
   
-  private XmlExtractor getExtractorFor(Class takes) throws InstantiationException, IllegalAccessException 
+  private XmlExtractor getExtractorFor(Class<?> takes) throws InstantiationException, IllegalAccessException 
   {
     XmlExtractor extractor = BasicExtractor.get(takes);
     // basic type get basic type extractor
@@ -110,8 +110,8 @@ public class XmlMap
   {
 
     private String methodName = null;
-    private Class argument = null;
-    public SingleSetterMethodFilter(String methodName, Class argument)
+    private Class<?> argument = null;
+    public SingleSetterMethodFilter(String methodName, Class<?> argument)
     {
       this.methodName = methodName;
       this.argument = argument;

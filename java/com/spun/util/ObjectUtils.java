@@ -55,7 +55,7 @@ public class ObjectUtils
       throws SecurityException, NoSuchMethodException
   {
     Method methods[] = new Method[passedMethods.length];
-    Class clazz = o2.getClass();
+    Class<?> clazz = o2.getClass();
     for (int i = 0; i < passedMethods.length; i++)
     {
       methods[i] = clazz.getMethod(passedMethods[i], (Class[]) null);
@@ -193,7 +193,7 @@ public class ObjectUtils
     {
       for (int i = classes.size() - 1; i >= 0; i--)
       {
-        Class clazz = classes.get(i);
+        Class<?> clazz = classes.get(i);
         if (!isThisInstanceOfThat(o.getClass(), clazz) || !ClassUtils.hasMethod(clazz, methodName))
         {
           classes.remove(i);
@@ -230,12 +230,12 @@ public class ObjectUtils
     }
   }
   /***********************************************************************/
-  public static void assertInstance(Class clazz, Object object)
+  public static void assertInstance(Class<?> clazz, Object object)
   {
     assertInstance(new Class[]{clazz}, object);
   }
   /***********************************************************************/
-  public static void assertInstance(Class classes[], Object object)
+  public static void assertInstance(Class<?> classes[], Object object)
   {
     if (object == null) { throw new NullPointerException(
         "Expected Object of Type " + Arrays.asList(extractArray(classes, "getName")) + " but was null"); }
@@ -252,7 +252,7 @@ public class ObjectUtils
     return o == null ? "null" : o.getClass().getName();
   }
   /***********************************************************************/
-  public static void assertInstanceOrNull(Class type, Object value)
+  public static void assertInstanceOrNull(Class<?> type, Object value)
   {
     if (value != null)
     {
@@ -279,7 +279,7 @@ public class ObjectUtils
     }
   }
   /************************************************************************/
-  private static Class getBestClass(Object value, Method method)
+  private static Class<?> getBestClass(Object value, Method method)
   {
     return value == null ? method.getReturnType() : value.getClass();
   }
