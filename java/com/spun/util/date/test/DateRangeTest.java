@@ -3,6 +3,7 @@ package com.spun.util.date.test;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.approvaltests.Approvals;
 import org.lambda.query.Query;
@@ -26,9 +27,17 @@ public class DateRangeTest extends TestCase
   /************************************************************************/
   public void testFilter() throws Exception
   {
-    DateRange range = new DateRange(date(40), date(20));
-    Timestamp dates[] = {date(50), date(40), date(30), date(20), date(10)};
+    DateRange range = new DateRange(quickDate(20), quickDate(40));
+    Timestamp dates[] = {quickDate(50), quickDate(40), quickDate(30), quickDate(20), quickDate(10)};
     Approvals.verifyAll("Dates", Query.where(dates, d -> range.contains(d)));
+  }
+  /************************************************************************/
+  public static Timestamp quickDate(int daysPastNewYears)
+  {
+    Timestamp start = DateUtils.parse("2001/01/01");
+    Calendar calendar = DateUtils.asCalendar(start);
+    calendar.add(GregorianCalendar.DAY_OF_YEAR, daysPastNewYears);
+    return DateUtils.asTimestamp(calendar.getTime());
   }
   /************************************************************************/
   public static Timestamp date(int daysAgo)

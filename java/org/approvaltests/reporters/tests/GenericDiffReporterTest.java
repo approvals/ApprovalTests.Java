@@ -2,8 +2,6 @@ package org.approvaltests.reporters.tests;
 
 import java.io.File;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.GenericDiffReporter;
@@ -12,6 +10,7 @@ import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.reporters.macosx.MacDiffReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
+import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.approvaltests.reporters.windows.WinMergeReporter;
 import org.approvaltests.strings.Printer;
@@ -19,8 +18,16 @@ import org.approvaltests.strings.Printer;
 import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
 
+import junit.framework.TestCase;
+
 public class GenericDiffReporterTest extends TestCase
 {
+  @UseReporter(DiffMergeReporter.class)
+  public void testArguementParsing() throws Exception
+  {
+    Approvals.verifyAll("CommandLine",
+        VisualStudioCodeReporter.INSTANCE.getCommandLine("received.txt", "approved.txt"));
+  }
   @UseReporter(DiffMergeReporter.class)
   public void ptestGetWorkingReportesForEnviroment() throws Exception
   {

@@ -3,6 +3,7 @@ package org.approvaltests.reporters;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -67,12 +68,12 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   }
   public String[] getCommandLine(String received, String approved)
   {
-    String[] p = arguments.split(" ");
-    String r = String.format(p[0], received);
-    String a = String.format(p[1], approved);
-    String[] commands = new String[]{diffProgram, r, a};
-    System.out.println(Arrays.toString(commands));
-    return commands;
+    String full = String.format(arguments, received, approved);
+    ArrayList<String> commands = new ArrayList<String>();
+    commands.add(diffProgram);
+    commands.addAll(Arrays.asList(full.split(" ")));
+    System.out.println(commands);
+    return commands.toArray(new String[0]);
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

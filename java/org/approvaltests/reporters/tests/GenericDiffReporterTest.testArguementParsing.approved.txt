@@ -1,0 +1,4 @@
+CommandLine[0] = /Applications/Visual Studio Code.app/Contents/Resources/app/bin/code
+CommandLine[1] = -d
+CommandLine[2] = received.txt
+CommandLine[3] = approved.txt
