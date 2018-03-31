@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.lambda.actions.Action1;
 
-import com.spun.util.ThreadLauncher;
+import com.spun.util.LambdaThreadLauncher;
 
 public class ParallelLoops
 {
@@ -16,7 +16,7 @@ public class ParallelLoops
     {
       count++;
       final T piece = i;
-      ThreadLauncher.launch(() -> {
+      new LambdaThreadLauncher(() -> {
         a1.call(piece);
         done.incrementAndGet();
       });
