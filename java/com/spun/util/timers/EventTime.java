@@ -1,25 +1,26 @@
 package com.spun.util.timers;
 
 import java.io.Serializable;
+
 import com.spun.util.DateDifference;
 
 /**
  * A Utility for timing an event multiple times.
- * Holds min, max, timeouts. ect...
+ * Holds min, max, timeouts. etc...
  **/
 public class EventTime
 {
   public enum SortBy {
-    NAME, COUNT, TOTAL_TIME, AVERAGE_TIME, MIN_TIME, MAX_TIME, EXCEEDED_COUNT
+                      NAME, COUNT, TOTAL_TIME, AVERAGE_TIME, MIN_TIME, MAX_TIME, EXCEEDED_COUNT
   }
   private static final String enumeration[]     = {"unknown",
-      "name",
-      "count",
-      "total time",
-      "average time",
-      "min time",
-      "max time",
-      "excceded count"                          };
+                                                   "name",
+                                                   "count",
+                                                   "total time",
+                                                   "average time",
+                                                   "min time",
+                                                   "max time",
+                                                   "excceded count"};
   private int                 count             = 0;
   private long                totalTime         = 0;
   private String              label             = null;
@@ -142,41 +143,16 @@ public class EventTime
     return value;
   }
   /************************************************************************/
-  /**
-   * A convenience function to turn a vector of EventTime objects
-   * into an Array of the EventTime objects.
-   * @param vectorOf a Vector of EventTime objects
-   * @return the array of EventTime.
-   * @throws Error if an element of vectorOf is not a EventTime object.
-   **/
-  public static EventTime[] toArray(java.util.Vector vectorOf)
-  {
-    if (vectorOf == null) { return new EventTime[0]; }
-    EventTime array[] = new EventTime[vectorOf.size()];
-    for (int i = 0; i < array.length; i++)
-    {
-      java.lang.Object rowObject = vectorOf.elementAt(i);
-      if (rowObject instanceof EventTime)
-      {
-        array[i] = (EventTime) rowObject;
-      }
-      else
-      {
-        throw new Error("toArray[i] is not an instance of EventTime but a " + rowObject.getClass().getName());
-      }
-    }
-    return array;
-  }
-  /************************************************************************/
   /**                     Inner Classes                                  **/
   /************************************************************************/
   /**
    * For use with java.util.Arrays.sort(Trade[], Trade.SortAddDate).
    **/
-  public static class SortEventTimers implements java.util.Comparator, Serializable
+  public static class SortEventTimers implements java.util.Comparator<EventTime>, Serializable
   {
-    private SortBy type = null;
-    private int    asc  = 0;
+    private static final long serialVersionUID = 1L;
+    private SortBy            type             = null;
+    private int               asc              = 0;
     /************************************************************************/
     public SortEventTimers(SortBy type, boolean asc)
     {
@@ -184,7 +160,7 @@ public class EventTime
       this.asc = (asc) ? 1 : -1;
     }
     /************************************************************************/
-    public int compare(Object o1, Object o2) throws java.lang.ClassCastException
+    public int compare(EventTime o1, EventTime o2) throws java.lang.ClassCastException
     {
       if ((o1 instanceof EventTime) && (o2 instanceof EventTime))
       {

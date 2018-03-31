@@ -1,23 +1,23 @@
 package com.spun.util.database;
 
-import java.sql.Statement;  
-import java.sql.SQLException;  
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public final class DatabaseLoader
-  implements DatabaseCache
+public final class DatabaseLoader<T extends DatabaseObject> implements DatabaseCache<T>
 {
-  private static final String ERROR_TEXT = "DatabaseLoad is a Marker to Load from the Database";
-  public static DatabaseCache INSTANCE = new DatabaseLoader();
-  
+  private static final String                 ERROR_TEXT = "DatabaseLoad is a Marker to Load from the Database";
+  public static DatabaseCache<DatabaseObject> INSTANCE   = new DatabaseLoader<DatabaseObject>();
   /**************************************************************************/
-  private DatabaseLoader() {}
+  private DatabaseLoader()
+  {
+  }
   /**************************************************************************/
-  public static boolean isDatabaseLoader(DatabaseCache cache)
+  public static <T extends DatabaseObject> boolean isDatabaseLoader(DatabaseCache<T> cache)
   {
     return (cache instanceof DatabaseLoader);
   }
   /**************************************************************************/
-  public static boolean isNormalCache(DatabaseCache cache)
+  public static <T extends DatabaseObject> boolean isNormalCache(DatabaseCache<T> cache)
   {
     return !((cache == null) || (cache instanceof DatabaseLoader));
   }
@@ -29,10 +29,25 @@ public final class DatabaseLoader
   /**************************************************************************/
   /*                     UNSUPPORTED METHODS                                */
   /**************************************************************************/
-  public Class<?> getObjectType()                           {throw new UnsupportedOperationException(ERROR_TEXT);}
-  public boolean isLinkBackOn()                          {throw new UnsupportedOperationException(ERROR_TEXT);}
-  public void load(Statement stmt)  throws SQLException  {throw new UnsupportedOperationException(ERROR_TEXT);}
-  public void reset(Statement stmt) throws SQLException  {throw new UnsupportedOperationException(ERROR_TEXT);}
-  public DatabaseObject get(int pkey)                    {throw new UnsupportedOperationException(ERROR_TEXT);}
+  public Class<T> getObjectType()
+  {
+    throw new UnsupportedOperationException(ERROR_TEXT);
+  }
+  public boolean isLinkBackOn()
+  {
+    throw new UnsupportedOperationException(ERROR_TEXT);
+  }
+  public void load(Statement stmt) throws SQLException
+  {
+    throw new UnsupportedOperationException(ERROR_TEXT);
+  }
+  public void reset(Statement stmt) throws SQLException
+  {
+    throw new UnsupportedOperationException(ERROR_TEXT);
+  }
+  public T get(int pkey)
+  {
+    throw new UnsupportedOperationException(ERROR_TEXT);
+  }
   /**************************************************************************/
 }

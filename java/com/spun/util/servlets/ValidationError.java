@@ -4,19 +4,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+
 import com.spun.util.StringUtils;
 
 public class ValidationError extends RuntimeException
 {
-  public static final ValidationError EMPTY      = new ValidationError();
-  private HashMap<String, String>     errors     = new HashMap<String, String>();
-  private HashSet<String>             assertions = null;
-  private ValidationTracker           iterator   = null;
+  private static final long           serialVersionUID = 1L;
+  public static final ValidationError EMPTY            = new ValidationError();
+  private HashMap<String, String>     errors           = new HashMap<String, String>();
+  private HashSet<String>             assertions       = null;
+  private ValidationTracker           iterator         = null;
   /***********************************************************************/
-  public ValidationError(Enum enumumations[])
+  public ValidationError(Enum<?> enumumations[])
   {
     this.assertions = new HashSet<String>();
-    for (Enum e : enumumations)
+    for (Enum<?> e : enumumations)
     {
       this.assertions.add(e.toString());
     }
@@ -54,15 +56,15 @@ public class ValidationError extends RuntimeException
     return iterator;
   }
   /***********************************************************************/
-  public void set(Enum assertion, boolean isOk, String errorDescription)
+  public void set(Enum<?> assertion, boolean isOk, String errorDescription)
   {
     setError(assertion.toString(), !isOk, errorDescription);
   }
   /***********************************************************************/
   public void setError(String assertion, boolean isError, String errorDescription)
   {
-    if (isError && !StringUtils.isNonZero(errorDescription)) { throw new Error(
-        "You can not use empty error descriptions"); }
+    if (isError && !StringUtils
+        .isNonZero(errorDescription)) { throw new Error("You can not use empty error descriptions"); }
     assertValidAssertion(assertion);
     if (isError)
     {
@@ -107,7 +109,7 @@ public class ValidationError extends RuntimeException
     {
       this.assertions.add(prefix + assertions[i]);
     }
-    Iterator iterator = error.errors.keySet().iterator();
+    Iterator<?> iterator = error.errors.keySet().iterator();
     while (iterator.hasNext())
     {
       String key = (String) iterator.next();
@@ -146,7 +148,7 @@ public class ValidationError extends RuntimeException
     return errors.size();
   }
   /***********************************************************************/
-  public String getErrorDescription(Enum assertion)
+  public String getErrorDescription(Enum<?> assertion)
   {
     return getErrorDescription(assertion.toString());
   }
@@ -173,7 +175,7 @@ public class ValidationError extends RuntimeException
   }
   /***********************************************************************/
   /***********************************************************************/
-  public boolean isOnlyProblem(Enum e)
+  public boolean isOnlyProblem(Enum<?> e)
   {
     String assertion = e.toString();
     assertValidAssertion(assertion);

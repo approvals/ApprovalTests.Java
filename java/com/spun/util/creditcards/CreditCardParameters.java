@@ -28,7 +28,6 @@ public class CreditCardParameters
     setResellerId(configuration.getResellerId());
     setUserId(configuration.getUserId());
     setVendorId(configuration.getVenderId());
-    
   }
   /***********************************************************************/
   public String getParameter(String key)
@@ -39,7 +38,6 @@ public class CreditCardParameters
   public void addParameter(String key, String value)
   {
     if ((key == null) || (value == null)) { return; }
-
     if ((value.indexOf('&') != -1) && (value.indexOf('=') != -1))
     {
       key = key + "[" + value.length() + "]";
@@ -51,7 +49,7 @@ public class CreditCardParameters
   {
     StringBuffer param = new StringBuffer();
     String key = null;
-    Enumeration keys = parameters.propertyNames();
+    Enumeration<?> keys = parameters.propertyNames();
     while (keys.hasMoreElements())
     {
       key = keys.nextElement().toString();
@@ -71,7 +69,6 @@ public class CreditCardParameters
    */
   public void setCardSecurityCode(String csc)
   {
-    
     addParameter("CVV2", csc);
   }
   /***********************************************************************/

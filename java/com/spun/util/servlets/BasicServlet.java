@@ -220,7 +220,7 @@ public abstract class BasicServlet extends HttpServlet
   /***********************************************************************/
   public static ArrayList<Property> getHeaders(HttpServletRequest req)
   {
-    Enumeration e = req.getHeaderNames();
+    Enumeration<?> e = req.getHeaderNames();
     ArrayList<Property> parameters = new ArrayList<Property>();
     while (e.hasMoreElements())
     {
@@ -252,7 +252,7 @@ public abstract class BasicServlet extends HttpServlet
   /***********************************************************************/
   public static ArrayList<Property> getParameters(HttpServletRequest req)
   {
-    Enumeration e = req.getParameterNames();
+    Enumeration<?> e = req.getParameterNames();
     ArrayList<Property> parameters = new ArrayList<Property>();
     while (e.hasMoreElements())
     {

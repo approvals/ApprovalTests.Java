@@ -134,7 +134,7 @@ public class Query<In>
   {
     return sum(list, a -> a);
   }
-  @SuppressWarnings("rawtypes")
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public static <T extends Number> T max(List<T> numbers)
   {
     return (T) max(numbers, (a) -> (Comparable) a);
@@ -143,6 +143,7 @@ public class Query<In>
   {
     return max(ArrayUtils.asList(numbers));
   }
+  @SuppressWarnings({"rawtypes", "unchecked"})
   public static <T extends Number> T min(List<T> numbers)
   {
     return (T) min((List) numbers, (Comparable a) -> a);

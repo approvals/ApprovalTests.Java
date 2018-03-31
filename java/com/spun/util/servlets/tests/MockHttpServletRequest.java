@@ -14,18 +14,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import com.spun.util.StringUtils;
 
 public class MockHttpServletRequest implements HttpServletRequest
 {
-  public Map                parameters = new HashMap<String, Object>();
-  private String            body;
-  private ArrayList<Cookie> cookies    = new ArrayList<Cookie>();
+  public Map<String, Object> parameters = new HashMap<String, Object>();
+  private String             body;
+  private ArrayList<Cookie>  cookies    = new ArrayList<Cookie>();
   /***********************************************************************/
   public MockHttpServletRequest()
   {
@@ -55,6 +57,7 @@ public class MockHttpServletRequest implements HttpServletRequest
     this.cookies = response.cookies;
   }
   /***********************************************************************/
+  @SuppressWarnings("unchecked")
   public void setParameter(String key, String value)
   {
     Object current = parameters.get(key);
@@ -71,7 +74,7 @@ public class MockHttpServletRequest implements HttpServletRequest
     }
     else if (current instanceof ArrayList)
     {
-      ((ArrayList<String>) current).add(value);
+      ((ArrayList<Object>) current).add(value);
     }
   }
   /***********************************************************************/
@@ -80,9 +83,9 @@ public class MockHttpServletRequest implements HttpServletRequest
     return (String) this.parameters.get(key);
   }
   /***********************************************************************/
-  public Enumeration getParameterNames()
+  public Enumeration<Object> getParameterNames()
   {
-    return new Enumeration()
+    return new Enumeration<Object>()
     {
       int count = 0;
       public boolean hasMoreElements()
@@ -100,14 +103,14 @@ public class MockHttpServletRequest implements HttpServletRequest
     };
   }
   /***********************************************************************/
-  public Map getParameterMap()
+  public Map<String, Object> getParameterMap()
   {
     return parameters;
   }
   /***********************************************************************/
   public Cookie[] getCookies()
   {
-    return (Cookie[]) cookies.toArray(new Cookie[cookies.size()]);
+    return cookies.toArray(new Cookie[cookies.size()]);
   }
   /***********************************************************************/
   public void setCookies(Cookie[] cookies)
@@ -159,7 +162,7 @@ public class MockHttpServletRequest implements HttpServletRequest
   {
     return 0;
   }
-  public Enumeration getHeaderNames()
+  public Enumeration<Object> getHeaderNames()
   {
     return new StringTokenizer("");
   }
@@ -223,12 +226,13 @@ public class MockHttpServletRequest implements HttpServletRequest
   {
     return null;
   }
+  @SuppressWarnings("unchecked")
   public String[] getParameterValues(String name)
   {
     ArrayList<String> string = (ArrayList<String>) parameters.get(name);
     return string.toArray(new String[string.size()]);
   }
-  public Enumeration getAttributeNames()
+  public Enumeration<String> getAttributeNames()
   {
     return null;
   }
@@ -261,7 +265,7 @@ public class MockHttpServletRequest implements HttpServletRequest
   public void removeAttribute(String a)
   {
   }
-  public Enumeration getLocales()
+  public Enumeration<Object> getLocales()
   {
     return null;
   }
@@ -277,7 +281,7 @@ public class MockHttpServletRequest implements HttpServletRequest
   {
     return null;
   }
-  public Enumeration getHeaders(String s)
+  public Enumeration<String> getHeaders(String s)
   {
     return null;
   }
@@ -304,7 +308,7 @@ public class MockHttpServletRequest implements HttpServletRequest
     this.session = session;
   }
   /***********************************************************************/
-  public void setParameterMap(Map params)
+  public void setParameterMap(Map<String, Object> params)
   {
     this.parameters = params;
   }
