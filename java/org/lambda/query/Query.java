@@ -62,11 +62,11 @@ public class Query<In>
     }
     return out;
   }
-  public static <In> In max(List<In> list, Function1<In, Comparable<?>> f1)
+  public static <In, Out extends Comparable<Out>> In max(List<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, 1);
   }
-  public static <In> In min(List<In> list, Function1<In, Comparable<?>> f1)
+  public static <In, Out extends Comparable<Out>> In min(List<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, -1);
   }
@@ -79,14 +79,14 @@ public class Query<In>
     }
     return total / list.size();
   }
-  private static <In> In getTop(List<In> list, Function1<In, Comparable<?>> f1, int modifier)
+  private static <In, Out extends Comparable<Out>> In getTop(List<In> list, Function1<In, Out> f1, int modifier)
   {
     if (ArrayUtils.isEmpty(list)) { return null; }
     In found = list.get(0);
-    Comparable max = f1.call(found);
+    Out max = f1.call(found);
     for (In in : list)
     {
-      Comparable current = f1.call(in);
+      Out current = f1.call(in);
       if (max.compareTo(current) * modifier < 0)
       {
         max = current;
@@ -95,13 +95,13 @@ public class Query<In>
     }
     return found;
   }
-  public static <T> T[] orderBy(T[] list, Function1<T, Comparable<?>> f1)
+  public static <T, Out extends Comparable<Out>> T[] orderBy(T[] list, Function1<T, Out> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
-  public static <T> T[] orderBy(T[] list, Order order, Function1<T, Comparable<?>> f1)
+  public static <T, Out extends Comparable<Out>> T[] orderBy(T[] list, Order order, Function1<T, Out> f1)
   {
-    Arrays.sort(list, new OrderBy(order, f1));
+    Arrays.sort(list, new OrderBy<T, Out>(order, f1));
     return list;
   }
   public static <T> List<T> orderBy(List<T> list, Function1<T, Comparable<?>> f1)
@@ -110,7 +110,7 @@ public class Query<In>
   }
   public static <T> List<T> orderBy(List<T> list, Order order, Function1<T, Comparable<?>> f1)
   {
-    Collections.sort(list, new OrderBy(order, f1));
+    Collections.sort(list, new OrderBy<T, Comparable<?>>(order, f1));
     return list;
   }
   public static <In, Out extends Number> Double sum(In[] list, Function1<In, Out> f1)
@@ -134,9 +134,10 @@ public class Query<In>
   {
     return sum(list, a -> a);
   }
+  @SuppressWarnings("rawtypes")
   public static <T extends Number> T max(List<T> numbers)
   {
-    return (T) max((List) numbers, (Comparable a) -> a);
+    return (T) max(numbers, (a) -> (Comparable) a);
   }
   public static <T extends Number> T max(T[] numbers)
   {

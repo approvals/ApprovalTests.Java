@@ -140,7 +140,7 @@ public class ObjectUtils
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
       throws SecurityException, NoSuchMethodException
   {
-    List<Class> classes = new ArrayList<Class>();
+    List<Class<?>> classes = new ArrayList<>();
     ArrayUtils.addArray(classes, getAllCastableClasses(from[0]));
     for (Object o : from)
     {
@@ -156,7 +156,7 @@ public class ObjectUtils
     return classes.size() == 0 ? null : ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null);
   }
   /***********************************************************************/
-  private static Class[] getAllCastableClasses(Object object)
+  private static Class<?>[] getAllCastableClasses(Object object)
   {
     Class<? extends Object> clazz = object.getClass();
     ArrayList<Object> list = new ArrayList<Object>();
@@ -166,12 +166,12 @@ public class ObjectUtils
       ArrayUtils.addArray(list, clazz.getInterfaces());
       clazz = clazz.getSuperclass();
     }
-    Class[] found = (Class[]) list.toArray(new Class[list.size()]);
+    Class<?>[] found = list.toArray(new Class<?>[list.size()]);
     ArrayUtils.toReverseArray(found);
     return found;
   }
   /***********************************************************************/
-  public static Object executeMethod(Object object, String method, Class[] methodSignature, Object[] parameters)
+  public static Object executeMethod(Object object, String method, Class<?>[] methodSignature, Object[] parameters)
   {
     try
     {

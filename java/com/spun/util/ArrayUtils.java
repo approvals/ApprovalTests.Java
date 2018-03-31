@@ -101,7 +101,7 @@ public class ArrayUtils
     return ((array == null) || (array.length == 0));
   }
   /************************************************************************/
-  public static boolean isEmpty(Collection collection)
+  public static boolean isEmpty(Collection<?> collection)
   {
     return ((collection == null) || (collection.size() == 0));
   }

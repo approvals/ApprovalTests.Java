@@ -1,3 +1,3 @@
 age : 40 
-date : Fri Feb 01 00:00:00 EET 3901 
+date : 2001-01-01 00:00:00.0 
 name : Llewellyn 

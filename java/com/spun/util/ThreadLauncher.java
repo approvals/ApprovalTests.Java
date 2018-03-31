@@ -42,15 +42,6 @@ public class ThreadLauncher
     this(object, ClassUtils.getMethod(object.getClass(), methodName), null, 0);
   }
   /***********************************************************************/
-  private static Class[] getClassArray(Object[] objectParams)
-  {
-    Class[] classes = new Class[objectParams.length];
-    for (int i = 0; i < objectParams.length; i++)
-    {
-      classes[i] = objectParams[i].getClass();
-    }
-    return classes;
-  }
   public static void launch(Action0 action)
   {
     throw new DeprecatedException("new LambdaThreadLauncher(action)");

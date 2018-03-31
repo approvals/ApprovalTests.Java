@@ -184,7 +184,7 @@ public class NumberUtils
   /**
    * @deprecated use Query.sum(list, l -> l.methodName(params));
    */
-  public static double sum(Collection onCollection, String forMethodName)
+  public static double sum(Collection<?> onCollection, String forMethodName)
   {
     return sum(onCollection.toArray(), forMethodName, null);
   }

@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+
 import org.apache.velocity.runtime.RuntimeLogger;
 import org.apache.velocity.runtime.parser.node.AbstractExecutor;
 import org.apache.velocity.runtime.parser.node.BooleanPropertyExecutor;
@@ -21,6 +22,7 @@ import org.apache.velocity.util.introspection.UberspectLoggable;
 import org.apache.velocity.util.introspection.VelMethod;
 import org.apache.velocity.util.introspection.VelPropertyGet;
 import org.apache.velocity.util.introspection.VelPropertySet;
+
 import com.spun.util.ObjectUtils;
 
 /**
@@ -55,17 +57,17 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     introspectorWithLog = new Introspector(runtimeLogger);
     log = runtimeLogger;
   }
-  public void setBeKindToNulls(boolean behavior) 
+  public void setBeKindToNulls(boolean behavior)
   {
     beKindToNulls = behavior;
   }
   /***********************************************************************/
-  public Iterator getIterator(Object obj, Info i) throws Exception
+  public Iterator<?> getIterator(Object obj, Info i) throws Exception
   {
     return getStandardIterator(obj, i);
   }
   /***********************************************************************/
-  public static Iterator getStandardIterator(Object obj, Info i)
+  public static Iterator<?> getStandardIterator(Object obj, Info i)
   {
     if (obj.getClass().isArray())
     {
@@ -73,7 +75,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     else if (obj instanceof Collection)
     {
-      return ((Collection) obj).iterator();
+      return ((Collection<?>) obj).iterator();
     }
     else if (obj instanceof Map)
     {
@@ -81,7 +83,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     else if (obj instanceof Iterator)
     {
-      return ((Iterator) obj);
+      return ((Iterator<?>) obj);
     }
     else if (obj instanceof Enumeration) { return new EnumerationIterator((Enumeration) obj); }
     throw new VelocityParsingError("Could not determine type of iterator in " + "#foreach loop ", i);
@@ -89,19 +91,20 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   /***********************************************************************/
   public VelMethod getMethod(Object obj, String methodName, Object[] args, Info i) throws Exception
   {
-    if (obj == null) 
-    { 
-      if(beKindToNulls)
+    if (obj == null)
+    {
+      if (beKindToNulls)
       {
         return null;
-      } 
-      else 
-      {
-        throw new VelocityParsingError("tried " + getMethodText("null", methodName, args), i); 
       }
-    }     
+      else
+      {
+        throw new VelocityParsingError("tried " + getMethodText("null", methodName, args), i);
+      }
+    }
     Method m = introspector.getMethod(obj.getClass(), methodName, args);
-    if (m == null) { throw new VelocityParsingError("Method " + getMethodText(obj.getClass().getName(), methodName, args) + " does not exist.", i); }
+    if (m == null) { throw new VelocityParsingError(
+        "Method " + getMethodText(obj.getClass().getName(), methodName, args) + " does not exist.", i); }
     return new VelMethodImpl(m);
   }
   /***********************************************************************/
@@ -133,7 +136,8 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       // trying  isFoo()
       executor = new BooleanPropertyExecutor(log, introspectorWithLog, claz, identifier);
     }
-    if (!executor.isAlive()) { throw new VelocityParsingError("Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
+    if (!executor.isAlive()) { throw new VelocityParsingError(
+        "Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
     return new VelGetterImpl(executor);
   }
   /***********************************************************************/
@@ -271,5 +275,4 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       return vm.getMethodName();
     }
   }
-
 }

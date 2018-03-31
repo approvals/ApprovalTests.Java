@@ -133,7 +133,7 @@ public class MethodExecutionPath implements Serializable
       return getBestFitMethod(clazz, currentMethodName, definitions);
     }
     /***********************************************************************/
-    public static Method getBestFitMethod(Class<?> clazz, String currentMethodName, Class[] definitions)
+    public static Method getBestFitMethod(Class<?> clazz, String currentMethodName, Class<?>[] definitions)
     {
       try
       {
@@ -168,10 +168,10 @@ public class MethodExecutionPath implements Serializable
   }
   public static class MethodParameterFilter implements Filter
   {
-    private String  methodName;
-    private Class[] classParameters;
+    private String     methodName;
+    private Class<?>[] classParameters;
     /***********************************************************************/
-    public MethodParameterFilter(String methodName, Class[] classParameters)
+    public MethodParameterFilter(String methodName, Class<?>[] classParameters)
     {
       super();
       this.methodName = methodName;
