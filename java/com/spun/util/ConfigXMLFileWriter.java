@@ -14,8 +14,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.lambda.functions.implementations.F1;
-import org.lambda.functions.implementations.S1;
+import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -59,21 +58,11 @@ public class ConfigXMLFileWriter
   public static Field[] getFields(Class<?> clazz, String... exclude)
   {
     Field fields[] = clazz.getFields();
-    Field a = fields[0];
     final List<String> excludeNames = Arrays.asList(exclude);
-    F1<Field, Boolean> selector = new F1<Field, Boolean>(a, excludeNames)
-    {
-      {
-        ret(ClassUtils.IsPublicStatic(a) && ClassUtils.isPrimitiveField(a) && !excludeNames.contains(a.getName()));
-      }
-    };
+    Function1<Field, Boolean> selector = (Field a) -> (ClassUtils.IsPublicStatic(a)
+        && ClassUtils.isPrimitiveField(a) && !excludeNames.contains(a.getName()));
     fields = Query.where(fields, selector).toArray(new Field[0]);
-    return Query.orderBy(fields, new S1<Field>(a)
-    {
-      {
-        ret(a.getName());
-      }
-    });
+    return Query.orderBy(fields, a -> (a.getName()));
   }
   /***********************************************************************/
   private static Document createDocument() throws Exception

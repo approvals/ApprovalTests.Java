@@ -6,17 +6,19 @@
  */
 package com.spun.util.fedex;
 
-import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
 import com.spun.util.ObjectUtils;
 
 public enum FedExServiceType {
-  FedEx_Priority_Overnight("01"), FedEx_Standard_Overnight("05"), FedEx_2_Day("03"), FedEx_First_Overnight("06"),
-  FedEx_Express_Saver("20"), FedEx_Ground("92"), FedEx_Ground_Home_Delivery("90"), FedEx_1_Day_Freight("70"),
-  FedEx_2_Day_Freight("80"), FedEx_3_Day_Freight("83"), FedEx_International_Priority_Overnight("01"),
-  FedEx_International_First_Overnight("06"), FedEx_International_Economy("03"),
-  FedEx_International_Priority_Freight("70"), FedEx_International_Enconomy_Freight("86"), ;
+                              FedEx_Priority_Overnight("01"), FedEx_Standard_Overnight("05"), FedEx_2_Day("03"),
+                              FedEx_First_Overnight("06"), FedEx_Express_Saver("20"), FedEx_Ground("92"),
+                              FedEx_Ground_Home_Delivery("90"), FedEx_1_Day_Freight("70"),
+                              FedEx_2_Day_Freight("80"), FedEx_3_Day_Freight("83"),
+                              FedEx_International_Priority_Overnight("01"),
+                              FedEx_International_First_Overnight("06"), FedEx_International_Economy("03"),
+                              FedEx_International_Priority_Freight("70"),
+                              FedEx_International_Enconomy_Freight("86"),;
   private String fullName;
   private String serviceCode;
   /***********************************************************************/
@@ -44,13 +46,7 @@ public enum FedExServiceType {
   /***********************************************************************/
   private static FedExServiceType[] getCodes(final boolean international)
   {
-    F1<FedExServiceType, Boolean> funct = new F1<FedExServiceType, Boolean>(values()[0], international)
-    {
-      {
-        ret(a.isInternational() == international);
-      }
-    };
-    return Query.where(values(), funct).toArray(new FedExServiceType[0]);
+    return Query.where(values(), a -> (a.isInternational() == international)).toArray(new FedExServiceType[0]);
   }
   /***********************************************************************/
   public static FedExServiceType[] getNationalCodes()

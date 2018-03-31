@@ -1,16 +1,22 @@
 package org.lambda.functions.implementations;
 
+import com.spun.util.DeprecatedException;
+
+/**
+ * @deprecated use lambdas:  a -> ...your code...
+ */
+@Deprecated
 public class F1<In, Out> extends Function<In, Object, Object, Object, Object, Object, Object, Object, Object, Out>
     implements
       org.lambda.functions.Function1<In, Out>
 {
   public F1(In a, Object... extraVariables)
   {
-    super(extraVariables);
-    this.a = a;
+    super(null);
+    throw new DeprecatedException("a -> {/*your code*/}");
   }
   public Out call(In i)
   {
-    return call(new Object[]{i});
+    throw new DeprecatedException("a -> {/*your code*/}");
   }
 }

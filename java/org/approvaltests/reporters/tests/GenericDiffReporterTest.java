@@ -13,7 +13,6 @@ import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.approvaltests.reporters.windows.WinMergeReporter;
-import org.approvaltests.strings.Printer;
 
 import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
@@ -77,12 +76,7 @@ public class GenericDiffReporterTest extends TestCase
   public void testIsImage()
   {
     String[] files = {"a.png", "a.viz.png", "a.bitmap", "a.txt"};
-    Approvals.verifyAll(files, new Printer<String>(".")
-    {
-      {
-        format("Image: %s = %s", a,
-            GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS));
-      }
-    });
+    Approvals.verifyAll(files, a -> String.format("Image: %s = %s", a,
+        GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
   }
 }

@@ -1,5 +1,11 @@
 package org.lambda.functions.implementations;
 
+import com.spun.util.DeprecatedException;
+
+/**
+ * @deprecated use lambdas:  (a,b,c,d,e,f,g,h,i) -> ...your code...
+ */
+@Deprecated
 public class F0<Out> extends Function<Object, Object, Object, Object, Object, Object, Object, Object, Object, Out>
     implements
       org.lambda.functions.Function0<Out>
@@ -7,9 +13,10 @@ public class F0<Out> extends Function<Object, Object, Object, Object, Object, Ob
   public F0(Object... extraVariables)
   {
     super(extraVariables);
+    throw new DeprecatedException("() -> {/*your code*/}");
   }
   public Out call()
   {
-    return call(new Object[0]);
+    throw new DeprecatedException("() -> {/*your code*/}");
   }
 }

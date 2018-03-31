@@ -34,22 +34,13 @@ public class StringUtilsTest extends TestCase
                             new SplitUseCase("quick**brown**fox", "**"),
                             new SplitUseCase(" quick   brown fox ", " "),
                             new SplitUseCase("quick brown fox", "brown"),};
-    Approvals.verifyAll(split, new Printer<SplitUseCase>(split[0])
-    {
-      {
-        format("'%s'.split(%s) => %s", a.start, a.splitOn, Arrays.toString(StringUtils.split(a.start, a.splitOn)));
-      }
-    });
+    Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
+        Arrays.toString(StringUtils.split(a.start, a.splitOn))));
   }
   public void testJavaScript()
   {
     String[] strings = {"\"\n", "this is a note \"\'\nanother liner"};
-    Approvals.verifyAll(strings, new Printer<String>("")
-    {
-      {
-        multiline(a, StringUtils.toJavaScriptEncode(a));
-      }
-    });
+    Approvals.verifyAll(strings, a -> Printer.multiline(a, StringUtils.toJavaScriptEncode(a)));
   }
   /***********************************************************************/
   public void testReplace()
