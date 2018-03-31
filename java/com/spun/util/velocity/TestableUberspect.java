@@ -79,13 +79,13 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     else if (obj instanceof Map)
     {
-      return ((Map) obj).values().iterator();
+      return ((Map<?, ?>) obj).values().iterator();
     }
     else if (obj instanceof Iterator)
     {
       return ((Iterator<?>) obj);
     }
-    else if (obj instanceof Enumeration) { return new EnumerationIterator((Enumeration) obj); }
+    else if (obj instanceof Enumeration) { return new EnumerationIterator((Enumeration<?>) obj); }
     throw new VelocityParsingError("Could not determine type of iterator in " + "#foreach loop ", i);
   }
   /***********************************************************************/

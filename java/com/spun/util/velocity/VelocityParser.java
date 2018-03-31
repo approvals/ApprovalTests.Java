@@ -27,12 +27,14 @@ public class VelocityParser
   /***********************************************************************/
   static
   {
-        for (Enumeration e = LogManager.getCurrentLoggers(); e.hasMoreElements();)
-        {
-          ((Logger) e.nextElement()).setLevel(Level.OFF);
-        }
+    @SuppressWarnings("unchecked")
+    Enumeration<Logger> e = LogManager.getCurrentLoggers();
+    while (e.hasMoreElements())
+    {
+      e.nextElement().setLevel(Level.OFF);
+    }
   }
-  /***********************************************************************/
+  /*********************************************************************s**/
   public static String parseFile(String template, ContextAware process)
   {
     Asserts.assertFileExists("Velocity template", template);
@@ -53,13 +55,14 @@ public class VelocityParser
   {
     Properties props = new Properties();
     props.put("resource.loader", "class");
-	props.put("class.resource.loader.description", "Velocity Classpath Resource Loader");
-	props.put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
-	props.put("class.resource.cache", "" + true);	
-	props.put("runtime.introspector.uberspect", "com.spun.util.velocity.TestableUberspect");
-	props.put("velocimacro.context.localscope", "" + true);
-	props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
-    return parse(template, props, new ContextAware[]{process,Default.INSTANCE});
+    props.put("class.resource.loader.description", "Velocity Classpath Resource Loader");
+    props.put("class.resource.loader.class",
+        "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+    props.put("class.resource.cache", "" + true);
+    props.put("runtime.introspector.uberspect", "com.spun.util.velocity.TestableUberspect");
+    props.put("velocimacro.context.localscope", "" + true);
+    props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
+    return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
   /***********************************************************************/
   public static String parseString(String template, ContextAware process)
@@ -70,14 +73,14 @@ public class VelocityParser
     props.put("velocimacro.context.localscope", "" + true);
     props.put("runtime.introspector.uberspect", TestableUberspect.class.getName());
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
-    return parse(template, props, new ContextAware[]{process,Default.INSTANCE});
+    return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
   /***********************************************************************/
   public static String parse(String template, Properties props, ContextAware process)
   {
-   
-    return parse(template, props, new ContextAware[]{process,Default.INSTANCE});
-}/***********************************************************************/
+    return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
+  }
+  /***********************************************************************/
   public static String parse(String template, Properties props, ContextAware[] process)
   {
     StringWriter out = new StringWriter();
@@ -96,7 +99,8 @@ public class VelocityParser
       Template velocityTemplate = engine.getTemplate(template);
       for (int i = 0; i < process.length; i++)
       {
-        if(process[i] != null) process[i].setupContext(context);
+        if (process[i] != null)
+          process[i].setupContext(context);
       }
       velocityTemplate.merge(context, out);
       return out;
@@ -108,12 +112,13 @@ public class VelocityParser
   }
   public static synchronized VelocityEngine initializeEngine(Properties props) throws Exception
   {
-      if (currentEngine == null || isDifferentForProperties(props, currentEngine, new String[]{"resource.loader", "file.resource.loader.path"}))
-      {
-        currentEngine = new VelocityEngine();
-        currentEngine.init(props);
-      }
-      return currentEngine;
+    if (currentEngine == null || isDifferentForProperties(props, currentEngine,
+        new String[]{"resource.loader", "file.resource.loader.path"}))
+    {
+      currentEngine = new VelocityEngine();
+      currentEngine.init(props);
+    }
+    return currentEngine;
   }
   /***********************************************************************/
   private static boolean isDifferentForProperties(Properties props, VelocityEngine velo, String[] keys)
@@ -184,5 +189,4 @@ public class VelocityParser
     String resource = FileUtils.readFromClassPath(clazz, string);
     return parseString(resource, context);
   }
- 
 }

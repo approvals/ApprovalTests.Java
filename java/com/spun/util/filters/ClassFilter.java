@@ -1,17 +1,23 @@
 package com.spun.util.filters;
 
-public class ClassFilter implements Filter
+import com.spun.util.DeprecatedException;
+
+/**
+ * @deprecated use lambdas:  a -> a instanceof desiredclass or a -> clazz.isInstance(a)
+ * 
+ */
+@Deprecated
+public class ClassFilter implements Filter<Object>
 {
-  private Class<?> clazz;
   /***********************************************************************/
   public ClassFilter(Class<?> clazz)
   {
-    this.clazz = clazz;
+    throw new DeprecatedException(" a -> a instanceof %s", clazz.getName());
   }
   /***********************************************************************/
-  public boolean isExtracted(Object object) throws IllegalArgumentException
+  public boolean isExtracted(Object object)
   {
-    return clazz.isInstance(object);
+    return false;
   }
   /***********************************************************************/
   /***********************************************************************/

@@ -11,7 +11,7 @@ import com.spun.util.StringUtils;
 public class MockHttpSession implements HttpSession
 {
   /***********************************************************************/
-  private HashMap table = new HashMap();
+  private HashMap<String, Object> table = new HashMap<>();
   public long getCreationTime()
   {
     return 0;
@@ -57,7 +57,7 @@ public class MockHttpSession implements HttpSession
     return table.get(arg0);
   }
   /***********************************************************************/
-  public Enumeration getAttributeNames()
+  public Enumeration<Object> getAttributeNames()
   {
     return null;
   }

@@ -3,6 +3,7 @@ package com.spun.util.io.xml;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.lambda.query.Query;
 import org.w3c.dom.Node;
@@ -13,24 +14,21 @@ import com.spun.util.database.DatabaseObject;
 import com.spun.util.database.Syncable;
 import com.spun.util.database.TemporaryCache;
 import com.spun.util.database.XmlDatabaseMapExtractor;
-import com.spun.util.filters.ClassFilter;
 import com.spun.util.io.XMLUtils;
 
 /***********************************************************************/
 public class DatabaseObjectXMLUtils
 {
   /***********************************************************************/
+  @SuppressWarnings("unchecked")
   public static DatabaseObject[] extract(String xml, XmlMap[] xmlMaps)
   {
     try
     {
       DatabaseObject objects[] = extract(XMLUtils.parseXML(xml), xmlMaps);
-      TemporaryCache cache = new TemporaryCache(objects);
+      TemporaryCache<DatabaseObject> cache = new TemporaryCache<>(objects);
       cache.forceGenericObjectType();
-      for (int i = 0; i < objects.length; i++)
-      {
-        ((Syncable) objects[i]).sync(cache);
-      }
+      Stream.of(objects).map(o -> (Syncable<DatabaseObject>) o).forEach(s -> s.sync(cache));
       return Query.orderBy(objects, a -> a.getPkey());
     }
     catch (Throwable t)
@@ -46,16 +44,14 @@ public class DatabaseObjectXMLUtils
         XmlMapTranslator.get(ArrayList.class, xmlMaps));
     return list.toArray(new DatabaseObject[list.size()]);
   }
-  /***********************************************************************/
   public static XmlMap map(Class<?> clazz)
   {
     return new XmlMap(ClassUtils.getClassName(clazz), "add", new XmlDatabaseMapExtractor(clazz));
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  @SuppressWarnings("unchecked")
   public static <T extends DatabaseObject> T[] extractClass(Class<T> clazz, DatabaseObject[] databaseObjects)
   {
-    List<DatabaseObject> list = Query.where(databaseObjects, d -> new ClassFilter(clazz).isExtracted(d));
+    List<DatabaseObject> list = Query.where(databaseObjects, d -> clazz.isInstance(d));
     return list.toArray((T[]) Array.newInstance(clazz, list.size()));
   }
   public static void mockOld(DatabaseObject[] objects)
