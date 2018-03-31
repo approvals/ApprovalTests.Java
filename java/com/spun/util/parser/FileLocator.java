@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class FileLocator implements ResourceLocator
 {
-  private HashMap paths = new HashMap();
+  private HashMap<String, String> paths = new HashMap<String, String>();
   private boolean failOnNotFound = true;
   private String[] basePaths;
   /***********************************************************************/
@@ -23,7 +23,7 @@ public class FileLocator implements ResourceLocator
   /***********************************************************************/
   public String getLocation(String fileName)
   {
-    String absolutePath = (String) paths.get(fileName);
+    String absolutePath = paths.get(fileName);
     if (absolutePath == null)
     {
       for (int i = 0; i < basePaths.length; i++)
