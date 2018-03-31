@@ -4,7 +4,6 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lambda.functions.implementations.S1;
 import org.lambda.query.Query;
 import org.w3c.dom.Node;
 
@@ -32,12 +31,7 @@ public class DatabaseObjectXMLUtils
       {
         ((Syncable) objects[i]).sync(cache);
       }
-      return Query.orderBy(objects, new S1<DatabaseObject>(DatabaseObject.Null)
-      {
-        {
-          ret(a.getPkey());
-        }
-      });
+      return Query.orderBy(objects, a -> a.getPkey());
     }
     catch (Throwable t)
     {

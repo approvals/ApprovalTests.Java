@@ -3,7 +3,6 @@ package org.lambda.query;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.lambda.actions.Action1;
-import org.lambda.actions.implementations.A0;
 
 import com.spun.util.ThreadLauncher;
 
@@ -17,15 +16,9 @@ public class ParallelLoops
     {
       count++;
       final T piece = i;
-      ThreadLauncher.launch(new A0(false, a1, piece, done)
-      {
-        {
-          if (run)
-          {
-            a1.call(piece);
-            done.incrementAndGet();
-          }
-        }
+      ThreadLauncher.launch(() -> {
+        a1.call(piece);
+        done.incrementAndGet();
       });
     }
     while (done.get() != count)

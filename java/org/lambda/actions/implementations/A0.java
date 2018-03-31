@@ -2,13 +2,19 @@ package org.lambda.actions.implementations;
 
 import org.lambda.functions.implementations.F1;
 
+import com.spun.util.DeprecatedException;
+
+/**
+ * @deprecated use lambdas:  () -> ...your code...
+ */
+@Deprecated
 public class A0 extends F1<Boolean, String> implements org.lambda.actions.Action0
 {
   public boolean run;
   public A0(boolean a, Object... extraVariables)
   {
     super(a, extraVariables);
-    run = a;
+    throw new DeprecatedException("() -> {/*your code*/}");
   }
   @Override
   public void returnValue(String returnValue)
@@ -18,6 +24,6 @@ public class A0 extends F1<Boolean, String> implements org.lambda.actions.Action
   @Override
   public void call()
   {
-    super.call(true);
+    throw new DeprecatedException("() -> {/*your code*/}");
   }
 }

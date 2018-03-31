@@ -4,11 +4,11 @@ import org.lambda.actions.Action1;
 
 public class Loops
 {
-  public static <In> void forEach(Iterable<In> students, Action1<In> a1)
+  public static <In> void forEach(Iterable<In> list, Action1<In> doForEach)
   {
-    for (In in : students)
+    for (In in : list)
     {
-      a1.call(in);
+      doForEach.call(in);
     }
   }
 }

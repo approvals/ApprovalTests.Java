@@ -62,11 +62,11 @@ public class Query<In>
     }
     return out;
   }
-  public static <In> In max(List<In> list, Function1<In, Comparable> f1)
+  public static <In> In max(List<In> list, Function1<In, Comparable<?>> f1)
   {
     return getTop(list, f1, 1);
   }
-  public static <In> In min(List<In> list, Function1<In, Comparable> f1)
+  public static <In> In min(List<In> list, Function1<In, Comparable<?>> f1)
   {
     return getTop(list, f1, -1);
   }
@@ -79,7 +79,7 @@ public class Query<In>
     }
     return total / list.size();
   }
-  private static <In> In getTop(List<In> list, Function1<In, Comparable> f1, int modifier)
+  private static <In> In getTop(List<In> list, Function1<In, Comparable<?>> f1, int modifier)
   {
     if (ArrayUtils.isEmpty(list)) { return null; }
     In found = list.get(0);
@@ -95,20 +95,20 @@ public class Query<In>
     }
     return found;
   }
-  public static <T> T[] orderBy(T[] list, Function1<T, Comparable> f1)
+  public static <T> T[] orderBy(T[] list, Function1<T, Comparable<?>> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
-  public static <T> T[] orderBy(T[] list, Order order, Function1<T, Comparable> f1)
+  public static <T> T[] orderBy(T[] list, Order order, Function1<T, Comparable<?>> f1)
   {
     Arrays.sort(list, new OrderBy(order, f1));
     return list;
   }
-  public static <T> List<T> orderBy(List<T> list, Function1<T, Comparable> f1)
+  public static <T> List<T> orderBy(List<T> list, Function1<T, Comparable<?>> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
-  public static <T> List<T> orderBy(List<T> list, Order order, Function1<T, Comparable> f1)
+  public static <T> List<T> orderBy(List<T> list, Order order, Function1<T, Comparable<?>> f1)
   {
     Collections.sort(list, new OrderBy(order, f1));
     return list;
@@ -128,15 +128,15 @@ public class Query<In>
   }
   public static <Out extends Number> Double sum(Collection<Out> list)
   {
-    return sum(list, new Echo1<Out>());
+    return sum(list, a -> a);
   }
   public static <Out extends Number> Double sum(Out[] list)
   {
-    return sum(list, new Echo1<Out>());
+    return sum(list, a -> a);
   }
   public static <T extends Number> T max(List<T> numbers)
   {
-    return (T) max((List) numbers, new Echo1<Comparable>());
+    return (T) max((List) numbers, (Comparable a) -> a);
   }
   public static <T extends Number> T max(T[] numbers)
   {
@@ -144,6 +144,6 @@ public class Query<In>
   }
   public static <T extends Number> T min(List<T> numbers)
   {
-    return (T) min((List) numbers, new Echo1<Comparable>());
+    return (T) min((List) numbers, (Comparable a) -> a);
   }
 }

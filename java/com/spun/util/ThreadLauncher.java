@@ -53,6 +53,6 @@ public class ThreadLauncher
   }
   public static void launch(Action0 action)
   {
-    new LambdaThreadLauncher(action);
+    throw new DeprecatedException("new LambdaThreadLauncher(action)");
   }
 }
