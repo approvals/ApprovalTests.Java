@@ -11,6 +11,7 @@ import com.spun.util.filters.Filter;
 
 public class MethodExecutionPath implements Serializable
 {
+  private static final long       serialVersionUID         = 1L;
   public static final Object      NULL_ENCOUNTERED_ON_PATH = new Object();
   private Class<? extends Object> classType, returnType;
   private String                  methodNames[];
@@ -166,7 +167,7 @@ public class MethodExecutionPath implements Serializable
       return definitions == null ? "" : Arrays.asList(definitions).toString();
     }
   }
-  public static class MethodParameterFilter implements Filter
+  public static class MethodParameterFilter<T> implements Filter<T>
   {
     private String     methodName;
     private Class<?>[] classParameters;

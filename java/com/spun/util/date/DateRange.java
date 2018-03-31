@@ -24,7 +24,7 @@ public class DateRange
     this.end = end;
   }
   /************************************************************************/
-  public Filter getFilter(Class<?> clazz, String... methodCalls)
+  public Filter<?> getFilter(Class<?> clazz, String... methodCalls)
   {
     throw new DeprecatedException("getFilter(t -> t.%s())", methodCalls[0]);
   }
