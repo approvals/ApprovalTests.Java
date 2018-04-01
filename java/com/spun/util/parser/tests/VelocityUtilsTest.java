@@ -6,10 +6,9 @@ import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.Test;
 
 import com.spun.util.DateUtils;
-import com.spun.util.velocity.ContextAware;
 
 //@UseReporter(FileLauncherReporter.class)
-public class VelocityUtilsTest implements ContextAware
+public class VelocityUtilsTest
 {
   @Test
   public void testArray()

@@ -94,10 +94,6 @@ public class VelocityList
     {
       return list.getSteppingIterator().getActualPosition(index) != -1;
     }
-    public boolean isCurrentIndexSubsection()
-    {
-      return list.get(index) instanceof TemplateArray.Subsection;
-    }
     public boolean isEven()
     {
       return ((index % 2) == 0);
@@ -126,12 +122,5 @@ public class VelocityList
     {
       return list.getSteppingIterator().getStepCountForRound(forSteppingLevel, index, indexBase);
     }
-    /*
-     * public boolean isStep(int i, int j) { return list.isStep(index, i, j); }
-     * public boolean getStepPosition(int i, int j) { return
-     * list.getStepPosition(index, i, j); } public boolean isGreaterThan(int
-     * value) { return list.isGreaterThan(index, value); } public boolean
-     * isLessThan(int value) { return list.isLessThan(index, value); }
-     */
   }
 }
