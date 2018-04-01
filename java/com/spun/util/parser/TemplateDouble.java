@@ -1,12 +1,10 @@
 package com.spun.util.parser;
 
-/**
- *
- **/
 import java.text.NumberFormat;
+
 import com.spun.util.NumberUtils;
 
-public class TemplateDouble 
+public class TemplateDouble
 {
   protected double            amount                  = 0;
   private static NumberFormat decimalFormat           = null;
@@ -27,7 +25,8 @@ public class TemplateDouble
     this.amount = amount;
   }
   /************************************************************************/
-  public TemplateDouble(double amount, String defaultPrefix, String defaultPostfix, int defaultMinimumPrecision, int defaultMaximumPrecision)
+  public TemplateDouble(double amount, String defaultPrefix, String defaultPostfix, int defaultMinimumPrecision,
+      int defaultMaximumPrecision)
   {
     this.amount = amount;
     this.defaultPostfix = defaultPostfix;
@@ -61,7 +60,8 @@ public class TemplateDouble
     return inFormat(amount, prefix, precision, minimumPrecision, postfix, useGrouping);
   }
   /***********************************************************************/
-  public static String inFormat(double amount, String prefix, int maximumPrecision, int minimumPrecision, String postfix, boolean useGrouping)
+  public static String inFormat(double amount, String prefix, int maximumPrecision, int minimumPrecision,
+      String postfix, boolean useGrouping)
   {
     String value = "";
     NumberFormat dFormat = decimalFormat;
@@ -97,7 +97,6 @@ public class TemplateDouble
   {
     return inFormat(null, 0, 0, null, false);
   }
-
   /************************************************************************/
   public String asDouble()
   {
@@ -111,7 +110,8 @@ public class TemplateDouble
   /************************************************************************/
   public TemplateDouble getAbsoluteValue()
   {
-    return new TemplateDouble(-amount, defaultPrefix, defaultPostfix, defaultMinimumPrecision, defaultMaximumPrecision);
+    return new TemplateDouble(-amount, defaultPrefix, defaultPostfix, defaultMinimumPrecision,
+        defaultMaximumPrecision);
   }
   /************************************************************************/
   public boolean isZero()
@@ -125,7 +125,8 @@ public class TemplateDouble
   /************************************************************************/
   public String toString()
   {
-    return inFormat(defaultPrefix, defaultMaximumPrecision, getDefaultMinimumPrecision(defaultMaximumPrecision), defaultPostfix, true);
+    return inFormat(defaultPrefix, defaultMaximumPrecision, getDefaultMinimumPrecision(defaultMaximumPrecision),
+        defaultPostfix, true);
   }
   /************************************************************************/
   /************************************************************************/

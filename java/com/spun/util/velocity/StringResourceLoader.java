@@ -48,7 +48,6 @@ public class StringResourceLoader extends ResourceLoader
   /***********************************************************************/
   public void init(ExtendedProperties arg0)
   {
-//    My_System.event("initialize");
   }
   /***********************************************************************/
   /***********************************************************************/
