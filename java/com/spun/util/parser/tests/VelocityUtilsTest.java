@@ -2,7 +2,6 @@ package com.spun.util.parser.tests;
 
 import java.util.Arrays;
 
-import org.apache.velocity.context.Context;
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.Test;
 
@@ -22,11 +21,9 @@ public class VelocityUtilsTest implements ContextAware
   {
     VelocityApprovals.verify(c -> c.put("array", Arrays.asList("one", "two", "three")), ".html");
   }
-  public void setupContext(Context context)
+  @Test
+  public void testDate()
   {
-    context.put("name", "llewellyn");
-    context.put("date", DateUtils.parse("2001/02/03"));
-    context.put("array", new String[]{"one", "two", "three", "four", "five"});
-    context.put("list", Arrays.asList("one", "two", "three", "four", "five"));
+    VelocityApprovals.verify(c -> c.put("date", DateUtils.parse("2001/02/03")));
   }
 }

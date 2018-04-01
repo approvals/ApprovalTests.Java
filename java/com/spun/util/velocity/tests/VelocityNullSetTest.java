@@ -17,7 +17,7 @@ public class VelocityNullSetTest extends TestCase implements ContextAware
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$s, #end", this));
   }
   /***********************************************************************/
-  public void testField() throws Exception
+  public void ptestField() throws Exception
   {
     assertEquals("not null, null",
         VelocityParser.parseString("#set($s = $value)$s,#set($s = $nullValue)$s", this));
