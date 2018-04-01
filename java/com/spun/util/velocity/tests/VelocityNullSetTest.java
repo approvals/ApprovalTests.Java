@@ -19,7 +19,8 @@ public class VelocityNullSetTest extends TestCase implements ContextAware
   /***********************************************************************/
   public void testField() throws Exception
   {
-    //assertEquals("not null, null", VelocityParser.parseString("#set($s = $value)$s,#set($s = $nullValue)$s", this));
+    assertEquals("not null, null",
+        VelocityParser.parseString("#set($s = $value)$s,#set($s = $nullValue)$s", this));
   }
   /***********************************************************************/
   public void setupContext(Context context)

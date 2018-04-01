@@ -1,0 +1,2 @@
+* remove all checked exceptions
+* remove all warnings

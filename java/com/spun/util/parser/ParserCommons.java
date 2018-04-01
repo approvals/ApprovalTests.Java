@@ -118,6 +118,11 @@ public class ParserCommons
     return new VelocityList(list).getAll();
   }
   /***********************************************************************/
+  public static List asArray(List list, int offset, int stepping1, int stepping2)
+  {
+    return new VelocityList(list, offset, new int[]{stepping1, stepping2}).getAll();
+  }
+  /***********************************************************************/
   public static TemplateDouble asDouble(int number)
   {
     return new TemplateDouble(number);

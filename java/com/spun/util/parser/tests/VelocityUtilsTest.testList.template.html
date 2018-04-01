@@ -1,0 +1,20 @@
+<html>
+<body>
+Pagination: (offset 2, pagesize:9, 3)
+#foreach($s in $commons.asArray($array, 2,9,3))
+#if ($s.isFirst(0))
+  <br/><br/> 
+  <table border="1">
+#end
+#if ($s.isFirst(1)) 
+  <tr>
+  <td>$s.getStepCountForRound(1,1))<td>
+#end
+  <td>$commons.ternary($s.isCurrentIndexValid(), $s.get(), "*empty*") </td>
+#if ($s.isLast(1)) 
+  </tr>
+#end 
+#if ($s.isLast(0)) 
+  </table>
+#end
+#end

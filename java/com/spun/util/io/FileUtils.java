@@ -284,12 +284,19 @@ public class FileUtils
   {
     return getExtensionWithDot(filename).substring(1);
   }
-  public static void createIfNeeded(String file) throws IOException
+  public static void createIfNeeded(String file)
   {
-    File f = new File(file);
-    if (!f.exists())
+    try
     {
-      writeFile(f, "");
+      File f = new File(file);
+      if (!f.exists())
+      {
+        writeFile(f, "");
+      }
+    }
+    catch (Throwable e)
+    {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   public static String readStream(InputStream resourceAsStream)

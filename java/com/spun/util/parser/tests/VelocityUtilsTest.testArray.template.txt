@@ -1,0 +1,21 @@
+Arrays:
+#foreach($s in $commons.asArray($array))
+ #if ($s.isFirst())
+   Total size: $s.getSize()
+ #end
+ $s.getIndex(1)) $s.get() $commons.ternary($s.isEven(), "*even*", "*odd*")
+ #if ($s.isLast()) -- end of list #end
+#end
+ 
+
+Pagination: (offset 1, pagesize:4, 2)
+#foreach($s in $commons.asArray($array, 1,4,2))
+ #if ($s.isFirst(0)) 
+  Page:  
+ #end
+ #if ($s.isFirst(1)) 
+  row: 
+ #end
+ 
+ $s.getIndex(1),$s.getStepCountForRound(1,1)) $commons.ternary($s.isCurrentIndexValid(), $s.get(), "*empty*") 
+#end

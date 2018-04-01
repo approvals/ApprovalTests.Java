@@ -1,0 +1,32 @@
+Arrays:
+    Total size: 5
+  1) one *even*
+   2) two *odd*
+   3) three *even*
+   4) four *odd*
+   5) five *even*
+  -- end of list  
+
+Pagination: (offset 1, pagesize:4, 2)
+   Page:  
+    row: 
+  
+ 1,1) *empty* 
+   
+ 2,1) one 
+    row: 
+  
+ 3,2) two 
+   
+ 4,2) three 
+   Page:  
+    row: 
+  
+ 5,3) four 
+   
+ 6,3) five 
+    row: 
+  
+ 7,4) *empty* 
+   
+ 8,4) *empty* 
