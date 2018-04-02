@@ -6,7 +6,6 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -92,23 +91,18 @@ public class FileUtils
   {
     try
     {
-      FileChannel inChannel = null, outChannel = null;
-      try
+      out.getParentFile().mkdirs();
+      try (FileInputStream sIn = new FileInputStream(in))
       {
-        out.getParentFile().mkdirs();
-        inChannel = new FileInputStream(in).getChannel();
-        outChannel = new FileOutputStream(out).getChannel();
-        outChannel.transferFrom(inChannel, 0, inChannel.size());
-      }
-      finally
-      {
-        if (inChannel != null)
+        try (FileChannel inChannel = sIn.getChannel())
         {
-          inChannel.close();
-        }
-        if (outChannel != null)
-        {
-          outChannel.close();
+          try (FileOutputStream sOut = new FileOutputStream(out))
+          {
+            try (FileChannel outChannel = sOut.getChannel())
+            {
+              outChannel.transferFrom(inChannel, 0, inChannel.size());
+            }
+          }
         }
       }
     }
@@ -117,105 +111,144 @@ public class FileUtils
       ObjectUtils.throwAsError(e);
     }
   }
-  public static void copyStream(InputStream in, OutputStream out) throws IOException
+  public static void copyStream(InputStream in, OutputStream out)
   {
-    byte[] buf = new byte[1024];
-    int i = 0;
-    while ((i = in.read(buf)) != -1)
+    try
     {
-      out.write(buf, 0, i);
+      byte[] buf = new byte[1024];
+      int i = 0;
+      while ((i = in.read(buf)) != -1)
+      {
+        out.write(buf, 0, i);
+      }
+      in.close();
+      out.close();
     }
-    in.close();
-    out.close();
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /***********************************************************************/
-  public static void redirectInputToFile(String fileName, InputStream in) throws Exception
+  public static void redirectInputToFile(String fileName, InputStream in)
   {
-    FileOutputStream fos = new FileOutputStream(new File(fileName), false);
-    copyStream(in, fos);
+    try
+    {
+      FileOutputStream fos = new FileOutputStream(new File(fileName), false);
+      copyStream(in, fos);
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /***********************************************************************/
-  public static void copyFileToDirectory(String file, File tempDir) throws Exception
+  public static void copyFileToDirectory(String file, File tempDir)
   {
-    File in = new File(file);
-    File out = new File(tempDir, in.getName());
-    copyFile(in, out);
+    try
+    {
+      File in = new File(file);
+      File out = new File(tempDir, in.getName());
+      copyFile(in, out);
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /***********************************************************************/
-  public static void writeFile(File file, String text) throws IOException
+  public static void writeFile(File file, String text)
   {
-    Asserts.assertNotNull("Writing to file: " + file, text);
-    file.getCanonicalFile().getParentFile().mkdirs();
-    BufferedWriter out = new BufferedWriter(new FileWriter(file));
-    out.write(text);
-    out.close();
+    try
+    {
+      Asserts.assertNotNull("Writing to file: " + file, text);
+      file.getCanonicalFile().getParentFile().mkdirs();
+      BufferedWriter out = new BufferedWriter(new FileWriter(file));
+      out.write(text);
+      out.close();
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /***********************************************************************/
   public static void writeFileQuietly(File file, String text)
   {
+    writeFile(file, text);
+  }
+  public static void writeFile(File file, CharSequence data)
+  {
     try
     {
-      writeFile(file, text);
+      Asserts.assertNotNull("Writing to file: " + file, data);
+      file.getCanonicalFile().getParentFile().mkdirs();
+      DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
+      for (int i = 0; i < data.length(); i++)
+      {
+        writer.write(data.charAt(i));
+      }
+      writer.close();
     }
-    catch (IOException e)
+    catch (Throwable t)
     {
-      ObjectUtils.throwAsError(e);
+      throw ObjectUtils.throwAsError(t);
     }
   }
-  public static void writeFile(File file, CharSequence data) throws IOException
+  public static void writeFile(File file, InputStream data)
   {
-    Asserts.assertNotNull("Writing to file: " + file, data);
-    file.getCanonicalFile().getParentFile().mkdirs();
-    DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
-    for (int i = 0; i < data.length(); i++)
+    try
     {
-      writer.write(data.charAt(i));
+      Asserts.assertNotNull("Writing to file: " + file, data);
+      file.getCanonicalFile().getParentFile().mkdirs();
+      copyStream(data, new FileOutputStream(file));
     }
-    writer.close();
-  }
-  public static void writeFile(File file, InputStream data) throws IOException
-  {
-    Asserts.assertNotNull("Writing to file: " + file, data);
-    file.getCanonicalFile().getParentFile().mkdirs();
-    copyStream(data, new FileOutputStream(file));
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /***********************************************************************/
-  public static String readFile(String absolutePath) throws IOException
+  public static String readFile(String absolutePath)
   {
     return readFile(new File(absolutePath));
   }
   /***********************************************************************/
-  public static String readFile(File file) throws IOException
+  public static String readFile(File file)
   {
-    BufferedReader in = new BufferedReader(new FileReader(file));
-    return readBuffer(in);
-  }
-  public static String readBuffer(BufferedReader in) throws IOException
-  {
-    StringBuffer string = new StringBuffer();
-    while (in.ready())
+    try
     {
-      string.append(in.readLine());
-      string.append("\n");
+      if (!file.exists()) { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
+      BufferedReader in = new BufferedReader(new FileReader(file));
+      return readBuffer(in);
     }
-    in.close();
-    return string.toString();
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
+  }
+  public static String readBuffer(BufferedReader in)
+  {
+    try
+    {
+      StringBuffer string = new StringBuffer();
+      while (in.ready())
+      {
+        string.append(in.readLine());
+        string.append("\n");
+      }
+      in.close();
+      return string.toString();
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   /************************************************************************/
   public static String readFileWithSuppressedExceptions(File databaseFile)
   {
-    try
-    {
-      return FileUtils.readFile(databaseFile);
-    }
-    catch (FileNotFoundException e)
-    {
-      throw new RuntimeException("Invalid file '" + databaseFile.getAbsolutePath() + "'", e);
-    }
-    catch (IOException e)
-    {
-      throw new RuntimeException(e);
-    }
+    return FileUtils.readFile(databaseFile);
   }
   /************************************************************************/
   public static File saveToFile(String prefix, Reader input)
@@ -302,31 +335,29 @@ public class FileUtils
   public static String readStream(InputStream resourceAsStream)
   {
     BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
-    String resource = null;
-    try
-    {
-      resource = FileUtils.readBuffer(reader);
-    }
-    catch (IOException e)
-    {
-      ObjectUtils.throwAsError(e);
-    }
-    return resource;
+    return FileUtils.readBuffer(reader);
   }
-  public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name) throws IOException
+  public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name)
   {
     return extractBytes(clazz.getResourceAsStream(name));
   }
-  public static char[] extractBytes(final InputStream resourceAsStream) throws IOException
+  public static char[] extractBytes(final InputStream resourceAsStream)
   {
-    ArrayList<Character> data = new ArrayList<Character>();
-    int b = resourceAsStream.read();
-    while (b != -1)
+    try
     {
-      data.add(new Character((char) b));
-      b = resourceAsStream.read();
+      ArrayList<Character> data = new ArrayList<Character>();
+      int b = resourceAsStream.read();
+      while (b != -1)
+      {
+        data.add(new Character((char) b));
+        b = resourceAsStream.read();
+      }
+      return FileUtils.toChars(data);
     }
-    return FileUtils.toChars(data);
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
   public static char[] toChars(List<Character> data)
   {
@@ -356,7 +387,7 @@ public class FileUtils
     {
       return readFile(file);
     }
-    catch (IOException e)
+    catch (Throwable e)
     {
       return defaultText;
     }
