@@ -21,7 +21,6 @@ import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
-import org.approvaltests.writers.ApprovalBinaryFileWriter;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.approvaltests.writers.ApprovalXmlWriter;
 import org.approvaltests.writers.ComponentApprovalWriter;
@@ -29,8 +28,6 @@ import org.approvaltests.writers.DirectoryToDirectoryWriter;
 import org.approvaltests.writers.FileApprovalWriter;
 import org.approvaltests.writers.ImageApprovalWriter;
 import org.approvaltests.writers.ResultSetApprovalWriter;
-import org.jrack.RackResponse;
-import org.jrack.RackResponseUtils;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
@@ -159,18 +156,6 @@ public class Approvals
   {
     verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"));
   }
-  public static void verify(RackResponse response)
-  {
-    if (isImage(response))
-    {
-      String fileType = "png";
-      verify(new ApprovalBinaryFileWriter(response.getResponse(), fileType));
-    }
-    else
-    {
-      verifyHtml(response.getResponse().toString());
-    }
-  }
   public static void verify(ResultSet rs)
   {
     verify(new ResultSetApprovalWriter(rs));
@@ -178,11 +163,6 @@ public class Approvals
   public static void verify(SqlLoader<?> loader)
   {
     verify(new SqlLoader.ExecutableWrapper(loader));
-  }
-  private static boolean isImage(RackResponse response)
-  {
-    String type = response.getHeaders().get(RackResponseUtils.CONTENT_TYPE);
-    return RackResponseUtils.CONTENT_TYPE_IMAGE.equals(type);
   }
   public static ApprovalNamer createApprovalNamer()
   {
