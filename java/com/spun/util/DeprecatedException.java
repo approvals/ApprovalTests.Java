@@ -5,6 +5,7 @@ import com.spun.util.logger.SimpleLogger;
 
 public class DeprecatedException extends FormattedException
 {
+  private static final long serialVersionUID = 1L;
   public DeprecatedException(String useNewMethod, Object... formattingParams)
   {
     super("%s is Depercated.\n Instead, please use :\n %s", methodName(Caller.get(1)),

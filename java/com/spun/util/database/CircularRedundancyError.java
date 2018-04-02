@@ -4,9 +4,10 @@ import com.spun.util.ObjectUtils;
 
 public class CircularRedundancyError extends Error
 {
-  private DatabaseObject source;
-  private String         causedBy;
-  private String         xmlState;
+  private static final long serialVersionUID = 1L;
+  private DatabaseObject    source;
+  private String            causedBy;
+  private String            xmlState;
   public CircularRedundancyError(DatabaseObject source, String causedBy, String xmlState)
   {
     this.source = source;
@@ -15,9 +16,8 @@ public class CircularRedundancyError extends Error
   }
   public String getMessage()
   {
-    return "Circular Redundancy occurred while saving :" + ObjectUtils.getClassName(source) + "\n"
-            + "cause by :" + causedBy + "\n" 
-            + "state : " + xmlState;
+    return "Circular Redundancy occurred while saving :" + ObjectUtils.getClassName(source) + "\n" + "cause by :"
+        + causedBy + "\n" + "state : " + xmlState;
   }
   public String getCausedBy()
   {
@@ -31,6 +31,4 @@ public class CircularRedundancyError extends Error
   {
     return xmlState;
   }
-  
-  
 }

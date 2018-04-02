@@ -2,6 +2,7 @@ package com.spun.util.creditcards;
 
 public class CreditCardTransactionFailed extends Exception
 {
+  private static final long   serialVersionUID = 1L;
   private TransactionResponse response;
   /***********************************************************************/
   public CreditCardTransactionFailed(TransactionResponse tr)

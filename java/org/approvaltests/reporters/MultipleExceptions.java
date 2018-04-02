@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MultipleExceptions extends RuntimeException
 {
+  private static final long    serialVersionUID = 1L;
   private ArrayList<Throwable> exceptions;
   public MultipleExceptions(ArrayList<Throwable> exceptions)
   {

@@ -1,33 +1,22 @@
 package com.spun.util;
 
-import com.spun.util.WindowUtils;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Frame;
 
-/**
- * <i>Copyright 1998 American Teleconferencing Services</i>
- * <br><B>Class Description</B>
- * <br>The is the main Res Frame object
- * <br>
- * <br><B>API History</B>
- * <br>
- * <br><B>Revision Information</B>
- * <PRE>
- * $Author:: Lfalco                                           $
- * $Archive:: /Code/com/ats/client/res/ProgessFrame.java      $
- * $Date:: 8/24/99 3:49a                                      $
- * $Revision:: 7                                              $
- * </PRE>
- *
- */
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
 public class ProgessFrame extends JDialog
 {
-  private JLabel       progressLabel = null;
-  private JProgressBar progressBar   = null;
-  private int          maxSteps      = 0;
-  private JPanel       panel         = null;
-  private boolean      forcePainting = true;
-  private long         startTime;
+  private static final long serialVersionUID = 1L;
+  private JLabel            progressLabel    = null;
+  private JProgressBar      progressBar      = null;
+  private int               maxSteps         = 0;
+  private JPanel            panel            = null;
+  private boolean           forcePainting    = true;
+  private long              startTime;
   /**************************************************************************/
   public ProgessFrame(Frame frame, String title, String initLabel, int maxSteps)
   {
@@ -97,8 +86,8 @@ public class ProgessFrame extends JDialog
     double speed = (progress + 1) / (double) time;
     long totalTime = (long) (this.maxSteps / speed);
     long remainingTime = totalTime - time;
-    String label = String.format("%s / %s - %s remaining", progress, maxSteps, new DateDifference(remainingTime)
-        .getStandardTimeText(2));
+    String label = String.format("%s / %s - %s remaining", progress, maxSteps,
+        new DateDifference(remainingTime).getStandardTimeText(2));
     setState(label, progress);
   }
   /**************************************************************************/

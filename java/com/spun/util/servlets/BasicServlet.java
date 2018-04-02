@@ -32,9 +32,10 @@ import com.spun.util.velocity.VelocityParser;
  **/
 public abstract class BasicServlet extends HttpServlet
 {
-  private TemplateError         error           = null;
+  private static final long     serialVersionUID = 1L;
+  private TemplateError         error            = null;
   private static ServletContext servletContext;
-  protected Throwable           connectionError = null;
+  protected Throwable           connectionError  = null;
   /***********************************************************************/
   @Override
   public void init(ServletConfig config) throws ServletException

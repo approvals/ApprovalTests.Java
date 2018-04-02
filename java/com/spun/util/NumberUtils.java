@@ -262,8 +262,9 @@ public class NumberUtils
   /***********************************************************************/
   public static class Shuffler implements java.util.Comparator<Shuffler>, Serializable
   {
-    public int oldPosition = 0;
-    public int newPosition = 0;
+    private static final long serialVersionUID = 1L;
+    public int                oldPosition      = 0;
+    public int                newPosition      = 0;
     public Shuffler(int oldPosition)
     {
       this.oldPosition = oldPosition;

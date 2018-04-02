@@ -1,12 +1,9 @@
 package com.spun.util.servlets;
 
-
-public class ExpiredSessionError
-  extends RuntimeException
+public class ExpiredSessionError extends RuntimeException
 {
-
-  private String htmlText;
-
+  private static final long serialVersionUID = 1L;
+  private String            htmlText;
   /***********************************************************************/
   public ExpiredSessionError()
   {

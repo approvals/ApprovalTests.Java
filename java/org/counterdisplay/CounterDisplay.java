@@ -16,8 +16,9 @@ import com.spun.util.logger.SimpleLogger;
 
 public class CounterDisplay extends JPanel
 {
-  private File successfile;
-  private File failureFile;
+  private static final long serialVersionUID = 1L;
+  private File              successfile;
+  private File              failureFile;
   public CounterDisplay(String successFile, String failureFile)
   {
     this.successfile = new File(successFile);

@@ -59,7 +59,8 @@ public class ServletLogFileTest extends TestCase
   /***********************************************************************/
   public static class ErrorThrowingServlet extends BasicServlet implements SecondaryErrorProcessor
   {
-    String errorTemplate = null;
+    private static final long serialVersionUID = 1L;
+    String                    errorTemplate    = null;
     public ErrorThrowingServlet(String errorTemplate)
     {
       this.errorTemplate = errorTemplate;

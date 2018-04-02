@@ -37,7 +37,8 @@ import com.spun.util.logger.SimpleLogger;
  */
 public final class InvokerServlet extends HttpServlet
 {
-  HashMap<String, HttpServlet> servlets = new HashMap<String, HttpServlet>();
+  private static final long    serialVersionUID = 1L;
+  HashMap<String, HttpServlet> servlets         = new HashMap<String, HttpServlet>();
   private String               mask;
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
   {

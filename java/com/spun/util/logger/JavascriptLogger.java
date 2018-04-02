@@ -9,6 +9,7 @@ import com.spun.util.servlets.StageServletUtils;
 
 public class JavascriptLogger extends BasicServlet implements StageServlet
 {
+  private static final long serialVersionUID = 1L;
   /***********************************************************************/
   public void doGet(HttpServletRequest req, HttpServletResponse res)
   {

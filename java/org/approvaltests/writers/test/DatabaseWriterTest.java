@@ -4,13 +4,13 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.easymock.EasyMock;
 
 import com.spun.util.io.CommaDelimitedFileParser;
 import com.spun.util.io.FileUtils;
+
+import junit.framework.TestCase;
 
 public class DatabaseWriterTest extends TestCase
 {
@@ -20,7 +20,7 @@ public class DatabaseWriterTest extends TestCase
     ResultSet rs = mockResultSetFromFile("query.csv");
     Approvals.verify(rs);
   }
-  private ResultSet queryDatagbase() throws SQLException
+  public ResultSet queryDatagbase() throws SQLException
   {
     return mockResultSetFromFile("sample_result_set.csv");
   }

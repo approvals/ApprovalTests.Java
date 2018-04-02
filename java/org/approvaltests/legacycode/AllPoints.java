@@ -8,6 +8,7 @@ public class AllPoints
 {
   public static class MyPoint extends Point
   {
+    private static final long serialVersionUID = 1L;
     public MyPoint(int x, int y)
     {
       super(x, y);

@@ -1,6 +1,6 @@
 package com.spun.util.ups;
 
-import com.spun.util.ObjectUtils;
+import org.lambda.query.Query;
 
 public enum UPSServiceType {
                             UPS_Next_Day_Air_Saver("13"), UPS_2nd_Day_Air("02"), UPS_Ground("03"),
@@ -49,7 +49,7 @@ public enum UPSServiceType {
   /***********************************************************************/
   public static UPSServiceType getByFullName(String serviceType)
   {
-    return ObjectUtils.getForMethod(values(), serviceType, "toString");
+    return Query.first(values(), o -> serviceType.equals(o.toString()));
   }
   /***********************************************************************/
   /***********************************************************************/

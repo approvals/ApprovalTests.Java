@@ -4,13 +4,9 @@ import java.sql.SQLException;
 
 public class SQLInformationException extends RuntimeException
 {
-  private static class SQL_SERVER_CODES
-  {
-    //1205 - deadlock
-    //170 - incorrect syntax
-  }
-  private String       query;
-  private SQLException exception;
+  private static final long serialVersionUID = 1L;
+  private String            query;
+  private SQLException      exception;
   /***********************************************************************/
   public SQLInformationException(String query, SQLException e)
   {

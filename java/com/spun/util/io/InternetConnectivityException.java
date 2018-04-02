@@ -11,8 +11,9 @@ import com.spun.util.logger.SimpleLogger;
  **/
 public class InternetConnectivityException extends Error
 {
-  private String    htmlText;
-  private Throwable cause;
+  private static final long serialVersionUID = 1L;
+  private String            htmlText;
+  private Throwable         cause;
   /***********************************************************************/
   public void setCause(Throwable t)
   {
