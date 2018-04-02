@@ -1,12 +1,11 @@
 package org.approvaltests.tests;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.tests.ReportInjectionTest.MyReporter;
+
+import junit.framework.TestCase;
 
 @UseReporter(QuietReporter.class)
 public class ReportInjectionTest extends TestCase

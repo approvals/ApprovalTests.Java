@@ -17,9 +17,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.lambda.query.Query;
+
 import com.spun.util.DateUtils;
 import com.spun.util.NumberUtils;
-import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.logger.SimpleLogger;
 import com.spun.util.parser.TemplateError;
@@ -92,12 +93,12 @@ public abstract class BasicServlet extends HttpServlet
   /***********************************************************************/
   public static Cookie loadCookie(HttpServletRequest req, String cookieName)
   {
-    return ObjectUtils.getForMethod(req.getCookies(), cookieName, "getName");
+    return Query.first(req.getCookies(), o -> cookieName.equals(o.getName()));
   }
   /***********************************************************************/
   public static String loadCookieValue(HttpServletRequest req, String cookieName)
   {
-    Cookie cookie = ObjectUtils.getForMethod(req.getCookies(), cookieName, "getName");
+    Cookie cookie = loadCookie(req, cookieName);
     return cookie == null ? null : cookie.getValue();
   }
   /***********************************************************************/
