@@ -3,6 +3,10 @@ package com.spun.util.io.tests;
 import java.io.File;
 import java.io.FileWriter;
 
+import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
+import org.junit.Test;
+
 import com.spun.util.io.FileUtils;
 
 import junit.framework.TestCase;
@@ -26,6 +30,23 @@ public class FileUtilsTest extends TestCase
   public void testExtensionWithoutDot() throws Exception
   {
     assertEquals("txt", FileUtils.getExtensionWithoutDot("c:\\some.thing\\there\\a.txt"));
+  }
+  @Test
+  public void testIsNonEmptyFile() throws Exception
+  {
+    assertTrue(FileUtils.isNonEmptyFile(adjacentFile("Book1.csv")));
+  }
+  @Test
+  public void testIsDefaultText() throws Exception
+  {
+    String text = FileUtils.readFile(new File(adjacentFile("missing_file.txt")), "default text");
+    assertEquals("default text", text);
+  }
+  private String adjacentFile(String name)
+  {
+    ApprovalNamer namer = Approvals.createApprovalNamer();
+    String file = namer.getSourceFilePath() + name;
+    return file;
   }
   /***********************************************************************/
   public void testCopyFile() throws Exception
