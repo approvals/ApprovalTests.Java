@@ -19,7 +19,6 @@
 	<classpathentry kind="lib" path="java/jars/quartz.jar"/>
 	<classpathentry kind="lib" path="java/jars/servlet.jar"/>
 	<classpathentry kind="lib" path="java/jars/velocity-1.4-p1.jar"/>
-	<classpathentry kind="lib" path="java/jars/cglib-nodep-2.2_beta1.jar"/>
 	<classpathentry kind="lib" path="java/jars/easymock.jar"/>
 	<classpathentry kind="lib" path="java/jars/easymockclassextension.jar"/>
 	<classpathentry kind="lib" path="java/jars/hadoop/hadoop-client-1.0.3.jar"/>
