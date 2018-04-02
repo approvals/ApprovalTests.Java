@@ -16,7 +16,6 @@
 	<classpathentry kind="lib" path="java/jars/junit.jar"/>
 	<classpathentry kind="lib" path="java/jars/log4j-1.2.9.jar"/>
 	<classpathentry kind="lib" path="java/jars/mail.jar"/>
-	<classpathentry kind="lib" path="java/jars/objectplanet.jar"/>
 	<classpathentry kind="lib" path="java/jars/quartz.jar"/>
 	<classpathentry kind="lib" path="java/jars/servlet.jar"/>
 	<classpathentry kind="lib" path="java/jars/velocity-1.4-p1.jar"/>
