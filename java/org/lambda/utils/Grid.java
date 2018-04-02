@@ -1,7 +1,6 @@
 package org.lambda.utils;
 
 import org.lambda.functions.Function2;
-import org.lambda.functions.implementations.F2;
 
 public class Grid
 {
@@ -22,11 +21,6 @@ public class Grid
   }
   public static String print(int width, int height, final String cell)
   {
-    return print(width, height, new F2<Integer, Integer, String>(0, 0, cell)
-    {
-      {
-        ret(cell);
-      }
-    });
+    return print(width, height, (x, y) -> cell);
   }
 }

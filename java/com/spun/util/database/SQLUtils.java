@@ -107,30 +107,10 @@ public class SQLUtils
     {
       sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement((DatabaseObject[]) values);
     }
-    //      else if (values.length < 5)
-    //      {
-    //        return createOrOptimizedInSqlStatement(metadata, alias, not, values);
-    //      }
     else
     {
       sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement(values);
     }
     return sql;
   }
-  /***********************************************************************/
-  private static String createOrOptimizedInSqlStatement(ColumnMetadata metadata, String alias, boolean not,
-      Object[] values)
-  {
-    StringBuffer buffer = new StringBuffer("(");
-    String compare = not ? "!=" : "=";
-    for (int i = 0; i < values.length; i++)
-    {
-      buffer.append(compareBy(metadata, alias, compare, values[i])).append(" OR ");
-    }
-    buffer.setLength(buffer.length() - 4);
-    buffer.append(")");
-    return buffer.toString();
-  }
-  /***********************************************************************/
-  /***********************************************************************/
 }

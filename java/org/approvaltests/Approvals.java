@@ -160,9 +160,9 @@ public class Approvals
   {
     verify(new ResultSetApprovalWriter(rs));
   }
-  public static void verify(SqlLoader<?> loader)
+  public static <T> void verify(SqlLoader<T> loader)
   {
-    verify(new SqlLoader.ExecutableWrapper(loader));
+    verify(new SqlLoader.ExecutableWrapper<T>(loader));
   }
   public static ApprovalNamer createApprovalNamer()
   {

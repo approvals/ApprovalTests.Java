@@ -8,8 +8,6 @@ package com.spun.util.fedex;
 
 import org.lambda.query.Query;
 
-import com.spun.util.ObjectUtils;
-
 public enum FedExServiceType {
                               FedEx_Priority_Overnight("01"), FedEx_Standard_Overnight("05"), FedEx_2_Day("03"),
                               FedEx_First_Overnight("06"), FedEx_Express_Saver("20"), FedEx_Ground("92"),
@@ -59,7 +57,7 @@ public enum FedExServiceType {
   }
   public static FedExServiceType getByFullName(String shippingMethod)
   {
-    return ObjectUtils.getForMethod(FedExServiceType.values(), shippingMethod, "toString");
+    return Query.first(FedExServiceType.values(), o -> shippingMethod.equals(o.toString()));
   }
   /***********************************************************************/
   /***********************************************************************/
