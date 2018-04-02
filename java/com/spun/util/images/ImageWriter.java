@@ -13,21 +13,18 @@ import com.spun.util.logger.SimpleLogger;
 
 import Acme.JPM.Encoders.GifEncoder;
 
-/**
- * An Interface for graphic objects
- **/
 public class ImageWriter
 {
   public enum Encoding {
                         JPEG, GIF
   }
   private OutputStream  out   = null;
-  private ImageObject   image = null;
+  private BufferedImage image = null;
   private Encoding      type  = null;
   private static Random rand  = new Random();
   private static int    index = rand.nextInt();
   /***********************************************************************/
-  public ImageWriter(ImageObject image, OutputStream out, Encoding type)
+  public ImageWriter(BufferedImage image, OutputStream out, Encoding type)
   {
     this.image = image;
     this.out = out;
@@ -35,7 +32,7 @@ public class ImageWriter
   }
   public static void writeImage(BufferedImage image, OutputStream out, Encoding type)
   {
-    new ImageWriter(new BufferedImageObject(image), out, type).start();
+    new ImageWriter(image, out, type).start();
   }
   public static BufferedImage toBufferedImage(Image image)
   {
@@ -69,15 +66,13 @@ public class ImageWriter
   /***********************************************************************/
   private void encodeJPEG() throws IOException
   {
-    BufferedImage bi = image.render();
-    ImageIO.write(bi, "jpg", out);
+    ImageIO.write(image, "jpg", out);
   }
   /***********************************************************************/
   private void encodeGIF() throws IOException
   {
     SimpleLogger.variable("making GIF");
-    BufferedImage bi = image.render();
-    GifEncoder encoder = new GifEncoder(bi, out, true);
+    GifEncoder encoder = new GifEncoder(image, out, true);
     encoder.encode();
   }
   /***********************************************************************/
@@ -86,24 +81,4 @@ public class ImageWriter
     return (index++);
   }
   /***********************************************************************/
-  /***********************************************************************/
-  public static class BufferedImageObject implements ImageObject
-  {
-    private BufferedImage image;
-    public BufferedImageObject(BufferedImage image)
-    {
-      this.image = image;
-    }
-    public int getId()
-    {
-      return 0;
-    }
-    public BufferedImage render()
-    {
-      return image;
-    }
-    public void write(OutputStream out)
-    {
-    }
-  }
 }
