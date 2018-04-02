@@ -20,7 +20,6 @@
 	<classpathentry kind="lib" path="java/jars/quartz.jar"/>
 	<classpathentry kind="lib" path="java/jars/servlet.jar"/>
 	<classpathentry kind="lib" path="java/jars/velocity-1.4-p1.jar"/>
-	<classpathentry kind="lib" path="java/jars/Verisign.jar"/>
 	<classpathentry kind="lib" path="java/jars/jetty/jetty-ajp-7.0.0.RC5.jar"/>
 	<classpathentry kind="lib" path="java/jars/jetty/jetty-annotations-7.0.0.RC5.jar"/>
 	<classpathentry kind="lib" path="java/jars/jetty/jetty-client-7.0.0.RC5.jar"/>
