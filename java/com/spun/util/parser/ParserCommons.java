@@ -8,6 +8,7 @@ import java.util.List;
 import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.PhoneNumber;
+import com.spun.util.parser.VelocityList.Item;
 import com.spun.util.velocity.ParserDateUtils;
 
 public class ParserCommons
@@ -92,35 +93,35 @@ public class ParserCommons
     return new TemplateDouble(number.doubleValue());
   }
   /***********************************************************************/
-  public static List asArray(Object[] array, int offset, int stepping)
+  public static <T> List<Item<T>> asArray(T[] array, int offset, int stepping)
   {
-    return new VelocityList(array, offset, stepping).getAll();
+    return new VelocityList<T>(array, offset, stepping).getAll();
   }
   /***********************************************************************/
-  public static List asArray(Object[] array, int offset, int stepping1, int stepping2)
+  public static <T> List<Item<T>> asArray(T[] array, int offset, int stepping1, int stepping2)
   {
-    return new VelocityList(array, offset, new int[]{stepping1, stepping2}).getAll();
+    return new VelocityList<T>(array, offset, new int[]{stepping1, stepping2}).getAll();
   }
   /***********************************************************************/
-  public static List asArray(Object[] array)
+  public static <T> List<Item<T>> asArray(T[] array)
   {
-    return new VelocityList(array).getAll();
+    return new VelocityList<T>(array).getAll();
   }
   /***********************************************************************/
-  public static List asArray(Object nullObject)
+  public static List<Item<Object>> asArray(Object nullObject)
   {
     if (nullObject != null) { throw new Error("Improper usage"); }
-    return new VelocityList(Collections.EMPTY_LIST).getAll();
+    return new VelocityList<Object>(Collections.emptyList()).getAll();
   }
   /***********************************************************************/
-  public static List asArray(List list)
+  public static <T> List<Item<T>> asArray(List<T> list)
   {
-    return new VelocityList(list).getAll();
+    return new VelocityList<T>(list).getAll();
   }
   /***********************************************************************/
-  public static List asArray(List list, int offset, int stepping1, int stepping2)
+  public static <T> List<Item<T>> asArray(List<T> list, int offset, int stepping1, int stepping2)
   {
-    return new VelocityList(list, offset, new int[]{stepping1, stepping2}).getAll();
+    return new VelocityList<T>(list, offset, new int[]{stepping1, stepping2}).getAll();
   }
   /***********************************************************************/
   public static TemplateDouble asDouble(int number)
