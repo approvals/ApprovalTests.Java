@@ -576,7 +576,7 @@ public class StringUtils
   {
     return new ByteArrayInputStream(string.getBytes());
   }
-  public static String toString(Map map)
+  public static String toString(Map<?, ?> map)
   {
     StringBuffer b = new StringBuffer();
     Object keySet[] = map.keySet().toArray();

@@ -130,7 +130,7 @@ public class MockConnection implements Connection
     return null;
   }
   /***********************************************************************/
-  public Map getTypeMap() throws SQLException
+  public Map<String, Class<?>> getTypeMap() throws SQLException
   {
     return null;
   }
@@ -191,91 +191,72 @@ public class MockConnection implements Connection
   }
   public Array createArrayOf(String arg0, Object[] arg1) throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public Blob createBlob() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public Clob createClob() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public NClob createNClob() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public SQLXML createSQLXML() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public Struct createStruct(String arg0, Object[] arg1) throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public Properties getClientInfo() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public String getClientInfo(String arg0) throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public boolean isValid(int arg0) throws SQLException
   {
-    // TODO Auto-generated method stub
     return false;
   }
   public void setClientInfo(Properties arg0) throws SQLClientInfoException
   {
-    // TODO Auto-generated method stub
   }
   public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException
   {
-    // TODO Auto-generated method stub
   }
   public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException
   {
-    // TODO Auto-generated method stub
   }
   public boolean isWrapperFor(Class<?> arg0) throws SQLException
   {
-    // TODO Auto-generated method stub
     return false;
   }
   public <T> T unwrap(Class<T> arg0) throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public void abort(Executor executor) throws SQLException
   {
-    // TODO Auto-generated method stub
   }
   public int getNetworkTimeout() throws SQLException
   {
-    // TODO Auto-generated method stub
     return 0;
   }
   public String getSchema() throws SQLException
   {
-    // TODO Auto-generated method stub
     return null;
   }
   public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException
   {
-    // TODO Auto-generated method stub
   }
   public void setSchema(String schema) throws SQLException
   {
-    // TODO Auto-generated method stub
   }
 }

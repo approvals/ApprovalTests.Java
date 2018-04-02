@@ -27,21 +27,21 @@ public class HadoopApprovalsTest extends TestCase
 {
   public void testMap() throws Exception
   {
-    SmartMapper mapper = new MapperWrapper(new WordCountMap(), LongWritable.class, Text.class, Text.class,
+    SmartMapper<LongWritable, Text, Text, LongWritable> mapper = new MapperWrapper<>(new WordCountMap(), LongWritable.class, Text.class, Text.class,
         LongWritable.class);
     HadoopApprovals.verifyMapping(mapper, 0, "llew gen  llew");
   }
   public void testReduce() throws Exception
   {
-    SmartReducer reducer = new ReducerWrapper(new WordCountReduce(), Text.class, LongWritable.class, Text.class,
+    SmartReducer<Text, LongWritable, Text, LongWritable> reducer = new ReducerWrapper<>(new WordCountReduce(), Text.class, LongWritable.class, Text.class,
         LongWritable.class);
     HadoopApprovals.verifyReducer(reducer, "life", 7, 35);
   }
   public void testMapReducer() throws Exception
   {
-    SmartMapper mapper = new MapperWrapper(new WordCountMap(), LongWritable.class, Text.class, Text.class,
+    SmartMapper<LongWritable, Text, Text, LongWritable> mapper = new MapperWrapper<>(new WordCountMap(), LongWritable.class, Text.class, Text.class,
         LongWritable.class);
-    SmartReducer reducer = new ReducerWrapper(new WordCountReduce(), Text.class, LongWritable.class, Text.class,
+    SmartReducer<Text, LongWritable, Text, LongWritable> reducer = new ReducerWrapper<>(new WordCountReduce(), Text.class, LongWritable.class, Text.class,
         LongWritable.class);
     HadoopApprovals.verifyMapReduce(mapper, reducer, 0, "one fish two fish red fish blue fish");
   }
