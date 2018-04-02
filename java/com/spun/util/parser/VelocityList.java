@@ -6,37 +6,35 @@ import java.util.Collections;
 import java.util.List;
 
 /***********************************************************************/
-public class VelocityList
+public class VelocityList<T>
 {
   private SteppingIterator iterator = null;
-  @SuppressWarnings("unchecked")
-  private List             list     = null;
-  public VelocityList(Object[] array)
+  private List<T>          list     = null;
+  public VelocityList(T[] array)
   {
     this(array, 0, SteppingIterator.DEFAULT_STEPPING);
   }
   /***********************************************************************/
-  public VelocityList(Object[] array, int offset, int stepping)
+  public VelocityList(T[] array, int offset, int stepping)
   {
     this(array, offset, new int[]{stepping});
   }
   /***********************************************************************/
-  public VelocityList(Object[] array, int offset, int[] stepping)
+  public VelocityList(T[] array, int offset, int[] stepping)
   {
-    this.list = array == null ? Collections.EMPTY_LIST : Arrays.asList(array);
+    this.list = array == null ? Collections.emptyList() : Arrays.asList(array);
     this.iterator = new SteppingIterator(offset, stepping, this.list.size());
   }
   /***********************************************************************/
-  public VelocityList(List array, int offset, int[] stepping)
+  public VelocityList(List<T> array, int offset, int[] stepping)
   {
-    this.list = array == null ? Collections.EMPTY_LIST : array;
+    this.list = array == null ? Collections.emptyList() : array;
     this.iterator = new SteppingIterator(offset, stepping, this.list.size());
   }
   /***********************************************************************/
-  @SuppressWarnings("unchecked")
-  public VelocityList(List list2)
+  public VelocityList(List<T> list)
   {
-    this(list2 == null ? null : list2.toArray());
+    this(list, 0, SteppingIterator.DEFAULT_STEPPING);
   }
   /***********************************************************************/
   public SteppingIterator getSteppingIterator()
@@ -44,33 +42,35 @@ public class VelocityList
     return this.iterator;
   }
   /***********************************************************************/
-  private Object get(int index)
+  private T get(int index)
   {
     int actualPosition = iterator.getActualPosition(index);
     return (actualPosition == -1) ? null : list.get(actualPosition);
   }
   /***********************************************************************/
-  public List<Item> getAll()
+  public List<Item<T>> getAll()
   {
     int size = this.iterator.getSize(true, true);
-    ArrayList<Item> returning = new ArrayList<Item>(size);
+    ArrayList<Item<T>> returning = new ArrayList<>(size);
     for (int i = 0; i < size; i++)
     {
-      returning.add(new Item(this, i));
+      returning.add(new Item<T>(this, i));
     }
     return returning;
   }
   /***********************************************************************/
-  public static class Item
+  /*                              INNER CLASS                            */
+  /***********************************************************************/
+  public static class Item<T>
   {
-    VelocityList list;
-    int          index;
-    public Item(VelocityList list, int index)
+    VelocityList<T> list;
+    int             index;
+    public Item(VelocityList<T> list, int index)
     {
       this.list = list;
       this.index = index;
     }
-    public Object get()
+    public T get()
     {
       return list.get(index);
     }

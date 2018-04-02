@@ -155,7 +155,7 @@ public class ArrayUtils
     return last;
   }
   /***********************************************************************/
-  public static List combineResults(Object[] array, String invokeMethod)
+  public static List<?> combineResults(Object[] array, String invokeMethod)
   {
     if (ArrayUtils.isEmpty(array)) { return Collections.EMPTY_LIST; }
     try
