@@ -8,7 +8,6 @@ import junit.framework.TestCase;
 
 public class LapTimerTest extends TestCase
 {
-  /***********************************************************************/
   public void test()
   {
     try
@@ -31,7 +30,6 @@ public class LapTimerTest extends TestCase
       fail(e.getMessage());
     }
   }
-  /************************************************************************/
   public void checkTimer(LapTimer timer, int totalTime, int lapTimes[])
   {
     assertEquals("Total time", totalTime * 1000, timer.getTotalTime());
@@ -41,10 +39,4 @@ public class LapTimerTest extends TestCase
       assertEquals("Lap[" + i + "]", lapTimes[i] * 1000, times[i].getLapTime());
     }
   }
-  /************************************************************************/
-  private int getTimeAsSeconds(long millis)
-  {
-    return (int) (millis / 1000);
-  }
-  /***********************************************************************/
 }

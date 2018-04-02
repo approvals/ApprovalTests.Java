@@ -2,8 +2,8 @@ package com.spun.util.database;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import com.spun.util.DatabaseUtils;
-import com.spun.util.ObjectUtils;
 
 public class SQLUtils
 {
@@ -38,17 +38,6 @@ public class SQLUtils
     return sql.toString();
   }
   /***********************************************************************/
-  /**
-   * Done via Reflection. 
-   * They should all be the same Type of object!
-   * And the method signature should have empty arguments! 
-   **/
-  public static String createInSQLStatement(Object from[], String methodName)
-  {
-    Object[] array = ObjectUtils.extractArray(from, methodName);
-    return createInSQLStatement(array);
-  }
-  /***********************************************************************/
   public static String loadInSQLStatement(ResultSet rs) throws SQLException
   {
     StringBuffer sql = new StringBuffer("(");
@@ -65,7 +54,8 @@ public class SQLUtils
   /***********************************************************************/
   public static String createSQLBetween(String lowerValue, String betweenVariable, String upperValue)
   {
-    return "(" + DatabaseUtils.formatNullableObject(lowerValue) + " <= " + betweenVariable + " AND " + betweenVariable + " < " + DatabaseUtils.formatNullableObject(upperValue) + ")";
+    return "(" + DatabaseUtils.formatNullableObject(lowerValue) + " <= " + betweenVariable + " AND "
+        + betweenVariable + " < " + DatabaseUtils.formatNullableObject(upperValue) + ")";
   }
   /***********************************************************************/
   public static String compareBy(ColumnMetadata metadata, String alias, String compareBy, Object value)
@@ -103,38 +93,39 @@ public class SQLUtils
   /***********************************************************************/
   public static String createInSQLStatement(ColumnMetadata metadata, String alias, boolean not, Object[] values)
   {
-      String sql = null;
-      String in = not ? " NOT IN " : " IN ";
-      if (values == null)
-      {
-        sql = compareBy(metadata, alias,not ? "!=" : "=",  null);
-      }
-      else if (values.length == 1)
-      {
-        sql = compareBy(metadata, alias,not ? "!=" : "=", values[0]);
-      }
-      else if (values instanceof DatabaseObject[])
-      {
-        sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement((DatabaseObject[]) values);
-      }
-//      else if (values.length < 5)
-//      {
-//        return createOrOptimizedInSqlStatement(metadata, alias, not, values);
-//      }
-      else
-      {
-        sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement(values);
-      }
-      return sql;
+    String sql = null;
+    String in = not ? " NOT IN " : " IN ";
+    if (values == null)
+    {
+      sql = compareBy(metadata, alias, not ? "!=" : "=", null);
+    }
+    else if (values.length == 1)
+    {
+      sql = compareBy(metadata, alias, not ? "!=" : "=", values[0]);
+    }
+    else if (values instanceof DatabaseObject[])
+    {
+      sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement((DatabaseObject[]) values);
+    }
+    //      else if (values.length < 5)
+    //      {
+    //        return createOrOptimizedInSqlStatement(metadata, alias, not, values);
+    //      }
+    else
+    {
+      sql = metadata.getNameWithPrefix(alias) + in + createInSQLStatement(values);
+    }
+    return sql;
   }
   /***********************************************************************/
-  private static String createOrOptimizedInSqlStatement(ColumnMetadata metadata, String alias, boolean not, Object[] values)
+  private static String createOrOptimizedInSqlStatement(ColumnMetadata metadata, String alias, boolean not,
+      Object[] values)
   {
     StringBuffer buffer = new StringBuffer("(");
     String compare = not ? "!=" : "=";
     for (int i = 0; i < values.length; i++)
     {
-      buffer.append(compareBy(metadata, alias,compare, values[i])).append(" OR ");
+      buffer.append(compareBy(metadata, alias, compare, values[i])).append(" OR ");
     }
     buffer.setLength(buffer.length() - 4);
     buffer.append(")");

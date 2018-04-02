@@ -1,16 +1,20 @@
 package com.spun.util;
 
+import org.lambda.query.Query;
+
 public enum State {
-  Alabama("AL"), Alaska("AK"), Arizona("AZ"), Arkansas("AR"), California("CA"), Colorado("CO"), Connecticut("CT"),
-  Delaware("DE"), DistrictOfColumbia("Washington D.C.", "DC"), Florida("FL"), Georgia("GA"), Hawaii("HI"),
-  Idaho("ID"), Illinois("IL"), Indiana("IN"), Iowa("IA"), Kansas("KS"), Kentucky("KY"), Louisiana("LA"),
-  Maine("ME"), Maryland("MD"), Massachusetts("MA"), Michigan("MI"), Minnesota("MN"), Mississippi("MS"),
-  Missouri("MO"), Montana("MT"), Nebraska("NE"), Nevada("NV"), NewHampshire("New Hampshire", "NH"),
-  NewJersey("New Jersey", "NJ"), NewMexico("New Mexico", "NM"), NewYork("New York", "NY"),
-  NorthCarolina("North Carolina", "NC"), NorthDakota("North Dakota", "ND"), Ohio("OH"), Oklahoma("OK"),
-  Oregon("OR"), Pennsylvania("PA"), RhodeIsland("Rhode Island", "RI"), SouthCarolina("South Carolina", "SC"),
-  SouthDakota("South Dakota", "SD"), Tennessee("TN"), Texas("TX"), Utah("UT"), Vermont("VT"), Virginia("VA"),
-  Washington("WA"), WestVirginia("West Virginia", "WV"), Wisconsin("WI"), Wyoming("WY");
+                   Alabama("AL"), Alaska("AK"), Arizona("AZ"), Arkansas("AR"), California("CA"), Colorado("CO"),
+                   Connecticut("CT"), Delaware("DE"), DistrictOfColumbia("Washington D.C.", "DC"), Florida("FL"),
+                   Georgia("GA"), Hawaii("HI"), Idaho("ID"), Illinois("IL"), Indiana("IN"), Iowa("IA"),
+                   Kansas("KS"), Kentucky("KY"), Louisiana("LA"), Maine("ME"), Maryland("MD"), Massachusetts("MA"),
+                   Michigan("MI"), Minnesota("MN"), Mississippi("MS"), Missouri("MO"), Montana("MT"),
+                   Nebraska("NE"), Nevada("NV"), NewHampshire("New Hampshire", "NH"),
+                   NewJersey("New Jersey", "NJ"), NewMexico("New Mexico", "NM"), NewYork("New York", "NY"),
+                   NorthCarolina("North Carolina", "NC"), NorthDakota("North Dakota", "ND"), Ohio("OH"),
+                   Oklahoma("OK"), Oregon("OR"), Pennsylvania("PA"), RhodeIsland("Rhode Island", "RI"),
+                   SouthCarolina("South Carolina", "SC"), SouthDakota("South Dakota", "SD"), Tennessee("TN"),
+                   Texas("TX"), Utah("UT"), Vermont("VT"), Virginia("VA"), Washington("WA"),
+                   WestVirginia("West Virginia", "WV"), Wisconsin("WI"), Wyoming("WY");
   String        altText      = null;
   public String abbreviation = null;
   /************************************************************************/
@@ -36,7 +40,8 @@ public enum State {
     // needs to return the corresponding abbreviation or, if not found, return what was passed in
     for (State s : State.values())
     {
-      if (s.toString().equalsIgnoreCase(state) || s.abbreviation.equalsIgnoreCase(state)) { return s.abbreviation; }
+      if (s.toString().equalsIgnoreCase(state)
+          || s.abbreviation.equalsIgnoreCase(state)) { return s.abbreviation; }
     }
     return state;
   }
@@ -61,15 +66,9 @@ public enum State {
     return false;
   }
   /************************************************************************/
-  private static String[] names = null;
-  /************************************************************************/
   public static synchronized String[] getStringValues()
   {
-    if (names == null)
-    {
-      names = (String[]) ObjectUtils.extractArray(State.values(), "toString");
-    }
-    return names;
+    return Query.select(State.values(), m -> m.toString()).toArray(new String[0]);
   }
   /************************************************************************/
   public String getAbbreviation()

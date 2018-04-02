@@ -1,7 +1,6 @@
 package com.spun.util.logger;
 
-import com.spun.util.logger.SimpleLogger;
-
+@SuppressWarnings("deprecation")
 public class Markers implements AutoCloseable
 {
   private String text;

@@ -19,7 +19,7 @@ public class TemplateStringUtils
   /***********************************************************************/
   public String plural(int number, String singular, String plural)
   {
-    return String.format("%s %s", number, (number == 1 ? singular:plural));
+    return String.format("%s %s", number, (number == 1 ? singular : plural));
   }
   /***********************************************************************/
   public String truncate(String onString, int maxLength, String minus1, String minus2)
@@ -58,20 +58,6 @@ public class TemplateStringUtils
    * @param params
    * @return
    **/
-  private boolean isIn(String[] params)
-  {
-    for (int i = 1; i < params.length; i++)
-    {
-      if (params[0].equals(params[i])) { return true; }
-    }
-    return false;
-  }
-  /************************************************************************/
-  /**
-   * Compare if arg [0] equals any other argument starting at [1].
-   * @param params
-   * @return
-   **/
   public static boolean isIn(String compare, String inParameter1, String inParameter2)
   {
     return StringUtils.isIn(compare, new String[]{inParameter1, inParameter2});
@@ -92,11 +78,6 @@ public class TemplateStringUtils
       buffer.append(paddingCharacter);
     }
     return buffer.toString();
-  }
-  /***********************************************************************/
-  private boolean isNull(String main)
-  {
-    return !StringUtils.isNonZero(clearNull(main));
   }
   /***********************************************************************/
   public String getFileName(String fileName)
