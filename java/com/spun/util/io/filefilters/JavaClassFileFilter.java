@@ -1,4 +1,3 @@
-
 package com.spun.util.io.filefilters;
 
 import java.io.File;
@@ -7,8 +6,7 @@ import java.io.FileFilter;
 public class JavaClassFileFilter implements FileFilter
 {
   private final String classSuffix;
-  private String startsWith;
-  private String pathHead;
+  private String       startsWith;
   public JavaClassFileFilter(String startsWith, String classSuffix)
   {
     this.classSuffix = classSuffix;
