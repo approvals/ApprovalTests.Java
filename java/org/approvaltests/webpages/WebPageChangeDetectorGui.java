@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 public class WebPageChangeDetectorGui extends JPanel
 {
+  private static final long     serialVersionUID = 1L;
   private JLabel                urlLabel;
   public JTextField             urlTextField;
   public JButton                lock;
@@ -24,7 +25,6 @@ public class WebPageChangeDetectorGui extends JPanel
   private void initialize()
   {
     this.setPreferredSize(new Dimension(400, 50));
-    JButton button;
     this.setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;

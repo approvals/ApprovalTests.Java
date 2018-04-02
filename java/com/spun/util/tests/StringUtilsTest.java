@@ -3,7 +3,6 @@ package com.spun.util.tests;
 import java.util.Arrays;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.strings.Printer;
 
 import com.spun.util.StringUtils;
 
@@ -40,7 +39,11 @@ public class StringUtilsTest extends TestCase
   public void testJavaScript()
   {
     String[] strings = {"\"\n", "this is a note \"\'\nanother liner"};
-    Approvals.verifyAll(strings, a -> Printer.multiline(a, StringUtils.toJavaScriptEncode(a)));
+    Approvals.verifyAll(strings, a -> multiline(a, StringUtils.toJavaScriptEncode(a)));
+  }
+  public static String multiline(String from, String to)
+  {
+    return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
   /***********************************************************************/
   public void testReplace()
