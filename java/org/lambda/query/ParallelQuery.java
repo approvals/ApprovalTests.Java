@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.lambda.actions.implementations.A0;
 import org.lambda.functions.Function1;
 
-import com.spun.util.ThreadLauncher;
+import com.spun.util.LambdaThreadLauncher;
 
 public class ParallelQuery
 {
@@ -20,18 +19,12 @@ public class ParallelQuery
     {
       count++;
       final In piece = i;
-      ThreadLauncher.launch(new A0(false, funct, piece, out, done)
-      {
+      new LambdaThreadLauncher(() -> {
+        if (funct.call(piece))
         {
-          if (run)
-          {
-            if (funct.call(piece))
-            {
-              out.add(piece);
-            }
-            done.incrementAndGet();
-          }
+          out.add(piece);
         }
+        done.incrementAndGet();
       });
     }
     while (done.get() != count)

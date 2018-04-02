@@ -22,7 +22,7 @@ public class WebPageApproval
     {
       File jsFile = createPhantomjsCommand(uri, imageFile);
       Process exec = Runtime.getRuntime().exec(String.format("C:\\tools\\PhantomJS\\phantomjs.exe %s", jsFile));
-      int waitFor = exec.waitFor();
+      exec.waitFor();
     }
     catch (Throwable e)
     {

@@ -61,7 +61,6 @@ public enum Country {
   {
     return altText == null ? super.toString() : altText;
   }
-  private static String[] names = null;
   public synchronized static String[] getStringValues()
   {
     return Query.select(Country.values(), m -> m.toString()).toArray(new String[0]);

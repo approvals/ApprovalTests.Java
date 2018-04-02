@@ -1,10 +1,12 @@
 package com.spun.util.velocity.tests;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
 import org.apache.velocity.context.Context;
+import org.junit.Assert;
+
 import com.spun.util.velocity.ContextAware;
 import com.spun.util.velocity.VelocityParser;
+
+import junit.framework.TestCase;
 
 public class VelocityTest extends TestCase implements ContextAware
 {

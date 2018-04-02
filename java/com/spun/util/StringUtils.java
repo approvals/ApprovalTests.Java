@@ -11,7 +11,6 @@ import java.util.Properties;
 import java.util.Vector;
 
 import org.lambda.functions.Function1;
-import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
 /**
@@ -434,15 +433,19 @@ public class StringUtils
     assertIn(target, options, allowNulls);
   }
   /***********************************************************************/
-  public static String convertEnumeration(final Object forValue, Class<?> clazz) throws Exception
+  public static String convertEnumeration(final Object forValue, Class<?> clazz)
   {
-    F1<Field, Boolean> f1 = new F1<Field, Boolean>(null, forValue)
-    {
+    Function1<Field, Boolean> filter = a -> {
+      try
       {
-        ret(ClassUtils.IsPublicStatic(a) && a.get(null).equals(forValue));
+        return (ClassUtils.IsPublicStatic(a) && a.get(null).equals(forValue));
+      }
+      catch (Throwable e)
+      {
+        throw ObjectUtils.throwAsError(e);
       }
     };
-    List<Field> fields = Query.where(clazz.getFields(), f1);
+    List<Field> fields = Query.where(clazz.getFields(), filter);
     if (fields.isEmpty())
     {
       return "unknown Type " + forValue;

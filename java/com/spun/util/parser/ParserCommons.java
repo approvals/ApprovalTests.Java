@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.PhoneNumber;
 import com.spun.util.parser.VelocityList.Item;
@@ -157,21 +156,6 @@ public class ParserCommons
   public static CurrencyAmount asCurrencyAmount(int number)
   {
     return new CurrencyAmount(number);
-  }
-  /***********************************************************************/
-  public static TemplateDouble sum(Object[] array, String methodName)
-  {
-    return new TemplateDouble(NumberUtils.sum(array, methodName, null));
-  }
-  /***********************************************************************/
-  public static TemplateDouble sum(Object[] array, String methodName, Object param1)
-  {
-    return new TemplateDouble(NumberUtils.sum(array, methodName, new Object[]{param1}));
-  }
-  /***********************************************************************/
-  public static TemplateDouble sum(Object[] array, String methodName, Object param1, Object param2)
-  {
-    return new TemplateDouble(NumberUtils.sum(array, methodName, new Object[]{param1, param2}));
   }
   /***********************************************************************/
   public static int getArrayLength(Object[] array)

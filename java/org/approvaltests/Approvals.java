@@ -33,7 +33,6 @@ import org.jrack.RackResponse;
 import org.jrack.RackResponseUtils;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
-import org.lambda.functions.implementations.F1;
 import org.lambda.query.Query;
 
 import com.spun.util.ArrayUtils;
@@ -233,12 +232,7 @@ public class Approvals
   }
   private static String getFileNameList(List<File> mismatched)
   {
-    return Query.select(mismatched, new F1<File, String>(mismatched.get(1))
-    {
-      {
-        ret(a.getName());
-      }
-    }).toString();
+    return Query.select(mismatched, a -> a.getName()).toString();
   }
   public static void verifyJson(String json)
   {
