@@ -94,3 +94,12 @@ Questions?
 ---
 
 twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTests
+
+Developer notes
+----------------
+
+If you would like to build this project locally, install Apache ant,
+then use this command:
+
+     ant "Publish    ApprovalTests" -buildfile build/build.xml
+

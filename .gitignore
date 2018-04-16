@@ -8,3 +8,6 @@
 *.ear
 test-output/
 .DS_Store
+target
+.idea
+*.iml
