@@ -94,3 +94,20 @@ Questions?
 ---
 
 twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTests
+
+Developer notes
+----------------
+
+If you would like to build this project locally, install Apache ant,
+then use these commands:
+
+     ant "Publish    Spun" -buildfile build/build.xml
+     cp spun/target/spun.jar java/jars/
+     ant "Publish    ApprovalTests" -buildfile build/build.xml
+     cp approvals/target/ApprovalTests.jar java/jars
+     ant "Publish    HtmlLocker" -buildfile build/build.xml
+     ant "Publish    CounterDisplay" -buildfile build/build.xml
+
+This will build jar files under the target folder for each respective project. At present you have to 
+copy the built jar files by hand in between ant steps, since the subprojects depned on one another.
+Soon this will be handled by maven instead.
