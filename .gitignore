@@ -11,3 +11,4 @@ test-output/
 target
 .idea
 *.iml
+**/target

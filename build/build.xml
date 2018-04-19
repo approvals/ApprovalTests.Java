@@ -3,10 +3,10 @@
 		<mkdir dir="${build}" />
 		<delete dir="${build}/com/spun" />
 		<echo>${targetJavaClass}</echo>
-		<javac srcdir="${src}" destdir="${build}" debug="true" includes="${targetJavaClass}"  listfiles="true" target="1.8" source="1.8">
-			<exclude name="**/tests/**" if="excludeTests" />
+		<javac srcdir="${src}" destdir="${build}" debug="true" includes="${targetJavaClass}"
+			   listfiles="true" target="1.8" source="1.8">
 			<classpath>
-				<fileset dir="${src}/jars">
+				<fileset dir="${jars}">
 					<include name="**/*.jar" />
 				</fileset>
 			</classpath>
@@ -52,6 +52,10 @@
 	
 	<target name="Publish    CounterDisplay">
 		<property file="properties/counter_display.properties" />
+		<antcall target="buildJarFile" />
+	</target>
+	<target name="Publish    Spun">
+		<property file="properties/spun.properties" />
 		<antcall target="buildJarFile" />
 	</target>
 
