@@ -1,17 +1,13 @@
 package com.spun.util.images;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import com.spun.util.logger.SimpleLogger;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Random;
-
-import javax.imageio.ImageIO;
-
-import com.spun.util.logger.SimpleLogger;
-
-import Acme.JPM.Encoders.GifEncoder;
 
 public class ImageWriter
 {
@@ -72,8 +68,7 @@ public class ImageWriter
   private void encodeGIF() throws IOException
   {
     SimpleLogger.variable("making GIF");
-    GifEncoder encoder = new GifEncoder(image, out, true);
-    encoder.encode();
+    ImageIO.write(image, "GIF", out);
   }
   /***********************************************************************/
   public static synchronized int getImageId()
