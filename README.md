@@ -98,7 +98,25 @@ twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTe
 Developer notes
 ----------------
 
-If you would like to build this project locally, install Apache ant,
+We are currently migrating the build from Ant to Maven. To build with Maven, first you must download the ApprovalTests.jar package from 
+[Releases](https://github.com/approvals/ApprovalTests.Java/releases) and install it in your local maven repository:
+
+	mvn install:install-file -Dfile=ApprovalTests.jar -DgroupId=com.approvaltests -DartifactId=approvals -Dversion=020 -Dpackaging=jar
+
+All the other dependencies should be available on Maven central, so this command should then build the project:
+
+	mvn install
+
+Unfortunately right now we have test failures so this will work to install the jars locally as a temporary fix while we sort that out:
+
+	mvn install -DskipTests
+
+I also had trouble with the "mrunit" package which is listed on Maven central but which wouldn't download for me. To fix that you can always install it locally with this command:
+
+	mvn install:install-file -Dfile=java/jars/hadoop/mrunit-0.9.0-incubating-hadoop1.jar -DgroupId=org.apache.mrunit -DartifactId=mrunit -Dversion=0.9.0-incubating -Dpackaging=jar
+
+
+If you would like to build this project with Apache ant,
 then use these commands:
 
      ant "Publish    Spun" -buildfile build/build.xml
