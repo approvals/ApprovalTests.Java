@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.hadoop.fs.Path;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
@@ -187,7 +186,7 @@ public class Approvals
   private static void verifyEachFileAgainstMasterDirectory(File[] files) throws Error
   {
     ApprovalNamer namer = createApprovalNamer();
-    String dirName = namer.getSourceFilePath() + Path.SEPARATOR + namer.getApprovalName() + ".Files";
+    String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
     File approvedDirectory = new File(dirName);
     List<File> mismatched = new ArrayList<File>();
     for (File f : files)
