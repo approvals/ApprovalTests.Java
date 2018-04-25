@@ -1,6 +1,7 @@
 package com.spun.util.parser;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import com.spun.util.NumberUtils;
 
@@ -15,7 +16,7 @@ public class TemplateDouble
   /************************************************************************/
   static
   {
-    decimalFormat = NumberFormat.getNumberInstance();
+    decimalFormat = NumberFormat.getNumberInstance(Locale.US);
     decimalFormat.setMaximumFractionDigits(2);
     decimalFormat.setMinimumFractionDigits(2);
   }
@@ -67,7 +68,6 @@ public class TemplateDouble
     NumberFormat dFormat = decimalFormat;
     if ((maximumPrecision != 2) || (minimumPrecision != 2) || !useGrouping)
     {
-      dFormat = NumberFormat.getNumberInstance();
       dFormat.setMaximumFractionDigits(maximumPrecision);
       dFormat.setMinimumFractionDigits(minimumPrecision);
       dFormat.setGroupingUsed(useGrouping);
