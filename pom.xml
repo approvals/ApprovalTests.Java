@@ -12,14 +12,17 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
     </dependencies>
 
     <modules>
-        <module>spun</module>
-        <module>approvals</module>
+        <module>approvaltests-util</module>
+        <module>approvaltests</module>
+
         <module>counter_display</module>
         <module>html_locker</module>
     </modules>
@@ -32,6 +35,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
