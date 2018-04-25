@@ -34,7 +34,7 @@ public class FileUtilsTest extends TestCase
   @Test
   public void testIsNonEmptyFile() throws Exception
   {
-    assertTrue(FileUtils.isNonEmptyFile(adjacentFile("Book1.csv")));
+    assertTrue(FileUtils.isNonEmptyFile(adjacentFile("FileTestUtils.java")));
   }
   @Test
   public void testIsDefaultText() throws Exception
