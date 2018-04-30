@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>ApprovalTests</artifactId>
+        <artifactId>approvaltests-parent</artifactId>
         <groupId>com.approvaltests</groupId>
         <version>0.2.1-SNAPSHOT</version>
     </parent>
@@ -26,6 +26,12 @@
             <version>${project.version}</version>
             <type>test-jar</type>
         </dependency>
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests-util</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
 
