@@ -13,7 +13,6 @@
     <artifactId>HtmlLocker</artifactId>
     <packaging>jar</packaging>
 
-
     <dependencies>
         <dependency>
             <groupId>com.approvaltests</groupId>

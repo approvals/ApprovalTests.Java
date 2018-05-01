@@ -2,7 +2,8 @@ Getting Started
 ===============
 Installation
 ---
-All you need to do to use ApprovalTests is simply include the ApprovalTests.jar in your class path. Then use it with your favorite Testing Framework.
+All you need to do to use ApprovalTests is simply include the ApprovalTests.jar in your class path.
+Then use it with your favorite Testing Framework.
 
 Parts of a Test
 ---
@@ -39,7 +40,8 @@ SampleTest.testBuildString.received.txt
 This is the 'actual result'.   
 The 'expected' result is in the file SampleTest.testBuildString.**received**.txt   
 [(This is described in detail below.)](#ApprovingTheResult)
-When you see the results you want (“ApprovalTests”) as the result, simply [Approve The Result](#ApprovingTheResult).
+When you see the results you want (“ApprovalTests”) as the result,
+simply [Approve The Result](#ApprovingTheResult).
 
 Objects
 ---
@@ -58,7 +60,9 @@ Let's say that you wanted to test that a customized StringBuilder was creating t
     }
 ```
 
-If you see “ApprovalTests” as the result, simply [Approve The Result](#ApprovingTheResult). Itʼs important to note that you will need to create a useful instance of the toString() Method for objects you want to use.
+If you see “ApprovalTests” as the result, simply [Approve The Result](#ApprovingTheResult).
+Itʼs important to note that you will need to create a useful instance of the toString()
+Method for objects you want to use.
 
 Arrays
 ---
@@ -87,7 +91,8 @@ Again, simply [Approve The Result](#ApprovingTheResult)
 
 Swing / AWT
 ---
-Letʼs say you wanted to test that youʼve created a JPanel correctly. (This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
+Letʼs say you wanted to test that youʼve created a JPanel correctly.
+(This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
 
 ```java
     public void testTvGuide() {
@@ -106,17 +111,25 @@ SampleTest.testTvGuide.Mac_OS_X.approved.png
 ![Expected  Image](ApprovalsTest.testTvGuide.Mac_OS_X.approved.png)
 
 
-__First__, I want to note that even though there is a UI and a select box for times, Iʼm not “poking” it to select the time. Just because we are looking at the UI at the end, doesnʼt mean I need to manipulate it directly. We are programmers, and are not limited by the constraints of the UI. I simply expose a selectTime(String value) function.
+__First__, I want to note that even though there is a UI and a select box for times,
+Iʼm not “poking” it to select the time. Just because we are looking at the UI at the end,
+doesnʼt mean I need to manipulate it directly. We are programmers, and are not limited by
+the constraints of the UI. I simply expose a selectTime(String value) function.
 
-__Second__, this will produce a .png file containing a screen shot of the JPanel as a result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
+__Second__, this will produce a .png file containing a screen shot of the JPanel as a
+result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
 
-__Thrid__, because these will render differently on different operating systems. These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
+__Thrid__, because these will render differently on different operating systems.
+These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
 
 Generate Combinations of Parameter Values
 ---
-To simplify getting more comprehensive sets of test cases, or expanding code coverage, ApprovalTests can generate combinations of possible parameters for a given function.
+To simplify getting more comprehensive sets of test cases, or expanding code coverage,
+ApprovalTests can generate combinations of possible parameters for a given function.
 
-To do this, create an array of possible values for each parameter passed to a function (up to nine parameters). Call the CombinationApprovals.verifyAllCombinations() method passing the method to be called as a lambda. An example follows:
+To do this, create an array of possible values for each parameter passed to a function
+(up to nine parameters). Call the CombinationApprovals.verifyAllCombinations() method
+passing the method to be called as a lambda. An example follows:
 
 ```java
     Integer[] points = new Integer[]{4, 5, 10};
@@ -136,14 +149,18 @@ u
         [10, Bookkeeper] => Bookkeeper
         [10, applesauce] => applesauce
 
-Here we are writing a single test that tries all 6 ( 3 ints * 2 String) combinations of inputs and the results those will produce.  
+Here we are writing a single test that tries all 6 ( 3 ints * 2 String) combinations of
+inputs and the results those will produce.
 
-This will generate potentally hundreds or thousands of possible combinations of values. As before, the output will be displayed and, if the results are satisfactory, [Approve The Result](#ApprovingTheResult).
+This will generate potentally hundreds or thousands of possible combinations of values.
+As before, the output will be displayed and, if the results are satisfactory, [Approve The Result](#ApprovingTheResult).
 
 <a name='ApprovingTheResult'></a>
 Approving The Result
 ---
-When you run a test using ApprovalTests, it will generate a file named “YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same directory as your test.
+When you run a test using ApprovalTests, it will generate a file named
+“YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same
+directory as your test.
 
 For the test to pass, this file must match:
 
@@ -163,7 +180,8 @@ __Note__: You must include the received files in your source control.
 
 Reporters
 ---
-If an approval fails, then a report will be called that will report the “.received” and “.approved” files. There are many reporters, and you can create your own.
+If an approval fails, then a report will be called that will report the “.received” and
+“.approved” files. There are many reporters, and you can create your own.
 
 The simplest way to have your reporter called is to use the Annotation @UseReporter(Reporter.class)
 You can annotate at either the method or class level.
@@ -184,7 +202,8 @@ TextWebReporter      | Opens the text files in a Web browser
 
 Supported Reporters
 ---
-The following reporters are supported automatically. ApprovalTests will serach for the following applications in the following order on the respective platform:
+The following reporters are supported automatically. ApprovalTests will serach for the following
+applications in the following order on the respective platform:
 
 Mac OSX        | Specified as
 -----------    |---------
@@ -225,7 +244,8 @@ To use a reporter that is not in the above list, you will need to create a class
     }
 ```
 
-To specify a particular reporter to be used for a test method, add the following annotation just before the test method definition:
+To specify a particular reporter to be used for a test method, add the following annotation
+just before the test method definition:
 
 ```java
     @UseReporter(MyWinMergeReporter.class)

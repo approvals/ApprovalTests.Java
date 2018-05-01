@@ -54,10 +54,17 @@
 		<property file="properties/counter_display.properties" />
 		<antcall target="buildJarFile" />
 	</target>
-	<target name="Publish    Spun">
+	<target name="Publish    ApprovalTests-Util">
 		<property file="properties/spun.properties" />
 		<antcall target="buildJarFile" />
 	</target>
-
+	<target name="Publish    approvaltests-hadoop">
+		<property file="properties/approvaltests-hadoop.properties" />
+		<antcall target="buildJarFile" />
+	</target>
+	<target name="Publish    approvaltests-testng">
+		<property file="properties/approvaltests-testng.properties" />
+		<antcall target="buildJarFile" />
+	</target>
 </project>
 

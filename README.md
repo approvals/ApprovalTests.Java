@@ -119,12 +119,14 @@ I also had trouble with the "mrunit" package which is listed on Maven central bu
 If you would like to build this project with Apache ant,
 then use these commands:
 
-     ant "Publish    Spun" -buildfile build/build.xml
-     cp spun/target/spun.jar java/jars/
+     ant "Publish    ApprovalTests-Util" -buildfile build/build.xml
+     cp approvaltests-util/target/approvaltests-util.jar java/jars/
      ant "Publish    ApprovalTests" -buildfile build/build.xml
      cp approvals/target/ApprovalTests.jar java/jars
      ant "Publish    HtmlLocker" -buildfile build/build.xml
      ant "Publish    CounterDisplay" -buildfile build/build.xml
+     ant "Publish    approvaltests-hadoop" -buildfile build/build.xml
+     ant "Publish    approvaltests-testng" -buildfile build/build.xml
 
 This will build jar files under the target folder for each respective project. At present you have to 
 copy the built jar files by hand in between ant steps, since the subprojects depned on one another.
