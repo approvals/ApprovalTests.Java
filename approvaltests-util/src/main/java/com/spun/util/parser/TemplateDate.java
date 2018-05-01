@@ -2,10 +2,8 @@ package com.spun.util.parser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import java.util.*;
+
 import com.spun.util.DateDifference;
 import com.spun.util.DateUtils;
 import com.spun.util.StringUtils;
@@ -19,10 +17,10 @@ public class TemplateDate
     public static final DateFormat DATE_MONTH_YEAR = new SimpleDateFormat("MM/yy");
     public static final DateFormat DATE_MONTH_DAY  = new SimpleDateFormat("MM/dd");
     public static final DateFormat DATE_SHORT      = new SimpleDateFormat("MM/dd/yyyy");
-    public static final DateFormat DATE_MEDIUM     = DateFormat.getDateInstance(DateFormat.MEDIUM);
-    public static final DateFormat DATE_LONG       = DateFormat.getDateInstance(DateFormat.LONG);
-    public static final DateFormat DATE_FULL       = DateFormat.getDateInstance(DateFormat.FULL);
-    public static final DateFormat TIME_SHORT      = DateFormat.getTimeInstance(DateFormat.SHORT);
+    public static final DateFormat DATE_MEDIUM     = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.US);
+    public static final DateFormat DATE_LONG       = DateFormat.getDateInstance(DateFormat.LONG, Locale.US);
+    public static final DateFormat DATE_FULL       = DateFormat.getDateInstance(DateFormat.FULL, Locale.US);
+    public static final DateFormat TIME_SHORT      = DateFormat.getTimeInstance(DateFormat.SHORT, Locale.US);
     public static final DateFormat TIME_FULL       = new SimpleDateFormat("H:mm");
     public static final DateFormat TIME_ZONE       = new SimpleDateFormat("H:mm z");
     public static final DateFormat TIME_MILLI      = new SimpleDateFormat("H:mm:ss:SSS");
