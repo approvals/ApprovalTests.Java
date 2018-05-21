@@ -2,6 +2,10 @@ package org.lambda.actions;
 
 import com.spun.util.ObjectUtils;
 
+
+/**
+  * Findable name for java.util.function.Consumer
+  **/
 public interface Action0
 {
   public void call();
