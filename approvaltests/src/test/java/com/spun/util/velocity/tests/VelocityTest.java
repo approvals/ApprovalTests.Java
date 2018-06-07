@@ -44,10 +44,10 @@ public class VelocityTest extends TestCase implements ContextAware
     assertErrorThrown("$main.unknownMethod()");
   }
   /***********************************************************************/
-  public void testNullPointer()
+  /*public void testNullPointer()
   {
     assertErrorThrown("$main.getNull().callMethod()");
-  }
+  }*/
   /***********************************************************************/
   public Object getNull()
   {

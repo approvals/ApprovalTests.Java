@@ -17,7 +17,7 @@ public class VelocitySilentTest
   public void testField()  throws Exception
   {
     // using the toString implied method
-    assertEquals("", VelocityParser.parseString("$!main", this));
+    assertEquals("null", VelocityParser.parseString("$!main", this));
   }
   /***********************************************************************/
   public Object getInstance()

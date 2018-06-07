@@ -69,12 +69,7 @@
             <artifactId>commons-collections</artifactId>
             <version>3.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.approvaltests</groupId>
-            <artifactId>approvals</artifactId>
-            <version>020</version>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
 </project>
