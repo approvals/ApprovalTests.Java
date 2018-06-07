@@ -3,7 +3,7 @@ package org.lambda.functions.implementations;
 import com.spun.util.DeprecatedException;
 
 /**
- * @deprecated use lambdas:  (a,b,c,d) -> ...your code...
+ * @deprecated use lambdas:  (a,b,c,d) {@literal -> ...your code...}
  */
 @Deprecated
 public class F4<In1, In2, In3, In4, Out>

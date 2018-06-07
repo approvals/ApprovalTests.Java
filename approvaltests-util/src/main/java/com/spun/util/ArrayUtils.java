@@ -16,7 +16,7 @@ import org.lambda.functions.Function1;
 
 /**
  * A static class of convenience methods for arrays and collections.
- **/
+ */
 public class ArrayUtils
 {
   /************************************************************************/

@@ -3,7 +3,7 @@ package com.spun.util;
 import java.util.UUID;
 
 /**
- * @depercated use UUID.randomUUID().toString()
+ * @deprecated use {@code UUID.randomUUID().toString() }
  */
 @Deprecated
 public class StringIdentifierGenerator

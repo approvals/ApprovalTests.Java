@@ -13,7 +13,7 @@ public class DatabaseTransactionInfo
   private boolean                   automaticCommit;
   /**************************************************************************/
   /** 
-   * @return the object from the cache with the corosponding pkey
+   * returns the object from the cache with the corosponding pkey
    **/
   public DatabaseTransactionInfo(Connection con, int levelsOfRemoval) throws SQLException
   {

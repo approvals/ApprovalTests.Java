@@ -5,7 +5,7 @@ import org.lambda.functions.implementations.F2;
 import com.spun.util.DeprecatedException;
 
 /**
- * @deprecated use lambdas:  (a) -> ...your code...
+ * @deprecated use lambdas:  (a) {@literal -> ...your code...}
  */
 @Deprecated
 public class A1<In> extends F2<Boolean, In, String> implements org.lambda.actions.Action1<In>

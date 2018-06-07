@@ -5,7 +5,7 @@ import org.lambda.functions.Function1;
 import com.spun.util.DeprecatedException;
 
 /**
- * @deprecated use lambdas:  a -> a
+ * @deprecated use lambdas: {@literal  a -> a }
  */
 @Deprecated
 public class Echo1<T> implements Function1<T, T>

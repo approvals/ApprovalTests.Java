@@ -55,8 +55,6 @@ public class TemplateStringUtils
   /************************************************************************/
   /**
    * Compare if arg [0] equals any other argument starting at [1].
-   * @param params
-   * @return
    **/
   public static boolean isIn(String compare, String inParameter1, String inParameter2)
   {

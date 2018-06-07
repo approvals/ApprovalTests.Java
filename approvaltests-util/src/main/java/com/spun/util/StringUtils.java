@@ -457,7 +457,7 @@ public class StringUtils
   }
   /************************************************************************/
   /**
-   * 'Tom S Hardy' -> 'Tom S' - 'Hardy'
+   * 'Tom S Hardy' becomes 'Tom S' - 'Hardy'
    **/
   public static String[] splitName(String fullName)
   {

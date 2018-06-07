@@ -1,7 +1,7 @@
 package org.approvaltests.strings;
 
 /**
- * @deprecated use lambdas:  a  -> from + " => " + to + "\n"
+ * @deprecated use lambdas: {@code  a  -> from + " => " + to + "\n" }
  */
 @Deprecated
 public class Printer<T>

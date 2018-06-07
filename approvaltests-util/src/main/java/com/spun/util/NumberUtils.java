@@ -64,9 +64,6 @@ public class NumberUtils
     return defaultValue;
   }
   /***********************************************************************/
-  /**
-   * 
-   **/
   public static double load(String i, double defaultValue)
   {
     try
@@ -106,7 +103,7 @@ public class NumberUtils
   }
   /************************************************************************/
   /**
-   * a unit test of sorts :-)
+   * a unit test of sorts
    **/
   public static void main(String args[])
   {
@@ -160,7 +157,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum(list, l -> l.methodName(params));
+   * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
   public static double sum(Object[] list, String methodName, Object[] params)
   {
@@ -174,7 +171,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum(list, l -> l.methodName(params));
+   * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
   public static double sum(Object[] onArray, String forMethodName)
   {
@@ -182,7 +179,7 @@ public class NumberUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.sum(list, l -> l.methodName(params));
+   * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
   public static double sum(Collection<?> onCollection, String forMethodName)
   {

@@ -1,7 +1,7 @@
 package com.spun.util;
 
 /**
- * @deprecated use  OrderBy.descending(a -> a.length())
+ * @deprecated use {@code OrderBy.descending(a -> a.length()) }
  */
 @Deprecated
 public class MethodSorter<T>

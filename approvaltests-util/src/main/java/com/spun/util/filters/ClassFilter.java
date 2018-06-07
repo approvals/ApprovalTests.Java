@@ -3,7 +3,7 @@ package com.spun.util.filters;
 import com.spun.util.DeprecatedException;
 
 /**
- * @deprecated use lambdas:  a -> a instanceof desiredclass or a -> clazz.isInstance(a)
+ * @deprecated use lambdas:  {@literal a -> a instanceof desiredclass or a -> clazz.isInstance(a)}
  * 
  */
 @Deprecated

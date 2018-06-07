@@ -70,7 +70,6 @@ public class Asserts
         + " does not start with " + needle); }
   }
   /***********************************************************************/
-  /***********************************************************************/
   public static void assertTrue(String label, boolean b)
   {
     if (!b) { throw new IllegalStateException(label + " was false"); }

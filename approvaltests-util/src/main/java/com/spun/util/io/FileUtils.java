@@ -28,9 +28,6 @@ import com.spun.util.ObjectUtils;
 public class FileUtils
 {
   /***********************************************************************/
-  /**
-   * @see java.io.File.createTempFile(String,String)
-   **/
   public static File createTempDirectory() throws IOException
   {
     File tempFile = File.createTempFile("TEMP", null);

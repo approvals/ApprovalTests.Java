@@ -64,8 +64,6 @@ public class ObjectUtils
   /***********************************************************************/
   /**
    * A convenience function to check if 2 strings are equal.
-   * @param string The string in question
-   * @return true if Equal.
    **/
   public static boolean isEqual(Object s1, Object s2)
   {
@@ -93,7 +91,7 @@ public class ObjectUtils
   }
   /***********************************************************************/
   /**
-   * @deprecated use Query.first(onArray, o -> forValue.equals(o.onMethod()))
+   * @deprecated use {@literal Query.first(onArray, o -> forValue.equals(o.onMethod())) }
    */
   @Deprecated
   public static <T> T getForMethod(T[] onArray, Object forValue, String... onMethods)
@@ -130,7 +128,7 @@ public class ObjectUtils
   }
   /***********************************************************************/
   /** 
-  * @deprecated use Query.select(from, m -> m.methodName())
+  * @deprecated use {@literal Query.select(from, m -> m.methodName()) }
   */
   public static Object[] extractArray(Object[] from, String methodName)
   {

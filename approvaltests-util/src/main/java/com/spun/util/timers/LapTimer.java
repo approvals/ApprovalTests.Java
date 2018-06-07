@@ -46,7 +46,7 @@ public class LapTimer
   }
   /************************************************************************/
   /**
-   * Marks the time for a lap & a label.
+   * Marks the time for a lap and a label.
    * ie. A timer could store - 1 hour 10 mins ["1st Quarter", 15 mins,"2nd Quarter", 15 mins,"Half Time", 10 mins, "3rd Quarter", 15 mins,"4th Quarter", 15 mins] 
    **/
   public long lap(String label)

@@ -602,10 +602,6 @@ public class DatabaseUtils
    * @param status
    *          The status to be translated
    * @return The Text representation of static variable.
-   * @see com.spun.utilDatabaseUtils#NEW
-   * @see com.spun.utilDatabaseUtils#NEW_MODIFIED
-   * @see com.spun.utilDatabaseUtils#OLD
-   * @see com.spun.utilDatabaseUtils#OLD_MODIFIED
    */
   public static final String getDatabaseStatusString(int status)
   {

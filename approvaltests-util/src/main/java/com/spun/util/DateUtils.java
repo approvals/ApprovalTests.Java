@@ -177,7 +177,7 @@ public class DateUtils
   /************************************************************************/
   /**
    * 
-   * @return 1 if date1 > date2, 0 if date1 = date2, -1 if date1 < date2
+   * {@code return 1 if date1 > date2, 0 if date1 = date2, -1 if date1 < date2 }
    **/
   public static int compareDates(Date date1, Date date2)
   {

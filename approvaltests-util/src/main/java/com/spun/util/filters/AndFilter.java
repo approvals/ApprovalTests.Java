@@ -3,7 +3,7 @@ package com.spun.util.filters;
 import com.spun.util.DeprecatedException;
 
 /**
- * @deprecated use lambdas:  a -> filter1 && filter2
+ * @deprecated use lambdas: {@literal a -> filter1 && filter2}
  */
 @Deprecated
 public class AndFilter<T> implements Filter<T>

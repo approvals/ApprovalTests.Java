@@ -3,10 +3,8 @@ package com.spun.util.filters;
 import com.spun.util.DeprecatedException;
 
 /**
-  * Listens to the state of a EnabledConditions object
-  **/
-/**
- * @deprecated use lambdas:  a -> filter1 || filter2
+ * Listens to the state of a EnabledConditions object
+ * @deprecated use lambdas:  {@literal a -> filter1 || filter2 }
  */
 @Deprecated
 public class OrFilter<T> implements Filter<T>

@@ -183,7 +183,6 @@ public class SimpleLoggerInstance
   }
   /**
    * Prints to screen any variable information to be viewed.
-   * @param Statement The statement to print
    **/
   public synchronized void query(String queryName, Object sqlQuery)
   {
@@ -201,7 +200,6 @@ public class SimpleLoggerInstance
   }
   /**
    * Prints to screen any variable information to be viewed.
-   * @param Statement The statement to print
    **/
   public synchronized void variable(String name, Object value)
   {
@@ -324,13 +322,11 @@ public class SimpleLoggerInstance
     return statement;
   }
   /**
-   * <pre>
    * {@code
    * try (Markers m = SimpleLogger.useMarkers();)
    * {
    * }
-   * 
-   * </pre> 
+   * }
    */
   public Markers useMarkers()
   {

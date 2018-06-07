@@ -118,7 +118,6 @@ public class MySystem
   /************************************************************************/
   /**
    * Dumps the current thread status for ALL groups.
-   * @see  My_System.dumpAllThreadsInGroup(ThreadGroup)
    **/
   public static String dumpAllThreads()
   {

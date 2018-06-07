@@ -17,18 +17,8 @@ import org.approvaltests.hadoop.WritableUtils;
 import com.spun.util.ArrayUtils;
 
 /**
- * To use this package you will need:
- * <ul>
- * <li>hadoop-client-1.0.3.jar</li>
- * <li>hadoop-core-0.20.2.jar</li>
- * <li>hadoop-mapred-test-0.22.0.jar</li>
- * <li>log4j-1.2.15.jar</li>
- * <li>mockito-all-1.8.5.jar</li>
- * <li>mrunit-0.9.0-incubating-hadoop1.jar</li>
- * </ul>
- * in your build path.
- * 
- * You will also want to either extended the SmartMapper & SmartWrapper classes,or use the MapperWrapper & ReducerWrapper classes.
+ * To use this package you will need to either extended the SmartMapper and SmartWrapper classes,
+ * or use the MapperWrapper and ReducerWrapper classes.
  * 
  * @see SmartMapper
  * @see SmartReducer

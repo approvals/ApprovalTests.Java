@@ -33,7 +33,6 @@ public class SimpleLogger
   }
   /**
    * Prints to screen any variable information to be viewed.
-   * @param Statement The statement to print
    **/
   public synchronized static void query(String queryName, Object sqlQuery)
   {
@@ -49,7 +48,6 @@ public class SimpleLogger
   }
   /**
    * Prints to screen any variable information to be viewed.
-   * @param Statement The statement to print
    **/
   public synchronized static void variable(String name, Object value)
   {
@@ -93,13 +91,11 @@ public class SimpleLogger
     log.logMemoryStatus();
   }
   /**
-   * <pre>
    * {@code
    * try (Markers m = SimpleLogger.useMarkers();)
    * {
    * }
-   * 
-   * </pre> 
+   * }
    */
   public static Markers useMarkers()
   {

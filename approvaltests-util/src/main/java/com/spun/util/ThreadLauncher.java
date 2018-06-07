@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import org.lambda.actions.Action0;
 
 /**
- * @deprecated use  LambdaThreaLauncher( ()-> object.method(params))
+ * @deprecated use {@literal LambdaThreaLauncher( ()-> object.method(params))  }
  */
 @Deprecated
 public class ThreadLauncher
