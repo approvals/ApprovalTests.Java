@@ -50,24 +50,28 @@ ApprovalTests eats it own dogfood, so the best examples are in the source code i
 None the less,  Here's a quick look at some
 [Sample Code](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/tests/demos/SampleArrayTest.java)
 
-	public class SampleArrayTest extends TestCase
+```java
+public class SampleArrayTest extends TestCase
+{
+	public void testList() throws Exception
 	{
-		public void testList() throws Exception
-		{
-			String[] names = {"Llewellyn", "James", "Dan", "Jason", "Katrina"};
-			Arrays.sort(names);
-			Approvals.verifyAll("", names);
-		}
+		String[] names = {"Llewellyn", "James", "Dan", "Jason", "Katrina"};
+		Arrays.sort(names);
+		Approvals.verifyAll("", names);
 	}
+}
+```
 
 Will Produce a File
 
-    SampleTest.TestList.received.txt
-    [0] = Dan
-    [1] = James
-    [2] = Jason
-    [3] = Katrina
-    [4] = Llewellyn
+```
+SampleTest.TestList.received.txt
+[0] = Dan
+[1] = James
+[2] = Jason
+[3] = Katrina
+[4] = Llewellyn
+```
 
 Simply rename this to SampleTest.testList.approved.txt and the test will now pass.
 
@@ -98,16 +102,23 @@ twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTe
 Developer notes
 ----------------
 
+### Building with Ant
+
 If you would like to build this project locally, install Apache ant,
 then use these commands:
 
-     ant "Publish    Spun" -buildfile build/build.xml
-     cp spun/target/spun.jar java/jars/
-     ant "Publish    ApprovalTests" -buildfile build/build.xml
-     cp approvals/target/ApprovalTests.jar java/jars
-     ant "Publish    HtmlLocker" -buildfile build/build.xml
-     ant "Publish    CounterDisplay" -buildfile build/build.xml
+```shell
+ant "Publish    Spun" -buildfile build/build.xml
+cp spun/target/spun.jar java/jars/
+ant "Publish    ApprovalTests" -buildfile build/build.xml
+cp approvals/target/ApprovalTests.jar java/jars
+ant "Publish    HtmlLocker" -buildfile build/build.xml
+ant "Publish    CounterDisplay" -buildfile build/build.xml
+```
 
 This will build jar files under the target folder for each respective project. At present you have to 
-copy the built jar files by hand in between ant steps, since the subprojects depned on one another.
-Soon this will be handled by maven instead.
+copy the built jar files by hand in between ant steps, since the subprojects depend on one another.
+
+### Building with Maven
+
+Run `mvn clean package` to get jar files
