@@ -23,7 +23,6 @@
         <module>approvaltests-util</module>
         <module>approvaltests</module>
         <module>approvaltests-hadoop</module>
-        <module>approvaltests-testng</module>
         <module>counter_display</module>
         <module>html_locker</module>
     </modules>
