@@ -9,7 +9,7 @@ public class MachineSpecific
 {
   public static boolean       FORCE_RUN = false;
   private static List<String> MACHINES  = Arrays.asList("LLEWELLYN-FALCOs-MacBook-Pro.local",
-      "llewellalcosmbp.lan", "LLEWELLLCOsMBP2.lan");
+      "llewellalcosmbp.lan", "LLEWELLLCOsMBP2.lan", "llewelllcosmbp2");
   public static boolean isMachineConfiguredForTesting()
   {
     return FORCE_RUN || MACHINES.contains(SystemUtils.getComputerName());
