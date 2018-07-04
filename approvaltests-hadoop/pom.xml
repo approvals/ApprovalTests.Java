@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests-util</artifactId>
-            <version>0.2.5-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>

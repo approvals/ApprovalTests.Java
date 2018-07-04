@@ -1,5 +1,8 @@
 *.class
 /webPageImages
+.settings/
+.classpath
+.project
 /bin
 *.received.*
 # Package Files #
