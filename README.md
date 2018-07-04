@@ -98,15 +98,41 @@ twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTe
 Developer notes
 ----------------
 
-If you would like to build this project locally, install Apache ant,
+We are currently migrating the build from Ant to Maven. To build with Maven:
+
+	mvn install
+
+If you see test failures and want to carry on anyway:
+
+	mvn install -DskipTests
+
+If you have trouble with the "mrunit" package which is listed on Maven central but doesn't seem to download, install it locally with this command:
+
+	mvn install:install-file -Dfile=java/jars/hadoop/mrunit-0.9.0-incubating-hadoop1.jar -DgroupId=org.apache.mrunit -DartifactId=mrunit -Dversion=0.9.0-incubating -Dpackaging=jar
+
+
+If you want to create the signed jars suitable for release, you will need a gpg key to sign it with.
+Install gpg (for example with brew install gnupg), and [create a key](https://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html).
+
+Then build with this command:
+
+    mvn verify -DperformRelease=true -Dgpg.passphrase=xx
+
+(Replace the xx with the actual passphrase for your key)
+
+Helpful page if you get an error ['Inappropriate ioctl for device'](https://github.com/keybase/keybase-issues/issues/2798)
+
+If you would like to instead build this project with Apache ant,
 then use these commands:
 
-     ant "Publish    Spun" -buildfile build/build.xml
-     cp spun/target/spun.jar java/jars/
+     ant "Publish    ApprovalTests-Util" -buildfile build/build.xml
+     cp approvaltests-util/target/approvaltests-util.jar java/jars/
      ant "Publish    ApprovalTests" -buildfile build/build.xml
      cp approvals/target/ApprovalTests.jar java/jars
      ant "Publish    HtmlLocker" -buildfile build/build.xml
      ant "Publish    CounterDisplay" -buildfile build/build.xml
+     ant "Publish    approvaltests-hadoop" -buildfile build/build.xml
+     ant "Publish    approvaltests-testng" -buildfile build/build.xml
 
 This will build jar files under the target folder for each respective project. At present you have to 
 copy the built jar files by hand in between ant steps, since the subprojects depned on one another.
