@@ -5,7 +5,7 @@
 
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests-parent</artifactId>
-    <version>0.2.5-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <properties>
