@@ -20,8 +20,16 @@ Approval Tests can be used for verifying objects that require more than a simple
 
 How to get it
 ---
-Unfortunately, I haven't added this to maven repo yet. Simply download the zip from the releases tab and add the jar to your project.
+Maven
+``` xml
+<dependency>
+    <groupId>com.approvaltests</groupId>
+    <artifactId>approvaltests</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
 
+or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/2.0.0/) 
 
 [Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
