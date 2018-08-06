@@ -2,9 +2,8 @@ package org.lambda.actions;
 
 import com.spun.util.ObjectUtils;
 
-
 /**
-  * Findable name for java.util.function.Consumer
+  * Findable name for java.lang.Runnable
   **/
 public interface Action0
 {

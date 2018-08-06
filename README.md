@@ -23,12 +23,15 @@ How to get it
 It's on Maven Central, search for 'approvaltests'. If you're using Maven,
 add this to your pom file:
 
-    <dependency>
-        <groupId>com.approvaltests</groupId>
-        <artifactId>approvaltests</artifactId>
-        <version>2.0.0</version>
-    </dependency>
+``` xml
+<dependency>
+    <groupId>com.approvaltests</groupId>
+    <artifactId>approvaltests</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
 
+or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/2.0.0/) 
 
 [Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
