@@ -224,6 +224,8 @@ WinMerge            | WIN_MERGE_REPORTER
 Araxis Merge        | ARAXIS_MERGE
 Code Compare        | CODE_COMPARE
 KDiff3              | KDIFF3
+IntelliJ Ultimate   |INTELLIJ_U
+IntelliJ Community  |INTELLI_C
 
 To use a reporter that is not in the above list, you will need to create a class of the following form:
 
