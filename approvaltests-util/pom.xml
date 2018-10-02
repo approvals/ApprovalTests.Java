@@ -78,7 +78,12 @@
             <version>3.1</version>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
