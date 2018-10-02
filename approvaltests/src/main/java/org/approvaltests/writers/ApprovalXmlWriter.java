@@ -1,30 +1,32 @@
 package org.approvaltests.writers;
 
-import java.io.InputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 
-import com.spun.util.io.FileUtils;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 public class ApprovalXmlWriter extends ApprovalTextWriter
 {
-  public ApprovalXmlWriter(String text)
-  {
-    super(text, "xml");
-  }
-  @Override
-  public String writeReceivedFile(String received) throws Exception
-  {
-    received = super.writeReceivedFile(received);
-    format(received);
-    return received;
-  }
-  private void format(String fileName) throws Exception
-  {
-    String text = "\"C:\\temp\\xmlstarlet-1.0.1\\xml.exe\" format \"%s\"";
-    text = String.format(text, fileName);
-    Process exec = Runtime.getRuntime().exec(text);
-    InputStream stream = exec.getInputStream();
-    Thread.sleep(400);
-    FileUtils.redirectInputToFile(fileName, stream);
+    public ApprovalXmlWriter(String text)
+    {
+        super(prettyPrint(text, 2), "xml");
+    }
 
-  }
+    public static String prettyPrint(String input, int indent) {
+        try {
+            Source xmlInput = new StreamSource(new StringReader(input));
+            StringWriter stringWriter = new StringWriter();
+            StreamResult xmlOutput = new StreamResult(stringWriter);
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            transformerFactory.setAttribute("indent-number", indent);
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(xmlInput, xmlOutput);
+            return xmlOutput.getWriter().toString();
+        } catch (TransformerException e) {
+            return input;
+        }
+    }
 }

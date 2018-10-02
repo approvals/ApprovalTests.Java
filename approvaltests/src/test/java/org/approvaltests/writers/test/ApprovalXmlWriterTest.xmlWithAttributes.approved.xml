@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><xml b="123" a="456">
+  <hello x="y"/>
+  <start>hi</start>
+</xml>
