@@ -15,17 +15,17 @@ public class FileApprover implements ApprovalApprover
 {
   private File                 received;
   private File                 approved;
-  private final ApprovalWriter writter;
-  public FileApprover(ApprovalWriter writter, ApprovalNamer namer)
+  private final ApprovalWriter writer;
+  public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
-    this.writter = writter;
+    this.writer = writer;
     String base = String.format("%s%s", namer.getSourceFilePath(), namer.getApprovalName());
-    received = new File(writter.getReceivedFilename(base));
-    approved = new File(writter.getApprovalFilename(base));
+    received = new File(writer.getReceivedFilename(base));
+    approved = new File(writer.getApprovalFilename(base));
   }
   public boolean approve() throws Exception
   {
-    received = new File(writter.writeReceivedFile(received.getAbsolutePath()));
+    received = new File(writer.writeReceivedFile(received.getAbsolutePath()));
     return approveTextFile(received, approved);
   }
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter) throws Exception
