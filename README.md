@@ -27,11 +27,11 @@ add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.2</version>
 </dependency>
 ```
 
-or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/2.0.0/) 
+or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/) 
 
 [Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
