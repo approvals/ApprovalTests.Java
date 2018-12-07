@@ -56,15 +56,20 @@ public class GenericDiffReporterTest extends TestCase
   {
     approveGenericReporter("a.png", "b.png", new P4MergeReporter());
   }
+  public void testSpacesInFileNames() {
+    GenericDiffReporter reporter = new GenericDiffReporter(null, "-left=%s -right=%s", null, null);
+    String[] commandLine = reporter.getCommandLine("file with spaces", "file with spaces.approved");
+    Approvals.verifyAll("arguments", commandLine);
+  }
   public void testCommandLineFileNames() throws Exception
   {
     String[] names = {"regular.txt", "with spaces.txt"};
-    Boolean[] osTypes = {true, false};
-    CombinationApprovals.verifyAllCombinations(this, "getFileName", names, osTypes);
+    Boolean[] isWindows = {true, false};
+    CombinationApprovals.verifyAllCombinations(this, "getFileName", names, isWindows);
   }
-  public String getFileName(String name, Boolean osType)
+  public String getFileName(String name, Boolean isWindows)
   {
-    return SystemUtils.convertFileForCommandLine(name, osType);
+    return SystemUtils.convertFileForCommandLine(name, isWindows);
   }
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter) throws Exception
   {

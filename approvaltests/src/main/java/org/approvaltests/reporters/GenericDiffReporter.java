@@ -6,6 +6,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
@@ -68,10 +69,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   }
   public String[] getCommandLine(String received, String approved)
   {
-    String full = String.format(arguments, received, approved);
+    String full = String.format(arguments, "{received}", "{approved}");
+    List<String> argsSplitOnSpace = Arrays.stream(full.split(" "))
+            .map(t -> t.replace("{received}", received).replace("{approved}", approved))
+            .collect(Collectors.toList());
+
     ArrayList<String> commands = new ArrayList<String>();
     commands.add(diffProgram);
-    commands.addAll(Arrays.asList(full.split(" ")));
+    commands.addAll(argsSplitOnSpace);
     System.out.println(commands);
     return commands.toArray(new String[0]);
   }
