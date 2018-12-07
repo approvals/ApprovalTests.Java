@@ -15,5 +15,6 @@ Deploy to maven:
   * pom.xml
 * Run publish_maven.sh
   * check here: https://oss.sonatype.org/content/repositories/releases/com/approvaltests/approvaltests/
+  * update sample code for maven in README.md
 * Update to next version
  * bump version and add -SNAPSHOT in all the pox.xml Files
