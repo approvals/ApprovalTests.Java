@@ -115,13 +115,13 @@ public class Approvals
   {
     verify(new ImageApprovalWriter(bufferedImage));
   }
-  public static void verify(ApprovalWriter writter, ApprovalNamer namer, ApprovalFailureReporter reporter)
+  public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
-    verify(new FileApprover(writter, namer), reporter);
+    verify(new FileApprover(writer, namer), reporter);
   }
-  public static void verify(ApprovalWriter writter)
+  public static void verify(ApprovalWriter writer)
   {
-    verify(writter, createApprovalNamer(), getReporter());
+    verify(writer, createApprovalNamer(), getReporter());
   }
   public static void verifyXml(String xml)
   {
