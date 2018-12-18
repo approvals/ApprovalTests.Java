@@ -1,11 +1,11 @@
 package com.spun.util.parser.tests;
 
-import java.util.Arrays;
-
+import com.spun.util.DateUtils;
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.Test;
 
-import com.spun.util.DateUtils;
+import java.sql.Timestamp;
+import java.util.Arrays;
 
 //@UseReporter(FileLauncherReporter.class)
 public class VelocityUtilsTest
@@ -23,6 +23,13 @@ public class VelocityUtilsTest
   @Test
   public void testDate()
   {
-    VelocityApprovals.verify(c -> c.put("date", DateUtils.parse("2001/02/03")));
+      Timestamp date = DateUtils.parse("2001/02/03");
+      // if you are in CET then set the timezone to EST it changes the date to the day before!
+      //TemplateDate templateDate = ParserCommons.asDate(date);
+      //System.out.println(templateDate.getDate("SHORT", "EST"));
+      //System.out.println(templateDate.getTime("SHORT", "EST"));
+      VelocityApprovals.verify(c -> {
+        c.put("date", date);
+    });
   }
 }

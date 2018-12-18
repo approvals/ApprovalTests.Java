@@ -3,7 +3,7 @@
 getDate("LONG")         $d.getDate("LONG")
 getDate("FULL","") $d.getDate("FULL", "")
 getTime("AM/PM")         $d.getDate()
-getTime("AM/PM", "EST") $d.getDate("AM/PM", "EST")
+getTime("AM/PM", "CET") $d.getDate("AM/PM", "CET")
 getDate()               $d.getDate()
 getDay()                $d.getDay()
 getMonth(1)           $d.getMonth(1)

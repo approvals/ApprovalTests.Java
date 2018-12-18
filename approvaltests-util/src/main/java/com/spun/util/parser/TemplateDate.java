@@ -81,7 +81,8 @@ public class TemplateDate
       formatter = FORMATS.DATE_SHORT;
     }
     formatter.setTimeZone((StringUtils.isNonZero(zone)) ? TimeZone.getTimeZone(zone) : TimeZone.getDefault());
-    value = formatter.format(getDate(false));
+    Date theDate = getDate(false);
+    value = formatter.format(theDate);
     return value;
   }
   /***********************************************************************/
