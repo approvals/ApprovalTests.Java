@@ -17,50 +17,65 @@ import org.approvaltests.reporters.windows.WinMergeReporter;
 import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
 
-import junit.framework.TestCase;
+import org.junit.Ignore;
+import org.junit.Test;
 
-public class GenericDiffReporterTest extends TestCase
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class GenericDiffReporterTest
 {
   @UseReporter(DiffMergeReporter.class)
+  @Test
   public void testArguementParsing() throws Exception
   {
     Approvals.verifyAll("CommandLine",
         VisualStudioCodeReporter.INSTANCE.getCommandLine("received.txt", "approved.txt"));
   }
   @UseReporter(DiffMergeReporter.class)
-  public void ptestGetWorkingReportesForEnviroment() throws Exception
+  @Test
+  @Ignore
+  public void testGetWorkingReportesForEnviroment() throws Exception
   {
     Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment());
   }
+  @Test
   public void testFileExtensions() throws Exception
   {
     assertTrue(new GenericDiffReporter("", "").isFileExtensionHandled("a.txt"));
   }
+  @Test
   public void testProgramsExist() throws Exception
   {
     assertFalse(new GenericDiffReporter("this_should_never_exist", "").isWorkingInThisEnvironment("a.txt"));
   }
+  @Test
   public void testTkDiff() throws Exception
   {
     approveGenericReporter("a.txt", "b.txt", new TkDiffReporter());
   }
+  @Test
   public void testTortoiseDiff() throws Exception
   {
     approveGenericReporter("a.txt", "b.txt", new TortoiseTextDiffReporter());
   }
+  @Test
   public void testWinMerge() throws Exception
   {
     approveGenericReporter("a.txt", "b.txt", new WinMergeReporter());
   }
+  @Test
   public void testP4Merge() throws Exception
   {
     approveGenericReporter("a.png", "b.png", new P4MergeReporter());
   }
+  @Test
   public void testSpacesInFileNames() {
     GenericDiffReporter reporter = new GenericDiffReporter(null, "-left=%s -right=%s", null, null);
     String[] commandLine = reporter.getCommandLine("file with spaces", "file with spaces.approved");
     Approvals.verifyAll("arguments", commandLine);
   }
+  @Test
   public void testCommandLineFileNames() throws Exception
   {
     String[] names = {"regular.txt", "with spaces.txt"};
@@ -78,6 +93,7 @@ public class GenericDiffReporterTest extends TestCase
     String bPath = directory.getAbsolutePath() + File.separator + b;
     Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath));
   }
+  @Test
   public void testIsImage()
   {
     String[] files = {"a.png", "a.viz.png", "a.bitmap", "a.txt"};

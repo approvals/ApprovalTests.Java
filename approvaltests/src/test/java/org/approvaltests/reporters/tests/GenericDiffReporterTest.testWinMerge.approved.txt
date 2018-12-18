@@ -1,1 +1,1 @@
-C:\Program Files\WinMerge\WinMergeU.exe %s %s
+C:\Program Files (x86)\WinMerge\WinMergeU.exe %s %s

@@ -12,15 +12,19 @@ import org.approvaltests.reporters.UseReporter;
 
 import com.spun.util.ThreadUtils;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 @UseReporter(ClipboardReporter.class)
-public class ReporterFactoryTest extends TestCase
+public class ReporterFactoryTest
 {
+  @Test
   public void testReportersAtClassLevel() throws Exception
   {
     assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
+  @Test
   @UseReporter(PitReporter.class)
   public void testReportersAtMethodLevel() throws Exception
   {
