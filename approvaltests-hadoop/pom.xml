@@ -36,6 +36,7 @@
             <groupId>org.apache.mrunit</groupId>
             <artifactId>mrunit</artifactId>
             <version>0.9.0-incubating</version>
+            <classifier>hadoop1</classifier>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
