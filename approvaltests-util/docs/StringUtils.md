@@ -36,10 +36,10 @@ will produce
 ```
 <sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/tests/StringUtilsTest.testJoinCollection.approved.txt#L1-L1)</sup>
 <!-- endsnippet -->
-by invoking the toString on each object in the collection.
+by invoking the .toString() on each object in the collection.
 
 ## Joining Collections with a function
-if toString isn't enough, you can pass in a lambda to do the extra transformation as well.
+if .toString() isn't enough, you can pass in a lambda to do the extra transformation as well.
 For example:
 <!-- snippet: join_collection_with_lambda -->
 ```java
