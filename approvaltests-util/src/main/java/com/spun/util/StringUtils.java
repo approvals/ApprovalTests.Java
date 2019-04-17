@@ -5,10 +5,12 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
@@ -590,5 +592,13 @@ public class StringUtils
   public static <T> String join(T[] list, String delimiter, Function1<T, String> convertor)
   {
     return String.join(delimiter, Query.select(list, convertor));
+  }
+  public static <T> String join(Collection<T> list, String joinWith)
+  {
+    return join(list, joinWith, n -> n.toString());
+  }
+  public static <T> String join(Collection<T> list, String joinWith, Function1<T, String> converter)
+  {
+    return list.stream().map(n -> converter.call(n)).collect(Collectors.joining(joinWith));
   }
 }

@@ -1,3 +1,21 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
+
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Parts of a Test](#parts-of-a-test)
+  - [Strings](#strings)
+  - [Objects](#objects)
+  - [Arrays](#arrays)
+  - [Swing / AWT](#swing--awt)
+  - [Generate Combinations of Parameter Values](#generate-combinations-of-parameter-values)
+  - [Approving The Result](#approving-the-result)
+  - [Reporters](#reporters)
+  - [Supported Reporters](#supported-reporters)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Getting Started
 ===============
 Installation

@@ -1,6 +1,7 @@
 package com.spun.util.tests;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.approvaltests.Approvals;
 
@@ -46,6 +47,22 @@ public class StringUtilsTest extends TestCase
     return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
   /***********************************************************************/
+  public void testJoinCollection()
+  {
+    // startcode join_collection
+    List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
+    String text = StringUtils.join(number, ", ");
+    // endcode
+    Approvals.verify(text);
+  }
+  public void testJoinCollectionWithFunction()
+  {
+    // startcode join_collection_with_lambda
+    List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
+    String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
+    // endcode
+    Approvals.verify(text);
+  }
   public void testReplace()
   {
     for (int i = 0; i < replaceUseCases.length; i++)
