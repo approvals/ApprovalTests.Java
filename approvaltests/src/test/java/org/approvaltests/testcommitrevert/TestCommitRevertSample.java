@@ -1,8 +1,7 @@
-package org.approvaltests.legacycode.tests;
+package org.approvaltests.testcommitrevert;
 
 import static org.junit.Assert.assertEquals;
 
-import org.approvaltests.legacycode.TestCommitRevertRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

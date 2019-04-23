@@ -1,10 +1,16 @@
-package org.approvaltests.legacycode;
+package org.approvaltests.testcommitrevert;
 
 import org.junit.AfterClass;
 import org.junit.Rule;
 import org.junit.rules.TestWatchman;
 import org.junit.runners.model.FrameworkMethod;
 
+/**
+ * 
+ * Use: extends TestCommitRevertTest
+ * on your test class
+ *
+ */
 public class TestCommitRevertTest
 {
   public static class MethodRuleForTestCommitRevert extends TestWatchman

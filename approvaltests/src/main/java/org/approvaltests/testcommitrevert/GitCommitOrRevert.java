@@ -1,4 +1,4 @@
-package org.approvaltests.legacycode;
+package org.approvaltests.testcommitrevert;
 
 import java.io.File;
 import java.io.IOException;
