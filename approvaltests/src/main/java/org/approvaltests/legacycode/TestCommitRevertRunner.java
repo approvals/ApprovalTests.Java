@@ -20,7 +20,7 @@ public class TestCommitRevertRunner extends BlockJUnit4ClassRunner
       public void testRunFinished(Result result) throws Exception
       {
         super.testRunFinished(result);
-        TestCommitRevert.doCommitOrRevert(result.getFailureCount());
+        GitCommitOrRevert.doCommitOrRevert(result.getFailureCount());
       }
     };
     notifier.addListener(l);

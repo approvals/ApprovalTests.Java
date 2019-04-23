@@ -5,41 +5,13 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-import org.junit.AfterClass;
-import org.junit.Rule;
-import org.junit.rules.MethodRule;
-import org.junit.rules.TestWatchman;
-import org.junit.runners.model.FrameworkMethod;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
 
-public class TestCommitRevert
+public class GitCommitOrRevert
 {
   public static boolean PRINT_ONLY = false;
-  static int            _failures  = 0;
-  @Rule
-  public MethodRule     watchman   = new TestWatchman()
-                                   {
-                                     public void starting(FrameworkMethod method)
-                                     {
-                                       // nothing
-                                     }
-                                     public void succeeded(FrameworkMethod method)
-                                     {
-                                       // nothing
-                                     }
-                                     public void failed(Throwable e, FrameworkMethod method)
-                                     {
-                                       _failures++;
-                                     }
-                                   };
-  @AfterClass
-  public static void after()
-  {
-    doCommitOrRevert(_failures);
-  }
   public static void doCommitOrRevert(int failures) throws Error
   {
     try
