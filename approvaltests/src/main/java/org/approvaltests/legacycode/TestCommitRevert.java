@@ -13,6 +13,7 @@ import org.junit.runners.model.FrameworkMethod;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
+import com.spun.util.io.FileUtils;
 
 public class TestCommitRevert
 {
@@ -72,12 +73,33 @@ public class TestCommitRevert
   }
   private static void commit(File gitDir)
   {
+    if (isGitEmpty(gitDir))
+    {
+      System.out.println("Nothing to commit");
+      return;
+    }
     String message = JOptionPane.showInputDialog("Test Passed! Please enter a commit message ");
     if (!StringUtils.isEmpty(message))
     {
       runOnConsole(gitDir, "git", "add", "-A");
       runOnConsole(gitDir, "git", "commit", "-m", '"' + message + '"');
     }
+  }
+  private static boolean isGitEmpty(File gitDir)
+  {
+    runOnConsole(gitDir, new String[]{"git", "status"});
+    try
+    {
+      Process p = Runtime.getRuntime().exec(new String[]{"git", "status"}, null, gitDir);
+      p.waitFor();
+      String result = FileUtils.readStream(p.getInputStream());
+      return result.contains("nothing to commit");
+    }
+    catch (Exception e)
+    {
+      ObjectUtils.throwAsError(e);
+    }
+    return false;
   }
   private static void revertGit(File gitDir)
   {
