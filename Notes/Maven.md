@@ -11,7 +11,7 @@ Deploy to maven:
 * Deploy release  
  * Remove -SNAPSHOT in all the pox.xml Files
  ```
- mvn versions:set -DnewVersion=2.0.1-SNAPSHOT
+ mvn versions:set -DnewVersion=2.2.0-SNAPSHOT
  ```
 
 * Run
