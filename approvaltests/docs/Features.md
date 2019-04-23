@@ -14,8 +14,6 @@ To change this file edit the source file and then re-run the generation using ei
 **Contents**
 
 - [Test Commit Revert](#test-commit-revert)
-  - [On success](#on-success)
-  - [On failure](#on-failure)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -24,17 +22,17 @@ To change this file edit the source file and then re-run the generation using ei
 This is a convenience class to follow the practice 'Test Commit/Revert' from Kent Beck. Simply adding
 <!-- snippet: test_commit_revert -->
 ```java
-public class TestCommitRevertSample extends TestCommitRevert
+extends TestCommitRevert
 ```
-<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/legacycode/tests/TestCommitRevertSample.java#L8-L10)</sup>
+<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/legacycode/tests/TestCommitRevertSample.java#L9-L11)</sup>
 <!-- endsnippet -->
-to you test class will invoke 1 of 2 options
+to your test class will invoke 1 of 2 options
 
-### On success
+*  On success
 A dialog will appear asking for a commit message. Once given it will commit all files with that message
 ![prompt](images/commit_dialog.png)
 
-### On failure
+* On failure
 It will revert all changes
 
 Note: this currently only works with git
