@@ -103,6 +103,7 @@ public class TestCommitRevert
   }
   private static void revertGit(File gitDir)
   {
+    runOnConsole(gitDir, "git", "clean", "-fd");
     runOnConsole(gitDir, "git", "reset", "--hard", "HEAD");
     String helpMessage = "Test Failed, reverting...\n\n Remember to auto refresh \n preferences > general>  workspace > ✓ refresh using native Hooks";
     System.out.println(helpMessage);
