@@ -113,8 +113,8 @@ More Info
 
 
 ## Documentation
-[ApprovalTests-util](/approvaltests-util/docs/README.md)
-[ApprovalTests](/approvaltests/docs/README.md)
+- [ApprovalTests-util](/approvaltests-util/docs/README.md)  
+- [ApprovalTests](/approvaltests/docs/README.md)  
 
 ## LICENSE
 [Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
