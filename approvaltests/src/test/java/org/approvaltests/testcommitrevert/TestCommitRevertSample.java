@@ -5,10 +5,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+// startcode test_commit_revert_runner 
 @RunWith(TestCommitRevertRunner.class)
 public class TestCommitRevertSample
-//startcode test_commit_revert 
-// extends TestCommitRevert
+    // endcode
+    // startcode test_commit_revert 
+    extends TestCommitRevertTest
 // endcode
 {
   @Test
