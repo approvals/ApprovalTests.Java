@@ -36,21 +36,28 @@ public class TestCommitRevert
                                      }
                                    };
   @AfterClass
-  public static void after() throws IOException
+  public static void after()
   {
-    File gitDir = getHeadOfGit();
-    if (gitDir == null)
+    try
     {
-      System.out.println("No .git repo found at " + new File(".").getAbsolutePath());
-      return;
+      File gitDir = getHeadOfGit();
+      if (gitDir == null)
+      {
+        System.out.println("No .git repo found at " + new File(".").getAbsolutePath());
+        return;
+      }
+      if (failures == 0)
+      {
+        commit(gitDir);
+      }
+      else
+      {
+        revertGit(gitDir);
+      }
     }
-    if (failures == 0)
+    catch (Exception e)
     {
-      commit(gitDir);
-    }
-    else
-    {
-      revertGit(gitDir);
+      throw ObjectUtils.throwAsError(e);
     }
   }
   private static File getHeadOfGit() throws IOException
