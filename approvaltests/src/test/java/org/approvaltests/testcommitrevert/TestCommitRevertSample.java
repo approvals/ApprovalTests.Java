@@ -16,6 +16,7 @@ public class TestCommitRevertSample
   @Test
   public void testOnSuccessThisPromptsForCommitMessage()
   {
+    GitCommitOrRevert.printOnly();
     assertEquals(1, 1);
   }
 }

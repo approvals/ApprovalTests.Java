@@ -61,6 +61,11 @@ public class GitCommitOrRevert
       System.out.println("Nothing to commit");
       return;
     }
+    if (PRINT_ONLY)
+    {
+      System.out.println(" would normally commit at this point");
+      return;
+    }
     String message = JOptionPane.showInputDialog("Test Passed! Please enter a commit message ");
     if (!StringUtils.isEmpty(message))
     {
@@ -106,5 +111,9 @@ public class GitCommitOrRevert
     {
       ObjectUtils.throwAsError(e);
     }
+  }
+  public static void printOnly()
+  {
+    PRINT_ONLY = true;
   }
 }
