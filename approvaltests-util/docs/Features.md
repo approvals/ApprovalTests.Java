@@ -1,11 +1,11 @@
 <!--
 This file was generate by MarkdownSnippets.
-Source File: /approvaltests-util/docs/mdsource/template.source.md
+Source File: /approvaltests-util/docs/mdsource/Features.source.md
 To change this file edit the source file and then re-run the generation using either the dotnet global tool (https://github.com/SimonCropp/MarkdownSnippets#markdownsnippetstool) or using the api (https://github.com/SimonCropp/MarkdownSnippets#running-as-a-unit-test).
 -->
 <a id="top"></a>
 
-# Put Title Here
+# Features
 
 
 
@@ -13,16 +13,18 @@ To change this file edit the source file and then re-run the generation using ei
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
-- [First Section Here](#first-section-here)
+- [ArrayUtils.addToArray()](#arrayutilsaddtoarray)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## First Section Here
+## ArrayUtils.addToArray()
 
-*Nothing to see here: this is a template file, for creating new pages of documentation...*
+Sometimes you wish you could add to an array the same way you can add to a list.
+<!-- snippet: add_to_array -->
+** Could not find snippet 'add_to_array' **
 
-*For help with creating and maintaining documentation in this project, see [Contributing to ApprovalTests.cpp](Contributing.md#top).*
-
----
+will result in a new copy of the array with the added items
+<!-- snippet: add_to_array_result -->
+** Could not find snippet 'add_to_array_result' **
 
 [Back to User Guide](README.md#top)

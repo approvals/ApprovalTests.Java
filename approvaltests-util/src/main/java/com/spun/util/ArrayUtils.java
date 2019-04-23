@@ -70,21 +70,9 @@ public class ArrayUtils
     return array;
   }
   /***********************************************************************/
-  public static <T> T[] addToArray(T[] array, T object)
+  public static <T> T[] addToArray(T[] array, T... objects)
   {
-    Object[] newArray = null;
-    if (array == null)
-    {
-      newArray = (Object[]) Array.newInstance(object.getClass(), 1);
-      newArray[0] = object;
-    }
-    else
-    {
-      newArray = (Object[]) Array.newInstance(array.getClass().getComponentType(), array.length + 1);
-      System.arraycopy(array, 0, newArray, 0, array.length);
-      newArray[array.length] = object;
-    }
-    return (T[]) newArray;
+    return combine(array, objects);
   }
   /***********************************************************************/
   public static <T> T[] getSubsection(T[] array, int startInclusive, int endExclusive)
@@ -187,21 +175,21 @@ public class ArrayUtils
     }
   }
   /***********************************************************************/
-  public static Object[] combine(Object[] a, Object[] b)
+  public static <T> T[] combine(T[] a, T[] b)
   {
     if (isEmpty(a) && isEmpty(b))
     {
       if (a != null)
       {
-        return (Object[]) Array.newInstance(a.getClass().getComponentType(), 0);
+        return (T[]) Array.newInstance(a.getClass().getComponentType(), 0);
       }
       else if (b != null)
       {
-        return (Object[]) Array.newInstance(b.getClass().getComponentType(), 0);
+        return (T[]) Array.newInstance(b.getClass().getComponentType(), 0);
       }
       else
       {
-        return new Object[0];
+        return (T[]) Collections.emptyList().toArray();
       }
     }
     else if (isEmpty(a))
@@ -214,8 +202,8 @@ public class ArrayUtils
     }
     else
     {
-      Object[] newArray = null;
-      newArray = (Object[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+      T[] newArray = null;
+      newArray = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
       System.arraycopy(a, 0, newArray, 0, a.length);
       System.arraycopy(b, 0, newArray, a.length, b.length);
       return newArray;
