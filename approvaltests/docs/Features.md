@@ -30,7 +30,7 @@ extends TestCommitRevert
 to your test class will invoke 1 of 2 options
 
 *  On success
-If there are no changes, nothing will happen. Otherwise, a dialog will appear asking for a commit message . Once given it will commit all files with that message
+A dialog will appear asking for a commit message. Once given it will commit all files with that message
 ![prompt](images/commit_dialog.png)
 
 * On failure
@@ -43,7 +43,7 @@ Note: this currently only works with git
 Use this with caution. I find Test Commit/Revert helpful when doing a strict refactoring. It is unusable when creating approvaltests as the first run always fails and gets reverted.
 Often I will have a test extend TCR for short periods then remove it after I'm out of a refactoring mode.
 
-This also works well with [Arlo Belshee's Git Notation](https://github.com/RefactoringCombos/ArlosCommitNotation)
+This also works well with [Arlo Belshee's Git Notation](https://github.com/RefactoringCombos/ArlosCommitNotation) 
 
 
 ---

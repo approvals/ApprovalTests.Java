@@ -10,6 +10,7 @@
   - [Examples](#examples)
   - [Approved File Artifacts](#approved-file-artifacts)
   - [More Info](#more-info)
+  - [Documentation](#documentation)
   - [LICENSE](#license)
   - [Questions?](#questions)
   - [Developer notes](#developer-notes)
@@ -110,6 +111,10 @@ More Info
 - [Blog](http://blog.approvaltests.com/)
 - [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/blob/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20GettingStarted.md)
 
+
+## Documentation
+[ApprovalTests-util](/approvaltests-util/docs/README.md)
+[ApprovalTests](/approvaltests/docs/README.md)
 
 ## LICENSE
 [Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)

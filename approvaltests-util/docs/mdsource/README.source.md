@@ -1,6 +1,7 @@
 <a id="top"></a>
 
 # ApprovalTests Util
+A set of convenience functions to make life easier.
 
 
 
@@ -15,7 +16,7 @@
 
 ## Features
 [New Features documented here](Features.md#top)
- 
+
 ## BasicUtils
 
 * [Strings](StringUtils.md#top)

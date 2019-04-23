@@ -21,10 +21,19 @@ To change this file edit the source file and then re-run the generation using ei
 
 Sometimes you wish you could add to an array the same way you can add to a list.
 <!-- snippet: add_to_array -->
-** Could not find snippet 'add_to_array' **
+```java
+Integer[] numbers = {1, 2, 3};
+numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
+```
+<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L19-L22)</sup>
+<!-- endsnippet -->
 
 will result in a new copy of the array with the added items
 <!-- snippet: add_to_array_result -->
-** Could not find snippet 'add_to_array_result' **
+```java
+Integer[] resulting = {1, 2, 3, 4, 5, 6};
+```
+<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L23-L25)</sup>
+<!-- endsnippet -->
 
 [Back to User Guide](README.md#top)
