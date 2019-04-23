@@ -18,7 +18,7 @@ import com.spun.util.io.FileUtils;
 public class TestCommitRevert
 {
   public static boolean PRINT_ONLY = false;
-  static int            failures   = 0;
+  static int            _failures  = 0;
   @Rule
   public MethodRule     watchman   = new TestWatchman()
                                    {
@@ -32,11 +32,15 @@ public class TestCommitRevert
                                      }
                                      public void failed(Throwable e, FrameworkMethod method)
                                      {
-                                       failures++;
+                                       _failures++;
                                      }
                                    };
   @AfterClass
   public static void after()
+  {
+    doCommitOrRevert(_failures);
+  }
+  public static void doCommitOrRevert(int failures) throws Error
   {
     try
     {
