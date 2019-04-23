@@ -45,11 +45,11 @@ add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>2.0.2</version>
+    <version>2.1.0</version>
 </dependency>
 ```
 
-or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/) 
+or [download the jars from maven central repository](http://repo1.maven.org/maven2/com/approvaltests/approvaltests/)
 
 [Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
@@ -147,4 +147,3 @@ Enter your gpg key passphrase when it prompts you.
 After the release, update the version number in all the pom files, eg:
 
     mvn versions:set -DnewVersion=2.0.1-SNAPSHOT
-   
