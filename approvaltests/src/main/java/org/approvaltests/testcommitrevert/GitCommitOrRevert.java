@@ -5,13 +5,17 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import org.lambda.functions.Function0;
+
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
 
 public class GitCommitOrRevert
 {
-  public static boolean PRINT_ONLY = false;
+  public static boolean           PRINT_ONLY          = false;
+  public static Function0<String> askForCommitMessage = () -> JOptionPane
+      .showInputDialog("Test Passed! Please enter a commit message ");
   public static void doCommitOrRevert(int failures) throws Error
   {
     try
@@ -66,7 +70,7 @@ public class GitCommitOrRevert
       System.out.println(" would normally commit at this point");
       return;
     }
-    String message = JOptionPane.showInputDialog("Test Passed! Please enter a commit message ");
+    String message = askForCommitMessage.call();
     if (!StringUtils.isEmpty(message))
     {
       runOnConsole(gitDir, "git", "add", "-A");
