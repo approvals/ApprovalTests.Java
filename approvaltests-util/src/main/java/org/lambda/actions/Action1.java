@@ -5,5 +5,10 @@ package org.lambda.actions;
  **/
 public interface Action1<In1>
 {
+  public static <In1> Action1<In1> doNothing()
+  {
+    return (In1) -> {
+    };
+  }
   public void call(In1 a);
 }

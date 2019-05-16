@@ -8,9 +8,50 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [Functions](#functions)
+- [Actions](#actions)
+- [Actions.doNothing()](#actionsdonothing)
+- [SimpleLogger.logToNothing()](#simpleloggerlogtonothing)
+- [NullLogger](#nulllogger)
 - [ArrayUtils.addToArray()](#arrayutilsaddtoarray)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Functions 
+
+Function0 - Function9 are simple interfaces for use with lambdas where you take 0-9 parameters and return a result.
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.
+   Function0 -> java.util.function.Supplier  
+   Function1 -> java.util.function.Function  
+   Function2 -> java.util.function.BiFunction
+   
+## Actions 
+
+Action0 - Action9 are simple interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.
+   Action0 -> java.lang.Runnable  
+   Action1 -> java.util.function.Consumer  
+   Action2 -> java.util.function.BiConsumer 
+   
+
+## Actions.doNothing()
+
+Action0 - Action9 all have an implementation of the null object pattern for your convenience. 
+
+
+## SimpleLogger.logToNothing()
+
+SimpleLogger is used to make approvaltesting easier, but approvalTests also uses it internally. Something these bleed out in the form of messages like
+
+snippet: /approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt
+
+if you want to turn them all off just run
+
+snippet: log_nothing
+
+## NullLogger
+
+Null Object Pattern for java.lang.Appendable
 
 ## ArrayUtils.addToArray()
 

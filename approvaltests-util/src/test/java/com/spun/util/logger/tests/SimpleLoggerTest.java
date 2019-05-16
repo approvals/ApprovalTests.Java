@@ -30,4 +30,10 @@ public class SimpleLoggerTest
     }
     Approvals.verify(output);
   }
+  public void sample()
+  {
+    // startcode log_nothing
+    SimpleLogger.logToNothing();
+    // endcode 
+  }
 }

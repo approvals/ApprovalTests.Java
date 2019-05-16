@@ -105,13 +105,18 @@ public class SimpleLogger
   {
     return log.logToString();
   }
+  public static Appendable logToNothing()
+  {
+    return logTo(new NullLogger());
+  }
   public static void useOutputFile(String file, boolean addDateStamp)
   {
     log.useOutputFile(file, addDateStamp);
   }
-  public static void logTo(Appendable writer)
+  public static Appendable logTo(Appendable writer)
   {
     log.logTo(writer);
+    return writer;
   }
   public static Appendable getLogTo()
   {

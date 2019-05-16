@@ -7,6 +7,11 @@ import com.spun.util.ObjectUtils;
   **/
 public interface Action0
 {
+  public static Action0 doNothing()
+  {
+    return () -> {
+    };
+  }
   public void call();
   public static Action0 runtime(Action0WithExceptions exceptions)
   {

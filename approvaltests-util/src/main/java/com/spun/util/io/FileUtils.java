@@ -1,5 +1,6 @@
 package com.spun.util.io;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
@@ -17,6 +18,8 @@ import java.io.Reader;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import com.spun.util.ArrayUtils;
 import com.spun.util.Asserts;
@@ -321,13 +324,36 @@ public class FileUtils
       File f = new File(file);
       if (!f.exists())
       {
-        writeFile(f, "");
+        if (isImage(file))
+        {
+          createEmptyImage(f);
+        }
+        else
+        {
+          writeFile(f, "");
+        }
       }
     }
     catch (Throwable e)
     {
       throw ObjectUtils.throwAsError(e);
     }
+  }
+  private static void createEmptyImage(File file)
+  {
+    try
+    {
+      BufferedImage image = new BufferedImage(2, 2, BufferedImage.TYPE_INT_ARGB);
+      ImageIO.write(image, "png", file);
+    }
+    catch (IOException e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
+  }
+  private static boolean isImage(String file)
+  {
+    return file.endsWith(".png");
   }
   public static String readStream(InputStream resourceAsStream)
   {

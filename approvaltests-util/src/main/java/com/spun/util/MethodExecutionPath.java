@@ -129,7 +129,7 @@ public class MethodExecutionPath implements Serializable
       this.values = values;
     }
     /***********************************************************************/
-    public Method getBestFitMethod(Class<?> clazz, String currentMethodName) throws NoSuchMethodException
+    public Method getBestFitMethod(Class<?> clazz, String currentMethodName)
     {
       return getBestFitMethod(clazz, currentMethodName, definitions);
     }

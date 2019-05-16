@@ -12,7 +12,7 @@ import com.spun.util.MethodExecutionPath.Parameters;
 
 public class LegacyApprovals
 {
-  public static void LockDown(Object call, String method, Object[]... parametersVariations) throws Exception
+  public static void LockDown(Object call, String method, Object[]... parametersVariations)
   {
     StringBuffer sb = new StringBuffer();
     IndexPermutations perms = new IndexPermutations(getSizes(parametersVariations));

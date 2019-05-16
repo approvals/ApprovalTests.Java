@@ -13,9 +13,78 @@ To change this file edit the source file and then re-run the generation using ei
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [Functions](#functions)
+- [Actions](#actions)
+- [Actions.doNothing()](#actionsdonothing)
+- [SimpleLogger.logToNothing()](#simpleloggerlogtonothing)
+- [NullLogger](#nulllogger)
 - [ArrayUtils.addToArray()](#arrayutilsaddtoarray)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Functions 
+
+Function0 - Function9 are simple interfaces for use with lambdas where you take 0-9 parameters and return a result.
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.
+   Function0 -> java.util.function.Supplier  
+   Function1 -> java.util.function.Function  
+   Function2 -> java.util.function.BiFunction
+   
+## Actions 
+
+Action0 - Action9 are simple interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.
+   Action0 -> java.lang.Runnable  
+   Action1 -> java.util.function.Consumer  
+   Action2 -> java.util.function.BiConsumer 
+   
+
+## Actions.doNothing()
+
+Action0 - Action9 all have an implementation of the null object pattern for your convenience. 
+
+
+## SimpleLogger.logToNothing()
+
+SimpleLogger is used to make approvaltesting easier, but approvalTests also uses it internally. Something these bleed out in the form of messages like
+
+<!-- snippet: /approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt -->
+```txt
+=> SimpleLoggerTest.test() - IN
+   => SimpleLoggerTest.test() - IN
+      Event: Starting Logging
+      Variable: name = 'llewellyn'
+      Sql: Select * from people
+      .........1.........2.........3.........4..
+      Variable: Numbers.length = 5
+      Numbers[0] = 1
+      Numbers[1] = 2
+      Numbers[2] = 3
+      Numbers[3] = 4
+      Numbers[4] = 5
+******************************************************************************************
+      
+java.lang.Error -  null
+******************************************************************************************
+   <= SimpleLoggerTest.test() - OUT
+<= SimpleLoggerTest.test() - OUT
+
+```
+<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt#L1-L19)</sup>
+<!-- endsnippet -->
+
+if you want to turn them all off just run
+
+<!-- snippet: log_nothing -->
+```java
+SimpleLogger.logToNothing();
+```
+<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.java#L35-L37)</sup>
+<!-- endsnippet -->
+
+## NullLogger
+
+Null Object Pattern for java.lang.Appendable
 
 ## ArrayUtils.addToArray()
 

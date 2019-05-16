@@ -3,8 +3,7 @@ package org.approvaltests.testcommitrevert;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
+import org.lambda.actions.Action0;
 import org.lambda.functions.Function0;
 
 import com.spun.util.ObjectUtils;
@@ -14,8 +13,8 @@ import com.spun.util.io.FileUtils;
 public class GitCommitOrRevert
 {
   public static boolean           PRINT_ONLY          = false;
-  public static Function0<String> askForCommitMessage = () -> JOptionPane
-      .showInputDialog("Test Passed! Please enter a commit message ");
+  public static Function0<String> askForCommitMessage = ArlosGitNotationPrompt::display;
+  public static Action0           runAfter            = Action0.doNothing();
   public static void doCommitOrRevert(int failures) throws Error
   {
     try
@@ -34,6 +33,7 @@ public class GitCommitOrRevert
       {
         revertGit(gitDir);
       }
+      runAfter.call();
     }
     catch (Exception e)
     {
@@ -45,7 +45,6 @@ public class GitCommitOrRevert
     File file = new File(".").getCanonicalFile();
     while (true)
     {
-      //System.out.println("checking " + file.getAbsolutePath());
       File gitFile = new File(file, ".git");
       if (gitFile.exists())
       {
@@ -74,7 +73,7 @@ public class GitCommitOrRevert
     if (!StringUtils.isEmpty(message))
     {
       runOnConsole(gitDir, "git", "add", "-A");
-      runOnConsole(gitDir, "git", "commit", "-m", '"' + message + '"');
+      runOnConsole(gitDir, "git", "commit", "-m", message);
     }
   }
   private static boolean isGitEmpty(File gitDir)

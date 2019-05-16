@@ -13,6 +13,8 @@ To change this file edit the source file and then re-run the generation using ei
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
+- [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
 - [Test Commit Revert (TCR)](#test-commit-revert-tcr)
   - [Method 1 - extend class](#method-1---extend-class)
   - [Method 2 - use Runner](#method-2---use-runner)
@@ -20,6 +22,23 @@ To change this file edit the source file and then re-run the generation using ei
   - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Arlos Git Notation Prompt
+
+This is a prompt that includes helper text and quick actions for use with [Arlo's Commit Notation](https://github.com/RefactoringCombos/ArlosCommitNotation).
+It is currently the default option for TCR and will produce a window that looks like:
+
+![prompt](/approvaltests/src/test/java/machine_specific_tests/approvaltests/testcommitrevert/ArlosGitNotationPromptTest.test.Mac_OS_X.approved.png)
+
+
+
+## Faster Test Commit Revert (TCR)
+
+The startup time for swing is around 3 seconds (on my mac). This is painfully slow in some situations. 
+FasterTestCommitRevertRunner & FasterTestCommitRevertTest Solve this by shelling out to applescript, which 
+brings the time down to a few milliseconds. 
+
+Note: this currently only works on mac and will default to the normal swing otherwise. 
 
 ## Test Commit Revert (TCR)
 
