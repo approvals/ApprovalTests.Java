@@ -56,7 +56,7 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
         }
 
         public enum Edition {
-            Community("IDEA-U"), Ultimate("IDEA-C");
+            Community("IDEA-C"), Ultimate("IDEA-U");
             private final String directory;
 
             Edition(String directory) {
