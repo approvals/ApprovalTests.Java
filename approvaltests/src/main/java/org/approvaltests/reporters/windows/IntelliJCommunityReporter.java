@@ -72,7 +72,7 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
     private static class Version implements Comparable<Version> {
         final String version;
 
-        Version(java.lang.String version) {
+        Version(String version) {
             this.version = version;
         }
 
