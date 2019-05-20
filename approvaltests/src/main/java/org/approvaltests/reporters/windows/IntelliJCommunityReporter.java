@@ -33,13 +33,13 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
         public String findIt() {
             String notPresentPath = "C:\\Intelli-not-present.exe";
             try {
-                return getIntellJPath().map(Objects::toString).orElse(notPresentPath);
+                return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
             } catch (IOException e) {
                 return notPresentPath;
             }
         }
 
-        private Optional<Path> getIntellJPath() throws IOException {
+        private Optional<Path> getIntelliJPath() throws IOException {
             return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)
                     .map(Path::getFileName)
                     .map(Objects::toString)
