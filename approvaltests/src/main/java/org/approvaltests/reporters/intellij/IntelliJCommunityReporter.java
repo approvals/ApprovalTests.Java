@@ -21,61 +21,14 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
         super(Windows.INTELLIJ_C);
     }
 
-    public static class IntelliJPathResolver {
-        private final String channelsPath;
-
-        public IntelliJPathResolver(Edition edition) {
-            String appData = System.getenv("LOCALAPPDATA");
-            String toolboxPath = appData + "/JetBrains/Toolbox";
-            this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
-        }
-
-        public String findIt() {
-            String notPresentPath = "C:\\Intelli-not-present.exe";
-            try {
-                return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
-            } catch (IOException e) {
-                return notPresentPath;
-            }
-        }
-
-        private Optional<Path> getIntelliJPath() throws IOException {
-            return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)
-                    .map(Path::getFileName)
-                    .map(Objects::toString)
-                    .filter(Version::isVersionFile)
-                    .map(Version::new)
-                    .max(Comparator.naturalOrder())
-                    .map(this::getPath);
-        }
-
-        private Path getPath(Version version) {
-            String runtimeSuffix = "/bin/idea64.exe";
-            return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
-        }
-
-        public enum Edition {
-            Community("IDEA-C"), Ultimate("IDEA-U");
-            private final String directory;
-
-            Edition(String directory) {
-                this.directory = directory;
-            }
-
-            public String getDirectory() {
-                return directory;
-            }
-        }
-    }
-
-    private static class Version implements Comparable<Version> {
+    static class Version implements Comparable<Version> {
         final String version;
 
         Version(String version) {
             this.version = version;
         }
 
-        private static boolean isVersionFile(String version) {
+        static boolean isVersionFile(String version) {
             return version.matches("[0-9]+(\\.[0-9]+)*");
         }
 
