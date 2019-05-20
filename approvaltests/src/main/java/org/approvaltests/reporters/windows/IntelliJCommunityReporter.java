@@ -22,19 +22,16 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
     }
 
     public static class IntelliJPathResolver {
-
-        private final String appData = System.getenv("LOCALAPPDATA");
-        private final String toolboxPath = appData + "/JetBrains/Toolbox";
-        private final String runtimeSuffix = "/bin/idea64.exe";
-        private final String notPresentPath = "C:\\Intelli-not-present.exe";
         private final String channelsPath;
 
-
         public IntelliJPathResolver(Edition edition) {
+            String appData = System.getenv("LOCALAPPDATA");
+            String toolboxPath = appData + "/JetBrains/Toolbox";
             this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
         }
 
         public String findIt() {
+            String notPresentPath = "C:\\Intelli-not-present.exe";
             try {
                 return getIntellJPath().map(Objects::toString).orElse(notPresentPath);
             } catch (IOException e) {
@@ -52,6 +49,7 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
         }
 
         private Path getPath(Version version) {
+            String runtimeSuffix = "/bin/idea64.exe";
             return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
         }
 
