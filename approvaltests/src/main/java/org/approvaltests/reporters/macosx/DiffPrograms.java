@@ -49,8 +49,8 @@ public class DiffPrograms
     public static DiffInfo CODE_COMPARE        = new DiffInfo(
         "{ProgramFiles}Devart\\Code Compare\\CodeCompare.exe", TEXT);
     public static DiffInfo KDIFF3              = new DiffInfo("{ProgramFiles}KDiff3\\kdiff3.exe", TEXT);
-    public static DiffInfo INTELLIJ_C = new DiffInfo(new IntelliJPathResolver(Community).findIt(), "diff %s %s", TEXT);
-    public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %s %s", TEXT);
+    public static DiffInfo INTELLIJ_C = new DiffInfo(new IntelliJPathResolver(Community).findIt(), "diff %2$s %1$s", TEXT);
+    public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %2$s %1$s", TEXT);
     public static DiffInfo VISUAL_STUDIO_CODE  = new DiffInfo("{ProgramFiles}Microsoft VS Code\\Code.exe",
         "-d %s %s", TEXT);
   }
