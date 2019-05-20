@@ -3,12 +3,12 @@ package org.approvaltests.reporters.macosx;
 import com.spun.util.ArrayUtils;
 import org.approvaltests.reporters.DiffInfo;
 import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.windows.IntelliJCommunityReporter.IntelliJPathResolver;
+import org.approvaltests.reporters.intellij.IntelliJCommunityReporter.IntelliJPathResolver;
 
 import java.util.List;
 
-import static org.approvaltests.reporters.windows.IntelliJCommunityReporter.IntelliJPathResolver.Edition.Community;
-import static org.approvaltests.reporters.windows.IntelliJCommunityReporter.IntelliJPathResolver.Edition.Ultimate;
+import static org.approvaltests.reporters.intellij.IntelliJCommunityReporter.IntelliJPathResolver.Edition.Community;
+import static org.approvaltests.reporters.intellij.IntelliJCommunityReporter.IntelliJPathResolver.Edition.Ultimate;
 
 public class DiffPrograms
 {

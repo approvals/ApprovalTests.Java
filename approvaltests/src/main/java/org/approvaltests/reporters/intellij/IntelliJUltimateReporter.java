@@ -1,4 +1,4 @@
-package org.approvaltests.reporters.windows;
+package org.approvaltests.reporters.intellij;
 
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.macosx.DiffPrograms.Windows;
