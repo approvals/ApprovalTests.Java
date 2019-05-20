@@ -17,7 +17,7 @@ import static java.lang.Integer.parseInt;
 public class IntelliJCommunityReporter extends GenericDiffReporter {
     public static final IntelliJCommunityReporter INSTANCE = new IntelliJCommunityReporter();
 
-    private IntelliJCommunityReporter() {
+    public IntelliJCommunityReporter() {
         super(Windows.INTELLIJ_C);
     }
 

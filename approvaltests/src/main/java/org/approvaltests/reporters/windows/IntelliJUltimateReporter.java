@@ -6,7 +6,7 @@ import org.approvaltests.reporters.macosx.DiffPrograms.Windows;
 public class IntelliJUltimateReporter extends GenericDiffReporter {
     public static final IntelliJUltimateReporter INSTANCE = new IntelliJUltimateReporter();
 
-    private IntelliJUltimateReporter() {
+    public IntelliJUltimateReporter() {
         super(Windows.INTELLIJ_U);
     }
 
