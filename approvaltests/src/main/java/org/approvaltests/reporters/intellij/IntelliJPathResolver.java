@@ -42,16 +42,4 @@ public class IntelliJPathResolver {
         return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
     }
 
-    public enum Edition {
-        Community("IDEA-C"), Ultimate("IDEA-U");
-        private final String directory;
-
-        Edition(String directory) {
-            this.directory = directory;
-        }
-
-        public String getDirectory() {
-            return directory;
-        }
-    }
 }

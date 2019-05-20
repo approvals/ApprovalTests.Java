@@ -7,8 +7,8 @@ import org.approvaltests.reporters.intellij.IntelliJPathResolver;
 
 import java.util.List;
 
-import static org.approvaltests.reporters.intellij.IntelliJPathResolver.Edition.Community;
-import static org.approvaltests.reporters.intellij.IntelliJPathResolver.Edition.Ultimate;
+import static org.approvaltests.reporters.intellij.Edition.Community;
+import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 public class DiffPrograms
 {
