@@ -1,6 +1,8 @@
 package org.approvaltests.reporters.windows;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.intellij.IntelliJCommunityReporter;
+import org.approvaltests.reporters.intellij.IntelliJUltimateReporter;
 
 public class WindowsDiffReporter extends FirstWorkingReporter
 {
