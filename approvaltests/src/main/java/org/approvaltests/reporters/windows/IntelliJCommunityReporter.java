@@ -44,7 +44,8 @@ public class IntelliJCommunityReporter extends GenericDiffReporter {
                     .map(Path::getFileName)
                     .map(Objects::toString)
                     .filter(Version::isVersionFile)
-                    .map(Version::new).min(Comparator.reverseOrder())
+                    .map(Version::new)
+                    .max(Comparator.naturalOrder())
                     .map(this::getPath);
         }
 
