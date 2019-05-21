@@ -40,7 +40,9 @@ However, if you also had
 snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettings.java
 
 and you ran the same code but from the org.packagesettings.subpackage  
-then you would get /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+then you would get
+
+snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
 
 
 ## Arlos Git Notation Prompt

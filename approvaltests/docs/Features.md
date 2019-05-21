@@ -84,7 +84,18 @@ public class PackageSettings
 <!-- endsnippet -->
 
 and you ran the same code but from the org.packagesettings.subpackage  
-then you would get /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+then you would get
+
+<!-- snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt -->
+```txt
+lastName : Falco [from org.packagesettings.PackageSettings] 
+name : Test Name [from org.packagesettings.subpackage.PackageSettings] 
+rating : true [from org.packagesettings.subpackage.PackageSettings] 
+ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings] 
+
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt#L1-L5)</sup>
+<!-- endsnippet -->
 
 
 ## Arlos Git Notation Prompt
