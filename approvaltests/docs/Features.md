@@ -13,6 +13,7 @@ To change this file edit the source file and then re-run the generation using ei
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [PackageLevelSettings](#packagelevelsettings)
 - [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
 - [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
 - [Test Commit Revert (TCR)](#test-commit-revert-tcr)
@@ -22,6 +23,69 @@ To change this file edit the source file and then re-run the generation using ei
   - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## PackageLevelSettings
+
+Package Level Settings allows for programmatic setting of configuration at the package level. It follows the principle of least surprise.   
+
+For example if you had a class:
+
+<!-- snippet: /approvaltests/src/test/java/org/packagesettings/PackageSettings.java -->
+```java
+package org.packagesettings;
+
+public class PackageSettings
+{
+  public String        name     = "Llewellyn";
+  private int          rating   = 10;
+  public static String lastName = "Falco";
+}
+
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/packagesettings/PackageSettings.java#L1-L9)</sup>
+<!-- endsnippet -->
+
+If you where to call at the org.packagesettings level.
+
+<!-- snippet: package_level_settings_get -->
+```java
+Map<String, Settings> settings = PackageLevelSettings.get();
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/packagesettings/PackageSettingsTest.java#L13-L15)</sup>
+<!-- endsnippet -->
+
+Then you would get the following settings
+
+<!-- snippet: /approvaltests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt -->
+```txt
+lastName : Falco [from org.packagesettings.PackageSettings] 
+name : Llewellyn [from org.packagesettings.PackageSettings] 
+rating : 10 [from org.packagesettings.PackageSettings] 
+
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt#L1-L4)</sup>
+<!-- endsnippet -->
+
+However, if you also had
+
+<!-- snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettings.java -->
+```java
+package org.packagesettings.subpackage;
+
+public class PackageSettings
+{
+  public String   name        = "Test Name";
+  private boolean rating      = true;
+  public String   ratingScale = "logarithmic";
+}
+
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettings.java#L1-L9)</sup>
+<!-- endsnippet -->
+
+and you ran the same code but from the org.packagesettings.subpackage  
+then you would get /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+
 
 ## Arlos Git Notation Prompt
 
