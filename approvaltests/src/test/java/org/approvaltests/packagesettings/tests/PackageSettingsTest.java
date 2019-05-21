@@ -3,6 +3,7 @@ package org.approvaltests.packagesettings.tests;
 import static org.junit.Assert.assertEquals;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.packagesettings.PackageSettings;
 import org.junit.Test;
 
 public class PackageSettingsTest

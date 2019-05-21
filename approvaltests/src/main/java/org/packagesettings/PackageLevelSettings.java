@@ -43,26 +43,32 @@ public class PackageLevelSettings
     {
       Class<?> clazz = loadClass(packageName + ".PackageSettings");
       Field[] declaredFields = clazz.getDeclaredFields();
+      Object o = clazz.newInstance();
       for (Field field : declaredFields)
       {
         if (Modifier.isStatic(field.getModifiers()))
         {
-          settings.put(field.getName(), getFieldValue(field));
+          settings.put(field.getName(), getFieldValue(field, null));
+        }
+        else
+        {
+          settings.put(field.getName(), getFieldValue(field, o));
         }
       }
     }
-    catch (ClassNotFoundException e)
+    catch (ClassNotFoundException | InstantiationException | IllegalAccessException e)
     {
       //Ignore
     }
     done.add(packageName);
     return settings;
   }
-  private static Settings getFieldValue(Field field)
+  private static Settings getFieldValue(Field field, Object from)
   {
     try
     {
-      return new Settings(field.get(null), field.getDeclaringClass().getName());
+      field.setAccessible(true);
+      return new Settings(field.get(from), field.getDeclaringClass().getName());
     }
     catch (Throwable t)
     {

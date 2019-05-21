@@ -20,6 +20,6 @@ public class Settings
   @Override
   public String toString()
   {
-    return value + "[loaded from " + location + "]";
+    return value + " [from " + location + "]";
   }
 }

@@ -98,7 +98,7 @@ public class PackageSettings
   public static CountingReporter FrontloadedReporter = new CountingReporter();
 }
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/packagesettings/tests/PackageSettings.java#L5-L11)</sup>
+<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11)</sup>
 <!-- endsnippet -->
 
 ---
