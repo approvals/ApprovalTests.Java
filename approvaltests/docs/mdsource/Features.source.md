@@ -23,6 +23,8 @@
 
 Package Level Settings allows for programmatic setting of configuration at the package level. It follows the principle of least surprise.   
 
+Your Package Leveling configuration must be in class called PackageSettings. The fields can be private, public and or static. They will be picked up regardless. All methods will be ignored.
+
 For example if you had a class:
 
 snippet: /approvaltests/src/test/java/org/packagesettings/PackageSettings.java
@@ -40,7 +42,7 @@ However, if you also had
 snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettings.java
 
 and you ran the same code but from the org.packagesettings.subpackage  
-then you would get
+then you would get a blended view of the two classes where anything in the sub-package would override the parents.
 
 snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
 
