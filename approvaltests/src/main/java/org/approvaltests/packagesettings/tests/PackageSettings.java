@@ -1,23 +1,11 @@
 package org.approvaltests.packagesettings.tests;
 
-import org.approvaltests.reporters.EnvironmentAwareReporter;
+import org.approvaltests.reporters.macosx.TkDiffReporter;
 
+// startcode use_reporter_package_settings
 public class PackageSettings
 {
-  public static class CountingReporter implements EnvironmentAwareReporter
-  {
-    public int count;
-    @Override
-    public void report(String received, String approved) throws Exception
-    {
-      // do Nothing
-    }
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile)
-    {
-      count++;
-      return count == 11;
-    }
-  }
+  public static TkDiffReporter   UseReporter         = TkDiffReporter.INSTANCE;
   public static CountingReporter FrontloadedReporter = new CountingReporter();
 }
+// endcode

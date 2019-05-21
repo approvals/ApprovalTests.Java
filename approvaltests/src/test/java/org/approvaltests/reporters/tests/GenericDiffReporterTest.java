@@ -1,5 +1,8 @@
 package org.approvaltests.reporters.tests;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 
 import org.approvaltests.Approvals;
@@ -13,19 +16,17 @@ import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.approvaltests.reporters.windows.WinMergeReporter;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 public class GenericDiffReporterTest
 {
+  // startcode use_reporter_single
   @UseReporter(DiffMergeReporter.class)
+  // endcode
   @Test
   public void testArguementParsing() throws Exception
   {
@@ -70,7 +71,8 @@ public class GenericDiffReporterTest
     approveGenericReporter("a.png", "b.png", new P4MergeReporter());
   }
   @Test
-  public void testSpacesInFileNames() {
+  public void testSpacesInFileNames()
+  {
     GenericDiffReporter reporter = new GenericDiffReporter(null, "-left=%s -right=%s", null, null);
     String[] commandLine = reporter.getCommandLine("file with spaces", "file with spaces.approved");
     Approvals.verifyAll("arguments", commandLine);

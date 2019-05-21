@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
 
 public class PackageLevelSettings
@@ -29,7 +30,7 @@ public class PackageLevelSettings
     }
     catch (Throwable t)
     {
-      throw throwAsError(t);
+      throw ObjectUtils.throwAsError(t);
     }
     return settings;
   }
@@ -77,20 +78,5 @@ public class PackageLevelSettings
   public static Class<?> loadClass(String className) throws ClassNotFoundException
   {
     return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
-  }
-  public static Error throwAsError(Throwable t) throws Error
-  {
-    if (t instanceof RuntimeException)
-    {
-      throw (RuntimeException) t;
-    }
-    else if (t instanceof Error)
-    {
-      throw (Error) t;
-    }
-    else
-    {
-      throw new Error(t);
-    }
   }
 }
