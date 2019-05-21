@@ -1,6 +1,8 @@
 package org.approvaltests.reporters.windows;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.intellij.IntelliJCommunityReporter;
+import org.approvaltests.reporters.intellij.IntelliJUltimateReporter;
 
 public class WindowsDiffReporter extends FirstWorkingReporter
 {
@@ -8,7 +10,7 @@ public class WindowsDiffReporter extends FirstWorkingReporter
   public WindowsDiffReporter()
   {
     super(
-        // startcode windows_diff_reporters 
+        // startcode windows_diff_reporters
         TortoiseDiffReporter.INSTANCE,
         BeyondCompareReporter.INSTANCE,
         WinMergeReporter.INSTANCE,

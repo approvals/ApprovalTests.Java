@@ -1,11 +1,14 @@
 package org.approvaltests.reporters.macosx;
 
-import java.util.List;
-
+import com.spun.util.ArrayUtils;
 import org.approvaltests.reporters.DiffInfo;
 import org.approvaltests.reporters.GenericDiffReporter;
+import org.approvaltests.reporters.intellij.IntelliJPathResolver;
 
-import com.spun.util.ArrayUtils;
+import java.util.List;
+
+import static org.approvaltests.reporters.intellij.Edition.Community;
+import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 public class DiffPrograms
 {
@@ -46,6 +49,8 @@ public class DiffPrograms
     public static DiffInfo CODE_COMPARE        = new DiffInfo(
         "{ProgramFiles}Devart\\Code Compare\\CodeCompare.exe", TEXT);
     public static DiffInfo KDIFF3              = new DiffInfo("{ProgramFiles}KDiff3\\kdiff3.exe", TEXT);
+    public static DiffInfo INTELLIJ_C = new DiffInfo(new IntelliJPathResolver(Community).findIt(), "diff %2$s %1$s", TEXT);
+    public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %2$s %1$s", TEXT);
     public static DiffInfo VISUAL_STUDIO_CODE  = new DiffInfo("{ProgramFiles}Microsoft VS Code\\Code.exe",
         "-d %s %s", TEXT);
   }

@@ -55,11 +55,15 @@ public class GenericDiffReporterTest
   {
     approveGenericReporter("a.txt", "b.txt", new TkDiffReporter());
   }
+
+  @Ignore
   @Test
   public void testTortoiseDiff() throws Exception
   {
     approveGenericReporter("a.txt", "b.txt", new TortoiseTextDiffReporter());
   }
+
+  @Ignore
   @Test
   public void testWinMerge() throws Exception
   {
