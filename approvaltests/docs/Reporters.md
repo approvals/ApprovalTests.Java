@@ -64,9 +64,10 @@ WinMergeReporter.INSTANCE,
 AraxisMergeReporter.INSTANCE,
 CodeCompareReporter.INSTANCE,
 KDiff3Reporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
+VisualStudioCodeReporter.INSTANCE,
+IntelliJReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/target/classes/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L19)</sup>
+<sup>[snippet source](/approvaltests/target/classes/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L20)</sup>
 ```java
 TortoiseDiffReporter.INSTANCE,
 BeyondCompareReporter.INSTANCE,
@@ -74,9 +75,10 @@ WinMergeReporter.INSTANCE,
 AraxisMergeReporter.INSTANCE,
 CodeCompareReporter.INSTANCE,
 KDiff3Reporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
+VisualStudioCodeReporter.INSTANCE,
+IntelliJReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L19)</sup>
+<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L20)</sup>
 <!-- endsnippet -->
 
 
