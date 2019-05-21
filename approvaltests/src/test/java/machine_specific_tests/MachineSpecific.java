@@ -8,8 +8,7 @@ import com.spun.util.SystemUtils;
 public class MachineSpecific
 {
   public static boolean       FORCE_RUN = false;
-  private static List<String> MACHINES  = Arrays.asList("LLEWELLYN-FALCOs-MacBook-Pro.local",
-      "llewellalcosmbp.lan", "LLEWELLLCOsMBP2.lan", "llewelllcosmbp2");
+  private static List<String> MACHINES  = Arrays.asList("LLEWELLYN-FALCOs-MacBook-Pro-2.local");
   public static boolean isMachineConfiguredForTesting()
   {
     return FORCE_RUN || MACHINES.contains(SystemUtils.getComputerName());
