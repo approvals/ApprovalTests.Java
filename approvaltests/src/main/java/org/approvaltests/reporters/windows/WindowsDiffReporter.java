@@ -1,8 +1,6 @@
 package org.approvaltests.reporters.windows;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.intellij.IntelliJCommunityReporter;
-import org.approvaltests.reporters.intellij.IntelliJUltimateReporter;
 
 public class WindowsDiffReporter extends FirstWorkingReporter
 {
@@ -17,7 +15,8 @@ public class WindowsDiffReporter extends FirstWorkingReporter
         AraxisMergeReporter.INSTANCE,
         CodeCompareReporter.INSTANCE,
         KDiff3Reporter.INSTANCE,
-        VisualStudioCodeReporter.INSTANCE
+        VisualStudioCodeReporter.INSTANCE,
+        IntelliJReporter.INSTANCE
     // endcode
     );
   }
