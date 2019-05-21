@@ -24,4 +24,4 @@ doctoc --title '**Contents**' .
 #   dotnet tool update  -g MarkdownSnippets.Tool
 
 dotnet tool update  -g MarkdownSnippets.Tool
-~/.dotnet/tools/mdsnippets  
+~/.dotnet/tools/mdsnippets --exclude target 
