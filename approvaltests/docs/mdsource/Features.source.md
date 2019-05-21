@@ -8,6 +8,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [PackageLevelSettings](#packagelevelsettings)
 - [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
 - [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
 - [Test Commit Revert (TCR)](#test-commit-revert-tcr)
@@ -17,6 +18,30 @@
   - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## PackageLevelSettings
+
+Package Level Settings allows for programmatic setting of configuration at the package level. It follows the principle of least surprise.   
+
+For example if you had a class:
+
+snippet: /approvaltests/src/test/java/org/packagesettings/PackageSettings.java
+
+If you where to call at the org.packagesettings level.
+
+snippet: package_level_settings_get
+
+Then you would get the following settings
+
+snippet: /approvaltests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt
+
+However, if you also had
+
+snippet: /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettings.java
+
+and you ran the same code but from the org.packagesettings.subpackage  
+then you would get /approvaltests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+
 
 ## Arlos Git Notation Prompt
 
