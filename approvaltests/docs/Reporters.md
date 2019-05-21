@@ -40,16 +40,6 @@ KDiff3Reporter.INSTANCE,
 TkDiffReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/target/classes/org/approvaltests/reporters/macosx/MacDiffReporter.java#L11-L19)</sup>
-```java
-BeyondCompareMacReporter.INSTANCE,
-DiffMergeReporter.INSTANCE,
-KaleidoscopeDiffReporter.INSTANCE,
-P4MergeReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
-TkDiffReporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
-```
 <sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L11-L19)</sup>
 <!-- endsnippet -->
 
@@ -57,17 +47,6 @@ VisualStudioCodeReporter.INSTANCE
 ### Windows
 
 <!-- snippet: windows_diff_reporters -->
-```java
-TortoiseDiffReporter.INSTANCE,
-BeyondCompareReporter.INSTANCE,
-WinMergeReporter.INSTANCE,
-AraxisMergeReporter.INSTANCE,
-CodeCompareReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE,
-IntelliJReporter.INSTANCE
-```
-<sup>[snippet source](/approvaltests/target/classes/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L20)</sup>
 ```java
 TortoiseDiffReporter.INSTANCE,
 BeyondCompareReporter.INSTANCE,
@@ -112,14 +91,6 @@ You can also assign a default for an entire package (and all sub-packages) by cr
 
 
 <!-- snippet: use_reporter_package_settings -->
-```java
-public class PackageSettings
-{
-  public static TkDiffReporter   UseReporter         = TkDiffReporter.INSTANCE;
-  public static CountingReporter FrontloadedReporter = new CountingReporter();
-}
-```
-<sup>[snippet source](/approvaltests/target/classes/org/approvaltests/packagesettings/tests/PackageSettings.java#L5-L11)</sup>
 ```java
 public class PackageSettings
 {
