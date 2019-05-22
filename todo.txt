@@ -1,2 +1,5 @@
 * remove all checked exceptions
 * remove all warnings
+* make intellij aware of if it is running and only launch then
+* handle manual install of intellij
+* write docs on how to make a custom reporter
