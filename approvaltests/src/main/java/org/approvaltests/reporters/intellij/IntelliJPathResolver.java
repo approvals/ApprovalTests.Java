@@ -9,37 +9,36 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
 
-public class IntelliJPathResolver {
-    private final String channelsPath;
-
-    public IntelliJPathResolver(Edition edition) {
-        String appData = System.getenv("LOCALAPPDATA");
-        String toolboxPath = appData + "/JetBrains/Toolbox";
-        this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
+public class IntelliJPathResolver
+{
+  private final String channelsPath;
+  public IntelliJPathResolver(Edition edition)
+  {
+    String appData = System.getenv("LOCALAPPDATA");
+    String toolboxPath = appData + "/JetBrains/Toolbox";
+    this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
+  }
+  public String findIt()
+  {
+    String notPresentPath = "C:\\Intelli-not-present.exe";
+    try
+    {
+      return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
     }
-
-    public String findIt() {
-        String notPresentPath = "C:\\Intelli-not-present.exe";
-        try {
-            return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
-        } catch (IOException e) {
-            return notPresentPath;
-        }
+    catch (IOException e)
+    {
+      return notPresentPath;
     }
-
-    private Optional<Path> getIntelliJPath() throws IOException {
-        return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)
-                .map(Path::getFileName)
-                .map(Objects::toString)
-                .filter(Version::isVersionFile)
-                .map(Version::new)
-                .max(Comparator.naturalOrder())
-                .map(this::getPath);
-    }
-
-    private Path getPath(Version version) {
-        String runtimeSuffix = "/bin/idea64.exe";
-        return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
-    }
-
+  }
+  private Optional<Path> getIntelliJPath() throws IOException
+  {
+    return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS).map(Path::getFileName)
+        .map(Objects::toString).filter(Version::isVersionFile).map(Version::new).max(Comparator.naturalOrder())
+        .map(this::getPath);
+  }
+  private Path getPath(Version version)
+  {
+    String runtimeSuffix = "/bin/idea64.exe";
+    return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
+  }
 }
