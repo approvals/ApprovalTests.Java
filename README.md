@@ -137,30 +137,8 @@ Questions?
 
 twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTests
 
-Developer notes
-----------------
 
-To build with Maven:
+## Developer notes
 
-	mvn install
-
-If you see test failures and want to carry on anyway (Some tests are machine or locale dependent unfortunately):
-
-	mvn install -DskipTests
-
-If you have trouble with the "mrunit" package which is listed on Maven central but doesn't seem to download, install it locally with this command:
-
-	mvn install:install-file -Dfile=missing_jars/mrunit-0.9.0-incubating-hadoop1.jar -DgroupId=org.apache.mrunit -DartifactId=mrunit -Dversion=0.9.0-incubating -Dpackaging=jar
-
-
-If you want to create the signed jars suitable for release, you will need a gpg key.
-There are detailed instructions about setting this up on [sonatype's site](https://central.sonatype.org/pages/working-with-pgp-signatures.html)
-Then to actually perform the release, use the shell script:
-
-    ./publish_maven.sh
-
-Enter your gpg key passphrase when it prompts you.
-
-After the release, update the version number in all the pom files, eg:
-
-    mvn versions:set -DnewVersion=2.0.1-SNAPSHOT
+The suggested way to contribute to ApprovalTests is to [pair with Llewellyn](mailto:llewellyn.falco@gmail.com)  
+However, if you are set on forking please [read these notes](developer_notes.md)
