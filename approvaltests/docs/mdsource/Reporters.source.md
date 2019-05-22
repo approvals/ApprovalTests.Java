@@ -32,6 +32,9 @@ snippet: mac_diff_reporters
 
 snippet: windows_diff_reporters
 
+### Linux
+
+snippet: linux_diff_reporters
 
 ## Configuring a Reporter
 

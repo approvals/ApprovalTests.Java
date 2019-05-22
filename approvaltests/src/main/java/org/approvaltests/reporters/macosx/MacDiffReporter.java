@@ -1,6 +1,7 @@
 package org.approvaltests.reporters.macosx;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.windows.IntelliJReporter;
 
 public class MacDiffReporter extends FirstWorkingReporter
 {
@@ -15,6 +16,7 @@ public class MacDiffReporter extends FirstWorkingReporter
         P4MergeReporter.INSTANCE,
         KDiff3Reporter.INSTANCE,
         TkDiffReporter.INSTANCE,
+        IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE
     // endcode
     );

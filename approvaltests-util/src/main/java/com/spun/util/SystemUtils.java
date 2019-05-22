@@ -57,4 +57,10 @@ public class SystemUtils
       return fileName.replace(" ", "\\ ");
     }
   }
+  public static boolean isMacEnviroment()
+  {
+    String osName = System.getProperty("os.name").toLowerCase();
+    boolean isMacOs = osName.startsWith("mac os x");
+    return !isWindowsEnviroment() && isMacOs;
+  }
 }

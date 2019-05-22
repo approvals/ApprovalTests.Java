@@ -1,14 +1,13 @@
 package org.approvaltests.reporters.intellij;
 
 import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.macosx.DiffPrograms.Windows;
+import org.approvaltests.reporters.macosx.DiffPrograms.All;
 
-public class IntelliJUltimateReporter extends GenericDiffReporter {
-    public static final IntelliJUltimateReporter INSTANCE = new IntelliJUltimateReporter();
-
-    public IntelliJUltimateReporter() {
-        super(Windows.INTELLIJ_U);
-    }
-
-
+public class IntelliJUltimateReporter extends GenericDiffReporter
+{
+  public static final IntelliJUltimateReporter INSTANCE = new IntelliJUltimateReporter();
+  public IntelliJUltimateReporter()
+  {
+    super(All.INTELLIJ_U);
+  }
 }

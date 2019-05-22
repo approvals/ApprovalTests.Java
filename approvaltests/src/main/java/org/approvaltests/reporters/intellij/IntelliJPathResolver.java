@@ -9,12 +9,28 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.spun.util.SystemUtils;
+
 public class IntelliJPathResolver
 {
   private final String channelsPath;
   public IntelliJPathResolver(Edition edition)
   {
-    String appData = System.getenv("LOCALAPPDATA");
+    String appData = "";
+    if (SystemUtils.isWindowsEnviroment())
+    {
+      appData = System.getenv("LOCALAPPDATA");
+    }
+    else if (SystemUtils.isMacEnviroment())
+    {
+      appData = System.getenv("HOME");
+      appData += "/Library/Application Support";
+    }
+    else // Linux
+    {
+      appData = System.getenv("HOME");
+      appData += "/.local/share";
+    }
     String toolboxPath = appData + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
