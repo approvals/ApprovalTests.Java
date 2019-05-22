@@ -1,8 +1,6 @@
-package org.approvaltests.reporters.windows;
+package org.approvaltests.reporters.intellij;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.intellij.IntelliJCommunityReporter;
-import org.approvaltests.reporters.intellij.IntelliJUltimateReporter;
 
 public class IntelliJReporter extends FirstWorkingReporter
 {

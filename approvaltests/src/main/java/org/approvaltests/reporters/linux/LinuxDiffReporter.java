@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.linux;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.windows.IntelliJReporter;
+import org.approvaltests.reporters.intellij.IntelliJReporter;
 
 public class LinuxDiffReporter extends FirstWorkingReporter
 {

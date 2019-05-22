@@ -1,12 +1,10 @@
-package org.approvaltests.reporters.macosx;
+package org.approvaltests.reporters;
 
 import static org.approvaltests.reporters.intellij.Edition.Community;
 import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 import java.util.List;
 
-import org.approvaltests.reporters.DiffInfo;
-import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.intellij.IntelliJPathResolver;
 
 import com.spun.util.ArrayUtils;

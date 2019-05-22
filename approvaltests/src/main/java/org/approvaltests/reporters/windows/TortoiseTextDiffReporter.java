@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.windows;
 
 import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.macosx.DiffPrograms.Windows;
+import org.approvaltests.reporters.DiffPrograms.Windows;
 
 public class TortoiseTextDiffReporter extends GenericDiffReporter
 {

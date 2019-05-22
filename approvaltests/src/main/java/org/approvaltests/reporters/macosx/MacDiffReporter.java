@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.macosx;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.windows.IntelliJReporter;
+import org.approvaltests.reporters.intellij.IntelliJReporter;
 
 public class MacDiffReporter extends FirstWorkingReporter
 {
