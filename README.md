@@ -26,7 +26,7 @@ It is compatible with JUnit 3 & 4 and TestNG
 
 ## What can it be used for?
 
-Approval Tests can be used for verifying objects that require more than a simple assert. They also come prepackaged with utilities for some common .Net scenarios including
+Approval Tests can be used for verifying objects that require more than a simple assert. They also come prepackaged with utilities for some common java scenarios including
 
 
 - HashMaps & Collections
@@ -36,7 +36,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 - Xml
 - Html
 - Json
-- Getting Legacy Code under tests
+- Getting *Legacy Code* under tests
 
 ## Documentation
 - [ApprovalTests](/approvaltests/docs/README.md)  
@@ -44,7 +44,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 
 ## Getting started
 
-The best way to get started is download and open the [ApprovalTests.java Starter Project](https://github.com/approvals/approvaltests.java.starterproject)
+The best way to get started is download and open the [Starter Project](https://github.com/approvals/approvaltests.java.starterproject).  
 It is a maven project and can be imported in to any editor.
 
 
@@ -65,7 +65,8 @@ or [download the jars from maven central repository](http://repo1.maven.org/mave
 [Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
 
-You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube
+You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube.
+*Note*: There are a lot of videos about ApprovalTests in .Net They are equally useful for understanding the concepts despite being in a different programming language.
 
 ## Podcasts
 
