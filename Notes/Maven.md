@@ -24,3 +24,8 @@ Deploy to maven:
   * update koans
   * Update to next version
   * bump version and add -SNAPSHOT in all the pox.xml Files
+  * update docs
+
+  ```
+  ./run_markdown_templates.sh  
+  ```
