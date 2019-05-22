@@ -4,27 +4,27 @@
 
 - [ApprovalTests.Java](#approvaltestsjava)
   - [What can it be used for?](#what-can-it-be-used-for)
+  - [Documentation](#documentation)
+  - [Getting started](#getting-started)
   - [How to get it](#how-to-get-it)
   - [Video Tutorials](#video-tutorials)
   - [Podcasts](#podcasts)
   - [Examples](#examples)
   - [Approved File Artifacts](#approved-file-artifacts)
   - [More Info](#more-info)
-  - [Documentation](#documentation)
   - [LICENSE](#license)
   - [Questions?](#questions)
   - [Developer notes](#developer-notes)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-ApprovalTests.Java
-==================
+# ApprovalTests.Java
+
 Capturing Human Intelligence - ApprovalTests is an open source assertion/verification library to aid unit testing.
 
 It is compatible with JUnit 3 & 4 and TestNG
 
-What can it be used for?
----
+## What can it be used for?
 
 Approval Tests can be used for verifying objects that require more than a simple assert. They also come prepackaged with utilities for some common .Net scenarios including
 
@@ -37,8 +37,17 @@ Approval Tests can be used for verifying objects that require more than a simple
 - Html
 - Json
 
-How to get it
----
+## Documentation
+- [ApprovalTests](/approvaltests/docs/README.md)  
+- [ApprovalTests-util](/approvaltests-util/docs/README.md)
+
+## Getting started
+
+The best way to get started is download and open the [ApprovalTests.java Starter Project](https://github.com/approvals/approvaltests.java.starterproject)
+It is a maven project and can be imported in to any editor.
+
+
+## How to get it
 It's on Maven Central, search for 'approvaltests'. If you're using Maven,
 add this to your pom file:
 
@@ -57,8 +66,8 @@ or [download the jars from maven central repository](http://repo1.maven.org/mave
 
 You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube
 
-Podcasts
----
+## Podcasts
+
 If you prefer auditory learning, you might enjoy the following podcast (Note: Some of these talk about the .net side)
 
 - [Cucumber Podcast](https://cucumber.io/blog/2017/01/26/approval-testing)
@@ -68,13 +77,14 @@ If you prefer auditory learning, you might enjoy the following podcast (Note: So
 
 
 
-Examples
----
+## Examples
+
 ApprovalTests eats it own dogfood, so the best examples are in the source code itself.
 
 None the less,  Here's a quick look at some
 [Sample Code](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/tests/demos/SampleArrayTest.java)
 
+``` Java
 	public class SampleArrayTest extends TestCase
 	{
 		public void testList() throws Exception
@@ -84,37 +94,35 @@ None the less,  Here's a quick look at some
 			Approvals.verifyAll("", names);
 		}
 	}
+```
 
 Will Produce a File
-
+```
     SampleTest.TestList.received.txt
     [0] = Dan
     [1] = James
     [2] = Jason
     [3] = Katrina
     [4] = Llewellyn
+```
 
 Simply rename this to SampleTest.testList.approved.txt and the test will now pass.
 
-Approved File Artifacts
----
+## Approved File Artifacts
+
 
 The `*.approved.*` files must be checked into source your source control.
 This can be an issue with git as it will change the line endings.
 The suggested fix is to add
 `*.approved.* binary` to your `.gitattributes`
 
-More Info
----
+## More Info
 
-- [Website](http://approvaltests.sourceforge.net/)
+
+- [Website](http://approvaltests.com/)
 - [Blog](http://blog.approvaltests.com/)
 - [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/blob/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20GettingStarted.md)
 
-
-## Documentation
-- [ApprovalTests](/approvaltests/docs/README.md)  
-- [ApprovalTests-util](/approvaltests-util/docs/README.md)  
 
 
 ## LICENSE
