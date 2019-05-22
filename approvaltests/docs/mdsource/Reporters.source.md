@@ -11,6 +11,7 @@
 - [Supported Diff Tools](#supported-diff-tools)
   - [Mac](#mac)
   - [Windows](#windows)
+  - [Linux](#linux)
 - [Configuring a Reporter](#configuring-a-reporter)
   - [Class and Method level](#class-and-method-level)
   - [Package Level](#package-level)

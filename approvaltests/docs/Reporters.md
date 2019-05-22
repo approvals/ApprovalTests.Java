@@ -16,6 +16,7 @@ To change this file edit the source file and then re-run the generation using ei
 - [Supported Diff Tools](#supported-diff-tools)
   - [Mac](#mac)
   - [Windows](#windows)
+  - [Linux](#linux)
 - [Configuring a Reporter](#configuring-a-reporter)
   - [Class and Method level](#class-and-method-level)
   - [Package Level](#package-level)
@@ -38,9 +39,10 @@ KaleidoscopeDiffReporter.INSTANCE,
 P4MergeReporter.INSTANCE,
 KDiff3Reporter.INSTANCE,
 TkDiffReporter.INSTANCE,
+IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L11-L19)</sup>
+<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21)</sup>
 <!-- endsnippet -->
 
 
@@ -54,12 +56,20 @@ WinMergeReporter.INSTANCE,
 AraxisMergeReporter.INSTANCE,
 CodeCompareReporter.INSTANCE,
 KDiff3Reporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE,
-IntelliJReporter.INSTANCE
+IntelliJReporter.INSTANCE,
+VisualStudioCodeReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L11-L20)</sup>
+<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21)</sup>
 <!-- endsnippet -->
 
+### Linux
+
+<!-- snippet: linux_diff_reporters -->
+```java
+IntelliJReporter.INSTANCE
+```
+<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L12-L14)</sup>
+<!-- endsnippet -->
 
 ## Configuring a Reporter
 
