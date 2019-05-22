@@ -36,6 +36,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 - Xml
 - Html
 - Json
+- Getting Legacy Code under tests
 
 ## Documentation
 - [ApprovalTests](/approvaltests/docs/README.md)  
