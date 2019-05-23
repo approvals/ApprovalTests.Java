@@ -19,7 +19,11 @@
 
 ## Functions
 
-Function0 thru Function9 are simple interfaces for use with lambdas where you take 0-9 parameters and return a result.
+Function0 through Function9 are single method interfaces for use with lambdas where you take 0-9 parameters and return a result.  
+For Example Function3 has the single method 
+
+snippet: function3_call
+
 The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
 
    Function0 -> java.util.function.Supplier  
@@ -28,8 +32,14 @@ The first 3 have native java equivalents (that I can never remember). If you pre
 
 ## Actions
 
-Action0 thru Action9 are simple interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
+Action0 through Action9 are single method interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
+
+
+For Example Action3 has the single method  
+
+snippet: action3_call
+
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.    
 
    Action0 -> java.lang.Runnable  
    Action1 -> java.util.function.Consumer  

@@ -24,7 +24,16 @@ To change this file edit the source file and then re-run the generation using ei
 
 ## Functions
 
-Function0 thru Function9 are simple interfaces for use with lambdas where you take 0-9 parameters and return a result.
+Function0 through Function9 are single method interfaces for use with lambdas where you take 0-9 parameters and return a result.  
+For Example Function3 has the single method 
+
+<!-- snippet: function3_call -->
+```java
+public Out call(In1 a, In2 b, In3 c);
+```
+<sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7)</sup>
+<!-- endsnippet -->
+
 The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
 
    Function0 -> java.util.function.Supplier  
@@ -33,8 +42,19 @@ The first 3 have native java equivalents (that I can never remember). If you pre
 
 ## Actions
 
-Action0 thru Action9 are simple interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
+Action0 through Action9 are single method interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
+
+
+For Example Action3 has the single method  
+
+<!-- snippet: action3_call -->
+```java
+public void call(In1 a, In2 b, In3 c);
+```
+<sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12)</sup>
+<!-- endsnippet -->
+
+The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.    
 
    Action0 -> java.lang.Runnable  
    Action1 -> java.util.function.Consumer  
