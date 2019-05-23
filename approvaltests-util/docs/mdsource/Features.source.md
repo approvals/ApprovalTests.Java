@@ -24,7 +24,8 @@ For Example Function3 has the single method
 
 snippet: function3_call
 
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
+The first 3 have native java equivalents (that are hard to remember).  
+If it is preferred to use those, but can't remember their name, they are listed in the javadocs.  
 
    Function0 -> java.util.function.Supplier  
    Function1 -> java.util.function.Function  
@@ -39,7 +40,8 @@ For Example Action3 has the single method
 
 snippet: action3_call
 
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.    
+The first 3 have native java equivalents (that are hard to remember).  
+If it is preferred to use those, but can't remember their name, they are listed in the javadocs.      
 
    Action0 -> java.lang.Runnable  
    Action1 -> java.util.function.Consumer  

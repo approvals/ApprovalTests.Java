@@ -34,7 +34,8 @@ public Out call(In1 a, In2 b, In3 c);
 <sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7)</sup>
 <!-- endsnippet -->
 
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.  
+The first 3 have native java equivalents (that are hard to remember).  
+If it is preferred to use those, but can't remember their name, they are listed in the javadocs.  
 
    Function0 -> java.util.function.Supplier  
    Function1 -> java.util.function.Function  
@@ -54,7 +55,8 @@ public void call(In1 a, In2 b, In3 c);
 <sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12)</sup>
 <!-- endsnippet -->
 
-The first 3 have native java equivalents (that I can never remember). If you prefer to use those, but can't remember their name, They are listed in the javadocs.    
+The first 3 have native java equivalents (that are hard to remember).  
+If it is preferred to use those, but can't remember their name, they are listed in the javadocs.      
 
    Action0 -> java.lang.Runnable  
    Action1 -> java.util.function.Consumer  
