@@ -48,8 +48,12 @@ public class IntelliJPathResolver
   }
   private Optional<Path> getIntelliJPath() throws IOException
   {
-    return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS).map(Path::getFileName)
-        .map(Objects::toString).filter(Version::isVersionFile).map(Version::new).max(Comparator.naturalOrder())
+    return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS) //
+        .map(Path::getFileName) //
+        .map(Objects::toString) //
+        .filter(Version::isVersionFile) //
+        .map(Version::new) //
+        .max(Comparator.naturalOrder()) //
         .map(this::getPath);
   }
   private Path getPath(Version version)
