@@ -25,7 +25,7 @@ To change this file edit the source file and then re-run the generation using ei
 ## Functions
 
 Function0 through Function9 are single method interfaces for use with lambdas where you take 0-9 parameters and return a result.  
-For Example Function3 has the single method 
+For Example Function3 has the single method :
 
 <!-- snippet: function3_call -->
 ```java
@@ -37,16 +37,17 @@ public Out call(In1 a, In2 b, In3 c);
 The first 3 have native java equivalents (that are hard to remember).  
 If it is preferred to use those, but can't remember their name, they are listed in the javadocs.  
 
+```
    Function0 -> java.util.function.Supplier  
    Function1 -> java.util.function.Function  
    Function2 -> java.util.function.BiFunction
-
+```
 ## Actions
 
 Action0 through Action9 are single method interfaces for use with lambdas where you take 0-9 parameters and all results are via side-effect (void return).
 
 
-For Example Action3 has the single method  
+For Example Action3 has the single method:  
 
 <!-- snippet: action3_call -->
 ```java
@@ -58,10 +59,11 @@ public void call(In1 a, In2 b, In3 c);
 The first 3 have native java equivalents (that are hard to remember).  
 If it is preferred to use those, but can't remember their name, they are listed in the javadocs.      
 
+```
    Action0 -> java.lang.Runnable  
    Action1 -> java.util.function.Consumer  
    Action2 -> java.util.function.BiConsumer
-
+```
 
 ## Actions.doNothing()
 
