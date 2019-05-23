@@ -22,20 +22,22 @@ public class IntelliJPathResolver
     if (SystemUtils.isWindowsEnviroment())
     {
       appData = System.getenv("LOCALAPPDATA");
+      runtimeSuffix = "/bin/idea64.exe";
     }
     else if (SystemUtils.isMacEnviroment())
     {
       appData = System.getenv("HOME");
       appData += "/Library/Application Support";
+      runtimeSuffix = "/bin/idea";
     }
     else // Linux
     {
       appData = System.getenv("HOME");
       appData += "/.local/share";
+      runtimeSuffix = "/bin/idea.sh";
     }
     String toolboxPath = appData + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
-    runtimeSuffix = "/bin/idea64.exe";
   }
   public String findIt()
   {
