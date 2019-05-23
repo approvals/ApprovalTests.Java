@@ -14,6 +14,8 @@ import com.spun.util.SystemUtils;
 public class IntelliJPathResolver
 {
   private final String channelsPath;
+  private final String runtimeSuffix;
+
   public IntelliJPathResolver(Edition edition)
   {
     String appData = "";
@@ -33,6 +35,7 @@ public class IntelliJPathResolver
     }
     String toolboxPath = appData + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
+    runtimeSuffix = "/bin/idea64.exe";
   }
   public String findIt()
   {
@@ -58,7 +61,6 @@ public class IntelliJPathResolver
   }
   private Path getPath(Version version)
   {
-    String runtimeSuffix = "/bin/idea64.exe";
     return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
   }
 }
