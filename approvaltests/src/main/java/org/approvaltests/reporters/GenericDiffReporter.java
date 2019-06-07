@@ -24,6 +24,10 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
       ".java", ".css", ".js", ".json");
   public static List<String> IMAGE_FILE_EXTENSIONS = Arrays.asList(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
       ".tiff");
+  public GenericDiffReporter(String diffProgram)
+  {
+    this(diffProgram, STANDARD_ARGUMENTS, "Couldn't find: " + diffProgram);
+  }
   public GenericDiffReporter(String diffProgram, String diffProgramNotFoundMessage)
   {
     this(diffProgram, STANDARD_ARGUMENTS, diffProgramNotFoundMessage);
@@ -42,8 +46,11 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   }
   public GenericDiffReporter(DiffInfo info)
   {
-    this(info.diffProgram, info.parameters,
-        MessageFormat.format("Unable to find program at {0}", info.diffProgram), info.fileExtensions);
+    this(
+        info.diffProgram,
+        info.parameters,
+        MessageFormat.format("Unable to find program at {0}", info.diffProgram),
+        info.fileExtensions);
   }
   @Override
   public void report(String received, String approved) throws Exception
@@ -71,9 +78,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   {
     String full = String.format(arguments, "{received}", "{approved}");
     List<String> argsSplitOnSpace = Arrays.stream(full.split(" "))
-            .map(t -> t.replace("{received}", received).replace("{approved}", approved))
-            .collect(Collectors.toList());
-
+        .map(t -> t.replace("{received}", received).replace("{approved}", approved)).collect(Collectors.toList());
     ArrayList<String> commands = new ArrayList<String>();
     commands.add(diffProgram);
     commands.addAll(argsSplitOnSpace);

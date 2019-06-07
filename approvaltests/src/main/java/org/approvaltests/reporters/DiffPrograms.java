@@ -17,7 +17,7 @@ public class DiffPrograms
   public static class Mac
   {
     public static DiffInfo DIFF_MERGE         = new DiffInfo(
-        "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge", "%s %s -nosplash", TEXT);
+        "/Applications/DiffMerge.app/Contents/MacOS/DiffMerge", "--nosplash %s %s ", TEXT);
     public static DiffInfo BEYOND_COMPARE     = new DiffInfo(
         "/Applications/Beyond Compare.app/Contents/MacOS/bcomp", TEXT);
     public static DiffInfo KALEIDOSCOPE       = new DiffInfo(
@@ -57,5 +57,10 @@ public class DiffPrograms
         TEXT);
     public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %s %s",
         TEXT);
+  }
+  public static class Linux
+  {
+    public static DiffInfo DIFF_MERGE = new DiffInfo("/usr/bin/diffmerge", "--nosplash %s %s ", TEXT);
+    public static DiffInfo MELD_MERGE = new DiffInfo("/usr/bin/meld", "--nosplash %s %s ", TEXT);
   }
 }
