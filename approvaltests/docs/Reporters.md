@@ -21,6 +21,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 - [Configuring a Reporter](#configuring-a-reporter)
   - [Class and Method level](#class-and-method-level)
   - [Package Level](#package-level)
+- [Custom Reporters](#custom-reporters)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -113,6 +114,27 @@ public class PackageSettings
 ```
 <sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11)</sup>
 <!-- endsnippet -->
+
+## Custom Reporters
+
+If your favorite diff tool isn't supported out of the box, create your own custom extentions.
+Here's an example:
+
+<!-- snippet: custom_reporter -->
+```java
+public class CustomReporter extends GenericDiffReporter
+{
+  // optional singleton, but improves performance
+  public static final CustomReporter INSTANCE = new CustomReporter();
+  public CustomReporter()
+  {
+    super("/fullpath/to/diffProgram.exe");
+  }
+}
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L4-L14)</sup>
+<!-- endsnippet -->
+
 
 ---
 

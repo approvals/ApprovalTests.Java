@@ -15,6 +15,7 @@
 - [Configuring a Reporter](#configuring-a-reporter)
   - [Class and Method level](#class-and-method-level)
   - [Package Level](#package-level)
+- [Custom Reporters](#custom-reporters)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -57,6 +58,14 @@ You can also assign a default for an entire package (and all sub-packages) by cr
 
 
 snippet: use_reporter_package_settings
+
+## Custom Reporters
+
+If your favorite diff tool isn't supported out of the box, create your own custom extentions.
+Here's an example:
+
+snippet: custom_reporter
+
 
 ---
 
