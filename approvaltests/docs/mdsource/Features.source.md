@@ -25,7 +25,7 @@ Approved and received files can be stored in a preferred location. To do so, wri
 
 snippet: package_settings_approval_subdirectory
 
-This will add the subdirectory to any test in the same package as this file, or any subpackage under this.  
+The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
 
 ## PackageLevelSettings
 

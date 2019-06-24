@@ -25,6 +25,7 @@ To change this file edit the source file and then run MarkdownSnippets.
   - [ Usag](#usag)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Using Subdirectories for Approval Output Files
 Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
 
@@ -38,7 +39,7 @@ public class PackageSettings
 <sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/tests/PackageSettings.java#L3-L8)</sup>
 <!-- endsnippet -->
 
-This will add the subdirectory to any test in the same package as this file, or any subpackage under this.  
+The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
 
 ## PackageLevelSettings
 
