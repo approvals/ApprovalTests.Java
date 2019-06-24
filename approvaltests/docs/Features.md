@@ -15,19 +15,18 @@ To change this file edit the source file and then run MarkdownSnippets.
 **Contents**
 
 - [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [PackageLevelSettings](#packagelevelsettings)
-- [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
-- [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
-- [Test Commit Revert (TCR)](#test-commit-revert-tcr)
-  - [Method 1 - extend class](#method-1---extend-class)
-  - [Method 2 - use Runner](#method-2---use-runner)
-  - [Results](#results)
-  - [Usage](#usage)
+- [ PackageLevelSetting](#packagelevelsetting)
+- [ Arlos Git Notation Promp](#arlos-git-notation-promp)
+- [ Faster Test Commit Revert (TCR](#faster-test-commit-revert-tcr)
+- [ Test Commit Revert (TCR](#test-commit-revert-tcr)
+  - [ is a convenience class](#is-a-convenience-class)
+  - [ Method 2 - use Runne](#method-2---use-runne)
+  - [ Result](#result)
+  - [ Usag](#usag)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Using Subdirectories for Approval Output Files
-
-If you would prefer to have your approved/received files go to subjectory, you can achive this by writing a class as follows
+Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
 
 <!-- snippet: package_settings_approval_subdirectory -->
 ```java
@@ -38,6 +37,8 @@ public class PackageSettings
 ```
 <sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/tests/PackageSettings.java#L3-L8)</sup>
 <!-- endsnippet -->
+
+This will add the subdirectory to any test in the same package as this file, or any subpackage under this.  
 
 ## PackageLevelSettings
 
