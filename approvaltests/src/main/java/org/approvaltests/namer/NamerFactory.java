@@ -1,6 +1,7 @@
 package org.approvaltests.namer;
 
 import org.lambda.functions.Function0;
+import org.packagesettings.PackageLevelSettings;
 
 public class NamerFactory
 {
@@ -24,5 +25,9 @@ public class NamerFactory
   public static NamedEnvironment asMachineSpecificTest(String environmentName)
   {
     return new NamedEnvironment(environmentName);
+  }
+  public static String getSubdirectory()
+  {
+    return (String) PackageLevelSettings.get().get("UseApprovalSubdirectory").getValue();
   }
 }

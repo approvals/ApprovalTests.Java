@@ -21,6 +21,8 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public String getSourceFilePath()
   {
-    return info.getSourceFile().getAbsolutePath() + File.separator;
+    String sub = NamerFactory.getSubdirectory();
+    String subdirectory = (sub.isEmpty()) ? "" : sub + File.separator;
+    return info.getSourceFile().getAbsolutePath() + File.separator + subdirectory;
   }
 }
