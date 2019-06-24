@@ -1,4 +1,4 @@
-package org.approvaltests.packagesettings;
+package org.approvaltests.packagesettings.tests;
 
 import static org.junit.Assert.assertTrue;
 

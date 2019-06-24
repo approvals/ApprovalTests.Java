@@ -14,6 +14,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
 - [PackageLevelSettings](#packagelevelsettings)
 - [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
 - [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
@@ -24,6 +25,19 @@ To change this file edit the source file and then run MarkdownSnippets.
   - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## Using Subdirectories for Approval Output Files
+
+If you would prefer to have your approved/received files go to subjectory, you can achive this by writing a class as follows
+
+<!-- snippet: package_settings_approval_subdirectory -->
+```java
+public class PackageSettings
+{
+  public static String UseApprovalSubdirectory = "approvals";
+}
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/tests/PackageSettings.java#L3-L8)</sup>
+<!-- endsnippet -->
 
 ## PackageLevelSettings
 
