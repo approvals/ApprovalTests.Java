@@ -10,7 +10,8 @@
 
 - [What is configurable?](#what-is-configurable)
 - [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [ PackageLevelSetting](#packagelevelsetting)
+- [ Using Alternative Base Directory for Approval Output File](#using-alternative-base-directory-for-approval-output-file)
+- [ any test in the sam](#any-test-in-the-sam)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## What is configurable?
@@ -28,6 +29,16 @@ Approved and received files can be stored in a preferred location. To do so, wri
 snippet: package_settings_approval_subdirectory
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
+
+## Using Alternative Base Directory for Approval Output Files
+
+Approved and received files can be stored in a different branch of the code base (for example, under the `/resources/` folder).
+To do so, write a class as follows: 
+
+snippet: package_settings_approval_base_directory
+
+The approved & received files will now be created in the subdirectory `/source/test/resources/test_file_package/ClassName.MethodName.approved.txt` 
+for any test in the same package as this file, or any test in any subpackage under this.  
 
 ## PackageLevelSettings
 

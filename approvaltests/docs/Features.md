@@ -14,6 +14,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contents**
 
+- [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
 - [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
 - [PackageLevelSettings](#packagelevelsettings)
 - [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
@@ -25,6 +26,11 @@ To change this file edit the source file and then run MarkdownSnippets.
   - [Usage](#usage)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Using Alternative Base Directory for Approval Output Files
+Q: what if I want my output files to show up under the `/resources/` folder?
+A: you can do that, [here's how](Configuration.md#using-alternative-base-directory-for-approval-output-file)
+
 
 ## Using Subdirectories for Approval Output Files
 Approved and received files can be stored in a preferred location. 
