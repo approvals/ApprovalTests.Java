@@ -16,10 +16,12 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 - [What is configurable?](#what-is-configurable)
 - [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [ Using Alternative Base Directory for Approval Output File](#using-alternative-base-directory-for-approval-output-file)
-- [ any test in the sam](#any-test-in-the-sam)
+- [ Alternative Base Directory for Output File](#alternative-base-directory-for-output-file)
+- [ PackageLevelSetting](#packagelevelsetting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 ## What is configurable?
 Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 
 (the API is also extendible) 
@@ -44,10 +46,11 @@ public class PackageSettings
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
 
-## Using Alternative Base Directory for Approval Output Files
+## Alternative Base Directory for Output Files
 
 Approved and received files can be stored in a different branch of the code base (for example, under the `/resources/` folder).
-To do so, write a class as follows: 
+
+To do so, write a class as follows:    
 
 <!-- snippet: package_settings_approval_base_directory -->
 ```java
@@ -59,8 +62,7 @@ public class PackageSettings
 <sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/basedirectory/PackageSettings.java#L3-L8)</sup>
 <!-- endsnippet -->
 
-The approved & received files will now be created in the subdirectory `/source/test/resources/test_file_package/ClassName.MethodName.approved.txt` 
-for any test in the same package as this file, or any test in any subpackage under this.  
+The approved and received files will now be created in the directory `/source/test/resources/` for any test in the same package as this file, or any test in any under this.  
 
 ## PackageLevelSettings
 

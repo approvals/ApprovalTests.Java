@@ -23,9 +23,9 @@
 
 ## Using Alternative Base Directory for Approval Output Files
 
-Q: what if I want my output files to show up under the `/resources/` folder?
+**Q:** what if I want my output files to show up under the `/resources/` folder?
 
-A: you can do that, [here's how](Configuration.md#using-alternative-base-directory-for-approval-output-file)
+**A:** you can do that, [here's how](Configuration.md#alternative-base-directory-for-output-file)
 
 
 ## Using Subdirectories for Approval Output Files
