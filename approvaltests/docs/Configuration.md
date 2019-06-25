@@ -16,8 +16,8 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 - [What is configurable?](#what-is-configurable)
 - [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [ Alternative Base Directory for Output File](#alternative-base-directory-for-output-file)
-- [ PackageLevelSetting](#packagelevelsetting)
+- [Alternative Base Directory for Output File](#alternative-base-directory-for-output-file)
+- [PackageLevelSetting](#packagelevelsetting)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
