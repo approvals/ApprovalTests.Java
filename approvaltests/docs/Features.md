@@ -28,7 +28,9 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Using Alternative Base Directory for Approval Output Files
+
 Q: what if I want my output files to show up under the `/resources/` folder?
+
 A: you can do that, [here's how](Configuration.md#using-alternative-base-directory-for-approval-output-file)
 
 
