@@ -15,12 +15,19 @@ To change this file edit the source file and then run MarkdownSnippets.
 **Contents**
 
 - [Features](#features)
+- [Configuration](#configuration)
 - [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Features
 [New Features documented here](Features.md#top)
+
+## Configuration
+
+Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 
+[Read More about it here](Configuration.md#top)
+
 
 ## Main concepts for ApprovalTests  
 
