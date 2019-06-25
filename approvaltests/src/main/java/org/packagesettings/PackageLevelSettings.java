@@ -85,4 +85,9 @@ public class PackageLevelSettings
   {
     return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
   }
+  public static Object getValueFor(String key)
+  {
+    Settings settings = get().get(key);
+    return settings == null ? null : settings.getValue();
+  }
 }

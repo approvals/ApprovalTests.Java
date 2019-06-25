@@ -2,6 +2,8 @@ package org.approvaltests.namer;
 
 import java.io.File;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
 
@@ -22,7 +24,21 @@ public class StackTraceNamer implements ApprovalNamer
   public String getSourceFilePath()
   {
     String sub = NamerFactory.getSubdirectory();
-    String subdirectory = (sub.isEmpty()) ? "" : sub + File.separator;
-    return info.getSourceFile().getAbsolutePath() + File.separator + subdirectory;
+    String subdirectory = StringUtils.isEmpty(sub) ? "" : sub + File.separator;
+    String baseDir = getBaseDirectory();
+    return baseDir + File.separator + subdirectory;
+  }
+  public String getBaseDirectory()
+  {
+    String baseDir = info.getSourceFile().getAbsolutePath();
+    if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
+    {
+      String packageName = info.getFullClassName().substring(0, info.getFullClassName().lastIndexOf("."));
+      String packagepath = packageName.replace('.', File.separatorChar);
+      String currentBase = baseDir.substring(0, baseDir.indexOf(packagepath));
+      String newBase = currentBase + NamerFactory.getApprovalBaseDirectory() + File.separator + packagepath;
+      baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
+    }
+    return baseDir;
   }
 }

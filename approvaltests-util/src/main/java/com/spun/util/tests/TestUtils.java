@@ -276,6 +276,6 @@ public class TestUtils
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     String fileName = element.getFileName();
     File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass(fullClassName), fileName);
-    return new StackTraceReflectionResult(dir, className, element.getMethodName());
+    return new StackTraceReflectionResult(dir, className, fullClassName, element.getMethodName());
   }
 }

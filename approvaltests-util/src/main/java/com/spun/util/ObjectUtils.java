@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.lambda.actions.Action0;
+import org.lambda.functions.Function0WithException;
 
 /**
  * A static class of convenience functions for Manipulating objects
@@ -257,5 +258,16 @@ public class ObjectUtils
       return t;
     }
     return null;
+  }
+  public static <T> T throwAsError(Function0WithException<T> code)
+  {
+    try
+    {
+      return code.call();
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
   }
 }

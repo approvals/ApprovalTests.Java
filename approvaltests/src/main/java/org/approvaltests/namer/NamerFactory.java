@@ -28,6 +28,10 @@ public class NamerFactory
   }
   public static String getSubdirectory()
   {
-    return (String) PackageLevelSettings.get().get("UseApprovalSubdirectory").getValue();
+    return (String) PackageLevelSettings.getValueFor("UseApprovalSubdirectory");
+  }
+  public static String getApprovalBaseDirectory()
+  {
+    return (String) PackageLevelSettings.getValueFor("ApprovalBaseDirectory");
   }
 }
