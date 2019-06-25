@@ -26,13 +26,13 @@ Currently you can configure:
  * ApprovalSubdirectories (package)
 
 ## Using Subdirectories for Approval Output Files
-Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
 
+Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
 snippet: package_settings_approval_subdirectory
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
 
-## Alternative Base Directory for Output Files
+## Alternative Base Directory for Output Files  
 
 Approved and received files can be stored in a different branch of the code base (for example, under the `/resources/` folder).
 
@@ -42,7 +42,7 @@ snippet: package_settings_approval_base_directory
 
 The approved and received files will now be created in the directory `/source/test/resources/` for any test in the same package as this file, or any test in any under this.  
 
-## PackageLevelSettings
+## PackageLevelSettings  
 
 Package Level Settings allows for programmatic setting of configuration at the package level. It follows the principle of least surprise.   
 
