@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
@@ -127,7 +128,7 @@ public class Approvals
   {
     verify(new ApprovalXmlWriter(xml));
   }
-  public static void verify(FileApprover approver, ApprovalFailureReporter reporter)
+  public static void verify(ApprovalApprover approver, ApprovalFailureReporter reporter)
   {
     try
     {
