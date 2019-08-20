@@ -10,7 +10,7 @@ public class AlwaysWorkingReporter implements EnvironmentAwareReporter
     this.wrapped = wrapped;
   }
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     getWrapped().report(received, approved);
   }

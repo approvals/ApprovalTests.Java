@@ -29,7 +29,7 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     return base + Writer.received + ".csv";
   }
   @Override
-  public String writeReceivedFile(String received) throws Exception
+  public String writeReceivedFile(String received)
   {
     String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\n"
         + "\n" + "#foreach ($row in $results)\n"

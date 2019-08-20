@@ -8,7 +8,7 @@ public class ImageWebReporter implements EnvironmentAwareReporter
 {
   public static final ImageWebReporter INSTANCE = new ImageWebReporter();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     String text = "<html><body><center><table border=1><tr><td><img src=\"file:///%s\"></td><td><img src=\"file:///%s\"></td></tr><tr><td>approved</td><td>received</td></tr></table>  %s <br/> <b>to approve :</b> copy clipboard to command window  <br/> <font size=1>%s</font></center></body></html>";
     String moveText = ClipboardReporter.getAcceptApprovalText(received, approved);

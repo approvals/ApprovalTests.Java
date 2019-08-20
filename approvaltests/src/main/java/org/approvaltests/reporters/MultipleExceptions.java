@@ -2,6 +2,8 @@ package org.approvaltests.reporters;
 
 import java.util.ArrayList;
 
+import com.spun.util.ObjectUtils;
+
 public class MultipleExceptions extends RuntimeException
 {
   private static final long    serialVersionUID = 1L;
@@ -15,7 +17,7 @@ public class MultipleExceptions extends RuntimeException
   {
     return exceptions.toArray(new Throwable[0]);
   }
-  public static void rethrowExceptions(ArrayList<Throwable> exceptions) throws Exception
+  public static void rethrowExceptions(ArrayList<Throwable> exceptions)
   {
     if (exceptions.size() == 0)
     {
@@ -24,7 +26,7 @@ public class MultipleExceptions extends RuntimeException
     else if (exceptions.size() == 1)
     {
       Throwable t = exceptions.get(0);
-      if (t instanceof Exception) { throw ((Exception) t); }
+      if (t instanceof Exception) { throw ObjectUtils.throwAsError((Exception) t); }
       throw (Error) t;
     }
     else

@@ -14,7 +14,7 @@ import com.spun.util.WindowUtils;
 public class ClipboardReporter implements EnvironmentAwareReporter
 {
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     WindowUtils.copyToClipBoard(getCommandLine(received, approved), false);
   }

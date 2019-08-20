@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 
 import org.approvaltests.core.ApprovalWriter;
 
+import com.spun.util.ObjectUtils;
+
 public class ImageApprovalWriter implements ApprovalWriter
 {
   private final BufferedImage image;
@@ -15,9 +17,9 @@ public class ImageApprovalWriter implements ApprovalWriter
     this.image = image;
   }
   @Override
-  public String writeReceivedFile(String received) throws Exception
+  public String writeReceivedFile(String received)
   {
-    ImageIO.write(image, "png", new File(received));
+    ObjectUtils.throwAsError(() -> ImageIO.write(image, "png", new File(received)));
     return received;
   }
   @Override

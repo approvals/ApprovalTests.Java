@@ -1,13 +1,13 @@
 package org.approvaltests.reporters;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
@@ -53,18 +53,25 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
         info.fileExtensions);
   }
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(diffProgramNotFoundMessage); }
     FileUtils.createIfNeeded(approved);
     launch(received, approved);
   }
-  private void launch(String received, String approved) throws IOException
+  private void launch(String received, String approved)
   {
-    ProcessBuilder builder = new ProcessBuilder(getCommandLine(received, approved));
-    preventProcessFromClosing(builder);
-    builder.start();
-    ThreadUtils.sleep(800); //Give program time to start
+    try
+    {
+      ProcessBuilder builder = new ProcessBuilder(getCommandLine(received, approved));
+      preventProcessFromClosing(builder);
+      builder.start();
+      ThreadUtils.sleep(800); //Give program time to start}
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private void preventProcessFromClosing(ProcessBuilder builder)
   {

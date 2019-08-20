@@ -18,7 +18,7 @@ public class MultiReporter implements ApprovalFailureReporter
     this.reporters = Arrays.asList(reporters);
   }
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     ArrayList<Throwable> exceptions = new ArrayList<Throwable>();
     for (ApprovalFailureReporter reporter : reporters)

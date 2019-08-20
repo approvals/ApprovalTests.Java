@@ -16,7 +16,7 @@ public class FileApprovalWriter implements ApprovalWriter
     extensionWithDot = FileUtils.getExtensionWithDot(newFile.getName());
   }
   @Override
-  public String writeReceivedFile(String received) throws Exception
+  public String writeReceivedFile(String received)
   {
     return newFile.getAbsolutePath();
   }

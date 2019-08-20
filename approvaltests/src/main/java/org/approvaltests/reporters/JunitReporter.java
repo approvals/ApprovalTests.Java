@@ -11,7 +11,7 @@ public class JunitReporter implements EnvironmentAwareReporter
 {
   public static final JunitReporter INSTANCE = new JunitReporter();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
     String rText = FileUtils.readFile(received);

@@ -4,7 +4,7 @@ public class PitReporter implements EnvironmentAwareReporter
 {
   public static final PitReporter INSTANCE = new PitReporter();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     // do nothing!
   }

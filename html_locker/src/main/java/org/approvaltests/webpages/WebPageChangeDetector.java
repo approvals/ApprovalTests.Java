@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -69,14 +68,7 @@ public class WebPageChangeDetector implements ActionListener
   }
   private boolean verifyFiles(String approvedFile, String recievedFile)
   {
-    try
-    {
-      return FileApprover.approveTextFile(new File(approvedFile), new File(recievedFile));
-    }
-    catch (IOException e)
-    {
-      throw ObjectUtils.throwAsError(e);
-    }
+    return FileApprover.approveTextFile(new File(approvedFile), new File(recievedFile));
   }
   private String getRecievedFile()
   {

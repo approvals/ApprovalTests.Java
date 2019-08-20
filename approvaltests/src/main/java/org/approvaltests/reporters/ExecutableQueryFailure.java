@@ -1,7 +1,6 @@
 package org.approvaltests.reporters;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -18,13 +17,13 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
   {
     this.query = query;
   }
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     ApprovalFailureReporter reporter = ReporterFactory.get();
     reporter.report(runQueryAndGetPath(received), runQueryAndGetPath(approved));
     reporter.report(received, approved);
   }
-  private String runQueryAndGetPath(String filename) throws IOException, Exception
+  private String runQueryAndGetPath(String filename)
   {
     if (!new File(filename).exists()) { return filename; }
     String newQuery = FileUtils.readFile(filename).trim();
@@ -35,7 +34,7 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     return newFile.getAbsolutePath();
   }
   @Override
-  public void cleanUp(String received, String approved) throws Exception
+  public void cleanUp(String received, String approved)
   {
     new File(received + FILE_ADDITION).delete();
     new File(approved + FILE_ADDITION).delete();

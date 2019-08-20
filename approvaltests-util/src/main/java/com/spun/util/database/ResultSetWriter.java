@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.spun.util.ObjectUtils;
+
 public class ResultSetWriter
 {
   public static String toString(ResultSet rs) throws SQLException
@@ -22,30 +24,44 @@ public class ResultSetWriter
     return sb.toString();
   }
   /***********************************************************************/
-  public static List<String[]> extractResults(ResultSet rs) throws SQLException
+  public static List<String[]> extractResults(ResultSet rs)
   {
-    int columns = rs.getMetaData().getColumnCount();
-    ArrayList<String[]> found = new ArrayList<String[]>();
-    while (rs.next())
+    try
     {
-      String rowData[] = new String[columns];
-      for (int i = 1; i <= columns; i++)
+      int columns = rs.getMetaData().getColumnCount();
+      ArrayList<String[]> found = new ArrayList<String[]>();
+      while (rs.next())
       {
-        rowData[i - 1] = rs.getString(i);
+        String rowData[] = new String[columns];
+        for (int i = 1; i <= columns; i++)
+        {
+          rowData[i - 1] = rs.getString(i);
+        }
+        found.add(rowData);
       }
-      found.add(rowData);
+      return found;
     }
-    return found;
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   /***********************************************************************/
-  public static List<String> extractMetaData(ResultSet rs) throws SQLException
+  public static List<String> extractMetaData(ResultSet rs)
   {
-    ResultSetMetaData meta = rs.getMetaData();
-    ArrayList<String> titles = new ArrayList<String>(meta.getColumnCount());
-    for (int i = 1; i <= meta.getColumnCount(); i++)
+    try
     {
-      titles.add(meta.getColumnName(i));
+      ResultSetMetaData meta = rs.getMetaData();
+      ArrayList<String> titles = new ArrayList<String>(meta.getColumnCount());
+      for (int i = 1; i <= meta.getColumnCount(); i++)
+      {
+        titles.add(meta.getColumnName(i));
+      }
+      return titles;
     }
-    return titles;
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
 }

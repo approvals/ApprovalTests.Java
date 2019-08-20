@@ -23,7 +23,7 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
     return new AlwaysWorkingReporter(last);
   }
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     for (EnvironmentAwareReporter reporter : reporters)
     {

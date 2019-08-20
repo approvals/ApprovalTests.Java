@@ -4,7 +4,7 @@ public class QuietReporter implements EnvironmentAwareReporter
 {
   public static final QuietReporter INSTANCE = new QuietReporter();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     System.out.println(ClipboardReporter.getAcceptApprovalText(received, approved));
   }

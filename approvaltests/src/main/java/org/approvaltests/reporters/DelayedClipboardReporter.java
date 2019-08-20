@@ -14,7 +14,7 @@ public class DelayedClipboardReporter implements EnvironmentAwareReporter
 {
   private static StringBuffer text = new StringBuffer();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     String commandLine = ClipboardReporter.getCommandLine(received, approved);
     text.append(commandLine + StringUtils.NEW_LINE);

@@ -11,7 +11,7 @@ public class TestNgReporter implements EnvironmentAwareReporter
 {
   public static final TestNgReporter INSTANCE = new TestNgReporter();
   @Override
-  public void report(String received, String approved) throws Exception
+  public void report(String received, String approved)
   {
     if (!isWorkingInThisEnvironment(received))
     {

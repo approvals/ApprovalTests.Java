@@ -1,11 +1,11 @@
 package org.approvaltests.reporters.tests;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.MultiReporter;
+
+import junit.framework.TestCase;
 
 public class ReporterChainingTest extends TestCase
 {
@@ -13,7 +13,7 @@ public class ReporterChainingTest extends TestCase
   {
     public boolean run = false;
     @Override
-    public void report(String received, String approved) throws Exception
+    public void report(String received, String approved)
     {
       run = true;
       throw new Error("Error");
@@ -27,7 +27,7 @@ public class ReporterChainingTest extends TestCase
   public static class NonWorkingReporter implements EnvironmentAwareReporter
   {
     @Override
-    public void report(String received, String approved) throws Exception
+    public void report(String received, String approved)
     {
     }
     @Override
@@ -40,7 +40,7 @@ public class ReporterChainingTest extends TestCase
   {
     public String received;
     @Override
-    public void report(String received, String approved) throws Exception
+    public void report(String received, String approved)
     {
       this.received = received;
     }

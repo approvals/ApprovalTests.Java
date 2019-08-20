@@ -45,7 +45,7 @@ public class ComponentApprovalWriter implements ApprovalWriter
     return image.getReceivedFilename(base);
   }
   @Override
-  public String writeReceivedFile(String filename) throws Exception
+  public String writeReceivedFile(String filename)
   {
     return image.writeReceivedFile(filename);
   }

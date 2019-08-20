@@ -13,7 +13,7 @@ public class ReportInjectionTest extends TestCase
   public static class MyReporter implements ApprovalFailureReporter
   {
     @Override
-    public void report(String received, String approved) throws Exception
+    public void report(String received, String approved)
     {
       called = getClass();
     }

@@ -68,7 +68,7 @@ public class TestUtils
     return Long.toString(Math.abs(random.nextLong()), 36);
   }
   /***********************************************************************/
-  public static void displayHtml(String htmlOutput) throws FileNotFoundException, IOException, InterruptedException
+  public static void displayHtml(String htmlOutput)
   {
     displayHtml(null, ".html", htmlOutput, 3);
   }
@@ -90,15 +90,21 @@ public class TestUtils
   }
   /***********************************************************************/
   public static void displayHtml(String outputFile, String fileExtention, String htmlOutput, int secondsTimeout)
-      throws FileNotFoundException, IOException, InterruptedException
   {
-    File file = (outputFile == null) ? File.createTempFile("temp", fileExtention) : new File(outputFile);
-    FileUtils.writeFile(file, htmlOutput);
-    displayHtmlFile(file);
-    Thread.sleep(secondsTimeout * 1000);
-    if (outputFile == null)
+    try
     {
-      file.deleteOnExit();
+      File file = (outputFile == null) ? File.createTempFile("temp", fileExtention) : new File(outputFile);
+      FileUtils.writeFile(file, htmlOutput);
+      displayHtmlFile(file);
+      Thread.sleep(secondsTimeout * 1000);
+      if (outputFile == null)
+      {
+        file.deleteOnExit();
+      }
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   /***********************************************************************/

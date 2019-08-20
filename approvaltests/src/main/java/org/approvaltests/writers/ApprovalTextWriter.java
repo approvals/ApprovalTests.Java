@@ -16,7 +16,7 @@ public class ApprovalTextWriter implements ApprovalWriter
     this.fileExtensionWithoutDot = fileExtensionWithoutDot;
   }
   @Override
-  public String writeReceivedFile(String received) throws Exception
+  public String writeReceivedFile(String received)
   {
     FileUtils.writeFile(new File(received), text);
     return received;
@@ -24,11 +24,11 @@ public class ApprovalTextWriter implements ApprovalWriter
   @Override
   public String getApprovalFilename(String base)
   {
-    return base + Writer.approved + "."+ fileExtensionWithoutDot;
+    return base + Writer.approved + "." + fileExtensionWithoutDot;
   }
   @Override
   public String getReceivedFilename(String base)
   {
-    return base + Writer.received + "."+fileExtensionWithoutDot;
+    return base + Writer.received + "." + fileExtensionWithoutDot;
   }
 }
