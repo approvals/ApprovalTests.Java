@@ -9,24 +9,39 @@ To change this file edit the source file and then execute ./run_markdown_templat
 
 # Features
 
+<!-- toc -->
+## Contents
+
+  * [Customer Approvers](#customer-approvers)
+  * [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
+  * [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
+  * [PackageLevelSettings](#packagelevelsettings)
+  * [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
+  * [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
+  * [Test Commit Revert (TCR)](#test-commit-revert-tcr)
+    * [Method 1 - extend class](#method-1---extend-class)
+    * [Method 2 - use Runner](#method-2---use-runner)
+    * [Results](#results)
+    * [Usage](#usage)
+<!-- endtoc -->
 
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
 
-- [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
-- [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [PackageLevelSettings](#packagelevelsettings)
-- [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
-- [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
-- [Test Commit Revert (TCR)](#test-commit-revert-tcr)
-  - [Method 1 - extend class](#method-1---extend-class)
-  - [Method 2 - use Runner](#method-2---use-runner)
-  - [Results](#results)
-  - [Usage](#usage)
+## Customer Approvers
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+If you want to customize how approvaltests decides if two files are equal, you can pass in your own deciding function.
+
+<!-- snippet: custom_approver -->
+<a id='snippet-custom_approver'/></a>
+```java
+ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", "txt");
+ApprovalNamer namer = Approvals.createApprovalNamer();
+Function2<File, File, Boolean> approveEverything = (r, a) -> true;
+Approvals.verify(new FileApprover(writer, namer, approveEverything));
+```
+<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/approvers/tests/FileApproverTest.java#L52-L57) / [anchor](#snippet-custom_approver)</sup>
+<!-- endsnippet -->
+
 
 ## Using Alternative Base Directory for Approval Output Files
 

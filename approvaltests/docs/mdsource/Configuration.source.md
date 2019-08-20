@@ -2,19 +2,7 @@
 
 # Configuration
 
-
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [What is configurable?](#what-is-configurable)
-- [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [ Alternative Base Directory for Output File](#alternative-base-directory-for-output-files)
-- [ PackageLevelSetting](#packagelevelsettings)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
+toc
 
 ## What is configurable?
 Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 

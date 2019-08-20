@@ -9,18 +9,14 @@ To change this file edit the source file and then execute ./run_markdown_templat
 
 # Configuration
 
+<!-- toc -->
+## Contents
 
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [What is configurable?](#what-is-configurable)
-- [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [ Alternative Base Directory for Output File](#alternative-base-directory-for-output-files)
-- [ PackageLevelSetting](#packagelevelsettings)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+  * [What is configurable?](#what-is-configurable)
+  * [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
+  * [Alternative Base Directory for Output Files](#alternative-base-directory-for-output-files)
+  * [PackageLevelSettings](#packagelevelsettings)
+<!-- endtoc -->
 
 
 ## What is configurable?

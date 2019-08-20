@@ -2,24 +2,15 @@
 
 # Features
 
+toc
 
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
+## Customer Approvers
 
-- [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
-- [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
-- [PackageLevelSettings](#packagelevelsettings)
-- [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
-- [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
-- [Test Commit Revert (TCR)](#test-commit-revert-tcr)
-  - [Method 1 - extend class](#method-1---extend-class)
-  - [Method 2 - use Runner](#method-2---use-runner)
-  - [Results](#results)
-  - [Usage](#usage)
+If you want to customize how approvaltests decides if two files are equal, you can pass in your own deciding function.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+snippet: custom_approver
+
 
 ## Using Alternative Base Directory for Approval Output Files
 

@@ -2,17 +2,7 @@
 
 # ApprovalTests 
 
-
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Features](#features)
-- [Configuration](#configuration)
-- [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+toc 
 
 ## Features
 [New Features documented here](Features.md#top)

@@ -4,8 +4,8 @@ import org.approvaltests.core.ApprovalFailureReporter;
 
 public interface ApprovalApprover
 {
-  boolean approve() throws Exception;
-  public void cleanUpAfterSuccess(ApprovalFailureReporter reporter) throws Exception;
+  boolean approve();
+  public void cleanUpAfterSuccess(ApprovalFailureReporter reporter);
   void fail();
-  void reportFailure(ApprovalFailureReporter reporter) throws Exception;
+  void reportFailure(ApprovalFailureReporter reporter);
 }

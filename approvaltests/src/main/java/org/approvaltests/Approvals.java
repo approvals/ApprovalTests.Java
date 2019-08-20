@@ -128,23 +128,20 @@ public class Approvals
   {
     verify(new ApprovalXmlWriter(xml));
   }
+  public static void verify(ApprovalApprover approver)
+  {
+    verify(approver, getReporter());
+  }
   public static void verify(ApprovalApprover approver, ApprovalFailureReporter reporter)
   {
-    try
+    if (!approver.approve())
     {
-      if (!approver.approve())
-      {
-        approver.reportFailure(reporter);
-        approver.fail();
-      }
-      else
-      {
-        approver.cleanUpAfterSuccess(reporter);
-      }
+      approver.reportFailure(reporter);
+      approver.fail();
     }
-    catch (Exception e)
+    else
     {
-      throw ObjectUtils.throwAsError(e);
+      approver.cleanUpAfterSuccess(reporter);
     }
   }
   public static void verify(ExecutableQuery query)
