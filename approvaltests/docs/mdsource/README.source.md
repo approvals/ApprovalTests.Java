@@ -1,10 +1,11 @@
 <a id="top"></a>
 
-# ApprovalTests 
+# ApprovalTests
 
-toc 
+toc
 
 ## Features
+
 [New Features documented here](Features.md#top)
 
 ## Configuration

@@ -7,11 +7,19 @@ To change this file edit the source file and then execute ./run_markdown_templat
 
 <a id="top"></a>
 
-# ApprovalTests 
+# ApprovalTests
 
-toc 
+<!-- toc -->
+## Contents
+
+  * [Features](#features)
+  * [Configuration](#configuration)
+  * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)
+<!-- endtoc -->
+
 
 ## Features
+
 [New Features documented here](Features.md#top)
 
 ## Configuration
