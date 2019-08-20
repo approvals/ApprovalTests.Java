@@ -16,13 +16,13 @@ public class ArrayUtilsTest
   @Test
   public void testAddManyToArray() throws Exception
   {
-    // startcode add_to_array
+    // begin-snippet: add_to_array
     Integer[] numbers = {1, 2, 3};
     numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
-    // endcode
-    // startcode add_to_array_result
+    // end-snippet
+    // begin-snippet: add_to_array_result
     Integer[] resulting = {1, 2, 3, 4, 5, 6};
-    // endcode
+    // end-snippet
     assertArrayEquals(resulting, numbers);
   }
   @Test

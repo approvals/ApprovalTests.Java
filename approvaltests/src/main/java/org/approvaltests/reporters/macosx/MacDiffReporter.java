@@ -9,7 +9,7 @@ public class MacDiffReporter extends FirstWorkingReporter
   public MacDiffReporter()
   {
     super(
-        // startcode mac_diff_reporters
+        // begin-snippet: mac_diff_reporters
         BeyondCompareMacReporter.INSTANCE,
         DiffMergeReporter.INSTANCE,
         KaleidoscopeDiffReporter.INSTANCE,
@@ -18,7 +18,7 @@ public class MacDiffReporter extends FirstWorkingReporter
         TkDiffReporter.INSTANCE,
         IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE
-    // endcode
+    // end-snippet
     );
   }
 }

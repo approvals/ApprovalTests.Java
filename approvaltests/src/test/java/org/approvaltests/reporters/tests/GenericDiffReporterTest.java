@@ -24,9 +24,9 @@ import com.spun.util.SystemUtils;
 
 public class GenericDiffReporterTest
 {
-  // startcode use_reporter_single
+  // begin-snippet: use_reporter_single
   @UseReporter(DiffMergeReporter.class)
-  // endcode
+  // end-snippet
   @Test
   public void testArguementParsing() throws Exception
   {

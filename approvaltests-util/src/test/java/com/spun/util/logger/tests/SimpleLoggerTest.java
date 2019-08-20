@@ -32,8 +32,8 @@ public class SimpleLoggerTest
   }
   public void sample()
   {
-    // startcode log_nothing
+    // begin-snippet: log_nothing
     SimpleLogger.logToNothing();
-    // endcode 
+    // end-snippet 
   }
 }

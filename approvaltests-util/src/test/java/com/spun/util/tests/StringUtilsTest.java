@@ -49,18 +49,18 @@ public class StringUtilsTest extends TestCase
   /***********************************************************************/
   public void testJoinCollection()
   {
-    // startcode join_collection
+    // begin-snippet: join_collection
     List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
     String text = StringUtils.join(number, ", ");
-    // endcode
+    // end-snippet
     Approvals.verify(text);
   }
   public void testJoinCollectionWithFunction()
   {
-    // startcode join_collection_with_lambda
+    // begin-snippet: join_collection_with_lambda
     List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
     String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
-    // endcode
+    // end-snippet
     Approvals.verify(text);
   }
   public void testReplace()

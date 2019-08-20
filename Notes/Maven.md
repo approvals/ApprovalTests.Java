@@ -11,7 +11,7 @@ Deploy to maven:
 * Deploy release  
  * Remove -SNAPSHOT in all the pox.xml Files
  ```
- mvn versions:set -DnewVersion=3.2.1-SNAPSHOT
+ mvn versions:set -DnewVersion=4.0.1-SNAPSHOT
  ```
 
 * Run
@@ -21,7 +21,7 @@ Deploy to maven:
   * check here: https://oss.sonatype.org/content/repositories/releases/com/approvaltests/approvaltests/
   * update sample code for maven in README.md
   * update the starter project
-  * update koans
+  * update koans (turn to maven please)
   * Update to next version
   * bump version and add -SNAPSHOT in all the pox.xml Files
   * update docs

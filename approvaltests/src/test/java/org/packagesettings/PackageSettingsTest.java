@@ -10,9 +10,9 @@ public class PackageSettingsTest
   @Test
   public void testRetriveValue() throws Exception
   {
-    // startcode package_level_settings_get
+    // begin-snippet: package_level_settings_get
     Map<String, Settings> settings = PackageLevelSettings.get();
-    // endcode
+    // end-snippet
     Approvals.verify(settings);
   }
 }

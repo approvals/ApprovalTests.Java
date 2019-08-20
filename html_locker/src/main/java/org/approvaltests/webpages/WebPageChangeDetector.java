@@ -68,7 +68,7 @@ public class WebPageChangeDetector implements ActionListener
   }
   private boolean verifyFiles(String approvedFile, String recievedFile)
   {
-    return FileApprover.approveTextFile(new File(approvedFile), new File(recievedFile));
+    return FileApprover.approveTextFile(new File(recievedFile), new File(approvedFile));
   }
   private String getRecievedFile()
   {

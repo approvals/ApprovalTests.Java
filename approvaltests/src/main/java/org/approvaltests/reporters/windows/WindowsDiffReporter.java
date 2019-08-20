@@ -9,7 +9,7 @@ public class WindowsDiffReporter extends FirstWorkingReporter
   public WindowsDiffReporter()
   {
     super(
-        // startcode windows_diff_reporters
+        // begin-snippet: windows_diff_reporters
         TortoiseDiffReporter.INSTANCE,
         BeyondCompareReporter.INSTANCE,
         WinMergeReporter.INSTANCE,
@@ -18,7 +18,7 @@ public class WindowsDiffReporter extends FirstWorkingReporter
         KDiff3Reporter.INSTANCE,
         IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE
-    // endcode
+    // end-snippet
     );
   }
 }

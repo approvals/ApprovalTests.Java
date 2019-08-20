@@ -8,9 +8,9 @@ import org.junit.Test;
 
 import machine_specific_tests.MachineSpecificTest;
 
-// startcode use_reporter_multiple
+// begin-snippet: use_reporter_multiple
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
-// endcode 
+// end-snippet 
 public class Samples extends MachineSpecificTest
 {
   @Test

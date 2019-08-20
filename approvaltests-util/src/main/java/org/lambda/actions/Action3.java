@@ -7,7 +7,7 @@ public interface Action3<In1, In2, In3>
     return (In1, In2, In3) -> {
     };
   }
-  // startcode action3_call
+  // begin-snippet: action3_call
   public void call(In1 a, In2 b, In3 c);
-  // endcode
+  // end-snippet
 }

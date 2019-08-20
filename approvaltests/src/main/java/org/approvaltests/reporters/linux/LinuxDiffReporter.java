@@ -10,11 +10,11 @@ public class LinuxDiffReporter extends FirstWorkingReporter
   public LinuxDiffReporter()
   {
     super(
-        // startcode linux_diff_reporters
+        // begin-snippet: linux_diff_reporters
         DiffMergeReporter.INSTANCE, 
         MeldMergeReporter.INSTANCE, 
         IntelliJReporter.INSTANCE
-    // endcode
+    // end-snippet
     );
   }
 }

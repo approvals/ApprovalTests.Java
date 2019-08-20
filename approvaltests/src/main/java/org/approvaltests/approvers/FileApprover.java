@@ -51,11 +51,11 @@ public class FileApprover implements ApprovalApprover
     throw new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
         received.getAbsolutePath()));
   }
-  public static Boolean approveTextFile(File expected, File actual)
+  public static Boolean approveTextFile(File received, File approved)
   {
-    if (!expected.exists() || !actual.exists()) { return false; }
-    String t1 = FileUtils.readFile(expected);
-    String t2 = FileUtils.readFile(actual);
+    if (!approved.exists() || !received.exists()) { return false; }
+    String t1 = FileUtils.readFile(approved);
+    String t2 = FileUtils.readFile(received);
     return ObjectUtils.isEqual(t1, t2);
   }
 }

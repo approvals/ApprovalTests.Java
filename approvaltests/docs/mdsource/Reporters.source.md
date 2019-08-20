@@ -2,23 +2,7 @@
 
 # Reporters
 
-
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Supported Diff Tools](#supported-diff-tools)
-  - [Mac](#mac)
-  - [Windows](#windows)
-  - [Linux](#linux)
-- [Configuring a Reporter](#configuring-a-reporter)
-  - [Class and Method level](#class-and-method-level)
-  - [Package Level](#package-level)
-- [Custom Reporters](#custom-reporters)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
+toc
 
 ## Supported Diff Tools
 
