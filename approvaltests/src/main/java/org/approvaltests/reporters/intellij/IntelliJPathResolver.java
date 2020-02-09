@@ -28,7 +28,7 @@ public class IntelliJPathResolver
     {
       appData = System.getenv("HOME");
       appData += "/Library/Application Support";
-      runtimeSuffix = "/bin/idea";
+      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
     }
     else // Linux
     {
