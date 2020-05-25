@@ -24,16 +24,26 @@ public class VelocityUtilsTest
   @Test
   public void testDate()
   {
-      TimeZone tz = TimeZone.getDefault();
-      TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    try (ConsistentTimeZone tz = new ConsistentTimeZone()) {
       Timestamp date = DateUtils.parse("2001/02/03");
-      // if you are in CET then set the timezone to EST it changes the date to the day before!
-      //TemplateDate templateDate = ParserCommons.asDate(date);
-      //System.out.println(templateDate.getDate("SHORT", "EST"));
-      //System.out.println(templateDate.getTime("SHORT", "EST"));
       VelocityApprovals.verify(c -> {
         c.put("date", date);
-    });
-      TimeZone.setDefault(tz);
+      });
+    }
+  }
+
+  static class ConsistentTimeZone implements AutoCloseable {
+
+    private final TimeZone tz;
+
+    public ConsistentTimeZone() {
+        tz = TimeZone.getDefault();
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
+
+    @Override
+    public void close() {
+        TimeZone.setDefault(tz);
+    }
   }
 }
