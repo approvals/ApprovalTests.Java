@@ -19,9 +19,7 @@ To change this file edit the source file and then execute ./run_markdown_templat
   * [Configuring a Reporter](#configuring-a-reporter)
     * [Class and Method level](#class-and-method-level)
     * [Package Level](#package-level)
-  * [Custom Reporters](#custom-reporters)
-<!-- endtoc -->
-
+  * [Custom Reporters](#custom-reporters)<!-- endtoc -->
 
 ## Supported Diff Tools
 
@@ -42,7 +40,7 @@ TkDiffReporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21) / [anchor](#snippet-mac_diff_reporters)</sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21' title='File snippet `mac_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Navigate to start of snippet `mac_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
@@ -60,7 +58,7 @@ KDiff3Reporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21) / [anchor](#snippet-windows_diff_reporters)</sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21' title='File snippet `windows_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Navigate to start of snippet `windows_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ### Linux
@@ -72,7 +70,7 @@ DiffMergeReporter.INSTANCE,
 MeldMergeReporter.INSTANCE, 
 IntelliJReporter.INSTANCE
 ```
-<sup>[snippet source](/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17) / [anchor](#snippet-linux_diff_reporters)</sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='File snippet `linux_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Navigate to start of snippet `linux_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ## Configuring a Reporter
@@ -88,7 +86,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 ```java
 @UseReporter(DiffMergeReporter.class)
 ```
-<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/reporters/tests/GenericDiffReporterTest.java#L27-L29) / [anchor](#snippet-use_reporter_single)</sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/tests/GenericDiffReporterTest.java#L27-L29' title='File snippet `use_reporter_single` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Navigate to start of snippet `use_reporter_single`'>anchor</a></sup>
 <!-- endsnippet -->
 
 <!-- snippet: use_reporter_multiple -->
@@ -96,7 +94,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 ```java
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 ```
-<sup>[snippet source](/approvaltests/src/test/java/machine_specific_tests/approvaltests/tests/Samples.java#L11-L13) / [anchor](#snippet-use_reporter_multiple)</sup>
+<sup><a href='/approvaltests/src/test/java/machine_specific_tests/approvaltests/tests/Samples.java#L11-L13' title='File snippet `use_reporter_multiple` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_multiple' title='Navigate to start of snippet `use_reporter_multiple`'>anchor</a></sup>
 <!-- endsnippet -->
 
 *Note*: If you use multiple reporters ALL of them will report. Not just the first one.
@@ -115,7 +113,7 @@ public class PackageSettings
   public static CountingReporter FrontloadedReporter = new CountingReporter();
 }
 ```
-<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11) / [anchor](#snippet-use_reporter_package_settings)</sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='File snippet `use_reporter_package_settings` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Navigate to start of snippet `use_reporter_package_settings`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ## Custom Reporters
@@ -136,7 +134,7 @@ public class CustomReporter extends GenericDiffReporter
   }
 }
 ```
-<sup>[snippet source](/approvaltests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L4-L14) / [anchor](#snippet-custom_reporter)</sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L4-L14' title='File snippet `custom_reporter` was extracted from'>snippet source</a> | <a href='#snippet-custom_reporter' title='Navigate to start of snippet `custom_reporter`'>anchor</a></sup>
 <!-- endsnippet -->
 
 

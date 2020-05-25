@@ -34,7 +34,7 @@ For Example Function3 has the single method :
 ```java
 public Out call(In1 a, In2 b, In3 c);
 ```
-<sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7) / [anchor](#snippet-function3_call)</sup>
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7' title='File snippet `function3_call` was extracted from'>snippet source</a> | <a href='#snippet-function3_call' title='Navigate to start of snippet `function3_call`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  
@@ -57,7 +57,7 @@ For Example Action3 has the single method:
 ```java
 public void call(In1 a, In2 b, In3 c);
 ```
-<sup>[snippet source](/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12) / [anchor](#snippet-action3_call)</sup>
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='File snippet `action3_call` was extracted from'>snippet source</a> | <a href='#snippet-action3_call' title='Navigate to start of snippet `action3_call`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  
@@ -100,7 +100,7 @@ java.lang.Error -  null
    <= SimpleLoggerTest.test() - OUT
 <= SimpleLoggerTest.test() - OUT
 ```
-<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt#L1-L18) / [anchor](#snippet-/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt)</sup>
+<sup><a href='/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt#L1-L18' title='File snippet `/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt' title='Navigate to start of snippet `/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt`'>anchor</a></sup>
 <!-- endsnippet -->
 
 if you want to turn them all off just run
@@ -110,7 +110,7 @@ if you want to turn them all off just run
 ```java
 SimpleLogger.logToNothing();
 ```
-<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.java#L35-L37) / [anchor](#snippet-log_nothing)</sup>
+<sup><a href='/approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.java#L35-L37' title='File snippet `log_nothing` was extracted from'>snippet source</a> | <a href='#snippet-log_nothing' title='Navigate to start of snippet `log_nothing`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ## NullLogger
@@ -126,7 +126,7 @@ Sometimes you wish you could add to an array the same way you can add to a list.
 Integer[] numbers = {1, 2, 3};
 numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
 ```
-<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L19-L22) / [anchor](#snippet-add_to_array)</sup>
+<sup><a href='/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L19-L22' title='File snippet `add_to_array` was extracted from'>snippet source</a> | <a href='#snippet-add_to_array' title='Navigate to start of snippet `add_to_array`'>anchor</a></sup>
 <!-- endsnippet -->
 
 will result in a new copy of the array with the added items
@@ -135,7 +135,7 @@ will result in a new copy of the array with the added items
 ```java
 Integer[] resulting = {1, 2, 3, 4, 5, 6};
 ```
-<sup>[snippet source](/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L23-L25) / [anchor](#snippet-add_to_array_result)</sup>
+<sup><a href='/approvaltests-util/src/test/java/com/spun/util/tests/ArrayUtilsTest.java#L23-L25' title='File snippet `add_to_array_result` was extracted from'>snippet source</a> | <a href='#snippet-add_to_array_result' title='Navigate to start of snippet `add_to_array_result`'>anchor</a></sup>
 <!-- endsnippet -->
 
 [Back to User Guide](README.md#top)

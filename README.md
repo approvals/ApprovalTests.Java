@@ -5,6 +5,7 @@ Source File: /README.source.md
 To change this file edit the source file and then execute ./run_markdown_templates.sh.
 -->
 
+![run tests](https://github.com/LarsEckart/ApprovalTests.Java/workflows/run%20tests/badge.svg)
 
 <!-- toc -->
 ## Contents
@@ -18,9 +19,7 @@ To change this file edit the source file and then execute ./run_markdown_templat
   * [Approved File Artifacts](#approved-file-artifacts)
   * [More Info](#more-info)
   * [LICENSE](#license)
-  * [Developer notes](#developer-notes)
-<!-- endtoc -->
-
+  * [Developer notes](#developer-notes)<!-- endtoc -->
 
 # ApprovalTests.Java
 
@@ -68,10 +67,10 @@ add this to your pom file:
 
 or [download the jars from maven central repository](https://repo1.maven.org/maven2/com/approvaltests/approvaltests/)
 
-[Video Tutorials](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
+[Video Tutorials](https://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
 
-You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](http://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube.  
+You can watch a bunch of short videos on getting started and [using ApprovalTests in Java](https://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all) at youtube.
 
 *Note*: There are a lot of videos about ApprovalTests in .Net They are equally useful for understanding the concepts despite being in a different programming language.
 
@@ -80,9 +79,9 @@ You can watch a bunch of short videos on getting started and [using ApprovalTest
 If you prefer auditory learning, you might enjoy the following podcast (Note: Some of these talk about the .net side)
 
 - [Cucumber Podcast](https://cucumber.io/blog/2017/01/26/approval-testing)
-- [Hanselminutes](http://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
-- [Herding Code](http://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
-- [The Watir Podcast](http://watirpodcast.com/podcast-53/)
+- [Hanselminutes](https://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
+- [Herding Code](https://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
+- [The Watir Podcast](https://watirpodcast.com/podcast-53/)
 
 
 
@@ -128,8 +127,8 @@ The suggested fix is to add
 ## More Info
 
 
-- [Website](http://approvaltests.com/)
-- [Blog](http://blog.approvaltests.com/)
+- [Website](https://approvaltests.org/)
+- [Blog](https://blog.approvaltests.org/)
 - [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/blob/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20GettingStarted.md)
 
 
