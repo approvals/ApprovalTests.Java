@@ -1,6 +1,7 @@
 package com.spun.util.parser.tests;
 
 import com.spun.util.DateUtils;
+//import org.approvaltests.utils.WithTimeZone;
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.Test;
 
@@ -23,13 +24,15 @@ public class VelocityUtilsTest
   @Test
   public void testDate()
   {
+    /*
+    try (WithTimeZone tz = new WithTimeZone()) {
       Timestamp date = DateUtils.parse("2001/02/03");
-      // if you are in CET then set the timezone to EST it changes the date to the day before!
-      //TemplateDate templateDate = ParserCommons.asDate(date);
-      //System.out.println(templateDate.getDate("SHORT", "EST"));
-      //System.out.println(templateDate.getTime("SHORT", "EST"));
       VelocityApprovals.verify(c -> {
         c.put("date", date);
-    });
+      });
+    }
+
+     */
   }
+
 }
