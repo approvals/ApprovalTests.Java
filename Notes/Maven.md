@@ -10,8 +10,8 @@ Deploy to maven:
   * https://mvnrepository.com/artifact/com.approvaltests/approvaltests/
 * Deploy release  
  * Remove -SNAPSHOT in all the pox.xml Files
- ```
- mvn versions:set -DnewVersion=4.0.3-SNAPSHOT
+ ``` bash
+ mvn versions:set -DnewVersion=4.1-SNAPSHOT 
  ```
 
 * Run

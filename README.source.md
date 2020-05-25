@@ -42,7 +42,7 @@ add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>4.0.2</version>
+    <version>4.1</version>
 </dependency>
 ```
 
