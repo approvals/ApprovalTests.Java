@@ -14,9 +14,7 @@ To change this file edit the source file and then execute ./run_markdown_templat
 
   * [Features](#features)
   * [Configuration](#configuration)
-  * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)
-<!-- endtoc -->
-
+  * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)<!-- endtoc -->
 
 ## Features
 
