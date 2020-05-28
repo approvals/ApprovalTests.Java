@@ -1,7 +1,7 @@
 package com.spun.util.parser.tests;
 
 import com.spun.util.DateUtils;
-//import org.approvaltests.utils.WithTimeZone;
+import org.approvaltests.utils.WithTimeZone;
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.Test;
 
@@ -24,15 +24,12 @@ public class VelocityUtilsTest
   @Test
   public void testDate()
   {
-    /*
     try (WithTimeZone tz = new WithTimeZone()) {
       Timestamp date = DateUtils.parse("2001/02/03");
       VelocityApprovals.verify(c -> {
         c.put("date", date);
       });
     }
-
-     */
   }
 
 }
