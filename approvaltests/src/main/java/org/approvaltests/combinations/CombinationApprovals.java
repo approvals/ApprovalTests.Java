@@ -137,9 +137,9 @@ public class CombinationApprovals
                       {
                         continue;
                       }
-                      catch (Throwable e)
+                      catch (Throwable t)
                       {
-                        result = e.getMessage();
+                        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
                       }
                       output.append(String.format("%s => %s \n",
                           extracted(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
