@@ -11,7 +11,7 @@ Deploy to maven:
 * Deploy release  
  * Remove -SNAPSHOT in all the pox.xml Files
  ``` bash
- mvn versions:set -DnewVersion=4.1-SNAPSHOT 
+ mvn versions:set -DnewVersion=5.0.1-SNAPSHOT 
  ```
 
 * Run
@@ -24,8 +24,4 @@ Deploy to maven:
   * update koans (turn to maven please)
   * Update to next version
   * bump version and add -SNAPSHOT in all the pox.xml Files
-  * update docs
 
-  ```
-  ./run_markdown_templates.sh  
-  ```
