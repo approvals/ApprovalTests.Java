@@ -62,7 +62,6 @@ If you prefer auditory learning, you might enjoy the following podcast (Note: So
 - [Cucumber Podcast](https://cucumber.io/blog/2017/01/26/approval-testing)
 - [Hanselminutes](https://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
 - [Herding Code](https://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
-- [The Watir Podcast](https://watirpodcast.com/podcast-53/)
 
 
 
