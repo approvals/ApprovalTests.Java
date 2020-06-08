@@ -5,13 +5,15 @@ import org.lambda.functions.Function0;
 public class MultipleFilesLabeller implements Function0<String>
 {
   private int count = 1;
+
   @Override
   public String call()
   {
     return "" + (count++);
   }
-  public void next()
+
+  public NamedEnvironment next()
   {
-    NamerFactory.asMachineSpecificTest(this);
+    return NamerFactory.asMachineSpecificTest(this);
   }
 }

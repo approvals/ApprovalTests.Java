@@ -86,18 +86,7 @@ public class DatabaseConfiguration
   public Connection makeConnection(String databaseName)
   {
     connectionCounter.inc();
-    Connection con = null;
-    if (wrapper == null)
-    {
-     con = DatabaseUtils.makeConnection(driver, protocol, server, port, databaseName, userName, password, type);
-    }
-    else
-    {
-      DatabaseConfigurationWrapper w = (DatabaseConfigurationWrapper) wrappers.get(wrapper);
-      if (w == null) { throw new Error("No wrapper found for '" + wrapper + "' in " + wrappers.keySet()); }
-      con = w.makeConnection(databaseName, this);
-   
-    }
+    Connection con = makeConnectionFromWrapper(databaseName);
     if(this.inRollbackOnlyMode)
     {
       try
@@ -108,6 +97,23 @@ public class DatabaseConfiguration
       {
        throw ObjectUtils.throwAsError(e);
       }
+    }
+    return con;
+  }
+
+  private Connection makeConnectionFromWrapper(String databaseName) {
+    Connection con;
+    if (wrapper == null)
+    {
+     con = DatabaseUtils
+         .makeConnection(driver, protocol, server, port, databaseName, userName, password, type);
+    }
+    else
+    {
+      DatabaseConfigurationWrapper w = (DatabaseConfigurationWrapper) wrappers.get(wrapper);
+      if (w == null) { throw new Error("No wrapper found for '" + wrapper + "' in " + wrappers.keySet()); }
+      con = w.makeConnection(databaseName, this);
+
     }
     return con;
   }

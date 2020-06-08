@@ -2,10 +2,16 @@ package org.approvaltests.namer;
 
 public class ApprovalResults
 {
-  public static void UniqueForOs()
+
+  /**
+   * @deprecated Use {@link NamerFactory#asOsSpecificTest()}
+   */
+  @Deprecated
+  public static NamedEnvironment UniqueForOs()
   {
-    NamerFactory.asMachineSpecificTest(new OsEnvironmentLabeller());
+    return NamerFactory.asOsSpecificTest();
   }
+
   public MultipleFilesLabeller useMultipleFiles()
   {
     MultipleFilesLabeller l = new MultipleFilesLabeller();

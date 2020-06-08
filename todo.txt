@@ -4,22 +4,7 @@
 * handle manual install of intellij
 * write docs on how to make a custom reporter
 
-bug under windows:
-interesting, it opens both files with WinMerge (diff tool) once the test fails
-and WinMerge says that the files are identical
-although different encodings
-so approvaltests fails to 1) write the result as UTF8 encoded file
-and 2) read the non-UTF8 file properly that it just created
-notepad++ says the generated txt file is ANSI
-well, if I read the ANSI file as it was UTF8 then I see the difference :stuck_out_tongue:
-reading as ANSI I see "wifistä"
-reading as UTF8 I see: <encoding errors>
-WinMerge says the encoding is "1252"
 
-
-
-
-compatible with jdk 6 is probably not true, java nio package is used in a few places already.
 
 discuss: no need to close resources in our tests since jvm shuts down afterwards?
 

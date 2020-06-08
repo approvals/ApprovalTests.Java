@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -89,28 +90,25 @@ public class DatabaseLifeCycleUtils
   }
   private static boolean getPasswordPrompt(Process process) throws Exception
   {
-    InputStream error = process.getErrorStream();
-    InputStream in = process.getInputStream();
-    int TIMEOUT = 3;
-    long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-    StringBuffer prompt = new StringBuffer();
-    while (System.currentTimeMillis() < timeOut)
-    {
-      if (in.available() == 0 && error.available() == 0)
-      {
-        Thread.sleep(500);
-      }
-      else
-      {
-        if (in.available() != 0)
-        {
-          prompt.append((char) in.read());
+    StringBuffer prompt;
+    try (InputStream error = process.getErrorStream()) {
+      try (InputStream in = process.getInputStream()) {
+        int TIMEOUT = 3;
+        long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+        prompt = new StringBuffer();
+        while (System.currentTimeMillis() < timeOut) {
+          if (in.available() == 0 && error.available() == 0) {
+            Thread.sleep(500);
+          } else {
+            if (in.available() != 0) {
+              prompt.append((char) in.read());
+            }
+            if (error.available() != 0) {
+              prompt.append((char) error.read());
+            }
+            timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+          }
         }
-        if (error.available() != 0)
-        {
-          prompt.append((char) error.read());
-        }
-        timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
       }
     }
     SimpleLogger.variable("prompt", prompt.toString());
@@ -268,7 +266,8 @@ public class DatabaseLifeCycleUtils
   private static void deletePostgreSQLTable(String tableName, Statement stmt) throws SQLException
   {
     stmt.executeUpdate("DELETE FROM " + tableName);
-    stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)");
+    try (ResultSet resultSet = stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)")) {
+    }
   }
 
   public static void resetTableIndex(String tableName, int databaseType, Statement stmt) throws SQLException
@@ -293,7 +292,8 @@ public class DatabaseLifeCycleUtils
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
     SimpleLogger.query("reset index", sql);
-    stmt.executeQuery(sql);
+    try (ResultSet resultSet = stmt.executeQuery(sql)) {
+    }
   }
 
   private static void deleteSQLServerTable(String tableName, Statement stmt) throws SQLException

@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MockHttpServletResponse implements HttpServletResponse
 {
-  ArrayList<Cookie> cookies = new ArrayList<Cookie>();
+  ArrayList<Cookie> cookies = new ArrayList<>();
   private ByteArrayOutputStream output = new ByteArrayOutputStream();
   private ServletOutputStream outputStream = new MockServletOutputStream(output);
   
   public Cookie[] getCookies()
   {
-    return (Cookie[]) cookies.toArray(new Cookie[0]);
+    return cookies.toArray(new Cookie[0]);
   }
   
   public void addCookie(Cookie arg0)
