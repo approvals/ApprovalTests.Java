@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.spun.util.SystemUtils;
+import java.util.stream.Stream;
 
 public class IntelliJPathResolver
 {
@@ -53,13 +54,15 @@ public class IntelliJPathResolver
   }
   private Optional<Path> getIntelliJPath() throws IOException
   {
-    return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS) //
-        .map(Path::getFileName) //
-        .map(Objects::toString) //
-        .filter(Version::isVersionFile) //
-        .map(Version::new) //
-        .max(Comparator.naturalOrder()) //
-        .map(this::getPath);
+    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)) {
+      return walk //
+          .map(Path::getFileName) //
+          .map(Objects::toString) //
+          .filter(Version::isVersionFile) //
+          .map(Version::new) //
+          .max(Comparator.naturalOrder()) //
+          .map(this::getPath);
+    }
   }
   private Path getPath(Version version)
   {

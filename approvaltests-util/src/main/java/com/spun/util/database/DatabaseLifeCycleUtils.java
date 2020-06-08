@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -265,7 +266,8 @@ public class DatabaseLifeCycleUtils
   private static void deletePostgreSQLTable(String tableName, Statement stmt) throws SQLException
   {
     stmt.executeUpdate("DELETE FROM " + tableName);
-    stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)");
+    try (ResultSet resultSet = stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)")) {
+    }
   }
 
   public static void resetTableIndex(String tableName, int databaseType, Statement stmt) throws SQLException
@@ -290,7 +292,8 @@ public class DatabaseLifeCycleUtils
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
     SimpleLogger.query("reset index", sql);
-    stmt.executeQuery(sql);
+    try (ResultSet resultSet = stmt.executeQuery(sql)) {
+    }
   }
 
   private static void deleteSQLServerTable(String tableName, Statement stmt) throws SQLException
