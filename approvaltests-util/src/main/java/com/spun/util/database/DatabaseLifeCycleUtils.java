@@ -181,25 +181,29 @@ public class DatabaseLifeCycleUtils
     }
     Thread.sleep(2000);
     String string = null;
-    BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-    if (reader.ready())
+    InputStreamReader in = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8);
+    try (BufferedReader reader = new BufferedReader(in))
     {
-      while ((string = reader.readLine()) != null)
+      if (reader.ready())
       {
-        SimpleLogger.variable(string);
+        while ((string = reader.readLine()) != null)
+        {
+          SimpleLogger.variable(string);
+        }
       }
     }
-    reader.close();
-    reader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-    if (reader.ready())
+    try (BufferedReader reader = new BufferedReader(
+        new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8)))
     {
-      while ((string = reader.readLine()) != null)
+      if (reader.ready())
       {
-        SimpleLogger.variable(string);
+        while ((string = reader.readLine()) != null)
+        {
+          SimpleLogger.variable(string);
+        }
       }
+      process.waitFor();
     }
-    process.waitFor();
-    reader.close();
     if (process.exitValue() != 0) { throw new Error(extractError(commandLine, process.getErrorStream())); }
   }
 
@@ -225,10 +229,13 @@ public class DatabaseLifeCycleUtils
   public static String extractText(InputStream inStream) throws IOException
   {
     StringBuffer errorBuffer = new StringBuffer();
-    BufferedReader in = new BufferedReader(new InputStreamReader(inStream));
-    while (in.ready())
+    InputStreamReader isr = new InputStreamReader(inStream, StandardCharsets.UTF_8);
+    try (BufferedReader in = new BufferedReader(isr))
     {
-      errorBuffer.append(in.readLine());
+      while (in.ready()) 
+      {
+        errorBuffer.append(in.readLine());
+      }
     }
     return errorBuffer.toString();
   }
