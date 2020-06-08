@@ -44,40 +44,34 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
 
   private void loadBySequenceMySQL(DatabaseObject forObject, Statement stmt) throws SQLException
   {
-    ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
-    if (rs.next())
-    {
-      forObject.setPkey(rs.getInt(1));
-    }
+    setPkey(forObject, stmt, "SELECT LAST_INSERT_ID()");
   }
 
   private void loadBySequence(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
-    String sql = "SELECT currval('" + forObject.getMetadata().getTableName() + "_pkey_seq')";
-    ResultSet rs = stmt.executeQuery(sql);
-    if (rs.next())
-    {
-      forObject.setPkey(rs.getInt(1));
-    }
+    setPkey(forObject, stmt,
+        "SELECT currval('" + forObject.getMetadata().getTableName() + "_pkey_seq')");
   }
 
   private void loadBySQL(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
-    ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY");
-    if (rs.next())
-    {
-      forObject.setPkey(rs.getInt(1));
+    setPkey(forObject, stmt, "SELECT @@IDENTITY");
+  }
+
+  private void setPkey(DatabaseObject forObject, Statement stmt, String sql) throws SQLException {
+    try (ResultSet rs = stmt.executeQuery(sql)) {
+      if (rs.next()) {
+        forObject.setPkey(rs.getInt(1));
+      }
     }
   }
 
   private void loadByJDBC(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
-    ResultSet rs = stmt.getGeneratedKeys();
-    if (rs.next())
-    {
-      forObject.setPkey(rs.getInt(1));
+    try (ResultSet rs = stmt.getGeneratedKeys()) {
+      if (rs.next()) {
+        forObject.setPkey(rs.getInt(1));
+      }
     }
   }
-
-
 }
