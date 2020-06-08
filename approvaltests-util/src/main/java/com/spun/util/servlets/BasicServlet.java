@@ -291,9 +291,9 @@ public abstract class BasicServlet extends HttpServlet
   public static String setContentTypeAsXml(HttpServletResponse res, String xml) throws IOException
   {
     res.setContentType("text/xml");
-    ServletOutputStream out = res.getOutputStream();
-    out.println(xml);
-    out.close();
+    try (ServletOutputStream out = res.getOutputStream()) {
+      out.println(xml);
+    }
     return null;
   }
 }
