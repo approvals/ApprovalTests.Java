@@ -29,37 +29,29 @@ public class CommaDelimitedFileParser
   {
     try
     {
-      List<String[]> records = new ArrayList<String[]>();
-      BufferedReader reader = new BufferedReader(data);
-      boolean done = false;
-      StringBuffer pastLines = null;
-      while (!done)
-      {
-        String line = reader.readLine();
-        if (line == null)
-        {
-          done = true;
-        }
-        else
-        {
-          if (pastLines != null)
-          {
-            pastLines.append("\n");
-            pastLines.append(line);
-            line = pastLines.toString();
-          }
-          String[] parseLine = parseLine(line);
-          if (parseLine == null)
-          {
-            if (pastLines == null)
-            {
-              pastLines = new StringBuffer(line);
+      List<String[]> records = new ArrayList<>();
+      try (BufferedReader reader = new BufferedReader(data)) {
+        boolean done = false;
+        StringBuffer pastLines = null;
+        while (!done) {
+          String line = reader.readLine();
+          if (line == null) {
+            done = true;
+          } else {
+            if (pastLines != null) {
+              pastLines.append("\n");
+              pastLines.append(line);
+              line = pastLines.toString();
             }
-          }
-          else
-          {
-            records.add(parseLine);
-            pastLines = null;
+            String[] parseLine = parseLine(line);
+            if (parseLine == null) {
+              if (pastLines == null) {
+                pastLines = new StringBuffer(line);
+              }
+            } else {
+              records.add(parseLine);
+              pastLines = null;
+            }
           }
         }
       }
