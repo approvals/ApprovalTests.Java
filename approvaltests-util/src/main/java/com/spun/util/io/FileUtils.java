@@ -2,6 +2,7 @@ package com.spun.util.io;
 
 import com.spun.util.ArrayUtils;
 import com.spun.util.Asserts;
+import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -267,7 +268,8 @@ public class FileUtils
     }
     catch (IOException e)
     {
-      throw new RuntimeException("Unable to store order: " + e.getMessage(), e);
+      throw new FormattedException(
+          "Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
     }
   }
   /************************************************************************/
