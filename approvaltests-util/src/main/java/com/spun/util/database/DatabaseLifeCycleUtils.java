@@ -1,5 +1,8 @@
 package com.spun.util.database;
 
+import com.spun.util.DatabaseConfiguration;
+import com.spun.util.DatabaseUtils;
+import com.spun.util.logger.SimpleLogger;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,12 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.spun.util.DatabaseConfiguration;
-import com.spun.util.DatabaseUtils;
-import com.spun.util.logger.SimpleLogger;
 
 public class DatabaseLifeCycleUtils
 {
@@ -118,11 +118,12 @@ public class DatabaseLifeCycleUtils
   }
   private static void sendPassword(Process process, String password) throws Exception
   {
-    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-    writer.write(password);
-    writer.newLine();
-    writer.flush();
-    writer.close();
+    OutputStreamWriter out = new OutputStreamWriter(process.getOutputStream(), StandardCharsets.UTF_8);
+    try (BufferedWriter writer = new BufferedWriter(out)) {
+      writer.write(password);
+      writer.newLine();
+      writer.flush();
+    }
   }
 
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName) throws SQLException
