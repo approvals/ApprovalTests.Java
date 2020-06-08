@@ -1,5 +1,8 @@
 package com.spun.util.io;
 
+import com.spun.util.ArrayUtils;
+import com.spun.util.Asserts;
+import com.spun.util.ObjectUtils;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,7 +11,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,12 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
-
-import com.spun.util.ArrayUtils;
-import com.spun.util.Asserts;
-import com.spun.util.ObjectUtils;
 
 /**
  * A static class of convenience functions for Files
@@ -254,36 +251,23 @@ public class FileUtils
   public static File saveToFile(String prefix, Reader input)
   {
     File file;
-    BufferedWriter bw = null;
     try
     {
       file = File.createTempFile(prefix, null);
-      bw = new BufferedWriter(new FileWriter(file));
-      BufferedReader inputReader = new BufferedReader(input);
-      String thisLine;
-      while ((thisLine = inputReader.readLine()) != null)
-      {
-        bw.write(thisLine);
-        bw.newLine();
+      try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+
+        BufferedReader inputReader = new BufferedReader(input);
+        String thisLine;
+        while ((thisLine = inputReader.readLine()) != null) {
+          bw.write(thisLine);
+          bw.newLine();
+        }
+        inputReader.close();
       }
-      inputReader.close();
     }
     catch (IOException e)
     {
       throw new RuntimeException("Unable to store order: " + e.getMessage(), e);
-    }
-    finally
-    {
-      try
-      {
-        if (bw != null)
-        {
-          bw.close();
-        }
-      }
-      catch (IOException e)
-      {
-      }
     }
     return file;
   }
