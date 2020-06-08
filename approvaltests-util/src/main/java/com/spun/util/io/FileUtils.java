@@ -255,14 +255,13 @@ public class FileUtils
     {
       File file = File.createTempFile(prefix, null);
       try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-
-        BufferedReader inputReader = new BufferedReader(input);
-        String thisLine;
-        while ((thisLine = inputReader.readLine()) != null) {
-          bw.write(thisLine);
-          bw.newLine();
+        try (BufferedReader inputReader = new BufferedReader(input)) {
+          String thisLine;
+          while ((thisLine = inputReader.readLine()) != null) {
+            bw.write(thisLine);
+            bw.newLine();
+          }
         }
-        inputReader.close();
       }
       return file;
     }
