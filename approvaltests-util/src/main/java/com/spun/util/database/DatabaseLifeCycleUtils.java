@@ -232,7 +232,7 @@ public class DatabaseLifeCycleUtils
     InputStreamReader isr = new InputStreamReader(inStream, StandardCharsets.UTF_8);
     try (BufferedReader in = new BufferedReader(isr))
     {
-      while (in.ready()) 
+      while (in.ready())
       {
         errorBuffer.append(in.readLine());
       }

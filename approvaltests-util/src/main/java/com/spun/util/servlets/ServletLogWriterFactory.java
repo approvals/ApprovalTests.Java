@@ -2,9 +2,12 @@ package com.spun.util.servlets;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 import com.spun.util.logger.SimpleLogger;
@@ -13,10 +16,11 @@ public class ServletLogWriterFactory
 {
   private static String                      TOMCAT_LOGS_PATH = getLogPath();
   private static HashMap<String, Appendable> writers          = new HashMap<String, Appendable>();
+
   public static void reset()
   {
     TOMCAT_LOGS_PATH = getLogPath();
-    writers = new HashMap<String, Appendable>();
+    writers = new HashMap<>();
   }
   public static Appendable getWriter(BasicServlet servlet) throws IOException
   {
@@ -29,7 +33,7 @@ public class ServletLogWriterFactory
     }
     else
     {
-      return (FileWriter) writers.get(name);
+      return writers.get(name);
     }
   }
   private static String getLogPath()
@@ -44,13 +48,16 @@ public class ServletLogWriterFactory
   }
   private static Appendable createWriter(String name) throws IOException
   {
-    String shortName = name.indexOf("$") == -1
+    String shortName = !name.contains("$")
         ? name.substring(name.lastIndexOf(".") + 1)
         : name.substring(name.lastIndexOf("$") + 1);
     String logName = TOMCAT_LOGS_PATH + File.separator + shortName + ".log";
     File file = new File(logName);
     file.getParentFile().mkdirs();
-    BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+    OutputStreamWriter out = new OutputStreamWriter(
+        new FileOutputStream(file), StandardCharsets.UTF_8);
+    BufferedWriter writer = new BufferedWriter(out);
     PrintWriter bWriter = new PrintWriter(writer, true);
     writers.put(name, bWriter);
     return bWriter;
