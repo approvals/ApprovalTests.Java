@@ -250,10 +250,9 @@ public class FileUtils
   /************************************************************************/
   public static File saveToFile(String prefix, Reader input)
   {
-    File file;
     try
     {
-      file = File.createTempFile(prefix, null);
+      File file = File.createTempFile(prefix, null);
       try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
 
         BufferedReader inputReader = new BufferedReader(input);
@@ -264,12 +263,12 @@ public class FileUtils
         }
         inputReader.close();
       }
+      return file;
     }
     catch (IOException e)
     {
       throw new RuntimeException("Unable to store order: " + e.getMessage(), e);
     }
-    return file;
   }
   /************************************************************************/
   public static String getDirectoryFriendlyName(String name)
