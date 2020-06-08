@@ -4,7 +4,7 @@ import java.io.File;
 
 public class SimpleFileFilter implements java.io.FileFilter
 {
-  /************************************************************************/
+
   public SimpleFileFilter()
   {
   }
@@ -27,6 +27,6 @@ public class SimpleFileFilter implements java.io.FileFilter
     }
     return accept;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

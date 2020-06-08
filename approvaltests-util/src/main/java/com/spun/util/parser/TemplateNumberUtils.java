@@ -7,7 +7,7 @@ import com.spun.util.NumberUtils;
 public class TemplateNumberUtils
 {
   public static TemplateNumberUtils INSTANCE = new TemplateNumberUtils();
-  /************************************************************************/
+
   private TemplateNumberUtils()
   {
   }
@@ -92,8 +92,8 @@ public class TemplateNumberUtils
     }
     return totalNumber;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
   public static TemplateDouble max(Number... numbers)
   {
     return new TemplateDouble(Query.max(numbers));

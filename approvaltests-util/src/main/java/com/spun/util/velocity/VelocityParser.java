@@ -34,7 +34,7 @@ public class VelocityParser
       e.nextElement().setLevel(Level.OFF);
     }
   }
-  /*********************************************************************s**/
+
   public static String parseFile(String template, ContextAware process)
   {
     Asserts.assertFileExists("Velocity template", template);

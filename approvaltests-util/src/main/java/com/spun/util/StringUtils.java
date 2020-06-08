@@ -60,12 +60,12 @@ public class StringUtils
       return null;
     }
   }
-  /************************************************************************/
+
   public static String[] split(String string, String splitOn)
   {
     return split(string, splitOn, true);
   }
-  /************************************************************************/
+
   public static String[] split(String string, String splitOn, boolean trim)
   {
     if ((string == null) || (splitOn == null) || (splitOn.length() < 1)) { return null; }
@@ -90,7 +90,7 @@ public class StringUtils
     }
     return toArray(temp);
   }
-  /************************************************************************/
+
   public static String replace(String string, String find, String replace)
   {
     if ((string == null) || (find == null) || (replace == null)) { throw new NullPointerException(
@@ -164,7 +164,7 @@ public class StringUtils
     }
     return newText.toString();
   }
-  /************************************************************************/
+
   /**
    * Turns "mr. frank m Peter" into "Mr. Frank M Peter"
    **/
@@ -197,7 +197,7 @@ public class StringUtils
     }
     return returning.toString();
   }
-  /************************************************************************/
+
   public static String toConvertCamelCaseString(String varName, String insertBeforeCaps)
   {
     StringBuffer staticVarName = new StringBuffer();
@@ -212,7 +212,7 @@ public class StringUtils
     }
     return staticVarName.toString();
   }
-  /************************************************************************/
+
   /**
    * Turns "ATTRIUBE_NAME" into "AttributeName"
    **/
@@ -244,12 +244,12 @@ public class StringUtils
     }
     return returning.toString();
   }
-  /************************************************************************/
+
   public static String stripNonNumeric(String number)
   {
     return stripNonNumeric(number, false, false);
   }
-  /************************************************************************/
+
   public static String stripCharacters(String dirtyString, String toStrip)
   {
     StringBuffer cleanStringBuffer = new StringBuffer();
@@ -267,7 +267,7 @@ public class StringUtils
   {
     return string.replaceAll("&", "&amp;");
   }
-  /************************************************************************/
+
   public static String stripNonNumeric(String number, boolean allowDecimal, boolean allowNegative)
   {
     boolean allowExponential = allowDecimal;
@@ -339,7 +339,7 @@ public class StringUtils
   {
     return !isNonZero(string);
   }
-  /************************************************************************/
+
   /**
    * A convenience function to turn a vector of String objects into an Array
    * of the String objects.
@@ -424,7 +424,7 @@ public class StringUtils
   {
     return (target == null && allowNulls) ? true : isIn(target, fromList);
   }
-  /************************************************************************/
+
   public static void assertIn(String target, String[] fromList, boolean allowNulls)
   {
     boolean valid = isIn(target, fromList, allowNulls);
@@ -458,7 +458,7 @@ public class StringUtils
       return fields.get(0).getName();
     }
   }
-  /************************************************************************/
+
   /**
    * 'Tom S Hardy' becomes 'Tom S' - 'Hardy'
    **/
@@ -551,12 +551,12 @@ public class StringUtils
   {
     return splitName(fullName)[1];
   }
-  /************************************************************************/
+
   public static boolean isLengthWithin(String string, int length)
   {
     return string == null || string.length() <= length;
   }
-  /************************************************************************/
+
   public static boolean equalsIgnoreCase(String one, String two)
   {
     return (one == two || (one != null && one.equalsIgnoreCase(two)));

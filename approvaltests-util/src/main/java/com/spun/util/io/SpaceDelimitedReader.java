@@ -14,7 +14,7 @@ public class SpaceDelimitedReader
   private BufferedReader reader   = null;
   private String         lastRead = null;
   public boolean         trim     = false;
-  /************************************************************************/
+
   public SpaceDelimitedReader(String input, boolean trim)
   {
     this.reader = new BufferedReader(new StringReader(input));

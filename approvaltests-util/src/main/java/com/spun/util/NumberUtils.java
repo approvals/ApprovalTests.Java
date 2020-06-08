@@ -92,7 +92,7 @@ public class NumberUtils
     }
     return integers;
   }
-  /************************************************************************/
+
   public static double setSignificantDigit(double onNumber, int digit)
   {
     double power = Math.pow(10, digit);
@@ -101,7 +101,7 @@ public class NumberUtils
     onNumber = onNumber / power;
     return onNumber;
   }
-  /************************************************************************/
+
   /**
    * a unit test of sorts
    **/

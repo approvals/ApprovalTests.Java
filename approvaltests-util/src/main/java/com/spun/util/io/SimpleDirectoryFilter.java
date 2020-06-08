@@ -5,7 +5,7 @@ import java.io.File;
 public class SimpleDirectoryFilter
   implements java.io.FileFilter
 {
-  /************************************************************************/
+
   public SimpleDirectoryFilter()
   {
 	}
@@ -30,6 +30,6 @@ public class SimpleDirectoryFilter
     }
     return accept;
   }
-   /************************************************************************/
-  /************************************************************************/
+
+
 }

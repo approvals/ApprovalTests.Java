@@ -22,12 +22,12 @@ public class LapTimer
   {
     LapTimer.clock = clock;
   }
-  /************************************************************************/
+
   public LapTimer()
   {
     this(null);
   }
-  /************************************************************************/
+
   public LapTimer(String label)
   {
     startTime = getCurrentTime();
@@ -39,12 +39,12 @@ public class LapTimer
   {
     return clock.getTime();
   }
-  /************************************************************************/
+
   public String getLabel()
   {
     return label;
   }
-  /************************************************************************/
+
   /**
    * Marks the time for a lap and a label.
    * ie. A timer could store - 1 hour 10 mins ["1st Quarter", 15 mins,"2nd Quarter", 15 mins,"Half Time", 10 mins, "3rd Quarter", 15 mins,"4th Quarter", 15 mins] 
@@ -53,17 +53,17 @@ public class LapTimer
   {
     return lap(false, label);
   }
-  /************************************************************************/
+
   public long end(String label)
   {
     return lap(true, label);
   }
-  /************************************************************************/
+
   public boolean isPaused()
   {
     return pausedTime != 0;
   }
-  /************************************************************************/
+
   public void pause()
   {
     if (!isPaused())
@@ -71,7 +71,7 @@ public class LapTimer
       pausedTime = getCurrentTime();
     }
   }
-  /************************************************************************/
+
   public void resume()
   {
     if (isPaused())
@@ -81,7 +81,7 @@ public class LapTimer
       pausedTime = 0;
     }
   }
-  /************************************************************************/
+
   public long lap(boolean end, String label)
   {
     long newTime = getCurrentTime();
@@ -92,23 +92,23 @@ public class LapTimer
     endTime = (end) ? newTime : 0;
     return difference;
   }
-  /************************************************************************/
+
   public LapTime[] getLapTimes()
   {
     return LapTime.toArray(lapTimes);
   }
-  /************************************************************************/
+
   public int getLapCount()
   {
     return lapTimes.size();
   }
-  /************************************************************************/
+
   public LapTime getLap(int i)
   {
     if (i >= lapTimes.size()) { return null; }
     return (LapTime) lapTimes.get(i);
   }
-  /************************************************************************/
+
   public LapTime getLap(String label)
   {
     for (int i = 0; i < lapTimes.size(); i++)
@@ -118,7 +118,7 @@ public class LapTimer
     }
     return null;
   }
-  /************************************************************************/
+
   public long getTotalTime()
   {
     long lastrecordedTime = 0;
@@ -136,12 +136,12 @@ public class LapTimer
     }
     return lastrecordedTime - startTime - pausedTotalTime;
   }
-  /************************************************************************/
+
   public DateDifference getTotalTimeAsDateDifference()
   {
     return new DateDifference(getTotalTime());
   }
-  /************************************************************************/
+
   public String toString()
   {
     String value = String.format(
@@ -150,7 +150,7 @@ public class LapTimer
         getTotalTimeAsDateDifference().getStandardTimeText(1));
     return value;
   }
-  /************************************************************************/
+
   /**
    * convenience function for toString().
    **/

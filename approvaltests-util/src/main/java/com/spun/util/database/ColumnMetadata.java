@@ -15,13 +15,13 @@ public class ColumnMetadata
   private int            columnPosition;
   private String         foreignTable;
   private ColumnMetadata foreignColumn;
-  /**************************************************************************/
+
   public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
       int decimalDigits, String comments)
   {
     this(tableMetadata, name, type, length, columnPosition, nullable, sqlType, decimalDigits, comments, null, null);
   }
-  /**************************************************************************/
+
   public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
       int decimalDigits, String comments, String foreignTable, ColumnMetadata foreignColumn)
   {
@@ -114,7 +114,7 @@ public class ColumnMetadata
     if (databaseType == DatabaseUtils.POSTGRESQL) { return String.format("%s_%s_seq", tableMetadata.getTableName(), this.getName()); }
     return null;
   }
-  /************************************************************************/
+
   /**
    * A convenience function to turn a vector of com.spun.util.database.ColumnMetadata objects
    * into an Array of the com.spun.util.database.ColumnMetadata objects.

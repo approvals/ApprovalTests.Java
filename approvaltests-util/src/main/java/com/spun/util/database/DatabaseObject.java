@@ -28,7 +28,7 @@ public interface DatabaseObject
       return o.isNew();
     }
   }
-  /**************************************************************************/
+
   public static class Utils
   {
     public static void saveAll(DatabaseObject[] objects, Statement stmt) throws SQLException
@@ -50,7 +50,7 @@ public interface DatabaseObject
       }
       return null;
     }
-    /**************************************************************************/
+
     public static <T extends DatabaseObject> T get(int pkey, Collection<T> from)
     {
       for (T object : from)

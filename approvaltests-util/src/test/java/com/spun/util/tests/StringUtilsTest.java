@@ -88,7 +88,7 @@ public class StringUtilsTest extends TestCase
       this.expectedArray = expectedArray;
     }
   }
-  /************************************************************************/
+
   public class ReplaceUseCase
   {
     String startingString;

@@ -7,7 +7,7 @@ import com.spun.util.velocity.VelocityParser;
 
 public class VelocityTableNameTest extends TestCase implements ContextAware
 {
-  /**********************77*************************************************/
+
   public void testWTF() throws Exception
   {
     String template = "${main.getObjectName()}Metadata.TABLE_NAME, ";

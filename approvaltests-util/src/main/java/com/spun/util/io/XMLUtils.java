@@ -91,6 +91,5 @@ public class XMLUtils
         "Should not be multiple children for node '" + node.getNodeName() + "'"); }
     return null;
   }
-  /**********************************************************************/
-  /************************************************************************/
+
 }

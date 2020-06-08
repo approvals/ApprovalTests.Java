@@ -55,7 +55,7 @@ public class NetUtils
     sftp.quit();
     ssh.disconnect();
   }
-  /************************************************************************/
+
   private static SftpClient sshLogin(FTPConfig config, SshClient ssh) throws IOException
   {
     ssh.setSocketTimeout(60000);
@@ -67,7 +67,7 @@ public class NetUtils
     SftpClient sftp = ssh.openSftpClient();
     return sftp;
   }
-  /************************************************************************/
+
   public static File sftpDownload(FTPConfig config, File file, String remoteFileName) throws IOException
   {
     SshClient ssh = new SshClient();
@@ -103,7 +103,7 @@ public class NetUtils
     }
   }
   
-  /************************************************************************/
+
   public static String loadWebPage(String url, String parameters)
   {
     try

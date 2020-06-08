@@ -11,7 +11,7 @@ public class DatabaseTransactionInfo
   private WeakReference<Connection> connectionReference;
   private String                    originator;
   private boolean                   automaticCommit;
-  /**************************************************************************/
+
   /** 
    * returns the object from the cache with the corosponding pkey
    **/
@@ -32,12 +32,12 @@ public class DatabaseTransactionInfo
     String text = "[" + size + "]" + element.getClassName() + "." + element.getMethodName();
     return text;
   }
-  /**************************************************************************/
+
   public boolean isFinalizeable()
   {
     return getConnection() == null;
   }
-  /**************************************************************************/
+
   public boolean isOriginator(Connection con, int levelsOfRemoval)
   {
     String originatorText = getOriginatorText(levelsOfRemoval + 1);
@@ -54,6 +54,6 @@ public class DatabaseTransactionInfo
     Connection con = getConnection();
     con.setAutoCommit(automaticCommit);
   }
-  /**************************************************************************/
-  /**************************************************************************/
+
+
 }

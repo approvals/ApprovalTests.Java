@@ -293,8 +293,8 @@ public class FileUtils
     }
     return result.toString();
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
   public static String getExtensionWithDot(String filename)
   {
     int p = filename.lastIndexOf('.');

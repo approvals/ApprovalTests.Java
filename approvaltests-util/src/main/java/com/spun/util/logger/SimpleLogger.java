@@ -81,7 +81,7 @@ public class SimpleLogger
   {
     log.warning(statement, throwable);
   }
-  /************************************************************************/
+
   /**
    * Logs the current memory status [total, used, free].
    * This forces garbage collection to run first. 

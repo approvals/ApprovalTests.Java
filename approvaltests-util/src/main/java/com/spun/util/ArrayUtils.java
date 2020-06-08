@@ -19,7 +19,7 @@ import org.lambda.functions.Function1;
  */
 public class ArrayUtils
 {
-  /************************************************************************/
+
   public static <T> java.util.Collection<T> addArray(java.util.Collection<T> v, T array[])
   {
     if ((array == null) || (v == null)) { return v; }
@@ -88,7 +88,7 @@ public class ArrayUtils
   {
     return ((array == null) || (array.length == 0));
   }
-  /************************************************************************/
+
   public static boolean isEmpty(Collection<?> collection)
   {
     return ((collection == null) || (collection.size() == 0));
@@ -227,12 +227,12 @@ public class ArrayUtils
     }
     return false;
   }
-  /************************************************************************/
+
   public static <T> T getLast(List<T> list)
   {
     return list.get(list.size() - 1);
   }
-  /************************************************************************/
+
   public static <K, T> T getDefault(HashMap<K, T> map, K key, T defaultValue)
   {
     T value = map.get(key);
@@ -243,12 +243,12 @@ public class ArrayUtils
     }
     return value;
   }
-  /************************************************************************/
+
   public static <K, V> int countValues(HashMap<K, V> out, V matching)
   {
     return count(matching, out.values());
   }
-  /************************************************************************/
+
   public static <V> int count(V matching, Collection<V> values)
   {
     int count = 0;

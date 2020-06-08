@@ -67,8 +67,8 @@ public class FileUtilsTest extends TestCase
     FileUtils.copyFile(first, second);
     assertEquals("File sizes ", first.length(), second.length());
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 
   @UseReporter(ClipboardReporter.class)
   @Test

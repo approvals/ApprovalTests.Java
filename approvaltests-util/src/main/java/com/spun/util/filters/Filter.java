@@ -14,6 +14,6 @@ public interface Filter<T>
 		**/
 	public boolean isExtracted(T object)
 		throws IllegalArgumentException;
-  /**************************************************************************/
-  /**************************************************************************/
+
+
 }

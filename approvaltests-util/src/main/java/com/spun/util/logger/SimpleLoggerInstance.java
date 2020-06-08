@@ -304,7 +304,7 @@ public class SimpleLoggerInstance
       throwable.printStackTrace(new PrintWriter(new AppendableWriter(logTo)));
     }
   }
-  /************************************************************************/
+
   /**
    * Logs the current memory status [total, used, free].
    * This forces garbage collection to run first. 

@@ -41,7 +41,7 @@ public class MethodExecutionPath implements Serializable
     this.methods = getRecursiveMethods(clazz, methodNames, parameters);
     this.returnType = (this.methods != null) ? methods[methods.length - 1].getReturnType() : null;
   }
-  /************************************************************************/
+
   public static MethodExecutionPath method(Class<? extends Object> class1, String method, Object... paramaters)
   {
     return new MethodExecutionPath(class1, new String[]{method}, new Parameters[]{new Parameters(paramaters)});
@@ -83,7 +83,7 @@ public class MethodExecutionPath implements Serializable
     }
     return object;
   }
-  /************************************************************************/
+
   private static Object extractValue(Object object, Method method, Object values[])
   {
     try
@@ -96,7 +96,7 @@ public class MethodExecutionPath implements Serializable
           e);
     }
   }
-  /************************************************************************/
+
   public Class<? extends Object> getClassType()
   {
     return classType;

@@ -24,7 +24,7 @@ import org.w3c.dom.Element;
  **/
 public class ConfigXMLFileWriter
 {
-  /************************************************************************/
+
   public static void writeToFile(Class<?> clazz, String fileName, String exclude[]) throws Exception
   {
     Document domDocument = createDocument();
@@ -86,6 +86,6 @@ public class ConfigXMLFileWriter
     transformer.transform(source, result);
     out.close();
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

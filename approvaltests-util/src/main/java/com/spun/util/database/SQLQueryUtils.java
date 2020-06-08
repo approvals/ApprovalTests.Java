@@ -36,7 +36,7 @@ public class SQLQueryUtils
   {
     public T extract(ResultSet rs) throws SQLException;
   }
-  /**************************************************************************/
+
   public static SQLQuery extractCountingQuery(SQLQuery query)
   {
     SQLQuery counter = new SQLQuery();
@@ -51,7 +51,7 @@ public class SQLQueryUtils
     counter.addSelect("count(*) AS thecount ");
     return counter;
   }
-  /**************************************************************************/
+
   public static SQLQuery refineLimitQuery(int maximum, SQLQuery query)
   {
     LimitPart limitPart = query.getLimitPart();

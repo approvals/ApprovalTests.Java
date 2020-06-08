@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 
 public class VelocityTest extends TestCase implements ContextAware
 {
-  /**********************77*************************************************/
+
   public void testCodeWorks() throws Exception
   {
     assertEquals(getClass().getName(), VelocityParser.parseString("$main.getClass().getName()", this));

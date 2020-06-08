@@ -28,16 +28,16 @@ public class TemplateDate
   //private static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.FULL ,DateFormat.SHORT);
   private Date           frozen     = null;
   private DateDifference difference = null;
-  /************************************************************************/
+
   public TemplateDate()
   {
   }
-  /************************************************************************/
+
   public TemplateDate(Date freezeTime)
   {
     this.frozen = freezeTime;
   }
-  /************************************************************************/
+
   public void freezeTime()
   {
     frozen = new Date();
@@ -115,7 +115,7 @@ public class TemplateDate
     value = formatter.format(getDate(false));
     return value;
   }
-  /************************************************************************/
+
   public Date getDate(boolean forceCurrent)
   {
     if ((frozen != null) && (!forceCurrent))
@@ -127,7 +127,7 @@ public class TemplateDate
       return new Date();
     }
   }
-  /************************************************************************/
+
   public Date getDate()
   {
     return getDate(false);
@@ -187,6 +187,6 @@ public class TemplateDate
   {
     return getDateAndTime("default", "default");
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

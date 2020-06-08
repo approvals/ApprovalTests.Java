@@ -16,7 +16,7 @@ public class TabDelimitedFileReader
   private BufferedReader reader = null;
   private String lastRead = null;
   private boolean trim = false;
-  /************************************************************************/
+
   public TabDelimitedFileReader(String absoluteFileName, boolean trim) throws IOException
   {
     this.reader = Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8);
@@ -73,6 +73,6 @@ public class TabDelimitedFileReader
     }
   }
   
-  /************************************************************************/
+
   
 }

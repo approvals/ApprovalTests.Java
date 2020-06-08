@@ -8,17 +8,17 @@ import com.spun.util.servlets.ValidationError;
 
 public class ValidationErrorTestUtils
 {
-	/************************************************************************/
+
 	public static void testErrorFailed(ValidationError error)
 	{
 		testError(error, false);
 	}
-	/************************************************************************/
+
 	public static void testError(ValidationError error)
 	{
 		testError(error, true);
 	}
-	/************************************************************************/
+
 	public static void testError(ValidationError error, boolean passExpected)
 	{
 	  if (error.isOk() !=  passExpected)
@@ -31,6 +31,6 @@ public class ValidationErrorTestUtils
 	  }
 	  
 	}
-	/************************************************************************/
+
 
 }

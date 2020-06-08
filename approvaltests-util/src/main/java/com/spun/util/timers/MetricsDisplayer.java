@@ -11,12 +11,12 @@ public class MetricsDisplayer implements ContextAware
 {
   public static String      TEMPLATE = "C:\\metrics_template.htm";
   private LapTimeStatistics stats    = null;
-  /************************************************************************/
+
   public MetricsDisplayer(LapTimeStatistics stats)
   {
     this.stats = stats;
   }
-  /************************************************************************/
+
   public String saveToFile(String outputFileName)
   {
     return VelocityParser.parseFile(TEMPLATE, outputFileName, this);

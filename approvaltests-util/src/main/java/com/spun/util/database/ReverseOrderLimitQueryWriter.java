@@ -22,12 +22,12 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
 {
 	private int databaseType;
 
-	/**************************************************************************/
+
 	public ReverseOrderLimitQueryWriter(int databaseType)
 	{
 		this.databaseType = databaseType;
 	}
-  /**************************************************************************/
+
   public String toString(SQLQuery query)
 	{
     assertQueryValid(query);
@@ -109,17 +109,17 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
       throw error; 
     }
 	}
-  /**************************************************************************/
+
   public static class Replacer 
   {
     int index;
     
-    /**************************************************************************/
+
     public Replacer(int index) 
     {
       this.index = index;  
     }
-    /**************************************************************************/
+
     public String replace(String string)
     {
       for (int i = 0; i < index; i++)
@@ -129,7 +129,7 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
       }
       return string;
     }
-    /**************************************************************************/
+
   }
 
 }

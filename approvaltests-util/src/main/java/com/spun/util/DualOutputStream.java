@@ -9,12 +9,12 @@ public class DualOutputStream extends OutputStream
 {
   private FileOutputStream o;
   private PrintStream      display = System.out;
-  /************************************************************************/
+
   public DualOutputStream()
   {
     super();
   }
-  /************************************************************************/
+
   public void setOutputStream(String outfile) throws SecurityException, Exception
   {
     try
@@ -27,7 +27,7 @@ public class DualOutputStream extends OutputStream
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /************************************************************************/
+
   public void write(int b) throws IOException
   {
     try
@@ -40,7 +40,7 @@ public class DualOutputStream extends OutputStream
     }
     display.write(b);
   }
-  /************************************************************************/
+
   public void write(byte b[]) throws IOException
   {
     try
@@ -54,7 +54,7 @@ public class DualOutputStream extends OutputStream
     display.println(b);
     flush();
   }
-  /************************************************************************/
+
   public void write(byte b[], int off, int len) throws IOException
   {
     try
@@ -67,7 +67,7 @@ public class DualOutputStream extends OutputStream
     }
     display.write(b, off, len);
   }
-  /************************************************************************/
+
   public void flush() throws IOException
   {
     try
@@ -80,7 +80,7 @@ public class DualOutputStream extends OutputStream
     }
     display.flush();
   }
-  /************************************************************************/
+
   public void close() throws IOException
   {
     try
@@ -93,6 +93,6 @@ public class DualOutputStream extends OutputStream
     }
     display.close();
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

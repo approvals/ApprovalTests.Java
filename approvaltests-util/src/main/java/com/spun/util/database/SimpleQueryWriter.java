@@ -8,12 +8,12 @@ class SimpleQueryWriter implements SQLQueryWriter
 {
 	private int databaseType;
 
-	/**************************************************************************/
+
 	public SimpleQueryWriter(int databaseType)
 	{
 		this.databaseType = databaseType;
 	}
-	/**************************************************************************/
+
 	public String toString(SQLQuery query)
 	{
 		StringBuffer sql = new StringBuffer("SELECT ");
@@ -126,7 +126,7 @@ class SimpleQueryWriter implements SQLQueryWriter
     sql.append(" ");
     
 	}
-	/**************************************************************************/
-	/**************************************************************************/
+
+
 
 }

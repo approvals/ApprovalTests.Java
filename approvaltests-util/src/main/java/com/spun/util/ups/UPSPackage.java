@@ -93,12 +93,12 @@ public class UPSPackage implements Serializable
   {
     return packageWidth;
   }
-  /************************************************************************/
+
   public boolean isResidential()
   {
     return residential;
   }
-  /************************************************************************/
+
   public String toString()
   {
     String value = "com.spun.util.ups.UPSPackage[";
@@ -109,7 +109,7 @@ public class UPSPackage implements Serializable
         + " toZipCode = '" + toZipCode + "'" + " residential = '" + residential + "'" + "]";
     return value;
   }
-  /************************************************************************/
+
   /**
    * A convenience function to turn a vector of com.spun.util.ups.UPSPackage objects
    * into an Array of the com.spun.util.ups.UPSPackage objects.

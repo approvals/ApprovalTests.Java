@@ -36,7 +36,7 @@ public class WhiteSpaceStripperTest extends TestCase
   {
     junit.textui.TestRunner.run(WhiteSpaceStripperTest.class);
   }
-  /************************************************************************/
+
   public static class UseCase
   {
     String startingString;

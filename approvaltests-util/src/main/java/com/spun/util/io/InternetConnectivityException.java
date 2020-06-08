@@ -67,5 +67,5 @@ public class InternetConnectivityException extends Error
     }
   }
   
-  /************************************************************************/
+
 }

@@ -7,7 +7,7 @@ import com.spun.util.StringUtils;
 public class TemplateStringUtils
 {
   public static TemplateStringUtils INSTANCE = new TemplateStringUtils();
-  /************************************************************************/
+
   private TemplateStringUtils()
   {
   }
@@ -42,17 +42,17 @@ public class TemplateStringUtils
     maxLength = (maxLength < 0) ? 0 : maxLength;
     return StringUtils.truncate(onString, maxLength);
   }
-  /************************************************************************/
+
   public static String clearNull(String value)
   {
     return clearNull(value, "");
   }
-  /************************************************************************/
+
   public static String clearNull(Object value, String replacingValue)
   {
     return (("null".equals(value) || value == null) ? replacingValue : value.toString());
   }
-  /************************************************************************/
+
   /**
    * Compare if arg [0] equals any other argument starting at [1].
    **/
@@ -106,32 +106,32 @@ public class TemplateStringUtils
       return buffer.toString();
     }
   }
-  /************************************************************************/
+
   public static int getLength(String s)
   {
     return s == null ? 0 : s.length();
   }
-  /************************************************************************/
+
   public String toHTMLEncode(String string)
   {
     return StringUtils.toHTMLEncode(clearNull(string));
   }
-  /************************************************************************/
+
   public String toURLEncode(String string)
   {
     return StringUtils.toURLEncode(clearNull(string));
   }
-  /************************************************************************/
+
   public static String toJavaScriptEncode(String string)
   {
     return StringUtils.toJavaScriptEncode(clearNull(string, null));
   }
-  /************************************************************************/
+
   public static String toJavaScriptEncode(Number n)
   {
     return n == null ? "null" : n.toString();
   }
-  /************************************************************************/
+
   public static String toJavaScriptEncode(Object n)
   {
     if (n == null)
@@ -151,6 +151,6 @@ public class TemplateStringUtils
   {
     return StringUtils.escapeForXml(s);
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

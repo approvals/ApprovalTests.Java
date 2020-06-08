@@ -56,14 +56,14 @@ public class DateDifference
                                                      1000 * 60L,
                                                      1000L,
                                                      1L};
-  /************************************************************************/
+
   private long               milli;
-  /************************************************************************/
+
   public DateDifference(long timeDifference)
   {
     this.milli = timeDifference;
   }
-  /************************************************************************/
+
   public DateDifference(Date date1, Date date2)
   {
     milli = date1.getTime() - date2.getTime();
@@ -73,7 +73,7 @@ public class DateDifference
     }
     //    My_System.variable("dateDifference = " + milli);
   }
-  /************************************************************************/
+
   /**
    * Debugging tool.
    **/
@@ -85,7 +85,7 @@ public class DateDifference
       SimpleLogger.variable("" + DIVIDERS[i]);
     }
   }
-  /************************************************************************/
+
   /**
    * Gets the amount of [Units]. <BR>
    * i.e. <BR>
@@ -97,33 +97,33 @@ public class DateDifference
   {
     return getAbsoluteDifference(unit, this.milli);
   }
-  /************************************************************************/
+
   public long getAbsoluteDifference(String unit)
   {
     return getAbsoluteDifference(convertUnitString(unit));
   }
-  /************************************************************************/
+
   public long getRoundedDifference(String unit)
   {
     return getRoundedDifference(convertUnitString(unit), this.milli);
   }
-  /************************************************************************/
+
   public long getRoundedDifference(int unit)
   {
     return getRoundedDifference(unit, this.milli);
   }
-  /************************************************************************/
+
   public static long getAbsoluteDifference(int unit, long time)
   {
     //    My_System.variable("divider = " + DIVIDERS[getIndex(unit)]);
     return time / DIVIDERS[getTimeScaleIndex(unit)];
   }
-  /************************************************************************/
+
   public static long getRoundedDifference(int unit, long time)
   {
     return Math.round(((double) time) / DIVIDERS[getTimeScaleIndex(unit)]);
   }
-  /************************************************************************/
+
   /**
    * Gets the remaining amount of [Units]. <BR>
    * i.e. <BR>
@@ -135,8 +135,8 @@ public class DateDifference
   {
     return getRemainingDifference(wantedUnit, roundTo, this.milli);
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
   public static long getRemainingDifference(int wantedUnit, int roundTo, long time)
   {
     int wantedIndex = getTimeScaleIndex(wantedUnit);
@@ -314,6 +314,6 @@ public class DateDifference
   {
     return getTimeText(amountShown, Calendar.YEAR, Calendar.MILLISECOND, "now", "", STANDARD_TIME_TEXT);
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

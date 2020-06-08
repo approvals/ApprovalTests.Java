@@ -28,7 +28,7 @@ public class DatabaseConfiguration
   {
     wrappers.put(name, wrapper);
   }
-  /************************************************************************/
+
   public DatabaseConfiguration(DatabaseConfiguration config)
   {
     this.dataSourceName = config.dataSourceName;
@@ -42,7 +42,7 @@ public class DatabaseConfiguration
     this.type = config.type;
     this.wrapper = config.wrapper;
   }
-  /************************************************************************/
+
   public DatabaseConfiguration(String dataSourceName, String driver, String protocol, String server, String port,
       String database, String userName, String password, int type)
   {
@@ -58,12 +58,12 @@ public class DatabaseConfiguration
     this.password = password;
     this.type = type;
   }
-  /************************************************************************/
+
   public boolean isDataSource()
   {
     return StringUtils.isNonZero(dataSourceName);
   }
-  /************************************************************************/
+
   /**
    * Convenience function.
    **/
@@ -77,12 +77,12 @@ public class DatabaseConfiguration
     props.setProperty("password", this.password);
     return props;
   }
-  /************************************************************************/
+
   public Connection makeConnection()
   {
     return makeConnection(database);
   }
-  /************************************************************************/
+
   public Connection makeConnection(String databaseName)
   {
     connectionCounter.inc();
@@ -111,12 +111,12 @@ public class DatabaseConfiguration
     }
     return con;
   }
-  /************************************************************************/
+
   public Counter getConnectionCounter()
   {
     return connectionCounter;
   }
-  /************************************************************************/
+
   public String toString()
   {
     String value = "com.spun.util.DatabaseConfiguration[";
@@ -126,42 +126,42 @@ public class DatabaseConfiguration
         + " type = " + type + ",\n" + " userName = '" + userName + "'" + "]";
     return value;
   }
-  /************************************************************************/
+
   public String getDataSourceName()
   {
     return dataSourceName;
   }
-  /************************************************************************/
+
   public String getDatabase()
   {
     return database;
   }
-  /************************************************************************/
+
   public String getDriver()
   {
     return driver;
   }
-  /************************************************************************/
+
   public String getPassword()
   {
     return password;
   }
-  /************************************************************************/
+
   public String getProtocol()
   {
     return protocol;
   }
-  /************************************************************************/
+
   public String getServer()
   {
     return server;
   }
-  /************************************************************************/
+
   public int getType()
   {
     return type;
   }
-  /************************************************************************/
+
   public String getUserName()
   {
     return userName;
@@ -171,16 +171,16 @@ public class DatabaseConfiguration
   {
     return NumberUtils.load(port, 0);
   }
-  /************************************************************************/
+
   public void setWrapper(String wrapper)
   {
     this.wrapper = wrapper;
   }
-  /************************************************************************/
+
   public void setRollbackOnlyMode()
   {
     this.inRollbackOnlyMode = true;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

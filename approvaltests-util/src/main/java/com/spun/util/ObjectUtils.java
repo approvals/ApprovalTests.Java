@@ -211,7 +211,7 @@ public class ObjectUtils
       assertInstance(type, value);
     }
   }
-  /************************************************************************/
+
   public static void move(Object from, Object to, String[] getters)
   {
     try
@@ -230,7 +230,7 @@ public class ObjectUtils
       throw throwAsError(e);
     }
   }
-  /************************************************************************/
+
   private static Class<?> getBestClass(Object value, Method method)
   {
     return value == null ? method.getReturnType() : value.getClass();

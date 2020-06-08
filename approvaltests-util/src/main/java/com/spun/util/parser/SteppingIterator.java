@@ -44,12 +44,12 @@ public class SteppingIterator
       return (((currentPlace + 1) % stepping[forSteppingLevel]) == 0);
     }
   }
-  /************************************************************************/
+
   public boolean isFirst(int index, int forSteppingLevel)
   {
     return (getStepPositionForRound(forSteppingLevel, 0, index) == 0);
   }
-  /************************************************************************/
+
   public int getSize(boolean includeOffset, boolean includeStepping)
   {
     int size = actualSize;
@@ -103,6 +103,6 @@ public class SteppingIterator
     position = position - this.offset;
     return (position < 0 || this.actualSize <= position) ? -1 : position;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

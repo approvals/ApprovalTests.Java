@@ -51,7 +51,7 @@ public class UPSQuote
     quote.price += quote2.price * quote2Multiplier;
     return quote;
   }
-  /************************************************************************/
+
   public String toString()
   {
     String value = "com.spun.util.ups.UPSQuote[";

@@ -40,7 +40,7 @@ public class ValidationErrorTest extends TestCase
       assertTrue("isValid(" + asserts[i] + ")", error.isValid(asserts[i]));
     }
   }
-  /************************************************************************/
+
   public void testInvaildError()
   {
     ValidationError error = createValidationError(3);
@@ -60,7 +60,7 @@ public class ValidationErrorTest extends TestCase
       // DO NOTHING
     }
   }
-  /************************************************************************/
+
   public void testIterator()
   {
     ValidationError error = createValidationError(3);
