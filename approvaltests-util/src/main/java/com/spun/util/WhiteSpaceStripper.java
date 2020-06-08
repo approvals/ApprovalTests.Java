@@ -1,12 +1,14 @@
 package com.spun.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import com.spun.util.logger.SimpleLogger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 public class WhiteSpaceStripper
 {
@@ -28,7 +30,7 @@ public class WhiteSpaceStripper
     {
       if (files[i].isDirectory())
       {
-        SimpleLogger.event("Scaning Directory -" + files[i].getName());
+        SimpleLogger.event("Scanning Directory -" + files[i].getName());
         if (recursive)
           stripFolder(files[i], recursive);
       }
@@ -146,35 +148,30 @@ public class WhiteSpaceStripper
   /***********************************************************************/
   private static String readFile(File file) throws IOException
   {
-    BufferedReader reader = new BufferedReader(new FileReader(file));
-    StringBuffer output = new StringBuffer();
-    while (reader.ready())
-    {
-      output.append(reader.readLine());
-      output.append("\n");
+    try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
+      StringBuilder output = new StringBuilder();
+      while (reader.ready())
+      {
+        output.append(reader.readLine());
+        output.append("\n");
+      }
+      return output.toString();
     }
-    reader.close();
-    return output.toString();
   }
   /***********************************************************************/
   private static void writeFile(File file, String text) throws IOException
   {
-    FileWriter writer = new FileWriter(file);
-    writer.write(text);
-    writer.close();
+    try (BufferedWriter writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8))
+    {
+      writer.write(text);
+    }
   }
-  /***********************************************************************/
-  public static void main(String[] args)
-  {
-    //    stripFolder(new File("C:\\temp\\stockgazing"));
-  }
-  /***********************************************************************/
-  /***********************************************************************/
 }
 
 class WhiteSpaceFileFilter implements java.io.FileFilter
 {
   /***********************************************************************/
+  @Override
   public boolean accept(File pathname)
   {
     if (pathname.getName().equals(".") || pathname.getName().equals("."))
@@ -185,8 +182,8 @@ class WhiteSpaceFileFilter implements java.io.FileFilter
     {
       return false;
     }
-    else if (pathname.isDirectory() || (pathname.getName().indexOf(".htm") != -1)
-        || (pathname.getName().indexOf(".txt") != -1))
+    else if (pathname.isDirectory() || (pathname.getName().contains(".htm"))
+        || (pathname.getName().contains(".txt")))
     {
       return true;
     }

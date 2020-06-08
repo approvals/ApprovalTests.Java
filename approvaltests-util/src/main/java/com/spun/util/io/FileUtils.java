@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +15,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,9 +164,9 @@ public class FileUtils
     {
       Asserts.assertNotNull("Writing to file: " + file, text);
       file.getCanonicalFile().getParentFile().mkdirs();
-      BufferedWriter out = new BufferedWriter(new FileWriter(file));
-      out.write(text);
-      out.close();
+      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        out.write(text);
+      }
     }
     catch (Throwable t)
     {
@@ -183,12 +184,11 @@ public class FileUtils
     {
       Asserts.assertNotNull("Writing to file: " + file, data);
       file.getCanonicalFile().getParentFile().mkdirs();
-      DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
-      for (int i = 0; i < data.length(); i++)
-      {
-        writer.write(data.charAt(i));
+      try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(file))) {
+        for (int i = 0; i < data.length(); i++) {
+          writer.write(data.charAt(i));
+        }
       }
-      writer.close();
     }
     catch (Throwable t)
     {
@@ -219,7 +219,7 @@ public class FileUtils
     try
     {
       if (!file.exists()) { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
-      BufferedReader in = new BufferedReader(new FileReader(file));
+      BufferedReader in = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8);
       return readBuffer(in);
     }
     catch (Throwable t)
@@ -357,7 +357,8 @@ public class FileUtils
   }
   public static String readStream(InputStream resourceAsStream)
   {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+    BufferedReader reader = new BufferedReader(
+        new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
     return FileUtils.readBuffer(reader);
   }
   public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name)
