@@ -14,21 +14,21 @@ import com.spun.util.io.FileUtils;
 
 public class ClassUtils
 {
-  /************************************************************************/
+
   public static String getClassName(Class<?> clazz)
   {
     String name = clazz.getName();
     int divider = name.lastIndexOf(".");
     return name.substring(divider + 1);
   }
-  /************************************************************************/
+
   public static String getClassPath(Class<?> clazz)
   {
     String name = clazz.getName();
     int divider = name.lastIndexOf(".");
     return name.substring(0, divider);
   }
-  /************************************************************************/
+
   public static Class<?> getWrapperClass(Class<?> primativeType)
   {
     if (boolean.class.equals(primativeType))
@@ -68,8 +68,8 @@ public class ClassUtils
       return primativeType;
     }
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
   public static boolean hasMethod(Class<?> clazz, String methodName, Class<?>... parameterTypes)
   {
     try

@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import org.w3c.dom.Node;
 
-/***********************************************************************/
+
 public class XmlTranslator
 {
   private HashMap<String,XmlExtractor> extractors = new HashMap<String,XmlExtractor>();
   private HashMap<String,Method> setters    = new HashMap<String,Method>();
-  /***********************************************************************/
+
   public XmlTranslator(XmlMap[] maps)
   {
     for (int i = 0; i < maps.length; i++)
@@ -21,7 +21,7 @@ public class XmlTranslator
       setters.put(nodeName, maps[i].getSettingMethod());
     }
   }
-  /***********************************************************************/
+
   public Object extractAndTranslateForNode(Node node, Object addToObject) throws IllegalArgumentException,
       IllegalAccessException, InvocationTargetException, InstantiationException
   {
@@ -35,7 +35,7 @@ public class XmlTranslator
     this.setObject(o, addToObject, method);
     return o;
   }
-  /***********************************************************************/
+
   private static String getNamePath(Node node)
   {
     StringBuffer buffer = new StringBuffer(node.getNodeName());
@@ -46,7 +46,7 @@ public class XmlTranslator
     }
     return buffer.toString();
   }
-  /***********************************************************************/
+
   private void setObject(Object o, Object addToObject, Method settingMethod) throws IllegalArgumentException,
       IllegalAccessException, InvocationTargetException
   {
@@ -70,6 +70,6 @@ public class XmlTranslator
     }
     return out.toString();
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

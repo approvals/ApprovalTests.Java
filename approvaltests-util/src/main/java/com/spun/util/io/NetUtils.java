@@ -23,7 +23,7 @@ import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
  **/
 public class NetUtils
 {
-  /***********************************************************************/
+  
   public static void ftpUpload(FTPConfig config, String directory, File file, String remoteFileName)
       throws IOException
   {
@@ -40,12 +40,12 @@ public class NetUtils
     server.sendNoOp();
     server.disconnect();
   }
-  /***********************************************************************/
+  
   public static void ftpUpload(FTPConfig config, String directory, File file) throws IOException
   {
     ftpUpload(config, directory, file, file.getName());
   }
-  /***********************************************************************/
+  
   public static void sftpUpload(FTPConfig config, File file, String remoteFileName) throws IOException
   {
     SshClient ssh = new SshClient();
@@ -55,7 +55,7 @@ public class NetUtils
     sftp.quit();
     ssh.disconnect();
   }
-  /************************************************************************/
+
   private static SftpClient sshLogin(FTPConfig config, SshClient ssh) throws IOException
   {
     ssh.setSocketTimeout(60000);
@@ -67,7 +67,7 @@ public class NetUtils
     SftpClient sftp = ssh.openSftpClient();
     return sftp;
   }
-  /************************************************************************/
+
   public static File sftpDownload(FTPConfig config, File file, String remoteFileName) throws IOException
   {
     SshClient ssh = new SshClient();
@@ -77,7 +77,7 @@ public class NetUtils
     ssh.disconnect();
     return file;
   }
-  /***********************************************************************/
+  
   private static void assertValidReplyCode(int code, FTPClient ftp)
   {
     if (FTPReply.isPositiveCompletion(code))
@@ -102,8 +102,8 @@ public class NetUtils
           + ftp.getReplyString() + "'");
     }
   }
-  /***********************************************************************/
-  /************************************************************************/
+  
+
   public static String loadWebPage(String url, String parameters)
   {
     try

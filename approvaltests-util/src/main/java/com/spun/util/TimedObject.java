@@ -7,18 +7,18 @@ public class TimedObject
   private Object object           = null;
   private long   timeOutInMillis  = 1000;
   private long   lastTimeAccessed = 0;
-  /***********************************************************************/
+
   public TimedObject(long timeOutInMillis)
   {
     this.timeOutInMillis = timeOutInMillis;
   }
-  /***********************************************************************/
+
   public Object get()
   {
     touched();
     return object;
   }
-  /***********************************************************************/
+
   private synchronized void touched()
   {
     try
@@ -35,7 +35,7 @@ public class TimedObject
       SimpleLogger.warning(t);
     }
   }
-  /***********************************************************************/
+
   public void clean()
   {
     try
@@ -56,12 +56,12 @@ public class TimedObject
       this.lastTimeAccessed = 0;
     }
   }
-  /***********************************************************************/
+
   public void set(Object object)
   {
     touched();
     this.object = object;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

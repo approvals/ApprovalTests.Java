@@ -30,7 +30,7 @@ public class TestUtils
 {
   private static Random      random;
   public static final String INTERNET_EXPLORER = "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\" ";
-  /***********************************************************************/
+  
   public static File getFile(String startingDir)
   {
     JFrame frame = new JFrame();
@@ -46,7 +46,7 @@ public class TestUtils
     frame.dispose();
     return returning;
   }
-  /***********************************************************************/
+  
   public static void displayXml(String htmlOutput)
   {
     try
@@ -58,7 +58,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static String getRandomString()
   {
     if (random == null)
@@ -67,12 +67,12 @@ public class TestUtils
     }
     return Long.toString(Math.abs(random.nextLong()), 36);
   }
-  /***********************************************************************/
+  
   public static void displayHtml(String htmlOutput)
   {
     displayHtml(null, ".html", htmlOutput, 3);
   }
-  /***********************************************************************/
+  
   public static void displayHtmlFile(String fileName) throws IOException
   {
     displayFile(fileName);
@@ -82,13 +82,13 @@ public class TestUtils
     if (!file.exists()) { return; }
     displayHtmlFile(file.getAbsolutePath());
   }
-  /***********************************************************************/
+  
   public static void displayHtml(String outputFile, String htmlOutput)
       throws FileNotFoundException, IOException, InterruptedException
   {
     displayHtml(outputFile, ".html", htmlOutput, 15);
   }
-  /***********************************************************************/
+  
   public static void displayHtml(String outputFile, String fileExtention, String htmlOutput, int secondsTimeout)
   {
     try
@@ -107,18 +107,18 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static void displayText(String output) throws IOException, InterruptedException
   {
     displayHtml(null, ".txt", output, 3);
   }
-  /***********************************************************************/
+  
   public static void displayExcel(String output) throws IOException, InterruptedException
   {
     displayHtml(null, ".csv", output, 3);
     //    Runtime.getRuntime().exec("notepad.exe " + outputFile);
   }
-  /***********************************************************************/
+  
   public static void assertForEach(String comment, Object[] objects, String method, Object expectedResult)
   {
     if (objects == null || objects.length == 0) { return; }
@@ -136,7 +136,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+  
   public static void assertEqualForMethods(String title, Object expectedResult, Object testResult,
       String[] matchingMethods)
   {
@@ -156,7 +156,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+  
   public static void displayEmail(Message email)
   {
     if (email == null) { return; }
@@ -174,7 +174,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static void displayFile(String fileName)
   {
     String cmd = "";
@@ -197,7 +197,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static double getTimerMultiplier() throws InterruptedException
   {
     long start = System.currentTimeMillis();
@@ -205,7 +205,7 @@ public class TestUtils
     long end = System.currentTimeMillis();
     return (end - start) / 500.00;
   }
-  /***********************************************************************/
+  
   public static void assertLength(int length, Object[] array)
   {
     if (length != array.length)
@@ -213,7 +213,7 @@ public class TestUtils
       TestCase.fail(String.format("Array.length %s != %s \n %s", length, array.length, Arrays.asList(array)));
     }
   }
-  /***********************************************************************/
+  
   public static void assertLength(int length, List<?> list)
   {
     if (length != list.size())
@@ -221,15 +221,15 @@ public class TestUtils
       TestCase.fail(String.format("Array.length %s != %s \n %s", length, list.size(), list));
     }
   }
-  /***********************************************************************/
+  
   public static void displayImage(BufferedImage image) throws Exception
   {
     File f = File.createTempFile("temp", ".gif");
     ImageWriter.writeImage(image, new FileOutputStream(f), ImageWriter.Encoding.GIF);
     Runtime.getRuntime().exec("C:\\PROGRA~1\\MOZILL~1\\FIREFOX.EXE " + f.getAbsolutePath());
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public static void assertContains(String expecting, String[] in)
   {
     if (!ArrayUtils.contains(in, expecting))

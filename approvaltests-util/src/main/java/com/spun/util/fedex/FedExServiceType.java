@@ -19,34 +19,34 @@ public enum FedExServiceType {
                               FedEx_International_Enconomy_Freight("86"),;
   private String fullName;
   private String serviceCode;
-  /***********************************************************************/
+  
   private FedExServiceType(String serviceCode)
   {
     this.serviceCode = serviceCode;
     this.fullName = this.toString().replace("_", " ");
   }
-  /***********************************************************************/
+  
   @Override
   public String toString()
   {
     return fullName == null ? super.toString() : fullName;
   }
-  /***********************************************************************/
+  
   public boolean isInternational()
   {
     return fullName.startsWith("FedEx International");
   }
-  /***********************************************************************/
+  
   public static FedExServiceType[] getInternationalCodes()
   {
     return getCodes(true);
   }
-  /***********************************************************************/
+  
   private static FedExServiceType[] getCodes(final boolean international)
   {
     return Query.where(values(), a -> (a.isInternational() == international)).toArray(new FedExServiceType[0]);
   }
-  /***********************************************************************/
+  
   public static FedExServiceType[] getNationalCodes()
   {
     return getCodes(false);
@@ -59,6 +59,6 @@ public enum FedExServiceType {
   {
     return Query.first(FedExServiceType.values(), o -> shippingMethod.equals(o.toString()));
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

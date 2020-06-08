@@ -14,19 +14,19 @@ public class StringUtilsTest extends TestCase
   ReplaceUseCase[] replaceUseCases = {new ReplaceUseCase("quick brown fox", "brown", "white", "quick white fox"),
                                       new ReplaceUseCase("quick brown quick fox brown", "quick", "slow",
                                           "slow brown slow fox brown"),};
-  /***********************************************************************/
+  
   public void testJoin() throws Exception
   {
     assertEquals("Falco,Llewellyn", StringUtils.join("Falco", ",", "Llewellyn"));
     assertEquals("Falco", StringUtils.join("Falco", ",", null));
     assertEquals("Falco", StringUtils.join("Falco", ",", ""));
   }
-  /***********************************************************************/
+  
   public void testToNameCase()
   {
     assertEquals("Name changed", "Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"));
   }
-  /***********************************************************************/
+  
   public void testSplit()
   {
     SplitUseCase[] split = {new SplitUseCase("quick brown fox", " "),
@@ -46,7 +46,7 @@ public class StringUtilsTest extends TestCase
   {
     return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
-  /***********************************************************************/
+  
   public void testJoinCollection()
   {
     // begin-snippet: join_collection
@@ -75,7 +75,7 @@ public class StringUtilsTest extends TestCase
   {
     Approvals.verify(StringUtils.toString("things", new Object[]{1, null, "hi"}));
   }
-  /***********************************************************************/
+  
   public class SplitUseCase
   {
     String   start;
@@ -88,7 +88,7 @@ public class StringUtilsTest extends TestCase
       this.expectedArray = expectedArray;
     }
   }
-  /************************************************************************/
+
   public class ReplaceUseCase
   {
     String startingString;
@@ -103,6 +103,6 @@ public class StringUtilsTest extends TestCase
       this.expectedString = expectedString;
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

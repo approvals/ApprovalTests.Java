@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 
 public class VelocityTest extends TestCase implements ContextAware
 {
-  /**********************77*************************************************/
+
   public void testCodeWorks() throws Exception
   {
     assertEquals(getClass().getName(), VelocityParser.parseString("$main.getClass().getName()", this));
@@ -19,12 +19,12 @@ public class VelocityTest extends TestCase implements ContextAware
   {
     assertErrorThrown("$main.unknownField");
   }
-  /***********************************************************************/
+  
   public void testUnknownFieldThenMethod()
   {
     assertErrorThrown("$main.unknownField.someMethod()");
   }
-  /***********************************************************************/
+  
   private void assertErrorThrown(String string)
   {
     String result = null;
@@ -38,26 +38,26 @@ public class VelocityTest extends TestCase implements ContextAware
     }
     Assert.fail("parsing '" + string + "' did not fail but returned '" + result + "'");
   }
-  /***********************************************************************/
+  
   public void testUnknownMethod()
   {
     assertErrorThrown("$main.unknownMethod()");
   }
-  /***********************************************************************/
+  
   /*public void testNullPointer()
   {
     assertErrorThrown("$main.getNull().callMethod()");
   }*/
-  /***********************************************************************/
+  
   public Object getNull()
   {
     return null;
   }
-  /***********************************************************************/
+  
   public void setupContext(Context context)
   {
     context.put("main", this);
   }
 }
-/***********************************************************************/
-/***********************************************************************/
+
+

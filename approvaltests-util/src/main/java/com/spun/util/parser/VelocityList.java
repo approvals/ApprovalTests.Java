@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-/***********************************************************************/
+
 public class VelocityList<T>
 {
   private SteppingIterator iterator = null;
@@ -14,40 +14,40 @@ public class VelocityList<T>
   {
     this(array, 0, SteppingIterator.DEFAULT_STEPPING);
   }
-  /***********************************************************************/
+
   public VelocityList(T[] array, int offset, int stepping)
   {
     this(array, offset, new int[]{stepping});
   }
-  /***********************************************************************/
+
   public VelocityList(T[] array, int offset, int[] stepping)
   {
     this.list = array == null ? Collections.emptyList() : Arrays.asList(array);
     this.iterator = new SteppingIterator(offset, stepping, this.list.size());
   }
-  /***********************************************************************/
+
   public VelocityList(List<T> array, int offset, int[] stepping)
   {
     this.list = array == null ? Collections.emptyList() : array;
     this.iterator = new SteppingIterator(offset, stepping, this.list.size());
   }
-  /***********************************************************************/
+
   public VelocityList(List<T> list)
   {
     this(list, 0, SteppingIterator.DEFAULT_STEPPING);
   }
-  /***********************************************************************/
+
   public SteppingIterator getSteppingIterator()
   {
     return this.iterator;
   }
-  /***********************************************************************/
+
   private T get(int index)
   {
     int actualPosition = iterator.getActualPosition(index);
     return (actualPosition == -1) ? null : list.get(actualPosition);
   }
-  /***********************************************************************/
+
   public List<Item<T>> getAll()
   {
     int size = this.iterator.getSize(true, true);
@@ -58,9 +58,9 @@ public class VelocityList<T>
     }
     return returning;
   }
-  /***********************************************************************/
+
   /*                              INNER CLASS                            */
-  /***********************************************************************/
+
   public static class Item<T>
   {
     VelocityList<T> list;

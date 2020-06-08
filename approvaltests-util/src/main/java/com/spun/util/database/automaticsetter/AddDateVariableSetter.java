@@ -12,7 +12,7 @@ public class AddDateVariableSetter
 {
   public static final AddDateVariableSetter INSTANCE = new AddDateVariableSetter();
   private AddDateVariableSetter () {}
-  /***********************************************************************/
+  
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     AddDateAware addDate = (AddDateAware)forObject;
@@ -28,6 +28,6 @@ public class AddDateVariableSetter
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

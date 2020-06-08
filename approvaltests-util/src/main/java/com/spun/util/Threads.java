@@ -3,7 +3,7 @@ package com.spun.util;
 public class Threads
 {
   private int threadCount = 0;
-  /************************************************************************/
+
   public Threads()
   {
     ThreadGroup place = Thread.currentThread().getThreadGroup();
@@ -13,11 +13,11 @@ public class Threads
     }
     threadCount = place.activeCount();
   }
-  /************************************************************************/
+
   public int getThreadCount()
   {
     return threadCount;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

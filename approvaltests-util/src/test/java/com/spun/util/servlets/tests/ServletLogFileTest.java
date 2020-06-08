@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 
 public class ServletLogFileTest extends TestCase
 {
-  /***********************************************************************/
+
   public void testLogFileCreation() throws Exception
   {
     File directory = setupTempLogDirectory();
@@ -56,7 +56,7 @@ public class ServletLogFileTest extends TestCase
     System.setProperty(TOMCAT_DIRECTORY, directory.getAbsolutePath());
     return directory;
   }
-  /***********************************************************************/
+
   public static class ErrorThrowingServlet extends BasicServlet implements SecondaryErrorProcessor
   {
     private static final long serialVersionUID = 1L;
@@ -65,7 +65,7 @@ public class ServletLogFileTest extends TestCase
     {
       this.errorTemplate = errorTemplate;
     }
-    /***********************************************************************/
+
     public void doGet(HttpServletRequest req, HttpServletResponse res)
     {
       try
@@ -84,7 +84,7 @@ public class ServletLogFileTest extends TestCase
         }
       }
     }
-    /***********************************************************************/
+
     protected String getErrorTemplate()
     {
       return errorTemplate;
@@ -101,6 +101,6 @@ public class ServletLogFileTest extends TestCase
       return null;
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

@@ -1,12 +1,16 @@
 package com.spun.util.logger;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
+import java.util.List;
 
 import com.spun.util.DateDifference;
 import com.spun.util.ObjectUtils;
@@ -150,13 +154,13 @@ public class SimpleLoggerInstance
   }
   private String indentMessage(String message)
   {
-    Vector<Integer> v = new Vector<Integer>();
+    List<Integer> v = new ArrayList<>();
     int place = 0;
     while ((place = message.indexOf('\n', place + 1)) != -1)
     {
-      v.addElement(place);
+      v.add(place);
     }
-    if (v.size() == 0)
+    if (v.isEmpty())
     {
       // no '\n'
       return message;
@@ -165,8 +169,8 @@ public class SimpleLoggerInstance
     StringBuffer buffer = new StringBuffer(message);
     for (int i = (v.size() - 1); i >= 0; i--)
     {
-      int tempplace = ((Integer) v.elementAt(i)).intValue();
-      buffer.insert(tempplace + 1, theIndention);
+      int tempPlace = v.get(i);
+      buffer.insert(tempPlace + 1, theIndention);
     }
     return buffer.toString();
   }
@@ -291,7 +295,7 @@ public class SimpleLoggerInstance
     {
       throwable.printStackTrace((PrintStream) logTo);
     }
-    else if (logTo instanceof PrintStream)
+    else if (logTo instanceof PrintWriter)
     {
       throwable.printStackTrace((PrintWriter) logTo);
     }
@@ -300,7 +304,7 @@ public class SimpleLoggerInstance
       throwable.printStackTrace(new PrintWriter(new AppendableWriter(logTo)));
     }
   }
-  /************************************************************************/
+
   /**
    * Logs the current memory status [total, used, free].
    * This forces garbage collection to run first. 
@@ -333,8 +337,8 @@ public class SimpleLoggerInstance
     final String text = extractMarkerText();
     return new Markers(text);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public StringBuffer logToString()
   {
     marker = true;
@@ -351,7 +355,12 @@ public class SimpleLoggerInstance
   {
     try
     {
-      logTo = new FileWriter(addDatestampToFile(file, addDateStamp), false);
+      logTo = Files.newBufferedWriter(
+          Paths.get(
+              addDatestampToFile(file, addDateStamp)),
+          StandardCharsets.UTF_8,
+          StandardOpenOption.TRUNCATE_EXISTING,
+          StandardOpenOption.CREATE);
     }
     catch (IOException e)
     {

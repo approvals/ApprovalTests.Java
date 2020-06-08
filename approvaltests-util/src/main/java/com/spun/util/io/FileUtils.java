@@ -1,5 +1,9 @@
 package com.spun.util.io;
 
+import com.spun.util.ArrayUtils;
+import com.spun.util.Asserts;
+import com.spun.util.FormattedException;
+import com.spun.util.ObjectUtils;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,29 +12,24 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
-
-import com.spun.util.ArrayUtils;
-import com.spun.util.Asserts;
-import com.spun.util.ObjectUtils;
 
 /**
  * A static class of convenience functions for Files
  **/
 public class FileUtils
 {
-  /***********************************************************************/
+
   public static File createTempDirectory() throws IOException
   {
     File tempFile = File.createTempFile("TEMP", null);
@@ -38,7 +37,7 @@ public class FileUtils
     tempFile.mkdirs();
     return tempFile;
   }
-  /***********************************************************************/
+
   public static void deleteDirectory(File directory) throws IOException
   {
     // delete all directory
@@ -67,12 +66,12 @@ public class FileUtils
     String resource = FileUtils.readStream(resourceAsStream);
     return resource;
   }
-  /***********************************************************************/
+
   public static File[] getRecursiveFileList(File directory)
   {
     return getRecursiveFileList(directory, new SimpleFileFilter());
   }
-  /***********************************************************************/
+
   public static File[] getRecursiveFileList(File directory, FileFilter filter)
   {
     ArrayList<File> list = new ArrayList<File>();
@@ -86,7 +85,7 @@ public class FileUtils
     ArrayUtils.addArray(list, files);
     return list.toArray(new File[list.size()]);
   }
-  /***********************************************************************/
+
   public static void copyFile(File in, File out)
   {
     try
@@ -129,7 +128,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void redirectInputToFile(String fileName, InputStream in)
   {
     try
@@ -142,7 +141,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void copyFileToDirectory(String file, File tempDir)
   {
     try
@@ -156,45 +155,46 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void writeFile(File file, String text)
   {
     try
     {
       Asserts.assertNotNull("Writing to file: " + file, text);
       file.getCanonicalFile().getParentFile().mkdirs();
-      BufferedWriter out = new BufferedWriter(new FileWriter(file));
-      out.write(text);
-      out.close();
+      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        out.write(text);
+      }
     }
     catch (Throwable t)
     {
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void writeFileQuietly(File file, String text)
   {
     writeFile(file, text);
   }
+
   public static void writeFile(File file, CharSequence data)
   {
     try
     {
       Asserts.assertNotNull("Writing to file: " + file, data);
       file.getCanonicalFile().getParentFile().mkdirs();
-      DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
-      for (int i = 0; i < data.length(); i++)
-      {
-        writer.write(data.charAt(i));
+      try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(file))) {
+        for (int i = 0; i < data.length(); i++) {
+          writer.write(data.charAt(i));
+        }
       }
-      writer.close();
     }
     catch (Throwable t)
     {
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void writeFile(File file, InputStream data)
   {
     try
@@ -208,18 +208,18 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static String readFile(String absolutePath)
   {
     return readFile(new File(absolutePath));
   }
-  /***********************************************************************/
+
   public static String readFile(File file)
   {
     try
     {
       if (!file.exists()) { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
-      BufferedReader in = new BufferedReader(new FileReader(file));
+      BufferedReader in = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8);
       return readBuffer(in);
     }
     catch (Throwable t)
@@ -227,6 +227,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static String readBuffer(BufferedReader in)
   {
     try
@@ -245,49 +246,35 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /************************************************************************/
+
   public static String readFileWithSuppressedExceptions(File databaseFile)
   {
     return FileUtils.readFile(databaseFile);
   }
-  /************************************************************************/
+
   public static File saveToFile(String prefix, Reader input)
   {
-    File file;
-    BufferedWriter bw = null;
     try
     {
-      file = File.createTempFile(prefix, null);
-      bw = new BufferedWriter(new FileWriter(file));
-      BufferedReader inputReader = new BufferedReader(input);
-      String thisLine;
-      while ((thisLine = inputReader.readLine()) != null)
-      {
-        bw.write(thisLine);
-        bw.newLine();
+      File file = File.createTempFile(prefix, null);
+      try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+        try (BufferedReader inputReader = new BufferedReader(input)) {
+          String thisLine;
+          while ((thisLine = inputReader.readLine()) != null) {
+            bw.write(thisLine);
+            bw.newLine();
+          }
+        }
       }
-      inputReader.close();
+      return file;
     }
     catch (IOException e)
     {
-      throw new RuntimeException("Unable to store order: " + e.getMessage(), e);
+      throw new FormattedException(
+          "Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
     }
-    finally
-    {
-      try
-      {
-        if (bw != null)
-        {
-          bw.close();
-        }
-      }
-      catch (IOException e)
-      {
-      }
-    }
-    return file;
   }
-  /************************************************************************/
+
   public static String getDirectoryFriendlyName(String name)
   {
     if (name == null) { return ""; }
@@ -306,8 +293,8 @@ public class FileUtils
     }
     return result.toString();
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
   public static String getExtensionWithDot(String filename)
   {
     int p = filename.lastIndexOf('.');
@@ -357,7 +344,8 @@ public class FileUtils
   }
   public static String readStream(InputStream resourceAsStream)
   {
-    BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream));
+    BufferedReader reader = new BufferedReader(
+        new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
     return FileUtils.readBuffer(reader);
   }
   public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name)

@@ -19,7 +19,7 @@ public class ImageWriter
   private Encoding      type  = null;
   private static Random rand  = new Random();
   private static int    index = rand.nextInt();
-  /***********************************************************************/
+  
   public ImageWriter(BufferedImage image, OutputStream out, Encoding type)
   {
     this.image = image;
@@ -39,7 +39,7 @@ public class ImageWriter
     g.dispose();
     return bimage;
   }
-  /***********************************************************************/
+  
   public void start()
   {
     try
@@ -59,21 +59,21 @@ public class ImageWriter
       SimpleLogger.warning(e);
     }
   }
-  /***********************************************************************/
+  
   private void encodeJPEG() throws IOException
   {
     ImageIO.write(image, "jpg", out);
   }
-  /***********************************************************************/
+  
   private void encodeGIF() throws IOException
   {
     SimpleLogger.variable("making GIF");
     ImageIO.write(image, "GIF", out);
   }
-  /***********************************************************************/
+  
   public static synchronized int getImageId()
   {
     return (index++);
   }
-  /***********************************************************************/
+  
 }

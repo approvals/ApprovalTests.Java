@@ -23,7 +23,7 @@ public class ResultSetWriter
     }
     return sb.toString();
   }
-  /***********************************************************************/
+  
   public static List<String[]> extractResults(ResultSet rs)
   {
     try
@@ -46,7 +46,7 @@ public class ResultSetWriter
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static List<String> extractMetaData(ResultSet rs)
   {
     try

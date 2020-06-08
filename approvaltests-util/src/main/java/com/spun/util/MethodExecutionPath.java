@@ -17,22 +17,22 @@ public class MethodExecutionPath implements Serializable
   private String                  methodNames[];
   private Parameters[]            parameters;
   private Method                  methods[];
-  /***********************************************************************/
+  
   public MethodExecutionPath(Class<? extends Object> clazz, String methodName)
   {
     this(clazz, new String[]{methodName}, null);
   }
-  /***********************************************************************/
+  
   public MethodExecutionPath(Class<? extends Object> clazz, String... methodNames)
   {
     this(clazz, methodNames, null);
   }
-  /***********************************************************************/
+  
   public MethodExecutionPath(Class<? extends Object> clazz, String methodName, Parameters parameters)
   {
     this(clazz, new String[]{methodName}, new Parameters[]{parameters});
   }
-  /***********************************************************************/
+  
   public MethodExecutionPath(Class<? extends Object> clazz, String[] methodNames, Parameters[] parameters)
   {
     this.classType = clazz;
@@ -41,7 +41,7 @@ public class MethodExecutionPath implements Serializable
     this.methods = getRecursiveMethods(clazz, methodNames, parameters);
     this.returnType = (this.methods != null) ? methods[methods.length - 1].getReturnType() : null;
   }
-  /************************************************************************/
+
   public static MethodExecutionPath method(Class<? extends Object> class1, String method, Object... paramaters)
   {
     return new MethodExecutionPath(class1, new String[]{method}, new Parameters[]{new Parameters(paramaters)});
@@ -69,7 +69,7 @@ public class MethodExecutionPath implements Serializable
           "Unable to get method for " + clazz.getName() + "." + currentMethodName + "(" + parameter + ")", e);
     }
   }
-  /***********************************************************************/
+  
   public Object extractValue(Object object)
   {
     if (object == null) { return NULL_ENCOUNTERED_ON_PATH; }
@@ -83,7 +83,7 @@ public class MethodExecutionPath implements Serializable
     }
     return object;
   }
-  /************************************************************************/
+
   private static Object extractValue(Object object, Method method, Object values[])
   {
     try
@@ -96,24 +96,24 @@ public class MethodExecutionPath implements Serializable
           e);
     }
   }
-  /************************************************************************/
+
   public Class<? extends Object> getClassType()
   {
     return classType;
   }
-  /***********************************************************************/
+  
   public Class<?> getReturnType()
   {
     return returnType;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public static class Parameters
   {
     public static final Parameters EMPTY = new Parameters(null, null);
     public Class<?>[]              definitions;
     public Object[]                values;
-    /***********************************************************************/
+    
     public Parameters(Object... values)
     {
       if (!ArrayUtils.isEmpty(values))
@@ -122,18 +122,18 @@ public class MethodExecutionPath implements Serializable
         this.definitions = Query.select(values, m -> m.getClass()).toArray(new Class<?>[0]);
       }
     }
-    /***********************************************************************/
+    
     public Parameters(Class<?>[] definitions, Object[] values)
     {
       this.definitions = definitions;
       this.values = values;
     }
-    /***********************************************************************/
+    
     public Method getBestFitMethod(Class<?> clazz, String currentMethodName)
     {
       return getBestFitMethod(clazz, currentMethodName, definitions);
     }
-    /***********************************************************************/
+    
     public static Method getBestFitMethod(Class<?> clazz, String currentMethodName, Class<?>[] definitions)
     {
       try
@@ -155,13 +155,13 @@ public class MethodExecutionPath implements Serializable
         }
       }
     }
-    /***********************************************************************/
+    
     public static Parameters getParametersFor(Parameters[] parameters, int i)
     {
       if (parameters == null || (i >= parameters.length) || parameters[i] == null) { return EMPTY; }
       return parameters[i];
     }
-    /***********************************************************************/
+    
     public String toString()
     {
       return definitions == null ? "" : Arrays.asList(definitions).toString();
@@ -171,14 +171,14 @@ public class MethodExecutionPath implements Serializable
   {
     private String     methodName;
     private Class<?>[] classParameters;
-    /***********************************************************************/
+    
     public MethodParameterFilter(String methodName, Class<?>[] classParameters)
     {
       super();
       this.methodName = methodName;
       this.classParameters = classParameters;
     }
-    /***********************************************************************/
+    
     public boolean isExtracted(Object object) throws IllegalArgumentException
     {
       ObjectUtils.assertInstance(Method.class, object);
@@ -198,6 +198,6 @@ public class MethodExecutionPath implements Serializable
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

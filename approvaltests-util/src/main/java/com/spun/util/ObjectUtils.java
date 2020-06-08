@@ -27,7 +27,7 @@ public class ObjectUtils
     }
     return result;
   }
-  /***********************************************************************/
+  
   /**
    * tests if two objects are equal for all functions passed.
    **/
@@ -50,7 +50,7 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
-  /***********************************************************************/
+  
   public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
       throws SecurityException, NoSuchMethodException
   {
@@ -62,7 +62,7 @@ public class ObjectUtils
     }
     return methods;
   }
-  /***********************************************************************/
+  
   /**
    * A convenience function to check if 2 strings are equal.
    **/
@@ -81,7 +81,7 @@ public class ObjectUtils
       return false;
     }
   }
-  /***********************************************************************/
+  
   public static boolean isIn(Object target, Object[] objects)
   {
     for (int i = 0; i < objects.length; i++)
@@ -90,7 +90,7 @@ public class ObjectUtils
     }
     return false;
   }
-  /***********************************************************************/
+  
   /**
    * @deprecated use {@literal Query.first(onArray, o -> forValue.equals(o.onMethod())) }
    */
@@ -100,12 +100,12 @@ public class ObjectUtils
     throw new DeprecatedException("Query.first(onArray, o -> %s.equals(o.%s()))", forValue,
         StringUtils.join(onMethods, "().", m -> m));
   }
-  /***********************************************************************/
+  
   public static boolean isThisInstanceOfThat(Class<?> thiz, Class<?> that)
   {
     return that.isAssignableFrom(thiz);
   }
-  /***********************************************************************/
+  
   public static Error throwAsError(Throwable t) throws Error
   {
     if (t instanceof RuntimeException)
@@ -121,13 +121,13 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
-  /***********************************************************************/
+  
   public static <T> T getRandomIndex(T[] array)
   {
     if ((array == null) || (array.length == 0)) { return null; }
     return array[NumberUtils.RANDOM.nextInt(array.length)];
   }
-  /***********************************************************************/
+  
   /** 
   * @deprecated use {@literal Query.select(from, m -> m.methodName()) }
   */
@@ -135,7 +135,7 @@ public class ObjectUtils
   {
     throw new DeprecatedException("Query.select(from, m -> m.%s())", methodName);
   }
-  /***********************************************************************/
+  
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
       throws SecurityException, NoSuchMethodException
   {
@@ -154,7 +154,7 @@ public class ObjectUtils
     }
     return classes.size() == 0 ? null : ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null);
   }
-  /***********************************************************************/
+  
   private static Class<?>[] getAllCastableClasses(Object object)
   {
     Class<? extends Object> clazz = object.getClass();
@@ -169,7 +169,7 @@ public class ObjectUtils
     ArrayUtils.toReverseArray(found);
     return found;
   }
-  /***********************************************************************/
+  
   public static Object executeMethod(Object object, String method, Class<?>[] methodSignature, Object[] parameters)
   {
     try
@@ -181,12 +181,12 @@ public class ObjectUtils
       throw throwAsError(t);
     }
   }
-  /***********************************************************************/
+  
   public static void assertInstance(Class<?> clazz, Object object)
   {
     assertInstance(new Class[]{clazz}, object);
   }
-  /***********************************************************************/
+  
   public static void assertInstance(Class<?> classes[], Object object)
   {
     if (object == null) { throw new NullPointerException(
@@ -198,12 +198,12 @@ public class ObjectUtils
     throw new IllegalArgumentException("Expected Object of Type " + Arrays.asList(extractArray(classes, "getName"))
         + " but got " + object.getClass().getName());
   }
-  /***********************************************************************/
+  
   public static String getClassName(Object o)
   {
     return o == null ? "null" : o.getClass().getName();
   }
-  /***********************************************************************/
+  
   public static void assertInstanceOrNull(Class<?> type, Object value)
   {
     if (value != null)
@@ -211,7 +211,7 @@ public class ObjectUtils
       assertInstance(type, value);
     }
   }
-  /************************************************************************/
+
   public static void move(Object from, Object to, String[] getters)
   {
     try
@@ -230,7 +230,7 @@ public class ObjectUtils
       throw throwAsError(e);
     }
   }
-  /************************************************************************/
+
   private static Class<?> getBestClass(Object value, Method method)
   {
     return value == null ? method.getReturnType() : value.getClass();

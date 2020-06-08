@@ -23,13 +23,13 @@ public class UPSPackage implements Serializable
   private int               packageWidth;
   private int               packageHeight;
   private int               packageWeightUnits;
-  /***********************************************************************/
+  
   public UPSPackage(String originatingZipCode, String toZipCode, String toCountryCode, double packageWeight,
       int packageWeightUnits, boolean residential)
   {
     this(originatingZipCode, toZipCode, toCountryCode, packageWeight, packageWeightUnits, 0, 0, 0, residential);
   }
-  /***********************************************************************/
+  
   public UPSPackage(String originatingZipCode, String toZipCode, String toCountryCode, double packageWeight,
       int packageWeightUnits, int packageLength, int packageWidth, int packageHeight, boolean residential)
   {
@@ -43,62 +43,62 @@ public class UPSPackage implements Serializable
     this.packageHeight = packageHeight;
     this.residential = residential;
   }
-  /***********************************************************************/
+  
   public String getToCountryCode()
   {
     return toCountryCode;
   }
-  /***********************************************************************/
+  
   public String getOriginatingZipCode()
   {
     return originatingZipCode;
   }
-  /***********************************************************************/
+  
   public double getPackageWeightInPounds()
   {
     return MassAmount.convertUnits(this.packageWeight, this.packageWeightUnits, MassAmount.POUNDS);
   }
-  /***********************************************************************/
+  
   public double getPackageWeight()
   {
     return packageWeight;
   }
-  /***********************************************************************/
+  
   public int getPackageWeightUnits()
   {
     return packageWeightUnits;
   }
-  /***********************************************************************/
+  
   public String getServiceType()
   {
     return serviceType;
   }
-  /***********************************************************************/
+  
   public String getToZipCode()
   {
     return toZipCode;
   }
-  /***********************************************************************/
+  
   public int getPackageHeight()
   {
     return packageHeight;
   }
-  /***********************************************************************/
+  
   public int getPackageLength()
   {
     return packageLength;
   }
-  /***********************************************************************/
+  
   public int getPackageWidth()
   {
     return packageWidth;
   }
-  /************************************************************************/
+
   public boolean isResidential()
   {
     return residential;
   }
-  /************************************************************************/
+
   public String toString()
   {
     String value = "com.spun.util.ups.UPSPackage[";
@@ -109,7 +109,7 @@ public class UPSPackage implements Serializable
         + " toZipCode = '" + toZipCode + "'" + " residential = '" + residential + "'" + "]";
     return value;
   }
-  /************************************************************************/
+
   /**
    * A convenience function to turn a vector of com.spun.util.ups.UPSPackage objects
    * into an Array of the com.spun.util.ups.UPSPackage objects.
@@ -138,6 +138,6 @@ public class UPSPackage implements Serializable
     }
     return array;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

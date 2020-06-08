@@ -11,18 +11,18 @@ import com.spun.util.io.xml.XmlMap;
 import com.spun.util.io.xml.XmlMapTranslator;
 import com.spun.util.io.xml.XmlTranslator;
 
-/***********************************************************************/
+
 public class XmlDatabaseMapExtractor implements XmlExtractor
 {
   private Class<?>         clazz;
   private XmlTranslator translator;
   private Method        creator = null;
-  /***********************************************************************/
+
   public XmlDatabaseMapExtractor(Class<?> clazz)
   {
     this.clazz = clazz;
   }
-  /***********************************************************************/
+
   public Object extractObjectForNode(Node node)
   {
     try
@@ -36,7 +36,7 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   private XmlTranslator getTranslator() throws IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, InstantiationException
   {
     if (translator == null)
@@ -46,7 +46,7 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
     }
     return translator;
   }
-  /***********************************************************************/
+
   private Method getCreator() throws SecurityException, NoSuchMethodException
   {
     if (creator == null)
@@ -55,6 +55,6 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
     }
     return creator;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

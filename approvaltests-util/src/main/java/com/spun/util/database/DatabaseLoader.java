@@ -7,28 +7,28 @@ public final class DatabaseLoader<T extends DatabaseObject> implements DatabaseC
 {
   private static final String                 ERROR_TEXT = "DatabaseLoad is a Marker to Load from the Database";
   public static DatabaseCache<DatabaseObject> INSTANCE   = new DatabaseLoader<DatabaseObject>();
-  /**************************************************************************/
+
   private DatabaseLoader()
   {
   }
-  /**************************************************************************/
+
   public static <T extends DatabaseObject> boolean isDatabaseLoader(DatabaseCache<T> cache)
   {
     return (cache instanceof DatabaseLoader);
   }
-  /**************************************************************************/
+
   public static <T extends DatabaseObject> boolean isNormalCache(DatabaseCache<T> cache)
   {
     return !((cache == null) || (cache instanceof DatabaseLoader));
   }
-  /**************************************************************************/
+
   public boolean equals(Object object)
   {
     return (object instanceof DatabaseLoader);
   }
-  /**************************************************************************/
+
   /*                     UNSUPPORTED METHODS                                */
-  /**************************************************************************/
+
   public Class<T> getObjectType()
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
@@ -49,5 +49,5 @@ public final class DatabaseLoader<T extends DatabaseObject> implements DatabaseC
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
-  /**************************************************************************/
+
 }

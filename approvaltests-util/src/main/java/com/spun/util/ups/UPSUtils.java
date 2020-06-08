@@ -41,18 +41,18 @@ public class UPSUtils
   private static String            HEADER         = "<?xml version=\"1.0\"?><AccessRequest xml:lang=\"en-US\"><AccessLicenseNumber>$config.getAccessLicenseNumber()</AccessLicenseNumber><UserId>$config.getUserId()</UserId><Password>$config.getPassword()</Password></AccessRequest>";
   private static String            REQUEST        = "<?xml version=\"1.0\"?><RatingServiceSelectionRequest xml:lang=\"en-US\"><Request><TransactionReference><CustomerContext>Rating and Service</CustomerContext><XpciVersion>1.0001</XpciVersion></TransactionReference><RequestAction>Rate</RequestAction><RequestOption>shop</RequestOption></Request><PickupType><Code>01</Code></PickupType><Shipment><Shipper><Address><PostalCode>$shipment.getMainPackage().getOriginatingZipCode()</PostalCode></Address></Shipper><ShipTo><Address><PostalCode>$shipment.getMainPackage().getToZipCode()</PostalCode><CountryCode>$shipment.getMainPackage().getToCountryCode()</CountryCode>#if ($shipment.getMainPackage().isResidential())<ResidentialAddressIndicator/>#end</Address></ShipTo><Service><Code>11</Code></Service>#foreach ($package in $shipment.getPackages())<Package><PackagingType><Code>02</Code><Description>Package</Description></PackagingType><Description>Rate Shopping</Description><PackageWeight><Weight>$package.getPackageWeightInPounds()</Weight></PackageWeight>#if ($package.getPackageLength() != 0)<Dimensions><UnitOfMeasurement><Code>IN</Code></UnitOfMeasurement><Length>$package.getPackageLength()</Length><Width>$package.getPackageWidth()</Width><Height>$package.getPackageHeight()</Height></Dimensions>#end</Package>#end<ShipmentServiceOptions/></Shipment></RatingServiceSelectionRequest>";
   private static UPSQuoteRetriever quoteRetriever = new UPSQuoteRetriever();
-  /***********************************************************************/
+  
   public static void setUPSQuoteRetriever(UPSQuoteRetriever quoteRetriever)
   {
     UPSUtils.quoteRetriever = quoteRetriever;
   }
-  /***********************************************************************/
+  
   public static UPSQuote[] getQuote(UPSConfig config, UPSPackage package1)
       throws SAXException, IOException, ParserConfigurationException, FactoryConfigurationError
   {
     return getQuote(config, new UPSPackage[]{package1});
   }
-  /***********************************************************************/
+  
   public static UPSQuote[] getQuote(UPSConfig config, UPSPackage packages[])
       throws SAXException, ParserConfigurationException, FactoryConfigurationError, HttpException, IOException
   {
@@ -60,7 +60,7 @@ public class UPSUtils
     String reqbody = constructRequestBody(config, packages);
     return getQuote(config, reqbody);
   }
-  /***********************************************************************/
+  
   public static UPSQuote[] getQuote(UPSConfig config, String reqbody)
       throws SAXException, ParserConfigurationException, FactoryConfigurationError, HttpException, IOException
   {
@@ -71,7 +71,7 @@ public class UPSUtils
     UPSQuote[] quotes = extractQuotes(response);
     return quotes;
   }
-  /***********************************************************************/
+  
   private static UPSPackage[] createAcceptablePackages(UPSPackage[] packages)
   {
     ArrayList<UPSPackage> list = new ArrayList<UPSPackage>();
@@ -103,7 +103,7 @@ public class UPSUtils
     }
     return UPSPackage.toArray(list);
   }
-  /***********************************************************************/
+  
   private static UPSQuote[] extractQuotes(InputStream response)
       throws SAXException, IOException, ParserConfigurationException, FactoryConfigurationError
   {
@@ -120,12 +120,12 @@ public class UPSUtils
     }
     return UPSQuote.toArray(quotes);
   }
-  /***********************************************************************/
+  
   private static Node getDocument(Document document)
   {
     return document != null ? document.getChildNodes().item(0) : null;
   }
-  /***********************************************************************/
+  
   private static UPSQuote extractQuote(Node node)
   {
     String service;
@@ -138,7 +138,7 @@ public class UPSUtils
     cost = NumberUtils.load(monetaryValue.getFirstChild().getNodeValue(), 0.0);
     return new UPSQuote(UPSServiceType.getForCode(service), cost);
   }
-  /***********************************************************************/
+  
   private static Node getNodeByName(Node node, String childNode)
   {
     NodeList list = node.getChildNodes();
@@ -148,7 +148,7 @@ public class UPSUtils
     }
     return null;
   }
-  /***********************************************************************/
+  
   private static String constructRequestBody(UPSConfig config, UPSPackage packages[])
   {
     UPSRequest req = new UPSRequest(config, packages);
@@ -156,13 +156,13 @@ public class UPSUtils
     String main = VelocityParser.parseString(REQUEST, req);
     return header + main;
   }
-  /***********************************************************************/
+  
   public static void main(String[] args)
   {
     SimpleLogger.variable(HEADER);
     SimpleLogger.variable(REQUEST);
   }
-  /***********************************************************************/
+  
   public static class UPSRequest implements ContextAware
   {
     private UPSConfig   config;

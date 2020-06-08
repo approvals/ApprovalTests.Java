@@ -28,18 +28,18 @@ public class MockHttpServletRequest implements HttpServletRequest
   public Map<String, Object> parameters = new HashMap<String, Object>();
   private String             body;
   private ArrayList<Cookie>  cookies    = new ArrayList<Cookie>();
-  /***********************************************************************/
+  
   public MockHttpServletRequest()
   {
     this.setSession(new MockHttpSession());
   }
-  /***********************************************************************/
+  
   public MockHttpServletRequest(String params) throws UnsupportedEncodingException
   {
     this.setSession(new MockHttpSession());
     parseParameters(params);
   }
-  /***********************************************************************/
+  
   private void parseParameters(String params) throws UnsupportedEncodingException
   {
     if (params == null) { return; }
@@ -51,12 +51,12 @@ public class MockHttpServletRequest implements HttpServletRequest
       setParameter(t[0], t[1]);
     }
   }
-  /***********************************************************************/
+  
   public void sync(MockHttpServletResponse response)
   {
     this.cookies = response.cookies;
   }
-  /***********************************************************************/
+  
   @SuppressWarnings("unchecked")
   public void setParameter(String key, String value)
   {
@@ -77,12 +77,12 @@ public class MockHttpServletRequest implements HttpServletRequest
       ((ArrayList<Object>) current).add(value);
     }
   }
-  /***********************************************************************/
+  
   public String getParameter(String key)
   {
     return (String) this.parameters.get(key);
   }
-  /***********************************************************************/
+  
   public Enumeration<Object> getParameterNames()
   {
     return new Enumeration<Object>()
@@ -102,22 +102,22 @@ public class MockHttpServletRequest implements HttpServletRequest
       }
     };
   }
-  /***********************************************************************/
+  
   public Map<String, Object> getParameterMap()
   {
     return parameters;
   }
-  /***********************************************************************/
+  
   public Cookie[] getCookies()
   {
     return cookies.toArray(new Cookie[cookies.size()]);
   }
-  /***********************************************************************/
+  
   public void setCookies(Cookie[] cookies)
   {
     this.cookies.addAll(Arrays.asList(cookies));
   }
-  /***********************************************************************/
+  
   public String getMethod()
   {
     return null;
@@ -302,22 +302,22 @@ public class MockHttpServletRequest implements HttpServletRequest
     return null;
   }
   public MockHttpSession session = null;
-  /***********************************************************************/
+  
   public void setSession(MockHttpSession session)
   {
     this.session = session;
   }
-  /***********************************************************************/
+  
   public void setParameterMap(Map<String, Object> params)
   {
     this.parameters = params;
   }
-  /***********************************************************************/
+  
   public void setBody(String body)
   {
     this.body = body;
   }
-  /***********************************************************************/
+  
   public String getBody()
   {
     return body;

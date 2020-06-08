@@ -6,7 +6,7 @@ import com.spun.util.DatabaseUtils;
 
 public class DatabaseUtilsTest extends TestCase
 {
-  /***********************************************************************/
+
   public void testTransaction() throws SQLException
   {
     MockConnection connection1 = new MockConnection();
@@ -22,6 +22,6 @@ public class DatabaseUtilsTest extends TestCase
     DatabaseUtils.commit(connection2);
     assertEquals(1, connection2.commitCount);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

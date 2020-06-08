@@ -5,17 +5,17 @@ import java.util.HashMap;
 public class DatabaseLoadingTracker
 {
   private HashMap<String, DatabaseObject> loaded = null;
-  /**************************************************************************/
+
   public DatabaseLoadingTracker()
   {
     loaded = new HashMap<String, DatabaseObject>();
   }
-  /**************************************************************************/
+
   private String getHashKey(DatabaseObject object)
   {
     return object.getClass().getName() + object.getPkey();
   }
-  /**************************************************************************/
+
   /** 
     * loads the chache from the database
     **/
@@ -35,6 +35,6 @@ public class DatabaseLoadingTracker
     }
     return oldObject;
   }
-  /**************************************************************************/
-  /**************************************************************************/
+
+
 }

@@ -19,7 +19,7 @@ import org.lambda.functions.Function1;
  */
 public class ArrayUtils
 {
-  /************************************************************************/
+
   public static <T> java.util.Collection<T> addArray(java.util.Collection<T> v, T array[])
   {
     if ((array == null) || (v == null)) { return v; }
@@ -46,7 +46,7 @@ public class ArrayUtils
     }
     return b.toString();
   }
-  /***********************************************************************/
+  
   public static Vector toReverseVector(Vector<Object> vector)
   {
     Vector<Object> reverse = new Vector<Object>(vector.size());
@@ -56,7 +56,7 @@ public class ArrayUtils
     }
     return reverse;
   }
-  /***********************************************************************/
+  
   public static <T> T[] toReverseArray(T[] array)
   {
     for (int i = 0; i < array.length / 2; i++)
@@ -69,12 +69,12 @@ public class ArrayUtils
     }
     return array;
   }
-  /***********************************************************************/
+  
   public static <T> T[] addToArray(T[] array, T... objects)
   {
     return combine(array, objects);
   }
-  /***********************************************************************/
+  
   public static <T> T[] getSubsection(T[] array, int startInclusive, int endExclusive)
   {
     int length = endExclusive - startInclusive;
@@ -83,17 +83,17 @@ public class ArrayUtils
     System.arraycopy(array, startInclusive, newArray, 0, length);
     return newArray;
   }
-  /***********************************************************************/
+  
   public static boolean isEmpty(Object[] array)
   {
     return ((array == null) || (array.length == 0));
   }
-  /************************************************************************/
+
   public static boolean isEmpty(Collection<?> collection)
   {
     return ((collection == null) || (collection.size() == 0));
   }
-  /***********************************************************************/
+  
   public static <T> T getSingleton(T[] parts)
   {
     if (parts == null) { return null; }
@@ -107,27 +107,27 @@ public class ArrayUtils
         throw new Error("Called with more than one object in the array " + Arrays.asList(parts));
     }
   }
-  /***********************************************************************/
+  
   public static <H, T extends H> T getFirst(T[] array, Comparator<H> compartor)
   {
     return get(array, compartor, true);
   }
-  /***********************************************************************/
+  
   public static <H, T extends H> T getFirst(Collection<T> array, Comparator<H> sorter)
   {
     return get((T[]) array.toArray(), sorter, true);
   }
-  /***********************************************************************/
+  
   public static <T> T getLast(T[] array, Comparator<T> sorter)
   {
     return get(array, sorter, false);
   }
-  /***********************************************************************/
+  
   public static <T> T getLast(Collection<T> array, Comparator<T> sorter)
   {
     return get((T[]) array.toArray(), sorter, false);
   }
-  /***********************************************************************/
+  
   private static <H, T extends H> T get(T[] array, Comparator<H> sorter, boolean wantFirst)
   {
     if (isEmpty(array)) { return null; }
@@ -142,7 +142,7 @@ public class ArrayUtils
     }
     return last;
   }
-  /***********************************************************************/
+  
   public static List<?> combineResults(Object[] array, String invokeMethod)
   {
     if (ArrayUtils.isEmpty(array)) { return Collections.EMPTY_LIST; }
@@ -155,7 +155,7 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   @SuppressWarnings("rawtypes")
   public static List combineResults(Object[] array, Method method)
   {
@@ -174,7 +174,7 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+  
   public static <T> T[] combine(T[] a, T[] b)
   {
     if (isEmpty(a) && isEmpty(b))
@@ -209,7 +209,7 @@ public class ArrayUtils
       return newArray;
     }
   }
-  /***********************************************************************/
+  
   public static <T> boolean contains(T[] values, T value)
   {
     for (int i = 0; i < values.length; i++)
@@ -218,7 +218,7 @@ public class ArrayUtils
     }
     return false;
   }
-  /***********************************************************************/
+  
   public static boolean contains(int[] values, int value)
   {
     for (int i = 0; i < values.length; i++)
@@ -227,12 +227,12 @@ public class ArrayUtils
     }
     return false;
   }
-  /************************************************************************/
+
   public static <T> T getLast(List<T> list)
   {
     return list.get(list.size() - 1);
   }
-  /************************************************************************/
+
   public static <K, T> T getDefault(HashMap<K, T> map, K key, T defaultValue)
   {
     T value = map.get(key);
@@ -243,12 +243,12 @@ public class ArrayUtils
     }
     return value;
   }
-  /************************************************************************/
+
   public static <K, V> int countValues(HashMap<K, V> out, V matching)
   {
     return count(matching, out.values());
   }
-  /************************************************************************/
+
   public static <V> int count(V matching, Collection<V> values)
   {
     int count = 0;

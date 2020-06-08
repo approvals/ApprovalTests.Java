@@ -10,12 +10,12 @@ import com.spun.util.servlets.StageServletUtils;
 public class JavascriptLogger extends BasicServlet implements StageServlet
 {
   private static final long serialVersionUID = 1L;
-  /***********************************************************************/
+  
   public void doGet(HttpServletRequest req, HttpServletResponse res)
   {
     StageServletUtils.doStageServlet(this, req, res);
   }
-  /***********************************************************************/
+  
   public String doStage(int stage, HttpServletRequest req, HttpServletResponse res) throws Throwable
   {
     switch (stage)
@@ -26,7 +26,7 @@ public class JavascriptLogger extends BasicServlet implements StageServlet
         throw new Error("Stage " + stage + " is unknown");
     }
   }
-  /***********************************************************************/
+  
   private String doStage1log(HttpServletRequest req)
   {
     String browser = loadNullableString(req, "browser");
@@ -49,8 +49,8 @@ public class JavascriptLogger extends BasicServlet implements StageServlet
     SimpleLogger.variable("bestCodeGuess", bestCodeGuess);
     return "<logReport/>";
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   @Override
   protected String getLogFile()
   {

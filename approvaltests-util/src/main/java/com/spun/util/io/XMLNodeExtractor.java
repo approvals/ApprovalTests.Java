@@ -10,11 +10,11 @@ import com.spun.util.StringUtils;
 
 public interface XMLNodeExtractor
 {
-  /***********************************************************************/
+  
   public void extractProperty(Node node, HashMap<String, Object> properties);
-  /************************************************************************/
+
   /*               INNER CLASS                                            */
-  /************************************************************************/
+
   public static class Utils
   {
     public static boolean extractSingleton(Node node, HashMap<String, Object> properties)
@@ -30,6 +30,6 @@ public interface XMLNodeExtractor
       return false;
     }
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

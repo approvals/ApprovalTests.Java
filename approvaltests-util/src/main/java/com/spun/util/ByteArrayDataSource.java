@@ -31,13 +31,13 @@ public class ByteArrayDataSource implements DataSource
   private byte[] data;          // data
   private String type;          // content-type
   private String name = "dummy";
-  /***********************************************************************/
+  
   /* Create a DataSource from an input stream */
   public ByteArrayDataSource(InputStream is, String type)
   {
     this(is, type, null);
   }
-  /***********************************************************************/
+  
   /* Create a DataSource from an input stream */
   public ByteArrayDataSource(InputStream is, String type, String name)
   {
@@ -59,25 +59,25 @@ public class ByteArrayDataSource implements DataSource
     {
     }
   }
-  /***********************************************************************/
+  
   /* Create a DataSource from a byte array */
   public ByteArrayDataSource(byte[] data, String type)
   {
     this.data = data;
     this.type = type;
   }
-  /***********************************************************************/
+  
   public void setName(String name)
   {
     this.name = (name == null) ? "dummy" : name;
   }
-  /***********************************************************************/
+  
   /* Create a DataSource from a String */
   public ByteArrayDataSource(String data, String type)
   {
     this(data, type, null);
   }
-  /***********************************************************************/
+  
   /* Create a DataSource from a String */
   public ByteArrayDataSource(String data, String type, String name)
   {
@@ -94,7 +94,7 @@ public class ByteArrayDataSource implements DataSource
     }
     this.type = type;
   }
-  /***********************************************************************/
+  
   /**
    * Return an InputStream for the data.
    * Note - a new stream must be returned each time.
@@ -104,21 +104,21 @@ public class ByteArrayDataSource implements DataSource
     if (data == null) { throw new IOException("no data"); }
     return new ByteArrayInputStream(data);
   }
-  /***********************************************************************/
+  
   public OutputStream getOutputStream() throws IOException
   {
     throw new IOException("cannot do this");
   }
-  /***********************************************************************/
+  
   public String getContentType()
   {
     return type;
   }
-  /***********************************************************************/
+  
   public String getName()
   {
     return name;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

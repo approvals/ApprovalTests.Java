@@ -5,13 +5,13 @@ import java.lang.reflect.InvocationTargetException;
 import org.w3c.dom.Node;
 import com.spun.util.ClassUtils;
 
-/***********************************************************************/
+
 
 public class XmlMapExtractor implements XmlExtractor
 {
   private Class<?> clazz;
   private XmlTranslator translator;
-  /***********************************************************************/
+
   public XmlMapExtractor(XmlMap[] xmlMaps, Class<?> clazz) throws InstantiationException, IllegalAccessException
   {
     this.clazz = clazz;
@@ -19,13 +19,13 @@ public class XmlMapExtractor implements XmlExtractor
 
     
   }
-  /***********************************************************************/
+
   public XmlMapExtractor(Class<?> clazz) throws InstantiationException, IllegalAccessException 
   {
     
     this(((XmlExtractable)clazz.newInstance()).getXmlMap(), clazz);
   }
-  /***********************************************************************/
+
   
   public Object extractObjectForNode(Node node) 
     throws IllegalArgumentException, InvocationTargetException, InstantiationException, IllegalAccessException
@@ -39,6 +39,6 @@ public class XmlMapExtractor implements XmlExtractor
   {
     return ClassUtils.getClassName(clazz) + ".extractor";
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

@@ -1,32 +1,33 @@
 package com.spun.util.io;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import com.spun.util.StringUtils;
 
 /**
-  * A static class of convence functions for Files
+  * A static class of convenience functions for Files
   **/
 public class TabDelimitedFileReader
 {
   private BufferedReader reader = null;
   private String lastRead = null;
   private boolean trim = false;
-  /************************************************************************/
-  public TabDelimitedFileReader(String absoluteFileName, boolean trim) throws FileNotFoundException
+
+  public TabDelimitedFileReader(String absoluteFileName, boolean trim) throws IOException
   {
-    this.reader = new BufferedReader(new FileReader(absoluteFileName));
+    this.reader = Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8);
     this.trim = trim;
   }
-  /***********************************************************************/
+  
   public boolean next() throws IOException
   {
     return prepNext() != null;
   }
-  /***********************************************************************/
+  
   public String prepNext() throws IOException
   {
     if (reader == null) { return null; }
@@ -38,7 +39,7 @@ public class TabDelimitedFileReader
     }
     return lastRead;
   }
-  /***********************************************************************/
+  
   public String[] readLine(int minimumIndexReturned) throws IOException
   {
     if (lastRead == null)
@@ -59,7 +60,7 @@ public class TabDelimitedFileReader
     lastRead = null;
     return found;
   }
-  /***********************************************************************/
+  
   private void clean(String[] found)
   {
     for (int i = 0; i < found.length; i++)
@@ -71,7 +72,7 @@ public class TabDelimitedFileReader
       }
     }
   }
-  /***********************************************************************/
-  /************************************************************************/
+  
+
   
 }

@@ -12,7 +12,7 @@ public class TemplateNumberUtilsTest extends TestCase
                                       new UseCase(new String[]{"15", "/", "3"}, 5),
                                       new UseCase(new String[]{"9", "+", "3"}, 12),
                                       new UseCase(new String[]{"1", "+", "2", "*", "3", "-", "4", "/", "5"}, 1)};
-  /***********************************************************************/
+  
   public void testDoArithmetic()
   {
     for (int i = 0; i < useCases.length; i++)
@@ -26,12 +26,12 @@ public class TemplateNumberUtilsTest extends TestCase
     Double numbers[] = {10.1, 8.0, 13.5, 5.0};
     assertEquals(13.5, TemplateNumberUtils.max((Number[]) numbers).getAmount());
   }
-  /***********************************************************************/
+  
   public static class UseCase
   {
     public double   result;
     public String[] params;
-    /***********************************************************************/
+    
     public UseCase(String[] params, double result)
     {
       super();

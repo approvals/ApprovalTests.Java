@@ -17,24 +17,24 @@ public enum State {
                    WestVirginia("West Virginia", "WV"), Wisconsin("WI"), Wyoming("WY");
   String        altText      = null;
   public String abbreviation = null;
-  /************************************************************************/
+
   private State(String abbreviation)
   {
     this.abbreviation = abbreviation;
   }
-  /************************************************************************/
+
   private State(String altText, String abbreviation)
   {
     this.altText = altText;
     this.abbreviation = abbreviation;
   }
-  /************************************************************************/
+
   @Override
   public String toString()
   {
     return altText == null ? super.toString() : altText;
   }
-  /************************************************************************/
+
   public static String toStandardText(String state)
   {
     // needs to return the corresponding abbreviation or, if not found, return what was passed in
@@ -45,7 +45,7 @@ public enum State {
     }
     return state;
   }
-  /************************************************************************/
+
   public static String[] getStateAbbreviations()
   {
     State[] allStates = State.values();
@@ -56,7 +56,7 @@ public enum State {
     }
     return abbreviations;
   }
-  /************************************************************************/
+
   public static boolean isStateAbbreviation(String text)
   {
     for (State s : values())
@@ -65,16 +65,16 @@ public enum State {
     }
     return false;
   }
-  /************************************************************************/
+
   public static synchronized String[] getStringValues()
   {
     return Query.select(State.values(), m -> m.toString()).toArray(new String[0]);
   }
-  /************************************************************************/
+
   public String getAbbreviation()
   {
     return abbreviation;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

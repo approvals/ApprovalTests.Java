@@ -51,7 +51,7 @@ public class UPSTest extends TestCase
                                                                                   MassAmount.POUNDS, false)},
                                                      new UPSQuote(UPSServiceType.UPS_Ground, 8.55 + 11.8),
                                                      false),};
-  /***********************************************************************/
+
   public void test() throws Exception
   {
     for (int i = 0; i < useCases.length; i++)
@@ -69,12 +69,12 @@ public class UPSTest extends TestCase
     UPSQuote q = getQuoteForService(useCase.quote.getServiceType(), quotes);
     assertEquals("Price for " + useCase, useCase.quote.getPrice(), q.getPrice(), useCase.mock ? 0.005 : 1);
   }
-  /***********************************************************************/
+
   public static UPSQuote getQuoteForService(UPSServiceType type, UPSQuote[] quotes)
   {
     return (UPSQuote) Query.first(quotes, o -> type.equals(o.getServiceType()));
   }
-  /***********************************************************************/
+
 }
 
 class UseCase
@@ -98,5 +98,5 @@ class UseCase
     return "UseCase [packages=" + Arrays.toString(packages) + ", quote=" + quote + ", mock=" + mock + "]";
   }
 }
-/***********************************************************************/
-/***********************************************************************/
+
+

@@ -8,7 +8,7 @@ public class TemplateStringUtilsTest
   extends TestCase 
 {
   public static UseCase useCases[] = {new UseCase("Hello Jack", 20, " ", "Hello Jack          ")};
-	/***********************************************************************/
+
   public void testTextPadding()
   {
     for (int i = 0; i < useCases.length; i++)
@@ -17,14 +17,14 @@ public class TemplateStringUtilsTest
       assertEquals("percentUseCases[" + i + "]" , useCase.result, TemplateStringUtils.pad(useCase.string, useCase.length, useCase.padWith));
     }
   }
-  /***********************************************************************/
+
 	public static class UseCase
 	{
 	  public String padWith;
     public String string;
     public int length;
     public String result;
-    /***********************************************************************/
+
     public UseCase(String string, int length, String padWith, String result)
     {
       super();
@@ -34,6 +34,6 @@ public class TemplateStringUtilsTest
       this.result = result;
     }
 	}
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

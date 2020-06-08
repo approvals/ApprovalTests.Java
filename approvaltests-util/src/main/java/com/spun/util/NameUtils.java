@@ -2,7 +2,7 @@ package com.spun.util;
 
 public class NameUtils
 {
- 	/***********************************************************************/
+ 	
 	public static String getRandomFirstName() 
 	{
 		String[] names = new String[]{"James",
@@ -58,7 +58,7 @@ public class NameUtils
 		return names[NumberUtils.RANDOM.nextInt(names.length)];
 	}
 	
-	/***********************************************************************/
+	
 	public static String getRandomLastName() 
 	{
 		String[] names  = new String[]{"Smith",
@@ -115,6 +115,6 @@ public class NameUtils
 	}
 	
 	
-	/************************************************************************/
-	/************************************************************************/
+
+
 }

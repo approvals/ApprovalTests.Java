@@ -5,12 +5,12 @@ import java.util.Comparator;
 public class MultiSorter<T> implements java.util.Comparator<T>
 {
   private Comparator<T>[] comparators = null;
-  /************************************************************************/
+
   public MultiSorter(Comparator<T>... comparators)
   {
     this.comparators = comparators;
   }
-  /************************************************************************/
+
   public int compare(T o1, T o2) throws java.lang.ClassCastException
   {
     for (Comparator<T> comp : comparators)
@@ -20,6 +20,6 @@ public class MultiSorter<T> implements java.util.Comparator<T>
     }
     return 0;
   }
-  /************************************************************************/
-  /************************************************************************/
+
+
 }

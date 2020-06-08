@@ -44,7 +44,7 @@ public class EmailServer
   public static Message           lastMockSentItem = null;
   private String                  gmailUser;
   private String                  gmailPass;
-  /***********************************************************************/
+  
   public static void setMockTransport(boolean mockTransport)
   {
     EmailServer.mockTransport = mockTransport;
@@ -54,7 +54,7 @@ public class EmailServer
   {
     return lastMockSentItem;
   }
-  /***********************************************************************/
+  
   public static boolean isEmailValid(String email)
   {
     try
@@ -71,19 +71,19 @@ public class EmailServer
       return false;
     }
   }
-  /***********************************************************************/
+  
   public EmailServer(String smtpServer, String velocityTemplate, ParseCall parser, ContextAware contextAware,
       String to, String from)
   {
     this(smtpServer, velocityTemplate, parser, contextAware, new String[]{to}, from);
   }
-  /***********************************************************************/
+  
   public EmailServer(String smtpServer, String velocityTemplate, ParseCall parser, ContextAware contextAware,
       String[] to, String from)
   {
     this(smtpServer, new VelocityEmailLoader(velocityTemplate, parser, contextAware), to, from);
   }
-  /***********************************************************************/
+  
   public EmailServer(String smtpServer, EmailLoader loader, String[] to, String from)
   {
     this.smtpServer = smtpServer;
@@ -91,32 +91,32 @@ public class EmailServer
     this.to = to;
     this.from = from;
   }
-  /***********************************************************************/
+  
   public void addTo(String email)
   {
     to = (String[]) ArrayUtils.addToArray(to, email);
   }
-  /***********************************************************************/
+  
   public void clearTo()
   {
     to = new String[0];
   }
-  /***********************************************************************/
+  
   public void addBCC(String email)
   {
     bcc.add(email);
   }
-  /***********************************************************************/
+  
   public void clearBCC()
   {
     bcc = new ArrayList<String>();
   }
-  /***********************************************************************/
+  
   public void send() throws Exception
   {
       send(false, null, null);
   }
-  /***********************************************************************/
+  
   public void send(boolean useGoogle, String user, String pass) throws Exception
   {
 
@@ -215,12 +215,12 @@ public class EmailServer
       lastMockSentItem = msg;
     }
   }
-  /***********************************************************************/
+  
   public void addPart(MimeBodyPart part)
   {
     parts.add(part);
   }
-  /***********************************************************************/
+  
   public static void addExcelFile(EmailServer email, String excelFileContent, String fileName)
       throws MessagingException
   {
@@ -231,7 +231,7 @@ public class EmailServer
     part.setFileName(fileName);
     email.addPart(part);
   }
-  /***********************************************************************/
+  
   public void addHTMLImage(String file, String url) throws FileNotFoundException, MessagingException
   {
     String fileName = file.substring(file.lastIndexOf(File.separator) + 1);
@@ -239,7 +239,7 @@ public class EmailServer
     FileInputStream fileInputStream = new FileInputStream(file);
     addHTMLImage(url, fileName, fileInputStream);
   }
-  /***********************************************************************/
+  
   public void addHTMLImage(String url, String fileName, InputStream inputStream) throws MessagingException
   {
     MimeBodyPart part = new MimeBodyPart();
@@ -251,8 +251,8 @@ public class EmailServer
     part.setFileName(fileName);
     images.add(part);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public static interface EmailLoader
   {
     public void load(EmailServer server);
@@ -266,14 +266,14 @@ public class EmailServer
     private ContextAware contextAware = null;
     private String       currentEmailPart;
     private ParseCall    parser;
-    /***********************************************************************/
+    
     public VelocityEmailLoader(String template, ParseCall parser, ContextAware contextAware)
     {
       this.template = template;
       this.contextAware = contextAware;
       this.parser = parser;
     }
-    /***********************************************************************/
+    
     public void load(EmailServer server)
     {
       try
@@ -287,28 +287,28 @@ public class EmailServer
         throw new Error(t);
       }
     }
-    /***********************************************************************/
+    
     public String getTextBody()
     {
       currentEmailPart = TEXT_BODY;
       String result = parser.parse(template, this);
       return StringUtils.loadNullableString(result);
     }
-    /***********************************************************************/
+    
     public String getHtmlBody()
     {
       currentEmailPart = HTML_BODY;
       String result = parser.parse(template, this);
       return StringUtils.loadNullableString(result);
     }
-    /***********************************************************************/
+    
     public String getSubject()
     {
       currentEmailPart = SUBJECT;
       String result = parser.parse(template, this);
       return StringUtils.loadNullableString(result);
     }
-    /***********************************************************************/
+    
     public void setupContext(Context context)
     {
       contextAware.setupContext(context);

@@ -6,12 +6,12 @@ public class JarFileLocator implements ResourceLocator
 {
   private HashMap<String, String> paths = new HashMap<String, String>();
   private String  basePath;
-  /***********************************************************************/
+  
   public JarFileLocator(String basePath)
   {
     this.basePath = basePath;
   }
-  /***********************************************************************/
+  
   public String getLocation(String fileName)
   {
     String absolutePath = paths.get(fileName);
@@ -28,6 +28,6 @@ public class JarFileLocator implements ResourceLocator
     if (absolutePath == null) { throw new NullPointerException(" The resource '" + fileName + "' could not be found at " + temp); }
     return absolutePath;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

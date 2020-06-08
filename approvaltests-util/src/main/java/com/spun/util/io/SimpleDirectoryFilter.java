@@ -5,12 +5,12 @@ import java.io.File;
 public class SimpleDirectoryFilter
   implements java.io.FileFilter
 {
-  /************************************************************************/
+
   public SimpleDirectoryFilter()
   {
 	}
   
-  /***********************************************************************/
+  
 
   public boolean accept(File pathname)
   {
@@ -30,6 +30,6 @@ public class SimpleDirectoryFilter
     }
     return accept;
   }
-   /************************************************************************/
-  /************************************************************************/
+
+
 }

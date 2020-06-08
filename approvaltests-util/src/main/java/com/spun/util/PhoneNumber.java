@@ -54,7 +54,7 @@ public class PhoneNumber
       countryCode = -1;
     }
   }
-  /**************************************************************************/
+
 	private static String stripPhoneNumber(String number)
 	{
 		if (number == null) {return null;}
@@ -99,7 +99,7 @@ public class PhoneNumber
 
 		return result.toString();
 	}
-	/**************************************************************************/
+
   private static int getCountryCode(String strippedNumber)
   {
     String alt = strippedNumber.substring(1);
@@ -110,12 +110,12 @@ public class PhoneNumber
     }
     return -1;
   }
-  /**************************************************************************/
+
   private static String validate(int countryCode, String stripedNumber)
   {
     return (countryCode == USA) ? validateNorthAmerican(countryCode, stripedNumber) : validateInternational(countryCode, stripedNumber);
   }
-  /**************************************************************************/
+
   private static String validateInternational(int countryCode, String strippedNumber)
   {
     if (countryCode == -1)
@@ -125,7 +125,7 @@ public class PhoneNumber
     int nl = prefix.length() + body.length();
     return (nl > 15) || (nl < 9) ? REASONS[0] : null;
   }
-  /**************************************************************************/
+
   private static String validateNorthAmerican(int countryCode, String strippedNumber)
   {
     if (countryCode != USA)
@@ -133,7 +133,7 @@ public class PhoneNumber
     String body = extractPhoneBody(countryCode, strippedNumber);
     return (body.length() != 10) ? REASONS[0] : null;
   }
-  /**************************************************************************/
+
   private static String extractPhoneBody(int countryCode, String strippedNumber)
   {
     if (countryCode == -1)
@@ -147,7 +147,7 @@ public class PhoneNumber
     }
     return body;
   }
-  /**************************************************************************/
+
   public String getValue()
   {
     if (isValid() && strippedValue != null)
@@ -159,12 +159,12 @@ public class PhoneNumber
       return originalValue;
     }
   }
-  /**************************************************************************/
+
   public String getValueAsUps()
   {
     return getValueAsUps(countryCode, this.strippedValue);
   }
-  /**************************************************************************/
+
   private static String getValueAsUps(int countryCode, String strippedNumber)
   {
     if (strippedNumber == null) { return null; }
@@ -180,7 +180,7 @@ public class PhoneNumber
       return prefix + body;
     }
   }
-  /**************************************************************************/
+
   private static String getValueAsNorthAmerican(int countryCode, String stripped)
   {
     if (countryCode != USA)
@@ -191,7 +191,7 @@ public class PhoneNumber
     number.insert(0, "(");
     return number.toString();
   }
-  /**************************************************************************/
+
   private static String getValueAsInternational(int countryCode, String stripped)
   {
     if (stripped == null) { return null; }
@@ -210,48 +210,48 @@ public class PhoneNumber
     number.insert(intlLength, ".");
     return number.toString();
   }
-  /**************************************************************************/
+
   public String getValueAsNorthAmerican()
   {
     return getValueAsNorthAmerican(this.countryCode, this.strippedValue);
   }
-  /**************************************************************************/
+
   public String getValueAsInternational()
   {
     return getValueAsInternational(this.countryCode, this.strippedValue);
   }
-  /**************************************************************************/
+
   public String getPartiallyFormattedAsInternational()
   {
     return getValueAsInternational(this.nonValidCountryCode, this.strippedValue);
   }
-  /**************************************************************************/
+
   public boolean isValid()
   {
     return (this.invalidReason == null);
   }
-  /**************************************************************************/
+
   public String getInvalidReason()
   {
     return this.invalidReason;
   }
-  /**************************************************************************/
+
   public boolean isNorthAmericanNumber()
   {
     return this.countryCode == USA;
   }
-  /**************************************************************************/
+
   public String getOriginalText()
   {
     return originalValue;
   }
-  /**************************************************************************/
+
   public String toString()
   {
     return getValue();
   }
-  /**************************************************************************/
-  /**************************************************************************/
+
+
   public Country getCountry()
   {
     return Country.UnitedStates;
