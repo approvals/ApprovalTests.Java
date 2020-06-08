@@ -11,7 +11,7 @@ public class ValidationErrorTest extends TestCase
   }
   private String asserts[]  = {"a", "b", "c", "d", "e"};
   private String errorCause = "Error Cuase";
-  /***********************************************************************/
+  
   public void testIsOnlyProblem()
   {
     //2
@@ -29,7 +29,7 @@ public class ValidationErrorTest extends TestCase
     error.set(Asserts.A, false, errorCause);
     assertTrue(error.isOnlyProblem(Asserts.A));
 }
-  /***********************************************************************/
+  
   public void testValidError()
   {
     ValidationError error = createValidationError(0);
@@ -71,7 +71,7 @@ public class ValidationErrorTest extends TestCase
     assertTrue("getDescription(e)", iterator.isValid("e"));
     assertEquals("Remaining 3", 3, iterator.getRemainingErrors().length);
   }
-  /***********************************************************************/
+  
   private ValidationError createValidationError(int errorCount)
   {
     ValidationError error = new ValidationError(asserts);
@@ -81,5 +81,5 @@ public class ValidationErrorTest extends TestCase
     }
     return error;
   }
-  /***********************************************************************/
+  
 }

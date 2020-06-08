@@ -19,12 +19,12 @@ import com.spun.util.logger.SimpleLogger;
 public class NumberUtils
 {
   public static Random RANDOM = new Random();
-  /***********************************************************************/
+  
   public static int getMax(int value1, int value2)
   {
     return value1 > value2 ? value1 : value2;
   }
-  /***********************************************************************/
+  
   /**
    * Loads an int from a String.
    **/
@@ -32,7 +32,7 @@ public class NumberUtils
   {
     return load(i, defaultValue, true);
   }
-  /***********************************************************************/
+  
   /**
    * Loads an int from a String.
    **/
@@ -48,7 +48,7 @@ public class NumberUtils
     }
     return defaultValue;
   }
-  /***********************************************************************/
+  
   /**
    * Loads an int from a String.
    **/
@@ -63,7 +63,7 @@ public class NumberUtils
     }
     return defaultValue;
   }
-  /***********************************************************************/
+  
   public static double load(String i, double defaultValue)
   {
     try
@@ -76,12 +76,12 @@ public class NumberUtils
     }
     return defaultValue;
   }
-  /***********************************************************************/
+  
   public static boolean load(String i, boolean d)
   {
     return (i == null) ? d : "true".equalsIgnoreCase(i);
   }
-  /***********************************************************************/
+  
   public static int[] loadArray(String summaryString, String seperator, int defaultWhenLoading)
   {
     String parts[] = StringUtils.split(summaryString, seperator);
@@ -115,18 +115,18 @@ public class NumberUtils
       SimpleLogger.event(d + " , " + s + " -> " + setSignificantDigit(d, s));
     }
   }
-  /***********************************************************************/
+  
   public static boolean doRandomPercentage(int i)
   {
     return RANDOM.nextInt(100) < i;
   }
-  /***********************************************************************/
+  
   public static boolean equals(double one, double two, double delta)
   {
     double actualDelta = one - two;
     return (-delta < actualDelta) && (actualDelta < delta);
   }
-  /***********************************************************************/
+  
   public static Integer[] wrapIntegers(int[] ints)
   {
     Integer[] integers = new Integer[ints.length];
@@ -136,7 +136,7 @@ public class NumberUtils
     }
     return integers;
   }
-  /***********************************************************************/
+  
   public static String createRandomStringOfNumbers(int digits)
   {
     StringBuffer buffer = new StringBuffer(digits);
@@ -146,7 +146,7 @@ public class NumberUtils
     }
     return buffer.toString();
   }
-  /***********************************************************************/
+  
   public static boolean isIn(int check, int[] available)
   {
     for (int i = 0; i < available.length; i++)
@@ -155,7 +155,7 @@ public class NumberUtils
     }
     return false;
   }
-  /***********************************************************************/
+  
   /**
    * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
@@ -164,12 +164,12 @@ public class NumberUtils
     throw new DeprecatedException("Query.sum(list, l -> l.%s(%s))", methodName,
         StringUtils.join(params, ",", p -> "" + p));
   }
-  /***********************************************************************/
+  
   public static boolean isEven(int number)
   {
     return ((number % 2) == 0);
   }
-  /***********************************************************************/
+  
   /**
    * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
@@ -177,7 +177,7 @@ public class NumberUtils
   {
     return sum(onArray, forMethodName, null);
   }
-  /***********************************************************************/
+  
   /**
    * @deprecated use {@code Query.sum(list, l -> l.methodName(params)); }
    */
@@ -185,7 +185,7 @@ public class NumberUtils
   {
     return sum(onCollection.toArray(), forMethodName, null);
   }
-  /***********************************************************************/
+  
   public static <T> T[] getShuffled(T[] objects, int numberToReturn)
   {
     Shuffler[] shuffles = new Shuffler[objects.length];
@@ -211,7 +211,7 @@ public class NumberUtils
     }
     return (T[]) list.toArray(objects2);
   }
-  /***********************************************************************/
+  
   /**
    * randomly chooses a number between the minimum and maximum
    * <div><b>Example:</b> {@code int grade =  NumberUtils.getRandomInt(1,100);} </div>
@@ -234,29 +234,29 @@ public class NumberUtils
       return RANDOM.nextInt(diff) + minimum;
     }
   }
-  /***********************************************************************/
+  
   public static int floor(double i)
   {
     return (int) Math.floor(i);
   }
-  /***********************************************************************/
+  
   public static int getNumberOfDigits(int number)
   {
     return ("" + number).length();
   }
-  /***********************************************************************/
+  
   public static double convertDoubleToPercentage(double doub)
   {
     return doub * 100;
   }
-  /***********************************************************************/
+  
   public static double convertPercentageToDouble(double percent)
   {
     return percent / 100;
   }
-  /***********************************************************************/
+  
   /* INNER CLASS */
-  /***********************************************************************/
+  
   public static class Shuffler implements java.util.Comparator<Shuffler>, Serializable
   {
     private static final long serialVersionUID = 1L;
@@ -272,7 +272,7 @@ public class NumberUtils
       return Double.compare(s1.newPosition, (s2).newPosition);
     }
   }
-  /***********************************************************************/
+  
   public static IntStream toIntStream(int[] numbers)
   {
     return IntStream.of(numbers);

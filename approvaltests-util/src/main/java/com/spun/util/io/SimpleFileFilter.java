@@ -8,7 +8,7 @@ public class SimpleFileFilter implements java.io.FileFilter
   public SimpleFileFilter()
   {
   }
-  /***********************************************************************/
+  
   public boolean accept(File pathname)
   {
     String name = pathname.getName().toLowerCase();

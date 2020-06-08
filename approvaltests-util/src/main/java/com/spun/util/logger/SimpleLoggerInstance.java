@@ -337,8 +337,8 @@ public class SimpleLoggerInstance
     final String text = extractMarkerText();
     return new Markers(text);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public StringBuffer logToString()
   {
     marker = true;

@@ -231,7 +231,7 @@ public class DateUtils
     gregorianCalendar.set(Calendar.MILLISECOND, 999);
     return gregorianCalendar;
   }
-  /***********************************************************************/
+
   public static Timestamp asTimestamp(Date date)
   {
     return new Timestamp(date.getTime());

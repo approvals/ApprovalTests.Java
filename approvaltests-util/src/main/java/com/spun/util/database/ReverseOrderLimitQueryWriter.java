@@ -38,7 +38,7 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     return outerQuery;
   }
 
-	/***********************************************************************/
+
 	private SQLQuery constructOuterQuery(String innerQuery, SQLQuery query)
   {
     SQLQuery outer = new SQLQuery(query.getAliasCount());
@@ -69,7 +69,7 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     return outer;
   }
 
-	/***********************************************************************/
+
 	private SQLQuery constructInnerQuery(SQLQuery query)
 	{
 		SQLQuery inner = new SQLQuery();
@@ -94,7 +94,7 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
 		return inner;
 	}
 
-	/***********************************************************************/
+
 	private void assertQueryValid(SQLQuery query)
 	{
     String[] assertions = new String[]{"groupByNull", "limitExists", "mainTableValid", "mainTablePkeyValid"};

@@ -11,18 +11,18 @@ import com.sshtools.j2ssh.authentication.PasswordAuthenticationClient;
 import com.sshtools.j2ssh.forwarding.ForwardingClient;
 import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
 
-/***********************************************************************/
+
 public class SshDatabaseWrapper implements DatabaseConfigurationWrapper
 {
 
   public static String SSH = "Ssh";
   private static int counter = 32001; 
-  /***********************************************************************/
+
   static 
   {
     DatabaseConfiguration.registerWrapper(SSH, new SshDatabaseWrapper());
   }
-  /***********************************************************************/
+
   public synchronized Connection makeConnection(String database, DatabaseConfiguration originalConfiguration)
   {
     int port = counter++;
@@ -47,7 +47,7 @@ public class SshDatabaseWrapper implements DatabaseConfigurationWrapper
       throw ObjectUtils.throwAsError(ie);
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
   
 }

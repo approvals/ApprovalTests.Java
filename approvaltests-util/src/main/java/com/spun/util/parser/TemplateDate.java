@@ -42,12 +42,12 @@ public class TemplateDate
   {
     frozen = new Date();
   }
-  /***********************************************************************/
+  
   public String getDate(String style)
   {
     return getDate(style, "");
   }
-  /***********************************************************************/
+  
   public String getDate(String style, String zone)
   {
     String value = null;
@@ -85,12 +85,12 @@ public class TemplateDate
     value = formatter.format(theDate);
     return value;
   }
-  /***********************************************************************/
+  
   public String getTime(String format)
   {
     return getTime(format, "");
   }
-  /***********************************************************************/
+  
   public String getTime(String format, String zone)
   {
     String value = null;
@@ -132,7 +132,7 @@ public class TemplateDate
   {
     return getDate(false);
   }
-  /***********************************************************************/
+  
   public DateDifference getDifferenceFromToday()
   {
     if (difference == null)
@@ -141,48 +141,48 @@ public class TemplateDate
     }
     return difference;
   }
-  /***********************************************************************/
+  
   public String getDay()
   {
     GregorianCalendar cal = new GregorianCalendar();
     cal.setTime(getDate(false));
     return StringUtils.padNumber(cal.get(Calendar.DAY_OF_MONTH), 2);
   }
-  /***********************************************************************/
+  
   public String getMonth(int offset)
   {
     GregorianCalendar cal = new GregorianCalendar();
     cal.setTime(getDate(false));
     return StringUtils.padNumber(cal.get(Calendar.MONTH) + offset, 2);
   }
-  /***********************************************************************/
+  
   public String getMonthName()
   {
     return new SimpleDateFormat("MMMM").format(getDate(false));
   }
-  /***********************************************************************/
+  
   public String getYear()
   {
     GregorianCalendar cal = new GregorianCalendar();
     cal.setTime(getDate(false));
     return StringUtils.padNumber(cal.get(Calendar.YEAR), 4);
   }
-  /***********************************************************************/
+  
   public boolean isToday()
   {
     return DateUtils.isToday(getDate(false));
   }
-  /***********************************************************************/
+  
   public String toString()
   {
     return this.getDate("", "");
   }
-  /***********************************************************************/
+  
   public String getDateAndTime(String dateFormat, String timeFormat)
   {
     return getDate(dateFormat) + " " + getTime(timeFormat);
   }
-  /***********************************************************************/
+  
   public String getDateAndTime()
   {
     return getDateAndTime("default", "default");

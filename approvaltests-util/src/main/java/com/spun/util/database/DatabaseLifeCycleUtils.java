@@ -16,7 +16,7 @@ import com.spun.util.logger.SimpleLogger;
 
 public class DatabaseLifeCycleUtils
 {
-  /***********************************************************************/
+
   public static void backupDatabase(Statement stmt, String databaseName, DatabaseConfiguration config,
       String fileName) throws Exception
   {
@@ -37,7 +37,7 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
-  /***********************************************************************/
+
   private static void backupMySQL(String databaseName, String fileName) throws Exception
   {
     File file = new File(fileName);
@@ -50,7 +50,7 @@ public class DatabaseLifeCycleUtils
     process.waitFor();
     if (process.exitValue() != 0) { throw new Error(extractError(commandLine, process.getErrorStream())); }
   }
-  /***********************************************************************/
+
   private static void backupPostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
       throws Exception
   {
@@ -124,14 +124,14 @@ public class DatabaseLifeCycleUtils
     writer.flush();
     writer.close();
   }
-  /***********************************************************************/
+
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName) throws SQLException
   {
     String sql = "BACKUP DATABASE " + databaseName + " TO DISK = '" + fileName + "'";
     SimpleLogger.query("BACKUP", sql);
     stmt.execute(sql);
   }
-  /***********************************************************************/
+
   public static void restoreDatabase(Statement stmt, String databaseName, DatabaseConfiguration config,
       String fileName) throws Exception
   {
@@ -152,14 +152,14 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
-  /***********************************************************************/
+
   private static void restoreMySQL(Statement stmt, String databaseName, String fileName) throws SQLException
   {
     String restoreCommand = "LOAD DATA INFILE '" + fileName + "' REPLACE ...";
     SimpleLogger.query(restoreCommand);
     stmt.execute(restoreCommand);
   }
-  /***********************************************************************/
+
   private static void restorePostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
       throws Error, Exception
   {
@@ -201,7 +201,7 @@ public class DatabaseLifeCycleUtils
     reader.close();
     if (process.exitValue() != 0) { throw new Error(extractError(commandLine, process.getErrorStream())); }
   }
-  /***********************************************************************/
+
   private static void restoreSQLServer(Statement stmt, String databaseName, String fileName) throws SQLException
   {
     stmt.execute("USE master");
@@ -210,7 +210,7 @@ public class DatabaseLifeCycleUtils
     stmt.execute(restoreCommand);
     stmt.execute("USE " + databaseName);
   }
-  /***********************************************************************/
+
   private static String extractError(String commandLine, InputStream error) throws Exception
   {
     /*
@@ -220,7 +220,7 @@ public class DatabaseLifeCycleUtils
     String errorText = extractText(error);
     return "Error Executing '" + commandLine + /*"' AS USER '" + userName + */"'- " + errorText;
   }
-  /***********************************************************************/
+
   public static String extractText(InputStream inStream) throws IOException
   {
     StringBuffer errorBuffer = new StringBuffer();
@@ -231,7 +231,7 @@ public class DatabaseLifeCycleUtils
     }
     return errorBuffer.toString();
   }
-  /***********************************************************************/
+
   public static void deleteTable(String tableName, int databaseType, Statement stmt) throws SQLException
   {
     switch (databaseType)
@@ -251,18 +251,18 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
-  /***********************************************************************/
+
   private static void deleteMySqlTable(String tableName, Statement stmt) throws SQLException
   {
     stmt.executeUpdate("TRUNCATE " + tableName);
   }
-  /***********************************************************************/
+
   private static void deletePostgreSQLTable(String tableName, Statement stmt) throws SQLException
   {
     stmt.executeUpdate("DELETE FROM " + tableName);
     stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)");
   }
-  /***********************************************************************/
+
   public static void resetTableIndex(String tableName, int databaseType, Statement stmt) throws SQLException
   {
     switch (databaseType)
@@ -280,19 +280,19 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
-  /***********************************************************************/
+
   private static void resetPostgreIndex(String tableName, Statement stmt) throws SQLException
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
     SimpleLogger.query("reset index", sql);
     stmt.executeQuery(sql);
   }
-  /***********************************************************************/
+
   private static void deleteSQLServerTable(String tableName, Statement stmt) throws SQLException
   {
     stmt.executeUpdate("DELETE FROM " + tableName);
     stmt.executeUpdate("DBCC CHECKIDENT('" + tableName + "', RESEED, 1)");
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

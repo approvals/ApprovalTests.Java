@@ -60,7 +60,7 @@ public final class InvokerServlet extends HttpServlet
     mask = getServletConfig().getInitParameter("mask");
     SimpleLogger.variable("Mask", mask);
   }
-  /***********************************************************************/
+  
   public void destroy()
   {
     for (HttpServlet servlet : servlets.values())
@@ -69,7 +69,7 @@ public final class InvokerServlet extends HttpServlet
     }
     super.destroy();
   }
-  /***********************************************************************/
+  
   public void serveRequest(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException
   {

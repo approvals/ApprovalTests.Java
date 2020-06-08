@@ -6,7 +6,7 @@ import com.spun.util.parser.PercentageAmount;
 public class TemplateDoubleTest extends TestCase
 {
   public static UseCase percentUseCases[] = {new UseCase(.10457, "10.46%")};
-  /***********************************************************************/
+  
   public void testPercentageAmount()
   {
     for (int i = 0; i < percentUseCases.length; i++)
@@ -14,12 +14,12 @@ public class TemplateDoubleTest extends TestCase
       assertEquals("percentUseCases[" + i + "]", percentUseCases[i].result, new PercentageAmount(percentUseCases[i].amount).toString());
     }
   }
-  /***********************************************************************/
+  
   public static class UseCase
   {
     public String result;
     public double amount;
-    /***********************************************************************/
+    
     public UseCase(double amount, String result)
     {
       super();

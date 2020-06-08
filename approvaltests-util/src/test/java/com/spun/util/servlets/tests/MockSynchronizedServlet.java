@@ -9,13 +9,13 @@ public class MockSynchronizedServlet implements SynchronizedServlet
   public static int           counter = 0;
   private ServletSynchronizer sync;
   private String              key;
-  /***********************************************************************/
+  
   public void init(ServletSynchronizer sync, String key)
   {
     this.sync = sync;
     this.key = key;
   }
-  /***********************************************************************/
+  
   public void run()
   {
     try
@@ -30,6 +30,6 @@ public class MockSynchronizedServlet implements SynchronizedServlet
       sync.servletFinished(e, key);
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

@@ -30,25 +30,25 @@ import com.spun.util.StringUtils;
  **/
 public class StringResourceLoader extends ResourceLoader
 {
-  /***********************************************************************/
+  
   public boolean isSourceModified(Resource resource)
   {
     return true;
   }
-  /***********************************************************************/
+  
   public long getLastModified(Resource resource)
   {
     return 0;
   }
-  /***********************************************************************/
+  
   public synchronized InputStream getResourceStream(String name) throws ResourceNotFoundException
   {
     return StringUtils.convertToInputStream(name);
   }
-  /***********************************************************************/
+  
   public void init(ExtendedProperties arg0)
   {
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

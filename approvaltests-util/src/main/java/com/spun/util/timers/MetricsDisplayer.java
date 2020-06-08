@@ -21,16 +21,16 @@ public class MetricsDisplayer implements ContextAware
   {
     return VelocityParser.parseFile(TEMPLATE, outputFileName, this);
   }
-  /***********************************************************************/
+  
   public LapTimeStatistics getStatistics()
   {
     return stats;
   }
-  /***********************************************************************/
+  
   public void setupContext(Context context)
   {
     context.put("stats", stats);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

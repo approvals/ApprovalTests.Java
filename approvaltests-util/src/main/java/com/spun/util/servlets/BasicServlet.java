@@ -36,7 +36,7 @@ public abstract class BasicServlet extends HttpServlet
   private TemplateError         error            = null;
   private static ServletContext servletContext;
   protected Throwable           connectionError  = null;
-  /***********************************************************************/
+  
   @Override
   public void init(ServletConfig config) throws ServletException
   {
@@ -55,61 +55,61 @@ public abstract class BasicServlet extends HttpServlet
   {
     return servletContext;
   }
-  /***********************************************************************/
+  
   @Override
   public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
   {
     doGet(req, res);
   }
-  /***********************************************************************/
+  
   public static int load(HttpServletRequest req, String key, int defaultValue)
   {
     return NumberUtils.load(req.getParameter(key), defaultValue);
   }
-  /***********************************************************************/
+  
   public static int load(String i, int defaultValue)
   {
     return NumberUtils.load(i, defaultValue);
   }
-  /***********************************************************************/
+  
   public static double load(HttpServletRequest req, String key, double defaultValue)
   {
     return NumberUtils.load(req.getParameter(key), defaultValue);
   }
-  /***********************************************************************/
+  
   public static double load(String i, double defaultValue)
   {
     return NumberUtils.load(i, defaultValue);
   }
-  /***********************************************************************/
+  
   public static boolean loadCheckBox(String i, boolean d)
   {
     return (i == null) ? d : "on".equalsIgnoreCase(i);
   }
-  /***********************************************************************/
+  
   public static boolean loadCheckBox(HttpServletRequest req, String key, boolean d)
   {
     return loadCheckBox(req.getParameter(key), d);
   }
-  /***********************************************************************/
+  
   public static Cookie loadCookie(HttpServletRequest req, String cookieName)
   {
     return Query.first(req.getCookies(), o -> cookieName.equals(o.getName()));
   }
-  /***********************************************************************/
+  
   public static String loadCookieValue(HttpServletRequest req, String cookieName)
   {
     Cookie cookie = loadCookie(req, cookieName);
     return cookie == null ? null : cookie.getValue();
   }
-  /***********************************************************************/
+  
   public static void setCookie(HttpServletResponse response, String name, String value, int maxAge)
   {
     Cookie cookie = new Cookie(name, value);
     cookie.setMaxAge(maxAge);
     response.addCookie(cookie);
   }
-  /***********************************************************************/
+  
   public static java.util.Calendar loadDate(HttpServletRequest req, String month, String day, String year)
   {
     int m = load(req.getParameter(month), 0);
@@ -118,7 +118,7 @@ public abstract class BasicServlet extends HttpServlet
     java.util.Calendar date = (y * d * m == 0) ? null : new GregorianCalendar(y, m - 1, d, 0, 1);
     return date;
   }
-  /***********************************************************************/
+  
   public static Timestamp loadDate(HttpServletRequest req, String key, java.util.Date defaultValue)
   {
     try
@@ -131,57 +131,57 @@ public abstract class BasicServlet extends HttpServlet
     }
     return DateUtils.asTimestamp(defaultValue);
   }
-  /***********************************************************************/
+  
   public static boolean load(HttpServletRequest req, String key, boolean d)
   {
     return load(req.getParameter(key), d);
   }
-  /***********************************************************************/
+  
   public static boolean load(String i, boolean d)
   {
     return NumberUtils.load(i, d);
   }
-  /***********************************************************************/
+  
   public static String load(HttpServletRequest req, String key, String d)
   {
     String value = req.getParameter(key);
     return StringUtils.isNonZero(value) ? value.trim() : d;
   }
-  /***********************************************************************/
+  
   public static String loadUpperCaseString(String i)
   {
     return com.spun.util.StringUtils.isNonZero(i) ? i.trim().toUpperCase() : null;
   }
-  /***********************************************************************/
+  
   public static String loadUpperCaseString(HttpServletRequest req, String key)
   {
     return loadUpperCaseString(req.getParameter(key));
   }
-  /***********************************************************************/
+  
   public static String loadNullableString(HttpServletRequest req, String key)
   {
     if (key == null) { return null; }
     String value = req.getParameter(key);
     return StringUtils.isNonZero(value) ? value.trim() : null;
   }
-  /***********************************************************************/
+  
   public static String loadNullableString(String value)
   {
     return StringUtils.loadNullableString(value);
   }
-  /***********************************************************************/
+  
   abstract protected String getLogFile();
-  /***********************************************************************/
+  
   protected ParseCall getParser()
   {
     return VelocityParser.FileParseCall.INSTANCE;
   }
-  /***********************************************************************/
+  
   protected String getErrorTemplate()
   {
     return null;
   }
-  /***********************************************************************/
+  
   public String processError(Throwable t, HttpServletRequest req)
   {
     return processError(t, req, new ErrorToString());
@@ -208,7 +208,7 @@ public abstract class BasicServlet extends HttpServlet
       SimpleLogger.logTo(logTo);
     }
   }
-  /***********************************************************************/
+  
   private String extractServletInformation(HttpServletRequest req)
   {
     if (req == null) { return null; }
@@ -219,7 +219,7 @@ public abstract class BasicServlet extends HttpServlet
         + servletName.substring(servletName.lastIndexOf(".") + 1) + ", " + parameters + "]";
     return info;
   }
-  /***********************************************************************/
+  
   public static ArrayList<Property> getHeaders(HttpServletRequest req)
   {
     Enumeration<?> e = req.getHeaderNames();
@@ -231,27 +231,27 @@ public abstract class BasicServlet extends HttpServlet
     }
     return parameters;
   }
-  /***********************************************************************/
+  
   public static void setContentTypeAsZip(HttpServletResponse res, String fileName)
   {
     res.setContentType("application/zip");
     res.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
     res.setLocale(Locale.US);
   }
-  /***********************************************************************/
+  
   public static void setContentTypeAsExcel(HttpServletResponse res, String fileName)
   {
     res.setContentType("application/octet-stream");
     res.setHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
     res.setLocale(Locale.US);
   }
-  /***********************************************************************/
+  
   public static void setContentTypeAsImage(HttpServletResponse res)
   {
     res.setContentType("image/gif");
     res.setLocale(Locale.US);
   }
-  /***********************************************************************/
+  
   public static ArrayList<Property> getParameters(HttpServletRequest req)
   {
     Enumeration<?> e = req.getParameterNames();
@@ -263,20 +263,20 @@ public abstract class BasicServlet extends HttpServlet
     }
     return parameters;
   }
-  /***********************************************************************/
+  
   public static Object getSessionData(HttpServletRequest req, String sessionKey)
   {
     Object o = req.getSession().getAttribute(sessionKey);
     if (o == null) { throw new ExpiredSessionError(); }
     return o;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
   public static class Property
   {
     private String value;
     private String name;
-    /***********************************************************************/
+    
     public Property(String name, String value)
     {
       this.value = value;

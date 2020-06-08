@@ -14,7 +14,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
   private PkeyVariableSetter()
   {
   }
-  /***********************************************************************/
+
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     if (atStage == INSERT_COMPLETED)
@@ -41,7 +41,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
           + forObject.getMetadata().getTableName()); }
     }
   }
-  /***********************************************************************/
+
   private void loadBySequenceMySQL(DatabaseObject forObject, Statement stmt) throws SQLException
   {
     ResultSet rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
@@ -50,7 +50,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       forObject.setPkey(rs.getInt(1));
     }
   }
-  /***********************************************************************/
+
   private void loadBySequence(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     String sql = "SELECT currval('" + forObject.getMetadata().getTableName() + "_pkey_seq')";
@@ -60,7 +60,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       forObject.setPkey(rs.getInt(1));
     }
   }
-  /***********************************************************************/
+
   private void loadBySQL(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     ResultSet rs = stmt.executeQuery("SELECT @@IDENTITY");
@@ -69,7 +69,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       forObject.setPkey(rs.getInt(1));
     }
   }
-  /***********************************************************************/
+
   private void loadByJDBC(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     ResultSet rs = stmt.getGeneratedKeys();
@@ -78,6 +78,6 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       forObject.setPkey(rs.getInt(1));
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

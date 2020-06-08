@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 public class XmlExtractorUtil
 {
-  /***********************************************************************/
+  
   public static Object[] extract(Node node, String xmlName, Class<?> clazz) throws Exception
   {
     ArrayList<Object> list = new ArrayList<Object>();
@@ -16,7 +16,7 @@ public class XmlExtractorUtil
         new XmlMap[]{new XmlMap(xmlName, "add", new XmlMapExtractor(clazz))}));
     return list.toArray();
   }
-  /***********************************************************************/
+  
   public static Node traverseToTag(String tag, Node node)
   {
     Node n = traverseToInnerTag(tag, node);
@@ -24,7 +24,7 @@ public class XmlExtractorUtil
         String.format("The Tag '%s' could not be found from '%s'", tag, node)); }
     return n;
   }
-  /***********************************************************************/
+  
   private static Node traverseToInnerTag(String tag, Node node)
   {
     String name = node.getNodeName();
@@ -43,7 +43,7 @@ public class XmlExtractorUtil
     }
     return null;
   }
-  /***********************************************************************/
+  
   public static Object extractAndTranslateForNode(Node node, Object addToObject, XmlTranslator translator)
       throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException
   {
@@ -57,6 +57,6 @@ public class XmlExtractorUtil
     }
     return addToObject;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

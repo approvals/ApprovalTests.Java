@@ -9,18 +9,18 @@ public class FileLocator implements ResourceLocator
   private HashMap<String, String> paths = new HashMap<String, String>();
   private boolean failOnNotFound = true;
   private String[] basePaths;
-  /***********************************************************************/
+  
   public FileLocator(String[] basePaths)
   {
     this(basePaths, true);
   }
-  /***********************************************************************/
+  
   public FileLocator(String[] basePaths, boolean failOnNotFound)
   {
     this.basePaths = basePaths;
     this.failOnNotFound = failOnNotFound;
   }
-  /***********************************************************************/
+  
   public String getLocation(String fileName)
   {
     String absolutePath = paths.get(fileName);
@@ -50,7 +50,7 @@ public class FileLocator implements ResourceLocator
     }
     return absolutePath;
   }
-  /***********************************************************************/
+  
   
   private String registerFile(String fileName, File file)
   {
@@ -58,6 +58,6 @@ public class FileLocator implements ResourceLocator
     paths.put(fileName, absolutePath);
     return absolutePath;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

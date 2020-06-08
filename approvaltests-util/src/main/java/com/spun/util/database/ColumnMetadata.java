@@ -37,17 +37,17 @@ public class ColumnMetadata
     this.foreignTable = foreignTable;
     this.foreignColumn = foreignColumn;
   }
-  /***********************************************************************/
+
   public int getLength()
   {
     return length;
   }
-  /***********************************************************************/
+
   public int getSqlType()
   {
     return sqlType;
   }
-  /***********************************************************************/
+
   public String getSqlTypeName()
   {
     String name = DatabaseUtils.findDatabaseName(sqlType);
@@ -63,52 +63,52 @@ public class ColumnMetadata
     }
     return name;
   }
-  /***********************************************************************/
+
   public int getColumnPosition()
   {
     return columnPosition;
   }
-  /***********************************************************************/
+
   public String getName()
   {
     return name;
   }
-  /***********************************************************************/
+
   public boolean isNullable()
   {
     return nullable;
   }
-  /***********************************************************************/
+
   public Class<?> getType()
   {
     return type;
   }
-  /***********************************************************************/
+
   public int getDecimalDigits()
   {
     return decimalDigits;
   }
-  /***********************************************************************/
+
   public String getComments()
   {
     return comments;
   }
-  /***********************************************************************/
+
   public String getForeignTable()
   {
     return foreignTable;
   }
-  /***********************************************************************/
+
   public ColumnMetadata getForeignColumn()
   {
     return foreignColumn;
   }
-  /***********************************************************************/
+
   public String getNameWithPrefix(String alias)
   {
     return alias + "." + getName();
   }
-  /***********************************************************************/
+
   public String getSequenceName(int databaseType)
   {
     if (databaseType == DatabaseUtils.POSTGRESQL) { return String.format("%s_%s_seq", tableMetadata.getTableName(), this.getName()); }
@@ -142,5 +142,5 @@ public class ColumnMetadata
     }
     return array;
   }
-  /***********************************************************************/
+
 }

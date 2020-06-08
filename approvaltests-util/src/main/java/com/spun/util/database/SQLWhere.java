@@ -43,7 +43,7 @@ public class SQLWhere
   {
     this(part1 + " " + comparator + " " + part2);
   }
-  /***********************************************************************/
+
   public SQLWhere(ColumnMetadata metadata, String alias, boolean value)
   {
     this(SQLUtils.compareBy(metadata, alias, "=", value));
@@ -113,7 +113,7 @@ public class SQLWhere
     }
     return true;
   }
-  /***********************************************************************/
+
   public static SQLWhere createBetween(ColumnMetadata column, String prefix, DateRange range)
   {
     return createBetween(range.getStart(), column, prefix, range.getEnd());
@@ -123,17 +123,17 @@ public class SQLWhere
     return new SQLWhere(SQLUtils.createSQLBetween(new Timestamp(startTime.getTime()).toString(), column
         .getNameWithPrefix(prefix), new Timestamp(endTime.getTime()).toString()));
   }
-  /***********************************************************************/
+
   public static SQLWhere createInSQLStatement(ColumnMetadata metadata, String alias, Object... values)
   {
     return new SQLWhere(SQLUtils.createInSQLStatement(metadata, alias, false, values));
   }
-  /***********************************************************************/
+
   public static SQLWhere createNotInSQLStatement(ColumnMetadata metadata, String alias, Object[] values)
   {
     return new SQLWhere(SQLUtils.createInSQLStatement(metadata, alias, true, values));
   }
-  /***********************************************************************/
+
   public static SQLWhere createInSQLStatement(ColumnMetadata metadata, String alias, boolean not, Object[] values)
   {
     return new SQLWhere(SQLUtils.createInSQLStatement(metadata, alias, not, values));

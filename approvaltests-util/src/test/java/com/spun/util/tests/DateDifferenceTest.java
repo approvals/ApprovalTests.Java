@@ -133,7 +133,7 @@ public class DateDifferenceTest extends TestCase
                                                                          0),                                                                     /* Daylight savings is in month '3' */
                                                                      new GregorianCalendar(2004, 3, 4, 11, 0),
                                                                      "1 Day, 0 Hours, 0 Mins, 0 Secs, 0 Millis")};
-  /***********************************************************************/
+
   public void testGetRoundedDifference()
   {
     for (int i = 0; i < getRoundedDifferenceUseCases.length; i++)
@@ -147,7 +147,7 @@ public class DateDifferenceTest extends TestCase
           d.getRemainingDifference(wanted, round));
     }
   }
-  /***********************************************************************/
+
   public void testFeburaryAndDaylightSavingsTime() throws Exception
   {
     if (ignoreIfOutSideUS()) { return; }
@@ -167,7 +167,7 @@ public class DateDifferenceTest extends TestCase
   {
     return !DateUtils.doesDaylightSavingsTimeStartOn("2010/03/14");
   }
-  /***********************************************************************/
+
   public void testGetTimeText()
   {
     if (ignoreIfOutSideUS()) { return; }
@@ -188,7 +188,7 @@ public class DateDifferenceTest extends TestCase
           expected, d.getTimeText(amount, maxUnit, minUnit, nowText, agoText, units));
     }
   }
-  /***********************************************************************/
+
   private class GetTimeTextUseCase
   {
     int    amount;
@@ -204,7 +204,7 @@ public class DateDifferenceTest extends TestCase
     {
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, milli, expected);
     }
-    /***********************************************************************/
+
     public GetTimeTextUseCase(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         Calendar date1, Calendar date2, String expected)
     {
@@ -215,7 +215,7 @@ public class DateDifferenceTest extends TestCase
       }
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, time, expected);
     }
-    /***********************************************************************/
+
     private void init(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         long milli, String expected)
     {
@@ -229,6 +229,6 @@ public class DateDifferenceTest extends TestCase
       this.expected = expected;
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

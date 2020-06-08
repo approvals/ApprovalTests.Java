@@ -30,17 +30,17 @@ public class PercentageAmount extends TemplateDouble
   {
     return new PercentageAmount(1 - amount);
   }
-  /***********************************************************************/
+
   public String inDefaultFormat()
   {
     return inFormat(amount * 100, "", 2, 0, "%", true);
   }
-  /***********************************************************************/
+
   public String inIntegerFormat()
   {
     return inFormat(amount * 100, "", 0, 0, "%", true);
   }
-  /***********************************************************************/
+
   public String inDefaultFormat(String prefix, int precision, int minimumPrecision, String postfix,
       boolean useGrouping)
   {

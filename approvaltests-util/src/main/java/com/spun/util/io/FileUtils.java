@@ -29,7 +29,7 @@ import javax.imageio.ImageIO;
  **/
 public class FileUtils
 {
-  /***********************************************************************/
+
   public static File createTempDirectory() throws IOException
   {
     File tempFile = File.createTempFile("TEMP", null);
@@ -37,7 +37,7 @@ public class FileUtils
     tempFile.mkdirs();
     return tempFile;
   }
-  /***********************************************************************/
+
   public static void deleteDirectory(File directory) throws IOException
   {
     // delete all directory
@@ -66,12 +66,12 @@ public class FileUtils
     String resource = FileUtils.readStream(resourceAsStream);
     return resource;
   }
-  /***********************************************************************/
+
   public static File[] getRecursiveFileList(File directory)
   {
     return getRecursiveFileList(directory, new SimpleFileFilter());
   }
-  /***********************************************************************/
+
   public static File[] getRecursiveFileList(File directory, FileFilter filter)
   {
     ArrayList<File> list = new ArrayList<File>();
@@ -85,7 +85,7 @@ public class FileUtils
     ArrayUtils.addArray(list, files);
     return list.toArray(new File[list.size()]);
   }
-  /***********************************************************************/
+
   public static void copyFile(File in, File out)
   {
     try
@@ -128,7 +128,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void redirectInputToFile(String fileName, InputStream in)
   {
     try
@@ -141,7 +141,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void copyFileToDirectory(String file, File tempDir)
   {
     try
@@ -155,7 +155,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void writeFile(File file, String text)
   {
     try
@@ -171,11 +171,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static void writeFileQuietly(File file, String text)
   {
     writeFile(file, text);
   }
+
   public static void writeFile(File file, CharSequence data)
   {
     try
@@ -193,6 +194,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void writeFile(File file, InputStream data)
   {
     try
@@ -206,12 +208,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /***********************************************************************/
+
   public static String readFile(String absolutePath)
   {
     return readFile(new File(absolutePath));
   }
-  /***********************************************************************/
+
   public static String readFile(File file)
   {
     try
@@ -225,6 +227,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static String readBuffer(BufferedReader in)
   {
     try
@@ -243,12 +246,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  /************************************************************************/
+
   public static String readFileWithSuppressedExceptions(File databaseFile)
   {
     return FileUtils.readFile(databaseFile);
   }
-  /************************************************************************/
+
   public static File saveToFile(String prefix, Reader input)
   {
     try
@@ -271,7 +274,7 @@ public class FileUtils
           "Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
     }
   }
-  /************************************************************************/
+
   public static String getDirectoryFriendlyName(String name)
   {
     if (name == null) { return ""; }

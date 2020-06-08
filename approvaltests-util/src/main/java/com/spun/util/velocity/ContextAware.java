@@ -8,17 +8,17 @@ import org.apache.velocity.context.Context;
 public interface ContextAware
 {
   public void setupContext(Context context);
-  /***********************************************************************/
+  
   /*                           INNER CLASS                               */
-  /***********************************************************************/
+  
   public static class ContextAwareMap implements ContextAware
   {
     HashMap<String, Object> add = new HashMap<String, Object>();
-    /***********************************************************************/
+    
     public ContextAwareMap()
     {
     }
-    /***********************************************************************/
+    
     public ContextAwareMap(String key, Object object)
     {
       put(key, object);
@@ -27,7 +27,7 @@ public interface ContextAware
     {
       add.put(key, object);
     }
-    /***********************************************************************/
+    
     public void setupContext(Context context)
     {
       for (Entry<String, Object> entry : add.entrySet())
@@ -36,6 +36,6 @@ public interface ContextAware
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

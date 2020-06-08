@@ -8,7 +8,7 @@ import org.apache.commons.httpclient.methods.PostMethod;
 
 public class UPSQuoteRetriever
 {
-  /***********************************************************************/
+
   public InputStream getResponse(HttpClient client, PostMethod post) throws HttpException, IOException
   {
     //    My_System.markerIn();
@@ -21,6 +21,6 @@ public class UPSQuoteRetriever
     //    My_System.markerOut();
     return r;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

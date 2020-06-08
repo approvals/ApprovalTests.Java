@@ -21,7 +21,7 @@ public class ObjectUtilsTest
         "getClass");
     assertEquals(Object.class, gcd.getDeclaringClass());
   }
-  /***********************************************************************/
+
   @Test
   public void test()
   {
@@ -31,7 +31,7 @@ public class ObjectUtilsTest
     assertTrue(ObjectUtils.isEqualForMethods(o1, o2, "getA", "getB", "getD"));
     assertFalse(ObjectUtils.isEqualForMethods(o1, o2, "getA", "getB", "getC"));
   }
-  /***********************************************************************/
+
   public static class UseCase
   {
     private int    a;
@@ -45,27 +45,27 @@ public class ObjectUtilsTest
       this.c = c;
       this.d = d;
     }
-    /***********************************************************************/
+
     public int getA()
     {
       return a;
     }
-    /***********************************************************************/
+
     public String getB()
     {
       return b;
     }
-    /***********************************************************************/
+
     public String getC()
     {
       return c;
     }
-    /***********************************************************************/
+
     public Date getD()
     {
       return d;
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

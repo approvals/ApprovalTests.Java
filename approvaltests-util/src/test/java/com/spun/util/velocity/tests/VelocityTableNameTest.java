@@ -13,16 +13,16 @@ public class VelocityTableNameTest extends TestCase implements ContextAware
     String template = "${main.getObjectName()}Metadata.TABLE_NAME, ";
     assertEquals("CompanyMetadata.TABLE_NAME, ", VelocityParser.parseString(template, this));
   }
-  /***********************************************************************/
+
   public String getObjectName()
   {
     return "Company";
   }
-  /***********************************************************************/
+
   public void setupContext(Context context)
   {
     context.put("main", this);
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

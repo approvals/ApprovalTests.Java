@@ -12,7 +12,7 @@ public class ChangeDateVariableSetter
 {
   public static final ChangeDateVariableSetter INSTANCE = new ChangeDateVariableSetter();
   private ChangeDateVariableSetter () {}
-  /***********************************************************************/
+  
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
   {
     if (atStage == AutomaticVariableSetter.UPDATE)
@@ -31,6 +31,6 @@ public class ChangeDateVariableSetter
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

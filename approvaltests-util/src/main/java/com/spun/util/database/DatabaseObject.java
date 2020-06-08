@@ -14,9 +14,9 @@ public interface DatabaseObject
   public Metadata getMetadata();
   public boolean save(Statement stmt) throws java.sql.SQLException;
   public boolean deleteFromDatabase(java.sql.Statement stmt) throws java.sql.SQLException;
-  /***********************************************************************/
+
   /**                     Inner Classes                                 **/
-  /***********************************************************************/
+
   public static class FilterNew implements com.spun.util.filters.Filter<DatabaseObject>
   {
     public static FilterNew INSTANCE = new FilterNew();
@@ -40,7 +40,7 @@ public interface DatabaseObject
         object.save(stmt, set, false);
       }
     }
-    /***********************************************************************/
+
     public static <T extends DatabaseObject> T get(int pkey, T[] from)
     {
       if (from == null) { return null; }

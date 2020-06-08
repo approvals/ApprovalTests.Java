@@ -11,27 +11,27 @@ public class TemplateStringUtils
   private TemplateStringUtils()
   {
   }
-  /***********************************************************************/
+  
   public String truncate(String onString, int maxLength)
   {
     return truncate(onString, maxLength, new String[]{});
   }
-  /***********************************************************************/
+  
   public String plural(int number, String singular, String plural)
   {
     return String.format("%s %s", number, (number == 1 ? singular : plural));
   }
-  /***********************************************************************/
+  
   public String truncate(String onString, int maxLength, String minus1, String minus2)
   {
     return truncate(onString, maxLength, new String[]{"", "", minus1, minus2});
   }
-  /***********************************************************************/
+  
   public String truncate(String onString, int maxLength, String minus1)
   {
     return truncate(onString, maxLength, new String[]{"", "", minus1});
   }
-  /***********************************************************************/
+  
   private String truncate(String onString, int maxLength, String minus[])
   {
     if (onString == null || onString.equals("null")) { return ""; }
@@ -60,12 +60,12 @@ public class TemplateStringUtils
   {
     return StringUtils.isIn(compare, new String[]{inParameter1, inParameter2});
   }
-  /***********************************************************************/
+  
   public static boolean isIn(String compare, String inParameter1)
   {
     return StringUtils.isIn(compare, new String[]{inParameter1});
   }
-  /***********************************************************************/
+  
   public static String pad(String original, int length, String paddingCharacter)
   {
     original = original == null ? "" : original;
@@ -77,12 +77,12 @@ public class TemplateStringUtils
     }
     return buffer.toString();
   }
-  /***********************************************************************/
+  
   public String getFileName(String fileName)
   {
     return fileName.substring(fileName.lastIndexOf(File.separatorChar) + 1);
   }
-  /***********************************************************************/
+  
   public static String formatExcelString(String in)
   {
     if ("0".equals(in) || "null".equals(in) || in == null) // So that null's & int(0) show up empty

@@ -9,7 +9,7 @@ public class SQLQueryUtilsTest
   extends TestCase 
 {
 
-  /***********************************************************************/
+  
   public void testCountingQuery() 
   {
     SQLQuery query = new SQLQuery();
@@ -31,7 +31,7 @@ public class SQLQueryUtilsTest
     assertEquals("getTableForAliasWorks", "a", query.getFirstAliasForTableName("company_order"));
   }
   
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }
 

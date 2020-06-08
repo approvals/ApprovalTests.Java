@@ -65,12 +65,12 @@ public class SQLQueryUtils
     }
     return query;
   }
-  /***********************************************************************/
+
   public static int executeCountOnQuery(SQLQuery query, Statement stmt) throws SQLException
   {
     return executeSingleIntQuery(extractCountingQuery(query).toString(), stmt);
   }
-  /***********************************************************************/
+
   public static int executeSingleIntQuery(String sql, Statement stmt) throws SQLException
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
@@ -81,7 +81,7 @@ public class SQLQueryUtils
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new TimestampExtractor());
   }
-  /***********************************************************************/
+
   private static <T> T extractSingleRow(String sql, ResultSet rs, ResultSetExtractor<T> extractor)
       throws SQLException
   {

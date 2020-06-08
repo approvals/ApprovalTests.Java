@@ -22,7 +22,7 @@ import org.lambda.query.Query;
 public class StringUtils
 {
   public static final String NEW_LINE = System.getProperty("line.separator");
-  /***********************************************************************/
+
   public static String toURLEncode(String input)
   {
     try
@@ -34,12 +34,12 @@ public class StringUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  /***********************************************************************/
+
   public static String loadNullableString(String i)
   {
     return StringUtils.isNonZero(i) ? i.trim() : null;
   }
-  /***********************************************************************/
+
   /**
    * Decode a URLEncoded <code>input</code> String.
    * <p>
@@ -104,12 +104,12 @@ public class StringUtils
     }
     return result.substring(0, result.length() - replace.length());
   }
-  /***********************************************************************/
+
   public static String stripWhiteSpace(String text)
   {
     return stripWhiteSpace(text, false);
   }
-  /***********************************************************************/
+
   public static String padNumber(long number, int digits)
   {
     String text = "" + number;
@@ -119,12 +119,12 @@ public class StringUtils
     }
     return text;
   }
-  /***********************************************************************/
+
   public static String padNumber(int number, int digits)
   {
     return padNumber((long) number, digits);
   }
-  /***********************************************************************/
+
   public static String stripWhiteSpace(String text, boolean all)
   {
     StringBuffer newText = new StringBuffer();
@@ -322,7 +322,7 @@ public class StringUtils
     }
     return result.toString();
   }
-  /***********************************************************************/
+
   /**
    * A convenience function to check that a String has at least 1 character.
    * 
@@ -334,7 +334,7 @@ public class StringUtils
   {
     return ((string != null) && string.trim().length() > 0);
   }
-  /***********************************************************************/
+
   public static boolean isEmpty(String string)
   {
     return !isNonZero(string);
@@ -371,12 +371,12 @@ public class StringUtils
     }
     return array;
   }
-  /***********************************************************************/
+
   public static int resolveEnumeration(String value, String[] enumeration)
   {
     return resolveEnumeration(value, enumeration, false);
   }
-  /***********************************************************************/
+
   public static int resolveEnumeration(String value, String[] enumeration, boolean force)
   {
     for (int i = 0; i < enumeration.length; i++)
@@ -386,18 +386,18 @@ public class StringUtils
     if (force) { throw new Error("Enumeration '" + value + "' not in " + Arrays.asList(enumeration).toString()); }
     return -1;
   }
-  /***********************************************************************/
+
   public static String truncate(String string, int maxLength)
   {
     if (string == null) { return null; }
     return (string.length() <= maxLength) ? string : string.substring(0, maxLength);
   }
-  /***********************************************************************/
+
   public static boolean hasNumeric(String teamId)
   {
     return isNonZero(stripNonNumeric(teamId, false, false));
   }
-  /***********************************************************************/
+
   public static String toHTMLEncode(String string)
   {
     if (string == null) { return null; }
@@ -405,7 +405,7 @@ public class StringUtils
     string = string.replaceAll("\n", "<br />");
     return string;
   }
-  /***********************************************************************/
+
   public static String toJavaScriptEncode(String string)
   {
     if (string == null) { return "null"; }
@@ -414,12 +414,12 @@ public class StringUtils
     string = string.replaceAll("\n", "\\\\n");
     return "\"" + string + "\"";
   }
-  /***********************************************************************/
+
   public static boolean isIn(String target, String... fromList)
   {
     return Arrays.asList(fromList).contains(target);
   }
-  /***********************************************************************/
+
   public static boolean isIn(String target, String[] fromList, boolean allowNulls)
   {
     return (target == null && allowNulls) ? true : isIn(target, fromList);
@@ -435,7 +435,7 @@ public class StringUtils
   {
     assertIn(target, options, allowNulls);
   }
-  /***********************************************************************/
+
   public static String convertEnumeration(final Object forValue, Class<?> clazz)
   {
     Function1<Field, Boolean> filter = a -> {
@@ -477,7 +477,7 @@ public class StringUtils
     }
     return names;
   }
-  /***********************************************************************/
+
   public static Properties createProperties(String[] properties)
   {
     Properties props = new Properties();
@@ -497,7 +497,7 @@ public class StringUtils
     }
     return props;
   }
-  /***********************************************************************/
+
   public static <T> String toString(String name, T[] array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -516,7 +516,7 @@ public class StringUtils
     }
     return buffer.toString();
   }
-  /***********************************************************************/
+
   public static <T> String toString(String name, Iterable<T> array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -541,12 +541,12 @@ public class StringUtils
     if (o == null) { return "null"; }
     return o.getClass().isArray() ? Arrays.toString((Object[]) o) : o.toString();
   }
-  /***********************************************************************/
+
   public static String getFirstName(String fullName)
   {
     return splitName(fullName)[0];
   }
-  /***********************************************************************/
+
   public static String getLastName(String fullName)
   {
     return splitName(fullName)[1];
@@ -561,20 +561,20 @@ public class StringUtils
   {
     return (one == two || (one != null && one.equalsIgnoreCase(two)));
   }
-  /***********************************************************************/
+
   public static StringBuffer trim(StringBuffer buffer, int i)
   {
     if (buffer == null || buffer.length() < i) { return buffer; }
     buffer.setLength(buffer.length() - i);
     return buffer;
   }
-  /***********************************************************************/
+
   public static String join(String first, String joinBy, String second)
   {
     return isEmpty(second) ? first : first + joinBy + second;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
   public static InputStream convertToInputStream(String string)
   {
     return new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));

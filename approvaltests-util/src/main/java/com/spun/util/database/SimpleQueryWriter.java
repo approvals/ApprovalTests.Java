@@ -48,7 +48,7 @@ class SimpleQueryWriter implements SQLQueryWriter
     }
 		return sql.toString();
 	}
-  /***********************************************************************/
+  
   private void addOrderByPart(StringBuffer sql, OrderByPart[] orderBys)
 	{
 		//order by 
@@ -62,7 +62,7 @@ class SimpleQueryWriter implements SQLQueryWriter
 			sql.append(" ");
 		}
 	}
-	/***********************************************************************/
+	
 	private void addWherePart(StringBuffer sql, SQLWhere wherePart)
 	{
     if (wherePart != null )
@@ -71,7 +71,7 @@ class SimpleQueryWriter implements SQLQueryWriter
       sql.append(wherePart.toString());
     }		
 	}
-	/***********************************************************************/
+	
 	private void addFromPart(StringBuffer sql, FromPart[] froms)
 	{
     if (froms.length > 0)
@@ -84,7 +84,7 @@ class SimpleQueryWriter implements SQLQueryWriter
       sql.append(" ");
     }
 	}
-	/***********************************************************************/
+	
 	private void addGroupBy(StringBuffer sql, String[] groupBys)
 	{
     if (groupBys.length > 0)
@@ -99,7 +99,7 @@ class SimpleQueryWriter implements SQLQueryWriter
       sql.append(" ");
     }
 	}
-	/***********************************************************************/
+	
 	private void addHaving(StringBuffer sql, String[] havings)
 	{
     if (havings.length > 0)
@@ -114,7 +114,7 @@ class SimpleQueryWriter implements SQLQueryWriter
       sql.append(" ");
     }
 	}
-	/***********************************************************************/
+	
 	private void addSelectPart(StringBuffer sql, String[] selectParts)
 	{
     for (int i = 0; i < selectParts.length; i++)

@@ -146,7 +146,7 @@ public class DateDifference
     //roundedDifference = (millis % (roundTo in millis)) / (unit in millis)
     return (time % DIVIDERS[roundToIndex]) / DIVIDERS[wantedIndex];
   }
-  /***********************************************************************/
+  
   /**
    * @return the index in TIME_SCALE[] of the largest Unit to be > 0
    **/
@@ -159,7 +159,7 @@ public class DateDifference
     }
     return i;
   }
-  /***********************************************************************/
+  
   /**
    * Finds the index for a Calendar.DATE ect.
    * @return the index in TIME_SCALE[] 
@@ -173,7 +173,7 @@ public class DateDifference
     }
     return i;
   }
-  /***********************************************************************/
+  
   public static int convertUnitString(String unit)
   {
     int result = 0;
@@ -211,28 +211,28 @@ public class DateDifference
     }
     return result;
   }
-  /***********************************************************************/
+  
   public static long convertUnitStringToMilli(String unit)
   {
     int cal = convertUnitString(unit);
     return DIVIDERS[getTimeScaleIndex(cal)];
   }
-  /***********************************************************************/
+  
   public boolean isMoreThan(int amount, int unit)
   {
     return (getAbsoluteDifference(unit) >= amount);
   }
-  /***********************************************************************/
+  
   public boolean isMoreThan(int amount, String unitString)
   {
     return (getAbsoluteDifference(convertUnitString(unitString)) >= amount);
   }
-  /***********************************************************************/
+  
   public long getStandardRoundedTime(int unitIndex, boolean forceAbsolute)
   {
     return getStandardRoundedTime(unitIndex, forceAbsolute, this.milli);
   }
-  /***********************************************************************/
+  
   private static long getStandardRoundedTime(int unitIndex, boolean forceAbsolute, long time)
   {
     if (unitIndex == 0 || forceAbsolute)
@@ -244,13 +244,13 @@ public class DateDifference
       return getRemainingDifference(TIME_SCALE[unitIndex], TIME_SCALE[unitIndex - 1], time);
     }
   }
-  /***********************************************************************/
+  
   public String getStandardTimeText(int amount, String maxUnit, String minUnit, String nowText, String agoText)
   {
     return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText,
         STANDARD_TIME_TEXT);
   }
-  /***********************************************************************/
+  
   public String getTimeText(int amount, int maxUnit, int minUnit, String nowText, String agoText, String units[])
   {
     //		My_System.variable("amount = " + amount + ", maxUnit = " + maxUnit +  ", minUnit = " + minUnit + ", nowText = " + nowText);
@@ -282,7 +282,7 @@ public class DateDifference
     }
     return timeText;
   }
-  /***********************************************************************/
+  
   public String getClockTimeText()
   {
     int maxUnit = getTimeScaleIndex(Calendar.HOUR);
@@ -309,7 +309,7 @@ public class DateDifference
     }
     return timeText;
   }
-  /***********************************************************************/
+  
   public String getStandardTimeText(int amountShown)
   {
     return getTimeText(amountShown, Calendar.YEAR, Calendar.MILLISECOND, "now", "", STANDARD_TIME_TEXT);

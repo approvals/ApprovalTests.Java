@@ -5,7 +5,7 @@ import junit.framework.TestSuite;
 
 public class RunAllVelocityTests extends TestSuite
 {
-  /***********************************************************************/
+  
   public static Test suite() throws InstantiationException, IllegalAccessException, ClassNotFoundException
   {
     TestSuite suite = new TestSuite("Test for com.spun");
@@ -15,6 +15,6 @@ public class RunAllVelocityTests extends TestSuite
     suite.addTest(new TestSuite(VelocityNullSetTest.class));
     return suite;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

@@ -92,7 +92,7 @@ public class DateRange
     return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(),
         new TemplateDate(end).getDateAndTime());
   }
-  /***********************************************************************/
+
   public DateRange[] getWeeks()
   {
     return getUnits(new WeekAware());
@@ -113,7 +113,7 @@ public class DateRange
     }
     return ranges.toArray(new DateRange[ranges.size()]);
   }
-  /***********************************************************************/
+
   public DateRange[] getMonths()
   {
     return getUnits(new MonthAware());

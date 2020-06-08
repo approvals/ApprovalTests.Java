@@ -20,7 +20,7 @@ public class MethodSorterTest
     assertUseCase(new Integer[]{5, 7, 2}, OrderBy.ascending((Integer a) -> a.intValue()), 2, 0, 1);
     assertUseCase(new Integer[]{5, 7, 2}, OrderBy.ascending((Integer a) -> a.doubleValue()), 2, 0, 1);
   }
-  /***********************************************************************/
+
   private <T> void assertUseCase(T[] startingArray, java.util.Comparator<T> compare, int... sortedOrder)
   {
     Object[] sortedArray = makeSortedArray(startingArray, sortedOrder);

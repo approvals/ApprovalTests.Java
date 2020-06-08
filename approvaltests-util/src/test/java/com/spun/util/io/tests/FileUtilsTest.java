@@ -54,7 +54,7 @@ public class FileUtilsTest extends TestCase
     String file = namer.getSourceFilePath() + name;
     return file;
   }
-  /***********************************************************************/
+  
   public void testCopyFile() throws Exception
   {
     File first = File.createTempFile("unitTest", ".txt");

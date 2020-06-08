@@ -14,17 +14,17 @@ import com.spun.util.StringUtils;
 
 public class CommaDelimitedFileParser
 {
-  /***********************************************************************/
+  
   public static String[][] parse(File databaseFile)
   {
     return parse(FileUtils.readFileWithSuppressedExceptions(databaseFile));
   }
-  /***********************************************************************/
+  
   public static String[][] parse(String data)
   {
     return parse(new StringReader(data));
   }
-  /***********************************************************************/
+  
   public static String[][] parse(Reader data)
   {
     try
@@ -70,7 +70,7 @@ public class CommaDelimitedFileParser
       throw new RuntimeException(e);
     }
   }
-  /***********************************************************************/
+  
   private static String[] parseLine(String line) throws IOException
   {
     String[] rawtokens = StringUtils.split(line, ",", false);
@@ -105,7 +105,7 @@ public class CommaDelimitedFileParser
     }
     return in ? null : StringUtils.toArray(tokens);
   }
-  /***********************************************************************/
+  
   private static String clearQuotes(String string)
   {
     String s = (string.startsWith("\"") && string.endsWith("\""))
@@ -113,7 +113,7 @@ public class CommaDelimitedFileParser
         : string;
     return s.trim();
   }
-  /***********************************************************************/
+  
   public static Map<String, String>[] parseToMap(File file)
   {
     try
@@ -126,7 +126,7 @@ public class CommaDelimitedFileParser
       throw e;
     }
   }
-  /***********************************************************************/
+  
   public static Map<String, String>[] parseToMap(String data)
   {
     return parseToMap(new StringReader(data));
@@ -147,6 +147,6 @@ public class CommaDelimitedFileParser
     }
     return maps;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

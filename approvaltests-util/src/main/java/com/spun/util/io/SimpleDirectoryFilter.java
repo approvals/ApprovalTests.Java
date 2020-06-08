@@ -10,7 +10,7 @@ public class SimpleDirectoryFilter
   {
 	}
   
-  /***********************************************************************/
+  
 
   public boolean accept(File pathname)
   {

@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 public class StateTest extends TestCase
 {
-  /***********************************************************************/
+
   public void testState()
   {
     String[] strings = {"CALIFORNIA",
@@ -42,7 +42,7 @@ public class StateTest extends TestCase
     assertTrue(State.isStateAbbreviation("CA"));
     assertFalse(State.isStateAbbreviation("US"));
   }
-  /***********************************************************************/
-  /***********************************************************************/
-  /***********************************************************************/
+
+
+
 }

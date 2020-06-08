@@ -166,7 +166,7 @@ public class DatabaseConfiguration
   {
     return userName;
   }
-  /***********************************************************************/
+  
   public int getPort()
   {
     return NumberUtils.load(port, 0);

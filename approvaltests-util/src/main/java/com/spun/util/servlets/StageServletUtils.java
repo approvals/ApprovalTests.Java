@@ -11,12 +11,12 @@ public class StageServletUtils
 {
   public static final String TEXT_HTML = "text/html";
   private static long        lastTime  = 0;
-  /***********************************************************************/
+  
   public static void doStageServlet(StageServlet servlet, HttpServletRequest req, HttpServletResponse res)
   {
     doStageServlet(servlet, 1, req, res);
   }
-  /***********************************************************************/
+  
   public static void doStageServlet(StageServlet servlet, int defaultStage, HttpServletRequest req,
       HttpServletResponse res)
   {
@@ -64,6 +64,6 @@ public class StageServletUtils
       lastTime = System.currentTimeMillis();
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

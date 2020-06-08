@@ -22,12 +22,12 @@ public class TabDelimitedFileReader
     this.reader = Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8);
     this.trim = trim;
   }
-  /***********************************************************************/
+  
   public boolean next() throws IOException
   {
     return prepNext() != null;
   }
-  /***********************************************************************/
+  
   public String prepNext() throws IOException
   {
     if (reader == null) { return null; }
@@ -39,7 +39,7 @@ public class TabDelimitedFileReader
     }
     return lastRead;
   }
-  /***********************************************************************/
+  
   public String[] readLine(int minimumIndexReturned) throws IOException
   {
     if (lastRead == null)
@@ -60,7 +60,7 @@ public class TabDelimitedFileReader
     lastRead = null;
     return found;
   }
-  /***********************************************************************/
+  
   private void clean(String[] found)
   {
     for (int i = 0; i < found.length; i++)
@@ -72,7 +72,7 @@ public class TabDelimitedFileReader
       }
     }
   }
-  /***********************************************************************/
+  
   /************************************************************************/
   
 }

@@ -35,32 +35,32 @@ public class TemplateDouble
     this.defaultMinimumPrecision = defaultMinimumPrecision;
     this.defaultMaximumPrecision = defaultMaximumPrecision;
   }
-  /***********************************************************************/
+  
   public TemplateDouble(Number amount)
   {
     this(amount.doubleValue());
   }
-  /***********************************************************************/
+  
   public String inDollarFormat()
   {
     return inFormat(amount, "$", 2, 2, "", true);
   }
-  /***********************************************************************/
+  
   public CurrencyAmount asCurrency()
   {
     return new CurrencyAmount(amount);
   }
-  /***********************************************************************/
+  
   public String asInteger()
   {
     return inFormat(amount, null, 0, 0, null, true);
   }
-  /***********************************************************************/
+  
   public String inFormat(String prefix, int precision, int minimumPrecision, String postfix, boolean useGrouping)
   {
     return inFormat(amount, prefix, precision, minimumPrecision, postfix, useGrouping);
   }
-  /***********************************************************************/
+  
   public static String inFormat(double amount, String prefix, int maximumPrecision, int minimumPrecision,
       String postfix, boolean useGrouping)
   {
@@ -87,12 +87,12 @@ public class TemplateDouble
     value += (postfix != null) ? postfix : "";
     return value;
   }
-  /***********************************************************************/
+  
   protected int getDefaultMinimumPrecision(int maximumPrecision)
   {
     return maximumPrecision < defaultMinimumPrecision ? maximumPrecision : defaultMinimumPrecision;
   }
-  /***********************************************************************/
+  
   public String asInt()
   {
     return inFormat(null, 0, 0, null, false);

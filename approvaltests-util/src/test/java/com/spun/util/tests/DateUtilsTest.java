@@ -24,7 +24,7 @@ public class DateUtilsTest extends TestCase
     assertEquals("2 Jan 2000 03:04:05 GMT", DateUtils.toDateInUTC(time).toGMTString());
     assertEquals("2 Jan 2000 02:04:05 GMT", DateUtils.toDate(time, ZoneOffset.ofHours(1)).toGMTString());
   }
-  /***********************************************************************/
+  
   public void testStartAndEndUseCases()
   {
     for (int i = 0; i < startAndEndUseCases.length; i++)
@@ -32,7 +32,7 @@ public class DateUtilsTest extends TestCase
       assertStartAndEnd(startAndEndUseCases[i]);
     }
   }
-  /***********************************************************************/
+  
   private void assertStartAndEnd(StartAndEndUseCases useCase)
   {
     assertEquals("Start date ", useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date));
@@ -51,7 +51,7 @@ public class DateUtilsTest extends TestCase
     //SimpleLogger.variable("last",last);
     assertTrue("order for " + next + " after" + last, next.after(last));
   }
-  /***********************************************************************/
+  
   public static class StartAndEndUseCases
   {
     public int       unit;
@@ -74,6 +74,6 @@ public class DateUtilsTest extends TestCase
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

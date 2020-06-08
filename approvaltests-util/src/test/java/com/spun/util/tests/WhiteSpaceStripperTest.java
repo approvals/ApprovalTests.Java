@@ -12,7 +12,7 @@ public class WhiteSpaceStripperTest extends TestCase
                                                 new UseCase(STRIP_BLANK_LINES, "  hello \r\n    \n a \n",
                                                     "  hello \n a "),
                                                 new UseCase(STRIP_BLANK_LINES, "  hello  ", "  hello  ")};
-  /***********************************************************************/
+
   public void test()
   {
     for (int i = 0; i < useCases.length; i++)
@@ -20,7 +20,7 @@ public class WhiteSpaceStripperTest extends TestCase
       testUseCase(useCases[i], i);
     }
   }
-  /***********************************************************************/
+
   private void testUseCase(UseCase useCase, int i)
   {
     switch (useCase.functionCall)
@@ -31,7 +31,7 @@ public class WhiteSpaceStripperTest extends TestCase
         break;
     }
   }
-  /***********************************************************************/
+
   public static void main(String[] args)
   {
     junit.textui.TestRunner.run(WhiteSpaceStripperTest.class);
@@ -49,6 +49,6 @@ public class WhiteSpaceStripperTest extends TestCase
       this.expectedString = expectedString;
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 }

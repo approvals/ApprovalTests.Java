@@ -1,10 +1,10 @@
 package com.spun.util.io.xml;
 
-/***********************************************************************/
+
 
 public class XmlMapTranslator
 {
-  /***********************************************************************/
+
   
   public static XmlTranslator get(Class<?> clazz, XmlMap[] maps) throws InstantiationException, IllegalAccessException
   {
@@ -15,7 +15,7 @@ public class XmlMapTranslator
     return new XmlTranslator(maps);
     
   }
-  /***********************************************************************/
-  /***********************************************************************/
+
+
 
 }

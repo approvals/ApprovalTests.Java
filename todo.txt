@@ -3,3 +3,80 @@
 * make intellij aware of if it is running and only launch then
 * handle manual install of intellij
 * write docs on how to make a custom reporter
+
+bug under windows:
+interesting, it opens both files with WinMerge (diff tool) once the test fails
+and WinMerge says that the files are identical
+although different encodings
+so approvaltests fails to 1) write the result as UTF8 encoded file
+and 2) read the non-UTF8 file properly that it just created
+notepad++ says the generated txt file is ANSI
+well, if I read the ANSI file as it was UTF8 then I see the difference :stuck_out_tongue:
+reading as ANSI I see "wifistä"
+reading as UTF8 I see: <encoding errors>
+WinMerge says the encoding is "1252"
+
+
+
+
+compatible with jdk 6 is probably not true, java nio package is used in a few places already.
+
+discuss: no need to close resources in our tests since jvm shuts down afterwards?
+
+then look at the list and decide if we commit it too or rather tasks on github or something
+today's goal I'd like to look into using approval tests with junit5's @ParameterizedTest
+https://github.com/approvals/ApprovalTests.Java/issues/51
+https://github.com/approvals/ApprovalTests.Java/issues/36
+-> might require introduction of junit5 to the project though (which is good but also some extra work)
+
+* 404 for Website link in readme
+* 404 for Getting Started Doc link in readme
+* add gradle file to starter project?
+* delete SpunConstants ?
+* delete Fedex ?
+* update readme, how to get it, update to latest version and also add line for gradle
+* update readme, examples, show wih junit5 instead of 3?
+* publish release also on github: https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository
+* update tests to use junit5 engine (which can continue executing junit 4 tests but also junit 5)
+
+* junit5 tests create both files (empty approved file) while junit4 only creates recieved file on first run
+* !!! ClipboardReporter does not work with Junit5 !!!
+
+* !!! FileUtils.writeFile (160) relies on platform default + 16 more. colleague had failing test on windows.
+
+* newer dependency version available:
+
+approvaltests
+[INFO] The following dependencies in Dependencies have newer versions:
+[INFO]   com.google.code.gson:gson ............................... 2.7 -> 2.8.6
+[INFO]   commons-httpclient:commons-httpclient ................... 2.0.1 -> 3.1
+[INFO]   commons-net:commons-net ................................. 1.1.0 -> 3.6
+[INFO]   javax.mail:mail ......................................... 1.4.7 -> 1.6.2
+[INFO]   log4j:log4j ............................................. 1.2.9 -> 1.2.17
+[INFO]   org.easymock:easymock ..................................... 3.6 -> 4.2
+[INFO]   org.testng:testng ...................................... 6.14.3 -> 7.1.0
+[INFO]   velocity:velocity ......................................... 1.4 -> 1.5
+
+approvaltests-util
+[INFO] The following dependencies in Dependencies have newer versions:
+[INFO]   com.approvaltests:approvaltests ......................... 4.1 -> 5.0.0
+[INFO]   com.google.code.gson:gson ............................... 2.7 -> 2.8.6
+[INFO]   commons-collections:commons-collections ................. 3.1 -> 3.2.2 or collections4?
+[INFO]   commons-httpclient:commons-httpclient ................... 2.0.1 -> 3.1
+[INFO]   commons-net:commons-net ................................. 1.1.0 -> 3.6
+[INFO]   log4j:log4j .......................................... 1.2.9 -> 1.2.17
+[INFO]   velocity:velocity ......................................... 1.4 -> 1.5
+
+approvaltests-hadoop
+[INFO] The following dependencies in Dependencies have newer versions:
+[INFO]   org.apache.hadoop:hadoop-client ....................... 1.0.3 -> 3.2.1
+[INFO]   org.apache.hadoop:hadoop-common ....................... 3.0.2 -> 3.2.1
+[INFO]   org.apache.hadoop:hadoop-core .................... 0.20.205.0 -> 1.2.1
+[INFO]   org.apache.hadoop:hadoop-test ......................... 1.0.3 -> 1.2.1
+[INFO]   org.apache.mrunit:mrunit ................... 0.9.0-incubating -> 1.1.0
+
+
+
+
+!!! talk with Llewellyn again about his thoughts about versioning again. was interesting yesterday regarding
+"if it's breaking change, there should be only one change" !!!

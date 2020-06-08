@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 public class FileTestUtils
 {
-  /***********************************************************************/
+  
   public static void assertFileRecentlyCreated(String fileName, boolean delete)
   {
     File file = new File(fileName);
@@ -22,6 +22,6 @@ public class FileTestUtils
       }
     }
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }

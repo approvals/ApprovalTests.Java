@@ -10,19 +10,19 @@ import junit.framework.TestCase;
 
 public class VelocityNullSetTest extends TestCase implements ContextAware
 {
-  /***********************************************************************/
+  
   public void testArray() throws Exception
   {
     //Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$!s, #end", this));
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$s, #end", this));
   }
-  /***********************************************************************/
+  
   public void ptestField() throws Exception
   {
     assertEquals("not null, null",
         VelocityParser.parseString("#set($s = $value)$s,#set($s = $nullValue)$s", this));
   }
-  /***********************************************************************/
+  
   public void setupContext(Context context)
   {
     context.put("value", "not null");
@@ -30,5 +30,5 @@ public class VelocityNullSetTest extends TestCase implements ContextAware
     context.put("array", new String[]{"1", "2", null, null, "5"});
   }
 }
-/***********************************************************************/
-/***********************************************************************/
+
+

@@ -10,7 +10,7 @@ import com.spun.util.StringUtils;
 
 public interface XMLNodeExtractor
 {
-  /***********************************************************************/
+  
   public void extractProperty(Node node, HashMap<String, Object> properties);
   /************************************************************************/
   /*               INNER CLASS                                            */

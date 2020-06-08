@@ -22,7 +22,7 @@ public class DatabaseTransactionInfo
     this.originator = getOriginatorText(levelsOfRemoval + 1);
     //My_System.variable("getOriginatorText for creation", originator + con.toString());
   }
-  /***********************************************************************/
+  
   public static String getOriginatorText(int offset)
   {
     StackTraceElement trace[] = ThreadUtils.getStackTrace();
@@ -43,12 +43,12 @@ public class DatabaseTransactionInfo
     String originatorText = getOriginatorText(levelsOfRemoval + 1);
     return con.equals(getConnection()) && this.originator.equals(originatorText);
   }
-  /***********************************************************************/
+  
   public Connection getConnection()
   {
     return this.connectionReference.get();
   }
-  /***********************************************************************/
+  
   public void cleanConnection() throws SQLException
   {
     Connection con = getConnection();

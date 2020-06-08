@@ -19,30 +19,30 @@ public class UPSQuote
   public enum Assessment {
     VALID, INVALID, NOT_UPS
   }
-  /***********************************************************************/
+  
   private double price;
   private UPSServiceType serviceType;
-  /***********************************************************************/
+  
   public UPSQuote(UPSServiceType serviceType, double price)
   {
     this.price = price;
     this.serviceType = serviceType;
   }
-  /***********************************************************************/
+  
   private UPSQuote()
   {
   }
-  /***********************************************************************/
+  
   public double getPrice()
   {
     return price;
   }
-  /***********************************************************************/
+  
   public UPSServiceType getServiceType()
   {
     return serviceType;
   }
-  /***********************************************************************/
+  
   public static UPSQuote add(UPSQuote quote1, UPSQuote quote2, int quote2Multiplier)
   {
     UPSQuote quote = new UPSQuote();
@@ -58,22 +58,22 @@ public class UPSQuote
     value += " price = " + price + ",\n" + " serviceType = '" + serviceType + "'" + "]";
     return value;
   }
-  /***********************************************************************/
+  
   public static UPSQuote[] toArray(ArrayList<? extends UPSQuote> found)
   {
     return (UPSQuote[]) found.toArray(new UPSQuote[found.size()]);
   }
-  /***********************************************************************/
+  
   public static boolean isUPSShippingMethod(String method)
   {
     return UPSServiceType.getByFullName(method) != null;
   }
-  /***********************************************************************/
+  
   public static Assessment assesValidUPSMethod(String method)
   {
     if (method == null || !method.startsWith("UPS")) { return Assessment.NOT_UPS; }
     return isUPSShippingMethod(method) ? Assessment.VALID : Assessment.INVALID;
   }
-  /***********************************************************************/
-  /***********************************************************************/
+  
+  
 }
