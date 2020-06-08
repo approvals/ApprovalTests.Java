@@ -89,28 +89,25 @@ public class DatabaseLifeCycleUtils
   }
   private static boolean getPasswordPrompt(Process process) throws Exception
   {
-    InputStream error = process.getErrorStream();
-    InputStream in = process.getInputStream();
-    int TIMEOUT = 3;
-    long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-    StringBuffer prompt = new StringBuffer();
-    while (System.currentTimeMillis() < timeOut)
-    {
-      if (in.available() == 0 && error.available() == 0)
-      {
-        Thread.sleep(500);
-      }
-      else
-      {
-        if (in.available() != 0)
-        {
-          prompt.append((char) in.read());
+    StringBuffer prompt;
+    try (InputStream error = process.getErrorStream()) {
+      try (InputStream in = process.getInputStream()) {
+        int TIMEOUT = 3;
+        long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+        prompt = new StringBuffer();
+        while (System.currentTimeMillis() < timeOut) {
+          if (in.available() == 0 && error.available() == 0) {
+            Thread.sleep(500);
+          } else {
+            if (in.available() != 0) {
+              prompt.append((char) in.read());
+            }
+            if (error.available() != 0) {
+              prompt.append((char) error.read());
+            }
+            timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+          }
         }
-        if (error.available() != 0)
-        {
-          prompt.append((char) error.read());
-        }
-        timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
       }
     }
     SimpleLogger.variable("prompt", prompt.toString());
