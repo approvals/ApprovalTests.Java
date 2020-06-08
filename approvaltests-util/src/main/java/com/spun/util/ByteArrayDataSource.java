@@ -1,16 +1,12 @@
 package com.spun.util;
 
-/*
- * @(#)ByteArrayDataSource.java	1.1 00/01/30
- *
- * Copyright 1998-2000 Sun Microsystems, Inc. All Rights Reserved.
- * 
- * This software is the proprietary information of Sun Microsystems, Inc.  
- * Use is subject to license terms.
- * 
- */
-import java.io.*;
-import javax.activation.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import javax.activation.DataSource;
 
 /**
  * Comment By LLewellyn: This is a needed class for using mail. For some reason wasn't 
@@ -45,18 +41,19 @@ public class ByteArrayDataSource implements DataSource
     setName(name);
     try
     {
-      ByteArrayOutputStream os = new ByteArrayOutputStream();
-      int ch;
-      while ((ch = is.read()) != -1)
-      {
-        // XXX - must be made more efficient by
-        // doing buffered reads, rather than one byte reads
-        os.write(ch);
+      try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+        int ch;
+        while ((ch = is.read()) != -1) {
+          // XXX - must be made more efficient by
+          // doing buffered reads, rather than one byte reads
+          os.write(ch);
+        }
+        data = os.toByteArray();
       }
-      data = os.toByteArray();
     }
-    catch (IOException ioex)
+    catch (IOException e)
     {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   
