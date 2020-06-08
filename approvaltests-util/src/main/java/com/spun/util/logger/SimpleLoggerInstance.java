@@ -295,7 +295,7 @@ public class SimpleLoggerInstance
     {
       throwable.printStackTrace((PrintStream) logTo);
     }
-    else if (logTo instanceof PrintStream)
+    else if (logTo instanceof PrintWriter)
     {
       throwable.printStackTrace((PrintWriter) logTo);
     }

@@ -1,7 +1,7 @@
 package com.spun.util.parser;
 
-import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import org.apache.velocity.context.Context;
 import com.spun.util.velocity.ContextAware;
 
@@ -29,7 +29,7 @@ public class TemplateError implements ContextAware
     {
       message = message.substring(cause.length() + 1);
     }
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    StringWriter output = new StringWriter();
     PrintWriter pw = new PrintWriter(output);
     t.printStackTrace(pw);
     pw.flush();
