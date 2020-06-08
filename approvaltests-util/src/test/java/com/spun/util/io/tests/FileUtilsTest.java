@@ -1,10 +1,16 @@
 package com.spun.util.io.tests;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 
+import java.io.Reader;
+import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.reporters.ClipboardReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.Test;
 
 import com.spun.util.io.FileUtils;
@@ -55,12 +61,20 @@ public class FileUtilsTest extends TestCase
     File second = File.createTempFile("unitTestCopy", ".txt");
     first.deleteOnExit();
     second.deleteOnExit();
-    FileWriter writer = new FileWriter(first);
-    writer.write("Mary had a little lamb");
-    writer.close();
+    try (BufferedWriter writer = Files.newBufferedWriter(first.toPath(), StandardCharsets.UTF_8)) {
+      writer.write("Mary had a little lamb");
+    }
     FileUtils.copyFile(first, second);
     assertEquals("File sizes ", first.length(), second.length());
   }
   /************************************************************************/
   /************************************************************************/
+
+  @UseReporter(ClipboardReporter.class)
+  @Test
+  public void testSaveToFile() {
+    Reader input = new StringReader("hello Approvals");
+    File file = FileUtils.saveToFile("pre_", input);
+    Approvals.verify(file);
+  }
 }
