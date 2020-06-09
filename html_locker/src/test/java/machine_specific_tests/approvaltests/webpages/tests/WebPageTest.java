@@ -2,7 +2,7 @@ package machine_specific_tests.approvaltests.webpages.tests;
 
 import java.net.URI;
 
-import org.approvaltests.Approvals;
+import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -23,6 +23,6 @@ public class WebPageTest extends MachineSpecificTest
   @Test
   public void testChangeDetectorUI() throws Exception
   {
-    Approvals.verify(new WebPageChangeDetector().gui);
+    AwtApprovals.verify(new WebPageChangeDetector().gui);
   }
 }
