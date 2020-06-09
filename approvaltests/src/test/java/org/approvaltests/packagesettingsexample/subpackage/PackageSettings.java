@@ -1,4 +1,4 @@
-package org.packagesettings.subpackage;
+package org.approvaltests.packagesettingsexample.subpackage;
 
 public class PackageSettings
 {

@@ -1,3 +1,0 @@
-lastName : Falco [from org.packagesettings.PackageSettings] 
-name : Llewellyn [from org.packagesettings.PackageSettings] 
-rating : 10 [from org.packagesettings.PackageSettings] 

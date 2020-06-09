@@ -1,9 +1,11 @@
-package org.packagesettings;
+package org.approvaltests.packagesettingsexample;
 
 import java.util.Map;
 
 import org.approvaltests.Approvals;
 import org.junit.Test;
+import org.packagesettings.PackageLevelSettings;
+import org.packagesettings.Settings;
 
 public class PackageSettingsTest
 {

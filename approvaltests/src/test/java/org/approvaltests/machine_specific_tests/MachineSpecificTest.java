@@ -1,4 +1,4 @@
-package machine_specific_tests;
+package org.approvaltests.machine_specific_tests;
 
 import org.junit.Before;
 

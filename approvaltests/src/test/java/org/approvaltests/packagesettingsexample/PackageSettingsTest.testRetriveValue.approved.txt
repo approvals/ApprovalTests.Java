@@ -1,0 +1,3 @@
+lastName : Falco [from org.approvaltests.packagesettingsexample.PackageSettings] 
+name : Llewellyn [from org.approvaltests.packagesettingsexample.PackageSettings] 
+rating : 10 [from org.approvaltests.packagesettingsexample.PackageSettings] 

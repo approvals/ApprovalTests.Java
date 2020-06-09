@@ -1,4 +1,4 @@
-package org.packagesettings.subpackage;
+package org.approvaltests.packagesettingsexample.subpackage;
 
 import org.approvaltests.Approvals;
 import org.junit.Test;
