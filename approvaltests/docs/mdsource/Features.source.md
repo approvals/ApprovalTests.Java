@@ -4,6 +4,17 @@
 
 toc
 
+## 6.0.1
+### Prepare for Android
+We have deprecated:
+* `Approvals.verify(Image image)`
+* `Approvals.verify(BufferedImage bufferedImage)`
+* `Approvals.verify(Component c)`
+
+These are now in the AwtApprovals class.
+
+## Previous versions
+
 
 ## Customer Approvers
 
