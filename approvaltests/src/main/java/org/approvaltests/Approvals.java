@@ -1,5 +1,22 @@
 package org.approvaltests;
 
+import com.spun.util.*;
+import com.spun.util.persistence.ExecutableQuery;
+import com.spun.util.persistence.Loader;
+import com.spun.util.persistence.SqlLoader;
+import org.approvaltests.approvers.ApprovalApprover;
+import org.approvaltests.approvers.FileApprover;
+import org.approvaltests.awt.AwtApprovals;
+import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.StackTraceNamer;
+import org.approvaltests.reporters.ExecutableQueryFailure;
+import org.approvaltests.writers.*;
+import org.lambda.actions.Action0;
+import org.lambda.functions.Function1;
+import org.lambda.query.Query;
+
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -11,36 +28,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import org.approvaltests.approvers.ApprovalApprover;
-import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.core.ApprovalFailureReporter;
-import org.approvaltests.core.ApprovalWriter;
-import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
-import org.approvaltests.namer.StackTraceNamer;
-import org.approvaltests.reporters.ExecutableQueryFailure;
-import org.approvaltests.writers.ApprovalTextWriter;
-import org.approvaltests.writers.ApprovalXmlWriter;
-import org.approvaltests.writers.ComponentApprovalWriter;
-import org.approvaltests.writers.DirectoryToDirectoryWriter;
-import org.approvaltests.writers.FileApprovalWriter;
-import org.approvaltests.writers.ImageApprovalWriter;
-import org.approvaltests.writers.ResultSetApprovalWriter;
-import org.lambda.actions.Action0;
-import org.lambda.functions.Function1;
-import org.lambda.query.Query;
-
-import com.spun.util.ArrayUtils;
-import com.spun.util.FormattedException;
-import com.spun.util.JsonUtils;
-import com.spun.util.ObjectUtils;
-import com.spun.util.StringUtils;
-import com.spun.util.images.ImageWriter;
-import com.spun.util.persistence.ExecutableQuery;
-import com.spun.util.persistence.Loader;
-import com.spun.util.persistence.SqlLoader;
 
 public class Approvals
 {
@@ -93,12 +80,15 @@ public class Approvals
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
+
+  /**
+   *
+   * @deprecated Use AwtApprovals.verify(component);
+   */
+  @Deprecated
   public static void verify(Component c)
   {
-    try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
-    {
-      verify(new ComponentApprovalWriter(c));
-    }
+    AwtApprovals.verify(c);
   }
   public static void verifyHtml(String response)
   {
@@ -108,13 +98,25 @@ public class Approvals
   {
     verify(new FileApprovalWriter(generateFile));
   }
+
+  /**
+   *
+   * @deprecated Use AwtApprovals.verify(image);
+   */
+  @Deprecated
   public static void verify(Image image)
   {
-    approve(ImageWriter.toBufferedImage(image), createApprovalNamer());
+    AwtApprovals.verify(image);
   }
+
+  /**
+   *
+   * @deprecated Use AwtApprovals.verify(bufferedImage);
+   */
+  @Deprecated
   public static void verify(BufferedImage bufferedImage)
   {
-    verify(new ImageApprovalWriter(bufferedImage));
+    AwtApprovals.verify(bufferedImage);
   }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
@@ -165,10 +167,7 @@ public class Approvals
   {
     return namerCreater.load();
   }
-  private static void approve(BufferedImage bufferedImage, ApprovalNamer namer)
-  {
-    verify(new ImageApprovalWriter(bufferedImage));
-  }
+
   public static void verifyEachFileInDirectory(File directory)
   {
     verifyEachFileAgainstMasterDirectory(directory.listFiles());
