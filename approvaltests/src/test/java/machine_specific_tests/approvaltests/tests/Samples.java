@@ -1,6 +1,6 @@
 package machine_specific_tests.approvaltests.tests;
 
-import org.approvaltests.Approvals;
+import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -18,6 +18,6 @@ public class Samples extends MachineSpecificTest
   {
     TvGuide tv = new TvGuide();
     tv.selectTime("3pm");
-    Approvals.verify(tv);
+    AwtApprovals.verify(tv);
   }
 }

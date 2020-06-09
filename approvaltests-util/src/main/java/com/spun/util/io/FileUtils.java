@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.channels.FileChannel;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -213,7 +215,10 @@ public class FileUtils
     {
       if (!file.exists())
       { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
-      BufferedReader in = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8);
+      CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
+      decoder.onMalformedInput(CodingErrorAction.IGNORE);
+      Reader reader = new InputStreamReader(Files.newInputStream(file.toPath()), decoder);
+      BufferedReader in = new BufferedReader(reader);
       return readBuffer(in);
     }
     catch (Throwable t)
