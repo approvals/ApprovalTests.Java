@@ -1,6 +1,5 @@
 package com.spun.util.io;
 
-import static com.spun.JunitUpgrade.assertEquals2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -68,7 +67,7 @@ public class FileUtilsTest
       writer.write("Mary had a little lamb");
     }
     FileUtils.copyFile(first, second);
-    assertEquals2("File sizes ", first.length(), second.length());
+    assertEquals(first.length(), (Object) second.length(), "File sizes ");
   }
   @UseReporter(ClipboardReporter.class)
   @Test

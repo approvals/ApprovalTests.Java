@@ -1,14 +1,15 @@
 package com.spun.util.io;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.spun.util.io.xml.XmlExtractorUtil;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
-import com.spun.util.io.XMLUtils;
-import com.spun.util.io.xml.XmlExtractorUtil;
-
-import junit.framework.TestCase;
-
-public class XMLUtilsTest extends TestCase
+public class XMLUtilsTest
 {
+  @Test
   public void testXML() throws Exception
   {
     // String xml = "<?xml version=\"1.0\" ?><QBXML><QBXMLMsgsRs><ItemQueryRs requestID=\"2\" statusCode=\"0\" statusSeverity=\"Info\" statusMessage=\"Status OK\">1</ItemQueryRs></QBXMLMsgsRs></QBXML>";
@@ -25,8 +26,7 @@ public class XMLUtilsTest extends TestCase
         + "<SupportedQBXMLVersion>5.0</SupportedQBXMLVersion>\n" + "</HostRet>\n" + "</HostQueryRs>\n"
         + "</QBXMLMsgsRs>\n" + "</QBXML>\n" + "";
     Document document = XMLUtils.parseXML(xml);
-    assertEquals(true, document.hasChildNodes());
-    //    assertNotNull(XmlExtractorUtil.traverseToTag("ItemQueryRs", document));
+    assertTrue(document.hasChildNodes());
     assertNotNull(XmlExtractorUtil.traverseToTag("HostRet", document));
   }
 }
