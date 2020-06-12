@@ -1,16 +1,16 @@
 package com.spun.util.database.tests;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.spun.util.database.SQLQuery;
 import com.spun.util.database.SQLQueryUtils;
+import org.junit.jupiter.api.Test;
 
 public class SQLQueryUtilsTest
-  extends TestCase 
 {
-
-  
-  public void testCountingQuery() 
+  @Test
+  public void testCountingQuery()
   {
     SQLQuery query = new SQLQuery();
     query.addSelect("a.*");
@@ -26,12 +26,8 @@ public class SQLQueryUtilsTest
     query.addLimit(6, 5, "a", "pkey");
     SQLQueryUtils.refineLimitQuery(10, query);
     query.toString();
-    assertTrue("reversed", query.isOrderReversed());
-    assertEquals("amount of rows adjusted", 4, query.getLimitPart().numberOfRowsDesired);
-    assertEquals("getTableForAliasWorks", "a", query.getFirstAliasForTableName("company_order"));
+    assertTrue(query.isOrderReversed(), "reversed");
+    assertEquals(4, query.getLimitPart().numberOfRowsDesired, "amount of rows adjusted");
+    assertEquals("a", query.getFirstAliasForTableName("company_order"), "getTableForAliasWorks");
   }
-  
-  
-  
 }
-
