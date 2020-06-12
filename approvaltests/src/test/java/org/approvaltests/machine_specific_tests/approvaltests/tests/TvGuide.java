@@ -1,4 +1,4 @@
-package machine_specific_tests.approvaltests.tests;
+package org.approvaltests.machine_specific_tests.approvaltests.tests;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;

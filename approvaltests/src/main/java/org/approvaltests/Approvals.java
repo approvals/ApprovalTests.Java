@@ -10,7 +10,6 @@ import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.ApprovalNamer;
@@ -25,9 +24,6 @@ import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -89,16 +85,6 @@ public class Approvals
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
 
-  /**
-   *
-   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(Component)} instead.
-   */
-  @Deprecated
-  public static void verify(Component c)
-  {
-    AwtApprovals.verify(c);
-  }
-
   public static void verifyHtml(String response)
   {
     verify(new ApprovalTextWriter(response, "html"));
@@ -106,26 +92,6 @@ public class Approvals
   public static void verify(File generateFile)
   {
     verify(new FileApprovalWriter(generateFile));
-  }
-
-  /**
-   *
-   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(Image)} instead.
-   */
-  @Deprecated
-  public static void verify(Image image)
-  {
-    AwtApprovals.verify(image);
-  }
-
-  /**
-   *
-   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(BufferedImage)} instead.
-   */
-  @Deprecated
-  public static void verify(BufferedImage bufferedImage)
-  {
-    AwtApprovals.verify(bufferedImage);
   }
 
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)

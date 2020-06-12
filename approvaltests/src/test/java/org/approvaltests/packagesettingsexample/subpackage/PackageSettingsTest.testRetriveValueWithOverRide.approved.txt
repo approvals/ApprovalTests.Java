@@ -1,0 +1,4 @@
+lastName : Falco [from org.approvaltests.packagesettingsexample.PackageSettings] 
+name : Test Name [from org.approvaltests.packagesettingsexample.subpackage.PackageSettings] 
+rating : true [from org.approvaltests.packagesettingsexample.subpackage.PackageSettings] 
+ratingScale : logarithmic [from org.approvaltests.packagesettingsexample.subpackage.PackageSettings] 

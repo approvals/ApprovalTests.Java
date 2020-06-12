@@ -1,9 +1,5 @@
 package com.spun.util.io;
 
-import com.spun.util.ArrayUtils;
-import com.spun.util.Asserts;
-import com.spun.util.FormattedException;
-import com.spun.util.ObjectUtils;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,18 +14,25 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.channels.FileChannel;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.imageio.ImageIO;
+
+import com.spun.util.ArrayUtils;
+import com.spun.util.Asserts;
+import com.spun.util.FormattedException;
+import com.spun.util.ObjectUtils;
 
 /**
  * A static class of convenience functions for Files
  **/
 public class FileUtils
 {
-
   public static File createTempDirectory() throws IOException
   {
     File tempFile = File.createTempFile("TEMP", null);
@@ -37,7 +40,6 @@ public class FileUtils
     tempFile.mkdirs();
     return tempFile;
   }
-
   public static void deleteDirectory(File directory) throws IOException
   {
     // delete all directory
@@ -66,16 +68,15 @@ public class FileUtils
     String resource = FileUtils.readStream(resourceAsStream);
     return resource;
   }
-
   public static File[] getRecursiveFileList(File directory)
   {
     return getRecursiveFileList(directory, new SimpleFileFilter());
   }
-
   public static File[] getRecursiveFileList(File directory, FileFilter filter)
   {
     ArrayList<File> list = new ArrayList<File>();
-    if (!directory.isDirectory()) { throw new Error("File is not a directory: " + directory.getName()); }
+    if (!directory.isDirectory())
+    { throw new Error("File is not a directory: " + directory.getName()); }
     File directories[] = directory.listFiles(new SimpleDirectoryFilter());
     for (int i = 0; i < directories.length; i++)
     {
@@ -85,7 +86,6 @@ public class FileUtils
     ArrayUtils.addArray(list, files);
     return list.toArray(new File[list.size()]);
   }
-
   public static void copyFile(File in, File out)
   {
     try
@@ -128,7 +128,6 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static void redirectInputToFile(String fileName, InputStream in)
   {
     try
@@ -141,7 +140,6 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static void copyFileToDirectory(String file, File tempDir)
   {
     try
@@ -155,14 +153,14 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static void writeFile(File file, String text)
   {
     try
     {
       Asserts.assertNotNull("Writing to file: " + file, text);
       file.getCanonicalFile().getParentFile().mkdirs();
-      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
+      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8))
+      {
         out.write(text);
       }
     }
@@ -171,20 +169,20 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static void writeFileQuietly(File file, String text)
   {
     writeFile(file, text);
   }
-
   public static void writeFile(File file, CharSequence data)
   {
     try
     {
       Asserts.assertNotNull("Writing to file: " + file, data);
       file.getCanonicalFile().getParentFile().mkdirs();
-      try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(file))) {
-        for (int i = 0; i < data.length(); i++) {
+      try (DataOutputStream writer = new DataOutputStream(new FileOutputStream(file)))
+      {
+        for (int i = 0; i < data.length(); i++)
+        {
           writer.write(data.charAt(i));
         }
       }
@@ -194,7 +192,6 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static void writeFile(File file, InputStream data)
   {
     try
@@ -208,18 +205,20 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static String readFile(String absolutePath)
   {
     return readFile(new File(absolutePath));
   }
-
   public static String readFile(File file)
   {
     try
     {
-      if (!file.exists()) { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
-      BufferedReader in = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8);
+      if (!file.exists())
+      { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
+      CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
+      decoder.onMalformedInput(CodingErrorAction.IGNORE);
+      Reader reader = new InputStreamReader(Files.newInputStream(file.toPath()), decoder);
+      BufferedReader in = new BufferedReader(reader);
       return readBuffer(in);
     }
     catch (Throwable t)
@@ -227,7 +226,6 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static String readBuffer(BufferedReader in)
   {
     try
@@ -246,21 +244,22 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
   public static String readFileWithSuppressedExceptions(File databaseFile)
   {
     return FileUtils.readFile(databaseFile);
   }
-
   public static File saveToFile(String prefix, Reader input)
   {
     try
     {
       File file = File.createTempFile(prefix, null);
-      try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8)) {
-        try (BufferedReader inputReader = new BufferedReader(input)) {
+      try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8))
+      {
+        try (BufferedReader inputReader = new BufferedReader(input))
+        {
           String thisLine;
-          while ((thisLine = inputReader.readLine()) != null) {
+          while ((thisLine = inputReader.readLine()) != null)
+          {
             bw.write(thisLine);
             bw.newLine();
           }
@@ -270,14 +269,13 @@ public class FileUtils
     }
     catch (IOException e)
     {
-      throw new FormattedException(
-          "Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
+      throw new FormattedException("Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
     }
   }
-
   public static String getDirectoryFriendlyName(String name)
   {
-    if (name == null) { return ""; }
+    if (name == null)
+    { return ""; }
     StringBuffer result = new StringBuffer();
     for (int i = 0; i < name.length(); i++)
     {
@@ -293,8 +291,6 @@ public class FileUtils
     }
     return result.toString();
   }
-
-
   public static String getExtensionWithDot(String filename)
   {
     int p = filename.lastIndexOf('.');
@@ -344,8 +340,7 @@ public class FileUtils
   }
   public static String readStream(InputStream resourceAsStream)
   {
-    BufferedReader reader = new BufferedReader(
-        new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
+    BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
     return FileUtils.readBuffer(reader);
   }
   public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name)

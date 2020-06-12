@@ -1,14 +1,15 @@
-package machine_specific_tests.approvaltests.tests;
+package org.approvaltests.machine_specific_tests.approvaltests.tests;
+
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-import org.approvaltests.Approvals;
+import org.approvaltests.awt.AwtApprovals;
+import org.approvaltests.machine_specific_tests.MachineSpecificTest;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.Test;
-
-import machine_specific_tests.MachineSpecificTest;
 
 @UseReporter({ImageReporter.class, ClipboardReporter.class})
 public class ApprovalsTest extends MachineSpecificTest
@@ -17,14 +18,14 @@ public class ApprovalsTest extends MachineSpecificTest
   public void testApproveComponent() throws Exception
   {
     JButton b = new JButton("Approval Tests Rule");
-    b.setSize(150, 20);
-    Approvals.verify(b);
+    b.setPreferredSize(new Dimension(150, 20));
+    AwtApprovals.verify(b);
   }
   @Test
   public void testTvGuide() throws Exception
   {
     TvGuide tv = new TvGuide();
     tv.selectTime("3pm");
-    Approvals.verify(tv);
+    AwtApprovals.verify(tv);
   }
 }

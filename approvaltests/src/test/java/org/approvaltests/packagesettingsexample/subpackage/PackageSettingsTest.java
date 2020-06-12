@@ -1,4 +1,6 @@
-package org.packagesettings.subpackage;
+package org.approvaltests.packagesettingsexample.subpackage;
+
+import static org.junit.Assert.fail;
 
 import org.approvaltests.Approvals;
 import org.junit.Test;
@@ -10,5 +12,10 @@ public class PackageSettingsTest
   public void testRetriveValueWithOverRide() throws Exception
   {
     Approvals.verify(PackageLevelSettings.get());
+  }
+  @Test
+  public void testName() throws Exception
+  {
+    fail("boo");
   }
 }
