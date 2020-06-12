@@ -1,10 +1,8 @@
-package com.spun.util.database.tests;
+package com.spun.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.spun.util.database.SQLQuery;
-import com.spun.util.database.SQLQueryUtils;
 import org.junit.jupiter.api.Test;
 
 public class SQLQueryUtilsTest
