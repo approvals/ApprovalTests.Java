@@ -1,4 +1,4 @@
-package com.spun.util.io.tests;
+package com.spun.util.io;
 
 import org.w3c.dom.Document;
 

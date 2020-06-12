@@ -1,4 +1,4 @@
-package com.spun.util.io.tests;
+package com.spun.util.io;
 
 import java.io.File;
 import java.io.FileOutputStream;
