@@ -1,30 +1,14 @@
 package com.spun.util.parser;
 
-import junit.framework.TestCase;
-import com.spun.util.parser.PercentageAmount;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TemplateDoubleTest extends TestCase
+import org.junit.jupiter.api.Test;
+
+public class TemplateDoubleTest
 {
-  public static UseCase percentUseCases[] = {new UseCase(.10457, "10.46%")};
-  
+  @Test
   public void testPercentageAmount()
   {
-    for (int i = 0; i < percentUseCases.length; i++)
-    {
-      assertEquals("percentUseCases[" + i + "]", percentUseCases[i].result, new PercentageAmount(percentUseCases[i].amount).toString());
-    }
-  }
-  
-  public static class UseCase
-  {
-    public String result;
-    public double amount;
-    
-    public UseCase(double amount, String result)
-    {
-      super();
-      this.amount = amount;
-      this.result = result;
-    }
+    assertEquals("10.46%", new PercentageAmount(.10457).toString());
   }
 }
