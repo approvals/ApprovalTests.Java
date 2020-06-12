@@ -1,6 +1,7 @@
 package com.spun;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class JunitUpgrade
@@ -16,5 +17,9 @@ public class JunitUpgrade
   public static void assertTrue2(String message, boolean i)
   {
     assertTrue(i, message);
+  }
+  public static void assertFalse2(String message, boolean i)
+  {
+    assertFalse(i, message);
   }
 }

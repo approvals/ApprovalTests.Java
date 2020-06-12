@@ -1,46 +1,52 @@
 package com.spun.util;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static com.spun.JunitUpgrade.assertEquals2;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-
-public class PhoneNumberTest extends TestSuite implements UseCaseTester<UseCase>
+public class PhoneNumberTest implements UseCaseTester<UseCase>
 {
   private static UseCase useCases[] = {new UseCase("858-775-2868", "(858)775-2868", "+1.858.775.2868"),
-      new UseCase("(800)351-7765", "(800)351-7765", "+1.800.351.7765"),
-      new UseCase("858-755", null, null),
-      new UseCase("1858.775.2868", "(858)775-2868", "+1.858.775.2868"),
-      new UseCase("+1(858)775-2868", "(858)775-2868", "+1.858.775.2868"),
-      new UseCase("+598.123.4567x858", null, "+598.123.456.7x858"),
-      new UseCase("+27 1234 5678 ext 4", null, "+27.123.456.78x4"),
-      new UseCase("2069316941", "(206)931-6941", "+1.206.931.6941"),
-      new UseCase("27 1234 567 ext 4", null, null),
-      new UseCase("+5+98.123.4567Xxx8x58", null, "+598.123.456.7x858"),};
-  public static Test suite() throws Exception
+                                       new UseCase("(800)351-7765", "(800)351-7765", "+1.800.351.7765"),
+                                       new UseCase("858-755", null, null),
+                                       new UseCase("1858.775.2868", "(858)775-2868", "+1.858.775.2868"),
+                                       new UseCase("+1(858)775-2868", "(858)775-2868", "+1.858.775.2868"),
+                                       new UseCase("+598.123.4567x858", null, "+598.123.456.7x858"),
+                                       new UseCase("+27 1234 5678 ext 4", null, "+27.123.456.78x4"),
+                                       new UseCase("2069316941", "(206)931-6941", "+1.206.931.6941"),
+                                       new UseCase("27 1234 567 ext 4", null, null),
+                                       new UseCase("+5+98.123.4567Xxx8x58", null, "+598.123.456.7x858"),};
+  public static Stream<Arguments> getUseCases()
   {
-    return UseCaseTesting.all(new PhoneNumberTest(), useCases);
+    return Stream.of(useCases).map(u -> Arguments.of(u));
   }
+  @ParameterizedTest
+  @MethodSource("getUseCases")
   public void testUseCase(UseCase useCase)
   {
     PhoneNumber ph = new PhoneNumber(useCase.original);
     if (useCase.usa != null)
     {
-      TestCase.assertEquals("[" + useCase.original + "]USA format", useCase.usa, ph.getValueAsNorthAmerican());
+      assertEquals(useCase.usa, ph.getValueAsNorthAmerican(),
+          "[" + useCase.original + "]USA format");
     }
     else
     {
-      TestCase.assertFalse("[" + useCase.original + "]Isn't USA Number", ph.isNorthAmericanNumber());
+      assertFalse(ph.isNorthAmericanNumber(), "[" + useCase.original + "]Isn't USA Number");
     }
     if (useCase.international != null)
     {
-      TestCase.assertEquals("[" + useCase.original + " " + ph.getValueAsInternational() + "]International format",
-          useCase.international, ph.getValueAsInternational());
+      assertEquals(useCase.international, ph.getValueAsInternational(),
+          "[" + useCase.original + " " + ph.getValueAsInternational() + "]International format");
     }
     else
     {
-      TestCase.assertFalse("[" + useCase.original + "] Invalid #", ph.isValid());
+      assertFalse(ph.isValid(), "[" + useCase.original + "] Invalid #");
     }
   }
 }
@@ -62,5 +68,3 @@ class UseCase
     return original;
   }
 }
-
-
