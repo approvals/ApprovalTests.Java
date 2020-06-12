@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.spun.util.logger.SimpleLogger;
+import com.spun.util.timers.test.MockClock;
 import org.junit.jupiter.api.Test;
 
 public class LapTimerTest
@@ -33,11 +34,11 @@ public class LapTimerTest
   }
   public void checkTimer(LapTimer timer, int totalTime, int lapTimes[])
   {
-    assertEquals(totalTime * 1000, (Object) timer.getTotalTime(), "Total time");
+    assertEquals(totalTime * 1000L, (Object) timer.getTotalTime(), "Total time");
     LapTime times[] = timer.getLapTimes();
     for (int i = 0; i < times.length; i++)
     {
-      assertEquals(lapTimes[i] * 1000, (Object) times[i].getLapTime(), "Lap[" + i + "]");
+      assertEquals(lapTimes[i] * 1000L, (Object) times[i].getLapTime(), "Lap[" + i + "]");
     }
   }
 }
