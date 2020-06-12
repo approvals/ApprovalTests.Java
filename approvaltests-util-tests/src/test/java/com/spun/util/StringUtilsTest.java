@@ -1,32 +1,32 @@
 package com.spun.util;
 
+import static com.spun.JunitUpgrade.assertEquals2;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Arrays;
 import java.util.List;
-
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
 
-import com.spun.util.StringUtils;
-
-import junit.framework.TestCase;
-
-public class StringUtilsTest extends TestCase
+public class StringUtilsTest
 {
   ReplaceUseCase[] replaceUseCases = {new ReplaceUseCase("quick brown fox", "brown", "white", "quick white fox"),
                                       new ReplaceUseCase("quick brown quick fox brown", "quick", "slow",
                                           "slow brown slow fox brown"),};
-  
-  public void testJoin() throws Exception
+  @Test
+  public void testJoin()
   {
     assertEquals("Falco,Llewellyn", StringUtils.join("Falco", ",", "Llewellyn"));
     assertEquals("Falco", StringUtils.join("Falco", ",", null));
     assertEquals("Falco", StringUtils.join("Falco", ",", ""));
   }
-  
+  @Test
   public void testToNameCase()
   {
-    assertEquals("Name changed", "Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"));
+    assertEquals("Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"),
+        "Name changed");
   }
-  
+  @Test
   public void testSplit()
   {
     SplitUseCase[] split = {new SplitUseCase("quick brown fox", " "),
@@ -37,6 +37,7 @@ public class StringUtilsTest extends TestCase
     Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
         Arrays.toString(StringUtils.split(a.start, a.splitOn))));
   }
+  @Test
   public void testJavaScript()
   {
     String[] strings = {"\"\n", "this is a note \"\'\nanother liner"};
@@ -46,7 +47,7 @@ public class StringUtilsTest extends TestCase
   {
     return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
-  
+  @Test
   public void testJoinCollection()
   {
     // begin-snippet: join_collection
@@ -55,6 +56,7 @@ public class StringUtilsTest extends TestCase
     // end-snippet
     Approvals.verify(text);
   }
+  @Test
   public void testJoinCollectionWithFunction()
   {
     // begin-snippet: join_collection_with_lambda
@@ -63,19 +65,21 @@ public class StringUtilsTest extends TestCase
     // end-snippet
     Approvals.verify(text);
   }
+  @Test
   public void testReplace()
   {
     for (int i = 0; i < replaceUseCases.length; i++)
     {
-      assertEquals("Replace failed", StringUtils.replace(replaceUseCases[i].startingString,
-          replaceUseCases[i].find, replaceUseCases[i].replace), replaceUseCases[i].expectedString);
+      assertEquals(StringUtils.replace(replaceUseCases[i].startingString,
+            replaceUseCases[i].find, replaceUseCases[i].replace), replaceUseCases[i].expectedString,
+          "Replace failed");
     }
   }
-  public void testWriteToString() throws Exception
+  @Test
+  public void testWriteToString()
   {
     Approvals.verify(StringUtils.toString("things", new Object[]{1, null, "hi"}));
   }
-  
   public class SplitUseCase
   {
     String   start;
@@ -88,7 +92,6 @@ public class StringUtilsTest extends TestCase
       this.expectedArray = expectedArray;
     }
   }
-
   public class ReplaceUseCase
   {
     String startingString;
@@ -103,6 +106,4 @@ public class StringUtilsTest extends TestCase
       this.expectedString = expectedString;
     }
   }
-  
-  
 }
