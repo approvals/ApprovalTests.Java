@@ -1,7 +1,6 @@
 package com.spun.util.velocity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.apache.velocity.context.Context;
 import org.apache.velocity.util.introspection.Info;
@@ -37,14 +36,14 @@ public class VelocityInfoTest implements ContextAware
     try
     {
       VelocityParser.parseString(velocity, this);
-      fail("Testable Uberspect Should have thrown an error");
-      throw new Error("Shouldn't be able to reach this point");
+      return null;
     }
     catch (VelocityParsingError t)
     {
       return t;
     }
   }
+  @Override
   public void setupContext(Context context)
   {
     context.put("main", this);

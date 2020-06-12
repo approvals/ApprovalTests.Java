@@ -1,41 +1,35 @@
 package com.spun.util.velocity;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.apache.velocity.context.Context;
-import com.spun.util.velocity.ContextAware;
-import com.spun.util.velocity.VelocityParser;
+import org.junit.jupiter.api.Test;
 
-public class VelocitySilentTest
-  extends TestCase implements ContextAware 
+public class VelocitySilentTest implements ContextAware
 {
-
-  public void testMethod()  throws Exception
+  @Test
+  public void testMethod() throws Exception
   {
     assertEquals("", VelocityParser.parseString("$!main.toString()", this));
   }
-
-  public void testField()  throws Exception
+  @Test
+  public void testField() throws Exception
   {
     // using the toString implied method
     assertEquals("null", VelocityParser.parseString("$!main", this));
   }
-
   public Object getInstance()
   {
     return this;
   }
-
   public String toString()
   {
     return null;
   }
-
+  @Override
   public void setupContext(Context context)
   {
     context.put("main", this);
     context.put("nullValue", null);
   }
-	
 }
-
-

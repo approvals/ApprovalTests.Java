@@ -1,30 +1,29 @@
 package com.spun.util.velocity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.apache.velocity.context.Context;
-import org.junit.Assert;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import com.spun.util.velocity.ContextAware;
-import com.spun.util.velocity.VelocityParser;
-
-import junit.framework.TestCase;
-
-public class VelocityTest extends TestCase implements ContextAware
+public class VelocityTest implements ContextAware
 {
-
+  @Test
   public void testCodeWorks() throws Exception
   {
     assertEquals(getClass().getName(), VelocityParser.parseString("$main.getClass().getName()", this));
   }
+  @Test
   public void testUnknownField()
   {
     assertErrorThrown("$main.unknownField");
   }
-  
+  @Test
   public void testUnknownFieldThenMethod()
   {
     assertErrorThrown("$main.unknownField.someMethod()");
   }
-  
   private void assertErrorThrown(String string)
   {
     String result = null;
@@ -36,28 +35,26 @@ public class VelocityTest extends TestCase implements ContextAware
     {
       return;
     }
-    Assert.fail("parsing '" + string + "' did not fail but returned '" + result + "'");
+    fail("parsing '" + string + "' did not fail but returned '" + result + "'");
   }
-  
+  @Test
   public void testUnknownMethod()
   {
     assertErrorThrown("$main.unknownMethod()");
   }
-  
-  /*public void testNullPointer()
+  @Disabled("believe velocity needs to be configured to throw nulls")
+  @Test
+  public void testNullPointer()
   {
     assertErrorThrown("$main.getNull().callMethod()");
-  }*/
-  
+  }
   public Object getNull()
   {
     return null;
   }
-  
+  @Override
   public void setupContext(Context context)
   {
     context.put("main", this);
   }
 }
-
-
