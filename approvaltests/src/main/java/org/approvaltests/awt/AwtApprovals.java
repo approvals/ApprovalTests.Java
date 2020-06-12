@@ -12,17 +12,18 @@ import org.approvaltests.writers.ImageApprovalWriter;
 import java.awt.image.BufferedImage;
 
 public class AwtApprovals {
+
     public static void verify(Image image)
     {
         verifyBufferedImage(ImageWriter.toBufferedImage(image));
     }
 
-    public static void verify(BufferedImage bufferedImage)
+    private static void verifyBufferedImage(BufferedImage bufferedImage)
     {
         Approvals.verify(new ImageApprovalWriter(bufferedImage));
     }
 
-    private static void verifyBufferedImage(BufferedImage bufferedImage)
+    public static void verify(BufferedImage bufferedImage)
     {
         Approvals.verify(new ImageApprovalWriter(bufferedImage));
     }

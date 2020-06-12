@@ -91,13 +91,14 @@ public class Approvals
 
   /**
    *
-   * @deprecated Use AwtApprovals.verify(component);
+   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(Component)} instead.
    */
   @Deprecated
   public static void verify(Component c)
   {
     AwtApprovals.verify(c);
   }
+
   public static void verifyHtml(String response)
   {
     verify(new ApprovalTextWriter(response, "html"));
@@ -109,7 +110,7 @@ public class Approvals
 
   /**
    *
-   * @deprecated Use AwtApprovals.verify(image);
+   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(Image)} instead.
    */
   @Deprecated
   public static void verify(Image image)
@@ -119,13 +120,14 @@ public class Approvals
 
   /**
    *
-   * @deprecated Use AwtApprovals.verify(bufferedImage);
+   * @deprecated Use {@link org.approvaltests.awt.AwtApprovals#verify(BufferedImage)} instead.
    */
   @Deprecated
   public static void verify(BufferedImage bufferedImage)
   {
     AwtApprovals.verify(bufferedImage);
   }
+
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
     verify(new FileApprover(writer, namer), reporter);
