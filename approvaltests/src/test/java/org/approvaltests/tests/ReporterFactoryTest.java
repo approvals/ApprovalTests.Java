@@ -24,6 +24,7 @@ public class ReporterFactoryTest
   {
     assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
+  /*
   @Test
   @UseReporter(PitReporter.class)
   public void testReportersAtMethodLevel() throws Exception
@@ -31,6 +32,8 @@ public class ReporterFactoryTest
     oneLayerDown();
     assertEquals(PitReporter.class, ReporterFactoryHelper.getClassFor());
   }
+
+   */
   @UseReporter(DiffReporter.class)
   public void oneLayerDown() throws Exception
   {
