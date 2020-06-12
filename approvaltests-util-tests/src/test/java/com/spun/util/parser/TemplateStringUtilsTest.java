@@ -1,39 +1,14 @@
 package com.spun.util.parser;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.spun.util.parser.TemplateStringUtils;
+import org.junit.jupiter.api.Test;
 
 public class TemplateStringUtilsTest
-  extends TestCase 
 {
-  public static UseCase useCases[] = {new UseCase("Hello Jack", 20, " ", "Hello Jack          ")};
-
+  @Test
   public void testTextPadding()
   {
-    for (int i = 0; i < useCases.length; i++)
-    {
-      UseCase useCase = useCases[i];
-      assertEquals("percentUseCases[" + i + "]" , useCase.result, TemplateStringUtils.pad(useCase.string, useCase.length, useCase.padWith));
-    }
+    assertEquals("Hello Jack          ", TemplateStringUtils.pad("Hello Jack", 20, " "));
   }
-
-	public static class UseCase
-	{
-	  public String padWith;
-    public String string;
-    public int length;
-    public String result;
-
-    public UseCase(String string, int length, String padWith, String result)
-    {
-      super();
-      this.padWith = padWith;
-      this.string = string;
-      this.length = length;
-      this.result = result;
-    }
-	}
-
-
 }
