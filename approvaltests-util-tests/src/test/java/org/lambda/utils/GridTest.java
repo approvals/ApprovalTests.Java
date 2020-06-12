@@ -1,8 +1,7 @@
-package org.lambda.utils.test;
+package org.lambda.utils;
 
 import org.approvaltests.Approvals;
-import org.junit.Test;
-import org.lambda.utils.Grid;
+import org.junit.jupiter.api.Test;
 
 public class GridTest
 {
