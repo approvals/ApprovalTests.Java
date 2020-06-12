@@ -1,6 +1,5 @@
 package com.spun.util;
 
-import static com.spun.JunitUpgrade.assertEquals2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -9,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-public class PhoneNumberTest implements UseCaseTester<UseCase>
+public class PhoneNumberTest
 {
   private static UseCase useCases[] = {new UseCase("858-775-2868", "(858)775-2868", "+1.858.775.2868"),
                                        new UseCase("(800)351-7765", "(800)351-7765", "+1.800.351.7765"),
@@ -32,8 +31,7 @@ public class PhoneNumberTest implements UseCaseTester<UseCase>
     PhoneNumber ph = new PhoneNumber(useCase.original);
     if (useCase.usa != null)
     {
-      assertEquals(useCase.usa, ph.getValueAsNorthAmerican(),
-          "[" + useCase.original + "]USA format");
+      assertEquals(useCase.usa, ph.getValueAsNorthAmerican(), "[" + useCase.original + "]USA format");
     }
     else
     {

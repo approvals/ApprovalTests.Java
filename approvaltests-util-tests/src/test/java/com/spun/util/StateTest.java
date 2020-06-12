@@ -1,48 +1,29 @@
 package com.spun.util;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.approvaltests.Approvals;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import com.spun.util.State;
-
-import junit.framework.TestCase;
-
-public class StateTest extends TestCase
+public class StateTest
 {
-
+  @Test
   public void testState()
   {
-    String[] strings = {"CALIFORNIA",
-                        "CA",
-                        "California",
-                        "CA",
-                        "ca",
-                        "CA",
-                        "Ca",
-                        "CA",
-                        null,
-                        null,
-                        "toronto",
-                        "toronto",
-                        "rhode island",
-                        "RI"};
-    for (int i = 0; i < strings.length; i += 2)
-    {
-      assertEquals(strings[i + 1], State.toStandardText(strings[i]));
-    }
+    String[] inputs = {"CALIFORNIA", "California", "ca", "Ca", null, "toronto", "rhode island"};
+    Approvals.verifyAll("states", inputs, s -> String.format("%s -> %s", s, State.toStandardText(s)));
   }
   @Test
-  public void testAll() throws Exception
+  public void testAll()
   {
     Approvals.verifyAll("states", State.getStringValues());
   }
-  public void testIsState() throws Exception
+  @Test
+  public void testIsState()
   {
     assertTrue(State.isStateAbbreviation("ca"));
     assertTrue(State.isStateAbbreviation("CA"));
     assertFalse(State.isStateAbbreviation("US"));
   }
-
-
-
 }
