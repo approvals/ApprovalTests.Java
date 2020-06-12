@@ -1,8 +1,9 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import com.spun.util.tests.TestUtils;
 import org.junit.Test;
 
 import com.spun.util.TimedObject;

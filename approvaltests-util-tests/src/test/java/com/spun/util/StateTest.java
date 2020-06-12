@@ -1,4 +1,4 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import org.approvaltests.Approvals;
 import org.junit.Test;

@@ -1,13 +1,10 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
-import com.spun.util.PhoneNumber;
-import com.spun.util.tests.multitest.UseCaseTester;
-import com.spun.util.tests.multitest.UseCaseTesting;
 
 public class PhoneNumberTest extends TestSuite implements UseCaseTester<UseCase>
 {

@@ -1,8 +1,7 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import java.sql.SQLException;
 import junit.framework.TestCase;
-import com.spun.util.DatabaseUtils;
 
 public class DatabaseUtilsTest extends TestCase
 {

@@ -1,4 +1,4 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import com.spun.util.logger.SimpleLogger;
 

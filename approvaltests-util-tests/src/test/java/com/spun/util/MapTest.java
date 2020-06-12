@@ -1,4 +1,4 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import java.util.Map;
 

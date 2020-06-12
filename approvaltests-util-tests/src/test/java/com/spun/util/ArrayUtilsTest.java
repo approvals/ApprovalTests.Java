@@ -1,4 +1,4 @@
-package com.spun.util.tests;
+package com.spun.util;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

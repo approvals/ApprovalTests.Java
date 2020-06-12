@@ -1,6 +1,4 @@
-package com.spun.util.tests;
-
-import com.spun.util.WhiteSpaceStripper;
+package com.spun.util;
 
 import junit.framework.TestCase;
 
