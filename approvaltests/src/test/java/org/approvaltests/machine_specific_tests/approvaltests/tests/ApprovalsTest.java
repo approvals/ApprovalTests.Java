@@ -1,5 +1,7 @@
 package org.approvaltests.machine_specific_tests.approvaltests.tests;
 
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 
 import org.approvaltests.awt.AwtApprovals;
@@ -16,7 +18,7 @@ public class ApprovalsTest extends MachineSpecificTest
   public void testApproveComponent() throws Exception
   {
     JButton b = new JButton("Approval Tests Rule");
-    b.setSize(150, 20);
+    b.setPreferredSize(new Dimension(150, 20));
     AwtApprovals.verify(b);
   }
   @Test

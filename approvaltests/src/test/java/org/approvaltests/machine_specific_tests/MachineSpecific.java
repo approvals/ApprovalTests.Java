@@ -12,6 +12,6 @@ public class MachineSpecific
       "llewelllcosmbp2.lan");
   public static boolean isMachineConfiguredForTesting()
   {
-    return true || FORCE_RUN || MACHINES.contains(SystemUtils.getComputerName());
+    return FORCE_RUN || MACHINES.contains(SystemUtils.getComputerName());
   }
 }
