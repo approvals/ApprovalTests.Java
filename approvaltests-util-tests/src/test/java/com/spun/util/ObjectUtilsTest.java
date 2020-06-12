@@ -1,16 +1,13 @@
 package com.spun.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.junit.Test;
-
-import com.spun.util.ObjectUtils;
+import org.junit.jupiter.api.Test;
 
 public class ObjectUtilsTest
 {
@@ -21,7 +18,6 @@ public class ObjectUtilsTest
         "getClass");
     assertEquals(Object.class, gcd.getDeclaringClass());
   }
-
   @Test
   public void test()
   {
@@ -31,7 +27,6 @@ public class ObjectUtilsTest
     assertTrue(ObjectUtils.isEqualForMethods(o1, o2, "getA", "getB", "getD"));
     assertFalse(ObjectUtils.isEqualForMethods(o1, o2, "getA", "getB", "getC"));
   }
-
   public static class UseCase
   {
     private int    a;
@@ -45,27 +40,21 @@ public class ObjectUtilsTest
       this.c = c;
       this.d = d;
     }
-
     public int getA()
     {
       return a;
     }
-
     public String getB()
     {
       return b;
     }
-
     public String getC()
     {
       return c;
     }
-
     public Date getD()
     {
       return d;
     }
   }
-
-
 }
