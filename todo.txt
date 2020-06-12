@@ -5,11 +5,7 @@
 * write docs on how to make a custom reporter
 
 
-
-discuss: no need to close resources in our tests since jvm shuts down afterwards?
-
-then look at the list and decide if we commit it too or rather tasks on github or something
-today's goal I'd like to look into using approval tests with junit5's @ParameterizedTest
+I'd like to look into using approval tests with junit5's @ParameterizedTest and junit5 in general
 https://github.com/approvals/ApprovalTests.Java/issues/51
 https://github.com/approvals/ApprovalTests.Java/issues/36
 -> might require introduction of junit5 to the project though (which is good but also some extra work)
@@ -26,8 +22,6 @@ https://github.com/approvals/ApprovalTests.Java/issues/36
 
 * junit5 tests create both files (empty approved file) while junit4 only creates recieved file on first run
 * !!! ClipboardReporter does not work with Junit5 !!!
-
-* !!! FileUtils.writeFile (160) relies on platform default + 16 more. colleague had failing test on windows.
 
 * newer dependency version available:
 
