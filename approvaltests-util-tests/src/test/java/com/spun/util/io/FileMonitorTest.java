@@ -1,14 +1,20 @@
 package com.spun.util.io;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.File;
 import junit.framework.TestCase;
 import com.spun.util.io.FileMonitor.FileListener;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class FileMonitorTest extends TestCase
+public class FileMonitorTest
 {
   FileMonitor monitor;
   File        root;
   boolean     done;
+  @BeforeEach
   protected void setUp() throws Exception
   {
     File filea = File.createTempFile("tmp", "tmp");
@@ -20,11 +26,13 @@ public class FileMonitorTest extends TestCase
     monitor.addListener(this.new TestListener());
     Thread.sleep(1000);
   }
+  @AfterEach
   protected void tearDown() throws Exception
   {
     monitor.stop();
     root.delete();
   }
+  @Test
   public void testNewFileDetected() throws Exception
   {
     done = false;
@@ -35,7 +43,7 @@ public class FileMonitorTest extends TestCase
     }
     try
     {
-      assertEquals("File processed", true, done);
+      assertEquals(true, done, "File processed");
     }
     finally
     {
