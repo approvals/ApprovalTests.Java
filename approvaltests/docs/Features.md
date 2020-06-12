@@ -12,6 +12,9 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
+  * [6.0.1](#601)
+    * [Prepare for Android](#prepare-for-android)
+  * [Previous versions](#previous-versions)
   * [Customer Approvers](#customer-approvers)
   * [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
   * [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
@@ -23,6 +26,17 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Method 2 - use Runner](#method-2---use-runner)
     * [Results](#results)
     * [Usage](#usage)<!-- endtoc -->
+
+## 6.0.1
+### Prepare for Android
+We have deprecated:
+* `Approvals.verify(Image image)`
+* `Approvals.verify(BufferedImage bufferedImage)`
+* `Approvals.verify(Component c)`
+
+These are now in the AwtApprovals class.
+
+## Previous versions
 
 
 ## Customer Approvers
