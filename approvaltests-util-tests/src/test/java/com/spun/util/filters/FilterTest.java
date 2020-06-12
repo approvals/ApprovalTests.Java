@@ -1,4 +1,4 @@
-package com.spun.util.filters.tests;
+package com.spun.util.filters;
 
 import org.lambda.query.Query;
 
