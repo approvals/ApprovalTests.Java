@@ -2,11 +2,10 @@ package com.spun.util;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function0WithException;
+import org.lambda.query.Query;
 
 /**
  * A static class of convenience functions for Manipulating objects
@@ -27,7 +26,6 @@ public class ObjectUtils
     }
     return result;
   }
-  
   /**
    * tests if two objects are equal for all functions passed.
    **/
@@ -41,7 +39,8 @@ public class ObjectUtils
       {
         Object v1 = m1[i].invoke(o1, (Object[]) null);
         Object v2 = m2[i].invoke(o2, (Object[]) null);
-        if (!isEqual(v1, v2)) { return false; }
+        if (!isEqual(v1, v2))
+        { return false; }
       }
       return true;
     }
@@ -50,7 +49,6 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
-  
   public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
       throws SecurityException, NoSuchMethodException
   {
@@ -62,7 +60,6 @@ public class ObjectUtils
     }
     return methods;
   }
-  
   /**
    * A convenience function to check if 2 strings are equal.
    **/
@@ -81,21 +78,19 @@ public class ObjectUtils
       return false;
     }
   }
-  
   public static boolean isIn(Object target, Object[] objects)
   {
     for (int i = 0; i < objects.length; i++)
     {
-      if (ObjectUtils.isEqual(objects[i], target)) { return true; }
+      if (ObjectUtils.isEqual(objects[i], target))
+      { return true; }
     }
     return false;
   }
-  
   public static boolean isThisInstanceOfThat(Class<?> thiz, Class<?> that)
   {
     return that.isAssignableFrom(thiz);
   }
-  
   public static Error throwAsError(Throwable t) throws Error
   {
     if (t instanceof RuntimeException)
@@ -111,13 +106,12 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
-  
   public static <T> T getRandomIndex(T[] array)
   {
-    if ((array == null) || (array.length == 0)) { return null; }
+    if ((array == null) || (array.length == 0))
+    { return null; }
     return array[NumberUtils.RANDOM.nextInt(array.length)];
   }
-  
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
       throws SecurityException, NoSuchMethodException
   {
@@ -136,7 +130,6 @@ public class ObjectUtils
     }
     return classes.size() == 0 ? null : ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null);
   }
-  
   private static Class<?>[] getAllCastableClasses(Object object)
   {
     Class<? extends Object> clazz = object.getClass();
@@ -151,7 +144,6 @@ public class ObjectUtils
     ArrayUtils.toReverseArray(found);
     return found;
   }
-  
   public static Object executeMethod(Object object, String method, Class<?>[] methodSignature, Object[] parameters)
   {
     try
@@ -163,29 +155,29 @@ public class ObjectUtils
       throw throwAsError(t);
     }
   }
-  
   public static void assertInstance(Class<?> clazz, Object object)
   {
     assertInstance(new Class[]{clazz}, object);
   }
-  
   public static void assertInstance(Class<?> classes[], Object object)
   {
-    if (object == null) { throw new NullPointerException(
-        "Expected Object of Type " + Arrays.asList(extractArray(classes, "getName")) + " but was null"); }
+    if (object == null)
+    {
+      throw new NullPointerException(
+          "Expected Object of Type " + Query.select(classes, Class::getName) + " but was null");
+    }
     for (int i = 0; i < classes.length; i++)
     {
-      if (ClassUtils.getWrapperClass(classes[i]).isInstance(object)) { return; }
+      if (ClassUtils.getWrapperClass(classes[i]).isInstance(object))
+      { return; }
     }
-    throw new IllegalArgumentException("Expected Object of Type " + Arrays.asList(extractArray(classes, "getName"))
+    throw new IllegalArgumentException("Expected Object of Type " + Query.select(classes, Class::getName)
         + " but got " + object.getClass().getName());
   }
-  
   public static String getClassName(Object o)
   {
     return o == null ? "null" : o.getClass().getName();
   }
-  
   public static void assertInstanceOrNull(Class<?> type, Object value)
   {
     if (value != null)
@@ -193,7 +185,6 @@ public class ObjectUtils
       assertInstance(type, value);
     }
   }
-
   public static void move(Object from, Object to, String[] getters)
   {
     try
@@ -212,7 +203,6 @@ public class ObjectUtils
       throw throwAsError(e);
     }
   }
-
   private static Class<?> getBestClass(Object value, Method method)
   {
     return value == null ? method.getReturnType() : value.getClass();

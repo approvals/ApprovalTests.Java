@@ -1,12 +1,8 @@
 package com.spun.util;
 
 import java.util.Map;
-
 import org.approvaltests.Approvals;
-import org.junit.Test;
-
-import com.spun.util.DateUtils;
-import com.spun.util.MapBuilder;
+import org.junit.jupiter.api.Test;
 
 public class MapTest
 {
@@ -18,6 +14,6 @@ public class MapTest
   }
   public static MapBuilder<String, Object> params(String key, Object value)
   {
-    return new MapBuilder<String, Object>(key, value);
+    return new MapBuilder<>(key, value);
   }
 }

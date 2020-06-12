@@ -4,11 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.lambda.query.OrderBy;
 
-public class MethodSorterTest
+public class OrderByTest
 {
   @Test
   public void test()
@@ -20,7 +19,6 @@ public class MethodSorterTest
     assertUseCase(new Integer[]{5, 7, 2}, OrderBy.ascending((Integer a) -> a.intValue()), 2, 0, 1);
     assertUseCase(new Integer[]{5, 7, 2}, OrderBy.ascending((Integer a) -> a.doubleValue()), 2, 0, 1);
   }
-
   private <T> void assertUseCase(T[] startingArray, java.util.Comparator<T> compare, int... sortedOrder)
   {
     Object[] sortedArray = makeSortedArray(startingArray, sortedOrder);
@@ -32,8 +30,8 @@ public class MethodSorterTest
   }
   private <T> Object[] makeSortedArray(T[] startingArray, int[] sortedOrder)
   {
-    if (startingArray.length != sortedOrder.length) { throw new Error(
-        "lengths not equal " + startingArray.length + " and " + sortedOrder.length); }
+    if (startingArray.length != sortedOrder.length)
+    { throw new Error("lengths not equal " + startingArray.length + " and " + sortedOrder.length); }
     ArrayList<T> sorted = new ArrayList<>();
     for (int i = 0; i < startingArray.length; i++)
     {
