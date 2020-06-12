@@ -91,16 +91,6 @@ public class ObjectUtils
     return false;
   }
   
-  /**
-   * @deprecated use {@literal Query.first(onArray, o -> forValue.equals(o.onMethod())) }
-   */
-  @Deprecated
-  public static <T> T getForMethod(T[] onArray, Object forValue, String... onMethods)
-  {
-    throw new DeprecatedException("Query.first(onArray, o -> %s.equals(o.%s()))", forValue,
-        StringUtils.join(onMethods, "().", m -> m));
-  }
-  
   public static boolean isThisInstanceOfThat(Class<?> thiz, Class<?> that)
   {
     return that.isAssignableFrom(thiz);
@@ -126,14 +116,6 @@ public class ObjectUtils
   {
     if ((array == null) || (array.length == 0)) { return null; }
     return array[NumberUtils.RANDOM.nextInt(array.length)];
-  }
-  
-  /** 
-  * @deprecated use {@literal Query.select(from, m -> m.methodName()) }
-  */
-  public static Object[] extractArray(Object[] from, String methodName)
-  {
-    throw new DeprecatedException("Query.select(from, m -> m.%s())", methodName);
   }
   
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
