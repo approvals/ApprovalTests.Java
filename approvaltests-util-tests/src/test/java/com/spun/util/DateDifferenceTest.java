@@ -1,20 +1,17 @@
 package com.spun.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.spun.util.parser.TemplateDate;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
 
-import com.spun.util.DateDifference;
-import com.spun.util.DateUtils;
-import com.spun.util.parser.TemplateDate;
-
-import junit.framework.TestCase;
-
-public class DateDifferenceTest extends TestCase
+public class DateDifferenceTest
 {
   private static final long  YEAR_MS                          = 1000 * 60 * 60 * 24 * 365L;
   private static final long  MONTH_MS                         = 1000 * 60 * 60 * 24 * 30L;
@@ -133,7 +130,7 @@ public class DateDifferenceTest extends TestCase
                                                                          0),                                                                     /* Daylight savings is in month '3' */
                                                                      new GregorianCalendar(2004, 3, 4, 11, 0),
                                                                      "1 Day, 0 Hours, 0 Mins, 0 Secs, 0 Millis")};
-
+  @Test
   public void testGetRoundedDifference()
   {
     for (int i = 0; i < getRoundedDifferenceUseCases.length; i++)
@@ -143,14 +140,15 @@ public class DateDifferenceTest extends TestCase
       long milli = getRoundedDifferenceUseCases[i][2];
       long expected = getRoundedDifferenceUseCases[i][3];
       DateDifference d = new DateDifference(milli);
-      assertEquals("getRoundedDifference(" + wanted + ", " + round + ") on " + milli, expected,
-          d.getRemainingDifference(wanted, round));
+      assertEquals(expected, (Object) d.getRemainingDifference(wanted, round),
+          "getRoundedDifference(" + wanted + ", " + round + ") on " + milli);
     }
   }
-
-  public void testFeburaryAndDaylightSavingsTime() throws Exception
+  @Test
+  public void testFebruaryAndDaylightSavingsTime()
   {
-    if (ignoreIfOutSideUS()) { return; }
+    if (ignoreIfOutSideUS())
+    { return; }
     StringBuffer buffer = new StringBuffer();
     DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
     for (int i = 1; i <= 28; i++)
@@ -167,10 +165,11 @@ public class DateDifferenceTest extends TestCase
   {
     return !DateUtils.doesDaylightSavingsTimeStartOn("2010/03/14");
   }
-
+  @Test
   public void testGetTimeText()
   {
-    if (ignoreIfOutSideUS()) { return; }
+    if (ignoreIfOutSideUS())
+    { return; }
     for (int i = 0; i < getTimeTextUseCases.length; i++)
     {
       int amount = getTimeTextUseCases[i].amount;
@@ -188,7 +187,6 @@ public class DateDifferenceTest extends TestCase
           expected, d.getTimeText(amount, maxUnit, minUnit, nowText, agoText, units));
     }
   }
-
   private class GetTimeTextUseCase
   {
     int    amount;
@@ -204,7 +202,6 @@ public class DateDifferenceTest extends TestCase
     {
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, milli, expected);
     }
-
     public GetTimeTextUseCase(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         Calendar date1, Calendar date2, String expected)
     {
@@ -215,7 +212,6 @@ public class DateDifferenceTest extends TestCase
       }
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, time, expected);
     }
-
     private void init(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         long milli, String expected)
     {
@@ -229,6 +225,4 @@ public class DateDifferenceTest extends TestCase
       this.expected = expected;
     }
   }
-
-
 }
