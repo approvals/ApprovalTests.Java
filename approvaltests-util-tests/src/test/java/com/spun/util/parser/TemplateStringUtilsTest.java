@@ -1,4 +1,4 @@
-package com.spun.util.parser.tests;
+package com.spun.util.parser;
 
 import junit.framework.TestCase;
 

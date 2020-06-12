@@ -1,10 +1,7 @@
-package com.spun.util.logger.tests;
+package com.spun.util.logger;
 
 import org.approvaltests.Approvals;
-import org.junit.Test;
-
-import com.spun.util.logger.Markers;
-import com.spun.util.logger.SimpleLogger;
+import org.junit.jupiter.api.Test;
 
 public class SimpleLoggerTest
 {

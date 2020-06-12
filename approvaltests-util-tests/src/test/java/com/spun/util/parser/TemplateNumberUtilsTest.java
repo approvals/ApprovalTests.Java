@@ -1,4 +1,4 @@
-package com.spun.util.parser.tests;
+package com.spun.util.parser;
 
 import com.spun.util.parser.TemplateNumberUtils;
 
