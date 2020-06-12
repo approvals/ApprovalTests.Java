@@ -1,35 +1,37 @@
-package com.spun.util.velocity.tests;
+package com.spun.util.velocity;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.apache.velocity.context.Context;
 import org.apache.velocity.util.introspection.Info;
-import com.spun.util.velocity.ContextAware;
-import com.spun.util.velocity.VelocityParser;
-import com.spun.util.velocity.VelocityParsingError;
+import org.junit.jupiter.api.Test;
 
-public class VelocityInfoTest extends TestCase implements ContextAware
+public class VelocityInfoTest implements ContextAware
 {
-
+  @Test
   public void testInfoForField() throws Exception
   {
     VelocityParsingError t = getParsingErrorFor("$main.unknownField");
-    assertEquals(t.getMessage(), "Did not find com.spun.util.velocity.tests.VelocityInfoTest.unknownField    at [1,7] in template $main.unknownField");
+    assertEquals(
+        "Did not find com.spun.util.velocity.VelocityInfoTest.unknownField    at [1,7] in template $main.unknownField",
+        t.getMessage());
     assertInfoEqual(t.getInfo(), "$main.unknownField", 1, 7);
   }
-
+  @Test
   public void testInfoForMethod()
   {
     VelocityParsingError t = getParsingErrorFor("$main.unknownMethod()");
-    assertEquals(t.getMessage().trim(), "Method com.spun.util.velocity.tests.VelocityInfoTest.unknownMethod()  does not exist.   at [1,1] in template");
+    assertEquals(
+        "Method com.spun.util.velocity.VelocityInfoTest.unknownMethod()  does not exist.   at [1,1] in template",
+        t.getMessage().trim());
   }
-
   private void assertInfoEqual(Info i, String name, int line, int column)
   {
-    assertEquals("Template Name", name, i.getTemplateName());
-    assertEquals("Template Line", line, i.getLine());
-    assertEquals("Template Column", column, i.getColumn());
+    assertEquals(name, i.getTemplateName(), "Template Name");
+    assertEquals(line, i.getLine(), "Template Line");
+    assertEquals(column, i.getColumn(), "Template Column");
   }
-
   public VelocityParsingError getParsingErrorFor(String velocity)
   {
     try
@@ -43,11 +45,8 @@ public class VelocityInfoTest extends TestCase implements ContextAware
       return t;
     }
   }
-
   public void setupContext(Context context)
   {
     context.put("main", this);
   }
 }
-
-

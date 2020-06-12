@@ -1,4 +1,4 @@
-package com.spun.util.velocity.tests;
+package com.spun.util.velocity;
 
 import junit.framework.TestCase;
 import org.apache.velocity.context.Context;
