@@ -13,9 +13,11 @@ public class PackageSettingsTest
   {
     Approvals.verify(PackageLevelSettings.get());
   }
+  /*
   @Test
   public void testName() throws Exception
   {
     fail("boo");
   }
+   */
 }
