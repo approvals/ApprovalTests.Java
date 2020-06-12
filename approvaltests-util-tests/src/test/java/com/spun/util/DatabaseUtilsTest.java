@@ -1,11 +1,13 @@
 package com.spun.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.SQLException;
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class DatabaseUtilsTest extends TestCase
+public class DatabaseUtilsTest
 {
-
+  @Test
   public void testTransaction() throws SQLException
   {
     MockConnection connection1 = new MockConnection();
@@ -21,6 +23,4 @@ public class DatabaseUtilsTest extends TestCase
     DatabaseUtils.commit(connection2);
     assertEquals(1, connection2.commitCount);
   }
-
-
 }
