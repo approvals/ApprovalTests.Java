@@ -9,6 +9,10 @@ public class JunitUpgrade
   {
     assertEquals(i1, i2, message);
   }
+  public static void assertEquals2(String message, double i1, double i2, double delta)
+  {
+    assertEquals(i1, i2, delta, message);
+  }
   public static void assertTrue2(String message, boolean i)
   {
     assertTrue(i, message);
