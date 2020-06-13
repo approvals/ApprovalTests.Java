@@ -59,7 +59,7 @@ Action0 thru Action9 all have an implementation of the null object pattern for y
 
 SimpleLogger is used to make approvaltesting easier, but approvalTests also uses it internally. Something these bleed out in the form of messages like
 
-snippet: /approvaltests-util/src/test/java/com/spun/util/logger/tests/SimpleLoggerTest.test.approved.txt
+snippet: /approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt
 
 if you want to turn them all off just run
 

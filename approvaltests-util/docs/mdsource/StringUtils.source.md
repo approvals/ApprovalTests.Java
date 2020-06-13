@@ -19,7 +19,7 @@ Sometimes you have a list that needs to become a string.
 For example
 snippet: join_collection
 will produce
-snippet: /approvaltests-util/src/test/java/com/spun/util/tests/StringUtilsTest.testJoinCollection.approved.txt
+snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt
 by invoking the .toString() on each object in the collection.
 
 ## Joining Collections with a function
@@ -27,7 +27,7 @@ if .toString() isn't enough, you can pass in a lambda to do the extra transforma
 For example:
 snippet: join_collection_with_lambda
 will Produce
-snippet: /approvaltests-util/src/test/java/com/spun/util/tests/StringUtilsTest.testJoinCollectionWithFunction.approved.txt
+snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt
 
 ---
 
