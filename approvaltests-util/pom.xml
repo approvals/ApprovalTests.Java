@@ -31,12 +31,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
@@ -77,12 +71,6 @@
             <artifactId>commons-collections</artifactId>
             <version>3.1</version>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.approvaltests</groupId>
-            <artifactId>approvaltests</artifactId>
-            <version>4.1</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
