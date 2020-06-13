@@ -1,10 +1,8 @@
 package com.spun.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
-
-import com.spun.util.Tuple;
+import org.junit.jupiter.api.Test;
 
 public class TupleTest
 {
@@ -12,7 +10,7 @@ public class TupleTest
   public void test()
   {
     Tuple<String, Integer> tupleOne = new Tuple<String, Integer>("foo", 1);
-    assertEquals("string first", "foo", tupleOne.getFirst());
-    assertEquals("integer second", 1, tupleOne.getSecond().intValue());
+    assertEquals((Object) "foo", tupleOne.getFirst(), "string first");
+    assertEquals(1, (Object) tupleOne.getSecond().intValue(), "integer second");
   }
 }

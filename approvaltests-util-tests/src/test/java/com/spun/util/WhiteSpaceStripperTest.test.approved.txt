@@ -1,0 +1,28 @@
+whitespace
+
+
+---
+  hello 
+    
+   
+
+--- ->---
+  hello 
+---
+
+---
+  hello 
+    
+ a 
+
+--- ->---
+  hello 
+ a 
+---
+
+---
+  hello  
+--- ->---
+  hello  
+---
+
