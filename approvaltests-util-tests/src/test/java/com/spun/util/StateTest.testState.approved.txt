@@ -1,0 +1,10 @@
+states
+
+
+CALIFORNIA -> CA
+California -> CA
+ca -> CA
+Ca -> CA
+null -> null
+toronto -> toronto
+rhode island -> RI

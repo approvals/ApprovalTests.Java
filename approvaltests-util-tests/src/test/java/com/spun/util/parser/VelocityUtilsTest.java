@@ -1,12 +1,11 @@
 package com.spun.util.parser;
 
 import com.spun.util.DateUtils;
-import org.approvaltests.utils.WithTimeZone;
-import org.approvaltests.velocity.VelocityApprovals;
-import org.junit.Test;
-
 import java.sql.Timestamp;
 import java.util.Arrays;
+import org.approvaltests.utils.WithTimeZone;
+import org.approvaltests.velocity.VelocityApprovals;
+import org.junit.jupiter.api.Test;
 
 //@UseReporter(FileLauncherReporter.class)
 public class VelocityUtilsTest
@@ -24,12 +23,12 @@ public class VelocityUtilsTest
   @Test
   public void testDate()
   {
-    try (WithTimeZone tz = new WithTimeZone()) {
+    try (WithTimeZone tz = new WithTimeZone())
+    {
       Timestamp date = DateUtils.parse("2001/02/03");
       VelocityApprovals.verify(c -> {
         c.put("date", date);
       });
     }
   }
-
 }
