@@ -1,19 +1,21 @@
 package org.approvaltests.machine_specific_tests;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.spun.util.SystemUtils;
+
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class MachineSpecificTest
 {
   private static boolean DISPLAYED = false;
-  @Before
+  @BeforeEach
   public void beforeMethod()
   {
     if (!MachineSpecific.isMachineConfiguredForTesting())
     {
       displayMessage();
-      org.junit.Assume.assumeTrue(false);
+      assumeTrue(false);
     }
   }
   private void displayMessage()
