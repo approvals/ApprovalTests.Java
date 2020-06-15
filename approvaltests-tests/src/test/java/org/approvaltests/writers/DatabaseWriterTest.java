@@ -1,4 +1,4 @@
-package org.approvaltests.writers.test;
+package org.approvaltests.writers;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -6,21 +6,26 @@ import java.sql.SQLException;
 
 import org.approvaltests.Approvals;
 import org.easymock.EasyMock;
+import org.junit.jupiter.api.Test;
 
 import com.spun.util.io.CommaDelimitedFileParser;
 import com.spun.util.io.FileUtils;
 
-import junit.framework.TestCase;
-
-public class DatabaseWriterTest extends TestCase
+public class DatabaseWriterTest
 {
+  @Test
   public void testSimpleQuery() throws Exception
   {
-    //ResultSet rs = queryDatagbase();
     ResultSet rs = mockResultSetFromFile("query.csv");
     Approvals.verify(rs);
   }
-  public ResultSet queryDatagbase() throws SQLException
+  @Test
+  public void testSimpleQuery2() throws Exception
+  {
+    ResultSet rs = queryDatabase();
+    Approvals.verify(rs);
+  }
+  public ResultSet queryDatabase() throws SQLException
   {
     return mockResultSetFromFile("sample_result_set.csv");
   }
