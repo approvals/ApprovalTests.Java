@@ -113,7 +113,7 @@ public class PackageSettings
   public static CountingReporter FrontloadedReporter = new CountingReporter();
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='File snippet `use_reporter_package_settings` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Navigate to start of snippet `use_reporter_package_settings`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='File snippet `use_reporter_package_settings` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Navigate to start of snippet `use_reporter_package_settings`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ## Custom Reporters

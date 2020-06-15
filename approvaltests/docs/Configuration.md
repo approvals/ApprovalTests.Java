@@ -37,7 +37,7 @@ public class PackageSettings
   public static String UseApprovalSubdirectory = "approvals";
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/packagesettings/subdirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_subdirectory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_subdirectory' title='Navigate to start of snippet `package_settings_approval_subdirectory`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/subdirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_subdirectory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_subdirectory' title='Navigate to start of snippet `package_settings_approval_subdirectory`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
@@ -56,7 +56,7 @@ public class PackageSettings
   public static String ApprovalBaseDirectory = "../resources";
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/packagesettings/basedirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_base_directory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_base_directory' title='Navigate to start of snippet `package_settings_approval_base_directory`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/basedirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_base_directory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_base_directory' title='Navigate to start of snippet `package_settings_approval_base_directory`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The approved and received files will now be created in the directory `/source/test/resources/` for any test in the same package as this file, or any test in any under this.  
