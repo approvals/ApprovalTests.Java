@@ -2,14 +2,17 @@ package com.spun.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.spun.util.parser.TemplateDate;
 import java.sql.Timestamp;
 import java.text.DateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
 import org.approvaltests.Approvals;
+import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
+import org.lambda.functions.Function1;
+
+import com.spun.util.parser.TemplateDate;
 
 public class DateDifferenceTest
 {
@@ -147,46 +150,32 @@ public class DateDifferenceTest
   @Test
   public void testFebruaryAndDaylightSavingsTime()
   {
-    if (ignoreIfOutSideUS())
-    { return; }
-    StringBuffer buffer = new StringBuffer();
-    DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
-    for (int i = 1; i <= 28; i++)
+    try (WithTimeZone tz = new WithTimeZone("PST"))
     {
-      Timestamp a = DateUtils.parse("2010/02/0" + i);
-      Timestamp b = DateUtils.parse("2010/03/0" + i);
-      DateDifference dif = new DateDifference(a, b);
-      String standardTimeText = dif.getStandardTimeText(2, "days", "seconds", null, null);
-      buffer.append(f.format(a) + ", " + f.format(b) + " => " + standardTimeText + "\n");
+      StringBuilder buffer = new StringBuilder();
+      DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
+      for (int i = 1; i <= 28; i++)
+      {
+        Timestamp a = DateUtils.parse("2010/02/0" + i);
+        Timestamp b = DateUtils.parse("2010/03/0" + i);
+        DateDifference dif = new DateDifference(a, b);
+        String standardTimeText = dif.getStandardTimeText(2, "days", "seconds", null, null);
+        buffer.append(f.format(a) + ", " + f.format(b) + " => " + standardTimeText + "\n");
+      }
+      Approvals.verify(buffer.toString());
     }
-    Approvals.verify(buffer.toString());
-  }
-  protected boolean ignoreIfOutSideUS()
-  {
-    return !DateUtils.doesDaylightSavingsTimeStartOn("2010/03/14");
   }
   @Test
   public void testGetTimeText()
   {
-    if (ignoreIfOutSideUS())
-    { return; }
-    for (int i = 0; i < getTimeTextUseCases.length; i++)
+    try (WithTimeZone tz = new WithTimeZone())
     {
-      int amount = getTimeTextUseCases[i].amount;
-      int maxUnit = getTimeTextUseCases[i].maxUnit;
-      int minUnit = getTimeTextUseCases[i].minUnit;
-      String nowText = getTimeTextUseCases[i].nowText;
-      String agoText = getTimeTextUseCases[i].agoText;
-      String units[] = getTimeTextUseCases[i].units;
-      long milli = getTimeTextUseCases[i].milli;
-      String expected = getTimeTextUseCases[i].expected;
-      DateDifference d = new DateDifference(milli);
-      assertEquals(
-          expected, d.getTimeText(amount, maxUnit, minUnit, nowText, agoText, units),
-          "getTimeText(" + amount + ", " + maxUnit + ", " + minUnit + ", " + nowText + ", " + agoText + ", "
-              + Arrays.toString(units) + ") on " + milli);
+      Approvals.verifyAll("getTimeText", getTimeTextUseCases,
+              useCase -> useCase + " -> " + new DateDifference(useCase.milli)
+                      .getTimeText(useCase.amount, useCase.maxUnit, useCase.minUnit, useCase.nowText, useCase.agoText, useCase.units));
     }
   }
+
   private class GetTimeTextUseCase
   {
     int    amount;
@@ -223,6 +212,13 @@ public class DateDifferenceTest
       this.units = units;
       this.milli = milli;
       this.expected = expected;
+    }
+
+    @Override
+    public String toString() {
+      Function1<String, String> printEmpty = s -> s.isEmpty() ? "\"\"" : s;
+      return "(" + amount + ", " + maxUnit + ", " + minUnit + ", " + printEmpty.call(nowText)
+          + ", " + printEmpty.call(agoText) + ") on " + StringUtils.padNumber(milli, 12);
     }
   }
 }
