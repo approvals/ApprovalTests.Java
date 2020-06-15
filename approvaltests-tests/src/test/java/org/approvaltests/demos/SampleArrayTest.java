@@ -1,17 +1,19 @@
-package org.approvaltests.tests.demos;
+package org.approvaltests.demos;
 
 import java.util.Arrays;
 
-import junit.framework.TestCase;
-
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
 
-public class SampleArrayTest extends TestCase
+// begin-snippet: demo
+public class SampleArrayTest
 {
-  public void testList() throws Exception
+  @Test
+  public void testList()
   {
     String[] names = {"Llewellyn", "James", "Dan", "Jason", "Katrina"};
     Arrays.sort(names);
     Approvals.verifyAll("", names);
   }
 }
+// end-snippet

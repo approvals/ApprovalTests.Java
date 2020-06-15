@@ -86,7 +86,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 ```java
 @UseReporter(DiffMergeReporter.class)
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/tests/GenericDiffReporterTest.java#L27-L29' title='File snippet `use_reporter_single` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Navigate to start of snippet `use_reporter_single`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/GenericDiffReporterTest.java#L21-L23' title='File snippet `use_reporter_single` was extracted from'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Navigate to start of snippet `use_reporter_single`'>anchor</a></sup>
 <!-- endsnippet -->
 
 <!-- snippet: use_reporter_multiple -->
@@ -134,7 +134,7 @@ public class CustomReporter extends GenericDiffReporter
   }
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L4-L14' title='File snippet `custom_reporter` was extracted from'>snippet source</a> | <a href='#snippet-custom_reporter' title='Navigate to start of snippet `custom_reporter`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L4-L14' title='File snippet `custom_reporter` was extracted from'>snippet source</a> | <a href='#snippet-custom_reporter' title='Navigate to start of snippet `custom_reporter`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
