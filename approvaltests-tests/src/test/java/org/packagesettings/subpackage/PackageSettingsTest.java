@@ -1,4 +1,4 @@
-package org.approvaltests.packagesettingsexample.subpackage;
+package org.packagesettings.subpackage;
 
 import static org.junit.Assert.fail;
 

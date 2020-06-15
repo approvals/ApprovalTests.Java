@@ -38,7 +38,7 @@ Your Package Leveling configuration must be in class called PackageSettings. The
 
 For example if you had a class:
 
-snippet: /approvaltests/src/test/java/org/approvaltests/packagesettingsexample/PackageSettings.java
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java
 
 If you where to call at the org.packagesettings level.
 
@@ -46,16 +46,16 @@ snippet: package_level_settings_get
 
 Then you would get the following settings
 
-snippet: /approvaltests/src/test/java/org/approvaltests/packagesettingsexample/PackageSettingsTest.testRetriveValue.approved.txt
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt
 
 However, if you also had
 
-snippet: /approvaltests/src/test/java/org/approvaltests/packagesettingsexample/subpackage/PackageSettings.java
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java
 
 and you ran the same code but from the org.packagesettings.subpackage  
 then you would get a blended view of the two classes where anything in the sub-package would override the parents.
 
-snippet: /approvaltests/src/test/java/org/approvaltests/packagesettingsexample/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
 
 ---
 
