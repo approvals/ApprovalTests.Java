@@ -21,11 +21,6 @@
             <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests-tests</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.approvaltests</groupId>
-            <artifactId>approvaltests</artifactId>
-            <version>${project.parent.version}</version>
             <type>test-jar</type>
         </dependency>
         <dependency>
@@ -33,10 +28,12 @@
             <artifactId>approvaltests-util</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
