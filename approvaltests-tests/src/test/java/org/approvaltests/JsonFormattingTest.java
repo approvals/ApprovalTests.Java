@@ -1,21 +1,20 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
-import org.approvaltests.Approvals;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 @UseReporter(DiffMergeReporter.class)
 public class JsonFormattingTest
 {
   @Test
-  public void testBasicFormatting() throws Exception
+  public void testBasicFormatting()
   {
     String json = "{\"infos\":{\"address\":\"my address\",\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
     Approvals.verifyJson(json);
   }
   @Test
-  public void testIncorrectFormatting() throws Exception
+  public void testIncorrectFormatting()
   {
     String json = "{\"infos\":{address:my address,\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
     Approvals.verifyJson(json);

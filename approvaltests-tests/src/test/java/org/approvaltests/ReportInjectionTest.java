@@ -1,14 +1,14 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
-import org.approvaltests.Approvals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
-
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 @UseReporter(QuietReporter.class)
-public class ReportInjectionTest extends TestCase
+public class ReportInjectionTest
 {
   public static class MyReporter implements ApprovalFailureReporter
   {
@@ -19,8 +19,10 @@ public class ReportInjectionTest extends TestCase
     }
   }
   private static Class<? extends MyReporter> called = null;
+  // TODO:
   @UseReporter(MyReporter.class)
-  public void testOverrideReporterByParameter() throws Exception
+  @Test
+  public void testOverrideReporterByParameter()
   {
     try
     {

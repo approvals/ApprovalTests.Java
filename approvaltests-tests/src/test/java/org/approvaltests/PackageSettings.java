@@ -1,4 +1,4 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.DiffReporter;

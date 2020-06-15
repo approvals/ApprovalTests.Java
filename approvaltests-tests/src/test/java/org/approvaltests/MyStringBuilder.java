@@ -1,4 +1,4 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
 public class MyStringBuilder
 {

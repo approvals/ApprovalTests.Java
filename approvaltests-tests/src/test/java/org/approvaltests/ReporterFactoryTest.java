@@ -1,20 +1,15 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
-import org.approvaltests.Approvals;
-import org.approvaltests.ReporterFactory;
-import org.approvaltests.StackListings;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.PitReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.junit.jupiter.api.Test;
 
 import com.spun.util.ThreadUtils;
-
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 @UseReporter(ClipboardReporter.class)
 public class ReporterFactoryTest
@@ -32,7 +27,7 @@ public class ReporterFactoryTest
     oneLayerDown();
     assertEquals(PitReporter.class, ReporterFactoryHelper.getClassFor());
   }
-
+  
    */
   @UseReporter(DiffReporter.class)
   public void oneLayerDown() throws Exception

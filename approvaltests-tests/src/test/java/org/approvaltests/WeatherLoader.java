@@ -1,4 +1,4 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
 import com.spun.util.io.NetUtils;
 import com.spun.util.persistence.ExecutableQuery;

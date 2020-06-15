@@ -1,29 +1,30 @@
-package org.approvaltests.tests;
+package org.approvaltests;
 
-import org.approvaltests.Approvals;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
-
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
-public class Samples extends TestCase
+public class Samples
 {
-  public void testString() throws Exception
+  @Test
+  public void testString()
   {
     String s = "Approval";
     s += "Tests";
     Approvals.verify(s);
   }
-  public void testObject() throws Exception
+  @Test
+  public void testObject()
   {
     MyStringBuilder s = new MyStringBuilder();
     s.append("Approval");
     s.append("Tests");
     Approvals.verify(s.toString());
   }
-  public void testArray() throws Exception
+  @Test
+  public void testArray()
   {
     String[] s = new String[2];
     s[0] = "Approval";
