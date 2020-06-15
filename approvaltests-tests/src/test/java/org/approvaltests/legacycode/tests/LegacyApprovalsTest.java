@@ -1,16 +1,16 @@
 package org.approvaltests.legacycode.tests;
 
-import java.awt.Point;
-
-import junit.framework.TestCase;
+import java.awt.*;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.legacycode.AllPoints;
 import org.approvaltests.legacycode.LegacyApprovals;
+import org.junit.jupiter.api.Test;
 
-public class LegacyApprovalsTest extends TestCase
+public class LegacyApprovalsTest
 {
-  public void testLockDown() throws Exception
+  @Test
+  public void testLockDown()
   {
     LegacyApprovals.LockDown(this, "processCall", new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
@@ -18,11 +18,13 @@ public class LegacyApprovalsTest extends TestCase
   {
     return String.format("[%s, %s]", i, s);
   }
-  public void testSizes() throws Exception
+  @Test
+  public void testSizes()
   {
     Approvals.verifyAll("size", LegacyApprovals.getSizes(new String[9], new String[3], new String[5]));
   }
-  public void testLockDownWith3Things() throws Exception
+  @Test
+  public void testLockDownWith3Things()
   {
     LegacyApprovals.LockDown(this, "processCall", AllPoints.get(0, 0, 1, 1), new String[]{"a", "b", "c", "d"},
         new Integer[]{1, 2, 3, 4, 5});

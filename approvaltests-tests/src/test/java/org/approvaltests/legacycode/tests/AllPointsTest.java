@@ -4,13 +4,12 @@ import java.awt.Point;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.legacycode.AllPoints;
+import org.junit.jupiter.api.Test;
 
-import junit.framework.TestCase;
-
-//@UseReporter(DiffMergeReporter.class)
-public class AllPointsTest extends TestCase
+public class AllPointsTest
 {
-  public void testAllPoints() throws Exception
+  @Test
+  public void testAllPoints()
   {
     Point[] p = AllPoints.get(1, 2, 9, 10);
     Approvals.verifyAll("point", p);
