@@ -182,9 +182,9 @@ public class DateDifferenceTest
       String expected = getTimeTextUseCases[i].expected;
       DateDifference d = new DateDifference(milli);
       assertEquals(
+          expected, d.getTimeText(amount, maxUnit, minUnit, nowText, agoText, units),
           "getTimeText(" + amount + ", " + maxUnit + ", " + minUnit + ", " + nowText + ", " + agoText + ", "
-              + Arrays.toString(units) + ") on " + milli,
-          expected, d.getTimeText(amount, maxUnit, minUnit, nowText, agoText, units));
+              + Arrays.toString(units) + ") on " + milli);
     }
   }
   private class GetTimeTextUseCase
