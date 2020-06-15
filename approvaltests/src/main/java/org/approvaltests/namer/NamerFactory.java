@@ -1,5 +1,6 @@
 package org.approvaltests.namer;
 
+import com.spun.util.SystemUtils;
 import org.lambda.functions.Function0;
 import org.packagesettings.PackageLevelSettings;
 
@@ -17,6 +18,10 @@ public class NamerFactory
   public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)
   {
     return asMachineSpecificTest(environmentLabeller.call());
+  }
+  public static NamedEnvironment asMachineNameSpecificTest()
+  {
+    return asMachineSpecificTest(SystemUtils.getComputerName());
   }
   public static NamedEnvironment asOsSpecificTest()
   {

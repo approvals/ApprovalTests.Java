@@ -1,4 +1,0 @@
-[regular.txt, true] = regular.txt 
-[with spaces.txt, true] = "with spaces.txt" 
-[regular.txt, false] = regular.txt 
-[with spaces.txt, false] = with\ spaces.txt 

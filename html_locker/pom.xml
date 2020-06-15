@@ -19,6 +19,11 @@
         </dependency>
         <dependency>
             <groupId>com.approvaltests</groupId>
+            <artifactId>approvaltests-tests</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.approvaltests</groupId>
             <artifactId>approvaltests</artifactId>
             <version>${project.parent.version}</version>
             <type>test-jar</type>

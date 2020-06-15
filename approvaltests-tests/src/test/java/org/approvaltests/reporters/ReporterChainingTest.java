@@ -1,4 +1,4 @@
-package org.approvaltests.reporters.tests;
+package org.approvaltests.reporters;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
