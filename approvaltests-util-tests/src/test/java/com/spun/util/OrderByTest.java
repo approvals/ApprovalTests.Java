@@ -1,11 +1,13 @@
 package com.spun.util;
 
-import static org.junit.Assert.assertEquals;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.OrderBy;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OrderByTest
 {
@@ -25,7 +27,7 @@ public class OrderByTest
     Arrays.sort(startingArray, compare);
     for (int i = 0; i < startingArray.length; i++)
     {
-      assertEquals("Returned[" + i + "]", sortedArray[i], startingArray[i]);
+      assertEquals(sortedArray[i], startingArray[i], "Returned[" + i + "]");
     }
   }
   private <T> Object[] makeSortedArray(T[] startingArray, int[] sortedOrder)

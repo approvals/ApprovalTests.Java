@@ -1,13 +1,13 @@
 package org.approvaltests.reporters;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.approvaltests.Approvals;
-import org.approvaltests.reporters.EnvironmentAwareReporter;
-import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.MultiReporter;
+import org.junit.jupiter.api.Test;
 
-import junit.framework.TestCase;
-
-public class ReporterChainingTest extends TestCase
+public class ReporterChainingTest
 {
   public static class ExceptionThrowingReporter implements EnvironmentAwareReporter
   {
@@ -50,6 +50,7 @@ public class ReporterChainingTest extends TestCase
       return true;
     }
   }
+  @Test
   public void testFirstWorkingReporter() throws Exception
   {
     WorkingReporter workingReporter = new WorkingReporter();
@@ -61,7 +62,8 @@ public class ReporterChainingTest extends TestCase
     assertNull(workingReporter2.received);
     assertTrue(reporter.isWorkingInThisEnvironment(""));
   }
-  public void testMultiReporter() throws Exception
+  @Test
+  public void testMultiReporter()
   {
     WorkingReporter workingReporter = new WorkingReporter();
     WorkingReporter workingReporter2 = new WorkingReporter();
@@ -70,7 +72,8 @@ public class ReporterChainingTest extends TestCase
     assertEquals("Hello", workingReporter.received);
     assertEquals("Hello", workingReporter2.received);
   }
-  public void testMultiReporterWithExceptions() throws Exception
+  @Test
+  public void testMultiReporterWithExceptions()
   {
     ExceptionThrowingReporter exception1 = new ExceptionThrowingReporter();
     ExceptionThrowingReporter exception2 = new ExceptionThrowingReporter();
@@ -81,8 +84,8 @@ public class ReporterChainingTest extends TestCase
     }
     catch (Throwable t)
     {
-      assertEquals(true, exception1.run);
-      assertEquals(true, exception2.run);
+      assertTrue(exception1.run);
+      assertTrue(exception2.run);
       Approvals.verify(t.getMessage());
     }
   }

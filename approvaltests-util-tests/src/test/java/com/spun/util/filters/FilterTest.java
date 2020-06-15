@@ -1,19 +1,20 @@
 package com.spun.util.filters;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 
 import com.spun.util.ObjectUtils;
-import com.spun.util.filters.Filter;
 
-import junit.framework.TestCase;
-
-public class FilterTest extends TestCase
+public class FilterTest
 {
-  public void testAll() throws Exception
+  @Test
+  public void testAll()
   {
     Integer[] array = {1, 2, 3, 4, 5};
     FilterOdd filter = new FilterOdd();
-    assertEquals("odd", 3, Query.where(array, i -> filter.isExtracted(i)).size());
+    assertEquals(3, Query.where(array, i -> filter.isExtracted(i)).size(), "odd");
   }
   private static class FilterOdd implements Filter<Integer>
   {

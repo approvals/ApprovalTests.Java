@@ -1,9 +1,8 @@
 package com.spun.util.io;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
-import junit.framework.TestCase;
 import com.spun.util.io.FileMonitor.FileListener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -43,7 +42,7 @@ public class FileMonitorTest
     }
     try
     {
-      assertEquals(true, done, "File processed");
+      assertTrue(done, "File processed");
     }
     finally
     {
