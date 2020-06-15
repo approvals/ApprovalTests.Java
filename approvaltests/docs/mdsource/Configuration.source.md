@@ -46,7 +46,7 @@ snippet: package_level_settings_get
 
 Then you would get the following settings
 
-snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt
 
 However, if you also had
 
@@ -55,7 +55,7 @@ snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/Packa
 and you ran the same code but from the org.packagesettings.subpackage  
 then you would get a blended view of the two classes where anything in the sub-package would override the parents.
 
-snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt
+snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt
 
 ---
 

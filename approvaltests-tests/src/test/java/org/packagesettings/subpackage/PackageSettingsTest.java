@@ -7,7 +7,7 @@ import org.packagesettings.PackageLevelSettings;
 public class PackageSettingsTest
 {
   @Test
-  public void testRetriveValueWithOverRide()
+  public void testRetrieveValueWithOverRide()
   {
     Approvals.verify(PackageLevelSettings.get());
   }

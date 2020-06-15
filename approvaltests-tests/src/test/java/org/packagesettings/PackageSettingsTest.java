@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class PackageSettingsTest
 {
   @Test
-  public void testRetriveValue()
+  public void testRetrieveValue()
   {
     // begin-snippet: package_level_settings_get
     Map<String, Settings> settings = PackageLevelSettings.get();

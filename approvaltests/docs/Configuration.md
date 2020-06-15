@@ -96,14 +96,14 @@ Map<String, Settings> settings = PackageLevelSettings.get();
 
 Then you would get the following settings
 
-<!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt'/></a>
+<!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt -->
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt'/></a>
 ```txt
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Llewellyn [from org.packagesettings.PackageSettings] 
 rating : 10 [from org.packagesettings.PackageSettings] 
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt#L1-L3' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetriveValue.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt#L1-L3' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt`'>anchor</a></sup>
 <!-- endsnippet -->
 
 However, if you also had
@@ -126,15 +126,15 @@ public class PackageSettings
 and you ran the same code but from the org.packagesettings.subpackage  
 then you would get a blended view of the two classes where anything in the sub-package would override the parents.
 
-<!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt'/></a>
+<!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt -->
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt'/></a>
 ```txt
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Test Name [from org.packagesettings.subpackage.PackageSettings] 
 rating : true [from org.packagesettings.subpackage.PackageSettings] 
 ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings] 
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt#L1-L4' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetriveValueWithOverRide.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt#L1-L4' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ---
