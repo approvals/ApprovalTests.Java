@@ -1,6 +1,6 @@
 package com.spun.util;
 
-import static com.spun.JunitUpgrade.assertEquals2;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -14,10 +14,10 @@ public class NumberUtilsTest
   @Test
   public void testFloor()
   {
-    assertEquals2("rounded Down", 1, NumberUtils.floor(1.0));
-    assertEquals2("rounded Down", 1, NumberUtils.floor(1.1));
-    assertEquals2("rounded Down", 1, NumberUtils.floor(1.5));
-    assertEquals2("rounded Down", 1, NumberUtils.floor(1.999));
+    assertEquals(1, (Object) NumberUtils.floor(1.0), "rounded Down");
+    assertEquals(1, (Object) NumberUtils.floor(1.1), "rounded Down");
+    assertEquals(1, (Object) NumberUtils.floor(1.5), "rounded Down");
+    assertEquals(1, (Object) NumberUtils.floor(1.999), "rounded Down");
   }
   @Test
   public void testSignificantDigits()
@@ -25,7 +25,7 @@ public class NumberUtilsTest
     for (int i = 0; i < 11; i++)
     {
       double digit = Double.valueOf(i + ".5");
-      assertEquals2("significant digits", i + 1, NumberUtils.setSignificantDigit(digit, 0), 0.005);
+      assertEquals(i + 1, NumberUtils.setSignificantDigit(digit, 0), 0.005, "significant digits");
     }
   }
   @Test

@@ -1,4 +1,4 @@
-package org.approvaltests.approvers.tests;
+package org.approvaltests.approvers;
 
 import java.io.File;
 import java.io.IOException;
