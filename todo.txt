@@ -28,7 +28,6 @@ https://github.com/approvals/ApprovalTests.Java/issues/36
 approvaltests
 [INFO] The following dependencies in Dependencies have newer versions:
 [INFO]   javax.mail:mail ......................................... 1.4.7 -> 1.6.2
-[INFO]   log4j:log4j ............................................. 1.2.9 -> 1.2.17
 [INFO]   org.easymock:easymock ..................................... 3.6 -> 4.2
 [INFO]   org.testng:testng ...................................... 6.14.3 -> 7.1.0
 [INFO]   velocity:velocity ......................................... 1.4 -> 1.5
@@ -37,7 +36,6 @@ approvaltests-util
 [INFO] The following dependencies in Dependencies have newer versions:
 [INFO]   com.approvaltests:approvaltests ......................... 4.1 -> 5.0.0
 [INFO]   commons-collections:commons-collections ................. 3.1 -> 3.2.2 or collections4?
-[INFO]   log4j:log4j .......................................... 1.2.9 -> 1.2.17
 [INFO]   velocity:velocity ......................................... 1.4 -> 1.5
 
 approvaltests-hadoop
