@@ -1,7 +1,7 @@
 import os
 
 
-from scripts.version import Version
+from scripts_java.version import Version
 
 
 class ReleaseDetails:

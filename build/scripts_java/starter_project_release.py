@@ -2,12 +2,12 @@ import shutil
 import time
 from collections import Callable
 
-from scripts.git_utilities import GitUtilities
-from scripts.release_constants import release_constants
-from scripts.utilities import read_file, use_directory, replace_text_in_file, run, check_step
+from scripts_java.git_utilities import GitUtilities
+from scripts_java.release_constants import release_constants
+from scripts_java.utilities import read_file, use_directory, replace_text_in_file, run, check_step
 
 
-from scripts.release_details import ReleaseDetails
+from scripts_java.release_details import ReleaseDetails
 from typing import Callable
 class PrepareStarterProjectRelease:
     @staticmethod
