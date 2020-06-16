@@ -16,7 +16,7 @@ class PrepareRelease:
         self.details = details
 
 
-def build(update_version: Callable[[Version], Version], deploy: bool) -> None:
+def build(update_version: Callable[[Version], Version]) -> None:
     old_version = load_current_version()
     new_version = update_version(old_version)
     release_details = ReleaseDetails(old_version, new_version)
