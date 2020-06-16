@@ -4,4 +4,4 @@ from scripts import version
 from scripts.prepare_release import build
 
 if __name__ == '__main__':
-    build(lambda v: v.update_major(), deploy = True)
+    build(lambda v: v.update_major())
