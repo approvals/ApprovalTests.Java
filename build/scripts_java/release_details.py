@@ -1,6 +1,3 @@
-import os
-
-
 from scripts.version import Version
 
 
