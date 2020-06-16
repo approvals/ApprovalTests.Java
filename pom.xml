@@ -5,7 +5,7 @@
 
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests-parent</artifactId>
-    <version>6.0.3-SNAPSHOT</version>
+    <version>7.0.0</version>
     <packaging>pom</packaging>
 
     <name>ApprovalTests.Java</name>
@@ -24,7 +24,7 @@
     <developers>
         <developer>
             <name>Llewellyn Falco</name>
-            <email>isidore@setgame.com</email>
+            <email>llewellyn.falco@gmail.com</email>
             <organization>Independent</organization>
             <organizationUrl>https://github.com/isidore</organizationUrl>
         </developer>
