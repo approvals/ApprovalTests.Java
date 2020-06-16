@@ -41,7 +41,6 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   private static Introspector     introspectorWithLog;
   private RuntimeLogger           log;
   private static boolean          beKindToNulls = false;
-
   /**
    *  init - does nothing - we need to have setRuntimeLogger
    *  called before getting our introspector, as the default
@@ -50,7 +49,6 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   public void init() throws Exception
   {
   }
-
   public void setRuntimeLogger(RuntimeLogger runtimeLogger)
   {
     introspector = new IntrospectorBase();
@@ -61,12 +59,10 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   {
     beKindToNulls = behavior;
   }
-
   public Iterator<?> getIterator(Object obj, Info i) throws Exception
   {
     return getStandardIterator(obj, i);
   }
-
   public static Iterator<?> getStandardIterator(Object obj, Info i)
   {
     if (obj.getClass().isArray())
@@ -85,10 +81,10 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       return ((Iterator<?>) obj);
     }
-    else if (obj instanceof Enumeration) { return new EnumerationIterator((Enumeration<?>) obj); }
+    else if (obj instanceof Enumeration)
+    { return new EnumerationIterator((Enumeration<?>) obj); }
     throw new VelocityParsingError("Could not determine type of iterator in " + "#foreach loop ", i);
   }
-
   public VelMethod getMethod(Object obj, String methodName, Object[] args, Info i) throws Exception
   {
     if (obj == null)
@@ -103,11 +99,13 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       }
     }
     Method m = introspector.getMethod(obj.getClass(), methodName, args);
-    if (m == null) { throw new VelocityParsingError(
-        "Method " + getMethodText(obj.getClass().getName(), methodName, args) + " does not exist.", i); }
+    if (m == null)
+    {
+      throw new VelocityParsingError(
+          "Method " + getMethodText(obj.getClass().getName(), methodName, args) + " does not exist.", i);
+    }
     return new VelMethodImpl(m);
   }
-
   public static String getMethodText(String className, String methodName, Object[] args)
   {
     StringBuffer methodSignature = new StringBuffer();
@@ -118,11 +116,11 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     return className + "." + methodName + "(" + methodSignature + ") ";
   }
-
   public VelPropertyGet getPropertyGet(Object obj, String identifier, Info i) throws Exception
   {
     AbstractExecutor executor;
-    if (obj == null) { throw new VelocityParsingError("tried " + getPropertyText("null", identifier), i); }
+    if (obj == null)
+    { throw new VelocityParsingError("tried " + getPropertyText("null", identifier), i); }
     Class<? extends Object> claz = obj.getClass();
     // trying getFoo()
     executor = new PropertyExecutor(log, introspectorWithLog, claz, identifier);
@@ -136,16 +134,14 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       // trying  isFoo()
       executor = new BooleanPropertyExecutor(log, introspectorWithLog, claz, identifier);
     }
-    if (!executor.isAlive()) { throw new VelocityParsingError(
-        "Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
+    if (!executor.isAlive())
+    { throw new VelocityParsingError("Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
     return new VelGetterImpl(executor);
   }
-
   private String getPropertyText(String className, String identifier)
   {
     return className + "." + identifier + " ";
   }
-
   public VelPropertySet getPropertySet(Object obj, String identifier, Object arg, Info i) throws Exception
   {
     Class<? extends Object> claz = obj.getClass();
@@ -159,7 +155,8 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       try
       {
         vm = getMethod(obj, "set" + identifier, params, i);
-        if (vm == null) { throw new NoSuchMethodException(); }
+        if (vm == null)
+        { throw new NoSuchMethodException(); }
       }
       catch (NoSuchMethodException nsme2)
       {
@@ -174,7 +171,8 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
           sb.setCharAt(3, Character.toLowerCase(sb.charAt(3)));
         }
         vm = getMethod(obj, sb.toString(), params, i);
-        if (vm == null) { throw new NoSuchMethodException(); }
+        if (vm == null)
+        { throw new NoSuchMethodException(); }
       }
     }
     catch (NoSuchMethodException nsme)
@@ -192,9 +190,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     return (vm != null) ? new VelSetterImpl(vm) : null;
   }
-
   /*                          INNER CLASS                                */
-
   public static class VelMethodImpl implements VelMethod
   {
     Method method = null;
