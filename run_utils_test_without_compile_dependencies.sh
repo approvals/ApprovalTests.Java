@@ -1,1 +1,0 @@
-mvn verify -pl approvaltests-util-tests/

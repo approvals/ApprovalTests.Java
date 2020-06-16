@@ -57,4 +57,8 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
       }
     });
   }
+
+  @Override public String toString() {
+    return getClass().getName();
+  }
 }

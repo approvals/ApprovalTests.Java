@@ -1,10 +1,11 @@
 package com.spun.util;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import org.junit.jupiter.api.Test;
 
 import com.spun.util.tests.TestUtils;
-import org.junit.jupiter.api.Test;
 
 public class TimedObjectTest
 {
@@ -14,18 +15,18 @@ public class TimedObjectTest
     double multiplier = TestUtils.getTimerMultiplier();
     TimedObject object = new TimedObject((long) (200 * multiplier));
     object.set(Boolean.FALSE);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(75);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(75);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(75);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(75);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(75);
-    assertNotNull("Still false", object.get());
+    assertNotNull(object.get(), "Still false");
     Thread.sleep(350);
-    assertNull("Cleared", object.get());
+    assertNull(object.get(), "Cleared");
   }
 }

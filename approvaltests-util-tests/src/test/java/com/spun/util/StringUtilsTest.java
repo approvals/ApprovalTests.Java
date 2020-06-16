@@ -1,6 +1,5 @@
 package com.spun.util;
 
-import static com.spun.JunitUpgrade.assertEquals2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;

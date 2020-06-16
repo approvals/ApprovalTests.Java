@@ -1,18 +1,18 @@
 package com.spun.util.io;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.File;
-import junit.framework.TestCase;
 
 public class FileTestUtils
 {
-  
   public static void assertFileRecentlyCreated(String fileName, boolean delete)
   {
     File file = new File(fileName);
     try
     {
-      TestCase.assertTrue("File exists", file.exists());
-      TestCase.assertTrue("File recently created", (System.currentTimeMillis() - file.lastModified()) < 5000);
+      assertTrue(file.exists(), "File exists");
+      assertTrue((System.currentTimeMillis() - file.lastModified()) < 5000, "File recently created");
     }
     finally
     {
@@ -22,6 +22,4 @@ public class FileTestUtils
       }
     }
   }
-  
-  
 }

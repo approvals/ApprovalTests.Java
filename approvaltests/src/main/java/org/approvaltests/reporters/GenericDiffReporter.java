@@ -115,4 +115,9 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     String extensionWithDot = FileUtils.getExtensionWithDot(forFile);
     return validExtensionsWithDot.contains(extensionWithDot);
   }
+
+  @Override
+  public String toString() {
+    return getClass().getName();
+  }
 }
