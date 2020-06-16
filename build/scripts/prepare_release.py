@@ -35,7 +35,7 @@ def build(update_version: Callable[[Version], Version]) -> None:
     set_snapshot(release_details)
     PrepareDocumentationRelease.prepare_documentation(release_details)
     PrepareStarterProjectRelease.prepare_starter_project(release_details)
-
+    print("Done")
 
 def load_current_version() -> Version:
     os.chdir("../../ApprovalTests.java")
