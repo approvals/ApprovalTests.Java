@@ -1,9 +1,7 @@
 package com.spun.util.io;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -23,7 +21,6 @@ import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
  **/
 public class NetUtils
 {
-  
   public static void ftpUpload(FTPConfig config, String directory, File file, String remoteFileName)
       throws IOException
   {
@@ -40,12 +37,10 @@ public class NetUtils
     server.sendNoOp();
     server.disconnect();
   }
-  
   public static void ftpUpload(FTPConfig config, String directory, File file) throws IOException
   {
     ftpUpload(config, directory, file, file.getName());
   }
-  
   public static void sftpUpload(FTPConfig config, File file, String remoteFileName) throws IOException
   {
     SshClient ssh = new SshClient();
@@ -55,7 +50,6 @@ public class NetUtils
     sftp.quit();
     ssh.disconnect();
   }
-
   private static SftpClient sshLogin(FTPConfig config, SshClient ssh) throws IOException
   {
     ssh.setSocketTimeout(60000);
@@ -67,7 +61,6 @@ public class NetUtils
     SftpClient sftp = ssh.openSftpClient();
     return sftp;
   }
-
   public static File sftpDownload(FTPConfig config, File file, String remoteFileName) throws IOException
   {
     SshClient ssh = new SshClient();
@@ -77,7 +70,6 @@ public class NetUtils
     ssh.disconnect();
     return file;
   }
-  
   private static void assertValidReplyCode(int code, FTPClient ftp)
   {
     if (FTPReply.isPositiveCompletion(code))
@@ -102,21 +94,32 @@ public class NetUtils
           + ftp.getReplyString() + "'");
     }
   }
-  
-
   public static String loadWebPage(String url, String parameters)
   {
     try
     {
       HttpClient client = new HttpClient();
       GetMethod method = new GetMethod(url);
-      method.setQueryString(parameters);
+      if (parameters != null)
+      {
+        method.setQueryString(parameters);
+      }
       client.executeMethod(method);
       String html = method.getResponseBodyAsString();
       return html;
     }
     catch (Exception e)
     {
+      throw ObjectUtils.throwAsError(e);
+    }
+  }
+
+  public static String readWebpage(String query) {
+    try {
+      URL url = new URL(query);
+      InputStream inputStream = url.openStream();
+      return FileUtils.readStream(inputStream);
+    } catch (Exception e) {
       throw ObjectUtils.throwAsError(e);
     }
   }
