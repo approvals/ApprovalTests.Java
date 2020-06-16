@@ -18,3 +18,4 @@ target
 **/target
 .vscode/
 build/venv*/
+__pycache__/

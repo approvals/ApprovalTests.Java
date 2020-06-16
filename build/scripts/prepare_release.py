@@ -19,7 +19,7 @@ class PrepareRelease:
 def build(update_version: Callable[[Version], Version], deploy: bool) -> None:
     old_version = load_current_version()
     new_version = update_version(old_version)
-    release_details = ReleaseDetails(old_version, new_version, deploy)
+    release_details = ReleaseDetails(old_version, new_version)
 
     PrepareDocumentationRelease.prepare_documentation(release_details)
 
