@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/build/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster)
+
 toc
 
 # ApprovalTests.Java
