@@ -1,6 +1,10 @@
 package com.spun.util.io;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -30,8 +34,8 @@ public class NetUtils
     server.login(config.userName, config.password);
     assertValidReplyCode(server.getReplyCode(), server);
     assertValidReplyCode(server.cwd(directory), server);
-    server.setFileTransferMode(FTP.IMAGE_FILE_TYPE);
-    server.setFileType(FTP.IMAGE_FILE_TYPE);
+    server.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+    server.setFileType(FTP.BINARY_FILE_TYPE);
     server.storeFile(remoteFileName, new FileInputStream(file));
     assertValidReplyCode(server.getReplyCode(), server);
     server.sendNoOp();
@@ -113,13 +117,16 @@ public class NetUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-
-  public static String readWebpage(String query) {
-    try {
+  public static String readWebpage(String query)
+  {
+    try
+    {
       URL url = new URL(query);
       InputStream inputStream = url.openStream();
       return FileUtils.readStream(inputStream);
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
