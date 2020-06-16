@@ -31,7 +31,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 ## Getting started
 
 The best way to get started is download and open the [Starter Project](https://github.com/approvals/approvaltests.java.starterproject).  
-It is a maven project and can be imported in to any editor.
+It is a maven project and can be imported into any editor.
 
 
 ## How to get it
@@ -42,7 +42,7 @@ add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>6.0.0</version>
+    <version>7.0.0</version>
 </dependency>
 ```
 
