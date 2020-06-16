@@ -62,7 +62,7 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>1.1.0</version>
+            <version>3.6</version>
             <optional>true</optional>
         </dependency>
         <dependency>

@@ -28,7 +28,7 @@ https://github.com/approvals/ApprovalTests.Java/issues/36
 approvaltests
 [INFO] The following dependencies in Dependencies have newer versions:
 [INFO]   commons-httpclient:commons-httpclient ................... 3.1 -> 3.1
-[INFO]   commons-net:commons-net ................................. 1.1.0 -> 3.6
+[INFO]   commons-net:commons-net ................................. 3.6 -> 3.6
 [INFO]   javax.mail:mail ......................................... 1.4.7 -> 1.6.2
 [INFO]   log4j:log4j ............................................. 1.2.9 -> 1.2.17
 [INFO]   org.easymock:easymock ..................................... 3.6 -> 4.2
@@ -40,7 +40,7 @@ approvaltests-util
 [INFO]   com.approvaltests:approvaltests ......................... 4.1 -> 5.0.0
 [INFO]   commons-collections:commons-collections ................. 3.1 -> 3.2.2 or collections4?
 [INFO]   commons-httpclient:commons-httpclient ................... 3.1 -> 3.1
-[INFO]   commons-net:commons-net ................................. 1.1.0 -> 3.6
+[INFO]   commons-net:commons-net ................................. 3.6 -> 3.6
 [INFO]   log4j:log4j .......................................... 1.2.9 -> 1.2.17
 [INFO]   velocity:velocity ......................................... 1.4 -> 1.5
 
@@ -50,7 +50,7 @@ approvaltests-hadoop
 [INFO]   org.apache.hadoop:hadoop-common ....................... 3.0.2 -> 3.2.1
 [INFO]   org.apache.hadoop:hadoop-core .................... 0.20.205.0 -> 1.2.1
 [INFO]   org.apache.hadoop:hadoop-test ......................... 1.0.3 -> 1.2.1
-[INFO]   org.apache.mrunit:mrunit ................... 0.9.0-incubating -> 1.1.0
+[INFO]   org.apache.mrunit:mrunit ................... 0.9.0-incubating -> 3.6
 
 
 
