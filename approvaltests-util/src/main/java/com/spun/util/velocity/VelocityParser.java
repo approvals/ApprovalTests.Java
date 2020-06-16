@@ -3,12 +3,10 @@ package com.spun.util.velocity;
 import java.io.File;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Enumeration;
 import java.util.Properties;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -24,17 +22,10 @@ import com.spun.util.parser.ParserCommons;
 public class VelocityParser
 {
   private static VelocityEngine currentEngine = null;
-
   static
   {
-    @SuppressWarnings("unchecked")
-    Enumeration<Logger> e = LogManager.getCurrentLoggers();
-    while (e.hasMoreElements())
-    {
-      e.nextElement().setLevel(Level.OFF);
-    }
+    LogManager.getRootLogger().atLevel(Level.OFF);
   }
-
   public static String parseFile(String template, ContextAware process)
   {
     Asserts.assertFileExists("Velocity template", template);
@@ -50,7 +41,6 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(file, props, new ContextAware[]{process, Default.INSTANCE});
   }
-
   public static String parseJar(String template, ContextAware process)
   {
     Properties props = new Properties();
@@ -64,7 +54,6 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
-
   public static String parseString(String template, ContextAware process)
   {
     Properties props = new Properties();
@@ -75,19 +64,16 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
-
   public static String parse(String template, Properties props, ContextAware process)
   {
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
-
   public static String parse(String template, Properties props, ContextAware[] process)
   {
     StringWriter out = new StringWriter();
     parse(template, props, process, out);
     return out.toString();
   }
-
   public static Writer parse(String template, Properties props, ContextAware process[], Writer out)
   {
     try
@@ -120,17 +106,16 @@ public class VelocityParser
     }
     return currentEngine;
   }
-
   private static boolean isDifferentForProperties(Properties props, VelocityEngine velo, String[] keys)
   {
     for (int i = 0; i < keys.length; i++)
     {
       String key = keys[i];
-      if (!ObjectUtils.isEqual(props.get(key), velo.getProperty(key))) { return true; }
+      if (!ObjectUtils.isEqual(props.get(key), velo.getProperty(key)))
+      { return true; }
     }
     return false;
   }
-
   /**
    * Parse a File to a File
    **/
@@ -138,7 +123,6 @@ public class VelocityParser
   {
     return parseFile(templateFileName, new File(outputFileName), process);
   }
-
   /**
    * Parse a File to a File
    **/
@@ -155,7 +139,6 @@ public class VelocityParser
       throw ObjectUtils.throwAsError(e);
     }
   }
-
   public static class FileParseCall implements ParseCall
   {
     public static FileParseCall INSTANCE = new FileParseCall();
@@ -164,7 +147,6 @@ public class VelocityParser
       return parseFile(template, process);
     }
   }
-
   public static class JarParseCall implements ParseCall
   {
     public static JarParseCall INSTANCE = new JarParseCall();
@@ -173,7 +155,6 @@ public class VelocityParser
       return parseJar(template, process);
     }
   }
-
   public static class Default implements ContextAware
   {
     public static ContextAware INSTANCE = new Default();
@@ -182,8 +163,6 @@ public class VelocityParser
       context.put("commons", ParserCommons.INSTANCE);
     }
   }
-
-
   public static String parseFromClassPath(Class<?> clazz, String filename, ContextAware context)
   {
     String resource = FileUtils.readFromClassPath(clazz, filename);
