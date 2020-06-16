@@ -16,123 +16,112 @@ import com.spun.util.parser.TemplateDate;
 
 public class DateDifferenceTest
 {
-  private static final long  YEAR_MS                          = 1000 * 60 * 60 * 24 * 365L;
-  private static final long  MONTH_MS                         = 1000 * 60 * 60 * 24 * 30L;
+  private static final long YEAR_MS                          = 1000 * 60 * 60 * 24 * 365L;
+  private static final long MONTH_MS                         = 1000 * 60 * 60 * 24 * 30L;
   // private static final long WEEK_MS   = 1000 * 60 * 60 * 24 * 7L; 
-  private static final long  DAY_MS                           = 1000 * 60 * 60 * 24L;
-  private static final long  HOUR_MS                          = 1000 * 60 * 60L;
-  private static final long  MINUTE_MS                        = 1000 * 60L;
-  private static final long  SECOND_MS                        = 1000L;
-  private long               getRoundedDifferenceUseCases[][] = {
-                                                                 // wanted,                 round,            milli,                     expected
-                                                                 {Calendar.MILLISECOND,
-                                                                  Calendar.YEAR,
-                                                                  YEAR_MS + 354,
-                                                                  354L},
-                                                                 {Calendar.MILLISECOND,
-                                                                  Calendar.YEAR,
-                                                                  YEAR_MS - 354,
-                                                                  YEAR_MS - 354},
-                                                                 {Calendar.DATE,
-                                                                  Calendar.YEAR,
-                                                                  YEAR_MS + 3 * DAY_MS,
-                                                                  3L},
-                                                                 {Calendar.DATE,
-                                                                  Calendar.YEAR,
-                                                                  YEAR_MS - 3 * DAY_MS,
-                                                                  (YEAR_MS - 3 * DAY_MS) / DAY_MS},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.HOUR,
-                                                                  HOUR_MS + 3 * SECOND_MS,
-                                                                  3L},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.HOUR,
-                                                                  HOUR_MS - 3 * SECOND_MS,
-                                                                  (HOUR_MS - 3 * SECOND_MS) / SECOND_MS},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.HOUR,
-                                                                  HOUR_MS + 3 * MINUTE_MS,
-                                                                  3 * MINUTE_MS / SECOND_MS},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.HOUR,
-                                                                  HOUR_MS - 3 * MINUTE_MS,
-                                                                  (HOUR_MS - 3 * MINUTE_MS) / SECOND_MS},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.MINUTE,
-                                                                  MINUTE_MS + 3 * SECOND_MS,
-                                                                  3L},
-                                                                 {Calendar.SECOND,
-                                                                  Calendar.MINUTE,
-                                                                  MINUTE_MS - 3 * SECOND_MS,
-                                                                  (MINUTE_MS - 3 * SECOND_MS) / SECOND_MS},};
-  String[]                   unitsArray                       = {"Year",
-                                                                 "Years",
-                                                                 "Month",
-                                                                 "Months",
-                                                                 "Week",
-                                                                 "Weeks",
-                                                                 "Day",
-                                                                 "Days",
-                                                                 "Hour",
-                                                                 "Hours",
-                                                                 "Min",
-                                                                 "Mins",
-                                                                 "Sec",
-                                                                 "Secs",
-                                                                 "Milli",
-                                                                 "Millis"};
-  private GetTimeTextUseCase getTimeTextUseCases[]            = {new GetTimeTextUseCase(5, Calendar.YEAR,
-      Calendar.MILLISECOND, "now", "", unitsArray, YEAR_MS, "1 Year, 0 Months, 0 Weeks, 0 Days, 0 Hours"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     YEAR_MS + (2 * MONTH_MS),
-                                                                     "1 Year, 2 Months, 0 Weeks, 0 Days, 0 Hours"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     YEAR_MS - (2 * MONTH_MS),
-                                                                     "10 Months, 0 Weeks, 5 Days, 0 Hours, 0 Mins"),
-                                                                 new GetTimeTextUseCase(2, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "", "ago", unitsArray,
-                                                                     YEAR_MS + (2 * MONTH_MS),
-                                                                     "1 Year, 2 Months ago"),
-                                                                 new GetTimeTextUseCase(5, Calendar.MILLISECOND,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     YEAR_MS + (2 * MONTH_MS),
-                                                                     "36720000000 Millis"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.DATE, "today", "ago", unitsArray,
-                                                                     DAY_MS, "1 Day ago"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.DATE, "today", "ago", unitsArray,
-                                                                     DAY_MS - 1, "today"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     new GregorianCalendar(2003, 1,
-                                                                         28),                                                                    /* 1 = Feb */
-                                                                     new GregorianCalendar(2003, 2, 31),
-                                                                     "1 Month, 0 Weeks, 1 Day, 0 Hours, 0 Mins"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     new GregorianCalendar(2003, 1, 1),
-                                                                     new GregorianCalendar(2003, 2, 1),
-                                                                     "4 Weeks, 0 Days, 0 Hours, 0 Mins, 0 Secs"),
-                                                                 new GetTimeTextUseCase(5, Calendar.YEAR,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     new GregorianCalendar(2004, 1, 1),
-                                                                     new GregorianCalendar(2004, 2, 1),
-                                                                     "4 Weeks, 1 Day, 0 Hours, 0 Mins, 0 Secs"),
-                                                                 new GetTimeTextUseCase(5, Calendar.MONTH,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     new GregorianCalendar(1990, 0,
-                                                                         1),                                                                     /* 7 * 12 should be 84 */
-                                                                     new GregorianCalendar(1997, 0, 1),
-                                                                     "85 Months, 1 Week, 0 Days, 0 Hours, 0 Mins"),
-                                                                 new GetTimeTextUseCase(5, Calendar.DATE,
-                                                                     Calendar.MILLISECOND, "now", "", unitsArray,
-                                                                     new GregorianCalendar(2004, 3, 3, 10,
-                                                                         0),                                                                     /* Daylight savings is in month '3' */
-                                                                     new GregorianCalendar(2004, 3, 4, 11, 0),
-                                                                     "1 Day, 0 Hours, 0 Mins, 0 Secs, 0 Millis")};
+  private static final long DAY_MS                           = 1000 * 60 * 60 * 24L;
+  private static final long HOUR_MS                          = 1000 * 60 * 60L;
+  private static final long MINUTE_MS                        = 1000 * 60L;
+  private static final long SECOND_MS                        = 1000L;
+  private long              getRoundedDifferenceUseCases[][] = {
+                                                                // wanted,                 round,            milli,                     expected
+                                                                {Calendar.MILLISECOND,
+                                                                 Calendar.YEAR,
+                                                                 YEAR_MS + 354,
+                                                                 354L},
+                                                                {Calendar.MILLISECOND,
+                                                                 Calendar.YEAR,
+                                                                 YEAR_MS - 354,
+                                                                 YEAR_MS - 354},
+                                                                {Calendar.DATE,
+                                                                 Calendar.YEAR,
+                                                                 YEAR_MS + 3 * DAY_MS,
+                                                                 3L},
+                                                                {Calendar.DATE,
+                                                                 Calendar.YEAR,
+                                                                 YEAR_MS - 3 * DAY_MS,
+                                                                 (YEAR_MS - 3 * DAY_MS) / DAY_MS},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.HOUR,
+                                                                 HOUR_MS + 3 * SECOND_MS,
+                                                                 3L},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.HOUR,
+                                                                 HOUR_MS - 3 * SECOND_MS,
+                                                                 (HOUR_MS - 3 * SECOND_MS) / SECOND_MS},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.HOUR,
+                                                                 HOUR_MS + 3 * MINUTE_MS,
+                                                                 3 * MINUTE_MS / SECOND_MS},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.HOUR,
+                                                                 HOUR_MS - 3 * MINUTE_MS,
+                                                                 (HOUR_MS - 3 * MINUTE_MS) / SECOND_MS},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.MINUTE,
+                                                                 MINUTE_MS + 3 * SECOND_MS,
+                                                                 3L},
+                                                                {Calendar.SECOND,
+                                                                 Calendar.MINUTE,
+                                                                 MINUTE_MS - 3 * SECOND_MS,
+                                                                 (MINUTE_MS - 3 * SECOND_MS) / SECOND_MS},};
+  String[]                  unitsArray                       = {"Year",
+                                                                "Years",
+                                                                "Month",
+                                                                "Months",
+                                                                "Week",
+                                                                "Weeks",
+                                                                "Day",
+                                                                "Days",
+                                                                "Hour",
+                                                                "Hours",
+                                                                "Min",
+                                                                "Mins",
+                                                                "Sec",
+                                                                "Secs",
+                                                                "Milli",
+                                                                "Millis"};
+  private GetTimeTextUseCase[] getTimeTextUseCases()
+  {
+    return new GetTimeTextUseCase[]{new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+        unitsArray, YEAR_MS, "1 Year, 0 Months, 0 Weeks, 0 Days, 0 Hours"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, YEAR_MS + (2 * MONTH_MS),
+                                        "1 Year, 2 Months, 0 Weeks, 0 Days, 0 Hours"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, YEAR_MS - (2 * MONTH_MS),
+                                        "10 Months, 0 Weeks, 5 Days, 0 Hours, 0 Mins"),
+                                    new GetTimeTextUseCase(2, Calendar.YEAR, Calendar.MILLISECOND, "", "ago",
+                                        unitsArray, YEAR_MS + (2 * MONTH_MS), "1 Year, 2 Months ago"),
+                                    new GetTimeTextUseCase(5, Calendar.MILLISECOND, Calendar.MILLISECOND, "now",
+                                        "", unitsArray, YEAR_MS + (2 * MONTH_MS), "36720000000 Millis"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.DATE, "today", "ago",
+                                        unitsArray, DAY_MS, "1 Day ago"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.DATE, "today", "ago",
+                                        unitsArray, DAY_MS - 1, "today"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, new GregorianCalendar(2003, 1, 28), /* 1 = Feb */
+                                        new GregorianCalendar(2003, 2, 31),
+                                        "1 Month, 0 Weeks, 1 Day, 0 Hours, 0 Mins"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, new GregorianCalendar(2003, 1, 1),
+                                        new GregorianCalendar(2003, 2, 1),
+                                        "4 Weeks, 0 Days, 0 Hours, 0 Mins, 0 Secs"),
+                                    new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, new GregorianCalendar(2004, 1, 1),
+                                        new GregorianCalendar(2004, 2, 1),
+                                        "4 Weeks, 1 Day, 0 Hours, 0 Mins, 0 Secs"),
+                                    new GetTimeTextUseCase(5, Calendar.MONTH, Calendar.MILLISECOND, "now", "",
+                                        unitsArray, new GregorianCalendar(1990, 0, 1), /* 7 * 12 should be 84 */
+                                        new GregorianCalendar(1997, 0, 1),
+                                        "85 Months, 1 Week, 0 Days, 0 Hours, 0 Mins"),
+                                    new GetTimeTextUseCase(5, Calendar.DATE, Calendar.MILLISECOND, "now", "",
+                                        unitsArray,
+                                        new GregorianCalendar(2004, 3, 3, 10,
+                                            0), /* Daylight savings is in month '3' */
+                                        new GregorianCalendar(2004, 3, 4, 11, 0),
+                                        "1 Day, 0 Hours, 0 Mins, 0 Secs, 0 Millis")};
+  }
   @Test
   public void testGetRoundedDifference()
   {
@@ -170,12 +159,11 @@ public class DateDifferenceTest
   {
     try (WithTimeZone tz = new WithTimeZone())
     {
-      Approvals.verifyAll("getTimeText", getTimeTextUseCases,
-              useCase -> useCase + " -> " + new DateDifference(useCase.milli)
-                      .getTimeText(useCase.amount, useCase.maxUnit, useCase.minUnit, useCase.nowText, useCase.agoText, useCase.units));
+      Approvals.verifyAll("getTimeText", getTimeTextUseCases(),
+          useCase -> useCase + " -> " + new DateDifference(useCase.milli).getTimeText(useCase.amount,
+              useCase.maxUnit, useCase.minUnit, useCase.nowText, useCase.agoText, useCase.units));
     }
   }
-
   private class GetTimeTextUseCase
   {
     int    amount;
@@ -213,12 +201,12 @@ public class DateDifferenceTest
       this.milli = milli;
       this.expected = expected;
     }
-
     @Override
-    public String toString() {
+    public String toString()
+    {
       Function1<String, String> printEmpty = s -> s.isEmpty() ? "\"\"" : s;
-      return "(" + amount + ", " + maxUnit + ", " + minUnit + ", " + printEmpty.call(nowText)
-          + ", " + printEmpty.call(agoText) + ") on " + StringUtils.padNumber(milli, 12);
+      return "(" + amount + ", " + maxUnit + ", " + minUnit + ", " + printEmpty.call(nowText) + ", "
+          + printEmpty.call(agoText) + ") on " + StringUtils.padNumber(milli, 12);
     }
   }
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>approvaltests-parent</artifactId>
         <groupId>com.approvaltests</groupId>
-        <version>6.0.2</version>
+        <version>6.0.3-SNAPSHOT</version>
     </parent>
 
     <artifactId>approvaltests-tests</artifactId>
