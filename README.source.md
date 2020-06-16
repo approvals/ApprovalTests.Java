@@ -1,4 +1,4 @@
-![run tests](https://github.com/LarsEckart/ApprovalTests.Java/workflows/run%20tests/badge.svg)
+![run tests](https://github.com/ApprovalTests.Java/workflows/build/badge.svg)
 
 toc
 
