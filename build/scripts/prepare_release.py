@@ -20,7 +20,7 @@ class PrepareRelease:
 def publish_to_maven(details: ReleaseDetails) -> None:
     new = details.new_version.get_version_text_without_v()
     run(["mvn", "versions:set", f"-DnewVersion={new}"])
-    # run("./publish_maven.sh")
+    run(["./publish_maven.sh"])
 
 def set_snapshot(details: ReleaseDetails) -> None:
     next = details.new_version.update_patch().get_version_text_without_v()
