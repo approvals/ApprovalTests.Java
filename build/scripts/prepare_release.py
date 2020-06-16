@@ -8,6 +8,7 @@ from scripts import version
 from scripts.documentation_release import PrepareDocumentationRelease
 from scripts.release_constants import release_constants
 from scripts.release_details import ReleaseDetails
+from scripts.starter_project_release import PrepareStarterProjectRelease
 from scripts.version import Version
 
 
@@ -22,6 +23,7 @@ def build(update_version: Callable[[Version], Version]) -> None:
     release_details = ReleaseDetails(old_version, new_version)
 
     PrepareDocumentationRelease.prepare_documentation(release_details)
+    PrepareStarterProjectRelease.prepare_starter_project(release_details)
 
 
 def load_current_version() -> Version:
