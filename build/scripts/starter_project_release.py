@@ -15,6 +15,8 @@ class PrepareStarterProjectRelease:
         GitUtilities.reset_and_clean_working_directory(release_constants.starter_project_dir)
         PrepareStarterProjectRelease.update_pom(details)
 
+        check_step("git is pushed for starter project");
+
 
 
     @staticmethod

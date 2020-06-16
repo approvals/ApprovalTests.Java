@@ -9,7 +9,7 @@ from scripts.documentation_release import PrepareDocumentationRelease
 from scripts.release_constants import release_constants
 from scripts.release_details import ReleaseDetails
 from scripts.starter_project_release import PrepareStarterProjectRelease
-from scripts.utilities import run
+from scripts.utilities import run, check_step
 from scripts.version import Version
 
 
@@ -33,6 +33,7 @@ def build(update_version: Callable[[Version], Version]) -> None:
 
     publish_to_maven(release_details)
     set_snapshot(release_details)
+    check_step("git is pushed");
     PrepareDocumentationRelease.prepare_documentation(release_details)
     PrepareStarterProjectRelease.prepare_starter_project(release_details)
     print("Done")
