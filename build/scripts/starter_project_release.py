@@ -2,6 +2,7 @@ import shutil
 import time
 from collections import Callable
 
+from scripts.git_utilities import GitUtilities
 from scripts.release_constants import release_constants
 from scripts.utilities import read_file, use_directory, replace_text_in_file, run, check_step
 
@@ -11,6 +12,7 @@ from typing import Callable
 class PrepareStarterProjectRelease:
     @staticmethod
     def prepare_starter_project(details: ReleaseDetails) -> None:
+        GitUtilities.reset_and_clean_working_directory(release_constants.starter_project_dir)
         PrepareStarterProjectRelease.update_pom(details)
 
 
