@@ -1,15 +1,15 @@
 getTimeText
 
 
-(5, 1, 14, now, "") on 031536000000 -> 1 Year, 0 Months, 0 Weeks, 0 Days, 0 Hours
-(5, 1, 14, now, "") on 036720000000 -> 1 Year, 2 Months, 0 Weeks, 0 Days, 0 Hours
-(5, 1, 14, now, "") on 026352000000 -> 10 Months, 0 Weeks, 5 Days, 0 Hours, 0 Mins
-(2, 1, 14, "", ago) on 036720000000 -> 1 Year, 2 Months ago
-(5, 14, 14, now, "") on 036720000000 -> 36720000000 Millis
-(5, 1, 5, today, ago) on 000086400000 -> 1 Day ago
-(5, 1, 5, today, ago) on 000086399999 -> today
-(5, 1, 14, now, "") on 002678400000 -> 1 Month, 0 Weeks, 1 Day, 0 Hours, 0 Mins
-(5, 1, 14, now, "") on 002419200000 -> 4 Weeks, 0 Days, 0 Hours, 0 Mins, 0 Secs
-(5, 1, 14, now, "") on 002505600000 -> 4 Weeks, 1 Day, 0 Hours, 0 Mins, 0 Secs
-(5, 2, 14, now, "") on 220924800000 -> 85 Months, 1 Week, 0 Days, 0 Hours, 0 Mins
-(5, 5, 14, now, "") on 000090000000 -> 1 Day, 1 Hour, 0 Mins, 0 Secs, 0 Millis
+(5, Years, Milli, now   , ""    ) on 031536000000 -> 1 Year, 0 Months, 0 Weeks, 0 Days, 0 Hours
+(5, Years, Milli, now   , ""    ) on 036720000000 -> 1 Year, 2 Months, 0 Weeks, 0 Days, 0 Hours
+(5, Years, Milli, now   , ""    ) on 026352000000 -> 10 Months, 0 Weeks, 5 Days, 0 Hours, 0 Mins
+(2, Years, Milli, ""    , ago   ) on 036720000000 -> 1 Year, 2 Months ago
+(5, Milli, Milli, now   , ""    ) on 036720000000 -> 36720000000 Millis
+(5, Years, Weeks, today , ago   ) on 000086400000 -> 1 Day ago
+(5, Years, Weeks, today , ago   ) on 000086399999 -> today
+(5, Years, Milli, now   , ""    ) on 002678400000 -> 1 Month, 0 Weeks, 1 Day, 0 Hours, 0 Mins
+(5, Years, Milli, now   , ""    ) on 002419200000 -> 4 Weeks, 0 Days, 0 Hours, 0 Mins, 0 Secs
+(5, Years, Milli, now   , ""    ) on 002505600000 -> 4 Weeks, 1 Day, 0 Hours, 0 Mins, 0 Secs
+(5, Month, Milli, now   , ""    ) on 220924800000 -> 85 Months, 1 Week, 0 Days, 0 Hours, 0 Mins
+(5, Weeks, Milli, now   , ""    ) on 000090000000 -> 1 Day, 1 Hour, 0 Mins, 0 Secs, 0 Millis

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
+import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function1;
 
 import com.spun.util.parser.TemplateDate;
+import com.spun.util.parser.TemplateStringUtils;
 
 public class DateDifferenceTest
 {
@@ -204,9 +206,10 @@ public class DateDifferenceTest
     @Override
     public String toString()
     {
-      Function1<String, String> printEmpty = s -> s.isEmpty() ? "\"\"" : s;
-      return "(" + amount + ", " + maxUnit + ", " + minUnit + ", " + printEmpty.call(nowText) + ", "
-          + printEmpty.call(agoText) + ") on " + StringUtils.padNumber(milli, 12);
+      Function1<String, String> pad = s -> TemplateStringUtils.pad(s, 6, " ");
+      Function1<String, String> printEmpty = s -> pad.call(s.isEmpty() ? "\"\"" : s);
+      return MessageFormat.format("({0}, {1}, {2}, {3}, {4}) on {5}", amount, units[maxUnit], units[minUnit],
+          printEmpty.call(nowText), printEmpty.call(agoText), StringUtils.padNumber(milli, 12));
     }
   }
 }
