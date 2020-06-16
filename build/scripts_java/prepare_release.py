@@ -1,16 +1,12 @@
 import os
-import shutil
 from typing import Callable
 
-from git import Repo
-
-from scripts_java import version
 from scripts_java.documentation_release import PrepareDocumentationRelease
 from scripts_java.release_constants import release_constants
 from scripts_java.release_details import ReleaseDetails
 from scripts_java.starter_project_release import PrepareStarterProjectRelease
-from scripts_java.utilities import run, check_step
-from scripts_java.version import Version
+from scripts.utilities import run, check_step
+from scripts.version import Version
 
 
 class PrepareRelease:

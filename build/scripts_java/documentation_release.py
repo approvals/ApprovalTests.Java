@@ -3,7 +3,7 @@ import time
 from collections import Callable
 
 from scripts_java.release_constants import release_constants
-from scripts_java.utilities import read_file, use_directory, replace_text_in_file, run, check_step
+from scripts.utilities import read_file, use_directory, replace_text_in_file, run, check_step
 
 
 from scripts_java.release_details import ReleaseDetails
