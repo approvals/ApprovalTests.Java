@@ -8,11 +8,11 @@
     <fileSets>
         <fileSet>
             <directory>${project.basedir}/src/main/doc</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>${file.separator}</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>${file.separator}</outputDirectory>
             <includes>
                 <include>*.jar</include>
             </includes>
