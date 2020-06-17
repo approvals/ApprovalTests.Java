@@ -12,7 +12,7 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.log.NullLogSystem;
+import org.apache.velocity.runtime.log.NullLogChute;
 
 import com.spun.util.Asserts;
 import com.spun.util.ObjectUtils;
@@ -79,7 +79,7 @@ public class VelocityParser
     try
     {
       props.put("directive.foreach.counter.initial.value", "0");
-      props.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, NullLogSystem.class.getName());
+      props.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, NullLogChute.class.getName());
       VelocityEngine engine = initializeEngine(props);
       VelocityContext context = new VelocityContext();
       Template velocityTemplate = engine.getTemplate(template);

@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Test;
 public class VelocityNullSetTest implements ContextAware
 {
   @Test
-  public void testArray() throws Exception
+  public void testArrayWithNulls() throws Exception
   {
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$s, #end", this));
+  }
+  @Test
+  public void testArraySilentNulls() throws Exception
+  {
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$!s, #end", this));
   }
   @Override

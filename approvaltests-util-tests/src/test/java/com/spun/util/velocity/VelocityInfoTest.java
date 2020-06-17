@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.velocity.context.Context;
 import org.apache.velocity.util.introspection.Info;
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 public class VelocityInfoTest implements ContextAware
@@ -20,10 +21,9 @@ public class VelocityInfoTest implements ContextAware
   @Test
   public void testInfoForMethod()
   {
-    VelocityParsingError t = getParsingErrorFor("$main.unknownMethod()");
-    assertEquals(
-        "Method com.spun.util.velocity.VelocityInfoTest.unknownMethod()  does not exist.   at [1,1] in template",
-        t.getMessage().trim());
+    String template = "$main.unknownMethod()";
+    VelocityParsingError t = getParsingErrorFor(template);
+    Approvals.verify(String.format("Template: %s \n generated error:\n %s", template, t.getMessage().trim()));
   }
   private void assertInfoEqual(Info i, String name, int line, int column)
   {

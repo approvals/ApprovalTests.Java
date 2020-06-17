@@ -68,9 +68,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.4</version>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity</artifactId>
+             <version>1.6</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>

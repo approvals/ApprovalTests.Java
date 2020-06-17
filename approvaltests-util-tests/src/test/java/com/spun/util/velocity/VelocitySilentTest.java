@@ -16,7 +16,7 @@ public class VelocitySilentTest implements ContextAware
   public void testField() throws Exception
   {
     // using the toString implied method
-    assertEquals("null", VelocityParser.parseString("$!main", this));
+    assertEquals("", VelocityParser.parseString("$!main", this));
   }
   public Object getInstance()
   {

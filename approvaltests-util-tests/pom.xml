@@ -31,9 +31,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>velocity</groupId>
+            <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
-            <version>1.4</version>
+                 <version>1.6</version>
         </dependency>
         <dependency>
             <groupId>com.sun.mail</groupId>

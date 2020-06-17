@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.velocity.runtime.RuntimeLogger;
+import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.AbstractExecutor;
 import org.apache.velocity.runtime.parser.node.BooleanPropertyExecutor;
 import org.apache.velocity.runtime.parser.node.GetExecutor;
@@ -39,7 +40,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
    */
   private static IntrospectorBase introspector;
   private static Introspector     introspectorWithLog;
-  private RuntimeLogger           log;
+  private Log                     log;
   private static boolean          beKindToNulls = false;
   /**
    *  init - does nothing - we need to have setRuntimeLogger
@@ -51,9 +52,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   }
   public void setRuntimeLogger(RuntimeLogger runtimeLogger)
   {
-    introspector = new IntrospectorBase();
-    introspectorWithLog = new Introspector(runtimeLogger);
-    log = runtimeLogger;
+    throw new Error("this is deprecated");
   }
   public void setBeKindToNulls(boolean behavior)
   {
@@ -270,5 +269,14 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       return vm.getMethodName();
     }
+  }
+  @Override
+  public void setLog(Log log)
+  {
+    introspector = new IntrospectorBase(log)
+    {
+    };
+    introspectorWithLog = new Introspector(log);
+    this.log = log;
   }
 }

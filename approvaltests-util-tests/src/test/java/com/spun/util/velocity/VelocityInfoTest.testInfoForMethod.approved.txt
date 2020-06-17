@@ -1,0 +1,3 @@
+Template: $main.unknownMethod() 
+ generated error:
+ Method com.spun.util.velocity.VelocityInfoTest.unknownMethod()  does not exist.   at [1,7] in template $main.unknownMethod()
