@@ -47,7 +47,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
    *  called before getting our introspector, as the default
    *  vel introspector depends upon it.;
    */
-  public void init() throws Exception
+  public void init()
   {
   }
   public void setRuntimeLogger(RuntimeLogger runtimeLogger)
