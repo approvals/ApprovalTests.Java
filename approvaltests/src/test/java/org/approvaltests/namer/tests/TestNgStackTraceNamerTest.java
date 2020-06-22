@@ -15,11 +15,6 @@ public class TestNgStackTraceNamerTest
   {
     StackTraceNamerUtils.assertNamerForFramework("TestNgStackTraceNamerTest", "testGetApprovalName");
   }
-  @Test
-  public void testName()
-  {
-    Approvals.verify("foo");
-  }
   @Test(dataProvider = "MyDataProvider")
   public void testDataProvider(String data)
   {
