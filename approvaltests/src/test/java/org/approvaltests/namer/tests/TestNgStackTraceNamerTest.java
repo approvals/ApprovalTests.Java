@@ -1,12 +1,9 @@
 package org.approvaltests.namer.tests;
 
-import java.io.File;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
-import org.approvaltests.namer.StackTraceNamer;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,25 +11,17 @@ import org.testng.annotations.Test;
 public class TestNgStackTraceNamerTest
 {
   @Test
-  public void testGetApprovalName() throws Exception
+  public void testGetApprovalName()
   {
-    StackTraceNamer name = new StackTraceNamer();
-    Assert.assertEquals("TestNgStackTraceNamerTest.testGetApprovalName", name.getApprovalName());
+    StackTraceNamerUtils.assertNamerForFramework("TestNgStackTraceNamerTest", "testGetApprovalName");
   }
   @Test
-  public void testGetSourceFilePath() throws Exception
-  {
-    StackTraceNamer name = new StackTraceNamer();
-    File file = new File(name.getSourceFilePath() + "TestNgStackTraceNamerTest.java");
-    Assert.assertTrue(file.exists());
-  }
-  @Test
-  public void testName() throws Exception
+  public void testName()
   {
     Approvals.verify("foo");
   }
   @Test(dataProvider = "MyDataProvider")
-  public void testDataProvider(String data) throws Exception
+  public void testDataProvider(String data)
   {
     try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(data))
     {
