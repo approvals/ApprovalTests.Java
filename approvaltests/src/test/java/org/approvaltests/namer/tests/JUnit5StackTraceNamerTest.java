@@ -6,16 +6,16 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class JUnit5StackTraceNamerTest
 {
-  String className = this.getClass().getSimpleName();
+
   @Test
   public void testGetApprovalName()
   {
-    StackTraceNamerUtils.assertNamerForFramework(className, "testGetApprovalName");
+    StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "testGetApprovalName");
   }
   @ParameterizedTest
   @ValueSource(strings = {"A", "B"})
   public void parameterizedTest(String input)
   {
-    StackTraceNamerUtils.assertParameterizedTest(className, "parameterizedTest", input);
+    StackTraceNamerUtils.assertParameterizedTest(getClass().getSimpleName(), "parameterizedTest", input);
   }
 }
