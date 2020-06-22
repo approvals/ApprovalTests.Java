@@ -8,7 +8,6 @@
 I'd like to look into using approval tests with junit5's @ParameterizedTest and junit5 in general
 https://github.com/approvals/ApprovalTests.Java/issues/51
 https://github.com/approvals/ApprovalTests.Java/issues/36
--> might require introduction of junit5 to the project though (which is good but also some extra work)
 
 * 404 for Website link in readme
 * 404 for Getting Started Doc link in readme

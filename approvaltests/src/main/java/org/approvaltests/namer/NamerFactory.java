@@ -31,6 +31,10 @@ public class NamerFactory
   {
     return new NamedEnvironment(environmentName);
   }
+  public static MultipleFilesLabeller useMultipleFiles()
+  {
+    return new MultipleFilesLabeller();
+  }
   public static String getSubdirectory()
   {
     return (String) PackageLevelSettings.getValueFor("UseApprovalSubdirectory");

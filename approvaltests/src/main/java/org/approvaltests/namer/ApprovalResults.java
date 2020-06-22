@@ -4,14 +4,9 @@ public class ApprovalResults
 {
 
   /**
-   * @deprecated Use {@link NamerFactory#asOsSpecificTest()}
+   * @deprecated Use {@link NamerFactory#useMultipleFiles()} instead.
    */
   @Deprecated
-  public static NamedEnvironment UniqueForOs()
-  {
-    return NamerFactory.asOsSpecificTest();
-  }
-
   public MultipleFilesLabeller useMultipleFiles()
   {
     MultipleFilesLabeller l = new MultipleFilesLabeller();
