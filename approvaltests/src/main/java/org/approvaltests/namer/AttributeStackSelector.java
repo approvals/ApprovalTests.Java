@@ -12,7 +12,8 @@ public class AttributeStackSelector implements StackElementSelector
 {
   public static String                      classNames[] = {"org.testng.annotations.Test",
                                                             "org.junit.Test",
-                                                            "org.junit.jupiter.api.Test"};
+                                                            "org.junit.jupiter.api.Test",
+                                                            "org.junit.jupiter.params.ParameterizedTest"};
   private List<Class<? extends Annotation>> attributes;
   public AttributeStackSelector()
   {
@@ -56,7 +57,7 @@ public class AttributeStackSelector implements StackElementSelector
       }
       else if (inTestCase) { return trace[i - 1]; }
     }
-    throw new RuntimeException("Could not find Junit/TestNg TestCase you are running");
+    throw new RuntimeException("Could not find Junit/TestNg TestCase you are running, supported frameworks: Junit3, Junit4, Junit5, TestNg");
   }
   private boolean isTestCase(StackTraceElement element) throws ClassNotFoundException
   {
