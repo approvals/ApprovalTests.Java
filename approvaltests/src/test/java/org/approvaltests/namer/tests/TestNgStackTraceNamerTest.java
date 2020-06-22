@@ -1,10 +1,5 @@
 package org.approvaltests.namer.tests;
 
-import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -18,11 +13,7 @@ public class TestNgStackTraceNamerTest
   @Test(dataProvider = "MyDataProvider")
   public void testDataProvider(String data)
   {
-    try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(data))
-    {
-      ApprovalNamer name = Approvals.createApprovalNamer();
-      Assert.assertEquals("TestNgStackTraceNamerTest.testDataProvider.hello", name.getApprovalName());
-    }
+    StackTraceNamerUtils.assertParameterizedTest(getClass().getSimpleName(), "testDataProvider", data);
   }
   @DataProvider(name = "MyDataProvider")
   public Object[][] data()

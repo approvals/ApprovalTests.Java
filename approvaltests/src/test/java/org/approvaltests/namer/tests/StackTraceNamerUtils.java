@@ -1,5 +1,9 @@
 package org.approvaltests.namer.tests;
 
+import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.NamedEnvironment;
+import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.namer.StackTraceNamer;
 import org.junit.Assert;
 
@@ -23,5 +27,13 @@ public class StackTraceNamerUtils {
       StackTraceNamer name = new StackTraceNamer();
       File file = new File(name.getSourceFilePath() + className + ".java");
       Assert.assertTrue(file.exists());
+    }
+
+    public static void assertParameterizedTest(String className, String methodName, String input) {
+      try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(input))
+      {
+        ApprovalNamer name = Approvals.createApprovalNamer();
+        org.testng.Assert.assertEquals(className + "." + methodName + "." + input, name.getApprovalName());
+      }
     }
 }
