@@ -10,8 +10,8 @@ class PrepareStarterProjectRelease:
         GitUtilities.reset_and_clean_working_directory(release_constants.starter_project_dir)
         PrepareStarterProjectRelease.update_pom(details)
 
-        check_step("git is pushed for starter project");
-
+        GitUtilities.add_and_commit_everything(release_constants.starter_project_dir, details.new_version.get_version_text())
+        GitUtilities.push_active_branch_origin()
     @staticmethod
     def update_pom(details: ReleaseDetails) -> None:
         with use_directory(release_constants.starter_project_dir):
