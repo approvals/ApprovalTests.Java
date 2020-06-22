@@ -1,4 +1,4 @@
-package org.approvaltests.namer.tests;
+package org.approvaltests.namer;
 
 import org.junit.Test;
 

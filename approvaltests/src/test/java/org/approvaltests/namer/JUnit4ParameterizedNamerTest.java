@@ -1,4 +1,4 @@
-package org.approvaltests.namer.tests;
+package org.approvaltests.namer;
 
 import java.util.Arrays;
 import java.util.Collection;

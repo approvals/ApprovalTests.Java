@@ -1,10 +1,6 @@
-package org.approvaltests.namer.tests;
+package org.approvaltests.namer;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
-import org.approvaltests.namer.StackTraceNamer;
 import org.junit.Assert;
 
 import java.io.File;

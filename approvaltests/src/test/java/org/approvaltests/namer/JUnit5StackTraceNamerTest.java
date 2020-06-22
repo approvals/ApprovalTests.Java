@@ -1,4 +1,4 @@
-package org.approvaltests.namer.tests;
+package org.approvaltests.namer;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
