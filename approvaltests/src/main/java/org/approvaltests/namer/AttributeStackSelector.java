@@ -12,7 +12,8 @@ public class AttributeStackSelector implements StackElementSelector
 {
   public static String                      classNames[] = {"org.testng.annotations.Test",
                                                             "org.junit.Test",
-                                                            "org.junit.jupiter.api.Test"};
+                                                            "org.junit.jupiter.api.Test",
+                                                            "org.junit.jupiter.params.ParameterizedTest"};
   private List<Class<? extends Annotation>> attributes;
   public AttributeStackSelector()
   {
