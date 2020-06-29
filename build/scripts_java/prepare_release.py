@@ -45,6 +45,7 @@ def build(update_version: Callable[[Version], Version]) -> None:
     check_repo(release_details)
     publish_to_maven(release_details)
     PrepareDocumentationRelease.prepare_documentation(release_details)
+    new_version.write("./build")
     GitUtilities.add_and_commit_everything(".", new_version.get_version_text());
     set_snapshot(release_details)
     GitUtilities.add_and_commit_everything(".", "set Snapshot");
