@@ -105,7 +105,7 @@ Questions?
 twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTests
 
 
-## Developer notes
+## Developer notes  
 
 The suggested way to contribute to ApprovalTests is to [pair with Llewellyn](mailto:llewellyn.falco@gmail.com)  
 However, if you are set on forking please [read these notes](developer_notes.md)
