@@ -1,8 +1,5 @@
 package org.approvaltests.namer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.approvaltests.Approvals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
@@ -10,6 +7,9 @@ import org.junit.jupiter.api.RepetitionInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import com.spun.util.LambdaThreadLauncher;
+import com.spun.util.ObjectUtils;
 
 public class JUnit5StackTraceNamerTest
 {
@@ -44,5 +44,25 @@ public class JUnit5StackTraceNamerTest
   public void repeatedTest(RepetitionInfo repetitionInfo)
   {
     StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "repeatedTest");
+  }
+  @Test
+  void approvalFromInsideLambda() throws Exception
+  {
+    Throwable[] caught = new Throwable[1];
+    LambdaThreadLauncher lambda = new LambdaThreadLauncher((() -> {
+      try
+      {
+        StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "approvalFromInsideLambda");
+      }
+      catch (Throwable e)
+      {
+        caught[0] = e;
+      }
+    }));
+    lambda.getThread().join(1000);
+    if (caught[0] != null)
+    {
+      throw ObjectUtils.throwAsError(caught[0]);
+    }
   }
 }

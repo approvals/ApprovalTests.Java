@@ -14,6 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.mail.Message;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -184,10 +187,20 @@ public class TestUtils
     className = handleInnerClasses(className);
     String fileName = element.getFileName();
     File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass(fullClassName), fileName);
-    return new StackTraceReflectionResult(dir, className, fullClassName, element.getMethodName());
+    String methodName = unrollLambda(element.getMethodName());
+    return new StackTraceReflectionResult(dir, className, fullClassName, methodName);
   }
 
   private static String handleInnerClasses(String className) {
     return className.replaceAll("\\$", ".");
+  }
+
+  public static String unrollLambda(String methodName) {
+    Pattern p = Pattern.compile("lambda\\$(.*)\\$\\d+");
+    Matcher m = p.matcher(methodName);
+    if (m.matches()) {
+      return m.group(1);
+    }
+    return methodName;
   }
 }
