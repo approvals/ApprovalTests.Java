@@ -18,4 +18,14 @@ public class JUnit5StackTraceNamerTest
   {
     StackTraceNamerUtils.assertParameterizedTest(getClass().getSimpleName(), "parameterizedTest", input);
   }
+  @Nested
+  class NestedTests
+  {
+    @Test
+    void nestedTest()
+    {
+      String className = JUnit5StackTraceNamerTest.class.getSimpleName() + "." + getClass().getSimpleName();
+      StackTraceNamerUtils.assertApprovalName(className, "nestedTest");
+    }
+  }
 }

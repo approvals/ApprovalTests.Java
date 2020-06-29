@@ -181,8 +181,13 @@ public class TestUtils
   {
     String fullClassName = element.getClassName();
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
+    className = handleInnerClasses(className);
     String fileName = element.getFileName();
     File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass(fullClassName), fileName);
     return new StackTraceReflectionResult(dir, className, fullClassName, element.getMethodName());
+  }
+
+  private static String handleInnerClasses(String className) {
+    return className.replaceAll("\\$", ".");
   }
 }
