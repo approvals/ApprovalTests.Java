@@ -1,9 +1,8 @@
-* junit5 does not detect reporter correctly
+* easier API for custom file name & location?! (issue 2, 51)
 * implement Options
+** update mrunit and fix tests
 * remove all checked exceptions
 * remove all warnings
-** update mrunit and fix tests
-* make intellij aware of if it is running and only launch then
 * handle manual install of intellij
 * write docs on how to make a custom reporter
 * build script to update gradle starter project during release process

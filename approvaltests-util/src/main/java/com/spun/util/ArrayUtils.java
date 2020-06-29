@@ -117,7 +117,12 @@ public class ArrayUtils
   {
     return get((T[]) array.toArray(), sorter, true);
   }
-  
+  public static <T> T getLast(T[] array)
+  {
+    if (array == null || array.length < 1)
+    { return null; }
+    return array[array.length - 1];
+  }
   public static <T> T getLast(T[] array, Comparator<T> sorter)
   {
     return get(array, sorter, false);

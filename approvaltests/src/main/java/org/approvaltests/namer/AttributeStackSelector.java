@@ -7,12 +7,14 @@ import java.util.List;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
+import com.spun.util.tests.TestUtils;
 
 public class AttributeStackSelector implements StackElementSelector
 {
   public static String                      classNames[] = {"org.testng.annotations.Test",
                                                             "org.junit.Test",
                                                             "org.junit.jupiter.api.Test",
+                                                            "org.junit.jupiter.api.RepeatedTest",
                                                             "org.junit.jupiter.params.ParameterizedTest"};
   private List<Class<? extends Annotation>> attributes;
   public AttributeStackSelector()
@@ -65,8 +67,9 @@ public class AttributeStackSelector implements StackElementSelector
     Class<?> clazz = loadClass(fullClassName);
     if (clazz == null) { return false; }
     if (isJunit3Test(clazz)) { return true; }
-    return isTestAttribute(clazz, element.getMethodName());
+    return isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName()));
   }
+
   private boolean isJunit3Test(Class<?> clazz)
   {
     Class<?> testcase = loadClass("junit.framework.TestCase");
