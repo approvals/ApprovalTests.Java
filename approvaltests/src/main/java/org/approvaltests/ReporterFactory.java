@@ -95,7 +95,7 @@ public class ReporterFactory
       {
         String methodName = stack.getMethodName();
         clazz = ObjectUtils.loadClass(stack.getClassName());
-        method = clazz.getMethod(methodName, (Class<?>[]) null);
+        method = clazz.getDeclaredMethod(methodName, (Class<?>[]) null);
       }
       catch (Throwable e)
       {
