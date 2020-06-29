@@ -43,14 +43,14 @@ def build(update_version: Callable[[Version], Version]) -> None:
     release_details = ReleaseDetails(old_version, new_version)
 
     check_repo(release_details)
-    # publish_to_maven(release_details)
-    # PrepareDocumentationRelease.prepare_documentation(release_details)
-    # GitUtilities.add_and_commit_everything(".", new_version.get_version_text());
-    # set_snapshot(release_details)
-    # GitUtilities.add_and_commit_everything(".", "set Snapshot");
-    # PrepareStarterProjectRelease.prepare_starter_project(release_details)
-    # GitUtilities.push_active_branch_origin();
-    # print("Done")
+    publish_to_maven(release_details)
+    PrepareDocumentationRelease.prepare_documentation(release_details)
+    GitUtilities.add_and_commit_everything(".", new_version.get_version_text());
+    set_snapshot(release_details)
+    GitUtilities.add_and_commit_everything(".", "set Snapshot");
+    PrepareStarterProjectRelease.prepare_starter_project(release_details)
+    GitUtilities.push_active_branch_origin();
+    print("Done")
 
 
 def load_current_version() -> Version:
