@@ -34,7 +34,7 @@ def check_repo(release_details: ReleaseDetails) -> None:
     assert_step(len(
         list(repo.iter_commits('master@{u}..master'))) == 0,
                 f"there are un-pushed changes in approvaltests")
-    GitUtilities.pull_active_branch_origin()
+    GitUtilities.pull_active_branch_origin(".")
 
 
 def build(update_version: Callable[[Version], Version]) -> None:
