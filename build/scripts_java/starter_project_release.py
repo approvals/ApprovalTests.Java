@@ -11,7 +11,7 @@ class PrepareStarterProjectRelease:
         PrepareStarterProjectRelease.update_pom(details)
 
         GitUtilities.add_and_commit_everything(release_constants.starter_project_dir, details.new_version.get_version_text())
-        GitUtilities.push_active_branch_origin()
+        GitUtilities.push_active_branch_origin(release_constants.starter_project_dir)
     @staticmethod
     def update_pom(details: ReleaseDetails) -> None:
         with use_directory(release_constants.starter_project_dir):
