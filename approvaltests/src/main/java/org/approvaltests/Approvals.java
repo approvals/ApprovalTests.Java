@@ -29,10 +29,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Approvals
 {
@@ -213,8 +210,8 @@ public class Approvals
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
   }
 
-  public static void verify(String response, Options options) {
-    verify(new ApprovalTextWriter(response, "txt"), options.getReporter());
+  public static void verify(Object response, Options options) {
+    verify(new ApprovalTextWriter(Objects.toString(response), "txt"), options.getReporter());
   }
 
 }

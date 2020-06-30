@@ -8,7 +8,15 @@ public class Options {
         this.reporter = reporter;
     }
 
+    public Options() {
+
+    }
+
     public ApprovalFailureReporter getReporter() {
         return this.reporter;
+    }
+
+    public Options withReporter(ApprovalFailureReporter reporter) {
+        return new Options(reporter);
     }
 }
