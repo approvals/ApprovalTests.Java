@@ -12,6 +12,7 @@ import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
@@ -101,6 +102,9 @@ public class Approvals
   public static void verify(ApprovalWriter writer)
   {
     verify(writer, createApprovalNamer(), getReporter());
+  }
+  private static void verify(ApprovalWriter writer, ApprovalFailureReporter reporter) {
+    verify(writer, createApprovalNamer(),reporter);
   }
   public static void verifyXml(String xml)
   {
@@ -208,4 +212,9 @@ public class Approvals
     if (t == null) { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
   }
+
+  public static void verify(String response, Options options) {
+    verify(new ApprovalTextWriter(response, "txt"), options.getReporter());
+  }
+
 }
