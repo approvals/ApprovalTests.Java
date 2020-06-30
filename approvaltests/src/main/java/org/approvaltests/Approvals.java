@@ -211,6 +211,7 @@ public class Approvals
   }
 
   public static void verify(Object response, Options options) {
+
     verify(new ApprovalTextWriter(Objects.toString(response), "txt"), options.getReporter());
   }
 

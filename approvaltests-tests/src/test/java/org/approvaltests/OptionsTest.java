@@ -5,6 +5,7 @@ import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FileLauncherReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.UseReporterTest;
 import org.junit.jupiter.api.Test;
 
 public class OptionsTest {
@@ -41,6 +42,18 @@ public class OptionsTest {
         } catch (Error error) {
             // check that getReporter was called
             Asserts.assertTrue("the getReporter should've been called", reporter.hasBeenCalled());
+        }
+    }
+
+    @Test
+    @UseReporter(UseReporterTest.TestReporter.class)
+    void verifyWithoutReporter() {
+        Options options = new Options();
+        try {
+            Approvals.verify("hallo", options);
+        } catch (Error error) {
+            // check that getReporter was called
+            Asserts.assertEqual("the getReporter should've been called", "hallo\n", UseReporterTest.TestReporter.getLast());
         }
     }
 
