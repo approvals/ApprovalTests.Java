@@ -6,7 +6,7 @@ import com.spun.util.StringUtils;
 import com.spun.util.WindowUtils;
 
 /**
- * A reporter which creates the command to accept the received
+ * A getReporter which creates the command to accept the received
  * file as the approve file and copies it to the clipboard:<br>
  * <code>move received.txt approved.txt</code>
  */

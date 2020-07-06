@@ -7,7 +7,7 @@
 * write docs on how to make a custom reporter
 * build script to update gradle starter project during release process
 * or setup dependabot for maven & gradle and delete from deploy scripts
-
+* make the list Query returns  to extendable to reverse polish notation
 
 * 404 for Website link in readme
 * 404 for Getting Started Doc link in readme
