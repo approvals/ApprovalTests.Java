@@ -203,15 +203,27 @@ public class Approvals
   }
   public static void verify(Map<?, ?> map)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"));
+    verify(map, new Options());
+  }
+  public static void verify(Map<?, ?> map, Options options)
+  {
+    verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"), options);
   }
   public static void verify(ResultSet rs)
   {
-    verify(new ResultSetApprovalWriter(rs));
+    verify(rs, new Options());
+  }
+  public static void verify(ResultSet rs, Options options)
+  {
+    verify(new ResultSetApprovalWriter(rs), options);
   }
   public static <T> void verify(SqlLoader<T> loader)
   {
-    verify(new SqlLoader.ExecutableWrapper<T>(loader));
+    verify(loader, new Options());
+  }
+  public static <T> void verify(SqlLoader<T> loader, Options options)
+  {
+    verify(new SqlLoader.ExecutableWrapper<T>(loader), options);
   }
   public static ApprovalNamer createApprovalNamer()
   {
@@ -219,17 +231,29 @@ public class Approvals
   }
   public static void verifyEachFileInDirectory(File directory)
   {
-    verifyEachFileAgainstMasterDirectory(directory.listFiles());
+    verifyEachFileInDirectory(directory, new Options());
+  }
+  public static void verifyEachFileInDirectory(File directory, Options options)
+  {
+    verifyEachFileAgainstMasterDirectory(directory.listFiles(), options);
   }
   public static void verifyEachFileInDirectory(File directory, FileFilter filter)
   {
-    verifyEachFileAgainstMasterDirectory(directory.listFiles(filter));
+    verifyEachFileInDirectory(directory, filter, new Options());
+  }
+  public static void verifyEachFileInDirectory(File directory, FileFilter filter, Options options)
+  {
+    verifyEachFileAgainstMasterDirectory(directory.listFiles(filter), options);
   }
   public static void verifyEachFileInDirectory(File directory, FilenameFilter filter)
   {
-    verifyEachFileAgainstMasterDirectory(directory.listFiles(filter));
+    verifyEachFileInDirectory(directory, filter, new Options());
   }
-  private static void verifyEachFileAgainstMasterDirectory(File[] files) throws Error
+  public static void verifyEachFileInDirectory(File directory, FilenameFilter filter, Options options)
+  {
+    verifyEachFileAgainstMasterDirectory(directory.listFiles(filter), options);
+  }
+  private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options) throws Error
   {
     ApprovalNamer namer = createApprovalNamer();
     String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
@@ -241,7 +265,7 @@ public class Approvals
       {
         try
         {
-          verify(new DirectoryToDirectoryWriter(f, approvedDirectory));
+          verify(new DirectoryToDirectoryWriter(f, approvedDirectory), options);
         }
         catch (Throwable e)
         {
