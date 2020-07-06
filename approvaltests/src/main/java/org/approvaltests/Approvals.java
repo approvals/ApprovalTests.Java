@@ -147,6 +147,10 @@ public class Approvals
   {
     verify(new FileApprover(writer, namer), new Options(reporter));
   }
+  public static void verify(ApprovalWriter writer, ApprovalNamer namer)
+  {
+    verify(writer, namer, new Options());
+  }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, Options options)
   {
     verify(new FileApprover(writer, namer), options);
