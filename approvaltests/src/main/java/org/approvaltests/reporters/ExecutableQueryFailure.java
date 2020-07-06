@@ -2,30 +2,37 @@ package org.approvaltests.reporters;
 
 import java.io.File;
 
-import org.approvaltests.ReporterFactory;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
+import org.approvaltests.core.Options;
 
 import com.spun.util.io.FileUtils;
 import com.spun.util.persistence.ExecutableQuery;
 
 public class ExecutableQueryFailure implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {
-  private static final String   FILE_ADDITION = ".queryresults.txt";
-  private final ExecutableQuery query;
-  public ExecutableQueryFailure(ExecutableQuery query)
+  private static final String           FILE_ADDITION = ".queryresults.txt";
+  private final ExecutableQuery         query;
+  private final ApprovalFailureReporter reporter;
+  private ExecutableQueryFailure(ExecutableQuery query, ApprovalFailureReporter reporter)
   {
     this.query = query;
+    this.reporter = reporter;
+  }
+  public static Options create(ExecutableQuery query, Options options)
+  {
+    ExecutableQueryFailure executableQueryFailure = new ExecutableQueryFailure(query, options.getReporter());
+    return options.withReporter(executableQueryFailure);
   }
   public void report(String received, String approved)
   {
-    ApprovalFailureReporter reporter = ReporterFactory.get();
     reporter.report(runQueryAndGetPath(received), runQueryAndGetPath(approved));
     reporter.report(received, approved);
   }
   private String runQueryAndGetPath(String filename)
   {
-    if (!new File(filename).exists()) { return filename; }
+    if (!new File(filename).exists())
+    { return filename; }
     String newQuery = FileUtils.readFile(filename).trim();
     String newResult = query.executeQuery(newQuery);
     File newFile = new File(filename + FILE_ADDITION);

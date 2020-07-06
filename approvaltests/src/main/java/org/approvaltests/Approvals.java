@@ -63,25 +63,45 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, T[] array)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
+    verifyAll(label, array, new Options());
+  }
+  public static <T> void verifyAll(String label, T[] array, Options options)
+  {
+    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), options);
   }
   public static <T> void verifyAll(String header, String label, T[] array)
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
+    verifyAll(header, label, array, new Options());
+  }
+  public static <T> void verifyAll(String header, String label, T[] array, Options options)
+  {
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"), options);
   }
   public static <T> void verifyAll(T[] values, Function1<T, String> f1)
   {
+    verifyAll(values, f1, new Options());
+  }
+  public static <T> void verifyAll(T[] values, Function1<T, String> f1, Options options)
+  {
     String text = ArrayUtils.toString(values, f1);
-    verify(new ApprovalTextWriter(text, "txt"));
+    verify(new ApprovalTextWriter(text, "txt"), options);
   }
   public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1)
   {
-    verifyAll(header, Arrays.asList(values), f1);
+    verifyAll(header, values, f1, new Options());
+  }
+  public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1, Options options)
+  {
+    verifyAll(header, Arrays.asList(values), f1, options);
   }
   public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1)
   {
+    verifyAll(header, array, f1, new Options());
+  }
+  public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1, Options options)
+  {
     String text = formatHeader(header) + ArrayUtils.toString(array, f1);
-    verify(new ApprovalTextWriter(text, "txt"));
+    verify(new ApprovalTextWriter(text, "txt"), options);
   }
   private static String formatHeader(String header)
   {
@@ -89,19 +109,35 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, Iterable<T> array)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"));
+    verifyAll(label, array, new Options());
+  }
+  public static <T> void verifyAll(String label, Iterable<T> array, Options options)
+  {
+    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), options);
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array)
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
+    verifyAll(header, label, array, new Options());
+  }
+  public static <T> void verifyAll(String header, String label, Iterable<T> array, Options options)
+  {
+    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"), options);
   }
   public static void verifyHtml(String response)
   {
-    verify(new ApprovalTextWriter(response, "html"));
+    verifyHtml(response, new Options());
+  }
+  public static void verifyHtml(String response, Options options)
+  {
+    verify(new ApprovalTextWriter(response, "html"), options);
   }
   public static void verify(File generateFile)
   {
-    verify(new FileApprovalWriter(generateFile));
+    verify(generateFile, new Options());
+  }
+  public static void verify(File generateFile, Options options)
+  {
+    verify(new FileApprovalWriter(generateFile), options);
   }
   /**
    * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
@@ -117,7 +153,7 @@ public class Approvals
   }
   public static void verify(ApprovalWriter writer)
   {
-    verify(writer, createApprovalNamer(), getReporter());
+    verify(writer, new Options());
   }
   private static void verify(ApprovalWriter writer, Options options)
   {
@@ -125,7 +161,11 @@ public class Approvals
   }
   public static void verifyXml(String xml)
   {
-    verify(new ApprovalXmlWriter(xml));
+    verifyXml(xml, new Options());
+  }
+  public static void verifyXml(String xml, Options options)
+  {
+    verify(new ApprovalXmlWriter(xml), options);
   }
   public static void verify(ApprovalApprover approver)
   {
@@ -154,8 +194,12 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query)
   {
+    verify(query, new Options());
+  }
+  public static void verify(ExecutableQuery query, Options options)
+  {
     verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
-        new ExecutableQueryFailure(query));
+        ExecutableQueryFailure.create(query, options));
   }
   public static void verify(Map<?, ?> map)
   {
