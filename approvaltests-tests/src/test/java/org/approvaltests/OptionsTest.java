@@ -15,6 +15,7 @@ import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
+import org.lambda.query.Queryable;
 
 import com.spun.util.ArrayUtils;
 
@@ -66,13 +67,13 @@ public class OptionsTest
   @Test
   void testEachMethodHasOneWithOptions()
   {
-    Method[] declaredMethods = Approvals.class.getDeclaredMethods();
-    List<Method> methodList = Query.where(declaredMethods,
-        m -> m.getName().startsWith("verify") && m.getModifiers() == Modifier.PUBLIC);
-    List<Method> methodsWithOptions = Query.where(methodList,
-        m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
-    List<Method> methodsWithoutOptions = Query.where(methodList,
-        m -> !ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
+    Queryable<Method> declaredMethods = Queryable.as(Approvals.class.getDeclaredMethods());
+    Queryable<Method> methodList = declaredMethods
+        .where(m -> m.getName().startsWith("verify") && m.getModifiers() == Modifier.PUBLIC);
+    List<Method> methodsWithOptions = methodList
+        .where(m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
+    List<Method> methodsWithoutOptions = methodList
+        .where(m -> !ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
     for (Method withOptions : methodsWithOptions)
     {
       String name = withOptions.getName();
@@ -84,7 +85,6 @@ public class OptionsTest
           "No match found for:" + withOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
-    //Approvals.verifyAll("verifyMethods", methodList, m -> m.toString(), new Options(new BeyondCompareMacReporter()));
   }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {

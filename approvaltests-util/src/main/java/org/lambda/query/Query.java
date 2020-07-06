@@ -1,6 +1,5 @@
 package org.lambda.query;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -13,22 +12,22 @@ import com.spun.util.ArrayUtils;
 
 public class Query<In>
 {
-  public static <In, Out> List<Out> select(List<In> list, Function1<In, Out> function)
+  public static <In, Out> Queryable<Out> select(List<In> list, Function1<In, Out> function)
   {
-    ArrayList<Out> out = new ArrayList<Out>();
+    Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
     {
       out.add(function.call(i));
     }
     return out;
   }
-  public static <In, Out> List<Out> select(In[] list, Function1<In, Out> function)
+  public static <In, Out> Queryable<Out> select(In[] list, Function1<In, Out> function)
   {
     return select(ArrayUtils.asList(list), function);
   }
-  public static <In> List<In> where(Iterable<In> list, Function1<In, Boolean> funct)
+  public static <In> Queryable<In> where(Iterable<In> list, Function1<In, Boolean> funct)
   {
-    ArrayList<In> out = new ArrayList<In>();
+    Queryable<In> out = new Queryable<In>();
     for (In i : list)
     {
       if (funct.call(i))
@@ -51,9 +50,9 @@ public class Query<In>
     }
     return null;
   }
-  public static <In> List<In> where(In[] list, Function1<In, Boolean> filter)
+  public static <In> Queryable<In> where(In[] list, Function1<In, Boolean> filter)
   {
-    ArrayList<In> out = new ArrayList<In>();
+    Queryable<In> out = new Queryable<In>();
     for (In i : list)
     {
       if (filter.call(i))
@@ -106,14 +105,14 @@ public class Query<In>
     Arrays.sort(list, new OrderBy<T, Out>(order, f1));
     return list;
   }
-  public static <T> List<T> orderBy(List<T> list, Function1<T, Comparable<?>> f1)
+  public static <T> Queryable<T> orderBy(List<T> list, Function1<T, Comparable<?>> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
-  public static <T> List<T> orderBy(List<T> list, Order order, Function1<T, Comparable<?>> f1)
+  public static <T> Queryable<T> orderBy(List<T> list, Order order, Function1<T, Comparable<?>> f1)
   {
     Collections.sort(list, new OrderBy<T, Comparable<?>>(order, f1));
-    return list;
+    return Queryable.as(list);
   }
   public static <In, Out extends Number> Double sum(In[] list, Function1<In, Out> f1)
   {
