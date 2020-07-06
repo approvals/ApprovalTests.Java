@@ -69,7 +69,7 @@ public class OptionsTest
   {
     Queryable<Method> declaredMethods = Queryable.as(Approvals.class.getDeclaredMethods());
     Queryable<Method> methodList = declaredMethods
-        .where(m -> m.getName().startsWith("verify") && m.getModifiers() == Modifier.PUBLIC);
+        .where(m -> m.getName().startsWith("verify") && Modifier.isPublic(m.getModifiers()) && m.isAccessible());
     List<Method> methodsWithOptions = methodList
         .where(m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
     List<Method> methodsWithoutOptions = methodList
@@ -83,6 +83,15 @@ public class OptionsTest
           Query.any(methodsWithoutOptions,
               m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
           "No match found for:" + withOptions);
+    }
+    for (Method withoutOptions : methodsWithoutOptions)
+    {
+      String name = withoutOptions.getName();
+      Class[] parameters = ArrayUtils.addToArray(withoutOptions.getParameterTypes(), Options.class);
+      assertTrue(
+          Query.any(methodsWithOptions,
+              m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
+          "No match found for:" + withoutOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
   }
