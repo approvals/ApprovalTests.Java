@@ -1,7 +1,7 @@
 verifyMethods
 
 
-private static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.core.ApprovalFailureReporter)
+private static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.core.Options)
 private static void org.approvaltests.Approvals.verifyEachFileAgainstMasterDirectory(java.io.File[]) throws java.lang.Error
 public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.ExecutableQuery)
 public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.SqlLoader)
@@ -14,8 +14,10 @@ public static void org.approvaltests.Approvals.verify(java.sql.ResultSet)
 public static void org.approvaltests.Approvals.verify(java.util.Map)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.approvers.ApprovalApprover)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.approvers.ApprovalApprover,org.approvaltests.core.ApprovalFailureReporter)
+public static void org.approvaltests.Approvals.verify(org.approvaltests.approvers.ApprovalApprover,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.namer.ApprovalNamer,org.approvaltests.core.ApprovalFailureReporter)
+public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.namer.ApprovalNamer,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.Object[],org.lambda.functions.Function1)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.Iterable)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.Iterable,org.lambda.functions.Function1)

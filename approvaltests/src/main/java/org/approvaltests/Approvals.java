@@ -29,7 +29,11 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.sql.ResultSet;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Approvals
 {
@@ -92,16 +96,24 @@ public class Approvals
     verify(new FileApprovalWriter(generateFile));
   }
 
+  /**
+   * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
+   */
+  @Deprecated
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
-    verify(new FileApprover(writer, namer), reporter);
+    verify(new FileApprover(writer, namer), new Options(reporter));
+  }
+  public static void verify(ApprovalWriter writer, ApprovalNamer namer, Options options)
+  {
+    verify(new FileApprover(writer, namer), options);
   }
   public static void verify(ApprovalWriter writer)
   {
     verify(writer, createApprovalNamer(), getReporter());
   }
-  private static void verify(ApprovalWriter writer, ApprovalFailureReporter reporter) {
-    verify(writer, createApprovalNamer(),reporter);
+  private static void verify(ApprovalWriter writer, Options options) {
+    verify(writer, createApprovalNamer(), options);
   }
   public static void verifyXml(String xml)
   {
@@ -109,10 +121,19 @@ public class Approvals
   }
   public static void verify(ApprovalApprover approver)
   {
-    verify(approver, getReporter());
+    verify(approver, new Options());
   }
+  /**
+   * @deprecated Use {@link #verify(ApprovalApprover, Options)} instead.
+   */
+  @Deprecated
   public static void verify(ApprovalApprover approver, ApprovalFailureReporter reporter)
   {
+    verify(approver, new Options(reporter));
+  }
+  public static void verify(ApprovalApprover approver, Options options)
+  {
+    ApprovalFailureReporter reporter = options.getReporter();
     if (!approver.approve())
     {
       approver.reportFailure(reporter);
@@ -209,10 +230,8 @@ public class Approvals
     if (t == null) { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
   }
-
   public static void verify(Object response, Options options) {
-
-    verify(new ApprovalTextWriter(Objects.toString(response), "txt"), options.getReporter());
+    verify(new ApprovalTextWriter(Objects.toString(response), "txt"), options);
   }
 
 }
