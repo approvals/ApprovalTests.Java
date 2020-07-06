@@ -285,11 +285,19 @@ public class Approvals
   }
   public static void verifyJson(String json)
   {
+    verifyJson(json, new Options());
+  }
+  public static void verifyJson(String json, Options options)
+  {
     verify(JsonUtils.prettyPrint(json), "json");
   }
   public static void verify(Object actual, String fileExtensionWithoutDot)
   {
-    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot));
+    verify(actual, fileExtensionWithoutDot, new Options());
+  }
+  public static void verify(Object actual, String fileExtensionWithoutDot, Options options)
+  {
+    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot), options);
   }
   public static ApprovalFailureReporter getReporter()
   {
@@ -297,13 +305,21 @@ public class Approvals
   }
   public static void verifyAsJson(Object o)
   {
-    verify(JsonUtils.asJson(o), "json");
+    verifyAsJson(o, new Options());
+  }
+  public static void verifyAsJson(Object o, Options options)
+  {
+    verify(JsonUtils.asJson(o), "json", options);
   }
   public static void verifyException(Action0 runnableBlock)
+  {
+    verifyException(runnableBlock, new Options());
+  }
+  public static void verifyException(Action0 runnableBlock, Options options)
   {
     Throwable t = ObjectUtils.captureException(runnableBlock);
     if (t == null)
     { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
-    Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
+    Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()), options);
   }
 }
