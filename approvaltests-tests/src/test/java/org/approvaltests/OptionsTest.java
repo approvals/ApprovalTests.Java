@@ -5,18 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import com.spun.util.ArrayUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
-import org.approvaltests.reporters.macosx.BeyondCompareMacReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
+
+import com.spun.util.ArrayUtils;
 
 public class OptionsTest
 {
@@ -67,14 +67,21 @@ public class OptionsTest
   void testEachMethodHasOneWithOptions()
   {
     Method[] declaredMethods = Approvals.class.getDeclaredMethods();
-    List<Method> methodList = Query.where(declaredMethods, m -> m.getName().startsWith("verify") && m.getModifiers() == Modifier.PUBLIC);
-    List<Method> methodsWithOptions = Query.where(methodList, m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
-    List<Method> methodsWithoutOptions = Query.where(methodList, m -> !ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
-    for (Method m : methodsWithOptions) {
-      String name = m.getName();
-      Class<?>[] parameterTypes = m.getParameterTypes();
-      new ArrayList<Class>()
-      Query.first(methodsWithoutOptions, m -> m.getName().equals(m.getName() && m.getParameterTypes().length == m.getParameterTypes().length - 1));
+    List<Method> methodList = Query.where(declaredMethods,
+        m -> m.getName().startsWith("verify") && m.getModifiers() == Modifier.PUBLIC);
+    List<Method> methodsWithOptions = Query.where(methodList,
+        m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
+    List<Method> methodsWithoutOptions = Query.where(methodList,
+        m -> !ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
+    for (Method withOptions : methodsWithOptions)
+    {
+      String name = withOptions.getName();
+      Class<?>[] parameterTypes = withOptions.getParameterTypes();
+      Class[] parameters = ArrayUtils.getSubsection(parameterTypes, 0, parameterTypes.length - 1);
+      assertTrue(
+          Query.any(methodsWithoutOptions,
+              m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
+          "No match found for:" + withOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
     //Approvals.verifyAll("verifyMethods", methodList, m -> m.toString(), new Options(new BeyondCompareMacReporter()));

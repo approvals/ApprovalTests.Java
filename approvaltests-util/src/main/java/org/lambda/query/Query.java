@@ -46,7 +46,8 @@ public class Query<In>
   {
     for (In i : list)
     {
-      if (filter.call(i)) { return i; }
+      if (filter.call(i))
+      { return i; }
     }
     return null;
   }
@@ -81,7 +82,8 @@ public class Query<In>
   }
   private static <In, Out extends Comparable<Out>> In getTop(List<In> list, Function1<In, Out> f1, int modifier)
   {
-    if (ArrayUtils.isEmpty(list)) { return null; }
+    if (ArrayUtils.isEmpty(list))
+    { return null; }
     In found = list.get(0);
     Out max = f1.call(found);
     for (In in : list)
@@ -147,5 +149,9 @@ public class Query<In>
   public static <T extends Number> T min(List<T> numbers)
   {
     return (T) min((List) numbers, (Comparable a) -> a);
+  }
+  public static <In> boolean any(List<In> array, Function1<In, Boolean> funct)
+  {
+    return first(array, funct) != null;
   }
 }
