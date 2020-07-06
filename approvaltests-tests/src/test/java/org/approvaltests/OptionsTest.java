@@ -46,11 +46,11 @@ public class OptionsTest {
         assertEquals(UseReporterTest.TestReporter.class, reporter.getReporters()[1].getClass());
     }
 
-    @Disabled("fixing previous test first")
     @Test
     void testTheVerifyApi() {
         Method[] declaredMethods = Approvals.class.getDeclaredMethods();
         List<Method> methodList = Query.where(declaredMethods, m -> m.getName().startsWith("verify"));
+        methodList = Query.orderBy(methodList, m -> m.toString());
         Approvals.verifyAll("verifyMethods", methodList, m -> m.toString());
     }
 
