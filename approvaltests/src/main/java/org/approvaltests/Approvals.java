@@ -1,13 +1,15 @@
 package org.approvaltests;
 
-import com.spun.util.ArrayUtils;
-import com.spun.util.FormattedException;
-import com.spun.util.JsonUtils;
-import com.spun.util.ObjectUtils;
-import com.spun.util.StringUtils;
-import com.spun.util.persistence.ExecutableQuery;
-import com.spun.util.persistence.Loader;
-import com.spun.util.persistence.SqlLoader;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -25,15 +27,14 @@ import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import com.spun.util.ArrayUtils;
+import com.spun.util.FormattedException;
+import com.spun.util.JsonUtils;
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
+import com.spun.util.persistence.ExecutableQuery;
+import com.spun.util.persistence.Loader;
+import com.spun.util.persistence.SqlLoader;
 
 public class Approvals
 {
@@ -46,11 +47,19 @@ public class Approvals
   };
   public static void verify(String response)
   {
-    verify(new ApprovalTextWriter(response, "txt"));
+    verify(response, new Options());
   }
-  public static void verify(Object o)
+  public static void verify(String response, Options options)
   {
-    verify("" + o);
+    verify(new ApprovalTextWriter(response, "txt"), options);
+  }
+  public static void verify(Object object)
+  {
+    verify(object, new Options());
+  }
+  public static void verify(Object object, Options options)
+  {
+    verify(new ApprovalTextWriter(Objects.toString(object), "txt"), options);
   }
   public static <T> void verifyAll(String label, T[] array)
   {
@@ -86,7 +95,6 @@ public class Approvals
   {
     verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"));
   }
-
   public static void verifyHtml(String response)
   {
     verify(new ApprovalTextWriter(response, "html"));
@@ -95,7 +103,6 @@ public class Approvals
   {
     verify(new FileApprovalWriter(generateFile));
   }
-
   /**
    * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
    */
@@ -112,7 +119,8 @@ public class Approvals
   {
     verify(writer, createApprovalNamer(), getReporter());
   }
-  private static void verify(ApprovalWriter writer, Options options) {
+  private static void verify(ApprovalWriter writer, Options options)
+  {
     verify(writer, createApprovalNamer(), options);
   }
   public static void verifyXml(String xml)
@@ -165,7 +173,6 @@ public class Approvals
   {
     return namerCreater.load();
   }
-
   public static void verifyEachFileInDirectory(File directory)
   {
     verifyEachFileAgainstMasterDirectory(directory.listFiles());
@@ -227,11 +234,8 @@ public class Approvals
   public static void verifyException(Action0 runnableBlock)
   {
     Throwable t = ObjectUtils.captureException(runnableBlock);
-    if (t == null) { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
+    if (t == null)
+    { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()));
   }
-  public static void verify(Object response, Options options) {
-    verify(new ApprovalTextWriter(Objects.toString(response), "txt"), options);
-  }
-
 }
