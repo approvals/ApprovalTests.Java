@@ -28,11 +28,14 @@ snippet: /src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.appr
 **Note:** If a Guid is used in multiple places, it will be scrubbed using the same replacement.
 That is why you see `guid_1` three times.
 
-## RexEx Scrubbing
+## RegEx Scrubbing
 
 Using a regex search term
 
 For example, here is an example where random numbers are scrubbed:
+snippet: scrub-regex-example
+producing
+snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt
 
 ---
 

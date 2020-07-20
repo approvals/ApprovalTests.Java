@@ -12,10 +12,20 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
+  * [Interface](#interface)
   * [Guid Scrubbing](#guid-scrubbing)
   * [RexEx Scrubbing](#rexex-scrubbing)<!-- endtoc -->
 
 !(https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
+
+If you are having trouble getting tests running reproducibly, you might need to use a “scrubber” to convert the non-deterministic text to something stable.
+
+## Interface
+
+Fundamentally, a scrubber is function that takes a string and returns a string. 
+You can create ones by passing in a function or a lambda. 
+We also have some pre-made ones for your convenience.
+
 
 ## Guid Scrubbing
 
@@ -58,6 +68,25 @@ That is why you see `guid_1` three times.
 
 ## RexEx Scrubbing
 
+Using a regex search term
+
+For example, here is an example where random numbers are scrubbed:
+<!-- snippet: scrub-regex-example -->
+<a id='snippet-scrub-regex-example'/></a>
+```java
+String input = "Hello " + new Random().nextInt(100) + " World!";
+Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
+```
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.java#L14-L17' title='File snippet `scrub-regex-example` was extracted from'>snippet source</a> | <a href='#snippet-scrub-regex-example' title='Navigate to start of snippet `scrub-regex-example`'>anchor</a></sup>
+<!-- endsnippet -->
+producing
+<!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt -->
+<a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'/></a>
+```txt
+Hello [number] World!
+```
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt#L1-L1' title='File snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt' title='Navigate to start of snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt`'>anchor</a></sup>
+<!-- endsnippet -->
 
 ---
 
