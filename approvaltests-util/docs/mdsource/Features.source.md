@@ -2,20 +2,10 @@
 
 # Features
 
+toc
 
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Functions](#functions)
-- [Actions](#actions)
-- [Actions.doNothing()](#actionsdonothing)
-- [SimpleLogger.logToNothing()](#simpleloggerlogtonothing)
-- [NullLogger](#nulllogger)
-- [ArrayUtils.addToArray()](#arrayutilsaddtoarray)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## Queryable and Extendable
+see [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 
 ## Functions
 

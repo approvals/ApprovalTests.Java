@@ -1,0 +1,4 @@
+firstWordsOnly[0] = ONE
+firstWordsOnly[1] = TWO
+firstWordsOnly[2] = RED
+firstWordsOnly[3] = BLUE
