@@ -95,6 +95,11 @@ public class OptionsTest
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
   }
+  @Test
+  void verifyFileExtension()
+  {
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+  }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {
     private boolean hasBeenCalled;

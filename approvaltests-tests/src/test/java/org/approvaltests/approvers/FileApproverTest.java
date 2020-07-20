@@ -63,7 +63,7 @@ public class FileApproverTest
   public void testCustomApprover()
   {
     // begin-snippet: custom_approver
-    ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options(), "txt");
+    ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options());
     ApprovalNamer namer = Approvals.createApprovalNamer();
     Function2<File, File, Boolean> approveEverything = (r, a) -> true;
     Approvals.verify(new FileApprover(writer, namer, approveEverything));
