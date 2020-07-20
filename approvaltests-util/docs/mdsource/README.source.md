@@ -3,16 +3,7 @@
 # ApprovalTests Util
 A set of convenience functions to make life easier.
 
-
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Features](#features)
-- [BasicUtils](#basicutils)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+toc
 
 ## Features
 [New Features documented here](Features.md#top)
@@ -20,6 +11,7 @@ A set of convenience functions to make life easier.
 ## BasicUtils
 
 * [Strings](StringUtils.md#top)
+* [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 
 ---
 
