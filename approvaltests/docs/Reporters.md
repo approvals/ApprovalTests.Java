@@ -40,19 +40,7 @@ TkDiffReporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/target/classes/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21' title='File snippet `mac_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Navigate to start of snippet `mac_diff_reporters`'>anchor</a></sup>
-<a id='snippet-mac_diff_reporters-1'/></a>
-```java
-BeyondCompareMacReporter.INSTANCE,
-DiffMergeReporter.INSTANCE,
-KaleidoscopeDiffReporter.INSTANCE,
-P4MergeReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
-TkDiffReporter.INSTANCE,
-IntelliJReporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
-```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21' title='File snippet `mac_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-mac_diff_reporters-1' title='Navigate to start of snippet `mac_diff_reporters`'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L21' title='File snippet `mac_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Navigate to start of snippet `mac_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
@@ -70,19 +58,7 @@ KDiff3Reporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/target/classes/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21' title='File snippet `windows_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Navigate to start of snippet `windows_diff_reporters`'>anchor</a></sup>
-<a id='snippet-windows_diff_reporters-1'/></a>
-```java
-TortoiseDiffReporter.INSTANCE,
-BeyondCompareReporter.INSTANCE,
-WinMergeReporter.INSTANCE,
-AraxisMergeReporter.INSTANCE,
-CodeCompareReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
-IntelliJReporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
-```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21' title='File snippet `windows_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-windows_diff_reporters-1' title='Navigate to start of snippet `windows_diff_reporters`'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L21' title='File snippet `windows_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Navigate to start of snippet `windows_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ### Linux
@@ -94,14 +70,7 @@ DiffMergeReporter.INSTANCE,
 MeldMergeReporter.INSTANCE, 
 IntelliJReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/target/classes/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='File snippet `linux_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Navigate to start of snippet `linux_diff_reporters`'>anchor</a></sup>
-<a id='snippet-linux_diff_reporters-1'/></a>
-```java
-DiffMergeReporter.INSTANCE, 
-MeldMergeReporter.INSTANCE, 
-IntelliJReporter.INSTANCE
-```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='File snippet `linux_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-linux_diff_reporters-1' title='Navigate to start of snippet `linux_diff_reporters`'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='File snippet `linux_diff_reporters` was extracted from'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Navigate to start of snippet `linux_diff_reporters`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ## Configuring a Reporter
