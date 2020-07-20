@@ -25,4 +25,14 @@ class ScrubberTest
     Approvals.verify(input, new Options(Scrubbers::scrubGuid));
     Approvals.verify(input, new Options().withScrubber(Scrubbers::scrubGuid));
   }
+  @Test
+  void scrubGuids()
+  {
+    String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+                      "2fd78d4a-1111-1111-1111-deda585a9aa5",
+                      "2fd78d4a-3333-3333-3333-deda585a9aa5",
+                      "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
+                      "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"};
+    Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
+  }
 }
