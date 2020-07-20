@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.lambda.functions.Function1;
@@ -22,7 +24,6 @@ import org.lambda.query.Query;
 public class StringUtils
 {
   public static final String NEW_LINE = System.getProperty("line.separator");
-
   public static String toURLEncode(String input)
   {
     try
@@ -34,12 +35,10 @@ public class StringUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-
   public static String loadNullableString(String i)
   {
     return StringUtils.isNonZero(i) ? i.trim() : null;
   }
-
   /**
    * Decode a URLEncoded <code>input</code> String.
    * <p>
@@ -60,15 +59,14 @@ public class StringUtils
       return null;
     }
   }
-
   public static String[] split(String string, String splitOn)
   {
     return split(string, splitOn, true);
   }
-
   public static String[] split(String string, String splitOn, boolean trim)
   {
-    if ((string == null) || (splitOn == null) || (splitOn.length() < 1)) { return null; }
+    if ((string == null) || (splitOn == null) || (splitOn.length() < 1))
+    { return null; }
     Vector<String> temp = new Vector<String>();
     int length = splitOn.length();
     int start = 0;
@@ -90,13 +88,13 @@ public class StringUtils
     }
     return toArray(temp);
   }
-
   public static String replace(String string, String find, String replace)
   {
-    if ((string == null) || (find == null) || (replace == null)) { throw new NullPointerException(
-        String.format("[string,find,replace] = [%s,%s,%s]", string, find, replace)); }
+    if ((string == null) || (find == null) || (replace == null))
+    { throw new NullPointerException(String.format("[string,find,replace] = [%s,%s,%s]", string, find, replace)); }
     String parts[] = split(string, find, false);
-    if (parts.length == 1) { return string; }
+    if (parts.length == 1)
+    { return string; }
     String result = "";
     for (int i = 0; i < parts.length; i++)
     {
@@ -104,12 +102,10 @@ public class StringUtils
     }
     return result.substring(0, result.length() - replace.length());
   }
-
   public static String stripWhiteSpace(String text)
   {
     return stripWhiteSpace(text, false);
   }
-
   public static String padNumber(long number, int digits)
   {
     String text = "" + number;
@@ -119,12 +115,10 @@ public class StringUtils
     }
     return text;
   }
-
   public static String padNumber(int number, int digits)
   {
     return padNumber((long) number, digits);
   }
-
   public static String stripWhiteSpace(String text, boolean all)
   {
     StringBuffer newText = new StringBuffer();
@@ -164,13 +158,13 @@ public class StringUtils
     }
     return newText.toString();
   }
-
   /**
    * Turns "mr. frank m Peter" into "Mr. Frank M Peter"
    **/
   public static String toNameUpperCase(String name)
   {
-    if (name == null) { return null; }
+    if (name == null)
+    { return null; }
     StringBuffer returning = new StringBuffer(name.length());
     String upper = name.toUpperCase();
     int place = 0;
@@ -197,7 +191,6 @@ public class StringUtils
     }
     return returning.toString();
   }
-
   public static String toConvertCamelCaseString(String varName, String insertBeforeCaps)
   {
     StringBuffer staticVarName = new StringBuffer();
@@ -212,7 +205,6 @@ public class StringUtils
     }
     return staticVarName.toString();
   }
-
   /**
    * Turns "ATTRIUBE_NAME" into "AttributeName"
    **/
@@ -244,12 +236,10 @@ public class StringUtils
     }
     return returning.toString();
   }
-
   public static String stripNonNumeric(String number)
   {
     return stripNonNumeric(number, false, false);
   }
-
   public static String stripCharacters(String dirtyString, String toStrip)
   {
     StringBuffer cleanStringBuffer = new StringBuffer();
@@ -267,12 +257,12 @@ public class StringUtils
   {
     return string.replaceAll("&", "&amp;");
   }
-
   public static String stripNonNumeric(String number, boolean allowDecimal, boolean allowNegative)
   {
     boolean allowExponential = allowDecimal;
     boolean afterE = false;
-    if (number == null) { return ""; }
+    if (number == null)
+    { return ""; }
     StringBuffer result = new StringBuffer();
     for (int i = 0; i < number.length(); i++)
     {
@@ -322,7 +312,6 @@ public class StringUtils
     }
     return result.toString();
   }
-
   /**
    * A convenience function to check that a String has at least 1 character.
    * 
@@ -334,12 +323,10 @@ public class StringUtils
   {
     return ((string != null) && string.trim().length() > 0);
   }
-
   public static boolean isEmpty(String string)
   {
     return !isNonZero(string);
   }
-
   /**
    * A convenience function to turn a vector of String objects into an Array
    * of the String objects.
@@ -352,7 +339,8 @@ public class StringUtils
    **/
   public static String[] toArray(java.util.Collection<String> vectorOf)
   {
-    if (vectorOf == null) { return new String[0]; }
+    if (vectorOf == null)
+    { return new String[0]; }
     String array[] = new String[vectorOf.size()];
     java.util.Iterator<String> iterator = vectorOf.iterator();
     int i = 0;
@@ -371,71 +359,66 @@ public class StringUtils
     }
     return array;
   }
-
   public static int resolveEnumeration(String value, String[] enumeration)
   {
     return resolveEnumeration(value, enumeration, false);
   }
-
   public static int resolveEnumeration(String value, String[] enumeration, boolean force)
   {
     for (int i = 0; i < enumeration.length; i++)
     {
-      if (enumeration[i].equals(value)) { return i; }
+      if (enumeration[i].equals(value))
+      { return i; }
     }
-    if (force) { throw new Error("Enumeration '" + value + "' not in " + Arrays.asList(enumeration).toString()); }
+    if (force)
+    { throw new Error("Enumeration '" + value + "' not in " + Arrays.asList(enumeration).toString()); }
     return -1;
   }
-
   public static String truncate(String string, int maxLength)
   {
-    if (string == null) { return null; }
+    if (string == null)
+    { return null; }
     return (string.length() <= maxLength) ? string : string.substring(0, maxLength);
   }
-
   public static boolean hasNumeric(String teamId)
   {
     return isNonZero(stripNonNumeric(teamId, false, false));
   }
-
   public static String toHTMLEncode(String string)
   {
-    if (string == null) { return null; }
+    if (string == null)
+    { return null; }
     string = string.replaceAll("<", "&lt;");
     string = string.replaceAll("\n", "<br />");
     return string;
   }
-
   public static String toJavaScriptEncode(String string)
   {
-    if (string == null) { return "null"; }
+    if (string == null)
+    { return "null"; }
     string = string.replaceAll("\"", "\\\\\"");
     string = string.replaceAll("\r", "\\\\r");
     string = string.replaceAll("\n", "\\\\n");
     return "\"" + string + "\"";
   }
-
   public static boolean isIn(String target, String... fromList)
   {
     return Arrays.asList(fromList).contains(target);
   }
-
   public static boolean isIn(String target, String[] fromList, boolean allowNulls)
   {
     return (target == null && allowNulls) ? true : isIn(target, fromList);
   }
-
   public static void assertIn(String target, String[] fromList, boolean allowNulls)
   {
     boolean valid = isIn(target, fromList, allowNulls);
-    if (!valid) { throw new IllegalArgumentException(
-        "The value '" + target + "' not in " + Arrays.asList(fromList)); }
+    if (!valid)
+    { throw new IllegalArgumentException("The value '" + target + "' not in " + Arrays.asList(fromList)); }
   }
   public static void assertIn(String target, boolean allowNulls, String... options)
   {
     assertIn(target, options, allowNulls);
   }
-
   public static String convertEnumeration(final Object forValue, Class<?> clazz)
   {
     Function1<Field, Boolean> filter = a -> {
@@ -458,7 +441,6 @@ public class StringUtils
       return fields.get(0).getName();
     }
   }
-
   /**
    * 'Tom S Hardy' becomes 'Tom S' - 'Hardy'
    **/
@@ -477,13 +459,16 @@ public class StringUtils
     }
     return names;
   }
-
   public static Properties createProperties(String[] properties)
   {
     Properties props = new Properties();
-    if (properties == null) { return props; }
-    if (properties.length % 2 != 0) { throw new Error(
-        "number of strings must be even. found [" + properties.length + "] = " + Arrays.asList(properties)); }
+    if (properties == null)
+    { return props; }
+    if (properties.length % 2 != 0)
+    {
+      throw new Error(
+          "number of strings must be even. found [" + properties.length + "] = " + Arrays.asList(properties));
+    }
     for (int i = 0; i < properties.length; i += 2)
     {
       if (properties[i + 1] != null)
@@ -497,7 +482,6 @@ public class StringUtils
     }
     return props;
   }
-
   public static <T> String toString(String name, T[] array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -516,7 +500,6 @@ public class StringUtils
     }
     return buffer.toString();
   }
-
   public static <T> String toString(String name, Iterable<T> array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -538,43 +521,37 @@ public class StringUtils
   }
   public static String arrayStringHelper(Object o)
   {
-    if (o == null) { return "null"; }
+    if (o == null)
+    { return "null"; }
     return o.getClass().isArray() ? Arrays.toString((Object[]) o) : o.toString();
   }
-
   public static String getFirstName(String fullName)
   {
     return splitName(fullName)[0];
   }
-
   public static String getLastName(String fullName)
   {
     return splitName(fullName)[1];
   }
-
   public static boolean isLengthWithin(String string, int length)
   {
     return string == null || string.length() <= length;
   }
-
   public static boolean equalsIgnoreCase(String one, String two)
   {
     return (one == two || (one != null && one.equalsIgnoreCase(two)));
   }
-
   public static StringBuffer trim(StringBuffer buffer, int i)
   {
-    if (buffer == null || buffer.length() < i) { return buffer; }
+    if (buffer == null || buffer.length() < i)
+    { return buffer; }
     buffer.setLength(buffer.length() - i);
     return buffer;
   }
-
   public static String join(String first, String joinBy, String second)
   {
     return isEmpty(second) ? first : first + joinBy + second;
   }
-
-
   public static InputStream convertToInputStream(String string)
   {
     return new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
@@ -601,5 +578,26 @@ public class StringUtils
   public static <T> String join(Collection<T> list, String joinWith, Function1<T, String> converter)
   {
     return list.stream().map(n -> converter.call(n)).collect(Collectors.joining(joinWith));
+  }
+  public static String replaceAll(String input, Pattern pattern, Function1<String, String> replacer)
+  {
+    Matcher matcher = pattern.matcher(input);
+    boolean result = matcher.find();
+    if (result)
+    {
+      StringBuilder sb = new StringBuilder();
+      int start = 0;
+      do
+      {
+        sb.append(input, start, matcher.start());
+        sb.append(replacer.call(matcher.group()));
+        start = matcher.end();
+        result = matcher.find();
+      }
+      while (result);
+      sb.append(input.substring(start));
+      return sb.toString();
+    }
+    return input;
   }
 }
