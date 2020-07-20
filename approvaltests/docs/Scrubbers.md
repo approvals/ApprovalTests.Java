@@ -14,7 +14,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
   * [Interface](#interface)
   * [Guid Scrubbing](#guid-scrubbing)
-  * [RexEx Scrubbing](#rexex-scrubbing)<!-- endtoc -->
+  * [RegEx Scrubbing](#regex-scrubbing)<!-- endtoc -->
 
 !(https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
 
@@ -66,7 +66,7 @@ guids[4] = guid_1 and text
 **Note:** If a Guid is used in multiple places, it will be scrubbed using the same replacement.
 That is why you see `guid_1` three times.
 
-## RexEx Scrubbing
+## RegEx Scrubbing
 
 Using a regex search term
 
