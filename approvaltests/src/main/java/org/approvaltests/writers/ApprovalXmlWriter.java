@@ -19,7 +19,7 @@ public class ApprovalXmlWriter extends ApprovalTextWriter
 {
     public ApprovalXmlWriter(String text)
     {
-        super(prettyPrint(text, 2), new Options(), "xml");
+        super(prettyPrint(text, 2), new Options().forFile().withExtension(".xml"));
     }
 
     public static String prettyPrint(String input, int indent) {

@@ -1,5 +1,6 @@
 * easier API for custom file name & location?! (issue 2, 51)
-* implement Options
+** Options for file name (not just extension)
+** Options for file path
 ** update mrunit and fix tests
 * remove all checked exceptions
 * remove all warnings

@@ -18,16 +18,12 @@ public class ApprovalTextWriter implements ApprovalWriter
   @Deprecated
   public ApprovalTextWriter(String text, String fileExtensionWithoutDot)
   {
-    this(text, new Options(), fileExtensionWithoutDot);
+    this(text, new Options().forFile().withExtension(fileExtensionWithoutDot));
   }
   public ApprovalTextWriter(String text, Options options)
   {
-    this(text, options, "txt");
-  }
-  public ApprovalTextWriter(String text, Options options, String fileExtensionWithoutDot)
-  {
     this.text = options.scrub(text);
-    this.fileExtensionWithoutDot = fileExtensionWithoutDot;
+    this.fileExtensionWithoutDot = options.forFile().getFileExtension().substring(1);
   }
   @Override
   public String writeReceivedFile(String received)

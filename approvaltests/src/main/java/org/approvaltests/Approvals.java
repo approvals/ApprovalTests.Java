@@ -131,7 +131,7 @@ public class Approvals
   }
   public static void verifyHtml(String response, Options options)
   {
-    verify(new ApprovalTextWriter(response, options, "html"), options);
+    verify(response, options.forFile().withExtension(".html"));
   }
   public static void verify(File generateFile)
   {
@@ -294,15 +294,24 @@ public class Approvals
   }
   public static void verifyJson(String json, Options options)
   {
-    verify(JsonUtils.prettyPrint(json), "json");
+    verify(JsonUtils.prettyPrint(json), options.forFile().withExtension(".json"));
   }
+
+  /**
+   * @deprecated View method source for example.
+   */
+  @Deprecated
   public static void verify(Object actual, String fileExtensionWithoutDot)
   {
     verify(actual, fileExtensionWithoutDot, new Options());
   }
+  /**
+   * @deprecated View method source for example.
+   */
+  @Deprecated
   public static void verify(Object actual, String fileExtensionWithoutDot, Options options)
   {
-    verify(new ApprovalTextWriter("" + actual, options, fileExtensionWithoutDot), options);
+    verify("" + actual, options.forFile().withExtension(fileExtensionWithoutDot));
   }
   public static ApprovalFailureReporter getReporter()
   {
@@ -314,7 +323,7 @@ public class Approvals
   }
   public static void verifyAsJson(Object o, Options options)
   {
-    verify(JsonUtils.asJson(o), "json", options);
+    verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
   }
   public static void verifyException(Action0 runnableBlock)
   {
