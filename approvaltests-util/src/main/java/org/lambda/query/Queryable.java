@@ -87,7 +87,7 @@ public class Queryable<In> extends ArrayList<In>
     q.addAll(list);
     return q;
   }
-  public static <T> Queryable<T> as(T[] array)
+  public static <T> Queryable<T> as(T... array)
   {
     return as(Arrays.asList(array));
   }
