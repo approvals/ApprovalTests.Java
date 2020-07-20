@@ -51,7 +51,7 @@ public class Approvals
   }
   public static void verify(String response, Options options)
   {
-    verify(new ApprovalTextWriter(response, "txt"), options);
+    verify(new ApprovalTextWriter(response, options), options);
   }
   public static void verify(Object object)
   {
@@ -59,7 +59,7 @@ public class Approvals
   }
   public static void verify(Object object, Options options)
   {
-    verify(new ApprovalTextWriter(Objects.toString(object), "txt"), options);
+    verify(Objects.toString(object), options);
   }
   public static <T> void verifyAll(String label, T[] array)
   {
@@ -67,7 +67,7 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, T[] array, Options options)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), options);
+    verify(StringUtils.toString(label, array), options);
   }
   public static <T> void verifyAll(String header, String label, T[] array)
   {
@@ -75,7 +75,8 @@ public class Approvals
   }
   public static <T> void verifyAll(String header, String label, T[] array, Options options)
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"), options);
+    String text = formatHeader(header) + StringUtils.toString(label, array);
+    verify(text, options);
   }
   public static <T> void verifyAll(T[] values, Function1<T, String> f1)
   {
@@ -84,7 +85,7 @@ public class Approvals
   public static <T> void verifyAll(T[] values, Function1<T, String> f1, Options options)
   {
     String text = ArrayUtils.toString(values, f1);
-    verify(new ApprovalTextWriter(text, "txt"), options);
+    verify(text, options);
   }
   public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1)
   {
@@ -101,7 +102,7 @@ public class Approvals
   public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1, Options options)
   {
     String text = formatHeader(header) + ArrayUtils.toString(array, f1);
-    verify(new ApprovalTextWriter(text, "txt"), options);
+    verify(text, options);
   }
   private static String formatHeader(String header)
   {
@@ -113,7 +114,7 @@ public class Approvals
   }
   public static <T> void verifyAll(String label, Iterable<T> array, Options options)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(label, array), "txt"), options);
+    verify(StringUtils.toString(label, array), options);
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array)
   {
@@ -121,7 +122,8 @@ public class Approvals
   }
   public static <T> void verifyAll(String header, String label, Iterable<T> array, Options options)
   {
-    verify(new ApprovalTextWriter(formatHeader(header) + StringUtils.toString(label, array), "txt"), options);
+    String text = formatHeader(header) + StringUtils.toString(label, array);
+    verify(text, options);
   }
   public static void verifyHtml(String response)
   {
@@ -129,7 +131,7 @@ public class Approvals
   }
   public static void verifyHtml(String response, Options options)
   {
-    verify(new ApprovalTextWriter(response, "html"), options);
+    verify(new ApprovalTextWriter(response, options, "html"), options);
   }
   public static void verify(File generateFile)
   {
@@ -202,8 +204,7 @@ public class Approvals
   }
   public static void verify(ExecutableQuery query, Options options)
   {
-    verify(new ApprovalTextWriter(query.getQuery(), "txt"), createApprovalNamer(),
-        ExecutableQueryFailure.create(query, options));
+    verify(query.getQuery(), ExecutableQueryFailure.create(query, options));
   }
   public static void verify(Map<?, ?> map)
   {
@@ -211,7 +212,7 @@ public class Approvals
   }
   public static void verify(Map<?, ?> map, Options options)
   {
-    verify(new ApprovalTextWriter(StringUtils.toString(map), "txt"), options);
+    verify(StringUtils.toString(map), options);
   }
   public static void verify(ResultSet rs)
   {
@@ -301,7 +302,7 @@ public class Approvals
   }
   public static void verify(Object actual, String fileExtensionWithoutDot, Options options)
   {
-    verify(new ApprovalTextWriter("" + actual, fileExtensionWithoutDot), options);
+    verify(new ApprovalTextWriter("" + actual, options, fileExtensionWithoutDot), options);
   }
   public static ApprovalFailureReporter getReporter()
   {

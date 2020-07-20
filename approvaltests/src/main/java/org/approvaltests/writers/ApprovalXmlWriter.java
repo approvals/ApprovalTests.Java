@@ -1,5 +1,7 @@
 package org.approvaltests.writers;
 
+import org.approvaltests.core.Options;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -17,7 +19,7 @@ public class ApprovalXmlWriter extends ApprovalTextWriter
 {
     public ApprovalXmlWriter(String text)
     {
-        super(prettyPrint(text, 2), "xml");
+        super(prettyPrint(text, 2), new Options(), "xml");
     }
 
     public static String prettyPrint(String input, int indent) {

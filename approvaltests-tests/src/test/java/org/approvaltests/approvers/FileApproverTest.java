@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.Test;
@@ -62,7 +63,7 @@ public class FileApproverTest
   public void testCustomApprover()
   {
     // begin-snippet: custom_approver
-    ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", "txt");
+    ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options(), "txt");
     ApprovalNamer namer = Approvals.createApprovalNamer();
     Function2<File, File, Boolean> approveEverything = (r, a) -> true;
     Approvals.verify(new FileApprover(writer, namer, approveEverything));
