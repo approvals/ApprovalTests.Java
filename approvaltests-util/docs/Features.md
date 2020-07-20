@@ -33,7 +33,12 @@ For Example Function3 has the single method :
 ```java
 public Out call(In1 a, In2 b, In3 c);
 ```
-<sup><a href='/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7' title='File snippet `function3_call` was extracted from'>snippet source</a> | <a href='#snippet-function3_call' title='Navigate to start of snippet `function3_call`'>anchor</a></sup>
+<sup><a href='/approvaltests-util/target/classes/org/lambda/functions/Function3.java#L5-L7' title='File snippet `function3_call` was extracted from'>snippet source</a> | <a href='#snippet-function3_call' title='Navigate to start of snippet `function3_call`'>anchor</a></sup>
+<a id='snippet-function3_call-1'/></a>
+```java
+public Out call(In1 a, In2 b, In3 c);
+```
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7' title='File snippet `function3_call` was extracted from'>snippet source</a> | <a href='#snippet-function3_call-1' title='Navigate to start of snippet `function3_call`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  
@@ -56,7 +61,12 @@ For Example Action3 has the single method:
 ```java
 public void call(In1 a, In2 b, In3 c);
 ```
-<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='File snippet `action3_call` was extracted from'>snippet source</a> | <a href='#snippet-action3_call' title='Navigate to start of snippet `action3_call`'>anchor</a></sup>
+<sup><a href='/approvaltests-util/target/classes/org/lambda/actions/Action3.java#L10-L12' title='File snippet `action3_call` was extracted from'>snippet source</a> | <a href='#snippet-action3_call' title='Navigate to start of snippet `action3_call`'>anchor</a></sup>
+<a id='snippet-action3_call-1'/></a>
+```java
+public void call(In1 a, In2 b, In3 c);
+```
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='File snippet `action3_call` was extracted from'>snippet source</a> | <a href='#snippet-action3_call-1' title='Navigate to start of snippet `action3_call`'>anchor</a></sup>
 <!-- endsnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  

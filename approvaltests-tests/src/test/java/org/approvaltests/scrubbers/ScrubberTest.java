@@ -28,11 +28,15 @@ class ScrubberTest
   @Test
   void scrubGuids()
   {
+    // begin-snippet: guid-scrubbing-1
     String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                       "2fd78d4a-1111-1111-1111-deda585a9aa5",
                       "2fd78d4a-3333-3333-3333-deda585a9aa5",
                       "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                       "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"};
+    // end-snippet
+    // begin-snippet: guid-scrubbing-2
     Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
+    // end-snippet
   }
 }

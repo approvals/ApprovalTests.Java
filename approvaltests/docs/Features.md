@@ -46,12 +46,12 @@ If you want to customize how approvaltests decides if two files are equal, you c
 <!-- snippet: custom_approver -->
 <a id='snippet-custom_approver'/></a>
 ```java
-ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", "txt");
+ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options(), "txt");
 ApprovalNamer namer = Approvals.createApprovalNamer();
 Function2<File, File, Boolean> approveEverything = (r, a) -> true;
 Approvals.verify(new FileApprover(writer, namer, approveEverything));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L64-L69' title='File snippet `custom_approver` was extracted from'>snippet source</a> | <a href='#snippet-custom_approver' title='Navigate to start of snippet `custom_approver`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L65-L70' title='File snippet `custom_approver` was extracted from'>snippet source</a> | <a href='#snippet-custom_approver' title='Navigate to start of snippet `custom_approver`'>anchor</a></sup>
 <!-- endsnippet -->
 
 
