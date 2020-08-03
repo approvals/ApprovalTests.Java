@@ -105,7 +105,7 @@ public class OptionsTest
   void verifyFileName()
   {
     String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
-    //Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
+    Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
     //Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
     //Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
   }

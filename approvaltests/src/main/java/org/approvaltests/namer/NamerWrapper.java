@@ -2,8 +2,8 @@ package org.approvaltests.namer;
 
 public class NamerWrapper implements ApprovalNamer
 {
-  private final GetApprovalName approvalBaseName;
-  private final GetSourceFilePath sourceFilePath;
+  private GetApprovalName   approvalBaseName;
+  private GetSourceFilePath sourceFilePath;
   public NamerWrapper(GetApprovalName approvalBaseName, GetSourceFilePath sourceFilePath)
   {
     this.approvalBaseName = approvalBaseName;
@@ -23,5 +23,13 @@ public class NamerWrapper implements ApprovalNamer
   public String getSourceFilePath()
   {
     return sourceFilePath.getSourceFilePath();
+  }
+  public void setApprovalBaseName(GetApprovalName approvalBaseName)
+  {
+    this.approvalBaseName = approvalBaseName;
+  }
+  public void setSourceFilePath(GetSourceFilePath getSourceFilePath)
+  {
+    this.sourceFilePath = getSourceFilePath;
   }
 }
