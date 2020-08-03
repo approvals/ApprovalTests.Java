@@ -2,6 +2,8 @@
 ** Options for file name (not just extension)
 ** Options for file path
 ** update mrunit and fix tests
+** VelocityApprovals doesn't know about Options yet
+
 * remove all checked exceptions
 * remove all warnings
 * handle manual install of intellij

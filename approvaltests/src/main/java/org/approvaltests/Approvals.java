@@ -163,7 +163,7 @@ public class Approvals
   }
   private static void verify(ApprovalWriter writer, Options options)
   {
-    verify(writer, createApprovalNamer(), options);
+    verify(writer, options.forFile().getNamer(), options);
   }
   public static void verifyXml(String xml)
   {
@@ -260,7 +260,7 @@ public class Approvals
   }
   private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options) throws Error
   {
-    ApprovalNamer namer = createApprovalNamer();
+    ApprovalNamer namer = options.forFile().getNamer();
     String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
     File approvedDirectory = new File(dirName);
     List<File> mismatched = new ArrayList<File>();

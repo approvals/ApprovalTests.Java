@@ -2,7 +2,9 @@ package org.approvaltests.core;
 
 import java.util.Optional;
 
+import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
+import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.scrubbers.NoOpScrubber;
 
 public class Options
@@ -55,6 +57,7 @@ public class Options
   public static class FileOptions
   {
     private String    fileExtension = ".txt";
+    protected Optional<ApprovalNamer> approvalNamer = Optional.empty();
     protected Options parent;
     public FileOptions()
     {
@@ -75,6 +78,10 @@ public class Options
       }
       FileOptions f = new FileOptions(fileExtensionWithDot);
       return new Options(parent, f);
+    }
+
+    public ApprovalNamer getNamer() {
+      return approvalNamer.orElseGet(Approvals::createApprovalNamer);
     }
 
     public String getFileExtension() {
