@@ -6,8 +6,26 @@ public class NamerWrapper implements ApprovalNamer
   private GetSourceFilePath sourceFilePath;
   public NamerWrapper(GetApprovalName approvalBaseName, GetSourceFilePath sourceFilePath)
   {
-    this.approvalBaseName = approvalBaseName;
-    this.sourceFilePath = sourceFilePath;
+    this.approvalBaseName = unwrapGetApprovalName(approvalBaseName);
+    this.sourceFilePath = unwrapGetSourceFilePath(sourceFilePath);
+  }
+  private static GetApprovalName unwrapGetApprovalName(GetApprovalName approvalBaseName)
+  {
+    if (approvalBaseName instanceof NamerWrapper)
+    {
+      NamerWrapper wr = (NamerWrapper) approvalBaseName;
+      approvalBaseName = wr.approvalBaseName;
+    }
+    return approvalBaseName;
+  }
+  private static GetSourceFilePath unwrapGetSourceFilePath(GetSourceFilePath sourceFilePath)
+  {
+    if (sourceFilePath instanceof NamerWrapper)
+    {
+      NamerWrapper wr = (NamerWrapper) sourceFilePath;
+      sourceFilePath = wr.sourceFilePath;
+    }
+    return sourceFilePath;
   }
   public NamerWrapper(ApprovalNamer namer)
   {
