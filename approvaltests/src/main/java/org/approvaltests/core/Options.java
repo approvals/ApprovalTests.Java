@@ -99,5 +99,11 @@ public class Options
       FileOptions f = new FileOptions(approvalNamer, this.fileExtension);
       return new Options(parent, f);
     }
+
+    public Options withName(String fileBaseName, String extension) {
+      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
+      FileOptions f = new FileOptions(approvalNamer, extension);
+      return new Options(parent, f);
+    }
   }
 }
