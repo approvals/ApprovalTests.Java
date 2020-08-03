@@ -1,5 +1,5 @@
 * easier API for custom file name & location?! (issue 2, 51)
-
+** documentation for Options.forFile()
 ** Options for file path
 ** update mrunit and fix tests
 ** VelocityApprovals doesn't know about Options yet
