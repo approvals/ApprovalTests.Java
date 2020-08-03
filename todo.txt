@@ -1,7 +1,9 @@
 * easier API for custom file name & location?! (issue 2, 51)
-** Options for file name (not just extension)
+** documentation for Options.forFile()
 ** Options for file path
 ** update mrunit and fix tests
+** VelocityApprovals doesn't know about Options yet
+
 * remove all checked exceptions
 * remove all warnings
 * handle manual install of intellij

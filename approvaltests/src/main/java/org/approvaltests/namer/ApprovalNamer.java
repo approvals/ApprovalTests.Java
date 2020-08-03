@@ -1,7 +1,6 @@
 package org.approvaltests.namer;
 
-public interface ApprovalNamer
+public interface ApprovalNamer extends GetApprovalName, GetSourceFilePath
 {
-  String getApprovalName();
-  String getSourceFilePath();
+
 }

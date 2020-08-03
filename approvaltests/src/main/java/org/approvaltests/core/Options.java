@@ -2,7 +2,10 @@ package org.approvaltests.core;
 
 import java.util.Optional;
 
+import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 
 public class Options
@@ -54,13 +57,19 @@ public class Options
   }
   public static class FileOptions
   {
-    private String    fileExtension = ".txt";
-    protected Options parent;
+    private String         fileExtension = ".txt";
+    protected NamerWrapper approvalNamer = null;
+    protected Options      parent;
     public FileOptions()
     {
     }
     public FileOptions(String fileExtension)
     {
+      this.fileExtension = fileExtension;
+    }
+    public FileOptions(NamerWrapper approvalNamer, String fileExtension)
+    {
+      this.approvalNamer = approvalNamer;
       this.fileExtension = fileExtension;
     }
     public void setParent(Options parent)
@@ -73,12 +82,28 @@ public class Options
       {
         fileExtensionWithDot = "." + fileExtensionWithDot;
       }
-      FileOptions f = new FileOptions(fileExtensionWithDot);
+      FileOptions f = new FileOptions(this.approvalNamer, fileExtensionWithDot);
+      return new Options(parent, f);
+    }
+    public ApprovalNamer getNamer()
+    {
+      return approvalNamer == null ? Approvals.createApprovalNamer() : approvalNamer;
+    }
+    public String getFileExtension()
+    {
+      return fileExtension;
+    }
+    public Options withBaseName(String fileBaseName)
+    {
+      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
+      FileOptions f = new FileOptions(approvalNamer, this.fileExtension);
       return new Options(parent, f);
     }
 
-    public String getFileExtension() {
-      return fileExtension;
+    public Options withName(String fileBaseName, String extension) {
+      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
+      FileOptions f = new FileOptions(approvalNamer, extension);
+      return new Options(parent, f);
     }
   }
 }

@@ -13,6 +13,7 @@ import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -97,6 +98,26 @@ public class OptionsTest
   }
   @Test
   void verifyFileExtension()
+  {
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+  }
+  @Test
+  void verifyFileName()
+  {
+    String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
+    Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
+    Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
+    Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
+  }
+  @Disabled("todo")
+  @Test
+  void verifyFilePath()
+  {
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+  }
+  @Disabled("todo")
+  @Test
+  void verifyFileRelativePath()
   {
     Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
   }
