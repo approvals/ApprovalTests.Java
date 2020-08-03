@@ -95,10 +95,7 @@ public class Options
     }
     public Options withBaseName(String fileBaseName)
     {
-      NamerWrapper approvalNamer = this.approvalNamer == null
-          ? new NamerWrapper(Approvals.createApprovalNamer())
-          : this.approvalNamer;
-      approvalNamer.setApprovalBaseName( () -> fileBaseName);
+      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
       FileOptions f = new FileOptions(approvalNamer, this.fileExtension);
       return new Options(parent, f);
     }
