@@ -44,7 +44,7 @@ These are now in the AwtApprovals class.
 If you want to customize how approvaltests decides if two files are equal, you can pass in your own deciding function.
 
 <!-- snippet: custom_approver -->
-<a id='snippet-custom_approver'/></a>
+<a id='snippet-custom_approver'></a>
 ```java
 ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options());
 ApprovalNamer namer = Approvals.createApprovalNamer();
@@ -93,7 +93,7 @@ Note: this currently only works on mac and will default to the normal swing othe
 This is a convenience class to follow the practice 'Test Commit/Revert' from Kent Beck. Simply adding
 ### Method 1 - extend class
 <!-- snippet: test_commit_revert -->
-<a id='snippet-test_commit_revert'/></a>
+<a id='snippet-test_commit_revert'></a>
 ```java
 extends TestCommitRevertTest
 ```
@@ -103,7 +103,7 @@ to your test class
 
 ### Method 2 - use Runner
 <!-- snippet: test_commit_revert_runner -->
-<a id='snippet-test_commit_revert_runner'/></a>
+<a id='snippet-test_commit_revert_runner'></a>
 ```java
 @RunWith(TestCommitRevertRunner.class)
 public class TestCommitRevertSample

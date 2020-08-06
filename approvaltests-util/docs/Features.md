@@ -29,7 +29,7 @@ Function0 through Function9 are single method interfaces for use with lambdas wh
 For Example Function3 has the single method :
 
 <!-- snippet: function3_call -->
-<a id='snippet-function3_call'/></a>
+<a id='snippet-function3_call'></a>
 ```java
 public Out call(In1 a, In2 b, In3 c);
 ```
@@ -52,7 +52,7 @@ Action0 through Action9 are single method interfaces for use with lambdas where 
 For Example Action3 has the single method:  
 
 <!-- snippet: action3_call -->
-<a id='snippet-action3_call'/></a>
+<a id='snippet-action3_call'></a>
 ```java
 public void call(In1 a, In2 b, In3 c);
 ```
@@ -78,7 +78,7 @@ Action0 thru Action9 all have an implementation of the null object pattern for y
 SimpleLogger is used to make approvaltesting easier, but approvalTests also uses it internally. Something these bleed out in the form of messages like
 
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt -->
-<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt'/></a>
+<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt'></a>
 ```txt
 => SimpleLoggerTest.test() - IN
    => SimpleLoggerTest.test() - IN
@@ -105,7 +105,7 @@ java.lang.Error -  null
 if you want to turn them all off just run
 
 <!-- snippet: log_nothing -->
-<a id='snippet-log_nothing'/></a>
+<a id='snippet-log_nothing'></a>
 ```java
 SimpleLogger.logToNothing();
 ```
@@ -120,7 +120,7 @@ Null Object Pattern for java.lang.Appendable
 
 Sometimes you wish you could add to an array the same way you can add to a list.
 <!-- snippet: add_to_array -->
-<a id='snippet-add_to_array'/></a>
+<a id='snippet-add_to_array'></a>
 ```java
 Integer[] numbers = {1, 2, 3};
 numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
@@ -130,7 +130,7 @@ numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
 
 will result in a new copy of the array with the added items
 <!-- snippet: add_to_array_result -->
-<a id='snippet-add_to_array_result'/></a>
+<a id='snippet-add_to_array_result'></a>
 ```java
 Integer[] resulting = {1, 2, 3, 4, 5, 6};
 ```

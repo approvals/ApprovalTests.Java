@@ -31,7 +31,7 @@ We also have some pre-made ones for your convenience.
 
 Let's say you have the following Guids in your output:
 <!-- snippet: guid-scrubbing-1 -->
-<a id='snippet-guid-scrubbing-1'/></a>
+<a id='snippet-guid-scrubbing-1'></a>
 ```java
 String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-1111-1111-1111-deda585a9aa5",
@@ -44,7 +44,7 @@ String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
 You can make this output deterministic by using a scrubber in the options.
 For example:
 <!-- snippet: guid-scrubbing-2 -->
-<a id='snippet-guid-scrubbing-2'/></a>
+<a id='snippet-guid-scrubbing-2'></a>
 ```java
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
@@ -53,7 +53,7 @@ Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 **Note:** Options is available on all Approvals.verify methods.
 This will result in the following `.approved.txt` file
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt -->
-<a id='snippet-/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt'/></a>
+<a id='snippet-/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt'></a>
 ```txt
 guids[0] = guid_1
 guids[1] = guid_2
@@ -72,7 +72,7 @@ Using a regex search term
 
 For example, here is an example where random numbers are scrubbed:
 <!-- snippet: scrub-regex-example -->
-<a id='snippet-scrub-regex-example'/></a>
+<a id='snippet-scrub-regex-example'></a>
 ```java
 String input = "Hello " + new Random().nextInt(100) + " World!";
 Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
@@ -81,7 +81,7 @@ Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
 <!-- endsnippet -->
 producing
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt -->
-<a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'/></a>
+<a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'></a>
 ```txt
 Hello [number] World!
 ```
