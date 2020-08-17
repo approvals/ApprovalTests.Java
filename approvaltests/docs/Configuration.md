@@ -30,7 +30,7 @@ Currently you can configure:
 
 Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
 <!-- snippet: package_settings_approval_subdirectory -->
-<a id='snippet-package_settings_approval_subdirectory'/></a>
+<a id='snippet-package_settings_approval_subdirectory'></a>
 ```java
 public class PackageSettings
 {
@@ -49,7 +49,7 @@ Approved and received files can be stored in a different branch of the code base
 To do so, write a class as follows:    
 
 <!-- snippet: package_settings_approval_base_directory -->
-<a id='snippet-package_settings_approval_base_directory'/></a>
+<a id='snippet-package_settings_approval_base_directory'></a>
 ```java
 public class PackageSettings
 {
@@ -70,7 +70,7 @@ Your Package Leveling configuration must be in class called PackageSettings. The
 For example if you had a class:
 
 <!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java'/></a>
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java'></a>
 ```java
 package org.packagesettings;
 
@@ -87,7 +87,7 @@ public class PackageSettings
 If you where to call at the org.packagesettings level.
 
 <!-- snippet: package_level_settings_get -->
-<a id='snippet-package_level_settings_get'/></a>
+<a id='snippet-package_level_settings_get'></a>
 ```java
 Map<String, Settings> settings = PackageLevelSettings.get();
 ```
@@ -97,7 +97,7 @@ Map<String, Settings> settings = PackageLevelSettings.get();
 Then you would get the following settings
 
 <!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt'/></a>
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt'></a>
 ```txt
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Llewellyn [from org.packagesettings.PackageSettings] 
@@ -109,7 +109,7 @@ rating : 10 [from org.packagesettings.PackageSettings]
 However, if you also had
 
 <!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java'/></a>
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java'></a>
 ```java
 package org.packagesettings.subpackage;
 
@@ -127,7 +127,7 @@ and you ran the same code but from the org.packagesettings.subpackage
 then you would get a blended view of the two classes where anything in the sub-package would override the parents.
 
 <!-- snippet: /approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt'/></a>
+<a id='snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt'></a>
 ```txt
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Test Name [from org.packagesettings.subpackage.PackageSettings] 

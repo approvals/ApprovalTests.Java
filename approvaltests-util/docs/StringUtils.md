@@ -25,7 +25,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 Sometimes you have a list that needs to become a string.
 For example
 <!-- snippet: join_collection -->
-<a id='snippet-join_collection'/></a>
+<a id='snippet-join_collection'></a>
 ```java
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ");
@@ -34,7 +34,7 @@ String text = StringUtils.join(number, ", ");
 <!-- endsnippet -->
 will produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt -->
-<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt'/></a>
+<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt'></a>
 ```txt
 1, 2, 3, 4, 5
 ```
@@ -46,7 +46,7 @@ by invoking the .toString() on each object in the collection.
 if .toString() isn't enough, you can pass in a lambda to do the extra transformation as well.
 For example:
 <!-- snippet: join_collection_with_lambda -->
-<a id='snippet-join_collection_with_lambda'/></a>
+<a id='snippet-join_collection_with_lambda'></a>
 ```java
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
@@ -55,7 +55,7 @@ String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
 <!-- endsnippet -->
 will Produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt -->
-<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt'/></a>
+<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt'></a>
 ```txt
 001, 002, 003, 004, 005
 ```

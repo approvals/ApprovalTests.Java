@@ -29,7 +29,7 @@ Currently the search goes in this order:
 ### Mac
 
 <!-- snippet: mac_diff_reporters -->
-<a id='snippet-mac_diff_reporters'/></a>
+<a id='snippet-mac_diff_reporters'></a>
 ```java
 BeyondCompareMacReporter.INSTANCE,
 DiffMergeReporter.INSTANCE,
@@ -47,7 +47,7 @@ VisualStudioCodeReporter.INSTANCE
 ### Windows
 
 <!-- snippet: windows_diff_reporters -->
-<a id='snippet-windows_diff_reporters'/></a>
+<a id='snippet-windows_diff_reporters'></a>
 ```java
 TortoiseDiffReporter.INSTANCE,
 BeyondCompareReporter.INSTANCE,
@@ -64,7 +64,7 @@ VisualStudioCodeReporter.INSTANCE
 ### Linux
 
 <!-- snippet: linux_diff_reporters -->
-<a id='snippet-linux_diff_reporters'/></a>
+<a id='snippet-linux_diff_reporters'></a>
 ```java
 DiffMergeReporter.INSTANCE, 
 MeldMergeReporter.INSTANCE, 
@@ -82,7 +82,7 @@ You can configure which reporter to use in a few ways. ApprovalTests uses the me
 At both the class and method level you can use the @UseReporter attribute to set 1 or multiple reporters.
 
 <!-- snippet: use_reporter_single -->
-<a id='snippet-use_reporter_single'/></a>
+<a id='snippet-use_reporter_single'></a>
 ```java
 @UseReporter(DiffMergeReporter.class)
 ```
@@ -90,7 +90,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 <!-- endsnippet -->
 
 <!-- snippet: use_reporter_multiple -->
-<a id='snippet-use_reporter_multiple'/></a>
+<a id='snippet-use_reporter_multiple'></a>
 ```java
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 ```
@@ -105,7 +105,7 @@ You can also assign a default for an entire package (and all sub-packages) by cr
 
 
 <!-- snippet: use_reporter_package_settings -->
-<a id='snippet-use_reporter_package_settings'/></a>
+<a id='snippet-use_reporter_package_settings'></a>
 ```java
 public class PackageSettings
 {
@@ -122,7 +122,7 @@ If your favorite diff tool isn't supported out of the box, create your own custo
 Here's an example:
 
 <!-- snippet: custom_reporter -->
-<a id='snippet-custom_reporter'/></a>
+<a id='snippet-custom_reporter'></a>
 ```java
 public class CustomReporter extends GenericDiffReporter
 {

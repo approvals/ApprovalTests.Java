@@ -18,7 +18,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
 You have a function you wish was part of Queryable.
 <!-- snippet: custom-query -->
-<a id='snippet-custom-query'/></a>
+<a id='snippet-custom-query'></a>
 ```java
 public static Queryable<String> findFirstWordsOnly(List<String> words)
 {
@@ -39,7 +39,7 @@ public static Queryable<String> findFirstWordsOnly(List<String> words)
 <!-- endsnippet -->
 You can add this to Queryable by implementing the `com.lambda.utils.Extendable` interface.
 <!-- snippet: implementing-extendable -->
-<a id='snippet-implementing-extendable'/></a>
+<a id='snippet-implementing-extendable'></a>
 ```java
 public static class CustomQuery implements Extendable<List<String>>
 {
@@ -53,7 +53,7 @@ public static class CustomQuery implements Extendable<List<String>>
 <!-- endsnippet -->
 Now you can add extension methods that are **not static**
 <!-- snippet: extendable-query -->
-<a id='snippet-extendable-query'/></a>
+<a id='snippet-extendable-query'></a>
 ```java
 public Queryable<String> findFirstWordsOnly() {
   return findFirstWordsOnly(caller);
@@ -63,7 +63,7 @@ public Queryable<String> findFirstWordsOnly() {
 <!-- endsnippet -->
 and now you can call it as such
 <!-- snippet: custom-query-example -->
-<a id='snippet-custom-query-example'/></a>
+<a id='snippet-custom-query-example'></a>
 ```java
 Queryable<String> list = Queryable.as("One fish", "two fish", "red fish", "blue fish");
 Queryable<String> firstWordsOnlyWithExtension = list.select(String::toUpperCase).use(CustomQuery.class).findFirstWordsOnly();
@@ -72,7 +72,7 @@ Queryable<String> firstWordsOnlyWithExtension = list.select(String::toUpperCase)
 <!-- endsnippet -->
 whereas previously you had to use
 <!-- snippet: custom-query-example-static -->
-<a id='snippet-custom-query-example-static'/></a>
+<a id='snippet-custom-query-example-static'></a>
 ```java
 Queryable<String> firstWordsOnlyStatic = CustomQuery.findFirstWordsOnly(Query.select(list, String::toUpperCase));
 ```

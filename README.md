@@ -91,7 +91,7 @@ ApprovalTests eats it own dogfood, so the best examples are in the source code i
 None the less,  Here's a quick look
 
 <!-- snippet: demo -->
-<a id='snippet-demo'/></a>
+<a id='snippet-demo'></a>
 ```java
 public class SampleArrayTest
 {
@@ -109,7 +109,7 @@ public class SampleArrayTest
 
 Will Produce a File `SampleTest.TestList.received.txt`
 <!-- snippet: /approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt -->
-<a id='snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt'/></a>
+<a id='snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt'></a>
 ```txt
 [0] = Dan
 [1] = James
