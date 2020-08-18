@@ -51,8 +51,7 @@ def build(update_version: Callable[[Version], Version]) -> None:
     GitUtilities.add_and_commit_everything(".", new_version.get_version_text())
     set_snapshot(release_details)
     GitUtilities.add_and_commit_everything(".", "set Snapshot")
-    # update command line git to authenticate github
-    #GitUtilities.push_active_branch_origin(".")
+    GitUtilities.push_active_branch_origin(".")
     PrepareStarterProjectRelease.prepare_starter_project(release_details)
 
     print("Done")
