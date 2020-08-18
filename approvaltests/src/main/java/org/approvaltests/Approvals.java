@@ -171,7 +171,7 @@ public class Approvals
   }
   public static void verifyXml(String xml, Options options)
   {
-    verify(new ApprovalXmlWriter(xml), options);
+    verify(new ApprovalXmlWriter(xml, options), options);
   }
   public static void verify(ApprovalApprover approver)
   {

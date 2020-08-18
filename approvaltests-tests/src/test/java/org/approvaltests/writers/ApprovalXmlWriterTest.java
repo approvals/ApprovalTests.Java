@@ -1,6 +1,8 @@
 package org.approvaltests.writers;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
+import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 
 public class ApprovalXmlWriterTest
@@ -20,6 +22,12 @@ public class ApprovalXmlWriterTest
   {
     Approvals
         .verifyXml("<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>");
+  }
+  @Test
+  public void xmlWithDeepAttributesWithScrubber() throws Exception
+  {
+    Approvals
+        .verifyXml("<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>", new Options(new RegExScrubber("hi", "hello")));
   }
   @Test
   public void invalidXml() throws Exception

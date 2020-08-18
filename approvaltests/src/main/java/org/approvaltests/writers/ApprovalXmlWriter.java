@@ -17,9 +17,9 @@ import javax.xml.transform.stream.StreamSource;
 
 public class ApprovalXmlWriter extends ApprovalTextWriter
 {
-    public ApprovalXmlWriter(String text)
+    public ApprovalXmlWriter(String text, Options options)
     {
-        super(prettyPrint(text, 2), new Options().forFile().withExtension(".xml"));
+        super(prettyPrint(text, 2), options.forFile().withExtension(".xml"));
     }
 
     public static String prettyPrint(String input, int indent) {
