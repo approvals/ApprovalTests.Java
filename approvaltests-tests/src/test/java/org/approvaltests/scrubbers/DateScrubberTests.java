@@ -11,7 +11,7 @@ public class DateScrubberTests
     void testGetDateScrubber() {
         String[] formats = {"Tue May 13 16:30:00",
                 "Tue May 13 2014 23:30:00.789",
-                "Tue May 13 16:30:00 -0800 2014" +
+                "Tue May 13 16:30:00 -0800 2014",
                 "13 May 2014 23:50:49,999",
                 "May 13, 2014 11:30:00 PM PST",
                 "23:30:00",
@@ -20,6 +20,10 @@ public class DateScrubberTests
     }
 
     private String verifyScrubbing(String formattedExample) {
-        return "todo";
+        DateScrubber scrubber = DateScrubber.getScrubberFor(formattedExample);
+        String exampleText = String.format("{'date':\"%s\"}",formattedExample);
+        return String.format("Scrubbing for %s:\n" +
+                "%s\n" +
+                "Example: %s\n\n", formattedExample, scrubber, scrubber.scrub(exampleText));
     }
 }
