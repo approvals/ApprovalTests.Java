@@ -77,7 +77,7 @@ For example, here is an example where random numbers are scrubbed:
 String input = "Hello " + new Random().nextInt(100) + " World!";
 Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.java#L14-L17' title='File snippet `scrub-regex-example` was extracted from'>snippet source</a> | <a href='#snippet-scrub-regex-example' title='Navigate to start of snippet `scrub-regex-example`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.java#L14-L17' title='File snippet `scrub-regex-example` was extracted from'>snippet source</a> | <a href='#snippet-scrub-regex-example' title='Navigate to start of snippet `scrub-regex-example`'>anchor</a></sup>
 <!-- endsnippet -->
 producing
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt -->
@@ -85,7 +85,7 @@ producing
 ```txt
 Hello [number] World!
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt#L1-L1' title='File snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt' title='Navigate to start of snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt#L1-L1' title='File snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt' title='Navigate to start of snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt`'>anchor</a></sup>
 <!-- endsnippet -->
 
 ---
