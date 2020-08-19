@@ -15,12 +15,17 @@ public class RegExScrubber implements Scrubber
   private final Function1<Integer, String> replacement;
   public RegExScrubber(String pattern, Function1<Integer, String> replacement)
   {
-    this(Pattern.compile(pattern), replacement);
+    this(compilePattern(pattern), replacement);
   }
   public RegExScrubber(String pattern, String replacement)
   {
-    this(Pattern.compile(pattern), replacement);
+    this(compilePattern(pattern), replacement);
   }
+
+  private static Pattern compilePattern(String pattern) {
+    return StringUtils.isNonZero(pattern) ? Pattern.compile(pattern) : null;
+  }
+
   public RegExScrubber(Pattern pattern, String replacement)
   {
     this(pattern, n -> replacement);
@@ -33,6 +38,7 @@ public class RegExScrubber implements Scrubber
   @Override
   public String scrub(String input)
   {
+    if (pattern == null) { return input;}
     Map<String, Integer> matches = new HashMap<>();
     Function1<String, String> replacer = s -> {
       matches.putIfAbsent(s, matches.size() + 1);
