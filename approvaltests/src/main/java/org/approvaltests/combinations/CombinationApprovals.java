@@ -17,7 +17,7 @@ import org.lambda.functions.Function9;
 
 public class CombinationApprovals
 {
-  private static final Object EMPTY_ENTRY = new Object();
+  static final Object EMPTY_ENTRY = new Object();
   private static final Object EMPTY[]     = {EMPTY_ENTRY};
   public static void verifyAllCombinations(Object call, String method, Object[]... parametersVariations)
   {
@@ -154,7 +154,7 @@ public class CombinationApprovals
     }
     Approvals.verify(output);
   }
-  private static List<Object> extracted(Object... objects)
+  static List<Object> extracted(Object... objects)
   {
     List<Object> list = new ArrayList<Object>();
     for (Object object : objects)
