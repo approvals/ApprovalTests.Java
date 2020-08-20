@@ -31,8 +31,8 @@ public class Parameter<T> extends ArrayList<T> {
         this.addAll(c);
     }
 
-    public Parameter(String name, T... values) {
-        this(name, Arrays.asList(values));
+    public Parameter(int position, T... values) {
+        this("p" + (position+1), Arrays.asList(values));
     }
 
     @Override
