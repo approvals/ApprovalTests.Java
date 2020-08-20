@@ -14,8 +14,8 @@ public class PairWiseAppprovals {
 
     static Object EMPTY[] = CombinationApprovals.EMPTY;
 
-    public static <IN1,  OUT> void verifyBestCoveringPairs(Function1<IN1,   OUT> call,
-                                                           IN1[] parameters1) {
+    public static <IN1, OUT> void verifyBestCoveringPairs(Function1<IN1, OUT> call,
+                                                          IN1[] parameters1) {
         verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1),
                 parameters1,
                 EMPTY,
@@ -26,8 +26,10 @@ public class PairWiseAppprovals {
                 EMPTY,
                 EMPTY,
                 EMPTY);
-    }public static <IN1, IN2,  OUT> void verifyBestCoveringPairs(Function2<IN1, IN2,  OUT> call,
-                                                                 IN1[] parameters1, IN2[] parameters2) {
+    }
+
+    public static <IN1, IN2, OUT> void verifyBestCoveringPairs(Function2<IN1, IN2, OUT> call,
+                                                               IN1[] parameters1, IN2[] parameters2) {
         verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2),
                 parameters1,
                 parameters2,
@@ -39,6 +41,7 @@ public class PairWiseAppprovals {
                 EMPTY,
                 EMPTY);
     }
+
     public static <IN1, IN2, IN3, OUT> void verifyBestCoveringPairs(Function3<IN1, IN2, IN3, OUT> call,
                                                                     IN1[] parameters1, IN2[] parameters2, IN3[] parameters3) {
         verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3),
@@ -66,9 +69,10 @@ public class PairWiseAppprovals {
                 EMPTY,
                 EMPTY);
     }
-    public static <IN1, IN2, IN3, IN4,IN5, OUT> void verifyBestCoveringPairs(Function5<IN1, IN2, IN3, IN4,IN5, OUT> call,
-                                                                         IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5) {
-        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4,n5),
+
+    public static <IN1, IN2, IN3, IN4, IN5, OUT> void verifyBestCoveringPairs(Function5<IN1, IN2, IN3, IN4, IN5, OUT> call,
+                                                                              IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5) {
+        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5),
                 parameters1,
                 parameters2,
                 parameters3,
@@ -79,9 +83,10 @@ public class PairWiseAppprovals {
                 EMPTY,
                 EMPTY);
     }
-    public static <IN1, IN2, IN3, IN4,IN5,IN6, OUT> void verifyBestCoveringPairs(Function6<IN1, IN2, IN3, IN4,IN5,IN6, OUT> call,
-                                                                         IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6) {
-        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4,n5,n6),
+
+    public static <IN1, IN2, IN3, IN4, IN5, IN6, OUT> void verifyBestCoveringPairs(Function6<IN1, IN2, IN3, IN4, IN5, IN6, OUT> call,
+                                                                                   IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6) {
+        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6),
                 parameters1,
                 parameters2,
                 parameters3,
@@ -90,6 +95,33 @@ public class PairWiseAppprovals {
                 parameters6,
                 EMPTY,
                 EMPTY,
+                EMPTY);
+    }
+
+    public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, OUT> void verifyBestCoveringPairs(Function7<IN1, IN2, IN3, IN4, IN5, IN6, IN7, OUT> call,
+                                                                                        IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7) {
+        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6, n7),
+                parameters1,
+                parameters2,
+                parameters3,
+                parameters4,
+                parameters5,
+                parameters6,
+                parameters7,
+                EMPTY,
+                EMPTY);
+    }
+    public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7,IN8, OUT> void verifyBestCoveringPairs(Function8<IN1, IN2, IN3, IN4, IN5, IN6, IN7,IN8, OUT> call,
+                                                                                        IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7, IN8[] parameters8) {
+        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6, n7,n8),
+                parameters1,
+                parameters2,
+                parameters3,
+                parameters4,
+                parameters5,
+                parameters6,
+                parameters7,
+                parameters8,
                 EMPTY);
     }
 
