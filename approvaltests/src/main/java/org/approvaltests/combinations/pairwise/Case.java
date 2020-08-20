@@ -20,6 +20,9 @@ public class Case extends LinkedHashMap<String, Object> implements Cloneable {
                 .findFirst()
                 .isPresent();
     }
+    public Object get(int i){
+       return this.get("p"+(i+1));
+    }
 
     public Case union(Case pair) {
         this.putAll(pair);

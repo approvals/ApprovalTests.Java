@@ -63,7 +63,7 @@ public class Pairwise implements Iterable<Case> {
 
     public static class Builder {
 
-        private static Random random = new Random();
+        private static Random random = new Random(5);
 
         public List<Parameter<?>> getParameters() {
             return parameters;
@@ -95,17 +95,19 @@ public class Pairwise implements Iterable<Case> {
             final Map<String, Object[]> params = parameters.stream()
                     .collect(Collectors.toMap(Parameter::getName, List::toArray));
 
+            final Stream<List<Case>> listOfpairs = InParameterOrderStrategy
+                    .generatePairs(parameters).stream();
+            final Stream<Case> reduced = listOfpairs
+                    .reduce(new ArrayList<>(), (cases, pairs) -> {
+                        if (cases.isEmpty()) return pairs;
+                        cases = InParameterOrderStrategy
+                                .horizontalGrowth(cases, pairs);
+                        cases.addAll(InParameterOrderStrategy
+                                .verticalGrowth(pairs));
+                        return cases;
+                    }).stream();
             return new Pairwise(parameters,
-                    InParameterOrderStrategy
-                            .generatePairs(parameters).stream()
-                            .reduce(new ArrayList<>(), (cases, pairs) -> {
-                                if (cases.isEmpty()) return pairs;
-                                cases = InParameterOrderStrategy
-                                        .horizontalGrowth(cases, pairs);
-                                cases.addAll(InParameterOrderStrategy
-                                        .verticalGrowth(pairs));
-                                return cases;
-                            }).stream()
+                    reduced
                             .map(c -> prototype.clone().union(c))
                             .peek(c -> c.putAll(c.entrySet().stream()
                                     .filter(e -> e.getValue() == null)
