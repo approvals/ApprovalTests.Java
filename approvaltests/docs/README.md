@@ -14,7 +14,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
   * [Features](#features)
   * [Configuration](#configuration)
-  * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)<!-- endtoc -->
+  * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)<!-- endToc -->
 
 ## Features
 
