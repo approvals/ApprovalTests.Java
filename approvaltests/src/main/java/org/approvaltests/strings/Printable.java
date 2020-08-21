@@ -1,6 +1,5 @@
 package org.approvaltests.strings;
 
-import javafx.scene.chart.AxisBuilder;
 import org.lambda.functions.Function1;
 
 import java.util.ArrayList;
@@ -16,13 +15,13 @@ public class Printable<T>  {
         this.toString = toString;
     }
 
-    public static <T> Printable<T>[] create(T[] parameters, Function1<T,String> toString) {
+    public static <T> Printable<T>[] create( Function1<T,String> toString, T... parameters) {
         return Arrays.stream(parameters)
                 .map(p -> new Printable<>(p, toString)).toArray(Printable[]::new);
     }
 
-    public static LableMakerStarter with() {
-        return new LableMakerStarter();
+    public static LabelMakerStarter with() {
+        return new LabelMakerStarter();
     }
 
     public T get() {
@@ -34,24 +33,24 @@ public class Printable<T>  {
         return toString.call(value);
     }
 
-    public static class LableMakerStarter {
-        public <T> LableMaker<T> label(T value, String label) {
-            LableMaker<T> maker = new LableMaker<T>();
+    public static class LabelMakerStarter {
+        public <T> LabelMaker<T> label(T value, String label) {
+            LabelMaker<T> maker = new LabelMaker<T>();
 
             return maker.label(value, label);
 
         }
     }
 
-    public static class LableMaker<T> {
+    public static class LabelMaker<T> {
         private ArrayList<Printable<T>> values = new ArrayList<>();
-        public LableMaker<T> label(T value, String label) {
+        public LabelMaker<T> label(T value, String label) {
             values.add(new Printable(value, __ -> label));
             return this;
 
         }
 
-        public Printable<T>[] get() {
+        public Printable<T>[] toArray() {
             return values.toArray( new Printable[0]);
         }
     }

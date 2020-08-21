@@ -7,9 +7,9 @@ public class PrintableTest {
     @Test
     void testOverridingToString() {
         Integer p1[] = {1,2,3,4,5};
-        CombinationApprovals.verifyAllCombinations(n -> n.get(), Printable.create(p1, n-> "#"+n));
+        CombinationApprovals.verifyAllCombinations(n -> n.get(), Printable.create(n-> "#"+n, p1));
 
-        Printable<Integer> p2[] = Printable.create(new Integer[]{1,2,3,4,5}, n -> "#"+n);
+        Printable<Integer> p2[] = Printable.create(n -> "#"+n, 1,2,3,4,5);
         CombinationApprovals.verifyAllCombinations(n -> n.get(), p2);
     }
     @Test
@@ -20,7 +20,7 @@ public class PrintableTest {
                 .label(3,"third")
                 .label(4, "forth")
                 .label(5, "fifth")
-                .get();
+                .toArray();
         CombinationApprovals.verifyAllCombinations(n -> n.get(), p);
     }
 }
