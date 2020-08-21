@@ -27,6 +27,7 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
+
 ## 6.0.1
 ### Prepare for Android
 We have deprecated:
@@ -76,7 +77,7 @@ Package Level Settings allows for programmatic setting of configuration at the p
 This is a prompt that includes helper text and quick actions for use with [Arlo's Commit Notation](https://github.com/RefactoringCombos/ArlosCommitNotation).
 It is currently the default option for TCR and will produce a window that looks like:
 
-![prompt](/approvaltests/src/test/java/machine_specific_tests/approvaltests/testcommitrevert/ArlosGitNotationPromptTest.test.Mac_OS_X.approved.png)
+![prompt](/approvaltests-tests/src/test/java/org/approvaltests/machine_specific_tests/testcommitrevert/ArlosGitNotationPromptTest.test.Mac_OS_X.approved.png)
 
 
 
