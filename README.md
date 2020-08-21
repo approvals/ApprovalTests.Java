@@ -19,7 +19,7 @@ To change this file edit the source file and then run MarkdownSnippets.
   * [Approved File Artifacts](#approved-file-artifacts)
   * [More Info](#more-info)
   * [LICENSE](#license)
-  * [Developer notes](#developer-notes)<!-- endtoc -->
+  * [Developer notes](#developer-notes)<!-- endToc -->
 
 # ApprovalTests.Java
 
@@ -105,7 +105,7 @@ public class SampleArrayTest
 }
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.java#L8-L19' title='File snippet `demo` was extracted from'>snippet source</a> | <a href='#snippet-demo' title='Navigate to start of snippet `demo`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 Will Produce a File `SampleTest.TestList.received.txt`
 <!-- snippet: /approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt -->
@@ -118,7 +118,7 @@ Will Produce a File `SampleTest.TestList.received.txt`
 [4] = Llewellyn
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt#L1-L5' title='File snippet `/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 Simply rename this to SampleTest.testList.approved.txt and the test will now pass.
 

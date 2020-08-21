@@ -14,7 +14,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 
   * [Interface](#interface)
   * [Guid Scrubbing](#guid-scrubbing)
-  * [RegEx Scrubbing](#regex-scrubbing)<!-- endtoc -->
+  * [RegEx Scrubbing](#regex-scrubbing)<!-- endToc -->
 
 !(https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
 
@@ -40,7 +40,7 @@ String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"};
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L31-L37' title='File snippet `guid-scrubbing-1` was extracted from'>snippet source</a> | <a href='#snippet-guid-scrubbing-1' title='Navigate to start of snippet `guid-scrubbing-1`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 You can make this output deterministic by using a scrubber in the options.
 For example:
 <!-- snippet: guid-scrubbing-2 -->
@@ -49,7 +49,7 @@ For example:
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L38-L40' title='File snippet `guid-scrubbing-2` was extracted from'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Navigate to start of snippet `guid-scrubbing-2`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 **Note:** Options is available on all Approvals.verify methods.
 This will result in the following `.approved.txt` file
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt -->
@@ -62,7 +62,7 @@ guids[3] = guid_1
 guids[4] = guid_1 and text
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt#L1-L5' title='File snippet `/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt' title='Navigate to start of snippet `/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 **Note:** If a Guid is used in multiple places, it will be scrubbed using the same replacement.
 That is why you see `guid_1` three times.
 
@@ -78,7 +78,7 @@ String input = "Hello " + new Random().nextInt(100) + " World!";
 Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.java#L14-L17' title='File snippet `scrub-regex-example` was extracted from'>snippet source</a> | <a href='#snippet-scrub-regex-example' title='Navigate to start of snippet `scrub-regex-example`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 producing
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt -->
 <a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'></a>
@@ -86,7 +86,7 @@ producing
 Hello [number] World!
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt#L1-L1' title='File snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt' title='Navigate to start of snippet `/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 ---
 

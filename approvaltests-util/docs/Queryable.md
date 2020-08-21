@@ -12,7 +12,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
-  * [Extending Queryable](#extending-queryable)<!-- endtoc -->
+  * [Extending Queryable](#extending-queryable)<!-- endToc -->
 
 ## Extending Queryable
 
@@ -36,7 +36,7 @@ public static Queryable<String> findFirstWordsOnly(List<String> words)
 }
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L30-L45' title='File snippet `custom-query` was extracted from'>snippet source</a> | <a href='#snippet-custom-query' title='Navigate to start of snippet `custom-query`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 You can add this to Queryable by implementing the `com.lambda.utils.Extendable` interface.
 <!-- snippet: implementing-extendable -->
 <a id='snippet-implementing-extendable'></a>
@@ -50,7 +50,7 @@ public static class CustomQuery implements Extendable<List<String>>
   }
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L14-L22' title='File snippet `implementing-extendable` was extracted from'>snippet source</a> | <a href='#snippet-implementing-extendable' title='Navigate to start of snippet `implementing-extendable`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 Now you can add extension methods that are **not static**
 <!-- snippet: extendable-query -->
 <a id='snippet-extendable-query'></a>
@@ -60,7 +60,7 @@ public Queryable<String> findFirstWordsOnly() {
 }
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L24-L28' title='File snippet `extendable-query` was extracted from'>snippet source</a> | <a href='#snippet-extendable-query' title='Navigate to start of snippet `extendable-query`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 and now you can call it as such
 <!-- snippet: custom-query-example -->
 <a id='snippet-custom-query-example'></a>
@@ -69,7 +69,7 @@ Queryable<String> list = Queryable.as("One fish", "two fish", "red fish", "blue 
 Queryable<String> firstWordsOnlyWithExtension = list.select(String::toUpperCase).use(CustomQuery.class).findFirstWordsOnly();
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L50-L53' title='File snippet `custom-query-example` was extracted from'>snippet source</a> | <a href='#snippet-custom-query-example' title='Navigate to start of snippet `custom-query-example`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 whereas previously you had to use
 <!-- snippet: custom-query-example-static -->
 <a id='snippet-custom-query-example-static'></a>
@@ -77,7 +77,7 @@ whereas previously you had to use
 Queryable<String> firstWordsOnlyStatic = CustomQuery.findFirstWordsOnly(Query.select(list, String::toUpperCase));
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L54-L56' title='File snippet `custom-query-example-static` was extracted from'>snippet source</a> | <a href='#snippet-custom-query-example-static' title='Navigate to start of snippet `custom-query-example-static`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 ---
 
