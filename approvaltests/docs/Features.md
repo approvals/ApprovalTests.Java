@@ -25,7 +25,7 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Method 1 - extend class](#method-1---extend-class)
     * [Method 2 - use Runner](#method-2---use-runner)
     * [Results](#results)
-    * [Usage](#usage)<!-- endtoc -->
+    * [Usage](#usage)<!-- endToc -->
 
 ## 6.0.1
 ### Prepare for Android
@@ -52,7 +52,7 @@ Function2<File, File, Boolean> approveEverything = (r, a) -> true;
 Approvals.verify(new FileApprover(writer, namer, approveEverything));
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L65-L70' title='File snippet `custom_approver` was extracted from'>snippet source</a> | <a href='#snippet-custom_approver' title='Navigate to start of snippet `custom_approver`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 
 
 ## Using Alternative Base Directory for Approval Output Files
@@ -98,7 +98,7 @@ This is a convenience class to follow the practice 'Test Commit/Revert' from Ken
 extends TestCommitRevertTest
 ```
 <sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L14' title='File snippet `test_commit_revert` was extracted from'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Navigate to start of snippet `test_commit_revert`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 to your test class
 
 ### Method 2 - use Runner
@@ -109,7 +109,7 @@ to your test class
 public class TestCommitRevertSample
 ```
 <sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L8-L11' title='File snippet `test_commit_revert_runner` was extracted from'>snippet source</a> | <a href='#snippet-test_commit_revert_runner' title='Navigate to start of snippet `test_commit_revert_runner`'>anchor</a></sup>
-<!-- endsnippet -->
+<!-- endSnippet -->
 to annotate your class
 
 ### Results 
