@@ -15,6 +15,10 @@ public class Printable<T>  {
         this.toString = toString;
     }
 
+    public Printable(T value, String label) {
+        this(value, __ -> label);
+    }
+
     public static <T> Printable<T>[] create( Function1<T,String> toString, T... parameters) {
         return Arrays.stream(parameters)
                 .map(p -> new Printable<>(p, toString)).toArray(Printable[]::new);
@@ -45,7 +49,7 @@ public class Printable<T>  {
     public static class LabelMaker<T> {
         private ArrayList<Printable<T>> values = new ArrayList<>();
         public LabelMaker<T> label(T value, String label) {
-            values.add(new Printable(value, __ -> label));
+            values.add(new Printable(value, label));
             return this;
 
         }
