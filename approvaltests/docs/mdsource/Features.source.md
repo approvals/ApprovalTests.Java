@@ -4,6 +4,10 @@
 
 toc
 
+## 9.3.0
+### Printable wrappers
+
+See [How to custumize another objects toString()](/approvaltests/docs/how_to/PrintableWrappers.md)
 
 ## 6.0.1
 ### Prepare for Android
