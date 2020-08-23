@@ -12,6 +12,8 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
+  * [9.3.0](#930)
+    * [Printable wrappers](#printable-wrappers)
   * [6.0.1](#601)
     * [Prepare for Android](#prepare-for-android)
   * [Previous versions](#previous-versions)
@@ -27,6 +29,10 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
+## 9.3.0
+### Printable wrappers
+
+See [How to custumize another objects toString()](/approvaltests/docs/how_to/PrintableWrappers.md)
 
 ## 6.0.1
 ### Prepare for Android
