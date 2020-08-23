@@ -5,7 +5,7 @@ Source File: /README.source.md
 To change this file edit the source file and then run MarkdownSnippets.
 -->
 
-[![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/build/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster)
+[![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/mvn%20verify%20linux/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster) [![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/mvn%20verify%20windows/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster)
 
 <!-- toc -->
 ## Contents
