@@ -31,9 +31,9 @@ public class ResultSetApprovalWriter implements ApprovalWriter
   @Override
   public String writeReceivedFile(String received)
   {
-    String template = "#foreach ($row in $commons.asArray($metaData))$row.toArray()#if (!$row.isLast()),#end#end\n"
+    String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\n"
         + "\n" + "#foreach ($row in $results)\n"
-        + "#foreach ($column in $commons.asArray($row))$commons.asExcel($column.toArray())#if (!$column.isLast()),#end#end \n"
+        + "#foreach ($column in $commons.asArray($row))$commons.asExcel($column.get())#if (!$column.isLast()),#end#end \n"
         + "\n" + "#end ";
     ContextAwareMap map = new ContextAware.ContextAwareMap("metaData", ResultSetWriter.extractMetaData(resultSet));
     map.put("results", ResultSetWriter.extractResults(resultSet));
