@@ -21,7 +21,7 @@ public class Case extends LinkedHashMap<String, Object> implements Cloneable
     Case c = new Case();
     for (int i = 1; i <= size; i++)
     {
-      c.put(("p" + i), null);
+      c.put(("" + i), null);
     }
     return c;
   }
@@ -33,7 +33,7 @@ public class Case extends LinkedHashMap<String, Object> implements Cloneable
   }
   public Object get(int i)
   {
-    return this.get("p" + (i + 1));
+    return this.get(String.valueOf(i + 1));
   }
   public Case union(Case pair)
   {
