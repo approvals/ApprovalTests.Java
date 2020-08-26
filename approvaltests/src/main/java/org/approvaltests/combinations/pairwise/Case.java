@@ -16,6 +16,15 @@ public class Case extends LinkedHashMap<String, Object> implements Cloneable
   {
     this.putAll(prototype);
   }
+  public static Case ofLength(int size)
+  {
+    Case c = new Case();
+    for (int i = 1; i <= size; i++)
+    {
+      c.put(("p" + i), null);
+    }
+    return c;
+  }
   public boolean matches(Case pair)
   {
     final Set<String> keys = new HashSet<>(this.keySet());
