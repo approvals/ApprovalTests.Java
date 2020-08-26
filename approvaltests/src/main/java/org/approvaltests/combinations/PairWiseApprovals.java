@@ -10,7 +10,7 @@ import org.lambda.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PairWiseAppprovals {
+public class PairWiseApprovals {
 
     static Object EMPTY[] = CombinationApprovals.EMPTY;
 
@@ -112,7 +112,7 @@ public class PairWiseAppprovals {
                 EMPTY);
     }
     public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7,IN8, OUT> void verifyBestCoveringPairs(Function8<IN1, IN2, IN3, IN4, IN5, IN6, IN7,IN8, OUT> call,
-                                                                                        IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7, IN8[] parameters8) {
+                                                                                            IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7, IN8[] parameters8) {
         verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5, n6, n7,n8),
                 parameters1,
                 parameters2,
@@ -170,5 +170,6 @@ public class PairWiseAppprovals {
             list.add(new Parameter<>(i, parameters[i]));
         }
         return new Pairwise.Builder().withParameters(list).build();
+        //return Pairwise.of(parameters);
     }
 }
