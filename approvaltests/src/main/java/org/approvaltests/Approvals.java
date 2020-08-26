@@ -59,7 +59,19 @@ public class Approvals
   }
   public static void verify(Object object, Options options)
   {
+    checkForAwtComponents(object == null ? Object.class : object.getClass());
     verify(Objects.toString(object), options);
+  }
+  private static void checkForAwtComponents(Class<?> type)
+  {
+    if (type == Object.class)
+    { return; }
+    if ("java.awt.Component".equals(type.getCanonicalName()))
+    {
+      throw new FormattedException(
+          "Approvals.verify(Component) has moved to AwtApprovals.verify(Component)\ncalled Approvals.verify(Object)");
+    }
+    checkForAwtComponents(type.getSuperclass());
   }
   public static <T> void verifyAll(String label, T[] array)
   {
@@ -296,7 +308,6 @@ public class Approvals
   {
     verify(JsonUtils.prettyPrint(json), options.forFile().withExtension(".json"));
   }
-
   /**
    * @deprecated View method source for example.
    */
