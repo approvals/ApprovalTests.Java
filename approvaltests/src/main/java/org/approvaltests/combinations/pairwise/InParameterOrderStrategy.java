@@ -7,16 +7,23 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public final class InParameterOrderStrategy
 {
   public static List<List<Case>> generatePairs(List<Parameter<?>> parameters)
   {
     final List<Parameter> accumulator = new ArrayList<>();
-    return parameters.stream().sorted((o1, o2) -> Integer.compare(o2.size(), o1.size())).map(parameter -> {
-      accumulator.add(parameter);
-      return new ArrayList<>(accumulator);
-    }).map(InParameterOrderStrategy::crossJoin).collect(Collectors.toList());
+    Stream<Parameter<?>> sortedBySize = parameters.stream()
+            .sorted((o1, o2) -> Integer.compare(o2.size(), o1.size()));
+    Stream<ArrayList<Parameter>> arrayListStream = sortedBySize
+            .map(parameter -> {
+              accumulator.add(parameter);
+              return new ArrayList<>(accumulator);
+            });
+    return arrayListStream
+            .map(InParameterOrderStrategy::crossJoin)
+            .collect(Collectors.toList());
   }
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
