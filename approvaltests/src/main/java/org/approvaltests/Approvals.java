@@ -59,21 +59,17 @@ public class Approvals
   }
   public static void verify(Object object, Options options)
   {
-    if (object == null)
-    {
-      object = "" + null;
-    }
-    checkForAwtComponents(object.getClass());
+    checkForAwtComponents(object == null ? Object.class : object.getClass());
     verify(Objects.toString(object), options);
   }
   private static void checkForAwtComponents(Class<?> type)
   {
     if (type == Object.class)
     { return; }
-    if (type.getCanonicalName().equals("java.awt.Component"))
+    if ("java.awt.Component".equals(type.getCanonicalName()))
     {
       throw new FormattedException(
-              "Approvals.verify(Component) has moved to AwtApprovals.verify(Component)\ncalled Approvals.verify(Object)");
+          "Approvals.verify(Component) has moved to AwtApprovals.verify(Component)\ncalled Approvals.verify(Object)");
     }
     checkForAwtComponents(type.getSuperclass());
   }
