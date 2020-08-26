@@ -30,7 +30,7 @@ public class Parameter<T> extends ArrayList<T>
   }
   public Parameter(int position, T... values)
   {
-    this("p" + (position + 1), Arrays.asList(values));
+    this("" + (position + 1), Arrays.asList(values));
   }
   @Override
   public String toString()
