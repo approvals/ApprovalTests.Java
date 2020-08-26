@@ -1,0 +1,2 @@
+com.spun.util.FormattedException: Approvals.verify(Component) has moved to AwtApprovals.verify(Component)
+called Approvals.verify(Object)
