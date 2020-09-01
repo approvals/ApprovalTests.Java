@@ -4,20 +4,20 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public interface Case1<K, V> extends Cloneable{
+public interface Case1 extends Cloneable{
 
-    V put(K key, V value);
+    Object put(String key, Object value);
 
-    Collection<K> keySet();
+    Collection<String> keySet();
 
-    Set<Map.Entry<K, V>> entrySet();
+    Set<Map.Entry<String, Object>> entrySet();
 
     Object get(int key);
 
-    V get(Object key);
+    Object get(Object key);
 
-    void putAll(Map<? extends K, ? extends V> pair);
+    void putAll(Map<? extends String, ? extends Object> pair);
 
-    public Case1 clone();
+    Case1 clone();
 
 }

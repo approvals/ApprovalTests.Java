@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class AppleSauce extends LinkedHashMap<String, Object> implements Cloneable, Case1<String, Object>
+public class AppleSauce extends LinkedHashMap<String, Object> implements Cloneable, Case1
 {
   public AppleSauce()
   {

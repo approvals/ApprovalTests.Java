@@ -92,7 +92,7 @@ public class Pairwise implements Iterable<AppleSauce>
       return cases;
     }
 
-    public void foo(Map<String, Object[]> params, Case1<String, Object> appleSauce)
+    public void foo(Map<String, Object[]> params, Case1 appleSauce)
     {
       Stream<Map.Entry<String, Object>> fillNullWithRandom = appleSauce.entrySet().stream()
               .filter(e -> e.getValue() == null)
