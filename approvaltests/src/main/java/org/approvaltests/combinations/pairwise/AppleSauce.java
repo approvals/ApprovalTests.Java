@@ -12,7 +12,6 @@ public class AppleSauce implements Case1
   private LinkedHashMap map = new LinkedHashMap();
   public AppleSauce()
   {
-    super();
   }
   public AppleSauce(Map<String, Object> prototype)
   {
