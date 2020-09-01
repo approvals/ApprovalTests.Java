@@ -6,26 +6,26 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class Case extends LinkedHashMap<String, Object> implements Cloneable
+public class AppleSauce extends LinkedHashMap<String, Object> implements Cloneable
 {
-  public Case()
+  public AppleSauce()
   {
     super();
   }
-  public Case(Map<String, Object> prototype)
+  public AppleSauce(Map<String, Object> prototype)
   {
     this.putAll(prototype);
   }
-  public static Case ofLength(int size)
+  public static AppleSauce ofLength(int size)
   {
-    Case c = new Case();
+    AppleSauce c = new AppleSauce();
     for (int i = 1; i <= size; i++)
     {
       c.put(("" + i), null);
     }
     return c;
   }
-  public boolean matches(Case pair)
+  public boolean matches(AppleSauce pair)
   {
     final Set<String> keys = new HashSet<>(this.keySet());
     keys.retainAll(pair.keySet());
@@ -35,17 +35,17 @@ public class Case extends LinkedHashMap<String, Object> implements Cloneable
   {
     return this.get(String.valueOf(i + 1));
   }
-  public Case union(Case pair)
+  public AppleSauce union(AppleSauce pair)
   {
     this.putAll(pair);
     return this;
   }
   @Override
-  public Case clone()
+  public AppleSauce clone()
   {
-    return new Case(this);
+    return new AppleSauce(this);
   }
-  private static boolean nonEquals(String key, Case first, Case second)
+  private static boolean nonEquals(String key, AppleSauce first, AppleSauce second)
   {
     final Object f = first.get(key);
     final Object s = second.get(key);
