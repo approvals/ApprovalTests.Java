@@ -5,11 +5,11 @@ import java.util.Arrays;
 public class Parameter<T> implements Parameter1
 {
   private final String name;
-  private final T[] arr;
+  private final T[] values;
   public Parameter(int position, T... values)
   {
     this.name = "" + (position + 1);
-    this.arr = values;
+    this.values = values;
   }
   public String getName()
   {
@@ -18,21 +18,21 @@ public class Parameter<T> implements Parameter1
   @Override
   public T[] toArray()
   {
-    return arr;
+    return values;
   }
   @Override
   public int size()
   {
-    return arr.length;
+    return values.length;
   }
   @Override
   public T get(int index)
   {
-    return arr[index];
+    return values[index];
   }
   @Override
   public String toString()
   {
-    return name + ": " + Arrays.toString(this.arr);
+    return name + ": " + Arrays.toString(this.values);
   }
 }
