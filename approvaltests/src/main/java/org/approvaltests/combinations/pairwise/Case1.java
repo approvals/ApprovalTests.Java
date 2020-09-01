@@ -16,11 +16,8 @@ public interface Case1<K, V> extends Cloneable{
 
     V get(Object key);
 
-    void putAll(Case1 pair);
+    void putAll(Map<? extends K, ? extends V> pair);
 
     public Case1 clone();
 
-    Case1 union(Case1 c);
-
-    boolean matches(Case1 pair1);
 }
