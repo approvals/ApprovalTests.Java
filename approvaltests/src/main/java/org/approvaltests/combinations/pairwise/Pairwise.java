@@ -68,7 +68,7 @@ public class Pairwise implements Iterable<Case1>
     }
     public Pairwise build()
     {
-      final Case1 prototype = AppleSauce.ofLength(parameters.size());
+      final Case1 prototype = Case.ofLength(parameters.size());
       final Stream<List<Case1>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
       List<Case1> reduce = listOfPairs.reduce(
               new ArrayList<>(),
