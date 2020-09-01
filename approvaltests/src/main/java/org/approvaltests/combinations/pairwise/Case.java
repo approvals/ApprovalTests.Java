@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class Case implements Case1
+public class Case implements AppleSauceCase1
 {
   private LinkedHashMap map = new LinkedHashMap();
   public Case()
@@ -72,12 +72,12 @@ public class Case implements Case1
     return new Case(this.map);
   }
   @Override
-  public boolean matches(Case1 pair)
+  public boolean matches(AppleSauceCase1 pair)
   {
     return matches((Case) pair);
   }
   @Override
-  public Case1 union(Case1 pair)
+  public AppleSauceCase1 union(AppleSauceCase1 pair)
   {
     return union((Case) pair);
   }

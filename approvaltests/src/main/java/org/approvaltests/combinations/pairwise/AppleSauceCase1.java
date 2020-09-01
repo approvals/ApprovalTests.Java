@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-public interface Case1 extends Cloneable{
+public interface AppleSauceCase1 extends Cloneable{
 
     Object put(String key, Object value);
 
@@ -18,9 +18,9 @@ public interface Case1 extends Cloneable{
 
     void putAll(Map<? extends String, ? extends Object> pair);
 
-    Case1 clone();
+    AppleSauceCase1 clone();
 
-    boolean matches(Case1 pair);
+    boolean matches(AppleSauceCase1 pair);
 
-    Case1 union(Case1 pair);
+    AppleSauceCase1 union(AppleSauceCase1 pair);
 }
