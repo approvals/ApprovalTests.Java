@@ -20,10 +20,10 @@ public class Pairwise implements Iterable<AppleSauce>
     return cases;
   }
   private final List<AppleSauce> cases;
-  private Pairwise(List<Parameter<?>> parameters, List<AppleSauce> cases)
+  private Pairwise(List<Parameter<?>> parameters, List<Case1> cases)
   {
     this.parameters = parameters;
-    this.cases = cases;
+    this.cases = (List<AppleSauce>) (Object) cases;
   }
   public List<AppleSauce> verify()
   {
@@ -70,21 +70,23 @@ public class Pairwise implements Iterable<AppleSauce>
     {
       final AppleSauce prototype = AppleSauce.ofLength(parameters.size());
       final Stream<List<AppleSauce>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-      final Stream<AppleSauce> reduced = listOfPairs.reduce(
+      List<Case1> reduce = listOfPairs.map(l -> (List<Case1>)(Object) l).reduce(
               new ArrayList<>(),
-              (cases, pairs) -> foobar(cases, pairs)).stream();
+              (cases, pairs) -> foobar((List<Case1>)(Object)cases, (List<Case1>)(Object)pairs));
+
+      final Stream<Case1> reduced = reduce.stream();
 
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
 
-      List<AppleSauce> parameters = reduced.map(c -> prototype.clone().union(c))
+      List<Case1> parameters = reduced.map(c -> prototype.clone().union(c))
               .peek(c -> foo(params, c))
               .collect(Collectors.toList());
 
       return new Pairwise(this.parameters, parameters);
     }
 
-    public List<AppleSauce> foobar(List<AppleSauce> cases, List<AppleSauce> pairs) {
+    public List<Case1> foobar(List<Case1> cases, List<Case1> pairs) {
       if (cases.isEmpty())
         return pairs;
       cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);

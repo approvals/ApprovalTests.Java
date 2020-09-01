@@ -20,4 +20,7 @@ public interface Case1 extends Cloneable{
 
     Case1 clone();
 
+    boolean matches(Case1 pair);
+
+    Case1 union(Case1 pair);
 }
