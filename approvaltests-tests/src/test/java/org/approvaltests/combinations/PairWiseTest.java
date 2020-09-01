@@ -1,13 +1,16 @@
 package org.approvaltests.combinations;
 
+import com.github.larseckart.tcr.TestCommitRevertMainExtension;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.Parameter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ExtendWith(TestCommitRevertMainExtension.class)
 public class PairWiseTest {
 
     @Test
