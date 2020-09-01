@@ -22,7 +22,7 @@ public final class InParameterOrderStrategy
               return new ArrayList<>(accumulator);
             });
     return arrayListStream
-            .map(InParameterOrderStrategy::crossJoin)
+            .map(chunk -> crossJoin(chunk))
             .collect(Collectors.toList());
   }
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
@@ -61,11 +61,11 @@ public final class InParameterOrderStrategy
   private static Case best(List<Case> pairs, Case pair)
   {
     final Map<String, String> lazyKey = new HashMap<>();
-    pairs.stream().filter(pair::matches)
+    pairs.stream().filter(pair1 -> pair.matches(pair1))
         .map(p -> p
             .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null))))
         .collect(Collectors.groupingBy(i -> i)).entrySet().stream()
-        .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size())).map(Map.Entry::getKey)
+        .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size())).map(objectListEntry -> objectListEntry.getKey())
         .ifPresent(o -> pair.put(lazyKey.get("key"), o));
     return pair;
   }

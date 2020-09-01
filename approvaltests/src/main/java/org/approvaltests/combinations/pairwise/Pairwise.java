@@ -28,17 +28,17 @@ public class Pairwise implements Iterable<Case>
   }
   public List<Case> verify()
   {
-    return InParameterOrderStrategy.generatePairs(parameters).stream().flatMap(List::stream)
-        .filter(pair -> !stream().filter(pair::matches).findFirst().isPresent()).collect(Collectors.toList());
+    return InParameterOrderStrategy.generatePairs(parameters).stream().flatMap(cases1 -> cases1.stream())
+        .filter(pair -> !stream().filter(pair1 -> pair.matches(pair1)).findFirst().isPresent()).collect(Collectors.toList());
   }
   public Object[][] toTestNG()
   {
-    return stream().map(Map::values).map(Collection::toArray).collect(Collectors.toList())
+    return stream().map(aCase -> aCase.values()).map(objects -> objects.toArray()).collect(Collectors.toList())
         .toArray(new Object[0][0]);
   }
   public Collection<Object[]> toJUnit()
   {
-    return stream().map(Map::values).map(Collection::toArray).collect(Collectors.toList());
+    return stream().map(aCase -> aCase.values()).map(objects -> objects.toArray()).collect(Collectors.toList());
   }
   @Override
   public Iterator<Case> iterator()
@@ -90,12 +90,12 @@ public class Pairwise implements Iterable<Case>
       }).stream();
 
       final Map<String, Object[]> params = parameters.stream()
-              .collect(Collectors.toMap(Parameter::getName, List::toArray));
+              .collect(Collectors.toMap(objects -> objects.getName(), objects1 -> objects1.toArray()));
 
       return new Pairwise(parameters, reduced.map(c -> prototype.clone().union(c))
           .peek(c -> c.putAll(c.entrySet().stream().filter(e -> e.getValue() == null)
               .peek(e -> e.setValue(random(params.get(e.getKey()))))
-              .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))))
+              .collect(Collectors.toMap(stringObjectEntry -> stringObjectEntry.getKey(), stringObjectEntry1 -> stringObjectEntry1.getValue()))))
           .collect(Collectors.toList()));
     }
     private static Object random(Object[] array)
