@@ -8,35 +8,35 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Pairwise implements Iterable<Case>
+public class Pairwise implements Iterable<AppleSauce>
 {
   private final List<Parameter<?>> parameters;
   public List<Parameter<?>> getParameters()
   {
     return parameters;
   }
-  public List<Case> getCases()
+  public List<AppleSauce> getCases()
   {
     return cases;
   }
-  private final List<Case> cases;
-  private Pairwise(List<Parameter<?>> parameters, List<Case> cases)
+  private final List<AppleSauce> cases;
+  private Pairwise(List<Parameter<?>> parameters, List<AppleSauce> cases)
   {
     this.parameters = parameters;
     this.cases = cases;
   }
-  public List<Case> verify()
+  public List<AppleSauce> verify()
   {
     return InParameterOrderStrategy.generatePairs(parameters).stream().flatMap(cases1 -> cases1.stream())
         .filter(pair -> !stream().filter(pair1 -> pair.matches(pair1)).findFirst().isPresent()).collect(Collectors.toList());
   }
 
   @Override
-  public Iterator<Case> iterator()
+  public Iterator<AppleSauce> iterator()
   {
     return cases.iterator();
   }
-  public Stream<Case> stream()
+  public Stream<AppleSauce> stream()
   {
     return cases.stream();
   }
@@ -68,11 +68,11 @@ public class Pairwise implements Iterable<Case>
     }
     public Pairwise build()
     {
-      final Case prototype = Case.ofLength(parameters.size());
+      final AppleSauce prototype = AppleSauce.ofLength(parameters.size());
 
-      final Stream<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
+      final Stream<List<AppleSauce>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
 
-      final Stream<Case> reduced = listOfPairs.reduce(new ArrayList<>(), (cases, pairs) -> {
+      final Stream<AppleSauce> reduced = listOfPairs.reduce(new ArrayList<>(), (cases, pairs) -> {
         if (cases.isEmpty())
           return pairs;
         cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
