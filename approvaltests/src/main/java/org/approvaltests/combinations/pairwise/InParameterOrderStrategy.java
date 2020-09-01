@@ -27,7 +27,10 @@ public final class InParameterOrderStrategy
   }
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
-    return cases.stream().map(o -> best(pairs, o)).peek(o -> delete(pairs, o)).collect(Collectors.toList());
+    return cases.stream()
+            .map(o -> best(pairs, o))
+            .peek(o -> delete(pairs, o))
+            .collect(Collectors.toList());
   }
   public static List<Case> verticalGrowth(List<Case> pairs)
   {
@@ -51,8 +54,8 @@ public final class InParameterOrderStrategy
             {
               {
                 Parameter parameter = chunk.get(column);
-                this.put(parameter.getName(), parameter.get(cursor));
-                this.put(multiplier.getName(), multiplier.get(last));
+                this.put(parameter.getPosition(), parameter.get(cursor));
+                this.put(multiplier.getPosition(), multiplier.get(last));
               }
             }))));
       }

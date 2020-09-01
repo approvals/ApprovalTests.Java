@@ -4,8 +4,15 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.combinations.pairwise.Parameter;
-import org.lambda.functions.*;
-import org.lambda.query.Query;
+import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
+import org.lambda.functions.Function3;
+import org.lambda.functions.Function4;
+import org.lambda.functions.Function5;
+import org.lambda.functions.Function6;
+import org.lambda.functions.Function7;
+import org.lambda.functions.Function8;
+import org.lambda.functions.Function9;
 
 import java.util.ArrayList;
 import java.util.List;
