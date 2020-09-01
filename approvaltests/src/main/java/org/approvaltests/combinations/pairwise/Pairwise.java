@@ -8,22 +8,22 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Pairwise implements Iterable<AppleSauce>
+public class Pairwise implements Iterable<Case1>
 {
   private final List<Parameter<?>> parameters;
   public List<Parameter<?>> getParameters()
   {
     return parameters;
   }
-  public List<AppleSauce> getCases()
+  public List<Case1> getCases()
   {
     return cases;
   }
-  private final List<AppleSauce> cases;
+  private final List<Case1> cases;
   private Pairwise(List<Parameter<?>> parameters, List<Case1> cases)
   {
     this.parameters = parameters;
-    this.cases = (List<AppleSauce>) (Object) cases;
+    this.cases = (List<Case1>) (Object) cases;
   }
   public List<Case1> verify()
   {
@@ -32,11 +32,11 @@ public class Pairwise implements Iterable<AppleSauce>
         .collect(Collectors.toList());
   }
   @Override
-  public Iterator<AppleSauce> iterator()
+  public Iterator<Case1> iterator()
   {
     return cases.iterator();
   }
-  public Stream<AppleSauce> stream()
+  public Stream<Case1> stream()
   {
     return cases.stream();
   }

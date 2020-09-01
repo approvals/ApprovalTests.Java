@@ -1,10 +1,18 @@
 package org.approvaltests.combinations;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.combinations.pairwise.AppleSauce;
+import org.approvaltests.combinations.pairwise.Case1;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.combinations.pairwise.Parameter;
-import org.lambda.functions.*;
+import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
+import org.lambda.functions.Function3;
+import org.lambda.functions.Function4;
+import org.lambda.functions.Function5;
+import org.lambda.functions.Function6;
+import org.lambda.functions.Function7;
+import org.lambda.functions.Function8;
+import org.lambda.functions.Function9;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,7 +138,7 @@ public class PairWiseApprovals {
             IN8[] parameters8, IN9[] parameters9) {
         Pairwise pairwise = toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
 
-        final List<AppleSauce> cases = pairwise.getCases();
+        final List<Case1> cases = pairwise.getCases();
 
         StringBuffer output = new StringBuffer();
         int totalPosisbleSize = 1;
@@ -138,7 +146,7 @@ public class PairWiseApprovals {
             totalPosisbleSize *= parameter.size();
         }
         output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPosisbleSize));
-        for (AppleSauce params : cases) {
+        for (Case1 params : cases) {
             String result;
             final IN1 in1 = (IN1) params.get(0);
             final IN2 in2 = (IN2) params.get(1);
