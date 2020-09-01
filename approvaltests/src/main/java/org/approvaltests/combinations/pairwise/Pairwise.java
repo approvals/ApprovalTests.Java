@@ -31,15 +31,7 @@ public class Pairwise implements Iterable<Case>
     return InParameterOrderStrategy.generatePairs(parameters).stream().flatMap(cases1 -> cases1.stream())
         .filter(pair -> !stream().filter(pair1 -> pair.matches(pair1)).findFirst().isPresent()).collect(Collectors.toList());
   }
-  public Object[][] toTestNG()
-  {
-    return stream().map(aCase -> aCase.values()).map(objects -> objects.toArray()).collect(Collectors.toList())
-        .toArray(new Object[0][0]);
-  }
-  public Collection<Object[]> toJUnit()
-  {
-    return stream().map(aCase -> aCase.values()).map(objects -> objects.toArray()).collect(Collectors.toList());
-  }
+
   @Override
   public Iterator<Case> iterator()
   {
