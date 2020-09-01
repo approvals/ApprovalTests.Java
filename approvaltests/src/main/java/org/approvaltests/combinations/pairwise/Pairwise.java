@@ -11,11 +11,11 @@ import java.util.stream.Stream;
 
 public class Pairwise implements Iterable<Case>
 {
+  private final List<Parameter<?>> parameters;
   public List<Parameter<?>> getParameters()
   {
     return parameters;
   }
-  private final List<Parameter<?>> parameters;
   public List<Case> getCases()
   {
     return cases;
