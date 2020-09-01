@@ -28,9 +28,9 @@ public class Pairwise implements Iterable<AppleSauce>
   public List<AppleSauce> verify()
   {
     return InParameterOrderStrategy.generatePairs(parameters).stream().flatMap(cases1 -> cases1.stream())
-        .filter(pair -> !stream().filter(pair1 -> pair.matches(pair1)).findFirst().isPresent()).collect(Collectors.toList());
+        .filter(pair -> !stream().filter(pair1 -> pair.matches(pair1)).findFirst().isPresent())
+        .collect(Collectors.toList());
   }
-
   @Override
   public Iterator<AppleSauce> iterator()
   {
@@ -42,7 +42,7 @@ public class Pairwise implements Iterable<AppleSauce>
   }
   public static class Builder
   {
-    private static Random random = new Random(5);
+    private static Random      random = new Random(5);
     private List<Parameter<?>> parameters;
     public List<Parameter<?>> getParameters()
     {
@@ -69,9 +69,7 @@ public class Pairwise implements Iterable<AppleSauce>
     public Pairwise build()
     {
       final AppleSauce prototype = AppleSauce.ofLength(parameters.size());
-
       final Stream<List<AppleSauce>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-
       final Stream<AppleSauce> reduced = listOfPairs.reduce(new ArrayList<>(), (cases, pairs) -> {
         if (cases.isEmpty())
           return pairs;
@@ -79,15 +77,20 @@ public class Pairwise implements Iterable<AppleSauce>
         cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
         return cases;
       }).stream();
-
       final Map<String, Object[]> params = parameters.stream()
-              .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
-
-      return new Pairwise(parameters, reduced.map(c -> prototype.clone().union(c))
-          .peek(c -> c.putAll(c.entrySet().stream().filter(e -> e.getValue() == null)
+          .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
+      return new Pairwise(parameters,
+          reduced.map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList()));
+    }
+    public void foo(Map<String, Object[]> params, AppleSauce c)
+    {
+      Map<String, Object> result = c.entrySet().stream()
+              .filter(e -> e.getValue() == null)
               .peek(e -> e.setValue(random(params.get(e.getKey()))))
-              .collect(Collectors.toMap(stringObjectEntry -> stringObjectEntry.getKey(), stringObjectEntry1 -> stringObjectEntry1.getValue()))))
-          .collect(Collectors.toList()));
+              .collect(Collectors.toMap(
+                      stringObjectEntry -> stringObjectEntry.getKey(),
+                      stringObjectEntry1 -> stringObjectEntry1.getValue()));
+      c.putAll(result);
     }
     private static Object random(Object[] array)
     {
