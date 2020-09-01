@@ -51,8 +51,8 @@ public final class InParameterOrderStrategy
             {
               {
                 Parameter parameter = chunk.get(column);
-                this.put(parameter.getName(), parameter.get(cursor));
-                this.put(multiplier.getName(), multiplier.get(last));
+                this.put(parameter.getPosition(), parameter.get(cursor));
+                this.put(multiplier.getPosition(), multiplier.get(last));
               }
             }))));
       }

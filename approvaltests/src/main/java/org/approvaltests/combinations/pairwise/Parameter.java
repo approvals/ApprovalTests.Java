@@ -11,7 +11,7 @@ public class Parameter<T> {
     this.position = position;
     this.values = values;
   }
-  public String getName()
+  public String getPosition()
   {
     return "" + (position + 1);
   }

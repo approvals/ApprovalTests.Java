@@ -81,7 +81,7 @@ public class Pairwise implements Iterable<Case>
       }).stream();
 
       final Map<String, Object[]> params = parameters.stream()
-              .collect(Collectors.toMap(objects -> objects.getName(), objects1 -> objects1.toArray()));
+              .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
 
       return new Pairwise(parameters, reduced.map(c -> prototype.clone().union(c))
           .peek(c -> c.putAll(c.entrySet().stream().filter(e -> e.getValue() == null)
