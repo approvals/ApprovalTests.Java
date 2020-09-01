@@ -1,7 +1,6 @@
 package org.approvaltests.combinations.pairwise;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,8 @@ import java.util.stream.Stream;
 
 public class Pairwise implements Iterable<Case>
 {
-  private final List<Parameter<?>> parameters;
-  public List<Parameter<?>> getParameters()
+  private final List<Parameter1<?>> parameters;
+  public List<Parameter1<?>> getParameters()
   {
     return parameters;
   }
@@ -21,7 +20,7 @@ public class Pairwise implements Iterable<Case>
     return cases;
   }
   private final List<Case> cases;
-  private Pairwise(List<Parameter<?>> parameters, List<Case> cases)
+  private Pairwise(List<Parameter1<?>> parameters, List<Case> cases)
   {
     this.parameters = parameters;
     this.cases = cases;
@@ -44,25 +43,25 @@ public class Pairwise implements Iterable<Case>
   public static class Builder
   {
     private static Random random = new Random(5);
-    public List<Parameter<?>> getParameters()
+    private List<Parameter1<?>> parameters;
+    public List<Parameter1<?>> getParameters()
     {
       return parameters;
     }
-    public void setParameters(List<Parameter<?>> parameters)
+    public void setParameters(List<Parameter1<?>> parameters)
     {
       this.parameters = parameters;
     }
-    private List<Parameter<?>> parameters;
     public Builder()
     {
       this.parameters = new ArrayList<>();
     }
-    public Builder withParameter(Parameter<?> parameter)
+    public Builder withParameter(Parameter1<?> parameter)
     {
       this.parameters.add(parameter);
       return this;
     }
-    public Builder withParameters(List<Parameter<?>> parameters)
+    public Builder withParameters(List<Parameter1<?>> parameters)
     {
       this.parameters.addAll(parameters);
       return this;

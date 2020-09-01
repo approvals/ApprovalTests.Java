@@ -4,6 +4,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.combinations.pairwise.Parameter;
+import org.approvaltests.combinations.pairwise.Parameter1;
 import org.lambda.functions.*;
 import org.lambda.query.Query;
 
@@ -135,7 +136,7 @@ public class PairWiseApprovals {
 
         StringBuffer output = new StringBuffer();
         int totalPosisbleSize = 1;
-        for (Parameter<?> parameter : pairwise.getParameters()) {
+        for (Parameter1<?> parameter : pairwise.getParameters()) {
             totalPosisbleSize *= parameter.size();
         }
         output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPosisbleSize));
