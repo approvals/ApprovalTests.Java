@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public final class InParameterOrderStrategy
 {
-  public static List<List<AppleSauceCase1>> generatePairs(List<Parameter<?>> parameters)
+  public static List<List<Case>> generatePairs(List<Parameter<?>> parameters)
   {
     final List<Parameter> accumulator = new ArrayList<>();
     Stream<Parameter<?>> sortedBySize = parameters.stream()
@@ -25,28 +25,28 @@ public final class InParameterOrderStrategy
             .map(chunk -> crossJoin(chunk))
             .collect(Collectors.toList());
   }
-  public static List<AppleSauceCase1> horizontalGrowth(List<AppleSauceCase1> cases, List<AppleSauceCase1> pairs)
+  public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
     return cases.stream()
             .map(o -> best(pairs, o))
             .peek(o -> delete(pairs, o))
             .collect(Collectors.toList());
   }
-  public static List<AppleSauceCase1> verticalGrowth(List<AppleSauceCase1> pairs)
+  public static List<Case> verticalGrowth(List<Case> pairs)
   {
-    List<AppleSauceCase1> collected = new ArrayList<>();
+    List<Case> collected = new ArrayList<>();
     while (!pairs.isEmpty())
     {
-      AppleSauceCase1 pair = union(pairs, pairs.get(0));
+      Case pair = union(pairs, pairs.get(0));
       delete(pairs, pair);
       collected.add(pair);
     }
     return collected;
   }
-  private static List<AppleSauceCase1> crossJoin(List<Parameter> chunk)
+  private static List<Case> crossJoin(List<Parameter> chunk)
   {
     final Parameter multiplier = chunk.get(chunk.size() - 1);
-    return new ArrayList<AppleSauceCase1>()
+    return new ArrayList<Case>()
     {
       {
         IntStream.range(0, chunk.get(chunk.size() - 1).size()).forEach(last -> IntStream.range(0, chunk.size() - 1)
@@ -61,7 +61,7 @@ public final class InParameterOrderStrategy
       }
     };
   }
-  private static AppleSauceCase1 best(List<AppleSauceCase1> pairs, AppleSauceCase1 pair)
+  private static Case best(List<Case> pairs, Case pair)
   {
     final Map<String, String> lazyKey = new HashMap<>();
     pairs.stream().filter(pair1 -> pair.matches(pair1))
@@ -72,9 +72,9 @@ public final class InParameterOrderStrategy
         .ifPresent(o -> pair.put(lazyKey.get("key"), o));
     return pair;
   }
-  private static void delete(List<AppleSauceCase1> pairs, AppleSauceCase1 pair)
+  private static void delete(List<Case> pairs, Case pair)
   {
-    ListIterator<AppleSauceCase1> iterator = pairs.listIterator();
+    ListIterator<Case> iterator = pairs.listIterator();
     while (iterator.hasNext())
     {
       if (iterator.next().matches(pair))
@@ -83,7 +83,7 @@ public final class InParameterOrderStrategy
       }
     }
   }
-  private static AppleSauceCase1 union(List<AppleSauceCase1> pairs, AppleSauceCase1 identity)
+  private static Case union(List<Case> pairs, Case identity)
   {
     return pairs.stream().reduce(identity, (accumulator, pair) -> {
       if (accumulator.matches(pair))
