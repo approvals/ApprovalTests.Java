@@ -7,26 +7,26 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class AppleSauce implements Case1
+public class Case implements Case1
 {
   private LinkedHashMap map = new LinkedHashMap();
-  public AppleSauce()
+  public Case()
   {
   }
-  public AppleSauce(Map<String, Object> prototype)
+  public Case(Map<String, Object> prototype)
   {
     this.putAll(prototype);
   }
-  public static AppleSauce ofLength(int size)
+  public static Case ofLength(int size)
   {
-    AppleSauce c = new AppleSauce();
+    Case c = new Case();
     for (int i = 1; i <= size; i++)
     {
       c.put(("" + i), null);
     }
     return c;
   }
-  public boolean matches(AppleSauce pair)
+  public boolean matches(Case pair)
   {
     final Set<String> keys = new HashSet<>(this.keySet());
     keys.retainAll(pair.keySet());
@@ -61,27 +61,27 @@ public class AppleSauce implements Case1
   {
     this.map.putAll(pair);
   }
-  public AppleSauce union(AppleSauce pair)
+  public Case union(Case pair)
   {
     this.putAll(pair.map);
     return this;
   }
   @Override
-  public AppleSauce clone()
+  public Case clone()
   {
-    return new AppleSauce(this.map);
+    return new Case(this.map);
   }
   @Override
   public boolean matches(Case1 pair)
   {
-    return matches((AppleSauce) pair);
+    return matches((Case) pair);
   }
   @Override
   public Case1 union(Case1 pair)
   {
-    return union((AppleSauce) pair);
+    return union((Case) pair);
   }
-  private static boolean nonEquals(String key, AppleSauce first, AppleSauce second)
+  private static boolean nonEquals(String key, Case first, Case second)
   {
     final Object f = first.get(key);
     final Object s = second.get(key);

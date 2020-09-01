@@ -50,7 +50,7 @@ public final class InParameterOrderStrategy
     {
       {
         IntStream.range(0, chunk.get(chunk.size() - 1).size()).forEach(last -> IntStream.range(0, chunk.size() - 1)
-            .forEach(column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new AppleSauce()
+            .forEach(column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new Case()
             {
               {
                 Parameter parameter = chunk.get(column);
