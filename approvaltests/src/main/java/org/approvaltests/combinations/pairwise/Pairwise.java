@@ -70,7 +70,7 @@ public class Pairwise implements Iterable<AppleSauce>
     {
       final AppleSauce prototype = AppleSauce.ofLength(parameters.size());
       final Stream<List<Case1>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-      List<Case1> reduce = listOfPairs.map(l -> (List<Case1>)(Object) l).reduce(
+      List<Case1> reduce = listOfPairs.reduce(
               new ArrayList<>(),
               (cases, pairs) -> foobar(cases, pairs));
 
