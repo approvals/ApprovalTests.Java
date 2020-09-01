@@ -1,15 +1,26 @@
 package org.approvaltests.combinations.pairwise;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-
-public class Parameter<T> extends ArrayList<T> implements Parameter1
+public class Parameter<T> implements Parameter1
 {
+
+  private T[] arr;
   public String getName()
   {
     return name;
   }
+
+  @Override public T[] toArray() {
+    return arr;
+  }
+
+  @Override public int size() {
+    return arr.length;
+  }
+
+  @Override public T get(int index) {
+    return arr[index];
+  }
+
   public void setName(String name)
   {
     this.name = name;
@@ -23,14 +34,10 @@ public class Parameter<T> extends ArrayList<T> implements Parameter1
   {
     this.name = name;
   }
-  public Parameter(String name, Collection<T> c)
-  {
-    this(name);
-    this.addAll(c);
-  }
   public Parameter(int position, T... values)
   {
-    this("" + (position + 1), Arrays.asList(values));
+    this.name = "" + (position + 1);
+    this.arr = values;
   }
   @Override
   public String toString()
