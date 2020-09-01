@@ -4,16 +4,17 @@ import java.util.Arrays;
 
 public class Parameter<T> implements Parameter1
 {
-  private final String name;
+  private final int position;
   private final T[] values;
+
   public Parameter(int position, T... values)
   {
-    this.name = "" + (position + 1);
+    this.position = position;
     this.values = values;
   }
   public String getName()
   {
-    return name;
+    return "" + (position + 1);
   }
   @Override
   public T[] toArray()
@@ -33,6 +34,6 @@ public class Parameter<T> implements Parameter1
   @Override
   public String toString()
   {
-    return name + ": " + Arrays.toString(this.values);
+    return position + ": " + Arrays.toString(this.values);
   }
 }
