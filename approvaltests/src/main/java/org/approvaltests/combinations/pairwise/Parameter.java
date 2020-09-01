@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class Parameter<T> extends ArrayList<T>
+public class Parameter<T> extends ArrayList<T> implements Parameter1
 {
   public String getName()
   {
