@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public final class InParameterOrderStrategy
 {
-  public static List<List<AppleSauce>> generatePairs(List<Parameter<?>> parameters)
+  public static List<List<Case1>> generatePairs(List<Parameter<?>> parameters)
   {
     final List<Parameter> accumulator = new ArrayList<>();
     Stream<Parameter<?>> sortedBySize = parameters.stream()
@@ -43,10 +43,10 @@ public final class InParameterOrderStrategy
     }
     return collected;
   }
-  private static List<AppleSauce> crossJoin(List<Parameter> chunk)
+  private static List<Case1> crossJoin(List<Parameter> chunk)
   {
     final Parameter multiplier = chunk.get(chunk.size() - 1);
-    return new ArrayList<AppleSauce>()
+    return new ArrayList<Case1>()
     {
       {
         IntStream.range(0, chunk.get(chunk.size() - 1).size()).forEach(last -> IntStream.range(0, chunk.size() - 1)
