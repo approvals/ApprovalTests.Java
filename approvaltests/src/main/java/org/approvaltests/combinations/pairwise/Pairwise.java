@@ -70,14 +70,10 @@ public class Pairwise implements Iterable<AppleSauce>
     {
       final AppleSauce prototype = AppleSauce.ofLength(parameters.size());
       final Stream<List<AppleSauce>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-      final Stream<AppleSauce> reduced = listOfPairs.reduce(new ArrayList<>(), (cases, pairs) -> {
-        if (cases.isEmpty())
-          return pairs;
-        cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
-        cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
-        return cases;
-      }).stream();
-      
+      final Stream<AppleSauce> reduced = listOfPairs.reduce(
+              new ArrayList<>(),
+              (cases, pairs) -> foobar(cases, pairs)).stream();
+
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
 
@@ -87,9 +83,18 @@ public class Pairwise implements Iterable<AppleSauce>
 
       return new Pairwise(this.parameters, parameters);
     }
-    public void foo(Map<String, Object[]> params, AppleSauce c)
+
+    public List<AppleSauce> foobar(List<AppleSauce> cases, List<AppleSauce> pairs) {
+      if (cases.isEmpty())
+        return pairs;
+      cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
+      cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
+      return cases;
+    }
+
+    public void foo(Map<String, Object[]> params, AppleSauce appleSauce)
     {
-      Stream<Map.Entry<String, Object>> fillNullWithRandom = c.entrySet().stream()
+      Stream<Map.Entry<String, Object>> fillNullWithRandom = appleSauce.entrySet().stream()
               .filter(e -> e.getValue() == null)
               .peek(e -> e.setValue(random(params.get(e.getKey()))));
 
@@ -97,7 +102,7 @@ public class Pairwise implements Iterable<AppleSauce>
               Collectors.toMap(
                       stringObjectEntry -> stringObjectEntry.getKey(),
                       stringObjectEntry1 -> stringObjectEntry1.getValue()));
-      c.putAll(result);
+      appleSauce.putAll(result);
     }
     private static Object random(Object[] array)
     {
