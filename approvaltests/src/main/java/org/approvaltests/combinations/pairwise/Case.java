@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-public class Case implements AppleSauceCase1
+public class Case implements AppleSauceCase1, Cloneable
 {
   private LinkedHashMap map = new LinkedHashMap();
   public Case()
