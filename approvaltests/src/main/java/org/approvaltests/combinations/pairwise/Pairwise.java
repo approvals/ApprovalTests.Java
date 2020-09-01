@@ -77,17 +77,24 @@ public class Pairwise implements Iterable<AppleSauce>
         cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
         return cases;
       }).stream();
+      
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
-      return new Pairwise(parameters,
-          reduced.map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList()));
+
+      List<AppleSauce> parameters = reduced.map(c -> prototype.clone().union(c))
+              .peek(c -> foo(params, c))
+              .collect(Collectors.toList());
+
+      return new Pairwise(this.parameters, parameters);
     }
     public void foo(Map<String, Object[]> params, AppleSauce c)
     {
-      Map<String, Object> result = c.entrySet().stream()
+      Stream<Map.Entry<String, Object>> fillNullWithRandom = c.entrySet().stream()
               .filter(e -> e.getValue() == null)
-              .peek(e -> e.setValue(random(params.get(e.getKey()))))
-              .collect(Collectors.toMap(
+              .peek(e -> e.setValue(random(params.get(e.getKey()))));
+
+      Map<String, Object> result = fillNullWithRandom.collect(
+              Collectors.toMap(
                       stringObjectEntry -> stringObjectEntry.getKey(),
                       stringObjectEntry1 -> stringObjectEntry1.getValue()));
       c.putAll(result);
