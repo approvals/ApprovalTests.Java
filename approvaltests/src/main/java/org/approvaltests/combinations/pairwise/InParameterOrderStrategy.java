@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 
 public final class InParameterOrderStrategy
 {
-  public static List<List<Case>> generatePairs(List<Parameter1<?>> parameters)
+  public static List<List<Case>> generatePairs(List<Parameter<?>> parameters)
   {
-    final List<Parameter1> accumulator = new ArrayList<>();
-    Stream<Parameter1<?>> sortedBySize = parameters.stream()
+    final List<Parameter> accumulator = new ArrayList<>();
+    Stream<Parameter<?>> sortedBySize = parameters.stream()
             .sorted((o1, o2) -> Integer.compare(o2.size(), o1.size()));
-    Stream<ArrayList<Parameter1>> arrayListStream = sortedBySize
+    Stream<ArrayList<Parameter>> arrayListStream = sortedBySize
             .map(parameter -> {
               accumulator.add(parameter);
               return new ArrayList<>(accumulator);
@@ -40,9 +40,9 @@ public final class InParameterOrderStrategy
     }
     return collected;
   }
-  private static List<Case> crossJoin(List<Parameter1> chunk)
+  private static List<Case> crossJoin(List<Parameter> chunk)
   {
-    final Parameter1 multiplier = chunk.get(chunk.size() - 1);
+    final Parameter multiplier = chunk.get(chunk.size() - 1);
     return new ArrayList<Case>()
     {
       {
@@ -50,7 +50,7 @@ public final class InParameterOrderStrategy
             .forEach(column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new Case()
             {
               {
-                Parameter1 parameter = chunk.get(column);
+                Parameter parameter = chunk.get(column);
                 this.put(parameter.getName(), parameter.get(cursor));
                 this.put(multiplier.getName(), multiplier.get(last));
               }

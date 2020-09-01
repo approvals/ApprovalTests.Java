@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 public class Pairwise implements Iterable<Case>
 {
-  private final List<Parameter1<?>> parameters;
-  public List<Parameter1<?>> getParameters()
+  private final List<Parameter<?>> parameters;
+  public List<Parameter<?>> getParameters()
   {
     return parameters;
   }
@@ -20,7 +20,7 @@ public class Pairwise implements Iterable<Case>
     return cases;
   }
   private final List<Case> cases;
-  private Pairwise(List<Parameter1<?>> parameters, List<Case> cases)
+  private Pairwise(List<Parameter<?>> parameters, List<Case> cases)
   {
     this.parameters = parameters;
     this.cases = cases;
@@ -43,12 +43,12 @@ public class Pairwise implements Iterable<Case>
   public static class Builder
   {
     private static Random random = new Random(5);
-    private List<Parameter1<?>> parameters;
-    public List<Parameter1<?>> getParameters()
+    private List<Parameter<?>> parameters;
+    public List<Parameter<?>> getParameters()
     {
       return parameters;
     }
-    public void setParameters(List<Parameter1<?>> parameters)
+    public void setParameters(List<Parameter<?>> parameters)
     {
       this.parameters = parameters;
     }
@@ -56,12 +56,12 @@ public class Pairwise implements Iterable<Case>
     {
       this.parameters = new ArrayList<>();
     }
-    public Builder withParameter(Parameter1<?> parameter)
+    public Builder withParameter(Parameter<?> parameter)
     {
       this.parameters.add(parameter);
       return this;
     }
-    public Builder withParameters(List<Parameter1<?>> parameters)
+    public Builder withParameters(List<Parameter<?>> parameters)
     {
       this.parameters.addAll(parameters);
       return this;
