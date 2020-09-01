@@ -45,6 +45,15 @@ public class AppleSauce extends LinkedHashMap<String, Object> implements Cloneab
   {
     return new AppleSauce(this);
   }
+
+  @Override public boolean matches(Case1 pair) {
+    return matches((AppleSauce)pair);
+  }
+
+  @Override public Case1 union(Case1 pair) {
+    return union((AppleSauce) pair);
+  }
+
   private static boolean nonEquals(String key, AppleSauce first, AppleSauce second)
   {
     final Object f = first.get(key);

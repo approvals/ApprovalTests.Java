@@ -25,16 +25,19 @@ public final class InParameterOrderStrategy
             .map(chunk -> crossJoin(chunk))
             .collect(Collectors.toList());
   }
-  public static List<AppleSauce> horizontalGrowth(List<AppleSauce> cases, List<AppleSauce> pairs)
+  public static List<Case1> horizontalGrowth(List<Case1> cases, List<Case1> pairs)
   {
-    return cases.stream().map(o -> best(pairs, o)).peek(o -> delete(pairs, o)).collect(Collectors.toList());
+    return cases.stream()
+            .map(o -> best(pairs, o))
+            .peek(o -> delete(pairs, o))
+            .collect(Collectors.toList());
   }
-  public static List<AppleSauce> verticalGrowth(List<AppleSauce> pairs)
+  public static List<Case1> verticalGrowth(List<Case1> pairs)
   {
-    List<AppleSauce> collected = new ArrayList<>();
+    List<Case1> collected = new ArrayList<>();
     while (!pairs.isEmpty())
     {
-      AppleSauce pair = union(pairs, pairs.get(0));
+      Case1 pair = union(pairs, pairs.get(0));
       delete(pairs, pair);
       collected.add(pair);
     }
@@ -58,7 +61,7 @@ public final class InParameterOrderStrategy
       }
     };
   }
-  private static AppleSauce best(List<AppleSauce> pairs, AppleSauce pair)
+  private static Case1 best(List<Case1> pairs, Case1 pair)
   {
     final Map<String, String> lazyKey = new HashMap<>();
     pairs.stream().filter(pair1 -> pair.matches(pair1))
@@ -69,9 +72,9 @@ public final class InParameterOrderStrategy
         .ifPresent(o -> pair.put(lazyKey.get("key"), o));
     return pair;
   }
-  private static void delete(List<AppleSauce> pairs, AppleSauce pair)
+  private static void delete(List<Case1> pairs, Case1 pair)
   {
-    ListIterator<AppleSauce> iterator = pairs.listIterator();
+    ListIterator<Case1> iterator = pairs.listIterator();
     while (iterator.hasNext())
     {
       if (iterator.next().matches(pair))
@@ -80,7 +83,7 @@ public final class InParameterOrderStrategy
       }
     }
   }
-  private static AppleSauce union(List<AppleSauce> pairs, AppleSauce identity)
+  private static Case1 union(List<Case1> pairs, Case1 identity)
   {
     return pairs.stream().reduce(identity, (accumulator, pair) -> {
       if (accumulator.matches(pair))
