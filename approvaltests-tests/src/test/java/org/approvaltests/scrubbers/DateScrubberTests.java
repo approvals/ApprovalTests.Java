@@ -20,6 +20,7 @@ public class DateScrubberTests
                 "2020-9-10T08:07Z",
                 "2020-09-9T08:07Z",
                 "2020-09-10T8:07Z",
+                "2020-09-10T01:23:45.678Z"
         };
         Approvals.verifyAll("Date scrubbing", formats, this::verifyScrubbing);
     }
