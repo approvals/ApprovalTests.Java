@@ -36,3 +36,33 @@ RegExScrubber[\d\d\d\d/\d\d/\d\d \d\d:\d\d:\d\d.\d\d\d]
 Example: {'date':"[Date1]"}
 
 
+Scrubbing for 2020-09-10T08:07Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2020-9-10T08:07Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2020-09-9T08:07Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2020-09-10T8:07Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2020-09-10T08:07:89Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2020-09-10T01:23:45.678Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z]
+Example: {'date':"[Date1]"}
+
+
