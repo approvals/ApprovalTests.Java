@@ -20,11 +20,6 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
-            <groupId>ua.edu.lp.asu</groupId>
-            <artifactId>pairwise</artifactId>
-            <version>0.3.2-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>7.3.0</version>
