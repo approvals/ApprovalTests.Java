@@ -2,27 +2,27 @@ Date scrubbing
 
 
 Scrubbing for Tue May 13 16:30:00:
-RegExScrubber[[a-zA-Z][a-zA-Z][a-zA-Z] [a-zA-Z][a-zA-Z][a-zA-Z] \d\d \d\d:\d\d:\d\d]
+RegExScrubber[[a-zA-Z]{3} [a-zA-Z]{3} \d\d \d\d:\d\d:\d\d]
 Example: {'date':"[Date1]"}
 
 
 Scrubbing for Tue May 13 2014 23:30:00.789:
-RegExScrubber[[a-zA-Z][a-zA-Z][a-zA-Z] [a-zA-Z][a-zA-Z][a-zA-Z] \d\d \d\d\d\d \d\d:\d\d:\d\d.\d\d\d]
+RegExScrubber[[a-zA-Z]{3} [a-zA-Z]{3} \d\d \d{4} \d\d:\d\d:\d\d.\d\d\d]
 Example: {'date':"[Date1]"}
 
 
 Scrubbing for Tue May 13 16:30:00 -0800 2014:
-RegExScrubber[[a-zA-Z][a-zA-Z][a-zA-Z] [a-zA-Z][a-zA-Z][a-zA-Z] \d\d \d\d:\d\d:\d\d -\d\d\d\d \d\d\d\d]
+RegExScrubber[[a-zA-Z]{3} [a-zA-Z]{3} \d\d \d\d:\d\d:\d\d -\d{4} \d{4}]
 Example: {'date':"[Date1]"}
 
 
 Scrubbing for 13 May 2014 23:50:49,999:
-RegExScrubber[\d\d [a-zA-Z][a-zA-Z][a-zA-Z] \d\d\d\d \d\d:\d\d:\d\d,\d\d\d]
+RegExScrubber[\d\d [a-zA-Z]{3} \d{4} \d\d:\d\d:\d\d,\d\d\d]
 Example: {'date':"[Date1]"}
 
 
 Scrubbing for May 13, 2014 11:30:00 PM PST:
-RegExScrubber[[a-zA-Z][a-zA-Z][a-zA-Z] \d\d, \d\d\d\d \d\d:\d\d:\d\d [a-zA-Z][a-zA-Z] [a-zA-Z][a-zA-Z][a-zA-Z]]
+RegExScrubber[[a-zA-Z]{3} \d\d, \d{4} \d\d:\d\d:\d\d [a-zA-Z][a-zA-Z] [a-zA-Z]{3}]
 Example: {'date':"[Date1]"}
 
 
@@ -32,7 +32,7 @@ Example: {'date':"[Date1]"}
 
 
 Scrubbing for 2014/05/13 16:30:59.786:
-RegExScrubber[\d\d\d\d/\d\d/\d\d \d\d:\d\d:\d\d.\d\d\d]
+RegExScrubber[\d{4}/\d\d/\d\d \d\d:\d\d:\d\d.\d\d\d]
 Example: {'date':"[Date1]"}
 
 
