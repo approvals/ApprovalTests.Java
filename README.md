@@ -106,7 +106,7 @@ public class SampleArrayTest
   }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.java#L8-L19' title='File snippet `demo` was extracted from'>snippet source</a> | <a href='#snippet-demo' title='Navigate to start of snippet `demo`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.java#L8-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-demo' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce a File `SampleTest.TestList.received.txt`
@@ -119,7 +119,7 @@ Will Produce a File `SampleTest.TestList.received.txt`
 [3] = Katrina
 [4] = Llewellyn
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt#L1-L5' title='File snippet `/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Simply rename this to SampleTest.testList.approved.txt and the test will now pass.
