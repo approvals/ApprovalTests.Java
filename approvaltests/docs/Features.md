@@ -58,7 +58,7 @@ ApprovalNamer namer = Approvals.createApprovalNamer();
 Function2<File, File, Boolean> approveEverything = (r, a) -> true;
 Approvals.verify(new FileApprover(writer, namer, approveEverything));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L65-L70' title='File snippet `custom_approver` was extracted from'>snippet source</a> | <a href='#snippet-custom_approver' title='Navigate to start of snippet `custom_approver`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L65-L70' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_approver' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -104,7 +104,7 @@ This is a convenience class to follow the practice 'Test Commit/Revert' from Ken
 ```java
 extends TestCommitRevertTest
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L14' title='File snippet `test_commit_revert` was extracted from'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Navigate to start of snippet `test_commit_revert`'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 to your test class
 
@@ -115,7 +115,7 @@ to your test class
 @RunWith(TestCommitRevertRunner.class)
 public class TestCommitRevertSample
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L8-L11' title='File snippet `test_commit_revert_runner` was extracted from'>snippet source</a> | <a href='#snippet-test_commit_revert_runner' title='Navigate to start of snippet `test_commit_revert_runner`'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L8-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert_runner' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 to annotate your class
 

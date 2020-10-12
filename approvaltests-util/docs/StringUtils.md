@@ -30,7 +30,7 @@ For example
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ");
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L52-L55' title='File snippet `join_collection` was extracted from'>snippet source</a> | <a href='#snippet-join_collection' title='Navigate to start of snippet `join_collection`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L52-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 will produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt -->
@@ -38,7 +38,7 @@ will produce
 ```txt
 1, 2, 3, 4, 5
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt#L1-L1' title='File snippet `/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt' title='Navigate to start of snippet `/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 by invoking the .toString() on each object in the collection.
 
@@ -51,7 +51,7 @@ For example:
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L61-L64' title='File snippet `join_collection_with_lambda` was extracted from'>snippet source</a> | <a href='#snippet-join_collection_with_lambda' title='Navigate to start of snippet `join_collection_with_lambda`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L61-L64' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection_with_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 will Produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt -->
@@ -59,7 +59,7 @@ will Produce
 ```txt
 001, 002, 003, 004, 005
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt#L1-L1' title='File snippet `/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt' title='Navigate to start of snippet `/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---
