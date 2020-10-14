@@ -33,7 +33,7 @@ For Example Function3 has the single method :
 ```java
 public Out call(In1 a, In2 b, In3 c);
 ```
-<sup><a href='/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7' title='File snippet `function3_call` was extracted from'>snippet source</a> | <a href='#snippet-function3_call' title='Navigate to start of snippet `function3_call`'>anchor</a></sup>
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/functions/Function3.java#L5-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-function3_call' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  
@@ -56,7 +56,7 @@ For Example Action3 has the single method:
 ```java
 public void call(In1 a, In2 b, In3 c);
 ```
-<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='File snippet `action3_call` was extracted from'>snippet source</a> | <a href='#snippet-action3_call' title='Navigate to start of snippet `action3_call`'>anchor</a></sup>
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-action3_call' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  
@@ -99,7 +99,7 @@ java.lang.Error -  null
    <= SimpleLoggerTest.test() - OUT
 <= SimpleLoggerTest.test() - OUT
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt#L1-L18' title='File snippet `/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt' title='Navigate to start of snippet `/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt#L1-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 if you want to turn them all off just run
@@ -109,7 +109,7 @@ if you want to turn them all off just run
 ```java
 SimpleLogger.logToNothing();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L32-L34' title='File snippet `log_nothing` was extracted from'>snippet source</a> | <a href='#snippet-log_nothing' title='Navigate to start of snippet `log_nothing`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L32-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## NullLogger
@@ -125,7 +125,7 @@ Sometimes you wish you could add to an array the same way you can add to a list.
 Integer[] numbers = {1, 2, 3};
 numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L16-L19' title='File snippet `add_to_array` was extracted from'>snippet source</a> | <a href='#snippet-add_to_array' title='Navigate to start of snippet `add_to_array`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L16-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will result in a new copy of the array with the added items
@@ -134,7 +134,7 @@ will result in a new copy of the array with the added items
 ```java
 Integer[] resulting = {1, 2, 3, 4, 5, 6};
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L20-L22' title='File snippet `add_to_array_result` was extracted from'>snippet source</a> | <a href='#snippet-add_to_array_result' title='Navigate to start of snippet `add_to_array_result`'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L20-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array_result' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 [Back to User Guide](README.md#top)

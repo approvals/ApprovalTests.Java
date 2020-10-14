@@ -37,7 +37,7 @@ public class PackageSettings
   public static String UseApprovalSubdirectory = "approvals";
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/subdirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_subdirectory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_subdirectory' title='Navigate to start of snippet `package_settings_approval_subdirectory`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/subdirectory/PackageSettings.java#L3-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-package_settings_approval_subdirectory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
@@ -56,7 +56,7 @@ public class PackageSettings
   public static String ApprovalBaseDirectory = "../resources";
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/basedirectory/PackageSettings.java#L3-L8' title='File snippet `package_settings_approval_base_directory` was extracted from'>snippet source</a> | <a href='#snippet-package_settings_approval_base_directory' title='Navigate to start of snippet `package_settings_approval_base_directory`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/basedirectory/PackageSettings.java#L3-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-package_settings_approval_base_directory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The approved and received files will now be created in the directory `/source/test/resources/` for any test in the same package as this file, or any test in any under this.  
@@ -81,7 +81,7 @@ public class PackageSettings
   public static String lastName = "Falco";
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java#L1-L8' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettings.java' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 If you where to call at the org.packagesettings level.
@@ -91,7 +91,7 @@ If you where to call at the org.packagesettings level.
 ```java
 Map<String, Settings> settings = PackageLevelSettings.get();
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.java#L13-L15' title='File snippet `package_level_settings_get` was extracted from'>snippet source</a> | <a href='#snippet-package_level_settings_get' title='Navigate to start of snippet `package_level_settings_get`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.java#L13-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-package_level_settings_get' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Then you would get the following settings
@@ -103,7 +103,7 @@ lastName : Falco [from org.packagesettings.PackageSettings]
 name : Llewellyn [from org.packagesettings.PackageSettings] 
 rating : 10 [from org.packagesettings.PackageSettings] 
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt#L1-L3' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt#L1-L3' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 However, if you also had
@@ -120,7 +120,7 @@ public class PackageSettings
   public String   ratingScale = "logarithmic";
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java#L1-L8' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 and you ran the same code but from the org.packagesettings.subpackage  
@@ -134,7 +134,7 @@ name : Test Name [from org.packagesettings.subpackage.PackageSettings]
 rating : true [from org.packagesettings.subpackage.PackageSettings] 
 ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings] 
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt#L1-L4' title='File snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt' title='Navigate to start of snippet `/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---

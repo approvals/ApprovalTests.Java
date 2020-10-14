@@ -32,7 +32,7 @@ If you just wanted to wrap a single object. You can create a printable wrapper b
 Printable<Integer> one = new Printable(1, "one");
 assertEquals("one", one.toString());
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L16-L19' title='File snippet `printable_single_label` was extracted from'>snippet source</a> | <a href='#snippet-printable_single_label' title='Navigate to start of snippet `printable_single_label`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L16-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_label' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 to access the value, simply call
@@ -43,7 +43,7 @@ to access the value, simply call
 Integer value = one.get();
 assertEquals(1, value);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L20-L23' title='File snippet `printable_access` was extracted from'>snippet source</a> | <a href='#snippet-printable_access' title='Navigate to start of snippet `printable_access`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L20-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_access' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 #### Alternative `toString()` Function
@@ -56,7 +56,7 @@ You can also write a different function(lambda) to create the `toString()` and t
 Printable<Integer> two = new Printable(2, i -> "#" + i + ")");
 assertEquals("#2)", two.toString());
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L24-L27' title='File snippet `printable_single_lambda` was extracted from'>snippet source</a> | <a href='#snippet-printable_single_lambda' title='Navigate to start of snippet `printable_single_lambda`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L24-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Wrap an array of objects
@@ -69,7 +69,7 @@ For convenience, if you want to do this to a whole list of items we have
 Printable<Integer> numbers[] = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
 Approvals.verifyAll("Custom toString method", numbers, p -> String.format("%s -> %s", p, p.get()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L38-L41' title='File snippet `printable_array_lambda` was extracted from'>snippet source</a> | <a href='#snippet-printable_array_lambda' title='Navigate to start of snippet `printable_array_lambda`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L38-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 would produce
@@ -86,7 +86,7 @@ Custom toString method
 #4 -> 4
 #5 -> 5
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.testCreate.approved.txt#L1-L8' title='File snippet `PrintableTest.testCreate.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-PrintableTest.testCreate.approved.txt' title='Navigate to start of snippet `PrintableTest.testCreate.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.testCreate.approved.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-PrintableTest.testCreate.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Named objects 
@@ -105,7 +105,7 @@ Printable<Integer> labeled[] = Printable.with()
         .toArray();
 Approvals.verifyAll("Labeled", labeled, p -> String.format("%s -> %s", p, p.get()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L46-L55' title='File snippet `printable_array_labels` was extracted from'>snippet source</a> | <a href='#snippet-printable_array_labels' title='Navigate to start of snippet `printable_array_labels`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L46-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_labels' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 would produce:
@@ -122,7 +122,7 @@ third -> 3
 forth -> 4
 fifth -> 5
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.testLabels.approved.txt#L1-L8' title='File snippet `PrintableTest.testLabels.approved.txt` was extracted from'>snippet source</a> | <a href='#snippet-PrintableTest.testLabels.approved.txt' title='Navigate to start of snippet `PrintableTest.testLabels.approved.txt`'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.testLabels.approved.txt#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-PrintableTest.testLabels.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
