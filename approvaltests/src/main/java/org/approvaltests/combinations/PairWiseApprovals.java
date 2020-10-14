@@ -177,6 +177,5 @@ public class PairWiseApprovals {
             list.add(new Parameter<>(i, parameters[i]));
         }
         return new Pairwise.Builder().withParameters(list).build();
-        //return Pairwise.of(parameters);
     }
 }
