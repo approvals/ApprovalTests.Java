@@ -1,0 +1,8 @@
+given cases 
+{1=1, 2=Fred, 3=false}
+{1=2, 2=Sam, 3=true}
+{1=1, 2=Fred, 3=false}
+
+vertical Growth results in
+{1=1, 2=Fred, 3=false}
+{1=2, 2=Sam, 3=true}

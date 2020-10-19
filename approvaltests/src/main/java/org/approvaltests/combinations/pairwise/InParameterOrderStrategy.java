@@ -15,31 +15,30 @@ public final class InParameterOrderStrategy
   {
     final List<Parameter> accumulator = new ArrayList<>();
     Stream<Parameter<?>> sortedBySize = parameters.stream()
-            .sorted((o1, o2) -> Integer.compare(o2.size(), o1.size()));
-    Stream<ArrayList<Parameter>> arrayListStream = sortedBySize
-            .map(parameter -> {
-              accumulator.add(parameter);
-              return new ArrayList<>(accumulator);
-            });
-    return arrayListStream
-            .map(chunk -> crossJoin(chunk))
-            .collect(Collectors.toList());
+        .sorted((o1, o2) -> Integer.compare(o2.size(), o1.size()));
+    Stream<ArrayList<Parameter>> arrayListStream = sortedBySize.map(parameter -> {
+      accumulator.add(parameter);
+      return new ArrayList<>(accumulator);
+    });
+    return arrayListStream.map(chunk -> crossJoin(chunk)).collect(Collectors.toList());
   }
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
-    return cases.stream()
-            .map(o -> best(pairs, o))
-            .peek(o -> delete(pairs, o))
-            .collect(Collectors.toList());
+    return cases.stream().map(o -> best(pairs, o)).peek(o -> delete(pairs, o)).collect(Collectors.toList());
   }
   public static List<Case> verticalGrowth(List<Case> pairs)
   {
+    return removeDuplicates(pairs);
+  }
+  public static List<Case> removeDuplicates(List<Case> pairs)
+  {
     List<Case> collected = new ArrayList<>();
-    while (!pairs.isEmpty())
+    for (Case aCase : pairs)
     {
-      Case pair = union(pairs, pairs.get(0));
-      delete(pairs, pair);
-      collected.add(pair);
+      if (!collected.contains(aCase))
+      {
+        collected.add(aCase);
+      }
     }
     return collected;
   }
@@ -68,8 +67,8 @@ public final class InParameterOrderStrategy
         .map(p -> p
             .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null))))
         .collect(Collectors.groupingBy(i -> i)).entrySet().stream()
-        .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size())).map(objectListEntry -> objectListEntry.getKey())
-        .ifPresent(o -> pair.put(lazyKey.get("key"), o));
+        .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size()))
+        .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> pair.put(lazyKey.get("key"), o));
     return pair;
   }
   private static void delete(List<Case> pairs, Case pair)
@@ -82,13 +81,5 @@ public final class InParameterOrderStrategy
         iterator.remove();
       }
     }
-  }
-  private static Case union(List<Case> pairs, Case identity)
-  {
-    return pairs.stream().reduce(identity, (accumulator, pair) -> {
-      if (accumulator.matches(pair))
-      { return accumulator.union(pair); }
-      return accumulator;
-    });
   }
 }

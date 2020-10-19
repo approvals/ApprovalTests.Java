@@ -3,7 +3,6 @@ package org.approvaltests.combinations.pairwise;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -20,7 +19,8 @@ public class Case implements Cloneable
   }
   public Case(Object... prototype)
   {
-    for (int i = 0; i < prototype.length; i++) {
+    for (int i = 0; i < prototype.length; i++)
+    {
       this.put(i, prototype[i]);
     }
   }
@@ -87,5 +87,20 @@ public class Case implements Cloneable
   public String toString()
   {
     return map.toString();
+  }
+  @Override
+  public boolean equals(Object o)
+  {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Case aCase = (Case) o;
+    return Objects.equals(map, aCase.map);
+  }
+  @Override
+  public int hashCode()
+  {
+    return Objects.hash(map);
   }
 }
