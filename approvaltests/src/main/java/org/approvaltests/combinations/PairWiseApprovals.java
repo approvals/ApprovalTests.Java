@@ -172,7 +172,7 @@ public class PairWiseApprovals {
     }
 
     private static Pairwise toPairWise(Object[]... parameters) {
-        ArrayList list = new ArrayList();
+        ArrayList<Parameter<?>> list = new ArrayList<>();
         for (int i = 0; i < parameters.length; i++) {
             list.add(new Parameter<>(i, parameters[i]));
         }
