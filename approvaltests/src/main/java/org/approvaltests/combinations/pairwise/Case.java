@@ -3,19 +3,26 @@ package org.approvaltests.combinations.pairwise;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
 public class Case implements Cloneable
 {
-  private LinkedHashMap map = new LinkedHashMap();
+  private final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
   public Case()
   {
   }
   public Case(Map<String, Object> prototype)
   {
     this.putAll(prototype);
+  }
+  public Case(Object... prototype)
+  {
+    for (int i = 0; i < prototype.length; i++) {
+      this.put(i, prototype[i]);
+    }
   }
   public static Case ofLength(int size)
   {
@@ -35,6 +42,10 @@ public class Case implements Cloneable
   public Object put(String key, Object value)
   {
     return this.map.put(key, value);
+  }
+  public Object put(int key, Object value)
+  {
+    return this.map.put(Integer.toString(key + 1), value);
   }
   public Collection<String> keySet()
   {
