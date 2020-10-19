@@ -68,7 +68,6 @@ public class Pairwise implements Iterable<Case>
     }
     public Pairwise build()
     {
-      final Case prototype = Case.ofLength(parameters.size());
       final Stream<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
       List<Case> reduce = listOfPairs.reduce(
               new ArrayList<>(),
@@ -79,6 +78,7 @@ public class Pairwise implements Iterable<Case>
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
 
+      final Case prototype = Case.ofLength(parameters.size());
       List<Case> parameters = reduced.map(c -> prototype.clone().union(c))
               .peek(c -> foo(params, c))
               .collect(Collectors.toList());
