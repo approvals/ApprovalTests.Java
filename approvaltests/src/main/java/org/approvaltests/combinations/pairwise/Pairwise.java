@@ -112,12 +112,12 @@ public class Pairwise implements Iterable<Case>
       List<Case> filledCases = new ArrayList<>();
       for (Case aCase : createManyCases)
       {
-        filledCases.add(fillGapsInCase(params, aCase));
+        filledCases.add(replaceNullsWithRandomParameters(params, aCase));
       }
       return filledCases;
     }
 
-    public static Case fillGapsInCase(Map<String, Object[]> params, Case aCase) {
+    public static Case replaceNullsWithRandomParameters(Map<String, Object[]> params, Case aCase) {
       Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
       for (int i = 0; i < fixedLengthCase.size(); i++)
       {
