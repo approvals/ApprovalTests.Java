@@ -112,14 +112,14 @@ public class Pairwise implements Iterable<Case>
 
       List<Case> minimalCases = new ArrayList<>();
       for (Case aCase : createManyCases) {
-        Case union = Case.ofLength(params.size()).union(aCase);
+        Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
         Map<String, Object> fillNullWithRandom = new HashMap<>();
-        for (Map.Entry<String, Object> e : union.entrySet()) {
-          if (e.getValue() == null) {
-            fillNullWithRandom.put(e.getKey(), random(params.get(e.getKey())));
-          } else {
-            fillNullWithRandom.put(e.getKey(), e.getValue());
+        for (Map.Entry<String, Object> e : fixedLengthCase.entrySet()) {
+          Object value = e.getValue();
+          if (value == null) {
+            value = random(params.get(e.getKey()));
           }
+          fillNullWithRandom.put(e.getKey(), value);
         }
 
         minimalCases.add(new Case(fillNullWithRandom));
