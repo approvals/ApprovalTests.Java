@@ -10,9 +10,8 @@ import java.util.Set;
 
 public class Case implements Cloneable
 {
-  private final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-
-  private static Random random = new Random(5);
+  private final LinkedHashMap<String, Object> map    = new LinkedHashMap<>();
+  private static Random                       random = new Random(5);
   public static Object random(Object[] array)
   {
     return array[random.nextInt(array.length)];
@@ -39,6 +38,18 @@ public class Case implements Cloneable
       c.put(("" + i), null);
     }
     return c;
+  }
+  public Case replaceNullsWithRandomParameters(Map<String, Object[]> params)
+  {
+    Case fixedLengthCase = ofLength(params.size()).union(this);
+    for (int i = 0; i < fixedLengthCase.size(); i++)
+    {
+      if (fixedLengthCase.get(i) == null)
+      {
+        fixedLengthCase.put(i, random(params.get(convertKey(i))));
+      }
+    }
+    return fixedLengthCase;
   }
   public boolean matches(Case pair)
   {
