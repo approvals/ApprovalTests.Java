@@ -1,5 +1,8 @@
 package org.approvaltests.combinations.pairwise;
 
+import org.lambda.query.Query;
+import org.lambda.query.Queryable;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -108,12 +111,7 @@ public class Pairwise implements Iterable<Case>
     }
     public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases)
     {
-      List<Case> filledCases = new ArrayList<>();
-      for (Case aCase : createManyCases)
-      {
-        filledCases.add(aCase.replaceNullsWithRandomParameters(params));
-      }
-      return filledCases;
+      return Queryable.as(createManyCases).select(c -> c.replaceNullsWithRandomParameters(params));
     }
 
     public static List<Case> foobar(List<Case> cases, List<Case> pairs)
