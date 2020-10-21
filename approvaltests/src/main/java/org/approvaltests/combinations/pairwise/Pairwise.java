@@ -99,17 +99,12 @@ public class Pairwise implements Iterable<Case>
       List<Case> reduce = new ArrayList<>();
       List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
       for (List<Case> cases : listOfPairs1) {
-        List<Case> cases1 = reduce;
-        if (cases1.isEmpty()) {
-          List<Case> result;
-          result = cases;
-          reduce = result;
+        if (reduce.isEmpty()) {
+          reduce = cases;
         } else {
-          List<Case> result;
-          cases1 = InParameterOrderStrategy.horizontalGrowth(cases1, cases);
-          cases1.addAll(InParameterOrderStrategy.verticalGrowth(cases));
-          result = cases1;
-          reduce = result;
+          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(reduce, cases);
+          horizontalAndVerticalGrowth.addAll(InParameterOrderStrategy.verticalGrowth(cases));
+          reduce = horizontalAndVerticalGrowth;
         }
       }
 
