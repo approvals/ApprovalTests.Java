@@ -106,6 +106,11 @@ public class Pairwise implements Iterable<Case>
           createManyCases = horizontalAndVerticalGrowth;
         }
       }
+      List<Case> minimalCases = fillGaps(params, createManyCases);
+      return minimalCases;
+    }
+
+    public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases) {
       List<Case> minimalCases = new ArrayList<>();
       for (Case aCase : createManyCases)
       {
@@ -124,6 +129,7 @@ public class Pairwise implements Iterable<Case>
       }
       return minimalCases;
     }
+
     public static List<Case> foobar(List<Case> cases, List<Case> pairs)
     {
       if (cases.isEmpty())
