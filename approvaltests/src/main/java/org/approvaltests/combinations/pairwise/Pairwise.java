@@ -117,11 +117,12 @@ public class Pairwise implements Iterable<Case>
         for (Map.Entry<String, Object> e : union.entrySet()) {
           if (e.getValue() == null) {
             fillNullWithRandom.put(e.getKey(), random(params.get(e.getKey())));
+          } else {
+            fillNullWithRandom.put(e.getKey(), e.getValue());
           }
         }
 
-        union.putAll(fillNullWithRandom);
-        minimalCases.add(union);
+        minimalCases.add(new Case(fillNullWithRandom));
       }
       return minimalCases;
     }
