@@ -82,4 +82,10 @@ public final class InParameterOrderStrategy
       }
     }
   }
+  public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
+  {
+    List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);
+    horizontalAndVerticalGrowth.addAll(verticalGrowth(cases));
+    return horizontalAndVerticalGrowth;
+  }
 }

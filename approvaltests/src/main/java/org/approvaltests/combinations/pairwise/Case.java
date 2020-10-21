@@ -5,11 +5,17 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
 public class Case implements Cloneable
 {
-  private final LinkedHashMap<String, Object> map = new LinkedHashMap<>();
+  private final LinkedHashMap<String, Object> map    = new LinkedHashMap<>();
+  private static Random                       random = new Random(5);
+  public static Object random(Object[] array)
+  {
+    return array[random.nextInt(array.length)];
+  }
   public Case()
   {
   }
@@ -33,6 +39,18 @@ public class Case implements Cloneable
     }
     return c;
   }
+  public Case replaceNullsWithRandomParameters(Map<String, Object[]> params)
+  {
+    Case fixedLengthCase = ofLength(params.size()).union(this);
+    for (int i = 0; i < fixedLengthCase.size(); i++)
+    {
+      if (fixedLengthCase.get(i) == null)
+      {
+        fixedLengthCase.put(i, random(params.get(convertKey(i))));
+      }
+    }
+    return fixedLengthCase;
+  }
   public boolean matches(Case pair)
   {
     final Set<String> keys = new HashSet<>(this.keySet());
@@ -45,7 +63,11 @@ public class Case implements Cloneable
   }
   public Object put(int key, Object value)
   {
-    return this.map.put(Integer.toString(key + 1), value);
+    return this.map.put(convertKey(key), value);
+  }
+  public static String convertKey(int key)
+  {
+    return Integer.toString(key + 1);
   }
   public Collection<String> keySet()
   {
@@ -102,5 +124,9 @@ public class Case implements Cloneable
   public int hashCode()
   {
     return Objects.hash(map);
+  }
+  public int size()
+  {
+    return map.size();
   }
 }
