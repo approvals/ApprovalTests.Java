@@ -82,7 +82,7 @@ public class Pairwise implements Iterable<Case>
 
       final Case prototype = Case.ofLength(parameters.size());
 
-      List<Case> minimalCases = appleSauce2(listOfPairs, params, prototype);
+      List<Case> minimalCases = appleSauce2(listOfPairs, params);
 
       return minimalCases;
     }
@@ -96,7 +96,7 @@ public class Pairwise implements Iterable<Case>
       return minimalCases;
     }
 
-    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params, Case prototype) {
+    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params) {
       List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
 
       List<Case> createManyCases = new ArrayList<>();
@@ -112,7 +112,7 @@ public class Pairwise implements Iterable<Case>
 
       List<Case> minimalCases = new ArrayList<>();
       for (Case aCase : createManyCases) {
-        Case union = prototype.clone().union(aCase);
+        Case union = Case.ofLength(params.size()).union(aCase);
         Map<String, Object> fillNullWithRandom = new HashMap<>();
         for (Map.Entry<String, Object> e : union.entrySet()) {
           if (e.getValue() == null) {
