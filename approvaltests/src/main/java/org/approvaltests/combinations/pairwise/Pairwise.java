@@ -74,25 +74,22 @@ public class Pairwise implements Iterable<Case>
     public static List<Case> getMinimalCases(List<Parameter<?>> parameters)
     {
       final List<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters);
+      List<Case> minimalCases = createEssentialCasesWithGaps(listOfPairs);
+      return fillGaps(combineParametersToMap(parameters), minimalCases);
+    }
+    public static Map<String, Object[]> combineParametersToMap(List<Parameter<?>> parameters)
+    {
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
-      final Case prototype = Case.ofLength(parameters.size());
-      List<Case> minimalCases = appleSauce2(listOfPairs, params);
-      return minimalCases;
+      return params;
     }
-    // before
+    // before (getMinimalCases now)
     public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params,
         Case prototype)
     {
       List<Case> minimalCases = listOfPairs.reduce(new ArrayList<>(), (cases1, pairs) -> foobar(cases1, pairs))
           .stream().map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList());
       return minimalCases;
-    }
-    // after
-    public static List<Case> appleSauce2(List<List<Case>> listOfPairs, Map<String, Object[]> params)
-    {
-      List<Case> createManyCases = createEssentialCasesWithGaps(listOfPairs);
-      return fillGaps(params, createManyCases);
     }
     public static List<Case> createEssentialCasesWithGaps(List<List<Case>> listOfPairs)
     {
