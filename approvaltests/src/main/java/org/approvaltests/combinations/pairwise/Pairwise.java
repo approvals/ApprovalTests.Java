@@ -1,6 +1,7 @@
 package org.approvaltests.combinations.pairwise;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -112,15 +113,14 @@ public class Pairwise implements Iterable<Case>
       List<Case> minimalCases = new ArrayList<>();
       for (Case aCase : createManyCases) {
         Case union = prototype.clone().union(aCase);
-        Stream<Map.Entry<String, Object>> fillNullWithRandom = union.entrySet().stream()
-                .filter(e -> e.getValue() == null)
-                .peek(e -> e.setValue(random(params.get(e.getKey()))));
+        Map<String, Object> fillNullWithRandom = new HashMap<>();
+        for (Map.Entry<String, Object> e : union.entrySet()) {
+          if (e.getValue() == null) {
+            fillNullWithRandom.put(e.getKey(), random(params.get(e.getKey())));
+          }
+        }
 
-        Map<String, Object> result = fillNullWithRandom.collect(
-                Collectors.toMap(
-                        stringObjectEntry -> stringObjectEntry.getKey(),
-                        stringObjectEntry1 -> stringObjectEntry1.getValue()));
-        union.putAll(result);
+        union.putAll(fillNullWithRandom);
         minimalCases.add(union);
       }
       return minimalCases;
