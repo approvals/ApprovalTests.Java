@@ -9,11 +9,8 @@ import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.Parameter;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.github.larseckart.tcr.TestCommitRevertMainExtension;
-
-@ExtendWith(TestCommitRevertMainExtension.class)
+//@ExtendWith(TestCommitRevertMainExtension.class)
 public class PairWiseTest
 {
   @Test
@@ -45,8 +42,81 @@ public class PairWiseTest
     output += "\nvertical Growth results in\n" + toString(result);
     Approvals.verify(output);
   }
+  @Test
+  void testHorizontalGrowth() throws Exception
+  {
+    ArrayList<Case> cases = new ArrayList<>();
+    cases.add(new Case("Lars", 1, "Tartu"));
+    cases.add(new Case("Lars", 1, "Tallinn"));
+    cases.add(new Case("Lars", 2, "Tartu"));
+    cases.add(new Case("Lars", 2, "Tallinn"));
+    cases.add(new Case("Lars", 3, "Tartu"));
+    cases.add(new Case("Lars", 3, "Tallinn"));
+    ArrayList<Case> pairs = new ArrayList<>();
+    pairs.add(new Case("Lars", 1, "Tartu"));
+    pairs.add(new Case("Lars", 1, "Pärnu"));
+    String pairsBefore = toString(pairs);
+    String casesBefore = toString(cases);
+    List<Case> result = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
+    Approvals
+        .verify("Cases before: \n" + casesBefore + " \n Cases after: \n" + toString(cases) + "\nPairs before: \n"
+            + pairsBefore + " \n Pairs after: \n" + toString(pairs) + "\n Result: \n" + toString(result));
+  }
+  // duplicate to 1st test, but with some result analysis
+  @Test
+  void testGeneratePairs() throws Exception
+  {
+    String[] names = {"Jupe", "Pete", "Bob"};
+    String[] towns = {"Tartu", "Heidelberg"};
+    String[] bloodTypes = {"A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"};
+    List<List<Case>> lists = generatePairs(names, towns, bloodTypes);
+    final StringBuilder strb = new StringBuilder();
+    lists.forEach(l -> strb.append(toString(l) + "\n\n"));
+    // empty list, list with bloodtype+name, list with bloodtype+town and 3town+name cases
+    Approvals.verify(strb.toString());
+  }
+  List<List<Case>> generatePairs(Object[]... parameters) throws Exception
+  {
+    ArrayList<Parameter<?>> list = new ArrayList<>();
+    for (int i = 0; i < parameters.length; i++)
+    {
+      list.add(new Parameter<>(i, parameters[i]));
+    }
+    return InParameterOrderStrategy.generatePairs(list);
+  }
+  @Test
+  void crossJoinFiveParametersWithOneVariations() {
+    ArrayList<Parameter> names = new ArrayList<>();
+    names.add(new Parameter<>(0, "Nick"));
+    names.add(new Parameter<>(1, "Howie"));
+    names.add(new Parameter<>(2, "Brian"));
+    names.add(new Parameter<>(3, "AJ"));
+    names.add(new Parameter<>(4, "Kevin"));
+    // for method:
+    // void everybody(String singer1, String singer2, String singer3, String singer4, String singer5)
+    List<Case> cases = InParameterOrderStrategy.crossJoin(names);
 
-  public String toString(List<Case> result) {
+    Approvals.verifyAll("CrossJoin", cases);
+  }
+  @Test
+  void crossJoinThreeParametersWithMultipleVariations()
+  {
+    ArrayList<Parameter> names = new ArrayList<>();
+    names.add(new Parameter<>(0, "MainSinger1"));
+    names.add(new Parameter<>(0, "MainSinger2"));
+    names.add(new Parameter<>(1, "BackupSinger1"));
+    names.add(new Parameter<>(1, "BackupSinger2"));
+    names.add(new Parameter<>(2, "Groupie1"));
+    names.add(new Parameter<>(2, "Groupie2"));
+    names.add(new Parameter<>(2, "Groupie3"));
+    // for method:
+    // void everybody(String mainSinger, String backupSinger, String groupie)
+    List<Case> cases = InParameterOrderStrategy.crossJoin(names);
+
+    Approvals.verifyAll("CrossJoin", cases);
+  }
+  public String toString(List<Case> result)
+  {
     return result.stream().map(Case::toString).collect(Collectors.joining("\n"));
   }
 }

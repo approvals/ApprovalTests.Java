@@ -1,0 +1,4 @@
+CrossJoin[0] = {1=Nick, 5=Kevin}
+CrossJoin[1] = {2=Howie, 5=Kevin}
+CrossJoin[2] = {3=Brian, 5=Kevin}
+CrossJoin[3] = {4=AJ, 5=Kevin}
