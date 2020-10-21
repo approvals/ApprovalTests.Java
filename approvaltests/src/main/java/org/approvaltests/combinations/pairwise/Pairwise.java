@@ -70,81 +70,74 @@ public class Pairwise implements Iterable<Case>
     public Pairwise build()
     {
       List<Case> minimalCases = getMinimalCases(parameters);
-
       return new Pairwise(this.parameters, minimalCases);
     }
-
-    public static List<Case> getMinimalCases(List<Parameter<?>> parameters) {
+    public static List<Case> getMinimalCases(List<Parameter<?>> parameters)
+    {
       final Stream<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
-
       final Case prototype = Case.ofLength(parameters.size());
-
       List<Case> minimalCases = appleSauce2(listOfPairs, params);
-
       return minimalCases;
     }
-
-    public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params, Case prototype) {
-      List<Case> minimalCases = listOfPairs.reduce(
-              new ArrayList<>(),
-              (cases1, pairs) -> foobar(cases1, pairs)).stream().map(c -> prototype.clone().union(c))
-              .peek(c -> foo(params, c))
-              .collect(Collectors.toList());
+    public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params,
+        Case prototype)
+    {
+      List<Case> minimalCases = listOfPairs.reduce(new ArrayList<>(), (cases1, pairs) -> foobar(cases1, pairs))
+          .stream().map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList());
       return minimalCases;
     }
-
-    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params) {
+    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params)
+    {
       List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
-
       List<Case> createManyCases = new ArrayList<>();
-      for (List<Case> cases : listOfPairs1) {
-        if (createManyCases.isEmpty()) {
+      for (List<Case> cases : listOfPairs1)
+      {
+        if (createManyCases.isEmpty())
+        {
           createManyCases = cases;
-        } else {
-          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(createManyCases, cases);
+        }
+        else
+        {
+          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(createManyCases,
+              cases);
           horizontalAndVerticalGrowth.addAll(InParameterOrderStrategy.verticalGrowth(cases));
           createManyCases = horizontalAndVerticalGrowth;
         }
       }
-
       List<Case> minimalCases = new ArrayList<>();
-      for (Case aCase : createManyCases) {
+      for (Case aCase : createManyCases)
+      {
         Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
         Map<String, Object> fillNullWithRandom = new HashMap<>();
-        for (Map.Entry<String, Object> e : fixedLengthCase.entrySet()) {
+        for (Map.Entry<String, Object> e : fixedLengthCase.entrySet())
+        {
           Object value = e.getValue();
-          if (value == null) {
+          if (value == null)
+          {
             value = random(params.get(e.getKey()));
           }
           fillNullWithRandom.put(e.getKey(), value);
         }
-
         minimalCases.add(new Case(fillNullWithRandom));
       }
       return minimalCases;
     }
-
-    public static List<Case> foobar(List<Case> cases, List<Case> pairs) {
+    public static List<Case> foobar(List<Case> cases, List<Case> pairs)
+    {
       if (cases.isEmpty())
         return pairs;
       cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
       cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
       return cases;
     }
-
     public static void foo(Map<String, Object[]> params, Case appleSauce)
     {
       Stream<Map.Entry<String, Object>> fillNullWithRandom = appleSauce.entrySet().stream()
-              .filter(e -> e.getValue() == null)
-              .peek(e -> e.setValue(random(params.get(e.getKey()))));
-
-      Map<String, Object> result = fillNullWithRandom.collect(
-              Collectors.toMap(
-                      stringObjectEntry -> stringObjectEntry.getKey(),
-                      stringObjectEntry1 -> stringObjectEntry1.getValue()));
+          .filter(e -> e.getValue() == null).peek(e -> e.setValue(random(params.get(e.getKey()))));
+      Map<String, Object> result = fillNullWithRandom.collect(Collectors.toMap(
+          stringObjectEntry -> stringObjectEntry.getKey(), stringObjectEntry1 -> stringObjectEntry1.getValue()));
       appleSauce.putAll(result);
     }
     private static Object random(Object[] array)
