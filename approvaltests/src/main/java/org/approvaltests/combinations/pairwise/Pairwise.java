@@ -75,19 +75,39 @@ public class Pairwise implements Iterable<Case>
 
     public static List<Case> getMinimalCases(List<Parameter<?>> parameters) {
       final Stream<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
-      List<Case> reduce = listOfPairs.reduce(
-              new ArrayList<>(),
-              (cases, pairs) -> foobar(cases, pairs));
-
-      final Stream<Case> reduced = reduce.stream();
 
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
 
       final Case prototype = Case.ofLength(parameters.size());
-      List<Case> minimalCases = reduced.map(c -> prototype.clone().union(c))
+
+      List<Case> minimalCases = appleSauce2(listOfPairs, params, prototype);
+
+      return minimalCases;
+    }
+
+    public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params, Case prototype) {
+      List<Case> minimalCases = listOfPairs.reduce(
+              new ArrayList<>(),
+              (cases1, pairs) -> foobar(cases1, pairs)).stream().map(c -> prototype.clone().union(c))
               .peek(c -> foo(params, c))
               .collect(Collectors.toList());
+      return minimalCases;
+    }
+
+    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params, Case prototype) {
+      List<Case> reduce = new ArrayList<>();
+      List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
+      for (List<Case> cases : listOfPairs1) {
+        reduce = foobar(reduce, cases);
+      }
+
+      List<Case> minimalCases = new ArrayList<>();
+      for (Case aCase : reduce) {
+        Case union = prototype.clone().union(aCase);
+        foo(params, union);
+        minimalCases.add(union);
+      }
       return minimalCases;
     }
 
