@@ -105,26 +105,30 @@ public class Pairwise implements Iterable<Case>
           createManyCases = horizontalAndVerticalGrowth;
         }
       }
-      List<Case> minimalCases = fillGaps(params, createManyCases);
-      return minimalCases;
+      return fillGaps(params, createManyCases);
     }
     public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases)
     {
-      List<Case> minimalCases = new ArrayList<>();
+      List<Case> filledCases = new ArrayList<>();
       for (Case aCase : createManyCases)
       {
-        Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
-        for (int i = 0; i < fixedLengthCase.size(); i++)
-        {
-          if (fixedLengthCase.get(i) == null)
-          {
-            fixedLengthCase.put(i, random(params.get(Case.convertKey(i))));
-          }
-        }
-        minimalCases.add(fixedLengthCase);
+        filledCases.add(fillGapsInCase(params, aCase));
       }
-      return minimalCases;
+      return filledCases;
     }
+
+    public static Case fillGapsInCase(Map<String, Object[]> params, Case aCase) {
+      Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
+      for (int i = 0; i < fixedLengthCase.size(); i++)
+      {
+        if (fixedLengthCase.get(i) == null)
+        {
+          fixedLengthCase.put(i, random(params.get(Case.convertKey(i))));
+        }
+      }
+      return fixedLengthCase;
+    }
+
     public static List<Case> foobar(List<Case> cases, List<Case> pairs)
     {
       if (cases.isEmpty())
