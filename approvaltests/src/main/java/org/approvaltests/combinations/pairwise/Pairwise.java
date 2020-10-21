@@ -96,20 +96,21 @@ public class Pairwise implements Iterable<Case>
     }
 
     public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params, Case prototype) {
-      List<Case> reduce = new ArrayList<>();
       List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
+
+      List<Case> createManyCases = new ArrayList<>();
       for (List<Case> cases : listOfPairs1) {
-        if (reduce.isEmpty()) {
-          reduce = cases;
+        if (createManyCases.isEmpty()) {
+          createManyCases = cases;
         } else {
-          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(reduce, cases);
+          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(createManyCases, cases);
           horizontalAndVerticalGrowth.addAll(InParameterOrderStrategy.verticalGrowth(cases));
-          reduce = horizontalAndVerticalGrowth;
+          createManyCases = horizontalAndVerticalGrowth;
         }
       }
 
       List<Case> minimalCases = new ArrayList<>();
-      for (Case aCase : reduce) {
+      for (Case aCase : createManyCases) {
         Case union = prototype.clone().union(aCase);
         foo(params, union);
         minimalCases.add(union);
