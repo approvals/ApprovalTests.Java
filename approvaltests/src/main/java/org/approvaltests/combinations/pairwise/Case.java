@@ -45,7 +45,11 @@ public class Case implements Cloneable
   }
   public Object put(int key, Object value)
   {
-    return this.map.put(Integer.toString(key + 1), value);
+    return this.map.put(convertKey(key), value);
+  }
+  public static String convertKey(int key)
+  {
+    return Integer.toString(key + 1);
   }
   public Collection<String> keySet()
   {
@@ -102,5 +106,9 @@ public class Case implements Cloneable
   public int hashCode()
   {
     return Objects.hash(map);
+  }
+  public int size()
+  {
+    return map.size();
   }
 }

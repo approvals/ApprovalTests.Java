@@ -1,7 +1,6 @@
 package org.approvaltests.combinations.pairwise;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -109,27 +108,23 @@ public class Pairwise implements Iterable<Case>
       List<Case> minimalCases = fillGaps(params, createManyCases);
       return minimalCases;
     }
-
-    public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases) {
+    public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases)
+    {
       List<Case> minimalCases = new ArrayList<>();
       for (Case aCase : createManyCases)
       {
         Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
-        Map<String, Object> fillNullWithRandom = new HashMap<>();
-        for (Map.Entry<String, Object> e : fixedLengthCase.entrySet())
+        for (int i = 0; i < fixedLengthCase.size(); i++)
         {
-          Object value = e.getValue();
-          if (value == null)
+          if (fixedLengthCase.get(i) == null)
           {
-            value = random(params.get(e.getKey()));
+            fixedLengthCase.put(i, random(params.get(Case.convertKey(i))));
           }
-          fillNullWithRandom.put(e.getKey(), value);
         }
-        minimalCases.add(new Case(fillNullWithRandom));
+        minimalCases.add(fixedLengthCase);
       }
       return minimalCases;
     }
-
     public static List<Case> foobar(List<Case> cases, List<Case> pairs)
     {
       if (cases.isEmpty())
