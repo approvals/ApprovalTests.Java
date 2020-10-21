@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,7 +41,7 @@ public class Pairwise implements Iterable<Case>
   }
   public static class Builder
   {
-    private static Random      random = new Random(5);
+
     private List<Parameter<?>> parameters;
     public List<Parameter<?>> getParameters()
     {
@@ -123,7 +122,7 @@ public class Pairwise implements Iterable<Case>
       {
         if (fixedLengthCase.get(i) == null)
         {
-          fixedLengthCase.put(i, random(params.get(Case.convertKey(i))));
+          fixedLengthCase.put(i, Case.random(params.get(Case.convertKey(i))));
         }
       }
       return fixedLengthCase;
@@ -139,14 +138,10 @@ public class Pairwise implements Iterable<Case>
     public static void foo(Map<String, Object[]> params, Case appleSauce)
     {
       Stream<Map.Entry<String, Object>> fillNullWithRandom = appleSauce.entrySet().stream()
-          .filter(e -> e.getValue() == null).peek(e -> e.setValue(random(params.get(e.getKey()))));
+          .filter(e -> e.getValue() == null).peek(e -> e.setValue(Case.random(params.get(e.getKey()))));
       Map<String, Object> result = fillNullWithRandom.collect(Collectors.toMap(
           stringObjectEntry -> stringObjectEntry.getKey(), stringObjectEntry1 -> stringObjectEntry1.getValue()));
       appleSauce.putAll(result);
-    }
-    private static Object random(Object[] array)
-    {
-      return array[random.nextInt(array.length)];
     }
   }
 }
