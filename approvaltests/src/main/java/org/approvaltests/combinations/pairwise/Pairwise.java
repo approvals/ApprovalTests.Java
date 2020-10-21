@@ -116,8 +116,8 @@ public class Pairwise implements Iterable<Case>
       }
       return filledCases;
     }
-
-    public static Case replaceNullsWithRandomParameters(Map<String, Object[]> params, Case aCase) {
+    public static Case replaceNullsWithRandomParameters(Map<String, Object[]> params, Case aCase)
+    {
       Case fixedLengthCase = Case.ofLength(params.size()).union(aCase);
       for (int i = 0; i < fixedLengthCase.size(); i++)
       {
@@ -128,7 +128,6 @@ public class Pairwise implements Iterable<Case>
       }
       return fixedLengthCase;
     }
-
     public static List<Case> foobar(List<Case> cases, List<Case> pairs)
     {
       if (cases.isEmpty())
