@@ -42,7 +42,7 @@ public final class InParameterOrderStrategy
     }
     return collected;
   }
-  private static List<Case> crossJoin(List<Parameter> chunk)
+  public static List<Case> crossJoin(List<Parameter> chunk)
   {
     final Parameter multiplier = chunk.get(chunk.size() - 1);
     return new ArrayList<Case>()
