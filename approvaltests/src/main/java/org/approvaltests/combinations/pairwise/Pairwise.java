@@ -73,13 +73,14 @@ public class Pairwise implements Iterable<Case>
     }
     public static List<Case> getMinimalCases(List<Parameter<?>> parameters)
     {
-      final Stream<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters).stream();
+      final List<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters);
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
       final Case prototype = Case.ofLength(parameters.size());
       List<Case> minimalCases = appleSauce2(listOfPairs, params);
       return minimalCases;
     }
+    // before
     public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params,
         Case prototype)
     {
@@ -87,11 +88,16 @@ public class Pairwise implements Iterable<Case>
           .stream().map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList());
       return minimalCases;
     }
-    public static List<Case> appleSauce2(Stream<List<Case>> listOfPairs, Map<String, Object[]> params)
+    // after
+    public static List<Case> appleSauce2(List<List<Case>> listOfPairs, Map<String, Object[]> params)
     {
-      List<List<Case>> listOfPairs1 = listOfPairs.collect(Collectors.toList());
+      List<Case> createManyCases = createEssentialCasesWithGaps(listOfPairs);
+      return fillGaps(params, createManyCases);
+    }
+    public static List<Case> createEssentialCasesWithGaps(List<List<Case>> listOfPairs)
+    {
       List<Case> createManyCases = new ArrayList<>();
-      for (List<Case> cases : listOfPairs1)
+      for (List<Case> cases : listOfPairs)
       {
         if (createManyCases.isEmpty())
         {
@@ -99,13 +105,10 @@ public class Pairwise implements Iterable<Case>
         }
         else
         {
-          List<Case> horizontalAndVerticalGrowth = InParameterOrderStrategy.horizontalGrowth(createManyCases,
-              cases);
-          horizontalAndVerticalGrowth.addAll(InParameterOrderStrategy.verticalGrowth(cases));
-          createManyCases = horizontalAndVerticalGrowth;
+          createManyCases = InParameterOrderStrategy.combineAppleSauce(createManyCases, cases);
         }
       }
-      return fillGaps(params, createManyCases);
+      return createManyCases;
     }
     public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases)
     {
