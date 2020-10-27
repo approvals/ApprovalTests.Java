@@ -87,8 +87,7 @@ public final class InParameterOrderStrategy
     Map<Object, List<Object>> storage = new HashMap<>();
     for (Object value : values)
     {
-      storage.computeIfAbsent(value, x -> new ArrayList<Object>());
-      storage.get(value).add(value);
+      storage.computeIfAbsent(value, x -> new ArrayList<>()).add(value);
     }
     int amount = 0;
     Object obj = null;
