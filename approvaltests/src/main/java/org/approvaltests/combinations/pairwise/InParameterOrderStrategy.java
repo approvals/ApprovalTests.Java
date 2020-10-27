@@ -22,9 +22,19 @@ public final class InParameterOrderStrategy
     });
     return arrayListStream.map(chunk -> crossJoin(chunk)).collect(Collectors.toList());
   }
-  public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
+  public static List<Case> horizontalGrowthOld(List<Case> cases, List<Case> pairs)
   {
     return cases.stream().map(o -> best(pairs, o)).peek(o -> delete(pairs, o)).collect(Collectors.toList());
+  }
+  public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
+  {
+    List<Case> result = new ArrayList<>();
+    for (Case aCase : cases) {
+      Case best = best(pairs, aCase);
+      delete(pairs, best);
+      result.add(best);
+    }
+    return result;
   }
   public static List<Case> verticalGrowth(List<Case> pairs)
   {
