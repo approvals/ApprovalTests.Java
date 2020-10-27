@@ -58,6 +58,7 @@ public final class InParameterOrderStrategy
             .forEach(column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new Case()
             {
               {
+                // we believe this creates problematic order but we're unsure.
                 Parameter parameter = chunk.get(column);
                 this.put(parameter.getPosition(), parameter.get(cursor));
                 this.put(multiplier.getPosition(), multiplier.get(last));
@@ -80,8 +81,7 @@ public final class InParameterOrderStrategy
     List<Object> values = new ArrayList<>();
     for (Case p : list)
     {
-      String newKey = p.keySet().stream().reduce((ignored, o) -> o).orElse(null);
-      Object value = p.get(lazyKey.computeIfAbsent("key", i -> newKey));
+      Object value = p.get(lazyKey.computeIfAbsent("key", i -> p.getLastKey()));
       values.add(value);
     }
     Map<Object, List<Object>> storage = new HashMap<>();

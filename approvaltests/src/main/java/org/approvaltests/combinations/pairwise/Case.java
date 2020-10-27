@@ -21,7 +21,6 @@ public class Case
   private Case()
   {
   }
-
   public Case(Object... prototype)
   {
     for (int i = 0; i < prototype.length; i++)
@@ -37,6 +36,10 @@ public class Case
       c.put(("" + i), null);
     }
     return c;
+  }
+  public String getLastKey()
+  {
+    return keySet().stream().reduce((ignored, o) -> o).orElse(null);
   }
   public Case replaceNullsWithRandomParameters(Map<String, Object[]> params)
   {
