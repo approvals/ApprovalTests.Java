@@ -70,7 +70,7 @@ public final class InParameterOrderStrategy
   private static Case best(List<Case> pairs, Case aCaseParameter)
   {
     String key = null;
-    Map<Object, List<Object>> storage = new HashMap<>();
+    Map<Object, List<Object>> lastKeyCounts = new HashMap<>();
     for (Case aCase : pairs)
     {
       if (aCaseParameter.matches(aCase))
@@ -80,14 +80,14 @@ public final class InParameterOrderStrategy
           key = aCase.getLastKey();
         }
         Object obj = aCase.get(key);
-        storage.computeIfAbsent(obj, x -> new ArrayList<>()).add(obj);
+        lastKeyCounts.computeIfAbsent(obj, x -> new ArrayList<>()).add(obj);
       }
     }
     int amount = 0;
     Object obj = null;
-    for (Object o : storage.keySet())
+    for (Object o : lastKeyCounts.keySet())
     {
-      int size = storage.get(o).size();
+      int size = lastKeyCounts.get(o).size();
       if (amount < size)
       {
         obj = o;
