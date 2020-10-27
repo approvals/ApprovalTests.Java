@@ -74,12 +74,15 @@ public final class InParameterOrderStrategy
         list.add(aCase);
       }
     }
-
-
     final Map<String, String> lazyKey = new HashMap<>();
-    list.stream()
-        .map(p -> p
-            .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null))))
+    List<Object> values = new ArrayList<>();
+    for (Case p : list) {
+      Object value = p.get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null)));
+      values.add(value);
+    }
+
+
+    values.stream()
         .collect(Collectors.groupingBy(i -> i)).entrySet().stream()
         .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size()))
         .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> aCaseParameter.put(lazyKey.get("key"), o));
