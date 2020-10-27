@@ -79,9 +79,9 @@ public final class InParameterOrderStrategy
         {
           key = aCase.getLastKey();
         }
-        Object obj = aCase.get(key);
-        Integer count = lastKeyCounts.computeIfAbsent(obj, x -> 0) + 1;
-        lastKeyCounts.put(obj, count);
+        Object value = aCase.get(key);
+        Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
+        lastKeyCounts.put(value, count);
       }
     }
     int amount = 0;
