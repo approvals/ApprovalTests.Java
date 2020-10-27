@@ -80,8 +80,8 @@ public final class InParameterOrderStrategy
     List<Object> values = new ArrayList<>();
     for (Case p : list)
     {
-      Object value = p
-          .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null)));
+      String newKey = p.keySet().stream().reduce((ignored, o) -> o).orElse(null);
+      Object value = p.get(lazyKey.computeIfAbsent("key", i -> newKey));
       values.add(value);
     }
     Map<Object, List<Object>> storage = new HashMap<>();
