@@ -27,14 +27,7 @@ public final class InParameterOrderStrategy
     List<Case> result = new ArrayList<>();
     for (Case aCase : cases) {
       Case best = best(pairs, aCase);
-      ListIterator<Case> iterator = pairs.listIterator();
-      while (iterator.hasNext())
-      {
-        if (iterator.next().matches(best))
-        {
-          iterator.remove();
-        }
-      }
+      pairs.removeIf(p -> p.matches(aCase));
       result.add(best);
     }
     return result;
