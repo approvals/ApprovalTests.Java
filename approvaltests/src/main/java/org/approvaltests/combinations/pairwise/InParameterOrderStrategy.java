@@ -78,11 +78,14 @@ public final class InParameterOrderStrategy
       }
     }
     final Map<String, String> lazyKey = new HashMap<>();
+    String key = null;
+    Object value222;
     List<Object> values = new ArrayList<>();
     for (Case p : list)
     {
-      Object value = p.get(lazyKey.computeIfAbsent("key", i -> p.getLastKey()));
-      values.add(value);
+      key = lazyKey.computeIfAbsent("key", i -> p.getLastKey());
+      value222 = p.get(key);
+      values.add(value222);
     }
     Map<Object, List<Object>> storage = new HashMap<>();
     for (Object value : values)
@@ -102,7 +105,7 @@ public final class InParameterOrderStrategy
     }
     if (obj != null)
     {
-      aCaseParameter.put(lazyKey.get("key"), obj);
+      aCaseParameter.put(key, obj);
     }
     return aCaseParameter;
   }
