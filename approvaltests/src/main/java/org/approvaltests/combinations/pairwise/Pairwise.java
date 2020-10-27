@@ -83,14 +83,6 @@ public class Pairwise implements Iterable<Case>
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));
       return params;
     }
-    // before (getMinimalCases now)
-    public static List<Case> appleSauce(Stream<List<Case>> listOfPairs, Map<String, Object[]> params,
-        Case prototype)
-    {
-      List<Case> minimalCases = listOfPairs.reduce(new ArrayList<>(), (cases1, pairs) -> foobar(cases1, pairs))
-          .stream().map(c -> prototype.clone().union(c)).peek(c -> foo(params, c)).collect(Collectors.toList());
-      return minimalCases;
-    }
     public static List<Case> createEssentialCasesWithGaps(List<List<Case>> listOfPairs)
     {
       List<Case> createManyCases = new ArrayList<>();
@@ -110,22 +102,6 @@ public class Pairwise implements Iterable<Case>
     public static List<Case> fillGaps(Map<String, Object[]> params, List<Case> createManyCases)
     {
       return Query.select(createManyCases, c -> c.replaceNullsWithRandomParameters(params));
-    }
-    public static List<Case> foobar(List<Case> cases, List<Case> pairs)
-    {
-      if (cases.isEmpty())
-        return pairs;
-      cases = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
-      cases.addAll(InParameterOrderStrategy.verticalGrowth(pairs));
-      return cases;
-    }
-    public static void foo(Map<String, Object[]> params, Case appleSauce)
-    {
-      Stream<Map.Entry<String, Object>> fillNullWithRandom = appleSauce.entrySet().stream()
-          .filter(e -> e.getValue() == null).peek(e -> e.setValue(Case.random(params.get(e.getKey()))));
-      Map<String, Object> result = fillNullWithRandom.collect(Collectors.toMap(
-          stringObjectEntry -> stringObjectEntry.getKey(), stringObjectEntry1 -> stringObjectEntry1.getValue()));
-      appleSauce.putAll(result);
     }
   }
 }
