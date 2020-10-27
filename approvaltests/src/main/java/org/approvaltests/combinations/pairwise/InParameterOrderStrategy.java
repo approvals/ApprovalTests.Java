@@ -71,6 +71,8 @@ public final class InParameterOrderStrategy
   {
     String key = null;
     Map<Object, Integer> lastKeyCounts = new HashMap<>();
+    int amount = 0;
+    Object obj = null;
     for (Case aCase : pairs)
     {
       if (aCaseParameter.matches(aCase))
@@ -84,8 +86,6 @@ public final class InParameterOrderStrategy
         lastKeyCounts.put(value, count);
       }
     }
-    int amount = 0;
-    Object obj = null;
     for (Object o : lastKeyCounts.keySet())
     {
       int size = lastKeyCounts.get(o);
