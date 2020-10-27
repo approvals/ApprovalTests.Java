@@ -28,9 +28,13 @@ public final class InParameterOrderStrategy
     List<Case> result = new ArrayList<>();
     for (Case aCase : cases)
     {
-      Case best = best(pairs, aCase);
-      pairs.removeIf(p -> p.matches(aCase));
-      result.add(best);
+      Tuple<String, Object> t = findMostUsedLastParameter(pairs, aCase);
+      if (t.getSecond() != null)
+      {
+        aCase.put(t.getFirst(), t.getSecond());
+      }
+      pairs.removeIf(c -> c.matches(aCase));
+      result.add(aCase);
     }
     return result;
   }
@@ -68,15 +72,6 @@ public final class InParameterOrderStrategy
             }))));
       }
     };
-  }
-  private static Case best(List<Case> pairs, Case aCaseParameter)
-  {
-    Tuple<String, Object> t = findMostUsedLastParameter(pairs, aCaseParameter);
-    if (t.getSecond() != null)
-    {
-      aCaseParameter.put(t.getFirst(), t.getSecond());
-    }
-    return aCaseParameter;
   }
 
   private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter) {
