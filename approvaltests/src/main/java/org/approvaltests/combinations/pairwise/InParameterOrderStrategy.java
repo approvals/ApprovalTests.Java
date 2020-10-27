@@ -69,22 +69,18 @@ public final class InParameterOrderStrategy
   }
   private static Case best(List<Case> pairs, Case aCaseParameter)
   {
-    List<Case> list = new ArrayList<>();
+    String key = null;
+    List<Object> values = new ArrayList<>();
     for (Case aCase : pairs)
     {
       if (aCaseParameter.matches(aCase))
       {
-        list.add(aCase);
+        if (key == null)
+        {
+          key = aCase.getLastKey();
+        }
+        values.add(aCase.get(key));
       }
-    }
-    String key = null;
-    List<Object> values = new ArrayList<>();
-    for (Case p : list)
-    {
-      if (key == null) {
-        key = p.getLastKey();
-      }
-      values.add(p.get(key));
     }
     Map<Object, List<Object>> storage = new HashMap<>();
     for (Object value : values)
