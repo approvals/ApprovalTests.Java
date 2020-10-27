@@ -1,7 +1,5 @@
 package org.approvaltests.combinations.pairwise;
 
-import org.lambda.query.Query;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -10,7 +8,9 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
-public class Case implements Cloneable
+import org.lambda.query.Query;
+
+public class Case
 {
   private final LinkedHashMap<String, Object> map    = new LinkedHashMap<>();
   private static Random                       random = new Random(5);
@@ -101,11 +101,6 @@ public class Case implements Cloneable
     final Object f = first.get(key);
     final Object s = second.get(key);
     return Objects.nonNull(f) && Objects.nonNull(s) && !f.equals(s);
-  }
-  @Override
-  public Case clone()
-  {
-    return new Case(this.map);
   }
   @Override
   public String toString()
