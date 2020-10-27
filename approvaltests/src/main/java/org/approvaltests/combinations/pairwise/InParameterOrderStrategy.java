@@ -66,16 +66,16 @@ public final class InParameterOrderStrategy
       }
     };
   }
-  private static Case best(List<Case> pairs, Case pair)
+  private static Case best(List<Case> pairs, Case aCase)
   {
     final Map<String, String> lazyKey = new HashMap<>();
-    pairs.stream().filter(pair1 -> pair.matches(pair1))
+    pairs.stream().filter(pair1 -> aCase.matches(pair1))
         .map(p -> p
             .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null))))
         .collect(Collectors.groupingBy(i -> i)).entrySet().stream()
         .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size()))
-        .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> pair.put(lazyKey.get("key"), o));
-    return pair;
+        .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> aCase.put(lazyKey.get("key"), o));
+    return aCase;
   }
 
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
