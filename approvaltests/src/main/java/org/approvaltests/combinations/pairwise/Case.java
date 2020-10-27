@@ -18,7 +18,7 @@ public class Case implements Cloneable
   {
     return array[random.nextInt(array.length)];
   }
-  public Case()
+  private Case()
   {
   }
   public Case(Map<String, Object> prototype)
