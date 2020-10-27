@@ -3,7 +3,6 @@ package org.approvaltests.combinations.pairwise;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,7 +24,8 @@ public final class InParameterOrderStrategy
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
     List<Case> result = new ArrayList<>();
-    for (Case aCase : cases) {
+    for (Case aCase : cases)
+    {
       Case best = best(pairs, aCase);
       pairs.removeIf(p -> p.matches(aCase));
       result.add(best);
@@ -69,29 +69,44 @@ public final class InParameterOrderStrategy
   private static Case best(List<Case> pairs, Case aCaseParameter)
   {
     List<Case> list = new ArrayList<>();
-    for (Case aCase : pairs) {
-      if (aCaseParameter.matches(aCase)) {
+    for (Case aCase : pairs)
+    {
+      if (aCaseParameter.matches(aCase))
+      {
         list.add(aCase);
       }
     }
     final Map<String, String> lazyKey = new HashMap<>();
     List<Object> values = new ArrayList<>();
-    for (Case p : list) {
-      Object value = p.get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null)));
+    for (Case p : list)
+    {
+      Object value = p
+          .get(lazyKey.computeIfAbsent("key", i -> p.keySet().stream().reduce((ignored, o) -> o).orElse(null)));
       values.add(value);
     }
-
     Map<Object, List<Object>> storage = new HashMap<>();
-    for (Object value : values) {
+    for (Object value : values)
+    {
       storage.computeIfAbsent(value, x -> new ArrayList<Object>());
       storage.get(value).add(value);
     }
-    storage.entrySet().stream()
-        .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size()))
-        .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> aCaseParameter.put(lazyKey.get("key"), o));
+    int amount = 0;
+    Object obj = null;
+    for (Object o : storage.keySet())
+    {
+      int size = storage.get(o).size();
+      if (amount < size)
+      {
+        obj = o;
+        amount = size;
+      }
+    }
+    if (obj != null)
+    {
+      aCaseParameter.put(lazyKey.get("key"), obj);
+    }
     return aCaseParameter;
   }
-
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
     List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);
