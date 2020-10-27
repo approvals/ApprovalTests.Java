@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
-import org.approvaltests.combinations.pairwise.Parameter;
+import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.junit.jupiter.api.Test;
 
 //@ExtendWith(TestCommitRevertMainExtension.class)
@@ -23,10 +23,10 @@ public class PairWiseTest
   public void testStrategyGeneratePairs()
   {
     ArrayList list = new ArrayList();
-    list.add(new Parameter<>(1, new Integer[]{1, 2, 3}));
-    list.add(new Parameter<>(2, new String[]{"a", "b"}));
-    list.add(new Parameter<>(3, new String[]{"L", "M"}));
-    list.add(new Parameter<>(4, new Double[]{1.1, 2.2, 3.3}));
+    list.add(new OptionsForAParameter<>(1, new Integer[]{1, 2, 3}));
+    list.add(new OptionsForAParameter<>(2, new String[]{"a", "b"}));
+    list.add(new OptionsForAParameter<>(3, new String[]{"L", "M"}));
+    list.add(new OptionsForAParameter<>(4, new Double[]{1.1, 2.2, 3.3}));
     List result = InParameterOrderStrategy.generatePairs(list);
     Approvals.verifyAll("Generate Pairs", result);
   }
@@ -77,21 +77,21 @@ public class PairWiseTest
   }
   List<List<Case>> generatePairs(Object[]... parameters) throws Exception
   {
-    ArrayList<Parameter<?>> list = new ArrayList<>();
+    ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
     for (int i = 0; i < parameters.length; i++)
     {
-      list.add(new Parameter<>(i, parameters[i]));
+      list.add(new OptionsForAParameter<>(i, parameters[i]));
     }
     return InParameterOrderStrategy.generatePairs(list);
   }
   @Test
   void crossJoinFiveParametersWithOneVariations() {
-    ArrayList<Parameter> names = new ArrayList<>();
-    names.add(new Parameter<>(0, "Nick"));
-    names.add(new Parameter<>(1, "Howie"));
-    names.add(new Parameter<>(2, "Brian"));
-    names.add(new Parameter<>(3, "AJ"));
-    names.add(new Parameter<>(4, "Kevin"));
+    ArrayList<OptionsForAParameter> names = new ArrayList<>();
+    names.add(new OptionsForAParameter<>(0, "Nick"));
+    names.add(new OptionsForAParameter<>(1, "Howie"));
+    names.add(new OptionsForAParameter<>(2, "Brian"));
+    names.add(new OptionsForAParameter<>(3, "AJ"));
+    names.add(new OptionsForAParameter<>(4, "Kevin"));
     // for method:
     // void everybody(String singer1, String singer2, String singer3, String singer4, String singer5)
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);
@@ -101,14 +101,14 @@ public class PairWiseTest
   @Test
   void crossJoinThreeParametersWithMultipleVariations()
   {
-    ArrayList<Parameter> names = new ArrayList<>();
-    names.add(new Parameter<>(0, "MainSinger1"));
-    names.add(new Parameter<>(0, "MainSinger2"));
-    names.add(new Parameter<>(1, "BackupSinger1"));
-    names.add(new Parameter<>(1, "BackupSinger2"));
-    names.add(new Parameter<>(2, "Groupie1"));
-    names.add(new Parameter<>(2, "Groupie2"));
-    names.add(new Parameter<>(2, "Groupie3"));
+    ArrayList<OptionsForAParameter> names = new ArrayList<>();
+    names.add(new OptionsForAParameter<>(0, "MainSinger1"));
+    names.add(new OptionsForAParameter<>(0, "MainSinger2"));
+    names.add(new OptionsForAParameter<>(1, "BackupSinger1"));
+    names.add(new OptionsForAParameter<>(1, "BackupSinger2"));
+    names.add(new OptionsForAParameter<>(2, "Groupie1"));
+    names.add(new OptionsForAParameter<>(2, "Groupie2"));
+    names.add(new OptionsForAParameter<>(2, "Groupie3"));
     // for method:
     // void everybody(String mainSinger, String backupSinger, String groupie)
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);

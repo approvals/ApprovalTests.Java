@@ -11,8 +11,8 @@ import org.lambda.query.Query;
 
 public class Pairwise implements Iterable<Case>
 {
-  private final List<Parameter<?>> parameters;
-  public List<Parameter<?>> getParameters()
+  private final List<OptionsForAParameter<?>> parameters;
+  public List<OptionsForAParameter<?>> getParameters()
   {
     return parameters;
   }
@@ -21,7 +21,7 @@ public class Pairwise implements Iterable<Case>
     return cases;
   }
   private final List<Case> cases;
-  private Pairwise(List<Parameter<?>> parameters, List<Case> cases)
+  private Pairwise(List<OptionsForAParameter<?>> parameters, List<Case> cases)
   {
     this.parameters = parameters;
     this.cases = (List<Case>) (Object) cases;
@@ -43,12 +43,12 @@ public class Pairwise implements Iterable<Case>
   }
   public static class Builder
   {
-    private List<Parameter<?>> parameters;
-    public List<Parameter<?>> getParameters()
+    private List<OptionsForAParameter<?>> parameters;
+    public List<OptionsForAParameter<?>> getParameters()
     {
       return parameters;
     }
-    public void setParameters(List<Parameter<?>> parameters)
+    public void setParameters(List<OptionsForAParameter<?>> parameters)
     {
       this.parameters = parameters;
     }
@@ -56,12 +56,12 @@ public class Pairwise implements Iterable<Case>
     {
       this.parameters = new ArrayList<>();
     }
-    public Builder withParameter(Parameter<?> parameter)
+    public Builder withParameter(OptionsForAParameter<?> parameter)
     {
       this.parameters.add(parameter);
       return this;
     }
-    public Builder withParameters(List<Parameter<?>> parameters)
+    public Builder withParameters(List<OptionsForAParameter<?>> parameters)
     {
       this.parameters.addAll(parameters);
       return this;
@@ -71,13 +71,13 @@ public class Pairwise implements Iterable<Case>
       List<Case> minimalCases = getMinimalCases(parameters);
       return new Pairwise(this.parameters, minimalCases);
     }
-    public static List<Case> getMinimalCases(List<Parameter<?>> parameters)
+    public static List<Case> getMinimalCases(List<OptionsForAParameter<?>> parameters)
     {
       final List<List<Case>> listOfPairs = InParameterOrderStrategy.generatePairs(parameters);
       List<Case> minimalCases = createEssentialCasesWithGaps(listOfPairs);
       return fillGaps(combineParametersToMap(parameters), minimalCases);
     }
-    public static Map<String, Object[]> combineParametersToMap(List<Parameter<?>> parameters)
+    public static Map<String, Object[]> combineParametersToMap(List<OptionsForAParameter<?>> parameters)
     {
       final Map<String, Object[]> params = parameters.stream()
           .collect(Collectors.toMap(objects -> objects.getPosition(), objects1 -> objects1.toArray()));

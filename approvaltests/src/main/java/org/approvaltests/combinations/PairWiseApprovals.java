@@ -3,7 +3,7 @@ package org.approvaltests.combinations;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.Pairwise;
-import org.approvaltests.combinations.pairwise.Parameter;
+import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
@@ -142,7 +142,7 @@ public class PairWiseApprovals {
 
         StringBuffer output = new StringBuffer();
         int totalPosisbleSize = 1;
-        for (Parameter<?> parameter : pairwise.getParameters()) {
+        for (OptionsForAParameter<?> parameter : pairwise.getParameters()) {
             totalPosisbleSize *= parameter.size();
         }
         output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPosisbleSize));
@@ -172,9 +172,9 @@ public class PairWiseApprovals {
     }
 
     private static Pairwise toPairWise(Object[]... parameters) {
-        ArrayList<Parameter<?>> list = new ArrayList<>();
+        ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
         for (int i = 0; i < parameters.length; i++) {
-            list.add(new Parameter<>(i, parameters[i]));
+            list.add(new OptionsForAParameter<>(i, parameters[i]));
         }
         return new Pairwise.Builder().withParameters(list).build();
     }

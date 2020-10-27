@@ -1,5 +1,7 @@
 package org.approvaltests.combinations.pairwise;
 
+import com.spun.util.Tuple;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,12 +12,12 @@ import java.util.stream.Stream;
 
 public final class InParameterOrderStrategy
 {
-  public static List<List<Case>> generatePairs(List<Parameter<?>> parameters)
+  public static List<List<Case>> generatePairs(List<OptionsForAParameter<?>> parameters)
   {
-    final List<Parameter> accumulator = new ArrayList<>();
-    Stream<Parameter<?>> sortedBySize = parameters.stream()
+    final List<OptionsForAParameter> accumulator = new ArrayList<>();
+    Stream<OptionsForAParameter<?>> sortedBySize = parameters.stream()
         .sorted((o1, o2) -> Integer.compare(o2.size(), o1.size()));
-    Stream<ArrayList<Parameter>> arrayListStream = sortedBySize.map(parameter -> {
+    Stream<ArrayList<OptionsForAParameter>> arrayListStream = sortedBySize.map(parameter -> {
       accumulator.add(parameter);
       return new ArrayList<>(accumulator);
     });
@@ -48,9 +50,9 @@ public final class InParameterOrderStrategy
     }
     return collected;
   }
-  public static List<Case> crossJoin(List<Parameter> chunk)
+  public static List<Case> crossJoin(List<OptionsForAParameter> chunk)
   {
-    final Parameter multiplier = chunk.get(chunk.size() - 1);
+    final OptionsForAParameter multiplier = chunk.get(chunk.size() - 1);
     return new ArrayList<Case>()
     {
       {
@@ -59,7 +61,7 @@ public final class InParameterOrderStrategy
             {
               {
                 // we believe this creates problematic order but we're unsure.
-                Parameter parameter = chunk.get(column);
+                OptionsForAParameter parameter = chunk.get(column);
                 this.put(parameter.getPosition(), parameter.get(cursor));
                 this.put(multiplier.getPosition(), multiplier.get(last));
               }
@@ -69,6 +71,15 @@ public final class InParameterOrderStrategy
   }
   private static Case best(List<Case> pairs, Case aCaseParameter)
   {
+    Tuple<String, Object> t = findMostUsedLastParameter(pairs, aCaseParameter);
+    if (t.getSecond() != null)
+    {
+      aCaseParameter.put(t.getFirst(), t.getSecond());
+    }
+    return aCaseParameter;
+  }
+
+  private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter) {
     String key = null;
     Map<Object, Integer> lastKeyCounts = new HashMap<>();
     int amount = 0;
@@ -95,12 +106,10 @@ public final class InParameterOrderStrategy
         amount = size;
       }
     }
-    if (obj != null)
-    {
-      aCaseParameter.put(key, obj);
-    }
-    return aCaseParameter;
+    Tuple<String, Object> t = new Tuple<>(key, obj);
+    return t;
   }
+
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
     List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);
