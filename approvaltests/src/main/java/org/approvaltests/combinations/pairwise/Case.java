@@ -21,10 +21,7 @@ public class Case
   private Case()
   {
   }
-  public Case(Map<String, Object> prototype)
-  {
-    this.putAll(prototype);
-  }
+
   public Case(Object... prototype)
   {
     for (int i = 0; i < prototype.length; i++)
