@@ -22,16 +22,19 @@ public final class InParameterOrderStrategy
     });
     return arrayListStream.map(chunk -> crossJoin(chunk)).collect(Collectors.toList());
   }
-  public static List<Case> horizontalGrowthOld(List<Case> cases, List<Case> pairs)
-  {
-    return cases.stream().map(o -> best(pairs, o)).peek(o -> delete(pairs, o)).collect(Collectors.toList());
-  }
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
     List<Case> result = new ArrayList<>();
     for (Case aCase : cases) {
       Case best = best(pairs, aCase);
-      delete(pairs, best);
+      ListIterator<Case> iterator = pairs.listIterator();
+      while (iterator.hasNext())
+      {
+        if (iterator.next().matches(best))
+        {
+          iterator.remove();
+        }
+      }
       result.add(best);
     }
     return result;
@@ -81,17 +84,7 @@ public final class InParameterOrderStrategy
         .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> pair.put(lazyKey.get("key"), o));
     return pair;
   }
-  private static void delete(List<Case> pairs, Case pair)
-  {
-    ListIterator<Case> iterator = pairs.listIterator();
-    while (iterator.hasNext())
-    {
-      if (iterator.next().matches(pair))
-      {
-        iterator.remove();
-      }
-    }
-  }
+
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
     List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);
