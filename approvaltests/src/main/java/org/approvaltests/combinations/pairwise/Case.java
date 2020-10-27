@@ -1,5 +1,7 @@
 package org.approvaltests.combinations.pairwise;
 
+import org.lambda.query.Query;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -127,6 +129,6 @@ public class Case implements Cloneable
   }
   public int size()
   {
-    return map.size();
+    return Query.select(map.keySet().toArray(new String[0]), Integer::parseInt).max();
   }
 }
