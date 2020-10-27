@@ -81,9 +81,12 @@ public final class InParameterOrderStrategy
       values.add(value);
     }
 
-
-    values.stream()
-        .collect(Collectors.groupingBy(i -> i)).entrySet().stream()
+    Map<Object, List<Object>> storage = new HashMap<>();
+    for (Object value : values) {
+      storage.computeIfAbsent(value, x -> new ArrayList<Object>());
+      storage.get(value).add(value);
+    }
+    storage.entrySet().stream()
         .max((o1, o2) -> Integer.compare(o1.getValue().size(), o2.getValue().size()))
         .map(objectListEntry -> objectListEntry.getKey()).ifPresent(o -> aCaseParameter.put(lazyKey.get("key"), o));
     return aCaseParameter;
