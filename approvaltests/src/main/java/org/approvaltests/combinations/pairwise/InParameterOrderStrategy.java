@@ -77,15 +77,14 @@ public final class InParameterOrderStrategy
         list.add(aCase);
       }
     }
-    final Map<String, String> lazyKey = new HashMap<>();
     String key = null;
-    Object value222;
     List<Object> values = new ArrayList<>();
     for (Case p : list)
     {
-      key = lazyKey.computeIfAbsent("key", i -> p.getLastKey());
-      value222 = p.get(key);
-      values.add(value222);
+      if (key == null) {
+        key = p.getLastKey();
+      }
+      values.add(p.get(key));
     }
     Map<Object, List<Object>> storage = new HashMap<>();
     for (Object value : values)
