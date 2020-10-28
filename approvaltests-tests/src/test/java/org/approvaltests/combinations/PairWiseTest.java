@@ -8,6 +8,8 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.OptionsForAParameter;
+import org.approvaltests.core.Options;
+import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 
 //@ExtendWith(TestCommitRevertMainExtension.class)
@@ -18,6 +20,14 @@ public class PairWiseTest
   {
     PairWiseApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{1, 2, 3, 4, 5},
         new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"}, new Double[]{1.1, 2.2, 3.3, 4.4});
+  }
+  @Test
+  public void testPairsScrubbed()
+  {
+    PairWiseApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{112, 111, 113, 114, 115},
+        new Integer[]{221, 222, 223, 224}, new Integer[]{331, 332, 333, 334, 335},
+        new Integer[]{441, 442, 443, 444},
+        new Options().withScrubber(new RegExScrubber("\\d{3}", a -> "input-" + a)));
   }
   @Test
   public void testStrategyGeneratePairs()
@@ -85,7 +95,8 @@ public class PairWiseTest
     return InParameterOrderStrategy.generatePairs(list);
   }
   @Test
-  void crossJoinFiveParametersWithOneVariations() {
+  void crossJoinFiveParametersWithOneVariations()
+  {
     ArrayList<OptionsForAParameter> names = new ArrayList<>();
     names.add(new OptionsForAParameter<>(0, "Nick"));
     names.add(new OptionsForAParameter<>(1, "Howie"));
@@ -95,7 +106,6 @@ public class PairWiseTest
     // for method:
     // void everybody(String singer1, String singer2, String singer3, String singer4, String singer5)
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);
-
     Approvals.verifyAll("CrossJoin", cases);
   }
   @Test
@@ -112,7 +122,6 @@ public class PairWiseTest
     // for method:
     // void everybody(String mainSinger, String backupSinger, String groupie)
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);
-
     Approvals.verifyAll("CrossJoin", cases);
   }
   public String toString(List<Case> result)

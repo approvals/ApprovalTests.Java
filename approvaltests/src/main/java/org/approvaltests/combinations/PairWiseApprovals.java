@@ -4,6 +4,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.combinations.pairwise.OptionsForAParameter;
+import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
@@ -77,6 +78,21 @@ public class PairWiseApprovals {
                 EMPTY);
     }
 
+    public static <IN1, IN2, IN3, IN4, OUT> void verifyBestCoveringPairs(Function4<IN1, IN2, IN3, IN4, OUT> call,
+                                                                         IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, Options options) {
+        verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4),
+                parameters1,
+                parameters2,
+                parameters3,
+                parameters4,
+                EMPTY,
+                EMPTY,
+                EMPTY,
+                EMPTY,
+                EMPTY,
+                options);
+    }
+
     public static <IN1, IN2, IN3, IN4, IN5, OUT> void verifyBestCoveringPairs(Function5<IN1, IN2, IN3, IN4, IN5, OUT> call,
                                                                               IN1[] parameters1, IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5) {
         verifyBestCoveringPairs((n1, n2, n3, n4, n5, n6, n7, n8, n9) -> call.call(n1, n2, n3, n4, n5),
@@ -136,6 +152,23 @@ public class PairWiseApprovals {
             Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
             IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
             IN8[] parameters8, IN9[] parameters9) {
+        verifyBestCoveringPairs(call,
+                parameters1,
+                parameters2,
+                parameters3,
+                parameters4,
+                parameters5,
+                parameters6,
+                parameters7,
+                parameters8,
+                parameters9,
+                new Options());
+    }
+
+    public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyBestCoveringPairs(
+            Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
+            IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
+            IN8[] parameters8, IN9[] parameters9, Options options) {
         Pairwise pairwise = toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
 
         final List<Case> cases = pairwise.getCases();
@@ -167,7 +200,7 @@ public class PairWiseApprovals {
             output.append(String.format("%s => %s \n",
                     CombinationApprovals.extracted(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
         }
-        Approvals.verify(output);
+        Approvals.verify(output, options);
 
     }
 

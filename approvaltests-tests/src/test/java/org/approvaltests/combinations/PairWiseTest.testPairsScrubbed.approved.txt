@@ -1,0 +1,27 @@
+Testing an optimized 25/input-1 scenarios:
+
+[input-2, input-3, input-4, input-5] =>  
+[input-6, input-7, input-4, input-8] =>  
+[input-9, input-10, input-4, input-11] =>  
+[input-12, input-13, input-4, input-14] =>  
+[input-15, input-3, input-4, input-8] =>  
+[input-2, input-7, input-16, input-11] =>  
+[input-6, input-3, input-16, input-14] =>  
+[input-9, input-13, input-16, input-5] =>  
+[input-12, input-10, input-16, input-8] =>  
+[input-15, input-7, input-16, input-5] =>  
+[input-2, input-10, input-17, input-14] =>  
+[input-6, input-13, input-17, input-11] =>  
+[input-9, input-3, input-17, input-8] =>  
+[input-12, input-7, input-17, input-5] =>  
+[input-15, input-10, input-17, input-5] =>  
+[input-2, input-13, input-18, input-8] =>  
+[input-6, input-10, input-18, input-5] =>  
+[input-9, input-7, input-18, input-14] =>  
+[input-12, input-3, input-18, input-11] =>  
+[input-15, input-13, input-18, input-11] =>  
+[input-2, input-3, input-19, input-5] =>  
+[input-6, input-7, input-19, input-8] =>  
+[input-9, input-10, input-19, input-11] =>  
+[input-12, input-13, input-19, input-14] =>  
+[input-15, input-3, input-19, input-14] =>  
