@@ -91,7 +91,7 @@ The suggested fix is to add
 ## More Info
 
 
-- [Website](https://approvaltests.org/)
+- [Website](https://approvaltests.com/)
 - [Blog](https://blog.approvaltests.org/)
 - [Getting Started Doc](https://github.com/approvals/ApprovalTests.Java/blob/master/build/resources/approval_tests/documentation/ApprovalTests%20-%20GettingStarted.md)
 
