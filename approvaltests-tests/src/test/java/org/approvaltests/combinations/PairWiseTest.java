@@ -18,6 +18,7 @@ import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
+import org.lambda.actions.Action2;
 
 @UseReporter(DiffMergeReporter.class)
 public class PairWiseTest
@@ -44,20 +45,33 @@ public class PairWiseTest
     Integer[] input3 = {331, 332, 333, 334, 335};
     Integer[] input4 = {441, 442, 443, 444};
     HashMap<String, Integer> pairCount = getAllPairsCount(input1, input2, input3, input4);
-
-    Integer[][] inputs = new Integer[][] {input1, input2, input3, input4};
+    assertAllPairsPresent(pairCount, input1, input2, input3, input4);
+    int allPairCombinationCount = calculateAllPairCombinationCount(input1, input2, input3, input4);
+    assertEquals(121, allPairCombinationCount);
+    assertEquals(allPairCombinationCount, pairCount.size());
+  }
+  public int calculateAllPairCombinationCount(Integer[]... inputs)
+  {
+    int allPairCombinationCount = 0;
     for (int i1 = 0; i1 < inputs.length - 1; i1++)
     {
       for (int i2 = i1 + 1; i2 < inputs.length; i2++)
       {
-        assertAllPairsPresent(inputs[i1], inputs[i2], pairCount);
+        allPairCombinationCount += inputs[i1].length * inputs[i2].length;
       }
     }
-    int allPairCombinationCount = input1.length * input2.length + input1.length * input3.length
-        + input1.length * input4.length + input2.length * input3.length + input2.length * input4.length
-        + input3.length * input4.length;
-    assertEquals(121, allPairCombinationCount);
-    assertEquals(allPairCombinationCount, pairCount.size());
+    return allPairCombinationCount;
+  }
+  public void assertAllPairsPresent(HashMap<String, Integer> pairCount, Integer[]... inputs)
+  {
+    Action2<Integer[], Integer[]> action = (i1, i2) -> assertAllPairsPresent(i1, i2, pairCount);
+    for (int i1 = 0; i1 < inputs.length - 1; i1++)
+    {
+      for (int i2 = i1 + 1; i2 < inputs.length; i2++)
+      {
+        action.call(inputs[i1], inputs[i2]);
+      }
+    }
   }
   public HashMap<String, Integer> getAllPairsCount(Integer[]... inputs)
   {
