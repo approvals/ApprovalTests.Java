@@ -43,6 +43,21 @@ public class PairWiseTest
     Integer[] input2 = {221, 222, 223, 224};
     Integer[] input3 = {331, 332, 333, 334, 335};
     Integer[] input4 = {441, 442, 443, 444};
+    HashMap<String, Integer> pairCount = getAllPairsCount(input1, input2, input3, input4);
+    assertAllPairsPresent(input1, input2, pairCount);
+    assertAllPairsPresent(input1, input3, pairCount);
+    assertAllPairsPresent(input1, input4, pairCount);
+    assertAllPairsPresent(input2, input3, pairCount);
+    assertAllPairsPresent(input2, input4, pairCount);
+    assertAllPairsPresent(input3, input4, pairCount);
+    int allPairCombinationCount = input1.length * input2.length + input1.length * input3.length
+        + input1.length * input4.length + input2.length * input3.length + input2.length * input4.length
+        + input3.length * input4.length;
+    assertEquals(121, allPairCombinationCount);
+    assertEquals(allPairCombinationCount, pairCount.size());
+  }
+
+  public HashMap<String, Integer> getAllPairsCount(Integer[] input1, Integer[] input2, Integer[] input3, Integer[] input4) {
     Pairwise pairwise = PairWiseApprovals.toPairWise(input1, input2, input3, input4);
     final List<Case> cases = pairwise.getCases();
     HashMap<String, Integer> pairCount = new HashMap<>();
@@ -59,18 +74,9 @@ public class PairWiseTest
       addPair(in2, in4, pairCount);
       addPair(in3, in4, pairCount);
     }
-    assertAllPairsPresent(input1, input2, pairCount);
-    assertAllPairsPresent(input1, input3, pairCount);
-    assertAllPairsPresent(input1, input4, pairCount);
-    assertAllPairsPresent(input2, input3, pairCount);
-    assertAllPairsPresent(input2, input4, pairCount);
-    assertAllPairsPresent(input3, input4, pairCount);
-    int allPairCombinationCount = input1.length * input2.length + input1.length * input3.length
-        + input1.length * input4.length + input2.length * input3.length + input2.length * input4.length
-        + input3.length * input4.length;
-    assertEquals(121, allPairCombinationCount);
-    assertEquals(allPairCombinationCount, pairCount.size());
+    return pairCount;
   }
+
   public void assertAllPairsPresent(Integer[] input1, Integer[] input3, HashMap<String, Integer> pairCount)
   {
     for (Integer i1 : input1)
