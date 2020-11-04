@@ -56,27 +56,25 @@ public class PairWiseTest
     assertEquals(121, allPairCombinationCount);
     assertEquals(allPairCombinationCount, pairCount.size());
   }
-
-  public HashMap<String, Integer> getAllPairsCount(Integer[] input1, Integer[] input2, Integer[] input3, Integer[] input4) {
-    Pairwise pairwise = PairWiseApprovals.toPairWise(input1, input2, input3, input4);
+  public HashMap<String, Integer> getAllPairsCount(Integer[]... inputs)
+  {
+    Pairwise pairwise = PairWiseApprovals.toPairWise(inputs);
     final List<Case> cases = pairwise.getCases();
     HashMap<String, Integer> pairCount = new HashMap<>();
     for (Case params : cases)
     {
-      final Integer in1 = (Integer) params.get(0);
-      final Integer in2 = (Integer) params.get(1);
-      final Integer in3 = (Integer) params.get(2);
-      final Integer in4 = (Integer) params.get(3);
-      addPair(in1, in2, pairCount);
-      addPair(in1, in3, pairCount);
-      addPair(in1, in4, pairCount);
-      addPair(in2, in3, pairCount);
-      addPair(in2, in4, pairCount);
-      addPair(in3, in4, pairCount);
+      for (int i1 = 0; i1 < inputs.length - 1; i1++)
+      {
+        for (int i2 = i1 + 1; i2 < inputs.length; i2++)
+        {
+          final Integer in1 = (Integer) params.get(i1);
+          final Integer in2 = (Integer) params.get(i2);
+          addPair(in1, in2, pairCount);
+        }
+      }
     }
     return pairCount;
   }
-
   public void assertAllPairsPresent(Integer[] input1, Integer[] input3, HashMap<String, Integer> pairCount)
   {
     for (Integer i1 : input1)
