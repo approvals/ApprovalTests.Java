@@ -52,19 +52,16 @@ public class PairWiseTest
   }
   public int calculateAllPairCombinationCount(Integer[]... inputs)
   {
-    int allPairCombinationCount = 0;
-    for (int i1 = 0; i1 < inputs.length - 1; i1++)
-    {
-      for (int i2 = i1 + 1; i2 < inputs.length; i2++)
-      {
-        allPairCombinationCount += inputs[i1].length * inputs[i2].length;
-      }
-    }
-    return allPairCombinationCount;
+    int[] allPairCombinationCount = {0};
+    actOnAllPairs(inputs, (i1, i2) -> allPairCombinationCount[0] += i1.length * i2.length);
+    return allPairCombinationCount[0];
   }
   public void assertAllPairsPresent(HashMap<String, Integer> pairCount, Integer[]... inputs)
   {
-    Action2<Integer[], Integer[]> action = (i1, i2) -> assertAllPairsPresent(i1, i2, pairCount);
+    actOnAllPairs(inputs, (i1, i2) -> assertAllPairsPresent(i1, i2, pairCount));
+  }
+  public void actOnAllPairs(Integer[][] inputs, Action2<Integer[], Integer[]> action)
+  {
     for (int i1 = 0; i1 < inputs.length - 1; i1++)
     {
       for (int i2 = i1 + 1; i2 < inputs.length; i2++)
