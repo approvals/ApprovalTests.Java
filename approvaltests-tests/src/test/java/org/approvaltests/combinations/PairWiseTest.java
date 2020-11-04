@@ -44,12 +44,15 @@ public class PairWiseTest
     Integer[] input3 = {331, 332, 333, 334, 335};
     Integer[] input4 = {441, 442, 443, 444};
     HashMap<String, Integer> pairCount = getAllPairsCount(input1, input2, input3, input4);
-    assertAllPairsPresent(input1, input2, pairCount);
-    assertAllPairsPresent(input1, input3, pairCount);
-    assertAllPairsPresent(input1, input4, pairCount);
-    assertAllPairsPresent(input2, input3, pairCount);
-    assertAllPairsPresent(input2, input4, pairCount);
-    assertAllPairsPresent(input3, input4, pairCount);
+
+    Integer[][] inputs = new Integer[][] {input1, input2, input3, input4};
+    for (int i1 = 0; i1 < inputs.length - 1; i1++)
+    {
+      for (int i2 = i1 + 1; i2 < inputs.length; i2++)
+      {
+        assertAllPairsPresent(inputs[i1], inputs[i2], pairCount);
+      }
+    }
     int allPairCombinationCount = input1.length * input2.length + input1.length * input3.length
         + input1.length * input4.length + input2.length * input3.length + input2.length * input4.length
         + input3.length * input4.length;
