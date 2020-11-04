@@ -24,4 +24,4 @@ Testing an optimized 25/input-1 scenarios:
 [input-6, input-7, input-19, input-8] =>  
 [input-9, input-10, input-19, input-11] =>  
 [input-12, input-13, input-19, input-14] =>  
-[input-15, input-3, input-19, input-14] =>  
+[input-15, input-13, input-19, input-14] =>  

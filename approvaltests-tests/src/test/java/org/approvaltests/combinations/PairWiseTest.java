@@ -1,6 +1,10 @@
 package org.approvaltests.combinations;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,11 +12,14 @@ import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.OptionsForAParameter;
+import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 
-//@ExtendWith(TestCommitRevertMainExtension.class)
+@UseReporter(DiffMergeReporter.class)
 public class PairWiseTest
 {
   @Test
@@ -28,6 +35,65 @@ public class PairWiseTest
         new Integer[]{221, 222, 223, 224}, new Integer[]{331, 332, 333, 334, 335},
         new Integer[]{441, 442, 443, 444},
         new Options().withScrubber(new RegExScrubber("\\d{3}", a -> "input-" + a)));
+  }
+  @Test
+  public void testPairProperties()
+  {
+    Integer[] input1 = {112, 111, 113, 114, 115};
+    Integer[] input2 = {221, 222, 223, 224};
+    Integer[] input3 = {331, 332, 333, 334, 335};
+    Integer[] input4 = {441, 442, 443, 444};
+    Pairwise pairwise = PairWiseApprovals.toPairWise(input1, input2, input3, input4);
+    final List<Case> cases = pairwise.getCases();
+    HashMap<String, Integer> pairCount = new HashMap<>();
+    for (Case params : cases)
+    {
+      final Integer in1 = (Integer) params.get(0);
+      final Integer in2 = (Integer) params.get(1);
+      final Integer in3 = (Integer) params.get(2);
+      final Integer in4 = (Integer) params.get(3);
+      addPair(in1, in2, pairCount);
+      addPair(in1, in3, pairCount);
+      addPair(in1, in4, pairCount);
+      addPair(in2, in3, pairCount);
+      addPair(in2, in4, pairCount);
+      addPair(in3, in4, pairCount);
+    }
+    assertAllPairsPresent(input1, input2, pairCount);
+    assertAllPairsPresent(input1, input3, pairCount);
+    assertAllPairsPresent(input1, input4, pairCount);
+    assertAllPairsPresent(input2, input3, pairCount);
+    assertAllPairsPresent(input2, input4, pairCount);
+    assertAllPairsPresent(input3, input4, pairCount);
+    int allPairCombinationCount = input1.length * input2.length + input1.length * input3.length
+        + input1.length * input4.length + input2.length * input3.length + input2.length * input4.length
+        + input3.length * input4.length;
+    assertEquals(121, allPairCombinationCount);
+    assertEquals(allPairCombinationCount, pairCount.size());
+  }
+  public void assertAllPairsPresent(Integer[] input1, Integer[] input3, HashMap<String, Integer> pairCount)
+  {
+    for (Integer i1 : input1)
+    {
+      for (Integer i2 : input3)
+      {
+        String key = getKey(i1, i2);
+        if (!pairCount.containsKey(key))
+        {
+          fail("missing pair " + key);
+        }
+      }
+    }
+  }
+  public String getKey(Integer i1, Integer i2)
+  {
+    return i1 + "," + i2;
+  }
+  private void addPair(Integer in1, Integer in2, HashMap<String, Integer> pairCount)
+  {
+    String key = getKey(in1, in2);
+    Integer count = pairCount.computeIfAbsent(key, __ -> 0) + 1;
+    pairCount.put(key, count);
   }
   @Test
   public void testStrategyGeneratePairs()

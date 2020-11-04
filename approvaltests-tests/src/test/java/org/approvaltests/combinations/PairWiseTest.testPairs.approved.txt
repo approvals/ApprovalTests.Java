@@ -24,4 +24,4 @@ Testing an optimized 25/400 scenarios:
 [2, b, P, 2.2] =>  
 [3, c, P, 1.1] =>  
 [4, d, P, 3.3] =>  
-[5, d, P, 3.3] =>  
+[5, c, P, 3.3] =>  
