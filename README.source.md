@@ -2,6 +2,7 @@
 [![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/mvn%20verify%20linux/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster) 
 [![Build Status](https://github.com/approvals/ApprovalTests.java/workflows/mvn%20verify%20windows/badge.svg?branch=master)](https://github.com/approvals/ApprovalTests.java/actions?query=build%3Amaster)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.approvaltests/approvaltests/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.approvaltests/approvaltests)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fapprovals%2FApprovalTests.Java&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=PAGE+VIEWS&edge_flat=false)](https://hits.seeyoufarm.com)
 toc
 
 # ApprovalTests.Java
