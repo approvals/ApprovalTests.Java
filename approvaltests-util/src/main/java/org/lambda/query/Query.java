@@ -12,7 +12,7 @@ import com.spun.util.ArrayUtils;
 
 public class Query<In>
 {
-  public static <In, Out> Queryable<Out> select(List<In> list, Function1<In, Out> function)
+  public static <In, Out> Queryable<Out> select(Collection<In> list, Function1<In, Out> function)
   {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)

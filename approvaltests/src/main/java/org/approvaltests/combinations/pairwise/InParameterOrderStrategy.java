@@ -81,10 +81,7 @@ public final class InParameterOrderStrategy
     { return new Tuple<>(null, null); }
     String key = matchedPairs.first().getLastKey();
     Counter<Object> counter = new Counter<>();
-    for (Case aCase : matchedPairs)
-    {
-      counter.count(aCase.get(key));
-    }
+    counter.countAll(matchedPairs, e -> e.get(key));
     return new Tuple<>(key, counter.getMaxValue());
   }
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
