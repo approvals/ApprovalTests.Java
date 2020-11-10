@@ -1,7 +1,5 @@
 package org.approvaltests.combinations.pairwise;
 
-import com.spun.util.Tuple;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +7,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import org.lambda.query.Query;
+
+import com.spun.util.Tuple;
 
 public final class InParameterOrderStrategy
 {
@@ -73,11 +75,10 @@ public final class InParameterOrderStrategy
       }
     };
   }
-
-  private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter) {
+  private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter)
+  {
     String key = null;
     Map<Object, Integer> lastKeyCounts = new HashMap<>();
-    Object highestCountObject = null;
     for (Case aCase : pairs)
     {
       if (aCaseParameter.matches(aCase))
@@ -89,15 +90,13 @@ public final class InParameterOrderStrategy
         Object value = aCase.get(key);
         Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
         lastKeyCounts.put(value, count);
-        if (lastKeyCounts.get(highestCountObject == null ? value : highestCountObject) <= count)
-        {
-          highestCountObject = value;
-        }
       }
     }
-    return new Tuple<>(key, highestCountObject);
+    if (lastKeyCounts.isEmpty())
+    { return new Tuple<>(key, null); }
+    Object highestUsedObject = Query.max(lastKeyCounts.entrySet(), Map.Entry::getValue).getKey();
+    return new Tuple<>(key, highestUsedObject);
   }
-
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
     List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);
