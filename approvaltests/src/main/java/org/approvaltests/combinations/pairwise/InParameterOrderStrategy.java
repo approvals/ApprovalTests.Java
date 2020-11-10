@@ -90,15 +90,11 @@ public final class InParameterOrderStrategy
         Object value = aCase.get(key);
         Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
         lastKeyCounts.put(value, count);
-      }
-    }
-    for (Object o : lastKeyCounts.keySet())
-    {
-      int size = lastKeyCounts.get(o);
-      if (amount < size)
-      {
-        obj = o;
-        amount = size;
+        if (amount < count)
+        {
+          obj = value;
+          amount = count;
+        }
       }
     }
     Tuple<String, Object> t = new Tuple<>(key, obj);
