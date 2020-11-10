@@ -1,11 +1,10 @@
-package org.approvaltests.combinations.pairwise;
+package org.lambda.query;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.lambda.functions.Function1;
-import org.lambda.query.Query;
 
 public class Counter<T>
 {
@@ -24,5 +23,11 @@ public class Counter<T>
     if (counts.isEmpty())
     { return null; }
     return Query.max(counts.entrySet(), Map.Entry::getValue).getKey();
+  }
+  public static <In, Out> Out getMaxValue(Collection<In> collection, Function1<In, Out> extractor)
+  {
+    Counter<Out> counter = new Counter<>();
+    counter.countAll(collection, extractor);
+    return counter.getMaxValue();
   }
 }

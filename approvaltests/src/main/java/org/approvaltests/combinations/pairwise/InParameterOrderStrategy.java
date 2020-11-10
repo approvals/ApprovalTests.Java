@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import org.lambda.query.Counter;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
@@ -80,9 +81,7 @@ public final class InParameterOrderStrategy
     if (matchedPairs.isEmpty())
     { return new Tuple<>(null, null); }
     String key = matchedPairs.first().getLastKey();
-    Counter<Object> counter = new Counter<>();
-    counter.countAll(matchedPairs, e -> e.get(key));
-    return new Tuple<>(key, counter.getMaxValue());
+    return new Tuple<>(key, Counter.getMaxValue(matchedPairs, e -> e.get(key)));
   }
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
