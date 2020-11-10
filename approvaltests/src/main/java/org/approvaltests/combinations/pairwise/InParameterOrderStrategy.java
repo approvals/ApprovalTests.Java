@@ -1,9 +1,7 @@
 package org.approvaltests.combinations.pairwise;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -82,15 +80,12 @@ public final class InParameterOrderStrategy
     if (matchedPairs.isEmpty())
     { return new Tuple<>(null, null); }
     String key = matchedPairs.first().getLastKey();
-    Map<Object, Integer> lastKeyCounts = new HashMap<>();
+    Counter<Object> counter = new Counter<>();
     for (Case aCase : matchedPairs)
     {
-      Object value = aCase.get(key);
-      Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
-      lastKeyCounts.put(value, count);
+      counter.count(aCase.get(key));
     }
-    Object highestUsedObject = Query.max(lastKeyCounts.entrySet(), Map.Entry::getValue).getKey();
-    return new Tuple<>(key, highestUsedObject);
+    return new Tuple<>(key, counter.getMaxValue());
   }
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
