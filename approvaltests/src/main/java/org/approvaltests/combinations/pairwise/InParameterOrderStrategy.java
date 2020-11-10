@@ -77,8 +77,7 @@ public final class InParameterOrderStrategy
   private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter) {
     String key = null;
     Map<Object, Integer> lastKeyCounts = new HashMap<>();
-    int amount = 0;
-    Object obj = null;
+    Object highestCountObject = null;
     for (Case aCase : pairs)
     {
       if (aCaseParameter.matches(aCase))
@@ -90,15 +89,13 @@ public final class InParameterOrderStrategy
         Object value = aCase.get(key);
         Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
         lastKeyCounts.put(value, count);
-        if (amount < count)
+        if (lastKeyCounts.get(highestCountObject == null ? value : highestCountObject) <= count)
         {
-          obj = value;
-          amount = count;
+          highestCountObject = value;
         }
       }
     }
-    Tuple<String, Object> t = new Tuple<>(key, obj);
-    return t;
+    return new Tuple<>(key, highestCountObject);
   }
 
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
