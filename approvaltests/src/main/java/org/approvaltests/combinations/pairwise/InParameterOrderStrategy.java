@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.lambda.query.Query;
+import org.lambda.query.Queryable;
 
 import com.spun.util.Tuple;
 
@@ -77,23 +78,17 @@ public final class InParameterOrderStrategy
   }
   private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter)
   {
-    String key = null;
+    Queryable<Case> matchedPairs = Query.where(pairs, aCaseParameter::matches);
+    if (matchedPairs.isEmpty())
+    { return new Tuple<>(null, null); }
+    String key = matchedPairs.first().getLastKey();
     Map<Object, Integer> lastKeyCounts = new HashMap<>();
-    for (Case aCase : pairs)
+    for (Case aCase : matchedPairs)
     {
-      if (aCaseParameter.matches(aCase))
-      {
-        if (key == null)
-        {
-          key = aCase.getLastKey();
-        }
-        Object value = aCase.get(key);
-        Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
-        lastKeyCounts.put(value, count);
-      }
+      Object value = aCase.get(key);
+      Integer count = lastKeyCounts.computeIfAbsent(value, x -> 0) + 1;
+      lastKeyCounts.put(value, count);
     }
-    if (lastKeyCounts.isEmpty())
-    { return new Tuple<>(key, null); }
     Object highestUsedObject = Query.max(lastKeyCounts.entrySet(), Map.Entry::getValue).getKey();
     return new Tuple<>(key, highestUsedObject);
   }
