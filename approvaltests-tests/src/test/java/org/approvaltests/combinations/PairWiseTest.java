@@ -44,10 +44,26 @@ public class PairWiseTest
     Integer[] input2 = {221, 222, 223, 224};
     Integer[] input3 = {331, 332, 333, 334, 335};
     Integer[] input4 = {441, 442, 443, 444};
-    HashMap<String, Integer> pairCount = getAllPairsCount(input1, input2, input3, input4);
-    assertAllPairsPresent(pairCount, input1, input2, input3, input4);
-    int allPairCombinationCount = calculateAllPairCombinationCount(input1, input2, input3, input4);
-    assertEquals(121, allPairCombinationCount);
+    assertPairwiseCombinations(input1, input2, input3, input4);
+  }
+  @Test
+  public void testPairPropertiesAgain()
+  {
+    Integer[] input1 = {112, 111};
+    Integer[] input2 = {221, 222, 223, 224};
+    Integer[] input3 = {331, 332, 333, 334, 335};
+    Integer[] input4 = {441, 443, 444};
+    Integer[] input5 = {551, 552, 553, 554, 555, 556};
+    Integer[] input6 = {663, 664};
+    Integer[] input7 = {771, 772, 773};
+    assertPairwiseCombinations(input1, input2, input3, input4, input5, input6, input7);
+  }
+  private void assertPairwiseCombinations(Integer[]... inputs)
+  {
+    HashMap<String, Integer> pairCount = getAllPairsCount(inputs);
+    assertAllPairsPresent(pairCount, inputs);
+    int allPairCombinationCount = calculateAllPairCombinationCount(inputs);
+    //assertEquals(121, allPairCombinationCount);
     assertEquals(allPairCombinationCount, pairCount.size());
   }
   public int calculateAllPairCombinationCount(Integer[]... inputs)
