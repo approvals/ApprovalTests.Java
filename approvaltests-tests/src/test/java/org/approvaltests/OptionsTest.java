@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
@@ -8,6 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
+import org.approvaltests.combinations.PairWiseApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
@@ -68,9 +70,14 @@ public class OptionsTest
   @Test
   void testEachMethodHasOneWithOptions()
   {
-    Queryable<Method> declaredMethods = Queryable.as(Approvals.class.getDeclaredMethods());
-    Queryable<Method> methodList = declaredMethods
-        .where(m -> m.getName().startsWith("verify") && Modifier.isPublic(m.getModifiers()) && m.isAccessible());
+    verifyEachVerifyMethodHasOneWithOptions(Approvals.class);
+    verifyEachVerifyMethodHasOneWithOptions(PairWiseApprovals.class);
+  }
+  private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
+  {
+    Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());
+    Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith("verify")
+        && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
     List<Method> methodsWithOptions = methodList
         .where(m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
     List<Method> methodsWithoutOptions = methodList
@@ -95,17 +102,20 @@ public class OptionsTest
           "No match found for:" + withoutOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
+    assertNotEquals(0, methodsWithoutOptions.size());
   }
   @Test
   void verifyFileExtension()
   {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
+        new Options().forFile().withExtension(".html"));
   }
   @Test
   void verifyFileName()
   {
     String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
-    Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
+    Approvals.verify(sampleText,
+        new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
     Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
     Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
   }
@@ -113,13 +123,15 @@ public class OptionsTest
   @Test
   void verifyFilePath()
   {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
+        new Options().forFile().withExtension(".html"));
   }
   @Disabled("todo")
   @Test
   void verifyFileRelativePath()
   {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>", new Options().forFile().withExtension(".html"));
+    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
+        new Options().forFile().withExtension(".html"));
   }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {
