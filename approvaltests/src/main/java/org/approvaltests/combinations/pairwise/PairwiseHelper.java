@@ -3,7 +3,7 @@ package org.approvaltests.combinations.pairwise;
 import java.util.List;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.combinations.CombinationApprovals;
+import org.approvaltests.combinations.CombinationsHelper;
 import org.approvaltests.combinations.SkipCombination;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function9;
@@ -46,7 +46,7 @@ public class PairwiseHelper
         result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
       }
       output.append(String.format("%s => %s \n",
-          CombinationApprovals.filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
+          CombinationsHelper.filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
     }
     Approvals.verify(output, options);
   }

@@ -14,7 +14,7 @@ import org.lambda.functions.Function9;
 
 public class PairWiseApprovals {
 
-    static Object EMPTY[] = CombinationApprovals.EMPTY;
+    static Object[] EMPTY = CombinationsHelper.EMPTY;
 
     public static <IN1, OUT> void verifyBestCoveringPairs(Function1<IN1, OUT> call,
                                                           IN1[] parameters1) {
