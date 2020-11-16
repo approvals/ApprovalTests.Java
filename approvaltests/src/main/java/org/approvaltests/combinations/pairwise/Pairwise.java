@@ -12,6 +12,21 @@ import org.lambda.query.Query;
 public class Pairwise implements Iterable<Case>
 {
   private final List<OptionsForAParameter<?>> parameters;
+  private final List<Case>                    cases;
+  private Pairwise(List<OptionsForAParameter<?>> parameters, List<Case> cases)
+  {
+    this.parameters = parameters;
+    this.cases = (List<Case>) (Object) cases;
+  }
+  public int getTotalPossibleCombinations()
+  {
+    int totalPossibleSize = 1;
+    for (OptionsForAParameter<?> parameter : getParameters())
+    {
+      totalPossibleSize *= parameter.size();
+    }
+    return totalPossibleSize;
+  }
   public List<OptionsForAParameter<?>> getParameters()
   {
     return parameters;
@@ -19,12 +34,6 @@ public class Pairwise implements Iterable<Case>
   public List<Case> getCases()
   {
     return cases;
-  }
-  private final List<Case> cases;
-  private Pairwise(List<OptionsForAParameter<?>> parameters, List<Case> cases)
-  {
-    this.parameters = parameters;
-    this.cases = (List<Case>) (Object) cases;
   }
   public List<Case> verify()
   {
