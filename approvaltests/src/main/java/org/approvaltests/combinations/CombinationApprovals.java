@@ -104,7 +104,7 @@ public class CombinationApprovals
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9)
   {
-    CombinationsHelper.verifyAllCombinations2(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
+    CombinationsHelper.verifyAllCombinations(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
   }
 
 }

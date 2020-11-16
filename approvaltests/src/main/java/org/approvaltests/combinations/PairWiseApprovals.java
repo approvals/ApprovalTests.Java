@@ -163,7 +163,7 @@ public class PairWiseApprovals {
             Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
             IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
             IN8[] parameters8, IN9[] parameters9, Options options) {
-        PairwiseHelper.verifyBestCoveringPairs2(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9, options);
+        PairwiseHelper.verifyBestCoveringPairs(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9, options);
     }
 
 }
