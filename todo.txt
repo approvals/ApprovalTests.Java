@@ -1,3 +1,10 @@
+
+* Pairwise
+** add Options everywhere
+** align API with CombinationApprovals -> Approvals.verifyMinimalPairs() or similar
+
+
+
 * easier API for custom file name & location?! (issue 2, 51)
 ** documentation for Options.forFile()
 ** Options for file path
