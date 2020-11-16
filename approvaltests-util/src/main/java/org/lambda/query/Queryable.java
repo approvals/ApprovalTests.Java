@@ -35,6 +35,10 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.where(this, funct);
   }
+  public In first()
+  {
+    return this.isEmpty() ? null : this.get(0);
+  }
   public In first(Function1<In, Boolean> filter)
   {
     return Query.first(this, filter);

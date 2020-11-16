@@ -1,0 +1,50 @@
+
+
+{3=A+, 1=Jupe}
+{3=A-, 1=Jupe}
+{3=B+, 1=Jupe}
+{3=B-, 1=Jupe}
+{3=O+, 1=Jupe}
+{3=O-, 1=Jupe}
+{3=AB+, 1=Jupe}
+{3=AB-, 1=Jupe}
+{3=A+, 1=Pete}
+{3=A-, 1=Pete}
+{3=B+, 1=Pete}
+{3=B-, 1=Pete}
+{3=O+, 1=Pete}
+{3=O-, 1=Pete}
+{3=AB+, 1=Pete}
+{3=AB-, 1=Pete}
+{3=A+, 1=Bob}
+{3=A-, 1=Bob}
+{3=B+, 1=Bob}
+{3=B-, 1=Bob}
+{3=O+, 1=Bob}
+{3=O-, 1=Bob}
+{3=AB+, 1=Bob}
+{3=AB-, 1=Bob}
+
+{3=A+, 2=Tartu}
+{3=A-, 2=Tartu}
+{3=B+, 2=Tartu}
+{3=B-, 2=Tartu}
+{3=O+, 2=Tartu}
+{3=O-, 2=Tartu}
+{3=AB+, 2=Tartu}
+{3=AB-, 2=Tartu}
+{1=Jupe, 2=Tartu}
+{1=Pete, 2=Tartu}
+{1=Bob, 2=Tartu}
+{3=A+, 2=Heidelberg}
+{3=A-, 2=Heidelberg}
+{3=B+, 2=Heidelberg}
+{3=B-, 2=Heidelberg}
+{3=O+, 2=Heidelberg}
+{3=O-, 2=Heidelberg}
+{3=AB+, 2=Heidelberg}
+{3=AB-, 2=Heidelberg}
+{1=Jupe, 2=Heidelberg}
+{1=Pete, 2=Heidelberg}
+{1=Bob, 2=Heidelberg}
+

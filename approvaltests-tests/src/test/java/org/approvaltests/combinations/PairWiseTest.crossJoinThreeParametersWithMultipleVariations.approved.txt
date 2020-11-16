@@ -1,0 +1,6 @@
+CrossJoin[0] = {1=MainSinger1, 3=Groupie3}
+CrossJoin[1] = {1=MainSinger2, 3=Groupie3}
+CrossJoin[2] = {2=BackupSinger1, 3=Groupie3}
+CrossJoin[3] = {2=BackupSinger2, 3=Groupie3}
+CrossJoin[4] = {3=Groupie3}
+CrossJoin[5] = {3=Groupie3}

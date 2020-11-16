@@ -1,0 +1,26 @@
+Cases before: 
+{1=Lars, 2=1, 3=Tartu}
+{1=Lars, 2=1, 3=Tallinn}
+{1=Lars, 2=2, 3=Tartu}
+{1=Lars, 2=2, 3=Tallinn}
+{1=Lars, 2=3, 3=Tartu}
+{1=Lars, 2=3, 3=Tallinn} 
+ Cases after: 
+{1=Lars, 2=1, 3=Tartu}
+{1=Lars, 2=1, 3=Tallinn}
+{1=Lars, 2=2, 3=Tartu}
+{1=Lars, 2=2, 3=Tallinn}
+{1=Lars, 2=3, 3=Tartu}
+{1=Lars, 2=3, 3=Tallinn}
+Pairs before: 
+{1=Lars, 2=1, 3=Tartu}
+{1=Lars, 2=1, 3=Pärnu} 
+ Pairs after: 
+{1=Lars, 2=1, 3=Pärnu}
+ Result: 
+{1=Lars, 2=1, 3=Tartu}
+{1=Lars, 2=1, 3=Tallinn}
+{1=Lars, 2=2, 3=Tartu}
+{1=Lars, 2=2, 3=Tallinn}
+{1=Lars, 2=3, 3=Tartu}
+{1=Lars, 2=3, 3=Tallinn}

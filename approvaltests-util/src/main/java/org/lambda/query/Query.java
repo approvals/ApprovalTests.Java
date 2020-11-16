@@ -12,7 +12,7 @@ import com.spun.util.ArrayUtils;
 
 public class Query<In>
 {
-  public static <In, Out> Queryable<Out> select(List<In> list, Function1<In, Out> function)
+  public static <In, Out> Queryable<Out> select(Collection<In> list, Function1<In, Out> function)
   {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
@@ -62,7 +62,7 @@ public class Query<In>
     }
     return out;
   }
-  public static <In, Out extends Comparable<Out>> In max(List<In> list, Function1<In, Out> f1)
+  public static <In, Out extends Comparable<Out>> In max(Collection<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, 1);
   }
@@ -79,11 +79,11 @@ public class Query<In>
     }
     return total / list.size();
   }
-  private static <In, Out extends Comparable<Out>> In getTop(List<In> list, Function1<In, Out> f1, int modifier)
+  private static <In, Out extends Comparable<Out>> In getTop(Collection<In> list, Function1<In, Out> f1, int modifier)
   {
     if (ArrayUtils.isEmpty(list))
     { return null; }
-    In found = list.get(0);
+    In found = list.iterator().next();
     Out max = f1.call(found);
     for (In in : list)
     {
