@@ -142,7 +142,7 @@ public class CombinationApprovals
                         result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
                       }
                       output.append(String.format("%s => %s \n",
-                          extracted(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
+                          filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
                     }
                   }
                 }
@@ -154,7 +154,7 @@ public class CombinationApprovals
     }
     Approvals.verify(output);
   }
-  static List<Object> extracted(Object... objects)
+  public static List<Object> filterEmpty(Object... objects)
   {
     List<Object> list = new ArrayList<Object>();
     for (Object object : objects)
