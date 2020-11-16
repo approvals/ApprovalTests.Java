@@ -3,7 +3,6 @@ package org.approvaltests.combinations;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.Pairwise;
-import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
@@ -15,7 +14,6 @@ import org.lambda.functions.Function7;
 import org.lambda.functions.Function8;
 import org.lambda.functions.Function9;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PairWiseApprovals {
@@ -169,7 +167,7 @@ public class PairWiseApprovals {
             Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
             IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
             IN8[] parameters8, IN9[] parameters9, Options options) {
-        Pairwise pairwise = toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
+        Pairwise pairwise = Pairwise.toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
 
         final List<Case> cases = pairwise.getCases();
 
@@ -201,11 +199,4 @@ public class PairWiseApprovals {
 
     }
 
-    public static Pairwise toPairWise(Object[]... parameters) {
-        ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
-        for (int i = 0; i < parameters.length; i++) {
-            list.add(new OptionsForAParameter<>(i, parameters[i]));
-        }
-        return new Pairwise.Builder().withParameters(list).build();
-    }
 }

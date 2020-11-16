@@ -18,6 +18,15 @@ public class Pairwise implements Iterable<Case>
     this.parameters = parameters;
     this.cases = (List<Case>) (Object) cases;
   }
+  public static Pairwise toPairWise(Object[]... parameters)
+  {
+    ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
+    for (int i = 0; i < parameters.length; i++)
+    {
+      list.add(new OptionsForAParameter<>(i, parameters[i]));
+    }
+    return new Builder().withParameters(list).build();
+  }
   public int getTotalPossibleCombinations()
   {
     int totalPossibleSize = 1;

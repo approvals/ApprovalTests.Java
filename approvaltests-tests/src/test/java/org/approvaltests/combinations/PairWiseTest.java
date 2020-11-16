@@ -88,7 +88,7 @@ public class PairWiseTest
   }
   public HashMap<String, Integer> getAllPairsCount(Integer[]... inputs)
   {
-    Pairwise pairwise = PairWiseApprovals.toPairWise(inputs);
+    Pairwise pairwise = Pairwise.toPairWise(inputs);
     final List<Case> cases = pairwise.getCases();
     HashMap<String, Integer> pairCount = new HashMap<>();
     for (Case params : cases)
