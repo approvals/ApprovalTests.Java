@@ -174,11 +174,8 @@ public class PairWiseApprovals {
         final List<Case> cases = pairwise.getCases();
 
         StringBuffer output = new StringBuffer();
-        int totalPosisbleSize = 1;
-        for (OptionsForAParameter<?> parameter : pairwise.getParameters()) {
-            totalPosisbleSize *= parameter.size();
-        }
-        output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPosisbleSize));
+        int totalPossibleSize = totalPossibleCombinations(pairwise);
+        output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPossibleSize));
         for (Case params : cases) {
             String result;
             final IN1 in1 = (IN1) params.get(0);
@@ -202,6 +199,14 @@ public class PairWiseApprovals {
         }
         Approvals.verify(output, options);
 
+    }
+
+    private static int totalPossibleCombinations(Pairwise pairwise) {
+        int totalPossibleSize = 1;
+        for (OptionsForAParameter<?> parameter : pairwise.getParameters()) {
+            totalPossibleSize *= parameter.size();
+        }
+        return totalPossibleSize;
     }
 
     public static Pairwise toPairWise(Object[]... parameters) {
