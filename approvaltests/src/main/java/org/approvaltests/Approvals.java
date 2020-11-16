@@ -173,7 +173,7 @@ public class Approvals
   {
     verify(writer, new Options());
   }
-  private static void verify(ApprovalWriter writer, Options options)
+  public static void verify(ApprovalWriter writer, Options options)
   {
     verify(writer, options.forFile().getNamer(), options);
   }
