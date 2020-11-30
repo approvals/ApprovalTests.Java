@@ -37,7 +37,9 @@ This takes advantage of a concept called [pairwise testing](https://youtu.be/xzs
 This can very useful when running long running tests or when dealing with vast amounts of combinations.
 All you need to do to use this, is change `CombinationApprovals.verifyAllCombinations` to `verifyBestCoveringPairs`.
 
-| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations | <!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
+ <!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
+
+| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |
 | -------------------- | ----------------------- | ------------------ | --------------------- |
 |2|5|25|25|
 |3|3|27|11|
