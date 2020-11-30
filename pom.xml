@@ -5,7 +5,7 @@
 
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests-parent</artifactId>
-    <version>9.3.1-SNAPSHOT</version>
+    <version>9.4.0</version>
     <packaging>pom</packaging>
 
     <name>ApprovalTests.Java</name>
@@ -88,6 +88,14 @@
                         </configurationParameters>
                         -->
                     </properties>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
                 </configuration>
             </plugin>
             <plugin>
