@@ -9,6 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
+import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.combinations.PairWiseApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
@@ -72,6 +73,7 @@ public class OptionsTest
   {
     verifyEachVerifyMethodHasOneWithOptions(Approvals.class);
     verifyEachVerifyMethodHasOneWithOptions(PairWiseApprovals.class);
+    verifyEachVerifyMethodHasOneWithOptions(CombinationApprovals.class);
   }
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
   {
@@ -99,7 +101,7 @@ public class OptionsTest
       assertTrue(
           Query.any(methodsWithOptions,
               m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
-          "No match found for:" + withoutOptions);
+          "No match found for:\n" + withoutOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
     assertNotEquals(0, methodsWithoutOptions.size());

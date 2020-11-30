@@ -1,5 +1,6 @@
 package org.approvaltests.combinations;
 
+import org.approvaltests.core.Options;
 import org.approvaltests.legacycode.LegacyApprovals;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
@@ -104,7 +105,17 @@ public class CombinationApprovals
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9)
   {
-    CombinationsHelper.verifyAllCombinations(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9);
+    verifyAllCombinations(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9, new Options());
+  }
+  /**
+   * Use SkipCombination exception for invalid combinations
+   */
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyAllCombinations(
+      Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
+      IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
+      IN8[] parameters8, IN9[] parameters9, Options options)
+  {
+    CombinationsHelper.verifyAllCombinations(call, parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7, parameters8, parameters9, options);
   }
 
 }

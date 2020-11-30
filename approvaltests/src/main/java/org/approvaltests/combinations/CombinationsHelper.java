@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.lambda.functions.Function9;
 
 public class CombinationsHelper
@@ -11,9 +12,9 @@ public class CombinationsHelper
   public static final Object EMPTY_ENTRY = new Object();
   public static final Object[] EMPTY     = {EMPTY_ENTRY};
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyAllCombinations(
-      Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
-      IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
-      IN8[] parameters8, IN9[] parameters9)
+          Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
+          IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
+          IN8[] parameters8, IN9[] parameters9, Options options)
   {
     StringBuffer output = new StringBuffer();
     for (IN1 in1 : parameters1)
@@ -58,7 +59,7 @@ public class CombinationsHelper
         }
       }
     }
-    Approvals.verify(output);
+    Approvals.verify(output, options);
   }
   public static List<Object> filterEmpty(Object... objects)
   {
