@@ -7,8 +7,10 @@ toc
 ## 9.4.0
 ### CombinationApprovals.verifyBestCoveringPairs
 This takes advantage of a concept called [pairwise testing](https://youtu.be/xzs-Zpz8vPg?t=134) to dramatically reduce the amount of combinations executed while retaining the vast majority of coverage.
-This can very useful when running long running tests or when dealing with vast amounts of combinations.
-All you need to do to use this, is change `CombinationApprovals.verifyAllCombinations` to `verifyBestCoveringPairs`.
+This can be very useful when running long running tests or when dealing with vast amounts of combinations.
+All you need to do in order to use this, is change `CombinationApprovals.verifyAllCombinations` to `CombinationApprovals.verifyBestCoveringPairs`.
+
+Notice that for low numbers of parameters, very little is achieved, but at high numbers, the results are amazing.
 
 include: PairWiseTest.forTable.approved
 

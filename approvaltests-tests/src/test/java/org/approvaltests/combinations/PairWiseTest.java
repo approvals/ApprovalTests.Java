@@ -34,7 +34,7 @@ public class PairWiseTest
     output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
     output.append(
         "| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |\n"
-            + "| -------------------- | ----------------------- | ------------------: | ---------------------: |\n");
+            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
     output.append(getPairwiseTableRow(2, 5));
     output.append(getPairwiseTableRow(3, 3));
     output.append(getPairwiseTableRow(3, 4));
@@ -42,7 +42,7 @@ public class PairWiseTest
     output.append(getPairwiseTableRow(5, 6));
     output.append(getPairwiseTableRow(9, 9));
     output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
-    Approvals.verify(output, new Options().forFile().withExtension("include.md").withReporter(BeyondCompareMacReporter.INSTANCE));
+    Approvals.verify(output, new Options().forFile().withExtension("include.md"));
   }
   private String getPairwiseTableRow(int pCount, int variations)
   {
