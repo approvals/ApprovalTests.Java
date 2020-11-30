@@ -21,7 +21,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   protected String           diffProgramNotFoundMessage;
   private List<String>       validExtensions;
   public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml", ".eml",
-      ".java", ".css", ".js", ".json");
+      ".java", ".css", ".js", ".json", ".md");
   public static List<String> IMAGE_FILE_EXTENSIONS = Arrays.asList(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
       ".tiff");
   public GenericDiffReporter(String diffProgram)
