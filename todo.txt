@@ -1,7 +1,7 @@
 
 * Pairwise
-** add Options everywhere
-** align API with CombinationApprovals -> Approvals.verifyMinimalPairs() or similar
+** make github action to publish to maven (see mockito perhaps)
+** find obsolete approved files (after renamed tests for example)
 
 
 
