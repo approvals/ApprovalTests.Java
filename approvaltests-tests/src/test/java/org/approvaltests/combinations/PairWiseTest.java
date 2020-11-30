@@ -16,7 +16,9 @@ import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.core.Options;
 import org.approvaltests.legacycode.Range;
+import org.approvaltests.reporters.FileLauncherReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.macosx.BeyondCompareMacReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
@@ -32,14 +34,15 @@ public class PairWiseTest
     output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
     output.append(
         "| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |\n"
-            + "| -------------------- | ----------------------- | ------------------ | --------------------- |\n");
+            + "| -------------------- | ----------------------- | ------------------: | ---------------------: |\n");
     output.append(getPairwiseTableRow(2, 5));
     output.append(getPairwiseTableRow(3, 3));
     output.append(getPairwiseTableRow(3, 4));
     output.append(getPairwiseTableRow(4, 5));
     output.append(getPairwiseTableRow(5, 6));
     output.append(getPairwiseTableRow(9, 9));
-    Approvals.verify(output, new Options().forFile().withExtension("include.md"));
+    output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
+    Approvals.verify(output, new Options().forFile().withExtension("include.md").withReporter(BeyondCompareMacReporter.INSTANCE));
   }
   private String getPairwiseTableRow(int pCount, int variations)
   {
