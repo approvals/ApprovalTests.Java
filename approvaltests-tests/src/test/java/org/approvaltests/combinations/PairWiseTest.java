@@ -29,6 +29,7 @@ public class PairWiseTest
   void forTable()
   {
     StringBuffer output = new StringBuffer();
+    output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
     output.append(
         "| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |\n"
             + "| -------------------- | ----------------------- | ------------------ | --------------------- |\n");

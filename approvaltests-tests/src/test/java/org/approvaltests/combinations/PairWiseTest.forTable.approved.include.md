@@ -1,3 +1,5 @@
+
+
 | Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |
 | -------------------- | ----------------------- | ------------------ | --------------------- |
 |2|5|25|25|
