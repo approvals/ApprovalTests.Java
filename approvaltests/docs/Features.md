@@ -12,6 +12,8 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
+  * [9.4.0](#940)
+    * [CombinationApprovals.verifyBestCoveringPairs](#combinationapprovalsverifybestcoveringpairs)
   * [9.3.0](#930)
     * [Printable wrappers](#printable-wrappers)
   * [6.0.1](#601)
@@ -28,6 +30,23 @@ To change this file edit the source file and then run MarkdownSnippets.
     * [Method 2 - use Runner](#method-2---use-runner)
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
+
+## 9.4.0
+### CombinationApprovals.verifyBestCoveringPairs
+This takes advantage of a concept called [pairwise testing](https://youtu.be/xzs-Zpz8vPg?t=134) to dramatically reduce the amount of combinations executed while retaining the vast majority of coverage.
+This can very useful when running long running tests or when dealing with vast amounts of combinations.
+All you need to do to use this, is change `CombinationApprovals.verifyAllCombinations` to `verifyBestCoveringPairs`.
+
+| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations | <!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
+| -------------------- | ----------------------- | ------------------ | --------------------- |
+|2|5|25|25|
+|3|3|27|11|
+|3|4|64|16|
+|4|5|625|33|
+|5|6|7,776|49|
+|9|9|387,420,489|134| <!-- endInclude -->
+
+
 
 ## 9.3.0
 ### Printable wrappers
