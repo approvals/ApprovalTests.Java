@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.approvaltests.combinations.CombinationApprovals;
-import org.approvaltests.combinations.PairWiseApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
@@ -72,7 +71,6 @@ public class OptionsTest
   void testEachMethodHasOneWithOptions()
   {
     verifyEachVerifyMethodHasOneWithOptions(Approvals.class);
-    verifyEachVerifyMethodHasOneWithOptions(PairWiseApprovals.class);
     verifyEachVerifyMethodHasOneWithOptions(CombinationApprovals.class);
   }
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
