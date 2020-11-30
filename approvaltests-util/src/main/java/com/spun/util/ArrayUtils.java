@@ -107,6 +107,10 @@ public class ArrayUtils
         throw new Error("Called with more than one object in the array " + Arrays.asList(parts));
     }
   }
+  public static <T> T getFirst(T[] array)
+  {
+    return array == null || array.length == 0 ? null : array[0];
+  }
   
   public static <H, T extends H> T getFirst(T[] array, Comparator<H> compartor)
   {

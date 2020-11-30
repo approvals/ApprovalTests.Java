@@ -15,6 +15,10 @@ public class LegacyApprovals
 {
   public static void LockDown(Object call, String method, Object[]... parametersVariations)
   {
+    LockDown(new Options(), call, method, parametersVariations);
+  }
+  public static void LockDown(Options options, Object call, String method, Object[]... parametersVariations)
+  {
     StringBuffer sb = new StringBuffer();
     IndexPermutations perms = new IndexPermutations(getSizes(parametersVariations));
     Method m = null;
@@ -36,7 +40,7 @@ public class LegacyApprovals
       }
       sb.append(String.format("%s = %s \n", Arrays.toString(p), out));
     }
-    Approvals.verify(sb);
+    Approvals.verify(sb, options);
   }
   private static Object[] getParameters(Object[][] parametersVariations, Integer[] index)
   {

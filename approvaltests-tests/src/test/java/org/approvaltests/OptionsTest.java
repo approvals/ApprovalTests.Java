@@ -80,31 +80,37 @@ public class OptionsTest
     Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());
     Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith("verify")
         && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
-    List<Method> methodsWithOptions = methodList
-        .where(m -> ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
-    List<Method> methodsWithoutOptions = methodList
-        .where(m -> !ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class));
+    List<Method> methodsWithOptions = methodList.where(m -> isOptionsPresent(m));
+    List<Method> methodsWithoutOptions = methodList.where(m -> !(isOptionsPresent(m)));
     for (Method withOptions : methodsWithOptions)
     {
       String name = withOptions.getName();
       Class<?>[] parameterTypes = withOptions.getParameterTypes();
-      Class[] parameters = ArrayUtils.getSubsection(parameterTypes, 0, parameterTypes.length - 1);
-      assertTrue(
-          Query.any(methodsWithoutOptions,
-              m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
-          "No match found for:" + withOptions);
+      Class<?>[] parameters = getWithoutOptions(parameterTypes);
+      boolean foundWithoutOptions = Query.any(methodsWithoutOptions,
+          m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters));
+      assertTrue(foundWithoutOptions, "No match found for:" + withOptions);
     }
     for (Method withoutOptions : methodsWithoutOptions)
     {
       String name = withoutOptions.getName();
-      Class[] parameters = ArrayUtils.addToArray(withoutOptions.getParameterTypes(), Options.class);
-      assertTrue(
-          Query.any(methodsWithOptions,
-              m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters)),
-          "No match found for:\n" + withoutOptions);
+      Class[] parameters = withoutOptions.getParameterTypes();
+      boolean foundWithOptions = Query.any(methodsWithOptions, m -> name.equals(m.getName())
+          && Arrays.deepEquals(getWithoutOptions(m.getParameterTypes()), parameters));
+      assertTrue(foundWithOptions, "No match found for:\n" + withoutOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
     assertNotEquals(0, methodsWithoutOptions.size());
+  }
+  private Class<?>[] getWithoutOptions(Class<?>[] parameterTypes)
+  {
+    Class<?>[] parameters = Query.where(parameterTypes, t -> !t.equals(Options.class)).toArray(new Class[0]);
+    return parameters;
+  }
+  private boolean isOptionsPresent(Method m)
+  {
+    return ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class)
+        || ArrayUtils.getFirst(m.getParameterTypes()).equals(Options.class);
   }
   @Test
   void verifyFileExtension()
