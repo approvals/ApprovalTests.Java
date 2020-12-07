@@ -6,7 +6,7 @@
     <parent>
         <artifactId>approvaltests-parent</artifactId>
         <groupId>com.approvaltests</groupId>
-        <version>9.4.1-SNAPSHOT</version>
+        <version>9.5.0</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>CounterDisplay</artifactId>
