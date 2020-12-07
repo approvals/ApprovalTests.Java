@@ -13,12 +13,18 @@ To change this file edit the source file and then run MarkdownSnippets.
 ## Contents
 
   * [Features](#features)
+  * [How Tos](#how-tos)
   * [Configuration](#configuration)
   * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)<!-- endToc -->
 
 ## Features
 
 [New Features documented here](Features.md#top)
+
+## How Tos
+
+* use [Printable Wrappers](how_to/PrintableWrappers.md#top)
+* use [Parameterized Tests](how_to/ParameterizedTest.md#top)
 
 ## Configuration
 
