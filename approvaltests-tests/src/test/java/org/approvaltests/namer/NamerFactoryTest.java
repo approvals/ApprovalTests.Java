@@ -4,6 +4,8 @@ import org.approvaltests.Approvals;
 import org.approvaltests.namer.MultipleFilesLabeller;
 import org.approvaltests.namer.NamerFactory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class NamerFactoryTest
 {
@@ -14,6 +16,15 @@ public class NamerFactoryTest
       Approvals.verify("one");
       labeller.next();
       Approvals.verify("two");
+    }
+  }
+  @ParameterizedTest
+  @CsvSource({"Oskar,4", "Birgit,1"})
+  void testNamingWithMultipleParameters(String name, int age) {
+    try (NamedEnvironment en = NamerFactory.withParameters(name, age))
+    {
+      Object output = name + ":" + age;
+      Approvals.verify(output);
     }
   }
 }

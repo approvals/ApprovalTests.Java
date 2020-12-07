@@ -1,15 +1,18 @@
 package org.approvaltests.namer;
 
-import com.spun.util.SystemUtils;
 import org.lambda.functions.Function0;
 import org.packagesettings.PackageLevelSettings;
+
+import com.spun.util.StringUtils;
+import com.spun.util.SystemUtils;
 
 public class NamerFactory
 {
   public static String additionalInformation;
   public static String getAndClearAdditionalInformation()
   {
-    if (additionalInformation == null) { return ""; }
+    if (additionalInformation == null)
+    { return ""; }
     String out = "." + additionalInformation;
     additionalInformation = null;
     return out;
@@ -42,5 +45,9 @@ public class NamerFactory
   public static String getApprovalBaseDirectory()
   {
     return (String) PackageLevelSettings.getValueFor("ApprovalBaseDirectory");
+  }
+  public static NamedEnvironment withParameters(Object... parameters)
+  {
+    return new NamedEnvironment(StringUtils.join(parameters, ".", o -> "" + o));
   }
 }

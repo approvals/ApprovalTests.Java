@@ -40,7 +40,7 @@ public class Samples
   @ValueSource(strings = {"parameter1", "parameter2"})
   void sampleParameterizedTest(String parameter)
   {
-    try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(parameter))
+    try (NamedEnvironment en = NamerFactory.withParameters(parameter))
     {
       // your code goes here
       Object output = parameter;
