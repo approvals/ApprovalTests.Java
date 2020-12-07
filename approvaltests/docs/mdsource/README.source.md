@@ -8,6 +8,11 @@ toc
 
 [New Features documented here](Features.md#top)
 
+## How Tos
+
+* use [Printable Wrappers](how_to/PrintableWrappers.md#top)
+* use [Parameterized Tests](how_to/ParameterizedTest.md#top)
+
 ## Configuration
 
 Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 
