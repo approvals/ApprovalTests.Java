@@ -102,7 +102,7 @@ public class SampleArrayTest
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.java#L8-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-demo' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-Will Produce a File `SampleTest.TestList.received.txt`
+Will Produce a File `SampleArrayTest.testList.received.txt`
 <!-- snippet: /approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt -->
 <a id='snippet-/approvaltests-tests/src/test/java/org/approvaltests/demos/SampleArrayTest.testList.approved.txt'></a>
 ```txt
