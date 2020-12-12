@@ -159,7 +159,8 @@ public class Approvals
   @Deprecated
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
   {
-    verify(new FileApprover(writer, namer), new Options(reporter));
+    Options options = new Options(reporter);
+    verify(new FileApprover(writer, namer, options), options);
   }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer)
   {
@@ -167,7 +168,7 @@ public class Approvals
   }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, Options options)
   {
-    verify(new FileApprover(writer, namer), options);
+    verify(new FileApprover(writer, namer, options), options);
   }
   public static void verify(ApprovalWriter writer)
   {

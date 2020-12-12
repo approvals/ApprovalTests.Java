@@ -125,6 +125,13 @@ public class OptionsTest
     Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
     Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
   }
+  @Test
+  void verifyFileApprovedFileCreation()
+  {
+    String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
+    Approvals.verify(sampleText,
+        new Options().forFile().withCreateApprovedFileIfNoneExisting(true));
+  }
   @Disabled("todo")
   @Test
   void verifyFilePath()

@@ -58,6 +58,7 @@ public class Options
   public static class FileOptions
   {
     private String         fileExtension = ".txt";
+    private boolean        createApprovedFileIfNoneExisting = false;
     protected NamerWrapper approvalNamer = null;
     protected Options      parent;
     public FileOptions()
@@ -67,10 +68,11 @@ public class Options
     {
       this.fileExtension = fileExtension;
     }
-    public FileOptions(NamerWrapper approvalNamer, String fileExtension)
+    public FileOptions(NamerWrapper approvalNamer, String fileExtension, boolean createApprovedFileIfNoneExisting)
     {
       this.approvalNamer = approvalNamer;
       this.fileExtension = fileExtension;
+      this.createApprovedFileIfNoneExisting = createApprovedFileIfNoneExisting;
     }
     public void setParent(Options parent)
     {
@@ -82,7 +84,7 @@ public class Options
       {
         fileExtensionWithDot = "." + fileExtensionWithDot;
       }
-      FileOptions f = new FileOptions(this.approvalNamer, fileExtensionWithDot);
+      FileOptions f = new FileOptions(this.approvalNamer, fileExtensionWithDot, createApprovedFileIfNoneExisting);
       return new Options(parent, f);
     }
     public ApprovalNamer getNamer()
@@ -93,16 +95,24 @@ public class Options
     {
       return fileExtension;
     }
+    public boolean shouldCreateApprovedFileIfNoneExisting() {
+		return createApprovedFileIfNoneExisting;
+	}
     public Options withBaseName(String fileBaseName)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      FileOptions f = new FileOptions(approvalNamer, this.fileExtension);
+      FileOptions f = new FileOptions(approvalNamer, this.fileExtension, createApprovedFileIfNoneExisting);
       return new Options(parent, f);
     }
 
     public Options withName(String fileBaseName, String extension) {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      FileOptions f = new FileOptions(approvalNamer, extension);
+      FileOptions f = new FileOptions(approvalNamer, extension, createApprovedFileIfNoneExisting);
+      return new Options(parent, f);
+    }
+
+    public Options withCreateApprovedFileIfNoneExisting(boolean createApprovedFileIfNoneExisting) {
+      FileOptions f = new FileOptions(approvalNamer, fileExtension, createApprovedFileIfNoneExisting);
       return new Options(parent, f);
     }
   }

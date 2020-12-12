@@ -19,3 +19,5 @@ target
 .vscode/
 build/venv*/
 __pycache__/
+
+approvaltests-tests/src/test/java/org/approvaltests/OptionsTest.verifyFileApprovedFileCreation.approved.txt
