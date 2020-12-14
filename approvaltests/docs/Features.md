@@ -73,10 +73,10 @@ If you want to customize how approvaltests decides if two files are equal, you c
 ```java
 ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options());
 ApprovalNamer namer = Approvals.createApprovalNamer();
-Function2<File, File, Boolean> approveEverything = (r, a) -> true;
+Function2<File, File, VerifyResult> approveEverything = (r, a) -> VerifyResult.SUCCESS;
 Approvals.verify(new FileApprover(writer, namer, approveEverything));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L65-L70' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_approver' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L66-L71' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_approver' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
