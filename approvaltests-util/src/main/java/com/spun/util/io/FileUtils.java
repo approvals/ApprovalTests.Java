@@ -409,4 +409,15 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+  public static void delete(String filePath)
+  {
+    delete(new File(filePath));
+  }
+  public static void delete(File file)
+  {
+    if (file.exists())
+    {
+      file.delete();
+    }
+  }
 }

@@ -1,5 +1,9 @@
 package org.approvaltests.namer;
 
+import java.io.File;
+
+import org.approvaltests.writers.Writer;
+
 public class NamerWrapper implements ApprovalNamer
 {
   private GetApprovalName   approvalBaseName;
@@ -49,5 +53,13 @@ public class NamerWrapper implements ApprovalNamer
   public void setSourceFilePath(GetSourceFilePath getSourceFilePath)
   {
     this.sourceFilePath = getSourceFilePath;
+  }
+  public File getReceivedFile(String extensionWithDot)
+  {
+    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.received + extensionWithDot);
+  }
+  public File getApprovalFile(String extensionWithDot)
+  {
+    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
   }
 }
