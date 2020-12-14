@@ -15,9 +15,11 @@ import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
+import org.approvaltests.reporters.ReporterWithApprovalPower;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.approvaltests.writers.ApprovalXmlWriter;
 import org.approvaltests.writers.DirectoryToDirectoryWriter;
@@ -200,14 +202,14 @@ public class Approvals
   public static void verify(ApprovalApprover approver, Options options)
   {
     ApprovalFailureReporter reporter = options.getReporter();
-    if (!approver.approve())
-    {
-      approver.reportFailure(reporter);
-      approver.fail();
+    VerifyResult result = approver.approve();
+    if (result.isFailure()) {
+      result = approver.reportFailure(reporter);
     }
-    else
-    {
+    if (result.isSuccessful()) {
       approver.cleanUpAfterSuccess(reporter);
+    } else {
+      approver.fail();
     }
   }
   public static void verify(ExecutableQuery query)

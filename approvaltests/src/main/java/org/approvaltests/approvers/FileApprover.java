@@ -5,7 +5,9 @@ import java.io.File;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.reporters.ReporterWithApprovalPower;
 import org.lambda.functions.Function2;
 
 import com.spun.util.ObjectUtils;
@@ -16,12 +18,12 @@ public class FileApprover implements ApprovalApprover
   private File                           received;
   private File                           approved;
   private final ApprovalWriter           writer;
-  private Function2<File, File, Boolean> approver;
+  private Function2<File, File, VerifyResult> approver;
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
     this(writer, namer, FileApprover::approveTextFile);
   }
-  public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, Boolean> approver)
+  public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver)
   {
     this.writer = writer;
     String base = String.format("%s%s", namer.getSourceFilePath(), namer.getApprovalName());
@@ -29,7 +31,7 @@ public class FileApprover implements ApprovalApprover
     approved = new File(writer.getApprovalFilename(base));
     this.approver = approver;
   }
-  public boolean approve()
+  public VerifyResult approve()
   {
     received = new File(writer.writeReceivedFile(received.getAbsolutePath()));
     return approver.call(received, approved);
@@ -42,20 +44,25 @@ public class FileApprover implements ApprovalApprover
       ((ApprovalReporterWithCleanUp) reporter).cleanUp(received.getAbsolutePath(), approved.getAbsolutePath());
     }
   }
-  public void reportFailure(ApprovalFailureReporter reporter)
+  public VerifyResult reportFailure(ApprovalFailureReporter reporter)
   {
     reporter.report(received.getAbsolutePath(), approved.getAbsolutePath());
+    if (reporter instanceof ReporterWithApprovalPower) {
+      ReporterWithApprovalPower reporterWithApprovalPower = (ReporterWithApprovalPower) reporter;
+      return reporterWithApprovalPower.approveWhenReported();
+    }
+    return VerifyResult.FAILURE;
   }
   public void fail()
   {
     throw new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
         received.getAbsolutePath()));
   }
-  public static Boolean approveTextFile(File received, File approved)
+  public static VerifyResult approveTextFile(File received, File approved)
   {
-    if (!approved.exists() || !received.exists()) { return false; }
+    if (!approved.exists() || !received.exists()) { return VerifyResult.FAILURE; }
     String t1 = FileUtils.readFile(approved);
     String t2 = FileUtils.readFile(received);
-    return ObjectUtils.isEqual(t1, t2);
+    return VerifyResult.from(ObjectUtils.isEqual(t1, t2));
   }
 }

@@ -1,11 +1,12 @@
 package org.approvaltests.approvers;
 
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.VerifyResult;
 
 public interface ApprovalApprover
 {
-  boolean approve();
+  VerifyResult approve();
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter);
   void fail();
-  void reportFailure(ApprovalFailureReporter reporter);
+  VerifyResult reportFailure(ApprovalFailureReporter reporter);
 }

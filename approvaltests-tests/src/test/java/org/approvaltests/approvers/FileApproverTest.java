@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.Test;
@@ -33,9 +34,9 @@ public class FileApproverTest
   {
     File f1 = createFile("1");
     File f2 = createFile("2");
-    assertFalse(FileApprover.approveTextFile(f2, f1), "files are different");
+    assertEquals(VerifyResult.FAILURE, FileApprover.approveTextFile(f2, f1), "files are different");
     f2 = createFile("1");
-    assertTrue(FileApprover.approveTextFile(f2, f1), "files are the same");
+    assertEquals(VerifyResult.SUCCESS, FileApprover.approveTextFile(f2, f1), "files are the same");
   }
   @Test
   public void testApproveTextFileWithNonExsitantFile()
@@ -44,7 +45,7 @@ public class FileApproverTest
     File f2 = new File("no exist");
     assertTrue(f1.exists());
     assertFalse(f2.exists());
-    assertFalse(FileApprover.approveTextFile(f2, f1));
+    assertEquals(VerifyResult.FAILURE, FileApprover.approveTextFile(f2, f1));
   }
   private File createFile(String string)
   {
@@ -65,7 +66,7 @@ public class FileApproverTest
     // begin-snippet: custom_approver
     ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options());
     ApprovalNamer namer = Approvals.createApprovalNamer();
-    Function2<File, File, Boolean> approveEverything = (r, a) -> true;
+    Function2<File, File, VerifyResult> approveEverything = (r, a) -> VerifyResult.SUCCESS;
     Approvals.verify(new FileApprover(writer, namer, approveEverything));
     // end-snippet
   }
