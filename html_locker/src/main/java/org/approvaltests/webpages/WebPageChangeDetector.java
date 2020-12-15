@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import javax.swing.JFrame;
 
 import org.approvaltests.approvers.FileApprover;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.reporters.DiffReporter;
 
 import com.spun.util.Colors;
@@ -21,7 +22,7 @@ public class WebPageChangeDetector implements ActionListener
   private boolean                 keyPressed = false;
   private URI                     url;
   private boolean                 validUrl;
-  private Boolean                 filesMatched;
+  private VerifyResult            filesMatched;
   public WebPageChangeDetectorGui gui;
   public WebPageChangeDetector()
   {
@@ -30,7 +31,8 @@ public class WebPageChangeDetector implements ActionListener
   @Override
   public void actionPerformed(ActionEvent e)
   {
-    if (keyPressed) { return; }
+    if (keyPressed)
+    { return; }
     try
     {
       keyPressed = true;
@@ -53,7 +55,7 @@ public class WebPageChangeDetector implements ActionListener
     updateModel();
     WebPageApproval.captureWebPage(url, getRecievedFile());
     filesMatched = verifyFiles(getApprovedFile(), getRecievedFile());
-    if (!filesMatched)
+    if (filesMatched.isFailure())
     {
       try
       {
@@ -66,7 +68,7 @@ public class WebPageChangeDetector implements ActionListener
     }
     updateScreen();
   }
-  private boolean verifyFiles(String approvedFile, String recievedFile)
+  private VerifyResult verifyFiles(String approvedFile, String recievedFile)
   {
     return FileApprover.approveTextFile(new File(recievedFile), new File(approvedFile));
   }
@@ -104,11 +106,11 @@ public class WebPageChangeDetector implements ActionListener
     {
       color = Colors.Yellows.Yellow;
     }
-    else if (filesMatched == true)
+    else if (filesMatched.isSuccessful())
     {
       color = Colors.Greens.Green;
     }
-    else if (filesMatched == false)
+    else if (filesMatched.isFailure())
     {
       color = Colors.Reds.FireBrick;
     }
