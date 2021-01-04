@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalTestPackageSettings;
 import org.approvaltests.reporters.DefaultFrontLoadedReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.packagesettings.Field;
 import org.packagesettings.PackageLevelSettings;
 import org.packagesettings.Settings;
 
@@ -23,13 +23,6 @@ import com.spun.util.ThreadUtils;
 
 public class ReporterFactory
 {
-  public static class ApprovalTestPackageSettings
-  {
-    public static final Field<EnvironmentAwareReporter> FRONTLOADED_REPORTER = new Field<>("FrontloadedReporter",
-        EnvironmentAwareReporter.class);
-    public static final Field<ApprovalFailureReporter> USE_REPORTER = new Field<>("UseReporter",
-        ApprovalFailureReporter.class);
-  }
   public static ApprovalFailureReporter get()
   {
     StackTraceElement[] trace = ThreadUtils.getStackTrace();

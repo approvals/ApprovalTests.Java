@@ -1,5 +1,6 @@
 package org.approvaltests.namer;
 
+import org.approvaltests.core.ApprovalTestPackageSettings;
 import org.lambda.functions.Function0;
 import org.packagesettings.PackageLevelSettings;
 
@@ -40,11 +41,11 @@ public class NamerFactory
   }
   public static String getSubdirectory()
   {
-    return (String) PackageLevelSettings.getValueFor("UseApprovalSubdirectory");
+    return PackageLevelSettings.getValueFor(ApprovalTestPackageSettings.USE_APPROVAL_SUBDIRECTORY);
   }
   public static String getApprovalBaseDirectory()
   {
-    return (String) PackageLevelSettings.getValueFor("ApprovalBaseDirectory");
+    return PackageLevelSettings.getValueFor(ApprovalTestPackageSettings.APPROVAL_BASE_DIRECTORY);
   }
   public static NamedEnvironment withParameters(Object... parameters)
   {

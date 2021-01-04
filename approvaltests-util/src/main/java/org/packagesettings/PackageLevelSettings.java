@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.lambda.functions.Function0;
+
 import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
 
@@ -36,7 +38,8 @@ public class PackageLevelSettings
   }
   private static Map<String, Settings> getSettingsFor(String packageName, HashSet<String> done)
   {
-    if (packageName == null || done.contains(packageName)) { return Collections.emptyMap(); }
+    if (packageName == null || done.contains(packageName))
+    { return Collections.emptyMap(); }
     Map<String, Settings> settings = new HashMap<String, Settings>();
     settings.putAll(getSettingsFor(getNextLevel(packageName), done));
     try
@@ -89,5 +92,13 @@ public class PackageLevelSettings
   {
     Settings settings = get().get(key);
     return settings == null ? null : settings.getValue();
+  }
+  public static <T> T getValueFor(org.packagesettings.Field<T> field)
+  {
+    return getValueFor(field, () -> null);
+  }
+  public static <T> T getValueFor(org.packagesettings.Field<T> field, Function0<T> defaultSupplier)
+  {
+    return field.getValue(get(), defaultSupplier);
   }
 }
