@@ -13,6 +13,7 @@ import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.packagesettings.Field;
 import org.packagesettings.PackageLevelSettings;
 import org.packagesettings.Settings;
 
@@ -22,8 +23,12 @@ import com.spun.util.ThreadUtils;
 
 public class ReporterFactory
 {
-  public static final String FRONTLOADED_REPORTER = "FrontloadedReporter";
-  public static final String USE_REPORTER         = "UseReporter";
+  public static class ApprovalTestPackageSettings
+  {
+    public static final Field<EnvironmentAwareReporter> FRONTLOADED_REPORTER = new Field<>("FrontloadedReporter",
+        EnvironmentAwareReporter.class);
+  }
+  public static final String USE_REPORTER = "UseReporter";
   public static ApprovalFailureReporter get()
   {
     StackTraceElement[] trace = ThreadUtils.getStackTrace();
@@ -57,15 +62,7 @@ public class ReporterFactory
   public static EnvironmentAwareReporter getFrontLoadedReporter()
   {
     Map<String, Settings> settings = PackageLevelSettings.get();
-    Settings value = settings.get(FRONTLOADED_REPORTER);
-    if (value != null && value.getValue() instanceof EnvironmentAwareReporter)
-    {
-      return (EnvironmentAwareReporter) value.getValue();
-    }
-    else
-    {
-      return DefaultFrontLoadedReporter.INSTANCE;
-    }
+    return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings, DefaultFrontLoadedReporter.INSTANCE);
   }
   public static ApprovalFailureReporter getFromAnnotation(StackTraceElement[] trace)
   {
