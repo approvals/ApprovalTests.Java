@@ -27,8 +27,9 @@ public class ReporterFactory
   {
     public static final Field<EnvironmentAwareReporter> FRONTLOADED_REPORTER = new Field<>("FrontloadedReporter",
         EnvironmentAwareReporter.class);
+    public static final Field<ApprovalFailureReporter> USE_REPORTER = new Field<>("UseReporter",
+        ApprovalFailureReporter.class);
   }
-  public static final String USE_REPORTER = "UseReporter";
   public static ApprovalFailureReporter get()
   {
     StackTraceElement[] trace = ThreadUtils.getStackTrace();
@@ -46,15 +47,7 @@ public class ReporterFactory
   private static ApprovalFailureReporter getFromPackageSettings(StackTraceElement[] trace)
   {
     Map<String, Settings> settings = PackageLevelSettings.getForStackTrace(trace);
-    Settings value = settings.get(USE_REPORTER);
-    if (value != null && value.getValue() instanceof ApprovalFailureReporter)
-    {
-      return (ApprovalFailureReporter) value.getValue();
-    }
-    else
-    {
-      return null;
-    }
+    return ApprovalTestPackageSettings.USE_REPORTER.getValue(settings, null);
   }
   /**
    * Loaded from PackageSettings.FrontloadedReporter
