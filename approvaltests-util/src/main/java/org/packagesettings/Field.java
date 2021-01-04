@@ -22,4 +22,12 @@ public class Field<T>
   {
     return isPresent(settings) ? (T) settings.get(Name).getValue() : defaultValue.call();
   }
+  public String getFieldName()
+  {
+    return Name;
+  }
+  public Class<T> getFieldClass()
+  {
+    return Class;
+  }
 }

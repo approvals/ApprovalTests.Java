@@ -1,0 +1,6 @@
+public class PackageSettings {
+
+#foreach($f in $commons.asArray($fields))
+    public static $f.get().getFieldClass().getSimpleName() $f.get().getFieldName() = $defaults.get($f.get());
+#end
+}

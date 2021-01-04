@@ -6,7 +6,7 @@
 ## Contents
 
   * [What is configurable?](#what-is-configurable)
-  * [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
+    * [Package Level Settings](#package-level-settings)
   * [Alternative Base Directory for Output Files](#alternative-base-directory-for-output-files)
   * [PackageLevelSettings](#packagelevelsettings)<!-- endToc -->
 
@@ -19,18 +19,20 @@ Currently you can configure:
  * FrontLoadedReporters ( package/class/method)
  * ApprovalSubdirectories (package)
 
-## Using Subdirectories for Approval Output Files
+### Package Level Settings
+The following options will be read by ApprovalTests:
+<!-- snippet: ApprovalTestPackageSettingsTest.createPackageSettingDocumentation.approved.txt -->
+<a id='snippet-ApprovalTestPackageSettingsTest.createPackageSettingDocumentation.approved.txt'></a>
+```txt
+public class PackageSettings {
 
-Approved and received files can be stored in a preferred location. To do so, write a class as follows: 
-<!-- snippet: package_settings_approval_subdirectory -->
-<a id='snippet-package_settings_approval_subdirectory'></a>
-```java
-public class PackageSettings
-{
-  public static String UseApprovalSubdirectory = "approvals";
+    public static EnvironmentAwareReporter FrontloadedReporter = new JunitReporter();
+    public static ApprovalFailureReporter UseReporter = new ClipboardReporter();
+    public static String UseApprovalSubdirectory = "approvals";
+    public static String ApprovalBaseDirectory = "../resources";
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/subdirectory/PackageSettings.java#L3-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-package_settings_approval_subdirectory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/core/ApprovalTestPackageSettingsTest.createPackageSettingDocumentation.approved.txt#L1-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-ApprovalTestPackageSettingsTest.createPackageSettingDocumentation.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
