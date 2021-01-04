@@ -1,5 +1,6 @@
 
 * clean up FileApprover & core logic about naming
+* better default FrontloadedReporter to handle CI
 
 
 * easier API for custom file name & location?! (issue 2, 51)
