@@ -47,7 +47,7 @@ public class ReporterFactory
   private static ApprovalFailureReporter getFromPackageSettings(StackTraceElement[] trace)
   {
     Map<String, Settings> settings = PackageLevelSettings.getForStackTrace(trace);
-    return ApprovalTestPackageSettings.USE_REPORTER.getValue(settings, null);
+    return ApprovalTestPackageSettings.USE_REPORTER.getValue(settings, () -> null);
   }
   /**
    * Loaded from PackageSettings.FrontloadedReporter
@@ -55,7 +55,7 @@ public class ReporterFactory
   public static EnvironmentAwareReporter getFrontLoadedReporter()
   {
     Map<String, Settings> settings = PackageLevelSettings.get();
-    return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings, DefaultFrontLoadedReporter.INSTANCE);
+    return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings, () -> DefaultFrontLoadedReporter.INSTANCE);
   }
   public static ApprovalFailureReporter getFromAnnotation(StackTraceElement[] trace)
   {
