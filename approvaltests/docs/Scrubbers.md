@@ -95,7 +95,7 @@ The easiest way to scrub a date is by calling
 ```java
 Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTests.java#L42-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTests.java#L46-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce
@@ -120,10 +120,7 @@ created at [Date1]
     | May 13, 2014 11:30:00 PM PST | [a-zA-Z]{3} \d{2}, \d{4} \d{2}:\d{2}:\d{2} [a-zA-Z]{2} [a-zA-Z]{3} |
     | 23:30:00 | \d{2}:\d{2}:\d{2} |
     | 2014/05/13 16:30:59.786 | \d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}.\d{2}\d |
-    | 2020-09-10T08:07Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z |
     | 2020-9-10T08:07Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z |
-    | 2020-09-9T08:07Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z |
-    | 2020-09-10T8:07Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z |
     | 2020-09-10T08:07:89Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}Z |
     | 2020-09-10T01:23:45.678Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z |
 <!-- endInclude -->
