@@ -1,5 +1,5 @@
 | Example Date | RegEx Pattern |
 | :-------------------- | :----------------------- | 
 #foreach($f in $commons.asArray($formats))
-    | $f.get() | $datescrubber.getScrubberFor($f.get()).getPattern() |
+    | $commons.asArray($f.get().getExamples()).get(0).get() | $f.get().getRegex() |
 #end
