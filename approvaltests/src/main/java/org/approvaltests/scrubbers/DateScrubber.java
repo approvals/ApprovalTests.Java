@@ -8,6 +8,10 @@ import com.spun.util.FormattedException;
 
 public class DateScrubber extends RegExScrubber
 {
+  public DateScrubber(String pattern)
+  {
+    this(pattern, n -> "[Date" + n + "]");
+  }
   public DateScrubber(String pattern, Function1<Integer, String> replacement)
   {
     super(pattern, replacement);
@@ -27,7 +31,7 @@ public class DateScrubber extends RegExScrubber
                                  "\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}\\:\\d{2}\\.\\d{3}Z",};
     for (String pattern : possiblePatterns)
     {
-      DateScrubber scrubber = new DateScrubber(pattern, n -> "[Date" + n + "]");
+      DateScrubber scrubber = new DateScrubber(pattern);
       if ("[Date1]".equals(scrubber.scrub(formattedExample)))
       { return scrubber; }
     }
