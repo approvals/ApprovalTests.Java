@@ -10,7 +10,8 @@
   * [RegEx Scrubbing](#regex-scrubbing)
   * [Date Scrubbing](#date-scrubbing)
     * [How to do it](#how-to-do-it)
-    * [Supported formats](#supported-formats)<!-- endToc -->
+    * [Supported formats](#supported-formats)
+  * [Using templates](#using-templates)<!-- endToc -->
 
 !(https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
 
@@ -127,6 +128,9 @@ created at [Date1]
     | 2020-09-10T01:23:45.678Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z |
 <!-- endInclude -->
 
+## Using templates
+
+`Scrubbers.Templates` contains many templates that can be inlined.
 
 ---
 
