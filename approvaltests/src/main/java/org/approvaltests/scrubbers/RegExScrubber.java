@@ -21,11 +21,10 @@ public class RegExScrubber implements Scrubber
   {
     this(compilePattern(pattern), replacement);
   }
-
-  private static Pattern compilePattern(String pattern) {
+  private static Pattern compilePattern(String pattern)
+  {
     return StringUtils.isNonZero(pattern) ? Pattern.compile(pattern) : null;
   }
-
   public RegExScrubber(Pattern pattern, String replacement)
   {
     this(pattern, n -> replacement);
@@ -38,7 +37,8 @@ public class RegExScrubber implements Scrubber
   @Override
   public String scrub(String input)
   {
-    if (pattern == null) { return input;}
+    if (pattern == null)
+    { return input; }
     Map<String, Integer> matches = new HashMap<>();
     Function1<String, String> replacer = s -> {
       matches.putIfAbsent(s, matches.size() + 1);
@@ -46,9 +46,9 @@ public class RegExScrubber implements Scrubber
     };
     return StringUtils.replaceAll(input, pattern, replacer);
   }
-
   @Override
-  public String toString() {
+  public String toString()
+  {
     return String.format("RegExScrubber[%s]", pattern);
   }
 }
