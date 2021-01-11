@@ -46,6 +46,10 @@ public class RegExScrubber implements Scrubber
     };
     return StringUtils.replaceAll(input, pattern, replacer);
   }
+  public Pattern getPattern()
+  {
+    return this.pattern;
+  }
   @Override
   public String toString()
   {
