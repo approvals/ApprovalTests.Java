@@ -45,16 +45,6 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
     return received;
   }
   @Override
-  public String getApprovalFilename(String base)
-  {
-    return base + Writer.approved + "." + fileExtension;
-  }
-  @Override
-  public String getReceivedFilename(String base)
-  {
-    return base + Writer.received + fileExtension;
-  }
-  @Override
   public String getFileExtensionWithDot()
   {
     return "." + fileExtension;

@@ -36,16 +36,6 @@ public class ComponentApprovalWriter implements ApprovalWriter
     }
   }
   @Override
-  public String getApprovalFilename(String base)
-  {
-    return image.getApprovalFilename(base);
-  }
-  @Override
-  public String getReceivedFilename(String base)
-  {
-    return image.getReceivedFilename(base);
-  }
-  @Override
   public File writeReceivedFile(File filename)
   {
     return image.writeReceivedFile(filename);

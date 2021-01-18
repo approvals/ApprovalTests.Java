@@ -19,10 +19,8 @@ import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
-import org.approvaltests.reporters.ReporterWithApprovalPower;
 import org.approvaltests.writers.ApprovalTextWriter;
 import org.approvaltests.writers.ApprovalXmlWriter;
-import org.approvaltests.writers.DirectoryToDirectoryWriter;
 import org.approvaltests.writers.FileApprovalWriter;
 import org.approvaltests.writers.ResultSetApprovalWriter;
 import org.lambda.actions.Action0;
@@ -203,12 +201,16 @@ public class Approvals
   {
     ApprovalFailureReporter reporter = options.getReporter();
     VerifyResult result = approver.approve();
-    if (result.isFailure()) {
+    if (result.isFailure())
+    {
       result = approver.reportFailure(reporter);
     }
-    if (result.isSuccessful()) {
+    if (result.isSuccessful())
+    {
       approver.cleanUpAfterSuccess(reporter);
-    } else {
+    }
+    else
+    {
       approver.fail();
     }
   }
@@ -276,7 +278,6 @@ public class Approvals
   {
     ApprovalNamer namer = options.forFile().getNamer();
     String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
-    File approvedDirectory = new File(dirName);
     List<File> mismatched = new ArrayList<File>();
     for (File f : files)
     {
@@ -284,7 +285,8 @@ public class Approvals
       {
         try
         {
-          verify(new DirectoryToDirectoryWriter(f, approvedDirectory), options);
+          ApprovalNamer namer1 = new MasterDirectoryNamer(namer, new File(dirName + File.separator + f.getName()));
+          verify(new FileApprovalWriter(f), namer1, options);
         }
         catch (Throwable e)
         {
@@ -348,5 +350,35 @@ public class Approvals
     if (t == null)
     { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()), options);
+  }
+  private static class MasterDirectoryNamer implements ApprovalNamer
+  {
+    private final ApprovalNamer namer;
+    private final File          approvedFile;
+    public MasterDirectoryNamer(ApprovalNamer namer, File approvedFile)
+    {
+      this.namer = namer;
+      this.approvedFile = approvedFile;
+    }
+    @Override
+    public File getApprovedFile(String extensionWithDot)
+    {
+      return approvedFile;
+    }
+    @Override
+    public File getReceivedFile(String extensionWithDot)
+    {
+      return namer.getReceivedFile(extensionWithDot);
+    }
+    @Override
+    public String getApprovalName()
+    {
+      return namer.getApprovalName();
+    }
+    @Override
+    public String getSourceFilePath()
+    {
+      return namer.getSourceFilePath();
+    }
   }
 }

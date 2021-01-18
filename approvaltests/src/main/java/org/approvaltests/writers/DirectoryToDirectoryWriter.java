@@ -21,16 +21,6 @@ public class DirectoryToDirectoryWriter implements ApprovalWriter
     return this.recieved;
   }
   @Override
-  public String getReceivedFilename(String base)
-  {
-    return recieved.getAbsolutePath();
-  }
-  @Override
-  public String getApprovalFilename(String base)
-  {
-    return goldMasterDirectory.getAbsolutePath() + File.separator + recieved.getName();
-  }
-  @Override
   public String getFileExtensionWithDot()
   {
     return FileUtils.getExtensionWithDot(recieved.getAbsolutePath());

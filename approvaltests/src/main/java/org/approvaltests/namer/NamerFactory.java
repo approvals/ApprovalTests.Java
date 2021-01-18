@@ -12,11 +12,15 @@ public class NamerFactory
   public static String additionalInformation;
   public static String getAndClearAdditionalInformation()
   {
+    String result = getAdditionalInformation();
+    additionalInformation = null;
+    return result;
+  }
+  public static String getAdditionalInformation()
+  {
     if (additionalInformation == null)
     { return ""; }
-    String out = "." + additionalInformation;
-    additionalInformation = null;
-    return out;
+    return "." + additionalInformation;
   }
   public static ApprovalResults ApprovalResults = new ApprovalResults();
   public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)

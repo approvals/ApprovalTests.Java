@@ -21,16 +21,6 @@ public class FileApprovalWriter implements ApprovalWriter
     return newFile;
   }
   @Override
-  public String getApprovalFilename(String base)
-  {
-    return base + Writer.approved + extensionWithDot;
-  }
-  @Override
-  public String getReceivedFilename(String base)
-  {
-    return base + Writer.received + extensionWithDot;
-  }
-  @Override
   public String getFileExtensionWithDot()
   {
     return extensionWithDot;

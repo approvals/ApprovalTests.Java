@@ -20,7 +20,7 @@ public class StackTraceNamer implements ApprovalNamer
   public String getApprovalName()
   {
     return String.format("%s.%s%s", info.getClassName(), info.getMethodName(),
-        NamerFactory.getAndClearAdditionalInformation());
+        NamerFactory.getAdditionalInformation());
   }
   @Override
   public String getSourceFilePath()
@@ -52,5 +52,9 @@ public class StackTraceNamer implements ApprovalNamer
   public File getApprovedFile(String extensionWithDot)
   {
     return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
+  }
+  @Override
+  protected void finalize() {
+    NamerFactory.getAndClearAdditionalInformation();
   }
 }

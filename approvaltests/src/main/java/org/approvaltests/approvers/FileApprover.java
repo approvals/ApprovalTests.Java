@@ -26,9 +26,8 @@ public class FileApprover implements ApprovalApprover
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver)
   {
     this.writer = writer;
-    String base = String.format("%s%s", namer.getSourceFilePath(), namer.getApprovalName());
-    received = new File(writer.getReceivedFilename(base));
-    approved = new File(writer.getApprovalFilename(base));
+    received = namer.getReceivedFile(writer.getFileExtensionWithDot());
+    approved = namer.getApprovedFile(writer.getFileExtensionWithDot());
     this.approver = approver;
   }
   public VerifyResult approve()

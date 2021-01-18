@@ -19,16 +19,6 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     this.resultSet = resultSet;
   }
   @Override
-  public String getApprovalFilename(String base)
-  {
-    return base + Writer.approved + getFileExtensionWithDot();
-  }
-  @Override
-  public String getReceivedFilename(String base)
-  {
-    return base + Writer.received + getFileExtensionWithDot();
-  }
-  @Override
   public File writeReceivedFile(File received)
   {
     String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\n"
