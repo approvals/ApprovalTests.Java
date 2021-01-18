@@ -17,6 +17,7 @@ import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
 import org.approvaltests.writers.ApprovalTextWriter;
@@ -276,17 +277,14 @@ public class Approvals
   }
   private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options) throws Error
   {
-    List<File> mismatched = new ArrayList<File>();
+    List<File> mismatched = new ArrayList<>();
     for (File f : files)
     {
       if (!f.isDirectory())
       {
         try
         {
-          ApprovalNamer namer = options.forFile().getNamer();
-          String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
-          ApprovalNamer namer1 = new MasterDirectoryNamer(f, options);
-          verify(new FileApprovalWriter(f), namer1, options);
+          verify(new FileApprovalWriter(f), new MasterDirectoryNamer(f, options), options);
         }
         catch (Throwable e)
         {
@@ -350,36 +348,5 @@ public class Approvals
     if (t == null)
     { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()), options);
-  }
-  private static class MasterDirectoryNamer implements ApprovalNamer
-  {
-    private final ApprovalNamer namer;
-    private final String        approvedFile;
-    public MasterDirectoryNamer(File comparingFile, Options options)
-    {
-      this.namer = options.forFile().getNamer();
-      this.approvedFile = comparingFile.getName();
-    }
-    @Override
-    public File getApprovedFile(String extensionWithDot)
-    {
-      String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
-      return new File(dirName + File.separator + approvedFile);
-    }
-    @Override
-    public File getReceivedFile(String extensionWithDot)
-    {
-      return namer.getReceivedFile(extensionWithDot);
-    }
-    @Override
-    public String getApprovalName()
-    {
-      return namer.getApprovalName();
-    }
-    @Override
-    public String getSourceFilePath()
-    {
-      return namer.getSourceFilePath();
-    }
   }
 }
