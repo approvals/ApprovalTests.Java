@@ -13,7 +13,7 @@
     * [Supported formats](#supported-formats)
   * [Using templates](#using-templates)<!-- endToc -->
 
-!(https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
+![scrubber flow](https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
 
 If you are having trouble getting tests running reproducibly, you might need to use a “scrubber” to convert the non-deterministic text to something stable.
 
