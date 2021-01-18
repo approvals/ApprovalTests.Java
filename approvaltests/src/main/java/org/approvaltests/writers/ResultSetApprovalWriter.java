@@ -29,7 +29,7 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     return base + Writer.received + getFileExtensionWithDot();
   }
   @Override
-  public String writeReceivedFile(String received)
+  public File writeReceivedFile(File received)
   {
     String template = "#foreach ($row in $commons.asArray($metaData))$row.get()#if (!$row.isLast()),#end#end\n"
         + "\n" + "#foreach ($row in $results)\n"
@@ -38,7 +38,7 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     ContextAwareMap map = new ContextAware.ContextAwareMap("metaData", ResultSetWriter.extractMetaData(resultSet));
     map.put("results", ResultSetWriter.extractResults(resultSet));
     String output = VelocityParser.parseString(template, map);
-    FileUtils.writeFile(new File(received), output);
+    FileUtils.writeFile(received, output);
     return received;
   }
   @Override

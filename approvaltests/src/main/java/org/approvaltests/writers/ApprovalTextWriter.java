@@ -25,9 +25,9 @@ public class ApprovalTextWriter implements ApprovalWriter
     this.fileExtensionWithoutDot = options.forFile().getFileExtension().substring(1);
   }
   @Override
-  public String writeReceivedFile(String received)
+  public File writeReceivedFile(File received)
   {
-    FileUtils.writeFile(new File(received), text);
+    FileUtils.writeFile(received, text);
     return received;
   }
   @Override

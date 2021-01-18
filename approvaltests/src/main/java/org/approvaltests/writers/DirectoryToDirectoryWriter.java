@@ -16,9 +16,9 @@ public class DirectoryToDirectoryWriter implements ApprovalWriter
     this.goldMasterDirectory = goldMasterDirectory;
   }
   @Override
-  public String writeReceivedFile(String received)
+  public File writeReceivedFile(File received)
   {
-    return this.recieved.getAbsolutePath();
+    return this.recieved;
   }
   @Override
   public String getReceivedFilename(String base)

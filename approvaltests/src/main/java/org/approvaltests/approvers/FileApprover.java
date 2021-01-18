@@ -33,7 +33,7 @@ public class FileApprover implements ApprovalApprover
   }
   public VerifyResult approve()
   {
-    received = new File(writer.writeReceivedFile(received.getAbsolutePath()));
+    received = writer.writeReceivedFile(received);
     return approver.call(received, approved);
   }
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter)

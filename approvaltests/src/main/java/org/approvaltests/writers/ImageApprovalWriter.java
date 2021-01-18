@@ -17,9 +17,9 @@ public class ImageApprovalWriter implements ApprovalWriter
     this.image = image;
   }
   @Override
-  public String writeReceivedFile(String received)
+  public File writeReceivedFile(File received)
   {
-    ObjectUtils.throwAsError(() -> ImageIO.write(image, "png", new File(received)));
+    ObjectUtils.throwAsError(() -> ImageIO.write(image, "png", received));
     return received;
   }
   @Override

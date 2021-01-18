@@ -3,6 +3,7 @@ package org.approvaltests.writers;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.JFrame;
 
@@ -45,7 +46,7 @@ public class ComponentApprovalWriter implements ApprovalWriter
     return image.getReceivedFilename(base);
   }
   @Override
-  public String writeReceivedFile(String filename)
+  public File writeReceivedFile(File filename)
   {
     return image.writeReceivedFile(filename);
   }

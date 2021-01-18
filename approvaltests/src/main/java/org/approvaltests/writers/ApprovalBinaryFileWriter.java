@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.approvaltests.core.ApprovalWriter;
 
@@ -29,15 +32,15 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
     this(Channels.newInputStream(stream), fileExtensionWithoutDot);
   }
   @Override
-  public String writeReceivedFile(String received)
+  public File writeReceivedFile(File received)
   {
     if (dataStream == null)
     {
-      FileUtils.writeFile(new File(received), data);
+      FileUtils.writeFile(received, data);
     }
     else
     {
-      FileUtils.writeFile(new File(received), dataStream);
+      FileUtils.writeFile(received, dataStream);
     }
     return received;
   }
