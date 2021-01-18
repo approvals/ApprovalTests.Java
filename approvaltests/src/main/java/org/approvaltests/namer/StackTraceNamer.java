@@ -2,6 +2,8 @@ package org.approvaltests.namer;
 
 import java.io.File;
 
+import org.approvaltests.writers.Writer;
+
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
@@ -40,5 +42,15 @@ public class StackTraceNamer implements ApprovalNamer
       baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
     }
     return baseDir;
+  }
+  @Override
+  public File getReceivedFile(String extensionWithDot)
+  {
+    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.received + extensionWithDot);
+  }
+  @Override
+  public File getApprovedFile(String extensionWithDot)
+  {
+    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
   }
 }

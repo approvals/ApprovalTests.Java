@@ -62,4 +62,9 @@ public class NamerWrapper implements ApprovalNamer
   {
     return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
   }
+  @Override
+  public File getApprovedFile(String extensionWithDot)
+  {
+    return getApprovalFile(extensionWithDot);
+  }
 }
