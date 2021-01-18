@@ -11,7 +11,6 @@ public class ApprovalTextWriter implements ApprovalWriter
 {
   private final String text;
   private final String fileExtensionWithoutDot;
-
   /**
    * @deprecated Use {@link #ApprovalTextWriter(String, Options)} instead.
    */
@@ -40,5 +39,10 @@ public class ApprovalTextWriter implements ApprovalWriter
   public String getReceivedFilename(String base)
   {
     return base + Writer.received + "." + fileExtensionWithoutDot;
+  }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return "." + fileExtensionWithoutDot;
   }
 }

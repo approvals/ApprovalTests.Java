@@ -4,6 +4,8 @@ import java.io.File;
 
 import org.approvaltests.core.ApprovalWriter;
 
+import com.spun.util.io.FileUtils;
+
 public class DirectoryToDirectoryWriter implements ApprovalWriter
 {
   private final File recieved;
@@ -27,5 +29,10 @@ public class DirectoryToDirectoryWriter implements ApprovalWriter
   public String getApprovalFilename(String base)
   {
     return goldMasterDirectory.getAbsolutePath() + File.separator + recieved.getName();
+  }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return FileUtils.getExtensionWithDot(recieved.getAbsolutePath());
   }
 }

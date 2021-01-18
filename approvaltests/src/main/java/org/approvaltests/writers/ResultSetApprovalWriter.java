@@ -21,12 +21,12 @@ public class ResultSetApprovalWriter implements ApprovalWriter
   @Override
   public String getApprovalFilename(String base)
   {
-    return base + Writer.approved + ".csv";
+    return base + Writer.approved + getFileExtensionWithDot();
   }
   @Override
   public String getReceivedFilename(String base)
   {
-    return base + Writer.received + ".csv";
+    return base + Writer.received + getFileExtensionWithDot();
   }
   @Override
   public String writeReceivedFile(String received)
@@ -40,5 +40,10 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     String output = VelocityParser.parseString(template, map);
     FileUtils.writeFile(new File(received), output);
     return received;
+  }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return ".csv";
   }
 }

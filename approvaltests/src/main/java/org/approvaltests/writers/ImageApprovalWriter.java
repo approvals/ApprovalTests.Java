@@ -25,11 +25,16 @@ public class ImageApprovalWriter implements ApprovalWriter
   @Override
   public String getApprovalFilename(String base)
   {
-    return base + Writer.approved + ".png";
+    return base + Writer.approved + getFileExtensionWithDot();
   }
   @Override
   public String getReceivedFilename(String base)
   {
-    return base + Writer.received + ".png";
+    return base + Writer.received + getFileExtensionWithDot();
+  }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return ".png";
   }
 }

@@ -51,4 +51,9 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
   {
     return base + Writer.received + fileExtension;
   }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return "." + fileExtension;
+  }
 }

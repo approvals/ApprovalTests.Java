@@ -30,4 +30,9 @@ public class FileApprovalWriter implements ApprovalWriter
   {
     return base + Writer.received + extensionWithDot;
   }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return extensionWithDot;
+  }
 }

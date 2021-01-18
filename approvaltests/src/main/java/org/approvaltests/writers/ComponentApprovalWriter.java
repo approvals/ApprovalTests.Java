@@ -49,4 +49,9 @@ public class ComponentApprovalWriter implements ApprovalWriter
   {
     return image.writeReceivedFile(filename);
   }
+  @Override
+  public String getFileExtensionWithDot()
+  {
+    return image.getFileExtensionWithDot();
+  }
 }
