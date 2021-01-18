@@ -276,8 +276,6 @@ public class Approvals
   }
   private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options) throws Error
   {
-    ApprovalNamer namer = options.forFile().getNamer();
-    String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
     List<File> mismatched = new ArrayList<File>();
     for (File f : files)
     {
@@ -285,7 +283,9 @@ public class Approvals
       {
         try
         {
-          ApprovalNamer namer1 = new MasterDirectoryNamer(namer, new File(dirName + File.separator + f.getName()));
+          ApprovalNamer namer = options.forFile().getNamer();
+          String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
+          ApprovalNamer namer1 = new MasterDirectoryNamer(f, options);
           verify(new FileApprovalWriter(f), namer1, options);
         }
         catch (Throwable e)
@@ -354,16 +354,17 @@ public class Approvals
   private static class MasterDirectoryNamer implements ApprovalNamer
   {
     private final ApprovalNamer namer;
-    private final File          approvedFile;
-    public MasterDirectoryNamer(ApprovalNamer namer, File approvedFile)
+    private final String        approvedFile;
+    public MasterDirectoryNamer(File comparingFile, Options options)
     {
-      this.namer = namer;
-      this.approvedFile = approvedFile;
+      this.namer = options.forFile().getNamer();
+      this.approvedFile = comparingFile.getName();
     }
     @Override
     public File getApprovedFile(String extensionWithDot)
     {
-      return approvedFile;
+      String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
+      return new File(dirName + File.separator + approvedFile);
     }
     @Override
     public File getReceivedFile(String extensionWithDot)
