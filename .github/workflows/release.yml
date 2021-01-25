@@ -26,3 +26,16 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
+
+      - name: set snapshot version
+        run: mvn versions:set -DnewVersion=${{ github.ref }}-SNAPSHOT
+
+      - name: Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "e set SNAPSHOT version" -a  || echo "nothing to commit"
+          remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+          branch="${GITHUB_REF:11}"
+          git push "${remote}" ${branch} || echo "nothing to push"
+        shell: bash
