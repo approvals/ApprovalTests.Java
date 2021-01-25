@@ -12,15 +12,17 @@ import com.spun.util.tests.TestUtils;
 public class StackTraceNamer implements ApprovalNamer
 {
   private StackTraceReflectionResult info;
+  private String additionalInformation;
   public StackTraceNamer()
   {
     info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
+    additionalInformation = NamerFactory.getAndClearAdditionalInformation();
   }
   @Override
   public String getApprovalName()
   {
     return String.format("%s.%s%s", info.getClassName(), info.getMethodName(),
-        NamerFactory.getAdditionalInformation());
+        additionalInformation);
   }
   @Override
   public String getSourceFilePath()
@@ -52,9 +54,5 @@ public class StackTraceNamer implements ApprovalNamer
   public File getApprovedFile(String extensionWithDot)
   {
     return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
-  }
-  @Override
-  protected void finalize() {
-    NamerFactory.getAndClearAdditionalInformation();
   }
 }
