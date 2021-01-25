@@ -17,7 +17,7 @@ jobs:
           java-version: 8
 
       - name: set version
-        run: mvn versions:set -DnewVersion=${{ github.ref }}
+        run: mvn versions:set -DnewVersion=10.0.0
 
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1
@@ -28,7 +28,7 @@ jobs:
           nexus_password: ${{ secrets.nexus_password }}
 
       - name: set snapshot version
-        run: mvn versions:set -DnewVersion=${{ github.ref }}-SNAPSHOT
+        run: mvn versions:set -DnewVersion=10.0.1-SNAPSHOT
 
       - name: Push changes
         run: |
