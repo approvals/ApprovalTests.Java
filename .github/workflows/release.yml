@@ -17,7 +17,7 @@ jobs:
           java-version: 8
 
       - name: set version
-        run: mvn versions:set -DnewVersion=10.0.0
+        run: mvn versions:set -DnewVersion=10.0.1
 
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1
@@ -26,17 +26,19 @@ jobs:
           gpg_passphrase: ${{ secrets.gpg_passphrase }}
           nexus_username: ${{ secrets.nexus_user_name }}
           nexus_password: ${{ secrets.nexus_password }}
-          maven_profiles: releaseasdasdsad
+          maven_profiles: release
 
       - name: set snapshot version
-        run: mvn versions:set -DnewVersion=10.0.1-SNAPSHOT
+        run: mvn versions:set -DnewVersion=10.0.2-SNAPSHOT
 
       - name: Push changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -m "e set SNAPSHOT version" -a  || echo "nothing to commit"
+          git checkout -b temp
+          git checkout master
+          git merge temp
           remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
-          branch="${GITHUB_REF:11}"
-          git push "${remote}" ${branch} || echo "nothing to push"
+          git push "${remote}" master || echo "nothing to push"
         shell: bash
