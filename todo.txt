@@ -1,5 +1,10 @@
 * better default FrontloadedReporter to handle CI
 * setup release with github actions
+**  read release version from git tag
+** set next version to 0.0.0-SNAPSHOT
+** how to update doco?
+*** just run python script to do that
+
 
 
 * easier API for custom file name & location?! (issue 2, 51)
