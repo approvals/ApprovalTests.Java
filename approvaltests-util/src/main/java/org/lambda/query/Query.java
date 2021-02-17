@@ -1,9 +1,6 @@
 package org.lambda.query;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import org.lambda.functions.Function1;
 import org.lambda.query.OrderBy.Order;
@@ -153,4 +150,14 @@ public class Query<In>
   {
     return first(array, funct) != null;
   }
+
+    public static <In> Queryable<In> distinct(List<In> list) {
+      Queryable<In> distinct = new Queryable<>();
+      for (In in : list) {
+        if (!distinct.contains(in)){
+          distinct.add(in);
+        }
+      }
+      return distinct;
+    }
 }

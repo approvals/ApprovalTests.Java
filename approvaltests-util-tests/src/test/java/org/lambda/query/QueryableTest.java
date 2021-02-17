@@ -1,7 +1,6 @@
 package org.lambda.query;
 
 import org.approvaltests.Approvals;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
 
@@ -56,5 +55,12 @@ class QueryableTest
     // end-snippet
     assertArrayEquals(firstWordsOnlyStatic.toArray(), firstWordsOnlyWithExtension.toArray());
     Approvals.verifyAll("firstWordsOnly", firstWordsOnlyWithExtension);
+  }
+
+  @Test
+  void testDistinct()
+  {
+    Queryable<Integer> distinct = Queryable.as(3, 2,1, 1, 3).distinct();
+    Approvals.verifyAll("",distinct);
   }
 }

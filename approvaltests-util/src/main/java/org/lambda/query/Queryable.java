@@ -12,7 +12,7 @@ import com.spun.util.ObjectUtils;
 
 public class Queryable<In> extends ArrayList<In>
 {
-  // TODO: autogenerate this; 
+  // TODO: autogenerate this;
   private final long serialVersionUID = 1L;
   public <T extends Extendable<List<In>>> T use(Class<T> that)
   {
@@ -94,5 +94,13 @@ public class Queryable<In> extends ArrayList<In>
   public static <T> Queryable<T> as(T... array)
   {
     return as(Arrays.asList(array));
+  }
+
+  /**
+   * Maintains order
+   */
+  public Queryable<In> distinct()
+  {
+    return Query.distinct(this);
   }
 }
