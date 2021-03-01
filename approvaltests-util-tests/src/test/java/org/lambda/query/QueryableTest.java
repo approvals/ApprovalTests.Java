@@ -100,4 +100,17 @@ class QueryableTest
     Number[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
+
+  @Disabled("todo next week")
+  @Test
+  void testInterfaceCommonality() {
+    List<Comparable> comparables = new ArrayList<>();
+    comparables.add(1);
+    comparables.add(3.1415);
+    comparables.add("Lars");
+    Queryable<Comparable> as = Queryable.as(comparables); // Queryable.as(numbers); ?
+    as.add(2.4);
+    Comparable[] asArray = as.asArray();
+    Approvals.verifyAll("", asArray);
+  }
 }
