@@ -1,5 +1,6 @@
 package org.lambda.query;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -95,12 +96,32 @@ public class Queryable<In> extends ArrayList<In>
   {
     return as(Arrays.asList(array));
   }
-
   /**
    * Maintains order
    */
   public Queryable<In> distinct()
   {
     return Query.distinct(this);
+  }
+  public In[] asArray()
+  {
+    QueryableWithType<In> withType = new QueryableWithType<>(this, (Class<In>) this.get(0).getClass());
+    return withType.asArray();
+  }
+  static class QueryableWithType<T> extends Queryable<T>
+  {
+    private final Class<T> type;
+    public QueryableWithType(List<T> list, Class<T> type)
+    {
+      this.addAll(list);
+      this.type = type;
+    }
+    @Override
+    public T[] asArray()
+    {
+      int size = this.size();
+      T[] result = (T[]) Array.newInstance(type, size);
+      return toArray(result);
+    }
   }
 }

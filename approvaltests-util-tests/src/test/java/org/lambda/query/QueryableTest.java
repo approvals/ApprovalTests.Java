@@ -63,4 +63,10 @@ class QueryableTest
     Queryable<Integer> distinct = Queryable.as(3, 2,1, 1, 3).distinct();
     Approvals.verifyAll("",distinct);
   }
+
+  @Test
+  void testToArray() {
+    Character[] letters = Queryable.as('L', 'a','r', 's').asArray();
+    Approvals.verifyAll("", letters);
+  }
 }
