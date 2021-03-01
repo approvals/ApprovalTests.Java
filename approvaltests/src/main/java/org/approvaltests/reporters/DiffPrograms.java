@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import static org.approvaltests.reporters.intellij.Edition.Community;
+import static org.approvaltests.reporters.intellij.Edition.Silicon;
 import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 import java.util.List;
@@ -54,7 +55,7 @@ public class DiffPrograms
   public static class All
   {
 
-    public static final DiffInfo INTELLIJ_MAC_SILICON = new DiffInfo("/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-ARM/ch-0/203.7148.57/IntelliJ IDEA.app/Contents/MacOS/idea", "diff %s %s", TEXT);
+    public static final DiffInfo INTELLIJ_MAC_SILICON = new DiffInfo(new IntelliJPathResolver(Silicon).findIt(), "diff %s %s", TEXT);
     public static DiffInfo INTELLIJ_C = new DiffInfo(new IntelliJPathResolver(Community).findIt(), "diff %s %s",
         TEXT);
     public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %s %s",
