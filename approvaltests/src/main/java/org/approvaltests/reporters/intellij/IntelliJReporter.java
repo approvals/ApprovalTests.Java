@@ -7,6 +7,6 @@ public class IntelliJReporter extends FirstWorkingReporter
   public static final IntelliJReporter INSTANCE = new IntelliJReporter();
   public IntelliJReporter()
   {
-    super(IntelliJUltimateReporter.INSTANCE, IntelliJCommunityReporter.INSTANCE);
+    super(IntelliJUltimateReporter.INSTANCE, IntelliJCommunityReporter.INSTANCE, IntelliJMacSiliconReporter.INSTANCE);
   }
 }
