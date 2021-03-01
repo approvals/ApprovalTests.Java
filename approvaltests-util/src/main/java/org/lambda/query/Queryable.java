@@ -15,6 +15,15 @@ public class Queryable<In> extends ArrayList<In>
 {
   // TODO: autogenerate this;
   private final long serialVersionUID = 1L;
+  private Class<In>  type;
+  public Queryable()
+  {
+    this((Class<In>) Object.class);
+  }
+  public Queryable(Class<In> type)
+  {
+    this.type = type;
+  }
   public <T extends Extendable<List<In>>> T use(Class<T> that)
   {
     try
@@ -86,9 +95,14 @@ public class Queryable<In> extends ArrayList<In>
   }
   public static <T> Queryable<T> as(List<T> list)
   {
+    Class<?> type = list.isEmpty() ? Object.class : list.get(0).getClass();
+    return Queryable.as(list, (Class<T>) type);
+  }
+  public static <T> Queryable<T> as(List<T> list, Class<T> type)
+  {
     if (list instanceof Queryable)
     { return (Queryable<T>) list; }
-    Queryable<T> q = new Queryable<T>();
+    Queryable<T> q = new Queryable<T>(type);
     q.addAll(list);
     return q;
   }
@@ -105,23 +119,8 @@ public class Queryable<In> extends ArrayList<In>
   }
   public In[] asArray()
   {
-    QueryableWithType<In> withType = new QueryableWithType<>(this, (Class<In>) this.get(0).getClass());
-    return withType.asArray();
-  }
-  static class QueryableWithType<T> extends Queryable<T>
-  {
-    private final Class<T> type;
-    public QueryableWithType(List<T> list, Class<T> type)
-    {
-      this.addAll(list);
-      this.type = type;
-    }
-    @Override
-    public T[] asArray()
-    {
-      int size = this.size();
-      T[] result = (T[]) Array.newInstance(type, size);
-      return toArray(result);
-    }
+    int size = this.size();
+    In[] result = (In[]) Array.newInstance(type, size);
+    return toArray(result);
   }
 }
