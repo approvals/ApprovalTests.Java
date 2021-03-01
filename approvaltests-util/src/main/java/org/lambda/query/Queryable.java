@@ -95,8 +95,22 @@ public class Queryable<In> extends ArrayList<In>
   }
   public static <T> Queryable<T> as(List<T> list)
   {
-    Class<?> type = list.isEmpty() ? Object.class : list.get(0).getClass();
+    Class<?> type = getGreatestCommonBaseType(list);
     return Queryable.as(list, (Class<T>) type);
+  }
+  private static <T> Class<?> getGreatestCommonBaseType(List<T> list)
+  {
+    if (list == null || list.isEmpty())
+    { return Object.class; }
+    Class greatestCommonType = list.get(0).getClass();
+    for (T t : list)
+    {
+      if (!greatestCommonType.isInstance(t))
+      {
+        greatestCommonType = greatestCommonType.getSuperclass();
+      }
+    }
+    return greatestCommonType;
   }
   public static <T> Queryable<T> as(List<T> list, Class<T> type)
   {
@@ -108,7 +122,7 @@ public class Queryable<In> extends ArrayList<In>
   }
   public static <T> Queryable<T> as(T... array)
   {
-    return as(Arrays.asList(array));
+    return as(Arrays.asList(array), (Class<T>) array.getClass().getComponentType());
   }
   /**
    * Maintains order

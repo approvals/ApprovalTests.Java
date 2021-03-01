@@ -1,6 +1,8 @@
 package org.lambda.query;
 
+import java.util.ArrayList;
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
 
@@ -68,5 +70,34 @@ class QueryableTest
   void testToArray() {
     Character[] letters = Queryable.as('L', 'a','r', 's').asArray();
     Approvals.verifyAll("", letters);
+  }
+
+  @Test
+  void testEmptyArrays() {
+    String[] strings = new String[0];
+    Queryable<String> as = Queryable.as(strings);
+    as.add("Lars");
+    String[] asArray = as.asArray();
+    Approvals.verifyAll("", asArray);
+  }
+
+  @Test
+  void testEmptyList() {
+    List<String> strings = new ArrayList<>();
+    Queryable<String> as = Queryable.as(strings, String.class); // Queryable.as(strings); ?
+    as.add("Lars");
+    String[] asArray = as.asArray();
+    Approvals.verifyAll("", asArray);
+  }
+
+  @Test
+  void testSuperClassCommonality() {
+    List<Number> numbers = new ArrayList<>();
+    numbers.add(1);
+    numbers.add(3.1415);
+    Queryable<Number> as = Queryable.as(numbers); // Queryable.as(numbers); ?
+    as.add(2.4);
+    Number[] asArray = as.asArray();
+    Approvals.verifyAll("", asArray);
   }
 }
