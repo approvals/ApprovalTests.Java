@@ -272,6 +272,10 @@ public class ArrayUtils
   {
     return Queryable.as(list).asArray();
   }
+  public static <T> T[] toArray(List<T> list, Class<T> type)
+  {
+    return Queryable.as(list, type).asArray();
+  }
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;

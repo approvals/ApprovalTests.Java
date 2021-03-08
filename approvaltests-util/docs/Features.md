@@ -13,6 +13,8 @@
   * [NullLogger](#nulllogger)
   * [ArrayUtils.addToArray()](#arrayutilsaddtoarray)<!-- endToc -->
 
+## toArray
+see [ArrayUtils.toArray](ArrayUtils.md#toArray) 
 ## Queryable and Extendable
 see [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 

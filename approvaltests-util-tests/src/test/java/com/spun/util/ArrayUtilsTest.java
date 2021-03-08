@@ -40,12 +40,17 @@ public class ArrayUtilsTest
   @Test
   void testToArray()
   {
+    // begin-snippet: toArray
     List<Comparable> comparables = new ArrayList<>();
     comparables.add(null);
     comparables.add(1);
     comparables.add(3.1415);
     comparables.add("Lars");
     Comparable[] comparableArray = ArrayUtils.toArray(comparables);
+    // end-snippet
+    // begin-snippet: toArrayWithClass
+    Comparable[] array = ArrayUtils.toArray(comparables, Comparable.class);
+    // end-snippet
     Approvals.verifyAll("", comparableArray);
   }
 }
