@@ -1,15 +1,15 @@
 package org.lambda.query;
 
-import java.util.ArrayList;
-import org.approvaltests.Approvals;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.lambda.Extendable;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.spun.util.ArrayUtils;
+import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
+import org.lambda.Extendable;
 
 class QueryableTest
 {
@@ -17,18 +17,18 @@ class QueryableTest
   public static class CustomQuery implements Extendable<List<String>>
   {
     private List<String> caller;
-
-    @Override public void setCaller(List<String> caller) {
+    @Override
+    public void setCaller(List<String> caller)
+    {
       this.caller = caller;
     }
     // end-snippet
-
     // begin-snippet: extendable-query
-    public Queryable<String> findFirstWordsOnly() {
+    public Queryable<String> findFirstWordsOnly()
+    {
       return findFirstWordsOnly(caller);
     }
     // end-snippet
-
     // begin-snippet: custom-query
     public static Queryable<String> findFirstWordsOnly(List<String> words)
     {
@@ -46,53 +46,54 @@ class QueryableTest
     }
     // end-snippet
   }
-
   @Test
-  void example() {
+  void example()
+  {
     // begin-snippet: custom-query-example
     Queryable<String> list = Queryable.as("One fish", "two fish", "red fish", "blue fish");
-    Queryable<String> firstWordsOnlyWithExtension = list.select(String::toUpperCase).use(CustomQuery.class).findFirstWordsOnly();
+    Queryable<String> firstWordsOnlyWithExtension = list.select(String::toUpperCase).use(CustomQuery.class)
+        .findFirstWordsOnly();
     // end-snippet
     // begin-snippet: custom-query-example-static
-    Queryable<String> firstWordsOnlyStatic = CustomQuery.findFirstWordsOnly(Query.select(list, String::toUpperCase));
+    Queryable<String> firstWordsOnlyStatic = CustomQuery
+        .findFirstWordsOnly(Query.select(list, String::toUpperCase));
     // end-snippet
     assertArrayEquals(firstWordsOnlyStatic.toArray(), firstWordsOnlyWithExtension.toArray());
     Approvals.verifyAll("firstWordsOnly", firstWordsOnlyWithExtension);
   }
-
   @Test
   void testDistinct()
   {
-    Queryable<Integer> distinct = Queryable.as(3, 2,1, 1, 3).distinct();
-    Approvals.verifyAll("",distinct);
+    Queryable<Integer> distinct = Queryable.as(3, 2, 1, 1, 3).distinct();
+    Approvals.verifyAll("", distinct);
   }
-
   @Test
-  void testToArray() {
-    Character[] letters = Queryable.as('L', 'a','r', 's').asArray();
+  void testToArray()
+  {
+    Character[] letters = Queryable.as('L', 'a', 'r', 's').asArray();
     Approvals.verifyAll("", letters);
   }
-
   @Test
-  void testEmptyArrays() {
+  void testEmptyArrays()
+  {
     String[] strings = new String[0];
     Queryable<String> as = Queryable.as(strings);
     as.add("Lars");
     String[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
-
   @Test
-  void testEmptyList() {
+  void testEmptyList()
+  {
     List<String> strings = new ArrayList<>();
     Queryable<String> as = Queryable.as(strings, String.class); // Queryable.as(strings); ?
     as.add("Lars");
     String[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
-
   @Test
-  void testSuperClassCommonality() {
+  void testSuperClassCommonality()
+  {
     List<Number> numbers = new ArrayList<>();
     numbers.add(1);
     numbers.add(3.1415);
@@ -101,9 +102,9 @@ class QueryableTest
     Number[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
-
   @Test
-  void testInterfaceCommonality() {
+  void testInterfaceCommonality()
+  {
     List<Comparable> comparables = new ArrayList<>();
     comparables.add(null);
     comparables.add(1);
@@ -114,5 +115,16 @@ class QueryableTest
     queryable.add(2.4);
     Comparable[] asArray = queryable.asArray();
     Approvals.verifyAll("", asArray);
+  }
+  @Test
+  void testInterfaceCommonality2()
+  {
+    List<Comparable> comparables = new ArrayList<>();
+    comparables.add(null);
+    comparables.add(1);
+    comparables.add(3.1415);
+    comparables.add("Lars");
+    Comparable[] itCompilesAndRuns = ArrayUtils.toArray(comparables);
+    Approvals.verifyAll("", itCompilesAndRuns);
   }
 }

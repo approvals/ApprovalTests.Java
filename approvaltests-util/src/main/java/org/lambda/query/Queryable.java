@@ -4,13 +4,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
-import org.apache.commons.lang.ClassUtils;
 import org.lambda.Extendable;
 import org.lambda.functions.Function1;
 import org.lambda.query.OrderBy.Order;
 
+import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 
 public class Queryable<In> extends ArrayList<In>
@@ -97,46 +96,8 @@ public class Queryable<In> extends ArrayList<In>
   }
   public static <T> Queryable<T> as(List<T> list)
   {
-    Class<?> type = getGreatestCommonBaseType(list);
+    Class<?> type = ClassUtils.getGreatestCommonBaseType(list);
     return Queryable.as(list, (Class<T>) type);
-  }
-  private static <T> Class<?> getGreatestCommonBaseType(List<T> list)
-  {
-    if (list == null)
-    { return Object.class; }
-    list = Query.where(list, Objects::nonNull);
-    if (list.isEmpty())
-    { return Object.class; }
-    Class greatestCommonType = list.get(0).getClass();
-    for (T t : list)
-    {
-      if (t != null && !greatestCommonType.isInstance(t))
-      {
-        greatestCommonType = greatestCommonType.getSuperclass();
-      }
-    }
-    if (Object.class.equals(greatestCommonType))
-    {
-      greatestCommonType = getGreatestCommonInterface(list);
-    }
-    return greatestCommonType;
-  }
-  private static <T> Class getGreatestCommonInterface(List<T> list)
-  {
-    List<Class> allInterfaces = ClassUtils.getAllInterfaces(list.get(0).getClass());
-    for (int i = 1; i < list.size(); i++)
-    {
-      for (int j = allInterfaces.size() - 1; 0 < j; j--)
-      {
-        if (!allInterfaces.get(j).isInstance(list.get(i)))
-        {
-          allInterfaces.remove(j);
-        }
-      }
-    }
-    List<Class> allCommon = allInterfaces;
-    Class first = Queryable.as(allCommon).orderBy(Order.Descending, x -> x.getMethods().length).first();
-    return first;
   }
   public static <T> Queryable<T> as(List<T> list, Class<T> type)
   {

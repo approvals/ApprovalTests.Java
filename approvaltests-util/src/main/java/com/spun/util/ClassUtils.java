@@ -7,28 +7,29 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.lambda.functions.Function1;
+import org.lambda.query.OrderBy.Order;
+import org.lambda.query.Query;
+import org.lambda.query.Queryable;
 
 import com.spun.util.io.FileUtils;
 
 public class ClassUtils
 {
-
   public static String getClassName(Class<?> clazz)
   {
     String name = clazz.getName();
     int divider = name.lastIndexOf(".");
     return name.substring(divider + 1);
   }
-
   public static String getClassPath(Class<?> clazz)
   {
     String name = clazz.getName();
     int divider = name.lastIndexOf(".");
     return name.substring(0, divider);
   }
-
   public static Class<?> getWrapperClass(Class<?> primativeType)
   {
     if (boolean.class.equals(primativeType))
@@ -68,8 +69,6 @@ public class ClassUtils
       return primativeType;
     }
   }
-
-
   public static boolean hasMethod(Class<?> clazz, String methodName, Class<?>... parameterTypes)
   {
     try
@@ -101,8 +100,8 @@ public class ClassUtils
     String[] split = name.split("\\.");
     split[split.length - 1] = createLastFileName.call(split[split.length - 1]);
     File found = find(new File("."), Arrays.asList(split));
-    if (found == null) { throw new FormattedException("Didn't find %s under %s", name,
-        FileUtils.getCurrentDirectory()); }
+    if (found == null)
+    { throw new FormattedException("Didn't find %s under %s", name, FileUtils.getCurrentDirectory()); }
     return found.getParentFile();
   }
   public static File getSourceDirectory(Class<?> clazz, final String fileName)
@@ -131,7 +130,8 @@ public class ClassUtils
       if (file2.isDirectory())
       {
         File found = find2(file2, searchingFileFilter.getSubset(file2.getName()));
-        if (found != null) { return found; }
+        if (found != null)
+        { return found; }
       }
       else
       {
@@ -170,5 +170,47 @@ public class ClassUtils
     {
       throw ObjectUtils.throwAsError(e);
     }
+  }
+  public static <T> Class<?> getGreatestCommonBaseType(List<T> list)
+  {
+    if (list == null)
+    { return Object.class; }
+    list = Query.where(list, Objects::nonNull);
+    if (list.isEmpty())
+    { return Object.class; }
+    Class greatestCommonType = list.get(0).getClass();
+    for (T t : list)
+    {
+      if (t != null && !greatestCommonType.isInstance(t))
+      {
+        greatestCommonType = greatestCommonType.getSuperclass();
+      }
+    }
+    if (Object.class.equals(greatestCommonType))
+    {
+      greatestCommonType = getGreatestCommonInterface(list);
+    }
+    return greatestCommonType;
+  }
+  /**
+   * Greatest Common Interface is the shared interface with the most methods. In case of a tie,
+   * it's the first declared in the first item of the list.
+   */
+  public static <T> Class getGreatestCommonInterface(List<T> list)
+  {
+    List<Class> allInterfaces = org.apache.commons.lang.ClassUtils.getAllInterfaces(list.get(0).getClass());
+    for (int i = 1; i < list.size(); i++)
+    {
+      for (int j = allInterfaces.size() - 1; 0 < j; j--)
+      {
+        if (!allInterfaces.get(j).isInstance(list.get(i)))
+        {
+          allInterfaces.remove(j);
+        }
+      }
+    }
+    List<Class> allCommon = allInterfaces;
+    Class first = Queryable.as(allCommon).orderBy(Order.Descending, x -> x.getMethods().length).first();
+    return first;
   }
 }

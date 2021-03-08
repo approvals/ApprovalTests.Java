@@ -13,16 +13,17 @@ import java.util.List;
 import java.util.Vector;
 
 import org.lambda.functions.Function1;
+import org.lambda.query.Queryable;
 
 /**
  * A static class of convenience methods for arrays and collections.
  */
 public class ArrayUtils
 {
-
   public static <T> java.util.Collection<T> addArray(java.util.Collection<T> v, T array[])
   {
-    if ((array == null) || (v == null)) { return v; }
+    if ((array == null) || (v == null))
+    { return v; }
     for (int i = 0; i < array.length; i++)
     {
       v.add(array[i]);
@@ -46,7 +47,6 @@ public class ArrayUtils
     }
     return b.toString();
   }
-  
   public static Vector toReverseVector(Vector<Object> vector)
   {
     Vector<Object> reverse = new Vector<Object>(vector.size());
@@ -56,7 +56,6 @@ public class ArrayUtils
     }
     return reverse;
   }
-  
   public static <T> T[] toReverseArray(T[] array)
   {
     for (int i = 0; i < array.length / 2; i++)
@@ -69,12 +68,10 @@ public class ArrayUtils
     }
     return array;
   }
-  
   public static <T> T[] addToArray(T[] array, T... objects)
   {
     return combine(array, objects);
   }
-  
   public static <T> T[] getSubsection(T[] array, int startInclusive, int endExclusive)
   {
     int length = endExclusive - startInclusive;
@@ -83,20 +80,18 @@ public class ArrayUtils
     System.arraycopy(array, startInclusive, newArray, 0, length);
     return newArray;
   }
-  
   public static boolean isEmpty(Object[] array)
   {
     return ((array == null) || (array.length == 0));
   }
-
   public static boolean isEmpty(Collection<?> collection)
   {
     return ((collection == null) || (collection.size() == 0));
   }
-  
   public static <T> T getSingleton(T[] parts)
   {
-    if (parts == null) { return null; }
+    if (parts == null)
+    { return null; }
     switch (parts.length)
     {
       case 0 :
@@ -111,12 +106,10 @@ public class ArrayUtils
   {
     return array == null || array.length == 0 ? null : array[0];
   }
-  
   public static <H, T extends H> T getFirst(T[] array, Comparator<H> compartor)
   {
     return get(array, compartor, true);
   }
-  
   public static <H, T extends H> T getFirst(Collection<T> array, Comparator<H> sorter)
   {
     return get((T[]) array.toArray(), sorter, true);
@@ -131,15 +124,14 @@ public class ArrayUtils
   {
     return get(array, sorter, false);
   }
-  
   public static <T> T getLast(Collection<T> array, Comparator<T> sorter)
   {
     return get((T[]) array.toArray(), sorter, false);
   }
-  
   private static <H, T extends H> T get(T[] array, Comparator<H> sorter, boolean wantFirst)
   {
-    if (isEmpty(array)) { return null; }
+    if (isEmpty(array))
+    { return null; }
     T last = array[0];
     for (int i = 1; i < array.length; i++)
     {
@@ -151,10 +143,10 @@ public class ArrayUtils
     }
     return last;
   }
-  
   public static List<?> combineResults(Object[] array, String invokeMethod)
   {
-    if (ArrayUtils.isEmpty(array)) { return Collections.EMPTY_LIST; }
+    if (ArrayUtils.isEmpty(array))
+    { return Collections.EMPTY_LIST; }
     try
     {
       return combineResults(array, ObjectUtils.getGreatestCommonDenominator(array, invokeMethod));
@@ -164,11 +156,11 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  
   @SuppressWarnings("rawtypes")
   public static List combineResults(Object[] array, Method method)
   {
-    if (isEmpty(array)) { return new ArrayList(0); }
+    if (isEmpty(array))
+    { return new ArrayList(0); }
     try
     {
       ArrayList<Object> list = new ArrayList<Object>();
@@ -183,7 +175,6 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  
   public static <T> T[] combine(T[] a, T[] b)
   {
     if (isEmpty(a) && isEmpty(b))
@@ -218,30 +209,28 @@ public class ArrayUtils
       return newArray;
     }
   }
-  
   public static <T> boolean contains(T[] values, T value)
   {
     for (int i = 0; i < values.length; i++)
     {
-      if (value.equals(values[i])) { return true; }
+      if (value.equals(values[i]))
+      { return true; }
     }
     return false;
   }
-  
   public static boolean contains(int[] values, int value)
   {
     for (int i = 0; i < values.length; i++)
     {
-      if (value == values[i]) { return true; }
+      if (value == values[i])
+      { return true; }
     }
     return false;
   }
-
   public static <T> T getLast(List<T> list)
   {
     return list.get(list.size() - 1);
   }
-
   public static <K, T> T getDefault(HashMap<K, T> map, K key, T defaultValue)
   {
     T value = map.get(key);
@@ -252,12 +241,10 @@ public class ArrayUtils
     }
     return value;
   }
-
   public static <K, V> int countValues(HashMap<K, V> out, V matching)
   {
     return count(matching, out.values());
   }
-
   public static <V> int count(V matching, Collection<V> values)
   {
     int count = 0;
@@ -280,6 +267,10 @@ public class ArrayUtils
   public static <T> Iterable<T> asIterable(Iterator<T> iterator)
   {
     return new IterableWrapper<T>(iterator);
+  }
+  public static <T> T[] toArray(List<T> list)
+  {
+    return Queryable.as(list).asArray();
   }
   public static class IterableWrapper<T> implements Iterable<T>
   {
