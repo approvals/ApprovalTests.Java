@@ -5,7 +5,7 @@
 
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests-parent</artifactId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>100.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>ApprovalTests.Java</name>
