@@ -16,8 +16,12 @@ jobs:
         with:
           java-version: 8
 
+      - name: Determine version from git tag
+          id: version
+          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
       - name: set version
-        run: mvn versions:set -DnewVersion=10.0.1
+        run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1
@@ -29,7 +33,7 @@ jobs:
           maven_profiles: release
 
       - name: set snapshot version
-        run: mvn versions:set -DnewVersion=10.0.2-SNAPSHOT
+        run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
 
       - name: Push changes
         run: |
