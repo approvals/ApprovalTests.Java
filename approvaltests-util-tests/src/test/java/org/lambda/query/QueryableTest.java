@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.spun.util.ArrayUtils;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
@@ -115,16 +114,5 @@ class QueryableTest
     queryable.add(2.4);
     Comparable[] asArray = queryable.asArray();
     Approvals.verifyAll("", asArray);
-  }
-  @Test
-  void testInterfaceCommonality2()
-  {
-    List<Comparable> comparables = new ArrayList<>();
-    comparables.add(null);
-    comparables.add(1);
-    comparables.add(3.1415);
-    comparables.add("Lars");
-    Comparable[] itCompilesAndRuns = ArrayUtils.toArray(comparables);
-    Approvals.verifyAll("", itCompilesAndRuns);
   }
 }
