@@ -105,10 +105,10 @@ class QueryableTest
   @Test
   void testInterfaceCommonality() {
     List<Comparable> comparables = new ArrayList<>();
+    comparables.add(null);
     comparables.add(1);
     comparables.add(3.1415);
     comparables.add("Lars");
-    comparables.add(null);
     Queryable<Comparable> queryable = Queryable.as(comparables);
     assertEquals(Comparable.class, queryable.getType());
     queryable.add(2.4);

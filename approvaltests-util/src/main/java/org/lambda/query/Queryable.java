@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang.ClassUtils;
 import org.lambda.Extendable;
@@ -101,7 +102,10 @@ public class Queryable<In> extends ArrayList<In>
   }
   private static <T> Class<?> getGreatestCommonBaseType(List<T> list)
   {
-    if (list == null || list.isEmpty())
+    if (list == null)
+    { return Object.class; }
+    list = Query.where(list, Objects::nonNull);
+    if (list.isEmpty())
     { return Object.class; }
     Class greatestCommonType = list.get(0).getClass();
     for (T t : list)
