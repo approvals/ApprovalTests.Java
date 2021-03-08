@@ -19,7 +19,7 @@ public class Queryable<In> extends ArrayList<In>
   private Class<In>  type;
   public Queryable()
   {
-    this((Class<In>) Object.class);
+    this(null);
   }
   public Queryable(Class<In> type)
   {
@@ -121,11 +121,14 @@ public class Queryable<In> extends ArrayList<In>
   public In[] asArray()
   {
     int size = this.size();
-    In[] result = (In[]) Array.newInstance(type, size);
+    In[] result = (In[]) Array.newInstance(getType(), size);
     return toArray(result);
   }
   public Class<In> getType()
   {
+    if (type == null) {
+      type = (Class<In>) ClassUtils.getGreatestCommonBaseType(this);
+    }
     return type;
   }
 }
