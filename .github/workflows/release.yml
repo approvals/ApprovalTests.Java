@@ -41,6 +41,7 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -m "e set SNAPSHOT version" -a  || echo "nothing to commit"
           git checkout -b temp
+          git fetch
           git checkout master
           git merge temp
           remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
