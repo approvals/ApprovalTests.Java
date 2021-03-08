@@ -2,7 +2,10 @@
 
 # ArrayUtils
 
-toc
+<!-- toc -->
+## Contents
+
+  * [toArray](#toarray)<!-- endToc -->
 
 ## toArray
 
