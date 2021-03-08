@@ -108,9 +108,8 @@ class QueryableTest
     comparables.add(1);
     comparables.add(3.1415);
     comparables.add("Lars");
-    Integer integer;
+    comparables.add(null);
     Queryable<Comparable> queryable = Queryable.as(comparables);
-//    Queryable<Comparable> queryable2 = Queryable.as(comparables, Comparable.class);
     assertEquals(Comparable.class, queryable.getType());
     queryable.add(2.4);
     Comparable[] asArray = queryable.asArray();

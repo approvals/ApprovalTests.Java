@@ -106,12 +106,12 @@ public class Queryable<In> extends ArrayList<In>
     Class greatestCommonType = list.get(0).getClass();
     for (T t : list)
     {
-      if (!greatestCommonType.isInstance(t))
+      if (t != null && !greatestCommonType.isInstance(t))
       {
         greatestCommonType = greatestCommonType.getSuperclass();
       }
     }
-    if (greatestCommonType.equals(Object.class))
+    if (Object.class.equals(greatestCommonType))
     {
       greatestCommonType = getGreatestCommonInterface(list);
     }
@@ -120,9 +120,12 @@ public class Queryable<In> extends ArrayList<In>
   private static <T> Class getGreatestCommonInterface(List<T> list)
   {
     List<Class> allInterfaces = ClassUtils.getAllInterfaces(list.get(0).getClass());
-    for (int i = 1; i < list.size(); i++) {
-      for (int j = allInterfaces.size()-1; 0 < j; j--) {
-        if (!allInterfaces.get(j).isInstance(list.get(i))) {
+    for (int i = 1; i < list.size(); i++)
+    {
+      for (int j = allInterfaces.size() - 1; 0 < j; j--)
+      {
+        if (!allInterfaces.get(j).isInstance(list.get(i)))
+        {
           allInterfaces.remove(j);
         }
       }
