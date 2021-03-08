@@ -9,6 +9,7 @@ import org.lambda.Extendable;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class QueryableTest
 {
@@ -101,16 +102,18 @@ class QueryableTest
     Approvals.verifyAll("", asArray);
   }
 
-  @Disabled("todo next week")
   @Test
   void testInterfaceCommonality() {
     List<Comparable> comparables = new ArrayList<>();
     comparables.add(1);
     comparables.add(3.1415);
     comparables.add("Lars");
-    Queryable<Comparable> as = Queryable.as(comparables); // Queryable.as(numbers); ?
-    as.add(2.4);
-    Comparable[] asArray = as.asArray();
+    Integer integer;
+    Queryable<Comparable> queryable = Queryable.as(comparables);
+//    Queryable<Comparable> queryable2 = Queryable.as(comparables, Comparable.class);
+    assertEquals(Comparable.class, queryable.getType());
+    queryable.add(2.4);
+    Comparable[] asArray = queryable.asArray();
     Approvals.verifyAll("", asArray);
   }
 }
