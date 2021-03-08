@@ -15,6 +15,7 @@ A set of convenience functions to make life easier.
 ## BasicUtils
 
 * [Strings](StringUtils.md#top)
+* [Arrays](ArrayUtils.md#top)
 * [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 
 ---

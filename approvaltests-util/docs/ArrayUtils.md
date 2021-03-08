@@ -3,9 +3,6 @@
 # ArrayUtils
 
 <!-- toc -->
-## Contents
-
-  * [toArray](#toarray)<!-- endToc -->
 
 ## toArray
 
