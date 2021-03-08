@@ -2,16 +2,7 @@
 
 # ArrayUtils
 
-
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
-
-- [Joining Collections](#joining-collections)
-- [Joining Collections with a function](#joining-collections-with-a-function)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+toc
 
 ## toArray
 
