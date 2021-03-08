@@ -17,8 +17,8 @@ jobs:
           java-version: 8
 
       - name: Determine version from git tag
-          id: version
-          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       - name: set version
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
