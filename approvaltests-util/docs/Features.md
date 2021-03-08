@@ -5,6 +5,7 @@
 <!-- toc -->
 ## Contents
 
+  * [toArray](#toarray)
   * [Queryable and Extendable](#queryable-and-extendable)
   * [Functions](#functions)
   * [Actions](#actions)
@@ -120,7 +121,7 @@ Sometimes you wish you could add to an array the same way you can add to a list.
 Integer[] numbers = {1, 2, 3};
 numbers = ArrayUtils.addToArray(numbers, 4, 5, 6);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L16-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L18-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will result in a new copy of the array with the added items
@@ -129,7 +130,7 @@ will result in a new copy of the array with the added items
 ```java
 Integer[] resulting = {1, 2, 3, 4, 5, 6};
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L20-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array_result' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L22-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-add_to_array_result' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 [Back to User Guide](README.md#top)
