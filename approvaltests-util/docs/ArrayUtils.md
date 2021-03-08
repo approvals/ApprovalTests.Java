@@ -2,7 +2,7 @@
 
 # ArrayUtils
 
-<!-- toc -->
+toc
 
 ## toArray
 

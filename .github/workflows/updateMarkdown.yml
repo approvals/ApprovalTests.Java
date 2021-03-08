@@ -2,7 +2,7 @@ name: on-push-do-doco
 on:
   push:
 jobs:
-  release:
+  update-markdown-snippets:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
