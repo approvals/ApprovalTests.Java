@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        java: ['8', '11', '15', '16-ea', '17-ea']
+        java: ['8', '11', '16', '17-ea']
 
     steps:
     - uses: actions/checkout@v2
