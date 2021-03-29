@@ -28,9 +28,12 @@ public class TestUtils
 {
   private static Random                         random;
   private static Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
-  public static void registerSourceDirectoryFinder(Function2<Class, String, File> getSourceDirectory)
+  public static AutoCloseable registerSourceDirectoryFinder(Function2<Class, String, File> sourceDirectoryFinder)
   {
-    TestUtils.getSourceDirectory = getSourceDirectory;
+    Function2<Class, String, File> original = getSourceDirectory;
+    AutoCloseable c = () -> TestUtils.getSourceDirectory = original;
+    TestUtils.getSourceDirectory = sourceDirectoryFinder;
+    return c;
   }
   public static File getFile(String startingDir)
   {
