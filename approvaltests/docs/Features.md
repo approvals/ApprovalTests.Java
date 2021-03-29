@@ -24,6 +24,10 @@
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
+## 10.3.0
+### [More here](Configuration.md#Defining alternatives)
+
+
 ## 9.4.0
 ### CombinationApprovals.verifyBestCoveringPairs
 This takes advantage of a concept called [pairwise testing](https://youtu.be/xzs-Zpz8vPg?t=134) to dramatically reduce the amount of combinations executed while retaining the vast majority of coverage.

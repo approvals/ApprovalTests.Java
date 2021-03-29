@@ -18,6 +18,7 @@ Currently you can configure:
  * [Reporters](Reporters.md#class-and-method-level) (package/class/method)
  * FrontLoadedReporters ( package/class/method)
  * ApprovalSubdirectories (package)
+ * How Approvals discovers your source path
 
 ### Package Level Settings
 The following options will be read by ApprovalTests:
@@ -131,6 +132,19 @@ ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings]
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+##  Alternative source path discovery
+
+Compiled class files do not contain information about the files they are compiled from.
+As such ApprovalTests has an algorithm to guess the source file's location.
+This works most of the time. In the off chance that it doesn't work for you, you can fix it manually using the following injection point.
+
+### Defining alternatives
+<!-- snippet : define_alternative_source_directory_finder -->
+### Using alternatives
+Thanks to the try block, the default is restored afterwards allowing tests to be independent.
+You might want to do this at a [higher level](https://stackoverflow.com/questions/43282798/in-junit-5-how-to-run-code-before-all-tests).
+<!-- snippet : configure_alternative_source_directory -->
 
 ---
 
