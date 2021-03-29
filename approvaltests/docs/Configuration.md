@@ -143,11 +143,33 @@ As such ApprovalTests has an algorithm to guess the source file's location.
 This works most of the time. In the off chance that it doesn't work for you, you can fix it manually using the following injection point.
 
 ### Defining alternatives
-snippet: define_alternative_source_directory_finder
+<!-- snippet: define_alternative_source_directory_finder -->
+<a id='snippet-define_alternative_source_directory_finder'></a>
+```java
+Function2<Class, String, File> myFinder = new Function2<Class, String, File>()
+{
+  @Override
+  public File call(Class clazz, String fileName)
+  {
+    return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", File.separator));
+  }
+};
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L17-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-define_alternative_source_directory_finder' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 ### Using alternatives
 Thanks to the try block, the default is restored afterwards allowing tests to be independent.
 You might want to do this at a [higher level](https://stackoverflow.com/questions/43282798/in-junit-5-how-to-run-code-before-all-tests).
-snippet: configure_alternative_source_directory
+<!-- snippet: configure_alternative_source_directory -->
+<a id='snippet-configure_alternative_source_directory'></a>
+```java
+try (SourceDirectoryRestorer sdr = TestUtils.registerSourceDirectoryFinder(myFinder))
+{
+  Approvals.verify("Ragunath");
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L28-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_alternative_source_directory' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ---
 
