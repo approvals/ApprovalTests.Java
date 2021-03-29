@@ -106,13 +106,7 @@ public class ClassUtils
   }
   public static File getSourceDirectory(Class<?> clazz, final String fileName)
   {
-    return getSourceDirectory(clazz, new Function1<String, String>()
-    {
-      public String call(String __)
-      {
-        return fileName;
-      }
-    });
+    return getSourceDirectory(clazz, __ -> fileName);
   }
   public static File find(File file, List<String> matches)
   {
