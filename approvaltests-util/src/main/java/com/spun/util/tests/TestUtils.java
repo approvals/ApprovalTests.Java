@@ -1,16 +1,5 @@
 package com.spun.util.tests;
 
-import com.spun.util.ClassUtils;
-import com.spun.util.ObjectUtils;
-import com.spun.util.ThreadUtils;
-import com.spun.util.WindowUtils;
-import com.spun.util.images.ImageWriter;
-import com.spun.util.io.FileUtils;
-import com.spun.util.io.StackElementLevelSelector;
-import com.spun.util.io.StackElementSelector;
-import org.lambda.functions.Function1;
-import org.lambda.functions.Function2;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,9 +13,25 @@ import javax.mail.Message;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import org.lambda.functions.Function2;
+
+import com.spun.util.ClassUtils;
+import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
+import com.spun.util.WindowUtils;
+import com.spun.util.images.ImageWriter;
+import com.spun.util.io.FileUtils;
+import com.spun.util.io.StackElementLevelSelector;
+import com.spun.util.io.StackElementSelector;
+
 public class TestUtils
 {
-  private static Random random;
+  private static Random                         random;
+  private static Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
+  public static void registerSourceDirectoryFinder(Function2<Class, String, File> getSourceDirectory)
+  {
+    TestUtils.getSourceDirectory = getSourceDirectory;
+  }
   public static File getFile(String startingDir)
   {
     JFrame frame = new JFrame();
@@ -189,22 +194,20 @@ public class TestUtils
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     className = handleInnerClasses(className);
     String fileName = element.getFileName();
-    Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
     File dir = getSourceDirectory.call(ObjectUtils.loadClass(fullClassName), fileName);
     String methodName = unrollLambda(element.getMethodName());
     return new StackTraceReflectionResult(dir, className, fullClassName, methodName);
   }
-
-  private static String handleInnerClasses(String className) {
+  private static String handleInnerClasses(String className)
+  {
     return className.replaceAll("\\$", ".");
   }
-
-  public static String unrollLambda(String methodName) {
+  public static String unrollLambda(String methodName)
+  {
     Pattern p = Pattern.compile("lambda\\$(.*)\\$\\d+");
     Matcher m = p.matcher(methodName);
-    if (m.matches()) {
-      return m.group(1);
-    }
+    if (m.matches())
+    { return m.group(1); }
     return methodName;
   }
 }
