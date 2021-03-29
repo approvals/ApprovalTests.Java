@@ -28,12 +28,25 @@ public class TestUtils
 {
   private static Random                         random;
   private static Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
-  public static AutoCloseable registerSourceDirectoryFinder(Function2<Class, String, File> sourceDirectoryFinder)
+  public static SourceDirectoryRestorer registerSourceDirectoryFinder(
+      Function2<Class, String, File> sourceDirectoryFinder)
   {
-    Function2<Class, String, File> original = getSourceDirectory;
-    AutoCloseable c = () -> TestUtils.getSourceDirectory = original;
+    SourceDirectoryRestorer c = new SourceDirectoryRestorer();
     TestUtils.getSourceDirectory = sourceDirectoryFinder;
     return c;
+  }
+  public static class SourceDirectoryRestorer implements AutoCloseable
+  {
+    private final Function2<Class, String, File> original;
+    public SourceDirectoryRestorer()
+    {
+      this.original = TestUtils.getSourceDirectory;
+    }
+    @Override
+    public void close()
+    {
+      TestUtils.getSourceDirectory = original;
+    }
   }
   public static File getFile(String startingDir)
   {

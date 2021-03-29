@@ -2,7 +2,6 @@ package org.approvaltests.namer;
 
 import java.io.File;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -15,6 +14,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import com.spun.util.LambdaThreadLauncher;
 import com.spun.util.ObjectUtils;
 import com.spun.util.tests.TestUtils;
+import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 
 public class JUnit5StackTraceNamerTest
 {
@@ -69,9 +69,9 @@ public class JUnit5StackTraceNamerTest
     { throw ObjectUtils.throwAsError(caught[0]); }
   }
   @Test
-  void testOverridingDirectoryFinder() throws Exception
+  void testOverridingDirectoryFinder()
   {
-    try (AutoCloseable autoCloseable = TestUtils
+    try (SourceDirectoryRestorer sdr = TestUtils
         .registerSourceDirectoryFinder((c, s) -> new File("does not exist")))
     {
       StackTraceNamer name = new StackTraceNamer();
