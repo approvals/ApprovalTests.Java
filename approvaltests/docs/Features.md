@@ -27,7 +27,8 @@
     * [Usage](#usage)<!-- endToc -->
 
 ## 10.3.0
-### [More here](Configuration.md#Defining alternatives)
+### Configure alternative Source File Directory Finder
+[see here](Configuration.md#alternative-source-path-discovery)
 
 
 ## 9.4.0
