@@ -6,7 +6,7 @@
 ## Contents
 
   * [10.3.0](#1030)
-    * [More here](#more-here)
+    * [Configure alternative Source File Directory Finder](#configure-alternative-source-file-directory-finder)
   * [9.4.0](#940)
     * [CombinationApprovals.verifyBestCoveringPairs](#combinationapprovalsverifybestcoveringpairs)
   * [9.3.0](#930)
