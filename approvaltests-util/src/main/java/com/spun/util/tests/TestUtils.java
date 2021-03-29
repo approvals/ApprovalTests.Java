@@ -8,6 +8,9 @@ import com.spun.util.images.ImageWriter;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.StackElementLevelSelector;
 import com.spun.util.io.StackElementSelector;
+import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -186,7 +189,8 @@ public class TestUtils
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     className = handleInnerClasses(className);
     String fileName = element.getFileName();
-    File dir = ClassUtils.getSourceDirectory(ObjectUtils.loadClass(fullClassName), fileName);
+    Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
+    File dir = getSourceDirectory.call(ObjectUtils.loadClass(fullClassName), fileName);
     String methodName = unrollLambda(element.getMethodName());
     return new StackTraceReflectionResult(dir, className, fullClassName, methodName);
   }
