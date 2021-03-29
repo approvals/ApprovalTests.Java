@@ -143,11 +143,11 @@ As such ApprovalTests has an algorithm to guess the source file's location.
 This works most of the time. In the off chance that it doesn't work for you, you can fix it manually using the following injection point.
 
 ### Defining alternatives
-<!-- snippet : define_alternative_source_directory_finder -->
+snippet: define_alternative_source_directory_finder
 ### Using alternatives
 Thanks to the try block, the default is restored afterwards allowing tests to be independent.
 You might want to do this at a [higher level](https://stackoverflow.com/questions/43282798/in-junit-5-how-to-run-code-before-all-tests).
-<!-- snippet : configure_alternative_source_directory -->
+snippet: configure_alternative_source_directory
 
 ---
 
