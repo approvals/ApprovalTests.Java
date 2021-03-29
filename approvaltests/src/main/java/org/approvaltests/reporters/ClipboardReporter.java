@@ -35,13 +35,24 @@ public class ClipboardReporter implements EnvironmentAwareReporter
   }
   public static String getAcceptApprovalText(String received, String approved)
   {
-    if (SystemUtils.isWindowsEnviroment())
+    return getAcceptApprovalText(received, approved, SystemUtils.isWindowsEnviroment());
+  }
+  public static String getAcceptApprovalText(String received, String approved, boolean windowsEnviroment)
+  {
+    if (windowsEnviroment)
     {
       return String.format("move /Y \"%s\"  \"%s\"", received, approved);
     }
     else
     {
-      return String.format("mv %s %s", received, approved);
+      return String.format("mv %s %s", formatFilePathForCommandLine(received),
+          formatFilePathForCommandLine(approved));
     }
+  }
+  private static String formatFilePathForCommandLine(String filePath)
+  {
+    if (filePath.contains(" "))
+    { return '"' + filePath + '"'; }
+    return filePath;
   }
 }
