@@ -1,4 +1,4 @@
-name: Publish ApprovalTests.Java to Maven Central
+name: Publish to Maven Central
 
 on:
   release:

@@ -1,7 +1,4 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name:  mvn verify linux
+name:  Run tests
 
 on:
   push:
@@ -11,10 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}-latestR
     strategy:
       matrix:
         java: ['8', '11', '16', '17-ea']
+        os: [ ubuntu, windows ]
 
     steps:
     - uses: actions/checkout@v2
