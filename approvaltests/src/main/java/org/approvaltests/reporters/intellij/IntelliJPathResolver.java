@@ -15,21 +15,8 @@ import com.spun.util.SystemUtils;
 public class IntelliJPathResolver
 {
   private final String channelsPath;
-  private final String runtimeSuffix;
   public IntelliJPathResolver(Edition edition)
   {
-    if (SystemUtils.isWindowsEnviroment())
-    {
-      runtimeSuffix = "/bin/idea64.exe";
-    }
-    else if (SystemUtils.isMacEnviroment())
-    {
-      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
-    }
-    else // Linux
-    {
-      runtimeSuffix = "/bin/idea.sh";
-    }
     String toolboxPath = appData() + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
@@ -79,6 +66,23 @@ public class IntelliJPathResolver
   }
   private Path getPath(Version version)
   {
-    return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
+    return Paths.get(channelsPath + version.version + runtimeSuffix()).toAbsolutePath();
+  }
+  private String runtimeSuffix()
+  {
+    String runtimeSuffix;
+    if (SystemUtils.isWindowsEnviroment())
+    {
+      runtimeSuffix = "/bin/idea64.exe";
+    }
+    else if (SystemUtils.isMacEnviroment())
+    {
+      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
+    }
+    else // Linux
+    {
+      runtimeSuffix = "/bin/idea.sh";
+    }
+    return runtimeSuffix;
   }
 }
