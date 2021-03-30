@@ -10,8 +10,7 @@
   * [Alternative Base Directory for Output Files](#alternative-base-directory-for-output-files)
   * [PackageLevelSettings](#packagelevelsettings)
   * [Alternative source path discovery](#alternative-source-path-discovery)
-    * [Defining alternatives](#defining-alternatives)
-    * [Using alternatives](#using-alternatives)<!-- endToc -->
+    * [Defining alternatives](#defining-alternatives)<!-- endToc -->
 
 ## What is configurable?
 Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 
