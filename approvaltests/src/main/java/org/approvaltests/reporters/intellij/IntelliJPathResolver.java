@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
 
 public class IntelliJPathResolver
@@ -77,12 +78,24 @@ public class IntelliJPathResolver
     }
     else if (SystemUtils.isMacEnviroment())
     {
-      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
+      try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 3, FileVisitOption.FOLLOW_LINKS))
+      {
+        final String s = findEapOrRegular(walk).orElse("/IntelliJ IDEA.app");
+        runtimeSuffix = "/" + s + "/Contents/MacOS/idea";
+      }
+      catch (IOException e)
+      {
+        throw ObjectUtils.throwAsError(e);
+      }
     }
     else // Linux
     {
       runtimeSuffix = "/bin/idea.sh";
     }
     return runtimeSuffix;
+  }
+  private Optional<String> findEapOrRegular(Stream<Path> walk)
+  {
+    return walk.map(Path::getFileName).map(Objects::toString).filter(s -> s.endsWith(".app")).findAny();
   }
 }
