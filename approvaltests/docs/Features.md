@@ -5,6 +5,8 @@
 <!-- toc -->
 ## Contents
 
+  * [10.4.0](#1040)
+    * [Configure tests to only run on specific machine](#configure-tests-to-only-run-on-specific-machine)
   * [10.3.0](#1030)
     * [Configure alternative Source File Directory Finder](#configure-alternative-source-file-directory-finder)
   * [9.4.0](#940)
