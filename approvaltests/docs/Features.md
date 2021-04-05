@@ -28,7 +28,7 @@
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
-## 10.4.0
+## x.y.z
 ### Configure tests to only run on specific machine
 [see here](how_to/MachineNameSpecificTest.md#top)
 
