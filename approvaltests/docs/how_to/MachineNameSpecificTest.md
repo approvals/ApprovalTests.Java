@@ -1,6 +1,6 @@
 <a id="top"></a>
 
-# How to use NamerFactory.asMachineNameSpecificTest() in Parameterized Tests
+# How to run tests only on specific machines
 
 <!-- toc -->
 <!-- endToc -->
