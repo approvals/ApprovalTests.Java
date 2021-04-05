@@ -99,7 +99,7 @@ Then you would get the following settings
 ```txt
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Llewellyn [from org.packagesettings.PackageSettings] 
-rating : 10 [from org.packagesettings.PackageSettings] 
+rating : 10 [from org.packagesettings.PackageSettings]
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt#L1-L3' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/PackageSettingsTest.testRetrieveValue.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
@@ -130,7 +130,7 @@ then you would get a blended view of the two classes where anything in the sub-p
 lastName : Falco [from org.packagesettings.PackageSettings] 
 name : Test Name [from org.packagesettings.subpackage.PackageSettings] 
 rating : true [from org.packagesettings.subpackage.PackageSettings] 
-ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings] 
+ratingScale : logarithmic [from org.packagesettings.subpackage.PackageSettings]
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt#L1-L4' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettingsTest.testRetrieveValueWithOverRide.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
