@@ -8,37 +8,37 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
-
-import com.spun.util.SystemUtils;
 import java.util.stream.Stream;
+
+import com.spun.util.ObjectUtils;
+import com.spun.util.SystemUtils;
 
 public class IntelliJPathResolver
 {
   private final String channelsPath;
-  private final String runtimeSuffix;
-
   public IntelliJPathResolver(Edition edition)
+  {
+    String toolboxPath = appData() + "/JetBrains/Toolbox";
+    this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
+  }
+  private String appData()
   {
     String appData = "";
     if (SystemUtils.isWindowsEnviroment())
     {
       appData = System.getenv("LOCALAPPDATA");
-      runtimeSuffix = "/bin/idea64.exe";
     }
     else if (SystemUtils.isMacEnviroment())
     {
       appData = System.getenv("HOME");
       appData += "/Library/Application Support";
-      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
     }
     else // Linux
     {
       appData = System.getenv("HOME");
       appData += "/.local/share";
-      runtimeSuffix = "/bin/idea.sh";
     }
-    String toolboxPath = appData + "/JetBrains/Toolbox";
-    this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
+    return appData;
   }
   public String findIt()
   {
@@ -54,7 +54,8 @@ public class IntelliJPathResolver
   }
   private Optional<Path> getIntelliJPath() throws IOException
   {
-    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)) {
+    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS))
+    {
       return walk //
           .map(Path::getFileName) //
           .map(Objects::toString) //
@@ -66,6 +67,35 @@ public class IntelliJPathResolver
   }
   private Path getPath(Version version)
   {
-    return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
+    return Paths.get(channelsPath + version.version + runtimeSuffix()).toAbsolutePath();
+  }
+  private String runtimeSuffix()
+  {
+    String runtimeSuffix;
+    if (SystemUtils.isWindowsEnviroment())
+    {
+      runtimeSuffix = "/bin/idea64.exe";
+    }
+    else if (SystemUtils.isMacEnviroment())
+    {
+      try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 3, FileVisitOption.FOLLOW_LINKS))
+      {
+        final String s = findEapOrRegular(walk).orElse("/IntelliJ IDEA.app");
+        runtimeSuffix = "/" + s + "/Contents/MacOS/idea";
+      }
+      catch (IOException e)
+      {
+        throw ObjectUtils.throwAsError(e);
+      }
+    }
+    else // Linux
+    {
+      runtimeSuffix = "/bin/idea.sh";
+    }
+    return runtimeSuffix;
+  }
+  private Optional<String> findEapOrRegular(Stream<Path> walk)
+  {
+    return walk.map(Path::getFileName).map(Objects::toString).filter(s -> s.endsWith(".app")).findAny();
   }
 }
