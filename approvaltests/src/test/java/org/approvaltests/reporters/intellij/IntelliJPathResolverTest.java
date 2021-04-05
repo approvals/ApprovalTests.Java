@@ -15,8 +15,12 @@ class IntelliJPathResolverTest
   @Test
   void testDetectionOfIntellijOnDevMachines()
   {
+    // begin-snippet: runOnlyOnSpecificMachines
     if (!NamerFactory.asMachineNameSpecificTest().isCurrentEnvironmentValidFor("Larss-Air.lan", "macbook13"))
     { return; }
+    // the rest of your test...
+    // end-snippet
+
     final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJReporter()
         .getWorkingReportersForEnviroment().get(0);
     final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");

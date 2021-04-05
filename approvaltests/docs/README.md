@@ -18,6 +18,7 @@
 
 * use [Printable Wrappers](how_to/PrintableWrappers.md#top)
 * use [Parameterized Tests](how_to/ParameterizedTest.md#top)
+* use [MachineNameSpecific Tests](how_to/MachineNameSpecificTest.md#top)
 * remove inconsistent output using [Scrubbers](Scrubbers.md#top)
 
 ## Configuration

@@ -26,6 +26,10 @@
     * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
+## 10.4.0
+### Configure tests to only run on specific machine
+[see here](how_to/MachineNameSpecificTest.md#top)
+
 ## 10.3.0
 ### Configure alternative Source File Directory Finder
 [see here](Configuration.md#alternative-source-path-discovery)
