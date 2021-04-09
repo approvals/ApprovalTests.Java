@@ -76,6 +76,24 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>net.revelc.code.formatter</groupId>
+                <artifactId>formatter-maven-plugin</artifactId>
+                <version>2.15.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skipHtmlFormatting>true</skipHtmlFormatting>
+                    <skipXmlFormatting>true</skipXmlFormatting>
+                    <skipJsonFormatting>true</skipJsonFormatting>
+                    <configFile>${project.basedir}/../spun.xml</configFile>
+                </configuration>
+            </plugin>
+            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
