@@ -27,9 +27,9 @@ public class ApprovalsTest extends MachineSpecificTest
     tv.selectTime("3pm");
     AwtApprovals.verify(tv);
   }
-
   @Test
-  void customPanel() {
+  void customPanel()
+  {
     AwtApprovals.verify(new CustomPanel());
   }
 }
