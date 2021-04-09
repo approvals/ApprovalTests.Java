@@ -27,7 +27,7 @@ If you just wanted to wrap a single object. You can create a printable wrapper b
 Printable<Integer> one = new Printable(1, "one");
 assertEquals("one", one.toString());
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L16-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_label' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L18-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_label' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 to access the value, simply call
@@ -38,7 +38,7 @@ to access the value, simply call
 Integer value = one.get();
 assertEquals(1, value);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L20-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_access' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L22-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_access' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 #### Alternative `toString()` Function
@@ -51,7 +51,7 @@ You can also write a different function(lambda) to create the `toString()` and t
 Printable<Integer> two = new Printable(2, i -> "#" + i + ")");
 assertEquals("#2)", two.toString());
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L24-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_lambda' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L26-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_single_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Wrap an array of objects
@@ -64,7 +64,7 @@ For convenience, if you want to do this to a whole list of items we have
 Printable<Integer> numbers[] = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
 Approvals.verifyAll("Custom toString method", numbers, p -> String.format("%s -> %s", p, p.get()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L38-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_lambda' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L40-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 would produce
@@ -91,16 +91,11 @@ We also has a convenience builder if you want each object to have it's own label
 <!-- snippet: printable_array_labels -->
 <a id='snippet-printable_array_labels'></a>
 ```java
-Printable<Integer> labeled[] = Printable.with()
-        .label(1, "first")
-        .label(2, "second")
-        .label(3, "third")
-        .label(4, "forth")
-        .label(5, "fifth")
-        .toArray();
+Printable<Integer> labeled[] = Printable.with().label(1, "first").label(2, "second").label(3, "third")
+    .label(4, "forth").label(5, "fifth").toArray();
 Approvals.verifyAll("Labeled", labeled, p -> String.format("%s -> %s", p, p.get()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L46-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_labels' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L48-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_labels' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 would produce:

@@ -167,7 +167,7 @@ try (SourceDirectoryRestorer sdr = TestUtils.registerSourceDirectoryFinder(myFin
   Approvals.verify("Ragunath");
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L28-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_alternative_source_directory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L27-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_alternative_source_directory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---
