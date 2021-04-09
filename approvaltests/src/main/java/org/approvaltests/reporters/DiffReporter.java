@@ -9,11 +9,7 @@ public class DiffReporter extends FirstWorkingReporter
   public static final DiffReporter INSTANCE = new DiffReporter();
   public DiffReporter()
   {
-    super(
-        WindowsDiffReporter.INSTANCE,
-        MacDiffReporter.INSTANCE,
-        LinuxDiffReporter.INSTANCE,
-        JunitReporter.INSTANCE,
-        QuietReporter.INSTANCE);
+    super(WindowsDiffReporter.INSTANCE, MacDiffReporter.INSTANCE, LinuxDiffReporter.INSTANCE,
+        JunitReporter.INSTANCE, QuietReporter.INSTANCE);
   }
 }

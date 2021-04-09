@@ -6,7 +6,7 @@ public class ColumnMetadata
 {
   private Metadata       tableMetadata;
   private String         name;
-  private Class<?>          type;
+  private Class<?>       type;
   private int            length;
   private boolean        nullable;
   private int            sqlType;
@@ -15,15 +15,15 @@ public class ColumnMetadata
   private int            columnPosition;
   private String         foreignTable;
   private ColumnMetadata foreignColumn;
-
-  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
-      int decimalDigits, String comments)
+  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition,
+      boolean nullable, int sqlType, int decimalDigits, String comments)
   {
-    this(tableMetadata, name, type, length, columnPosition, nullable, sqlType, decimalDigits, comments, null, null);
+    this(tableMetadata, name, type, length, columnPosition, nullable, sqlType, decimalDigits, comments, null,
+        null);
   }
-
-  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition, boolean nullable, int sqlType,
-      int decimalDigits, String comments, String foreignTable, ColumnMetadata foreignColumn)
+  public ColumnMetadata(Metadata tableMetadata, String name, Class<?> type, int length, int columnPosition,
+      boolean nullable, int sqlType, int decimalDigits, String comments, String foreignTable,
+      ColumnMetadata foreignColumn)
   {
     this.columnPosition = columnPosition;
     this.tableMetadata = tableMetadata;
@@ -37,17 +37,14 @@ public class ColumnMetadata
     this.foreignTable = foreignTable;
     this.foreignColumn = foreignColumn;
   }
-
   public int getLength()
   {
     return length;
   }
-
   public int getSqlType()
   {
     return sqlType;
   }
-
   public String getSqlTypeName()
   {
     String name = DatabaseUtils.findDatabaseName(sqlType);
@@ -63,58 +60,48 @@ public class ColumnMetadata
     }
     return name;
   }
-
   public int getColumnPosition()
   {
     return columnPosition;
   }
-
   public String getName()
   {
     return name;
   }
-
   public boolean isNullable()
   {
     return nullable;
   }
-
   public Class<?> getType()
   {
     return type;
   }
-
   public int getDecimalDigits()
   {
     return decimalDigits;
   }
-
   public String getComments()
   {
     return comments;
   }
-
   public String getForeignTable()
   {
     return foreignTable;
   }
-
   public ColumnMetadata getForeignColumn()
   {
     return foreignColumn;
   }
-
   public String getNameWithPrefix(String alias)
   {
     return alias + "." + getName();
   }
-
   public String getSequenceName(int databaseType)
   {
-    if (databaseType == DatabaseUtils.POSTGRESQL) { return String.format("%s_%s_seq", tableMetadata.getTableName(), this.getName()); }
+    if (databaseType == DatabaseUtils.POSTGRESQL)
+    { return String.format("%s_%s_seq", tableMetadata.getTableName(), this.getName()); }
     return null;
   }
-
   /**
    * A convenience function to turn a vector of com.spun.util.database.ColumnMetadata objects
    * into an Array of the com.spun.util.database.ColumnMetadata objects.
@@ -124,7 +111,8 @@ public class ColumnMetadata
    **/
   public static com.spun.util.database.ColumnMetadata[] toArray(java.util.Collection<ColumnMetadata> vectorOf)
   {
-    if (vectorOf == null) { return new com.spun.util.database.ColumnMetadata[0]; }
+    if (vectorOf == null)
+    { return new com.spun.util.database.ColumnMetadata[0]; }
     com.spun.util.database.ColumnMetadata array[] = new com.spun.util.database.ColumnMetadata[vectorOf.size()];
     java.util.Iterator<ColumnMetadata> iterator = vectorOf.iterator();
     int i = 0;
@@ -137,10 +125,10 @@ public class ColumnMetadata
       }
       else
       {
-        throw new Error("toArray[" + i + "] is not an instance of com.spun.util.database.ColumnMetadata but a " + rowObject.getClass().getName());
+        throw new Error("toArray[" + i + "] is not an instance of com.spun.util.database.ColumnMetadata but a "
+            + rowObject.getClass().getName());
       }
     }
     return array;
   }
-
 }

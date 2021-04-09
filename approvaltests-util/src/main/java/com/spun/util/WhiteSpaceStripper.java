@@ -12,12 +12,10 @@ import java.nio.file.Files;
 
 public class WhiteSpaceStripper
 {
-  
   public static void stripFolder(File dir)
   {
     stripFolder(dir, true);
   }
-  
   public static void stripFolder(File dir, boolean recursive)
   {
     if (!dir.isDirectory())
@@ -41,12 +39,10 @@ public class WhiteSpaceStripper
     }
     //    My_System.markerOut("WhiteSpaceStripper:stripFolder");
   }
-  
   public static void stripFile(String file)
   {
     stripFile(new File(file));
   }
-  
   public static void stripFile(File file)
   {
     if (!file.isFile())
@@ -73,7 +69,6 @@ public class WhiteSpaceStripper
       }
     }
   }
-  
   public static String stripWhiteSpace(String text)
   {
     StringBuffer newText = new StringBuffer();
@@ -106,7 +101,6 @@ public class WhiteSpaceStripper
     }
     return newText.toString();
   }
-  
   public static String stripBlankLines(String text)
   {
     StringBuffer newText = new StringBuffer();
@@ -145,10 +139,10 @@ public class WhiteSpaceStripper
     }
     return newText.toString();
   }
-  
   private static String readFile(File file) throws IOException
   {
-    try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
+    try (BufferedReader reader = Files.newBufferedReader(file.toPath()))
+    {
       StringBuilder output = new StringBuilder();
       while (reader.ready())
       {
@@ -158,7 +152,6 @@ public class WhiteSpaceStripper
       return output.toString();
     }
   }
-  
   private static void writeFile(File file, String text) throws IOException
   {
     try (BufferedWriter writer = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8))
@@ -170,7 +163,6 @@ public class WhiteSpaceStripper
 
 class WhiteSpaceFileFilter implements java.io.FileFilter
 {
-  
   @Override
   public boolean accept(File pathname)
   {
@@ -192,6 +184,4 @@ class WhiteSpaceFileFilter implements java.io.FileFilter
       return false;
     }
   }
-  
-  
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.lambda.query.Query;
 
-
 public class XmlMap
 {
   private String       settingFunction;
@@ -14,7 +13,6 @@ public class XmlMap
   private XmlExtractor extractor;
   private Method       settingMethod;
   private Class<?>     type;
-
   public XmlMap(String xmlName, String settingFunction, Class<?> type)
   {
     this.xmlName = xmlName;
@@ -26,24 +24,20 @@ public class XmlMap
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
   }
-
   public Method getSettingMethod()
   {
     return settingMethod;
   }
-
   public String getNodeName()
   {
     return xmlName;
   }
-
   public XmlMap(String xmlName, String settingFunction, XmlExtractor extractor)
   {
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
     this.extractor = extractor;
   }
-
   public void initialize(Class<?> clazz) throws InstantiationException, IllegalAccessException
   {
     List<Method> methods = Query.where(clazz.getMethods(), m -> isSetterMethod(m, type, settingFunction));
@@ -54,7 +48,6 @@ public class XmlMap
       extractor = getExtractorFor(takes);
     }
   }
-
   private XmlExtractor getExtractorFor(Class<?> takes) throws InstantiationException, IllegalAccessException
   {
     XmlExtractor extractor = BasicExtractor.get(takes);
@@ -87,7 +80,6 @@ public class XmlMap
       throw new Error("Need to Find best method for '" + settingFunction + "' from " + methods);
     }
   }
-
   public XmlExtractor getExtractor()
   {
     return extractor;
@@ -97,6 +89,4 @@ public class XmlMap
     return method.getParameterTypes().length == 1 && (clazz == null || method.getParameterTypes()[0] == clazz)
         && Modifier.isPublic(method.getModifiers()) && method.getName().equals(methodName);
   }
-
-
 }

@@ -88,7 +88,6 @@ public class MySystem
   {
     SimpleLogger.warning(statement, throwable);
   }
-
   /**
    * Returns all the Thread output of a group as a string.
    * @return A List of The thread, and if it is alive and/or interrupted.
@@ -115,7 +114,6 @@ public class MySystem
   {
     SimpleLogger.logMemoryStatus();
   }
-
   /**
    * Dumps the current thread status for ALL groups.
    **/

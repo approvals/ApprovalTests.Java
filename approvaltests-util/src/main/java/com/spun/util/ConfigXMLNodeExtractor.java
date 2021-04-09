@@ -7,9 +7,8 @@ import org.w3c.dom.NodeList;
 
 import com.spun.util.io.XMLNodeExtractor;
 
-public class ConfigXMLNodeExtractor implements XMLNodeExtractor 
+public class ConfigXMLNodeExtractor implements XMLNodeExtractor
 {
-  
   public void extractProperty(Node node, HashMap<String, Object> properties)
   {
     //String name = node.getNodeName();
@@ -31,6 +30,4 @@ public class ConfigXMLNodeExtractor implements XMLNodeExtractor
       properties.put(node.getNodeName(), StringUtils.toArray(v));
     }
   }
-  
-  
 }

@@ -8,7 +8,6 @@ import com.spun.util.io.XMLUtils;
 
 public class BasicExtractor
 {
-  
   public static XmlExtractor get(Class<?> clazz)
   {
     XmlExtractor extractor = null;
@@ -43,7 +42,6 @@ public class BasicExtractor
       return name.substring(divider + 1);
     }
   }
-  
   public static class StringExtractor extends ExtractorBase
   {
     public static StringExtractor INSTANCE = new StringExtractor();
@@ -55,7 +53,6 @@ public class BasicExtractor
       return XMLUtils.extractStringValue(node);
     }
   }
-  
   public static class DoubleExtractor extends ExtractorBase
   {
     public static DoubleExtractor INSTANCE = new DoubleExtractor();
@@ -67,7 +64,6 @@ public class BasicExtractor
       return Double.valueOf(XMLUtils.extractStringValue(node));
     }
   }
-  
   public static class IntegerExtractor extends ExtractorBase
   {
     public static IntegerExtractor INSTANCE = new IntegerExtractor();
@@ -79,7 +75,6 @@ public class BasicExtractor
       return Integer.valueOf(XMLUtils.extractStringValue(node));
     }
   }
-  
   public static class BooleanExtractor extends ExtractorBase
   {
     public static BooleanExtractor INSTANCE = new BooleanExtractor();
@@ -91,7 +86,6 @@ public class BasicExtractor
       return Boolean.valueOf(XMLUtils.extractStringValue(node));
     }
   }
-  
   public static class TimestampExtractor extends ExtractorBase
   {
     public static TimestampExtractor INSTANCE = new TimestampExtractor();
@@ -103,6 +97,4 @@ public class BasicExtractor
       return Timestamp.valueOf(XMLUtils.extractStringValue(node));
     }
   }
-  
-  
 }

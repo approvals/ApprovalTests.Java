@@ -39,27 +39,24 @@ public class DatabaseUtils
                                                                         "Microsoft SQL Server  2000",
                                                                         "MySQL",
                                                                         "Microsoft SQL Server"};
-
   public static String getDatabaseType(int type)
   {
     return DATABASE_TYPES[type];
   }
-
   public static int getDatabaseType(Statement stmt) throws SQLException
   {
     return getDatabaseType(stmt.getConnection());
   }
-
   public static int getDatabaseType(Connection con) throws SQLException
   {
     String dbName = con.getMetaData().getDatabaseProductName();
     for (int i = 0; i < DATABASE_TYPES.length; i++)
     {
-      if (DATABASE_TYPES[i].equalsIgnoreCase(dbName.trim())) { return i; }
+      if (DATABASE_TYPES[i].equalsIgnoreCase(dbName.trim()))
+      { return i; }
     }
     throw new Error("Unrecognized database product name: " + dbName);
   }
-
   /**
    * Finds the database type name for a jdbc sql type
    */
@@ -101,7 +98,6 @@ public class DatabaseUtils
     }
     return name;
   }
-
   /**
    * Finds the java object or primative for a sql type
    */
@@ -219,7 +215,6 @@ public class DatabaseUtils
         return false;
     }
   }
-
   public static String makeSQL2000URL(String protocol, String server, String port, String database)
   {
     String theURL = "";
@@ -230,7 +225,6 @@ public class DatabaseUtils
     theURL = protocol + server + port + database + ";SelectMethod=cursor";
     return theURL;
   }
-
   /**
    * Creates a connection to the Database.
    */
@@ -244,7 +238,6 @@ public class DatabaseUtils
     theURL = protocol + server + port + database;
     return theURL;
   }
-
   /**
    * Creates a connection to the Database, and stores it in the cookies table.
    */
@@ -267,7 +260,6 @@ public class DatabaseUtils
     }
     throw new Error("Database Type '" + type + "' not supported");
   }
-
   /**
    * Creates a connection to the Database. This is for Access, which is crap!
    */
@@ -280,7 +272,6 @@ public class DatabaseUtils
     theURL = protocol + database;
     return theURL;
   }
-
   /**
    * Creates a connection to the Database.
    */
@@ -310,7 +301,6 @@ public class DatabaseUtils
     }
     return con;
   }
-
   public static void printSQLValues()
   {
     SimpleLogger.variable("java.sql.Types.BIT           = " + java.sql.Types.BIT);
@@ -342,17 +332,14 @@ public class DatabaseUtils
     SimpleLogger.variable("java.sql.Types.CLOB          = " + java.sql.Types.CLOB);
     SimpleLogger.variable("java.sql.Types.REF           = " + java.sql.Types.REF);
   }
-
   public static String getMethodName(String databaseName)
   {
     return getVariableName(databaseName, true);
   }
-
   public static String getVariableName(String databaseName)
   {
     return getVariableName(databaseName, false);
   }
-
   public static String getVariableName(String databaseName, boolean capFirstLetter)
   {
     StringBuffer returning = new StringBuffer(databaseName.length());
@@ -377,12 +364,10 @@ public class DatabaseUtils
     }
     return returning.toString();
   }
-
   public static String formatNullableObject(Object o)
   {
     return formatNullableObject(o, POSTGRESQL);
   }
-
   public static String formatNullableObject(Object o, int type)
   {
     if (o == null)
@@ -418,10 +403,10 @@ public class DatabaseUtils
       }
     }
   }
-
   public static String toEscapeMSSQL(String unformattedString)
   {
-    if (unformattedString.indexOf('\'') == -1) { return unformattedString; }
+    if (unformattedString.indexOf('\'') == -1)
+    { return unformattedString; }
     StringBuffer b = new StringBuffer(unformattedString);
     for (int i = 0; i < b.length(); i++)
     {
@@ -436,11 +421,11 @@ public class DatabaseUtils
     }
     return b.toString();
   }
-
   public static String toEscapeACCESS_SQL(String unformattedString)
   {
     if ((unformattedString.indexOf('\'') == -1) && (unformattedString.indexOf('\"') == -1)
-        && (unformattedString.indexOf('\\') == -1)) { return unformattedString; }
+        && (unformattedString.indexOf('\\') == -1))
+    { return unformattedString; }
     StringBuffer b = new StringBuffer(unformattedString);
     for (int i = 0; i < b.length(); i++)
     {
@@ -460,12 +445,11 @@ public class DatabaseUtils
     }
     return b.toString();
   }
-
   public static String toEscapeSQL(String unformattedString)
   {
-    if ((unformattedString == null)
-        || ((unformattedString.indexOf('\'') == -1) && (unformattedString.indexOf('\"') == -1)
-            && (unformattedString.indexOf('\\') == -1))) { return unformattedString; }
+    if ((unformattedString == null) || ((unformattedString.indexOf('\'') == -1)
+        && (unformattedString.indexOf('\"') == -1) && (unformattedString.indexOf('\\') == -1)))
+    { return unformattedString; }
     StringBuffer b = new StringBuffer(unformattedString);
     for (int i = 0; i < b.length(); i++)
     {
@@ -482,17 +466,14 @@ public class DatabaseUtils
     }
     return b.toString();
   }
-
   public static void beginTransaction(Statement stmt) throws SQLException
   {
     beginTransaction(stmt.getConnection(), 2);
   }
-
   public static void beginTransaction(Connection con) throws SQLException
   {
     beginTransaction(con, 2);
   }
-
   private static void beginTransaction(Connection con, int offset) throws SQLException
   {
     if (getConnection(connections, con) == null)
@@ -509,27 +490,24 @@ public class DatabaseUtils
       //My_System.event("already exist");
     }
   }
-
   private static DatabaseTransactionInfo getConnection(ArrayList<DatabaseTransactionInfo> connections2,
       Connection con)
   {
     for (DatabaseTransactionInfo info : connections2)
     {
-      if (con.equals(info.getConnection())) { return info; }
+      if (con.equals(info.getConnection()))
+      { return info; }
     }
     return null;
   }
-
   public static void commit(Statement stmt) throws SQLException
   {
     commit(stmt.getConnection(), 2);
   }
-
   public static void commit(Connection con) throws SQLException
   {
     commit(con, 2);
   }
-
   private static void commit(Connection con, int offset) throws SQLException
   {
     DatabaseTransactionInfo commit = null;
@@ -556,12 +534,10 @@ public class DatabaseUtils
       commit.cleanConnection();
     }
   }
-
   public static void rollback(Statement stmt) throws SQLException
   {
     rollback(stmt.getConnection());
   }
-
   public static void rollback(Connection con) throws SQLException
   {
     if (con != null)
@@ -569,33 +545,31 @@ public class DatabaseUtils
       con.rollback();
     }
   }
-
   public static String formatBoolean(boolean b)
   {
     return (b) ? "'1'" : "'0'"; // added quotes for postgres
   }
-
   /**
    * This is for none space single words, such as email, name, handle
    */
   public static boolean isAcceptableDatabaseString(String string)
   {
-    if (string == null) { return true; }
+    if (string == null)
+    { return true; }
     for (int i = 0; i < string.length(); i++)
     {
       char c = string.charAt(i);
       boolean bad = false;
       bad = (c == ' ') || (c == '\n') || (c == '\t') || (c == '\'') || (c == '"');
-      if (bad) { return false; }
+      if (bad)
+      { return false; }
     }
     return true;
   }
-
   public static String getLike(int databaseType)
   {
     return databaseType == POSTGRESQL ? "ILIKE" : "LIKE";
   }
-
   /**
    * A convenience function to turn the int's into readable text for debuging.
    * 
@@ -623,7 +597,6 @@ public class DatabaseUtils
     }
     return value;
   }
-
   public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt) throws SQLException
   {
     for (int i = 0; i < databaseObjects.length; i++)
@@ -631,7 +604,6 @@ public class DatabaseUtils
       databaseObjects[i].save(stmt);
     }
   }
-
   public static void close(ResultSet rs)
   {
     if (rs != null)
@@ -646,7 +618,6 @@ public class DatabaseUtils
       }
     }
   }
-
   public static void close(Statement stmt)
   {
     if (stmt != null)
@@ -661,7 +632,6 @@ public class DatabaseUtils
       }
     }
   }
-
   public static void close(Connection con)
   {
     if (con != null)

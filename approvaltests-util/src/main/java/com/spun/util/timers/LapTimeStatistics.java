@@ -8,22 +8,18 @@ public class LapTimeStatistics
   private String    label     = null;
   private EventTime totalTime = null;
   private EventTime times[]   = null;
-
   public LapTimeStatistics(LapTimer lapTimer)
   {
     loadFirstLapTimer(lapTimer);
   }
-
   public LapTimeStatistics(String label)
   {
     this.label = label;
   }
-
   public int getCount()
   {
     return (totalTime == null) ? 0 : totalTime.getCount();
   }
-
   private void loadFirstLapTimer(LapTimer lapTimer)
   {
     if (label == null)
@@ -40,17 +36,14 @@ public class LapTimeStatistics
       times[i].add(lapTimes[i].getLapTime());
     }
   }
-
   public EventTime getTotalTime()
   {
     return totalTime;
   }
-
   public String getLabel()
   {
     return label;
   }
-
   public synchronized void add(LapTimer lapTimer)
   {
     if (totalTime == null)
@@ -61,18 +54,16 @@ public class LapTimeStatistics
     {
       totalTime.add(lapTimer.getTotalTime());
       LapTime lapTimes[] = lapTimer.getLapTimes();
-      if (lapTimes.length != times.length) { throw new Error("Tried to add a LapTimer with " + lapTimes.length + " laps. Must have " + times.length); }
+      if (lapTimes.length != times.length)
+      { throw new Error("Tried to add a LapTimer with " + lapTimes.length + " laps. Must have " + times.length); }
       for (int i = 0; i < lapTimes.length; i++)
       {
         times[i].add(lapTimes[i].getLapTime());
       }
     }
   }
-  
   public EventTime[] getLapTimes()
   {
     return this.times;
   }
-  
-  
 }

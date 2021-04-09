@@ -76,7 +76,8 @@ public class Query<In>
     }
     return total / list.size();
   }
-  private static <In, Out extends Comparable<Out>> In getTop(Collection<In> list, Function1<In, Out> f1, int modifier)
+  private static <In, Out extends Comparable<Out>> In getTop(Collection<In> list, Function1<In, Out> f1,
+      int modifier)
   {
     if (ArrayUtils.isEmpty(list))
     { return null; }
@@ -150,14 +151,16 @@ public class Query<In>
   {
     return first(array, funct) != null;
   }
-
-    public static <In> Queryable<In> distinct(List<In> list) {
-      Queryable<In> distinct = new Queryable<>();
-      for (In in : list) {
-        if (!distinct.contains(in)){
-          distinct.add(in);
-        }
+  public static <In> Queryable<In> distinct(List<In> list)
+  {
+    Queryable<In> distinct = new Queryable<>();
+    for (In in : list)
+    {
+      if (!distinct.contains(in))
+      {
+        distinct.add(in);
       }
-      return distinct;
     }
+    return distinct;
+  }
 }

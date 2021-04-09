@@ -46,16 +46,14 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   }
   public GenericDiffReporter(DiffInfo info)
   {
-    this(
-        info.diffProgram,
-        info.parameters,
-        MessageFormat.format("Unable to find program at {0}", info.diffProgram),
-        info.fileExtensions);
+    this(info.diffProgram, info.parameters,
+        MessageFormat.format("Unable to find program at {0}", info.diffProgram), info.fileExtensions);
   }
   @Override
   public void report(String received, String approved)
   {
-    if (!isWorkingInThisEnvironment(received)) { throw new RuntimeException(diffProgramNotFoundMessage); }
+    if (!isWorkingInThisEnvironment(received))
+    { throw new RuntimeException(diffProgramNotFoundMessage); }
     FileUtils.createIfNeeded(approved);
     launch(received, approved);
   }
@@ -115,9 +113,9 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     String extensionWithDot = FileUtils.getExtensionWithDot(forFile);
     return validExtensionsWithDot.contains(extensionWithDot);
   }
-
   @Override
-  public String toString() {
+  public String toString()
+  {
     return getClass().getName();
   }
 }

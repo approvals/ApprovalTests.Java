@@ -96,7 +96,8 @@ public class SimpleLoggerInstance
   }
   public void markerIn(String statement)
   {
-    if (!marker) { return; }
+    if (!marker)
+    { return; }
     logLine(timeStamp() + Symbols.markerIn + statement + " - IN");
     m_indent++;
   }
@@ -117,7 +118,8 @@ public class SimpleLoggerInstance
   }
   private String getIndent()
   {
-    if (m_indent == 0) { return ""; }
+    if (m_indent == 0)
+    { return ""; }
     String theIndention = "";
     for (int i = 0; i < m_indent; i++)
     {
@@ -176,13 +178,15 @@ public class SimpleLoggerInstance
   }
   public synchronized void markerOut(String text)
   {
-    if (!marker) { return; }
+    if (!marker)
+    { return; }
     m_indent--;
     logLine(timeStamp() + Symbols.markerOut + text + " - OUT");
   }
   public synchronized void query(String sqlQuery)
   {
-    if (!query) { return; }
+    if (!query)
+    { return; }
     logLine(timeStamp() + Symbols.sql + sqlQuery);
   }
   /**
@@ -190,7 +194,8 @@ public class SimpleLoggerInstance
    **/
   public synchronized void query(String queryName, Object sqlQuery)
   {
-    if (!query) { return; }
+    if (!query)
+    { return; }
     logLine(timeStamp() + Symbols.sql + "[" + queryName + "] - " + sqlQuery);
   }
   public void variableFormated(String string, Object... parameters)
@@ -199,7 +204,8 @@ public class SimpleLoggerInstance
   }
   public synchronized void variable(String statement)
   {
-    if (!variable) { return; }
+    if (!variable)
+    { return; }
     logLine(timeStamp() + Symbols.variable + statement);
   }
   /**
@@ -207,7 +213,8 @@ public class SimpleLoggerInstance
    **/
   public synchronized void variable(String name, Object value)
   {
-    if (!variable) { return; }
+    if (!variable)
+    { return; }
     logLine(timeStamp() + Symbols.variable + name + " = '" + value + "'");
   }
   private void logLine(String text)
@@ -227,7 +234,8 @@ public class SimpleLoggerInstance
   }
   public synchronized void variable(String name, Object array[])
   {
-    if (!variable) { return; }
+    if (!variable)
+    { return; }
     name = (name == null ? "array" : name);
     if (array == null)
     {
@@ -249,7 +257,8 @@ public class SimpleLoggerInstance
   }
   public void event(String Statement)
   {
-    if (!event) { return; }
+    if (!event)
+    { return; }
     logLine(timeStamp() + Symbols.event + Statement);
   }
   public synchronized void warning(String statement)
@@ -290,7 +299,8 @@ public class SimpleLoggerInstance
   }
   private void printStackTrace(Throwable throwable)
   {
-    if (!stacktraces) { return; }
+    if (!stacktraces)
+    { return; }
     if (logTo instanceof PrintStream)
     {
       throwable.printStackTrace((PrintStream) logTo);
@@ -304,7 +314,6 @@ public class SimpleLoggerInstance
       throwable.printStackTrace(new PrintWriter(new AppendableWriter(logTo)));
     }
   }
-
   /**
    * Logs the current memory status [total, used, free].
    * This forces garbage collection to run first. 
@@ -337,8 +346,6 @@ public class SimpleLoggerInstance
     final String text = extractMarkerText();
     return new Markers(text);
   }
-  
-  
   public StringBuffer logToString()
   {
     marker = true;
@@ -355,12 +362,8 @@ public class SimpleLoggerInstance
   {
     try
     {
-      logTo = Files.newBufferedWriter(
-          Paths.get(
-              addDatestampToFile(file, addDateStamp)),
-          StandardCharsets.UTF_8,
-          StandardOpenOption.TRUNCATE_EXISTING,
-          StandardOpenOption.CREATE);
+      logTo = Files.newBufferedWriter(Paths.get(addDatestampToFile(file, addDateStamp)), StandardCharsets.UTF_8,
+          StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
     }
     catch (IOException e)
     {
@@ -369,7 +372,8 @@ public class SimpleLoggerInstance
   }
   private String addDatestampToFile(String file, boolean addDateStamp)
   {
-    if (!addDateStamp) { return file; }
+    if (!addDateStamp)
+    { return file; }
     String date = ".[" + new SimpleDateFormat("yyyy_MM_dd").format(new Date()) + "]";
     int seperator = file.lastIndexOf('.');
     if (0 < seperator)

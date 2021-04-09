@@ -20,7 +20,8 @@ public class IdeLabeller implements Function0<String>
       {
         return "intellij";
       }
-      else if (className.contains("eclipse")) { return "eclipse"; }
+      else if (className.contains("eclipse"))
+      { return "eclipse"; }
     }
     return "unknown";
   }

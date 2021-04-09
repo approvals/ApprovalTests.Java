@@ -20,7 +20,6 @@ class IntelliJPathResolverTest
     { return; }
     // the rest of your test...
     // end-snippet
-
     final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJReporter()
         .getWorkingReportersForEnviroment().get(0);
     final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");

@@ -12,7 +12,7 @@ import com.spun.util.tests.TestUtils;
 public class StackTraceNamer implements ApprovalNamer
 {
   private StackTraceReflectionResult info;
-  private String additionalInformation;
+  private String                     additionalInformation;
   public StackTraceNamer()
   {
     info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
@@ -21,8 +21,7 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public String getApprovalName()
   {
-    return String.format("%s.%s%s", info.getClassName(), info.getMethodName(),
-        additionalInformation);
+    return String.format("%s.%s%s", info.getClassName(), info.getMethodName(), additionalInformation);
   }
   @Override
   public String getSourceFilePath()

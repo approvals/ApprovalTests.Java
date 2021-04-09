@@ -11,7 +11,7 @@ import org.apache.velocity.runtime.resource.loader.ResourceLoader;
 public class ServletContextLoader extends ResourceLoader
 {
   /** The root paths for templates (relative to webapp's root). */
-  protected String[]       paths          = null;
+  protected String[]              paths          = null;
   protected static ServletContext servletContext = null;
   /**
    *  This is abstract in the base class, so we need it.
@@ -55,7 +55,8 @@ public class ServletContextLoader extends ResourceLoader
    */
   public synchronized InputStream getResourceStream(String name) throws ResourceNotFoundException
   {
-    if (name == null || name.length() == 0) { return null;}
+    if (name == null || name.length() == 0)
+    { return null; }
     /* since the paths always ends in '/',
      * make sure the name never ends in one */
     while (name.startsWith("/"))
@@ -72,7 +73,8 @@ public class ServletContextLoader extends ResourceLoader
         return result;
       }
     }
-    throw new ResourceNotFoundException(String.format("Template '%s' not found from %s", name, Arrays.asList(paths)));
+    throw new ResourceNotFoundException(
+        String.format("Template '%s' not found from %s", name, Arrays.asList(paths)));
   }
   /**
    * Defaults to return false.

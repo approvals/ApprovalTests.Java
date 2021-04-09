@@ -10,13 +10,8 @@ public class MacDiffReporter extends FirstWorkingReporter
   {
     super(
         // begin-snippet: mac_diff_reporters
-        BeyondCompareMacReporter.INSTANCE,
-        DiffMergeReporter.INSTANCE,
-        KaleidoscopeDiffReporter.INSTANCE,
-        P4MergeReporter.INSTANCE,
-        KDiff3Reporter.INSTANCE,
-        TkDiffReporter.INSTANCE,
-        IntelliJReporter.INSTANCE,
+        BeyondCompareMacReporter.INSTANCE, DiffMergeReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE,
+        P4MergeReporter.INSTANCE, KDiff3Reporter.INSTANCE, TkDiffReporter.INSTANCE, IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE
     // end-snippet
     );

@@ -11,28 +11,25 @@ import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-public class AwtApprovals {
-
-    public static void verify(Image image)
+public class AwtApprovals
+{
+  public static void verify(Image image)
+  {
+    verifyBufferedImage(ImageWriter.toBufferedImage(image));
+  }
+  private static void verifyBufferedImage(BufferedImage bufferedImage)
+  {
+    Approvals.verify(new ImageApprovalWriter(bufferedImage));
+  }
+  public static void verify(BufferedImage bufferedImage)
+  {
+    Approvals.verify(new ImageApprovalWriter(bufferedImage));
+  }
+  public static void verify(Component c)
+  {
+    try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
     {
-        verifyBufferedImage(ImageWriter.toBufferedImage(image));
+      Approvals.verify(new ComponentApprovalWriter(c));
     }
-
-    private static void verifyBufferedImage(BufferedImage bufferedImage)
-    {
-        Approvals.verify(new ImageApprovalWriter(bufferedImage));
-    }
-
-    public static void verify(BufferedImage bufferedImage)
-    {
-        Approvals.verify(new ImageApprovalWriter(bufferedImage));
-    }
-
-    public static void verify(Component c)
-    {
-        try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
-        {
-            Approvals.verify(new ComponentApprovalWriter(c));
-        }
-    }
+  }
 }

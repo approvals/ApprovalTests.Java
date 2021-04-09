@@ -11,7 +11,6 @@ import com.spun.util.logger.SimpleLogger;
 
 public class WindowUtils
 {
-  
   public static void centerWindow(java.awt.Window window)
   {
     Dimension d = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,19 +22,16 @@ public class WindowUtils
     SimpleLogger.variable(" size (" + x + "," + y + "," + dx + "," + dy + ")");
     window.setBounds(x, y, dx, dy + 1);
   }
-  
   public static void testPanel(JPanel panel)
   {
     JFrame test = new JFrame("Testing Frame");
     test.getContentPane().add(panel);
     testFrame(test, true);
   }
-  
   public static void testFrame(JFrame frame)
   {
     testFrame(frame, true);
   }
-  
   public static void copyToClipBoard(String code)
   {
     copyToClipBoard(code, true);
@@ -51,7 +47,6 @@ public class WindowUtils
     }
     frame.dispose();
   }
-  
   public static void testFrame(JFrame frame, boolean closeOnExit)
   {
     if (closeOnExit)
@@ -63,7 +58,6 @@ public class WindowUtils
       testFrame(frame);
     }
   }
-  
   public static void testFrame(JFrame frame, WindowAdapter... array)
   {
     frame.pack();

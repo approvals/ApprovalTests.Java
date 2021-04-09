@@ -14,17 +14,14 @@ import java.util.zip.ZipOutputStream;
  **/
 public class ZipUtils
 {
-  
   public static File zipDirectory(String directory, String zipFileName) throws IOException
   {
     return zipDirectory(new File(directory), new File(zipFileName));
   }
-  
   public static File zipDirectory(File directory, File zipFileName) throws IOException
   {
     return doCreateZipFile(FileUtils.getRecursiveFileList(directory), zipFileName);
   }
-  
   public static File doCreateZipFile(File[] files, File zipFile) throws IOException
   {
     byte[] buf = new byte[1024];
@@ -51,7 +48,6 @@ public class ZipUtils
     fileOut.close();
     return zipFile;
   }
-  
   public static File[] doUnzip(File destination, File zipFile) throws IOException
   {
     ArrayList<File> list = new ArrayList<File>();
@@ -88,11 +84,8 @@ public class ZipUtils
     fileIn.close();
     return list.toArray(new File[0]);
   }
-  
   public static void main(String args[]) throws IOException
   {
     zipDirectory("c:\\t", "c:\\t\\t.zip");
   }
-
-
 }

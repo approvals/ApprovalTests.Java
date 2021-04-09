@@ -8,12 +8,10 @@ import com.spun.util.DatabaseUtils;
 
 public class SQLStatementUtils
 {
-  
   public static ResultSet executeQuery(SQLQuery query, Statement stmt) throws SQLException
   {
-    return executeQuery(query.toString(DatabaseUtils.getDatabaseType(stmt)), stmt); 
+    return executeQuery(query.toString(DatabaseUtils.getDatabaseType(stmt)), stmt);
   }
-  
   public static ResultSet executeQuery(String query, Statement stmt) throws SQLInformationException
   {
     try
@@ -26,7 +24,6 @@ public class SQLStatementUtils
       throw new SQLInformationException(query, e);
     }
   }
-  
   public static int executeUpdate(String query, Statement stmt) throws SQLInformationException
   {
     try
@@ -38,7 +35,6 @@ public class SQLStatementUtils
       throw new SQLInformationException(query, e);
     }
   }
-  
   public static boolean execute(String query, Statement stmt) throws SQLInformationException
   {
     try
@@ -50,6 +46,4 @@ public class SQLStatementUtils
       throw new SQLInformationException(query, e);
     }
   }
-  
-  
 }

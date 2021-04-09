@@ -577,7 +577,7 @@ public class StringUtils
   }
   public static <T> String join(Collection<T> list, String joinWith, Function1<T, String> converter)
   {
-    return String.join(joinWith,Query.select(list, converter));
+    return String.join(joinWith, Query.select(list, converter));
   }
   public static String replaceAll(String input, Pattern pattern, Function1<String, String> replacer)
   {

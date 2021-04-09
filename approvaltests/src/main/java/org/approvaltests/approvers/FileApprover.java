@@ -15,9 +15,9 @@ import com.spun.util.io.FileUtils;
 
 public class FileApprover implements ApprovalApprover
 {
-  private File                           received;
-  private File                           approved;
-  private final ApprovalWriter           writer;
+  private File                                received;
+  private File                                approved;
+  private final ApprovalWriter                writer;
   private Function2<File, File, VerifyResult> approver;
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
@@ -46,7 +46,8 @@ public class FileApprover implements ApprovalApprover
   public VerifyResult reportFailure(ApprovalFailureReporter reporter)
   {
     reporter.report(received.getAbsolutePath(), approved.getAbsolutePath());
-    if (reporter instanceof ReporterWithApprovalPower) {
+    if (reporter instanceof ReporterWithApprovalPower)
+    {
       ReporterWithApprovalPower reporterWithApprovalPower = (ReporterWithApprovalPower) reporter;
       return reporterWithApprovalPower.approveWhenReported();
     }
@@ -59,7 +60,8 @@ public class FileApprover implements ApprovalApprover
   }
   public static VerifyResult approveTextFile(File received, File approved)
   {
-    if (!approved.exists() || !received.exists()) { return VerifyResult.FAILURE; }
+    if (!approved.exists() || !received.exists())
+    { return VerifyResult.FAILURE; }
     String t1 = FileUtils.readFile(approved);
     String t2 = FileUtils.readFile(received);
     return VerifyResult.from(ObjectUtils.isEqual(t1, t2));

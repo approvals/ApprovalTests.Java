@@ -14,7 +14,8 @@ public class ApprovalUtilities
       ByteArrayOutputStream text = new ByteArrayOutputStream();
       System.setOut(new PrintStream(text, false, StandardCharsets.UTF_8.name()));
       return text;
-    } catch (Exception e)
+    }
+    catch (Exception e)
     {
       throw ObjectUtils.throwAsError(e);
     }

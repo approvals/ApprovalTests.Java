@@ -2,14 +2,12 @@ package com.spun.util.parser;
 
 import java.util.Arrays;
 
-
 public class SteppingIterator
 {
   public static final int[] DEFAULT_STEPPING = {1};
   private int               offset           = 0;
   private int[]             stepping         = DEFAULT_STEPPING;
   private int               actualSize       = 0;
-  
   public SteppingIterator(int offset, int[] stepping, int actualSize)
   {
     this.offset = offset;
@@ -17,11 +15,10 @@ public class SteppingIterator
     this.actualSize = actualSize;
     assertSteppingValid(stepping);
   }
-  
   private void assertSteppingValid(int[] stepping)
   {
-    if (stepping == null || stepping.length == 0 || stepping[0] == 0) { throw new NullPointerException(
-        "Stepping cannot be null or zero in " + Arrays.toString(stepping)); }
+    if (stepping == null || stepping.length == 0 || stepping[0] == 0)
+    { throw new NullPointerException("Stepping cannot be null or zero in " + Arrays.toString(stepping)); }
     for (int i = stepping.length - 1; i > 0; i--)
     {
       if (stepping[i - 1] % stepping[i] != 0)
@@ -32,7 +29,6 @@ public class SteppingIterator
       }
     }
   }
-  
   public boolean isLast(int currentPlace, int forSteppingLevel)
   {
     if (forSteppingLevel == -1 || stepping[forSteppingLevel] == 1)
@@ -44,12 +40,10 @@ public class SteppingIterator
       return (((currentPlace + 1) % stepping[forSteppingLevel]) == 0);
     }
   }
-
   public boolean isFirst(int index, int forSteppingLevel)
   {
     return (getStepPositionForRound(forSteppingLevel, 0, index) == 0);
   }
-
   public int getSize(boolean includeOffset, boolean includeStepping)
   {
     int size = actualSize;
@@ -60,7 +54,6 @@ public class SteppingIterator
     }
     return size;
   }
-  
   /** 
    * @return the index of the current Step.  
    **/
@@ -75,17 +68,14 @@ public class SteppingIterator
       return ((onIndex / stepping[forSteppingLevel]) + indexBase);
     }
   }
-  
   public int getStepCountForRound(int forSteppingLevel, int currentPlace, int indexBase)
   {
     return getStepCountForRound(forSteppingLevel, currentPlace, this.stepping, indexBase);
   }
-  
   public int getTotalStepCountForRound(int forSteppingLevel, int indexBase)
   {
     return getStepCountForRound(forSteppingLevel, getSize(true, true) - 1, stepping, indexBase);
   }
-  
   public int getStepPositionForRound(int forSteppingLevel, int indexBase, int currentIndex)
   {
     if (forSteppingLevel == -1 || stepping[forSteppingLevel] == 1)
@@ -97,12 +87,9 @@ public class SteppingIterator
       return ((currentIndex % stepping[forSteppingLevel]) + indexBase);
     }
   }
-  
   public int getActualPosition(int position)
   {
     position = position - this.offset;
     return (position < 0 || this.actualSize <= position) ? -1 : position;
   }
-
-
 }

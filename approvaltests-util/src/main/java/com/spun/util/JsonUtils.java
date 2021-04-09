@@ -10,8 +10,11 @@ public class JsonUtils
 {
   public static String prettyPrint(String json)
   {
-    if (!ObjectUtils.isClassPresent("com.google.gson.Gson")) { throw new RuntimeException(
-        "Missing Gson dependency\n  Pretty print uses Gson parser.\n  You can get this from the maven repo \n  or https://github.com/google/gson"); }
+    if (!ObjectUtils.isClassPresent("com.google.gson.Gson"))
+    {
+      throw new RuntimeException(
+          "Missing Gson dependency\n  Pretty print uses Gson parser.\n  You can get this from the maven repo \n  or https://github.com/google/gson");
+    }
     try
     {
       Gson gson = new GsonBuilder().setPrettyPrinting().create();

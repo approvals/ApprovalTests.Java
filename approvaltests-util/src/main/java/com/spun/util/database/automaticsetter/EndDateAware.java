@@ -8,9 +8,7 @@ public interface EndDateAware extends AddDateAware
   public String getEffectivityKey();
   public boolean setEndDate(Timestamp time);
   public Timestamp getEndDate();
-
   /*                        INNER CLASSES                                */
-
   public static class Utils
   {
     public static boolean isValid(EndDateAware object, Date time)

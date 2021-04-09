@@ -11,9 +11,7 @@ public class LinuxDiffReporter extends FirstWorkingReporter
   {
     super(
         // begin-snippet: linux_diff_reporters
-        DiffMergeReporter.INSTANCE, 
-        MeldMergeReporter.INSTANCE, 
-        IntelliJReporter.INSTANCE
+        DiffMergeReporter.INSTANCE, MeldMergeReporter.INSTANCE, IntelliJReporter.INSTANCE
     // end-snippet
     );
   }

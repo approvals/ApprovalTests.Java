@@ -26,7 +26,8 @@ public class MultipleExceptions extends RuntimeException
     else if (exceptions.size() == 1)
     {
       Throwable t = exceptions.get(0);
-      if (t instanceof Exception) { throw ObjectUtils.throwAsError((Exception) t); }
+      if (t instanceof Exception)
+      { throw ObjectUtils.throwAsError((Exception) t); }
       throw (Error) t;
     }
     else
