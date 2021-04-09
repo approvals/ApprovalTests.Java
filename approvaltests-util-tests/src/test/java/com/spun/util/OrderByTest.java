@@ -1,7 +1,5 @@
 package com.spun.util;
 
-
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;

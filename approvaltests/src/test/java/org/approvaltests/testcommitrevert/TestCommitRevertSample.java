@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
 public class TestCommitRevertSample
     // end-snippet
     // begin-snippet: test_commit_revert 
-    extends TestCommitRevertTest
+    extends
+      TestCommitRevertTest
 // end-snippet
 {
   @Test

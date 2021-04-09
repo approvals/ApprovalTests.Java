@@ -10,46 +10,50 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UseReporterTest {
-
-    @UseReporter(TortoiseTextDiffReporter.class)
-    @Test
-    public void testUseReporter() {
-        assertEquals(TortoiseTextDiffReporter.class,
-                ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
+public class UseReporterTest
+{
+  @UseReporter(TortoiseTextDiffReporter.class)
+  @Test
+  public void testUseReporter()
+  {
+    assertEquals(TortoiseTextDiffReporter.class,
+        ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
+  }
+  @UseReporter({TortoiseTextDiffReporter.class, ClipboardReporter.class})
+  @Test
+  public void testMultipleUseReporter()
+  {
+    assertEquals(MultiReporter.class, ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
+  }
+  @UseReporter(TestReporter.class)
+  @Test
+  void testUseReporterIsCalledWhenMethodIsNotPublic()
+  {
+    try
+    {
+      Approvals.verify("hello");
     }
-
-    @UseReporter({TortoiseTextDiffReporter.class, ClipboardReporter.class})
-    @Test
-    public void testMultipleUseReporter() {
-        assertEquals(MultiReporter.class, ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
+    catch (Throwable e)
+    {
+      assertEquals("hello\n", TestReporter.getLast());
     }
-
-    @UseReporter(TestReporter.class)
-    @Test
-    void testUseReporterIsCalledWhenMethodIsNotPublic() {
-        try {
-            Approvals.verify("hello");
-        } catch (Throwable e) {
-            assertEquals("hello\n", TestReporter.getLast());
-        }
+  }
+  public static class TestReporter implements ApprovalFailureReporter, EnvironmentAwareReporter
+  {
+    static String last;
+    public static String getLast()
+    {
+      return last;
     }
-
-    public static class TestReporter implements ApprovalFailureReporter, EnvironmentAwareReporter {
-
-        static String last;
-
-        public static String getLast() {
-            return last;
-        }
-
-        @Override
-        public void report(String received, String approved) {
-            last = FileUtils.readFile(received);
-        }
-
-        @Override public boolean isWorkingInThisEnvironment(String forFile) {
-            return true;
-        }
+    @Override
+    public void report(String received, String approved)
+    {
+      last = FileUtils.readFile(received);
     }
+    @Override
+    public boolean isWorkingInThisEnvironment(String forFile)
+    {
+      return true;
+    }
+  }
 }

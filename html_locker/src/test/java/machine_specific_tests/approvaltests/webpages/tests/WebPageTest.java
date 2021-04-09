@@ -22,7 +22,8 @@ public class WebPageTest extends MachineSpecificTest
     WebPageApproval.verifyRenderedPage(new URI("http://cosmoquest.org"));
   }
   @Test
-  public void testChangeDetectorUI() {
+  public void testChangeDetectorUI()
+  {
     AwtApprovals.verify(new WebPageChangeDetector().gui);
   }
 }

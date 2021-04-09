@@ -2,9 +2,7 @@ package org.approvaltests;
 
 public class MyStringBuilder
 {
-
   private StringBuffer builder = new StringBuffer();
-
   public void append(String string)
   {
     builder.append(string);

@@ -24,7 +24,6 @@ public class NamerSamples
       }
     };
     // end-snippet
-    
     // begin-snippet: configure_alternative_source_directory
     try (SourceDirectoryRestorer sdr = TestUtils.registerSourceDirectoryFinder(myFinder))
     {

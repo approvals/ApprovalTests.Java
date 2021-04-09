@@ -21,6 +21,5 @@ class RegExScrubberTest
   {
     String input = "Hello World!";
     Approvals.verify(input, new Options(new RegExScrubber("", "[replaced]")));
-
   }
 }
