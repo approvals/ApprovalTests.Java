@@ -133,9 +133,10 @@ This is a convenience class to follow the practice 'Test Commit/Revert' from Ken
 <!-- snippet: test_commit_revert -->
 <a id='snippet-test_commit_revert'></a>
 ```java
-extends TestCommitRevertTest
+extends
+  TestCommitRevertTest
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 to your test class
 
