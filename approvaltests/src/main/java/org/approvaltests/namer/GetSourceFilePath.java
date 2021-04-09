@@ -1,6 +1,6 @@
 package org.approvaltests.namer;
 
-public interface GetSourceFilePath {
-
-    String getSourceFilePath();
+public interface GetSourceFilePath
+{
+  String getSourceFilePath();
 }
