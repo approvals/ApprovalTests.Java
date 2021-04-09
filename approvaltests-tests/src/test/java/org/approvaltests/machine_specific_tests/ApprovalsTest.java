@@ -10,7 +10,7 @@ import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
-@UseReporter({ImageReporter.class, ClipboardReporter.class})
+@UseReporter({ClipboardReporter.class})
 public class ApprovalsTest extends MachineSpecificTest
 {
   @Test
@@ -26,5 +26,10 @@ public class ApprovalsTest extends MachineSpecificTest
     TvGuide tv = new TvGuide();
     tv.selectTime("3pm");
     AwtApprovals.verify(tv);
+  }
+
+  @Test
+  void customPanel() {
+    AwtApprovals.verify(new CustomPanel());
   }
 }
