@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: ${{ matrix.os }}-latest
     strategy:
+      fail-fast: false
       matrix:
         java: ['8', '11', '16', '17-ea']
         os: [ ubuntu, windows ]
