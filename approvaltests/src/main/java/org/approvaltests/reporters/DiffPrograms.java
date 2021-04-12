@@ -54,12 +54,12 @@ public class DiffPrograms
   }
   public static class All
   {
-
-    public static final DiffInfo INTELLIJ_MAC_SILICON = new DiffInfo(new IntelliJPathResolver(Silicon).findIt(), "diff %s %s", TEXT);
-    public static DiffInfo INTELLIJ_C = new DiffInfo(new IntelliJPathResolver(Community).findIt(), "diff %s %s",
-        TEXT);
-    public static DiffInfo INTELLIJ_U = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(), "diff %s %s",
-        TEXT);
+    public static final DiffInfo INTELLIJ_MAC_SILICON = new DiffInfo(new IntelliJPathResolver(Silicon).findIt(),
+        "diff %s %s", TEXT);
+    public static DiffInfo       INTELLIJ_C           = new DiffInfo(new IntelliJPathResolver(Community).findIt(),
+        "diff %s %s", TEXT);
+    public static DiffInfo       INTELLIJ_U           = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(),
+        "diff %s %s", TEXT);
   }
   public static class Linux
   {

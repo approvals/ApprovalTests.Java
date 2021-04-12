@@ -12,7 +12,8 @@ public class NamerFactoryTest
   @Test
   public void testMultipleFiles()
   {
-    try (MultipleFilesLabeller labeller = NamerFactory.useMultipleFiles()) {
+    try (MultipleFilesLabeller labeller = NamerFactory.useMultipleFiles())
+    {
       Approvals.verify("one");
       labeller.next();
       Approvals.verify("two");
@@ -20,7 +21,8 @@ public class NamerFactoryTest
   }
   @ParameterizedTest
   @CsvSource({"Oskar,4", "Birgit,1"})
-  void testNamingWithMultipleParameters(String name, int age) {
+  void testNamingWithMultipleParameters(String name, int age)
+  {
     try (NamedEnvironment en = NamerFactory.withParameters(name, age))
     {
       Object output = name + ":" + age;

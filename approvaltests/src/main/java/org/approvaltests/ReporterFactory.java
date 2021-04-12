@@ -48,7 +48,8 @@ public class ReporterFactory
   public static EnvironmentAwareReporter getFrontLoadedReporter()
   {
     Map<String, Settings> settings = PackageLevelSettings.get();
-    return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings, () -> DefaultFrontLoadedReporter.INSTANCE);
+    return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings,
+        () -> DefaultFrontLoadedReporter.INSTANCE);
   }
   public static ApprovalFailureReporter getFromAnnotation(StackTraceElement[] trace)
   {

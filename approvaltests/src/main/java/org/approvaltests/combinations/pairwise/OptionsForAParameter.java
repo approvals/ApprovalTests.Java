@@ -2,10 +2,10 @@ package org.approvaltests.combinations.pairwise;
 
 import java.util.Arrays;
 
-public class OptionsForAParameter<T> {
+public class OptionsForAParameter<T>
+{
   private final int position;
   private final T[] values;
-
   public OptionsForAParameter(int position, T... values)
   {
     this.position = position;

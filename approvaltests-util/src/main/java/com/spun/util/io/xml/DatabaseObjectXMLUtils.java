@@ -16,10 +16,8 @@ import com.spun.util.database.TemporaryCache;
 import com.spun.util.database.XmlDatabaseMapExtractor;
 import com.spun.util.io.XMLUtils;
 
-
 public class DatabaseObjectXMLUtils
 {
-  
   @SuppressWarnings("unchecked")
   public static DatabaseObject[] extract(String xml, XmlMap[] xmlMaps)
   {
@@ -36,7 +34,6 @@ public class DatabaseObjectXMLUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  
   private static DatabaseObject[] extract(Node node, XmlMap[] xmlMaps) throws Exception
   {
     ArrayList<DatabaseObject> list = new ArrayList<DatabaseObject>();

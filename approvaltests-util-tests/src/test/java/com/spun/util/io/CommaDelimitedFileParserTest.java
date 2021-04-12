@@ -29,8 +29,8 @@ public class CommaDelimitedFileParserTest
     String[] row2 = results[1];
     assertEquals("bravo", row1[1], "Non-quoted record contents");
     assertEquals("charlie, delta", row1[2], "Quoted record contents");
-    assertEquals( "epsilon",  row1[3],  "Non-quoted record contents");
-    assertEquals( "Yes, I'am",  row2[1],  "spaces");
+    assertEquals("epsilon", row1[3], "Non-quoted record contents");
+    assertEquals("Yes, I'am", row2[1], "spaces");
   }
   @Test
   public void testParseToMap() throws Exception

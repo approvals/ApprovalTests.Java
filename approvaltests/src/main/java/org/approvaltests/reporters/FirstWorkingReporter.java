@@ -19,7 +19,8 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
   }
   private static EnvironmentAwareReporter wrap(ApprovalFailureReporter last)
   {
-    if (last instanceof EnvironmentAwareReporter) { return (EnvironmentAwareReporter) last; }
+    if (last instanceof EnvironmentAwareReporter)
+    { return (EnvironmentAwareReporter) last; }
     return new AlwaysWorkingReporter(last);
   }
   @Override
@@ -39,7 +40,8 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
   {
     for (EnvironmentAwareReporter reporter : reporters)
     {
-      if (reporter.isWorkingInThisEnvironment(forFile)) { return true; }
+      if (reporter.isWorkingInThisEnvironment(forFile))
+      { return true; }
     }
     return false;
   }
@@ -57,8 +59,9 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
       }
     });
   }
-
-  @Override public String toString() {
+  @Override
+  public String toString()
+  {
     return getClass().getName();
   }
 }

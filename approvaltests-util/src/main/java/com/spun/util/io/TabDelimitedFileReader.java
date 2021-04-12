@@ -13,24 +13,22 @@ import com.spun.util.StringUtils;
   **/
 public class TabDelimitedFileReader
 {
-  private BufferedReader reader = null;
-  private String lastRead = null;
-  private boolean trim = false;
-
+  private BufferedReader reader   = null;
+  private String         lastRead = null;
+  private boolean        trim     = false;
   public TabDelimitedFileReader(String absoluteFileName, boolean trim) throws IOException
   {
     this.reader = Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8);
     this.trim = trim;
   }
-  
   public boolean next() throws IOException
   {
     return prepNext() != null;
   }
-  
   public String prepNext() throws IOException
   {
-    if (reader == null) { return null; }
+    if (reader == null)
+    { return null; }
     lastRead = reader.readLine();
     if (lastRead == null)
     {
@@ -39,15 +37,12 @@ public class TabDelimitedFileReader
     }
     return lastRead;
   }
-  
   public String[] readLine(int minimumIndexReturned) throws IOException
   {
     if (lastRead == null)
     {
       if (prepNext() == null)
-      {
-        return null;
-      }
+      { return null; }
     }
     String[] found = StringUtils.split(lastRead, "\t", trim);
     clean(found);
@@ -60,19 +55,15 @@ public class TabDelimitedFileReader
     lastRead = null;
     return found;
   }
-  
   private void clean(String[] found)
   {
     for (int i = 0; i < found.length; i++)
     {
       if (found[i] != null && found[i].startsWith("\"") && found[i].endsWith("\""))
       {
-        found[i] = found[i].substring(1, found[i].length()-1);
+        found[i] = found[i].substring(1, found[i].length() - 1);
         found[i] = found[i].replaceAll("\"\"", "\"");
       }
     }
   }
-  
-
-  
 }

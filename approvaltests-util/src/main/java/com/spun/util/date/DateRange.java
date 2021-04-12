@@ -17,18 +17,15 @@ public class DateRange
   public static final DateRange ALL = new DateRange(new Date(0), new Date(Long.MAX_VALUE));
   private final Date            end;
   private final Date            start;
-
   public DateRange(Date start, Date end)
   {
     this.start = start;
     this.end = end;
   }
-
   public <T> Filter<T> getFilter(Function1<T, Date> converter)
   {
     return new DateRangeFilter<T>(this, converter);
   }
-
   public boolean contains(Date time)
   {
     time = (time == null) ? new Date() : time;
@@ -38,7 +35,8 @@ public class DateRange
   {
     for (DateRange dateRange : ranges)
     {
-      if (dateRange.contains(target)) { return dateRange; }
+      if (dateRange.contains(target))
+      { return dateRange; }
     }
     return null;
   }
@@ -46,23 +44,19 @@ public class DateRange
   {
     return contains(range.end) || contains(range.start);
   }
-
   public Date getEnd()
   {
     return end;
   }
-
   public Date getStart()
   {
     return start;
   }
-
   @Override
   public int hashCode()
   {
     return ObjectUtils.generateHashCode(start.getTime(), end.getTime());
   }
-
   @Override
   public boolean equals(Object object)
   {
@@ -80,14 +74,12 @@ public class DateRange
       return false;
     }
   }
-
   @Override
   public String toString()
   {
     return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(),
         new TemplateDate(end).getDateAndTime());
   }
-
   public DateRange[] getWeeks()
   {
     return getUnits(new WeekAware());
@@ -108,7 +100,6 @@ public class DateRange
     }
     return ranges.toArray(new DateRange[ranges.size()]);
   }
-
   public DateRange[] getMonths()
   {
     return getUnits(new MonthAware());
@@ -117,7 +108,6 @@ public class DateRange
   {
     return getUnits(new QuarterAware());
   }
-
   public boolean containsDayOfWeek(int day)
   {
     return getFirst(day) != null;
@@ -128,13 +118,12 @@ public class DateRange
     while (start.getTime().getTime() <= getEnd().getTime())
     {
       start.add(Calendar.DAY_OF_YEAR, 1);
-      if (start.get(Calendar.DAY_OF_WEEK) == day) { return start.getTime(); }
+      if (start.get(Calendar.DAY_OF_WEEK) == day)
+      { return start.getTime(); }
     }
     return null;
   }
-
   /*                            INNER CLASSES                             */
-
   public static class DateRangeFilter<T> implements Filter<T>
   {
     private final Function1<T, Date> converter;
@@ -174,6 +163,4 @@ public class DateRange
       return end.get(Calendar.DAY_OF_MONTH) == 1 && end.get(Calendar.MONTH) % 3 == 0;
     }
   }
-
-
 }

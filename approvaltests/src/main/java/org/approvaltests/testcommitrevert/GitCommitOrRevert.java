@@ -53,7 +53,8 @@ public class GitCommitOrRevert
       else
       {
         file = file.getParentFile();
-        if (file == null) { return null; }
+        if (file == null)
+        { return null; }
       }
     }
   }
@@ -102,7 +103,8 @@ public class GitCommitOrRevert
   private static void runOnConsole(File workingDir, String... cmdArgs) throws Error
   {
     //System.out.println(Arrays.toString(cmdArgs));
-    if (PRINT_ONLY) { return; }
+    if (PRINT_ONLY)
+    { return; }
     try
     {
       Process p = Runtime.getRuntime().exec(cmdArgs, null, workingDir);

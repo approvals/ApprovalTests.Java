@@ -4,6 +4,6 @@ import java.io.File;
 
 public interface ApprovalNamer extends GetApprovalName, GetSourceFilePath
 {
-    public File getApprovedFile(String extensionWithDot);
-    public File getReceivedFile(String extensionWithDot);
+  public File getApprovedFile(String extensionWithDot);
+  public File getReceivedFile(String extensionWithDot);
 }

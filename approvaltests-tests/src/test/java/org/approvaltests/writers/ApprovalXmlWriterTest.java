@@ -26,8 +26,9 @@ public class ApprovalXmlWriterTest
   @Test
   public void xmlWithDeepAttributesWithScrubber() throws Exception
   {
-    Approvals
-        .verifyXml("<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>", new Options(new RegExScrubber("hi", "hello")));
+    Approvals.verifyXml(
+        "<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>",
+        new Options(new RegExScrubber("hi", "hello")));
   }
   @Test
   public void invalidXml() throws Exception

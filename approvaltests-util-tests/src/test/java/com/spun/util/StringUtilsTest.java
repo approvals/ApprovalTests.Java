@@ -22,8 +22,7 @@ public class StringUtilsTest
   @Test
   public void testToNameCase()
   {
-    assertEquals("Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"),
-        "Name changed");
+    assertEquals("Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"), "Name changed");
   }
   @Test
   public void testSplit()
@@ -69,9 +68,8 @@ public class StringUtilsTest
   {
     for (int i = 0; i < replaceUseCases.length; i++)
     {
-      assertEquals(StringUtils.replace(replaceUseCases[i].startingString,
-            replaceUseCases[i].find, replaceUseCases[i].replace), replaceUseCases[i].expectedString,
-          "Replace failed");
+      assertEquals(StringUtils.replace(replaceUseCases[i].startingString, replaceUseCases[i].find,
+          replaceUseCases[i].replace), replaceUseCases[i].expectedString, "Replace failed");
     }
   }
   @Test

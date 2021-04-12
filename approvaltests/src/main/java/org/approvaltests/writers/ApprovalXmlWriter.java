@@ -17,26 +17,30 @@ import javax.xml.transform.stream.StreamSource;
 
 public class ApprovalXmlWriter extends ApprovalTextWriter
 {
-    public ApprovalXmlWriter(String text, Options options)
+  public ApprovalXmlWriter(String text, Options options)
+  {
+    super(prettyPrint(text, 2), options.forFile().withExtension(".xml"));
+  }
+  public static String prettyPrint(String input, int indent)
+  {
+    try
     {
-        super(prettyPrint(text, 2), options.forFile().withExtension(".xml"));
+      Source xmlInput = new StreamSource(new StringReader(input));
+      StringWriter stringWriter = new StringWriter();
+      StreamResult xmlOutput = new StreamResult(stringWriter);
+      TransformerFactory transformerFactory = TransformerFactory.newInstance();
+      transformerFactory.setAttribute("indent-number", indent);
+      Transformer transformer = transformerFactory.newTransformer();
+      transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+      transformer.transform(xmlInput, xmlOutput);
+      try (Writer writer = xmlOutput.getWriter())
+      {
+        return writer.toString();
+      }
     }
-
-    public static String prettyPrint(String input, int indent) {
-        try {
-            Source xmlInput = new StreamSource(new StringReader(input));
-            StringWriter stringWriter = new StringWriter();
-            StreamResult xmlOutput = new StreamResult(stringWriter);
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            transformerFactory.setAttribute("indent-number", indent);
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.transform(xmlInput, xmlOutput);
-            try (Writer writer = xmlOutput.getWriter()) {
-                return writer.toString();
-            }
-        } catch (TransformerException | IOException e) {
-            return input;
-        }
+    catch (TransformerException | IOException e)
+    {
+      return input;
     }
+  }
 }

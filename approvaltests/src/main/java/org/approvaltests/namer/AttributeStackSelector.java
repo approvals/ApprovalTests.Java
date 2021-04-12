@@ -57,19 +57,22 @@ public class AttributeStackSelector implements StackElementSelector
       {
         inTestCase = true;
       }
-      else if (inTestCase) { return trace[i - 1]; }
+      else if (inTestCase)
+      { return trace[i - 1]; }
     }
-    throw new RuntimeException("Could not find Junit/TestNg TestCase you are running, supported frameworks: Junit3, Junit4, Junit5, TestNg");
+    throw new RuntimeException(
+        "Could not find Junit/TestNg TestCase you are running, supported frameworks: Junit3, Junit4, Junit5, TestNg");
   }
   private boolean isTestCase(StackTraceElement element) throws ClassNotFoundException
   {
     String fullClassName = element.getClassName();
     Class<?> clazz = loadClass(fullClassName);
-    if (clazz == null) { return false; }
-    if (isJunit3Test(clazz)) { return true; }
+    if (clazz == null)
+    { return false; }
+    if (isJunit3Test(clazz))
+    { return true; }
     return isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName()));
   }
-
   private boolean isJunit3Test(Class<?> clazz)
   {
     Class<?> testcase = loadClass("junit.framework.TestCase");
@@ -79,10 +82,12 @@ public class AttributeStackSelector implements StackElementSelector
       throws ClassNotFoundException, SecurityException
   {
     Method method = getMethodByName(clazz, methodName);
-    if (method == null) { return false; }
+    if (method == null)
+    { return false; }
     for (Class<? extends Annotation> attribute : attributes)
     {
-      if (method.isAnnotationPresent(attribute)) { return true; }
+      if (method.isAnnotationPresent(attribute))
+      { return true; }
     }
     return false;
   }

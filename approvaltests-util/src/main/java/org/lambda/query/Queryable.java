@@ -126,7 +126,8 @@ public class Queryable<In> extends ArrayList<In>
   }
   public Class<In> getType()
   {
-    if (type == null) {
+    if (type == null)
+    {
       type = (Class<In>) ClassUtils.getGreatestCommonBaseType(this);
     }
     return type;

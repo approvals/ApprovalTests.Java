@@ -14,21 +14,19 @@ public class SpaceDelimitedReader
   private BufferedReader reader   = null;
   private String         lastRead = null;
   public boolean         trim     = false;
-
   public SpaceDelimitedReader(String input, boolean trim)
   {
     this.reader = new BufferedReader(new StringReader(input));
     this.trim = trim;
   }
-  
   public boolean next() throws IOException
   {
     return prepNext() != null;
   }
-  
   public String prepNext() throws IOException
   {
-    if (reader == null) { return null; }
+    if (reader == null)
+    { return null; }
     lastRead = reader.readLine();
     if (lastRead == null)
     {
@@ -38,26 +36,25 @@ public class SpaceDelimitedReader
     SimpleLogger.variable(lastRead);
     return lastRead;
   }
-  
   public String[] readLine(int i) throws IOException
   {
     return readLine(new int[]{i});
   }
-  
   public String[] readLine(int[] breakPoints) throws IOException
   {
     if (lastRead == null)
     {
-      if (prepNext() == null) { return null; }
+      if (prepNext() == null)
+      { return null; }
     }
     String[] found = splitStringAtPoints(breakPoints, lastRead, trim);
     lastRead = null;
     return found;
   }
-  
   public static String[] splitStringAtPoints(int[] breakPoints, String line, boolean trim)
   {
-    if (line == null) { return null; }
+    if (line == null)
+    { return null; }
     if (breakPoints == null)
     {
       breakPoints = new int[0];
@@ -72,13 +69,11 @@ public class SpaceDelimitedReader
     found[breakPoints.length] = readStringPart(line, last, line.length(), trim);
     return found;
   }
-  
   public static String readStringPart(String string, int start, int end, boolean trim)
   {
-    if (start >= string.length()) { return null; }
+    if (start >= string.length())
+    { return null; }
     String found = string.substring(start, end);
     return trim ? found.trim() : found;
   }
-  
-  
 }

@@ -5,7 +5,6 @@ import org.quartz.Trigger;
 
 public class QuartzUtils
 {
-
   public static Trigger createTrigger(Trigger trigger, String name, String defaultGroup)
   {
     trigger.setName(name);

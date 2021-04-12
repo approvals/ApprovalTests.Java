@@ -33,12 +33,14 @@ public class OrderBy<T, Out extends Comparable<?>> implements Comparator<T>
   {
     Comparable<Object> v1 = (Comparable<Object>) f1.call(a);
     Out v2 = f1.call(b);
-    if (v1 == null || v2 == null) { return compareNull(v1, v2); }
+    if (v1 == null || v2 == null)
+    { return compareNull(v1, v2); }
     return v1.compareTo((Object) v2) * ascending;
   }
   public static int compareNull(Object o1, Object o2)
   {
-    if (o1 == o2) { return 0; }
+    if (o1 == o2)
+    { return 0; }
     return (o1 == null) ? -1 : 1;
   }
 }

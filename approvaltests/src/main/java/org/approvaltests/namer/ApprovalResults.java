@@ -2,7 +2,6 @@ package org.approvaltests.namer;
 
 public class ApprovalResults
 {
-
   /**
    * @deprecated Use {@link NamerFactory#useMultipleFiles()} instead.
    */

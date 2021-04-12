@@ -14,7 +14,8 @@ public class DeprecatedException extends FormattedException
   }
   private static Object methodName(StackTraceElement trace)
   {
-    if (trace.getMethodName().equals("<init>")) { return trace.getClassName(); }
+    if (trace.getMethodName().equals("<init>"))
+    { return trace.getClassName(); }
     return trace.getMethodName();
   }
 }

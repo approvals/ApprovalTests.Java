@@ -730,6 +730,7 @@ public class Colors
   }
   public static Color getTransparentVersion(Color color, int percentTransparency)
   {
-    return new Color(color.getRed(), color.getGreen(), color.getBlue(), calculateTransparency(percentTransparency));
+    return new Color(color.getRed(), color.getGreen(), color.getBlue(),
+        calculateTransparency(percentTransparency));
   }
 }

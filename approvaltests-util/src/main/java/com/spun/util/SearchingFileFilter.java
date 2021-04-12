@@ -26,8 +26,10 @@ public class SearchingFileFilter implements FilenameFilter
   }
   public boolean accept(String name, boolean directory)
   {
-    if (name.startsWith(".")) { return false; }
-    if (matches.get(0).equals("*")) { return directory || name.equals(matches.get(1)); }
+    if (name.startsWith("."))
+    { return false; }
+    if (matches.get(0).equals("*"))
+    { return directory || name.equals(matches.get(1)); }
     return name.equals(matches.get(0));
   }
   public List<String> getSubset(String file2)

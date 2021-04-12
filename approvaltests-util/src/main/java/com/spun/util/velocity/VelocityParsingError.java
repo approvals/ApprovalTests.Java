@@ -16,7 +16,6 @@ public class VelocityParsingError extends Error
   {
     return message + "  " + getInfoText(info);
   }
-  
   public static String getInfoText(Info i)
   {
     return " at [" + i.getLine() + "," + i.getColumn() + "]" + " in template " + i.getTemplateName();

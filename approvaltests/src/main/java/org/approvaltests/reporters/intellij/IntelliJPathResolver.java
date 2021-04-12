@@ -16,7 +16,6 @@ public class IntelliJPathResolver
 {
   private final String channelsPath;
   private final String runtimeSuffix;
-
   public IntelliJPathResolver(Edition edition)
   {
     String appData = "";
@@ -54,7 +53,8 @@ public class IntelliJPathResolver
   }
   private Optional<Path> getIntelliJPath() throws IOException
   {
-    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS)) {
+    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS))
+    {
       return walk //
           .map(Path::getFileName) //
           .map(Objects::toString) //

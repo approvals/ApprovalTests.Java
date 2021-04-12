@@ -18,10 +18,8 @@ public class TemplateNumberUtilsTest
   }
   private static Stream<Arguments> useCases()
   {
-    return Stream.of(Arguments.of(new String[]{"3", "+", "5"}, 8),
-        Arguments.of(new String[]{"3", "-", "5"}, -2),
-        Arguments.of(new String[]{"3", "*", "5"}, 15),
-        Arguments.of(new String[]{"15", "/", "3"}, 5),
+    return Stream.of(Arguments.of(new String[]{"3", "+", "5"}, 8), Arguments.of(new String[]{"3", "-", "5"}, -2),
+        Arguments.of(new String[]{"3", "*", "5"}, 15), Arguments.of(new String[]{"15", "/", "3"}, 5),
         Arguments.of(new String[]{"9", "+", "3"}, 12),
         Arguments.of(new String[]{"1", "+", "2", "*", "3", "-", "4", "/", "5"}, 1));
   }

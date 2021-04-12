@@ -15,7 +15,8 @@ public class ExtenstionFileFilter implements FilenameFilter
   {
     for (String end : extenstions)
     {
-      if (name.endsWith(end)) { return true; }
+      if (name.endsWith(end))
+      { return true; }
     }
     return false;
   }

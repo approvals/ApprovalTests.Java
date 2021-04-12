@@ -24,10 +24,12 @@ class AutoApproveWhenEmptyReporterTest
     NamerWrapper namer = new NamerWrapper(Approvals.createApprovalNamer());
     UseReporterTest.TestReporter testReporter = new UseReporterTest.TestReporter();
     FileUtils.writeFile(namer.getApprovalFile(".txt"), "oldText");
-    try {
+    try
+    {
       Approvals.verify("newText", new Options().withReporter(new AutoApproveWhenEmptyReporter(testReporter)));
-    } catch (Throwable e) {
-
+    }
+    catch (Throwable e)
+    {
     }
     assertEquals("newText\n", UseReporterTest.TestReporter.getLast());
   }

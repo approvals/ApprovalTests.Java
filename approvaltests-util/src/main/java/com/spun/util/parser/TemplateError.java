@@ -7,16 +7,14 @@ import com.spun.util.velocity.ContextAware;
 
 public class TemplateError implements ContextAware
 {
-  private String       stackTrace = null;
-  private String       className  = null;
-  private String       message    = null;
-  private String       cause;
-  
+  private String stackTrace = null;
+  private String className  = null;
+  private String message    = null;
+  private String cause;
   public TemplateError(Throwable t)
   {
     this(t, null);
   }
-  
   public TemplateError(Throwable t, java.lang.Object o)
   {
     if (o != null)
@@ -33,11 +31,9 @@ public class TemplateError implements ContextAware
     PrintWriter pw = new PrintWriter(output);
     t.printStackTrace(pw);
     pw.flush();
-    
     stackTrace = output.toString();
   }
-  
- private String getCause(Throwable t)
+  private String getCause(Throwable t)
   {
     if (t.getCause() == null)
     {
@@ -48,37 +44,28 @@ public class TemplateError implements ContextAware
       return getCause(t.getCause());
     }
   }
-  
   public String getMessage()
   {
     return message;
   }
-  
   public String getClassName()
   {
     return className;
   }
-  
   public String getStackTrace()
   {
     return stackTrace;
   }
-  
   public String getErrorInfo()
   {
     return message + "\n" + stackTrace;
   }
-  
   public String getCause()
   {
     return cause;
   }
-  
   public void setupContext(Context context)
   {
     context.put("error", this);
   }
-  
-  
-  
 }

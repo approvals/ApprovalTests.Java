@@ -63,9 +63,8 @@ public class DateScrubber extends RegExScrubber
     private final String   regex;
     public SupportedFormat(String regex, String... examples)
     {
-      if (ArrayUtils.isEmpty(examples)) {
-        throw new IllegalArgumentException("must have at least one example");
-      }
+      if (ArrayUtils.isEmpty(examples))
+      { throw new IllegalArgumentException("must have at least one example"); }
       this.examples = examples;
       this.regex = regex;
     }

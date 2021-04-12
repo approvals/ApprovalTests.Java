@@ -14,41 +14,48 @@ import com.spun.util.StringUtils;
 
 public class CommaDelimitedFileParser
 {
-  
   public static String[][] parse(File databaseFile)
   {
     return parse(FileUtils.readFileWithSuppressedExceptions(databaseFile));
   }
-  
   public static String[][] parse(String data)
   {
     return parse(new StringReader(data));
   }
-  
   public static String[][] parse(Reader data)
   {
     try
     {
       List<String[]> records = new ArrayList<>();
-      try (BufferedReader reader = new BufferedReader(data)) {
+      try (BufferedReader reader = new BufferedReader(data))
+      {
         boolean done = false;
         StringBuffer pastLines = null;
-        while (!done) {
+        while (!done)
+        {
           String line = reader.readLine();
-          if (line == null) {
+          if (line == null)
+          {
             done = true;
-          } else {
-            if (pastLines != null) {
+          }
+          else
+          {
+            if (pastLines != null)
+            {
               pastLines.append("\n");
               pastLines.append(line);
               line = pastLines.toString();
             }
             String[] parseLine = parseLine(line);
-            if (parseLine == null) {
-              if (pastLines == null) {
+            if (parseLine == null)
+            {
+              if (pastLines == null)
+              {
                 pastLines = new StringBuffer(line);
               }
-            } else {
+            }
+            else
+            {
               records.add(parseLine);
               pastLines = null;
             }
@@ -62,7 +69,6 @@ public class CommaDelimitedFileParser
       throw new RuntimeException(e);
     }
   }
-  
   private static String[] parseLine(String line) throws IOException
   {
     String[] rawtokens = StringUtils.split(line, ",", false);
@@ -97,7 +103,6 @@ public class CommaDelimitedFileParser
     }
     return in ? null : StringUtils.toArray(tokens);
   }
-  
   private static String clearQuotes(String string)
   {
     String s = (string.startsWith("\"") && string.endsWith("\""))
@@ -105,7 +110,6 @@ public class CommaDelimitedFileParser
         : string;
     return s.trim();
   }
-  
   public static Map<String, String>[] parseToMap(File file)
   {
     try
@@ -118,7 +122,6 @@ public class CommaDelimitedFileParser
       throw e;
     }
   }
-  
   public static Map<String, String>[] parseToMap(String data)
   {
     return parseToMap(new StringReader(data));
@@ -139,6 +142,4 @@ public class CommaDelimitedFileParser
     }
     return maps;
   }
-  
-  
 }
