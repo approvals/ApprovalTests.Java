@@ -35,6 +35,14 @@ jobs:
       - name: set snapshot version
         run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
 
+      - name: Install Java for script
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+
+      - name: Run documentation update
+        run: java build/UpdateVersion.java ${{ steps.version.outputs.tag }}
+
       - name: Push changes
         run: |
           git config --local user.email "action@github.com"
@@ -47,3 +55,4 @@ jobs:
           remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
           git push "${remote}" master || echo "nothing to push"
         shell: bash
+
