@@ -10,6 +10,7 @@ public class ApprovalsTest
   @Test
   void customPanel()
   {
-    AwtApprovals.verify(new CustomPanel());
+    final CustomPanel panel = new CustomPanel();
+    AwtApprovals.verify(panel);
   }
 }
