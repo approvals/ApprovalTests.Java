@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.spun.swing.Paintable;
+import com.spun.swing.Paintables;
 import com.spun.util.logger.SimpleLogger;
 
 public class WindowUtils

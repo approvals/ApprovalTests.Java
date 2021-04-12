@@ -1,6 +1,4 @@
-package com.spun.util;
-
-import com.spun.swing.Paintable;
+package com.spun.swing;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
