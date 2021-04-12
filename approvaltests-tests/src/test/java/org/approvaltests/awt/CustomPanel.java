@@ -1,14 +1,17 @@
 package org.approvaltests.awt;
 
-import javax.swing.*;
-import java.awt.*;
+import com.spun.swing.Paintable;
 
-public class CustomPanel extends JPanel
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+
+public class CustomPanel implements Paintable
 {
-  public CustomPanel()
+  @Override
+  public Dimension getSize()
   {
-    setPreferredSize(new Dimension(100, 100));
-    setSize(getPreferredSize());
+    return new Dimension(100, 100);
   }
   @Override
   public void paint(Graphics g)

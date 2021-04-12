@@ -1,11 +1,13 @@
 package org.approvaltests.awt;
 
+import com.spun.swing.Paintable;
 import com.spun.util.images.ImageWriter;
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.approvaltests.writers.ImageApprovalWriter;
+import org.approvaltests.writers.PaintableApprovalWriter;
 
 import java.awt.Component;
 import java.awt.Image;
@@ -31,5 +33,9 @@ public class AwtApprovals
     {
       Approvals.verify(new ComponentApprovalWriter(c));
     }
+  }
+  public static void verify(Paintable c)
+  {
+    Approvals.verify(new PaintableApprovalWriter(c));
   }
 }
