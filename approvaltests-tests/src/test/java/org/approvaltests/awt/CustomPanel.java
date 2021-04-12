@@ -1,6 +1,4 @@
-package org.approvaltests.machine_specific_tests;
-
-import org.lambda.functions.Function2;
+package org.approvaltests.awt;
 
 import javax.swing.*;
 import java.awt.*;
