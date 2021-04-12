@@ -18,7 +18,7 @@ public class ApprovalsTest
     final CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
   }
-//  @DisabledOnJre({JRE.JAVA_8})
+  //  @DisabledOnJre({JRE.JAVA_8})
   @Disabled("continue here next week")
   @Test
   void customPanelWithText()

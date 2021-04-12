@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.spun.swing.Paintable;
 import com.spun.util.logger.SimpleLogger;
 
 public class WindowUtils
@@ -27,6 +28,10 @@ public class WindowUtils
     JFrame test = new JFrame("Testing Frame");
     test.getContentPane().add(panel);
     testFrame(test, true);
+  }
+  public static void testPaintable(Paintable paintable)
+  {
+    testPanel(Paintables.asPanel(paintable));
   }
   public static void testFrame(JFrame frame)
   {

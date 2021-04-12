@@ -2,6 +2,7 @@ package org.approvaltests.awt;
 
 import com.spun.swing.Paintable;
 import com.spun.swing.SwingUtils;
+import com.spun.util.WindowUtils;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +11,10 @@ import java.awt.Graphics;
 
 public class CustomPanel implements Paintable
 {
+  public static void main(String[] args)
+  {
+    WindowUtils.testPaintable(new CustomPanel());
+  }
   private int     length = 10;
   private boolean showCoordinated;
   public CustomPanel()

@@ -1,7 +1,7 @@
 
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
 * better default FrontloadedReporter to handle CI
-
++ docs for graph for ci consistent
 
 * easier API for custom file name & location?! (issue 2, 51)
 ** documentation for Options.forFile()
