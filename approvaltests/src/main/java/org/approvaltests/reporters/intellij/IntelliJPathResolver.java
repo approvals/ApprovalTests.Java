@@ -18,21 +18,7 @@ public class IntelliJPathResolver
   private final String runtimeSuffix;
   public IntelliJPathResolver(Edition edition)
   {
-    String installRoot = "";
-    if (SystemUtils.isWindowsEnviroment())
-    {
-      installRoot = System.getenv("LOCALAPPDATA");
-    }
-    else if (SystemUtils.isMacEnviroment())
-    {
-      installRoot = System.getenv("HOME");
-      installRoot += "/Library/Application Support";
-    }
-    else // Linux
-    {
-      installRoot = System.getenv("HOME");
-      installRoot += "/.local/share";
-    }
+    String installRoot = getInstallRoot();
     if (SystemUtils.isWindowsEnviroment())
     {
       runtimeSuffix = "/bin/idea64.exe";
@@ -48,6 +34,26 @@ public class IntelliJPathResolver
     String toolboxPath = installRoot + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
+
+  private String getInstallRoot() {
+    String installRoot = "";
+    if (SystemUtils.isWindowsEnviroment())
+    {
+      installRoot = System.getenv("LOCALAPPDATA");
+    }
+    else if (SystemUtils.isMacEnviroment())
+    {
+      installRoot = System.getenv("HOME");
+      installRoot += "/Library/Application Support";
+    }
+    else // Linux
+    {
+      installRoot = System.getenv("HOME");
+      installRoot += "/.local/share";
+    }
+    return installRoot;
+  }
+
   public String findIt()
   {
     String notPresentPath = "C:\\Intelli-not-present.exe";
