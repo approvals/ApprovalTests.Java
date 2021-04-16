@@ -19,6 +19,7 @@ public class IntelliJPathResolver
   public IntelliJPathResolver(Edition edition)
   {
     String installRoot = getInstallRoot();
+    String runtimeSuffix;
     if (SystemUtils.isWindowsEnviroment())
     {
       runtimeSuffix = "/bin/idea64.exe";
@@ -31,6 +32,7 @@ public class IntelliJPathResolver
     {
       runtimeSuffix = "/bin/idea.sh";
     }
+    this.runtimeSuffix = runtimeSuffix;
     String toolboxPath = installRoot + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
