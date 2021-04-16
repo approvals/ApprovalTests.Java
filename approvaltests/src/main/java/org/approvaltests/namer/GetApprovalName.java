@@ -1,6 +1,6 @@
 package org.approvaltests.namer;
 
-public interface GetApprovalName {
-
-    String getApprovalName();
+public interface GetApprovalName
+{
+  String getApprovalName();
 }

@@ -19,8 +19,8 @@ public class IntelliJPathResolver
   {
     this.channelsPath = getInstallRoot() + "/JetBrains/Toolbox/apps/" + edition.getDirectory() + "/ch-0/";
   }
-
-  private String getRuntimeSuffix() {
+  private String getRuntimeSuffix()
+  {
     if (SystemUtils.isWindowsEnviroment())
     {
       return "/bin/idea64.exe";
@@ -34,8 +34,8 @@ public class IntelliJPathResolver
       return "/bin/idea.sh";
     }
   }
-
-  private String getInstallRoot() {
+  private String getInstallRoot()
+  {
     if (SystemUtils.isWindowsEnviroment())
     {
       return System.getenv("LOCALAPPDATA");
@@ -46,10 +46,9 @@ public class IntelliJPathResolver
     }
     else // Linux
     {
-      return System.getenv("HOME") +  "/.local/share";
+      return System.getenv("HOME") + "/.local/share";
     }
   }
-
   public String findIt()
   {
     String notPresentPath = "C:\\Intelli-not-present.exe";
