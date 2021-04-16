@@ -18,20 +18,20 @@ public class IntelliJPathResolver
   private final String runtimeSuffix;
   public IntelliJPathResolver(Edition edition)
   {
-    String appData = "";
+    String installRoot = "";
     if (SystemUtils.isWindowsEnviroment())
     {
-      appData = System.getenv("LOCALAPPDATA");
+      installRoot = System.getenv("LOCALAPPDATA");
     }
     else if (SystemUtils.isMacEnviroment())
     {
-      appData = System.getenv("HOME");
-      appData += "/Library/Application Support";
+      installRoot = System.getenv("HOME");
+      installRoot += "/Library/Application Support";
     }
     else // Linux
     {
-      appData = System.getenv("HOME");
-      appData += "/.local/share";
+      installRoot = System.getenv("HOME");
+      installRoot += "/.local/share";
     }
     if (SystemUtils.isWindowsEnviroment())
     {
@@ -45,7 +45,7 @@ public class IntelliJPathResolver
     {
       runtimeSuffix = "/bin/idea.sh";
     }
-    String toolboxPath = appData + "/JetBrains/Toolbox";
+    String toolboxPath = installRoot + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
   public String findIt()
