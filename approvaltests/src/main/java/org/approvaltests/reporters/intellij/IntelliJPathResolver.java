@@ -21,20 +21,18 @@ public class IntelliJPathResolver
   }
 
   private String getRuntimeSuffix() {
-    String runtimeSuffix;
     if (SystemUtils.isWindowsEnviroment())
     {
-      runtimeSuffix = "/bin/idea64.exe";
+      return "/bin/idea64.exe";
     }
     else if (SystemUtils.isMacEnviroment())
     {
-      runtimeSuffix = "/IntelliJ IDEA.app/Contents/MacOS/idea";
+      return "/IntelliJ IDEA.app/Contents/MacOS/idea";
     }
     else // Linux
     {
-      runtimeSuffix = "/bin/idea.sh";
+      return "/bin/idea.sh";
     }
-    return runtimeSuffix;
   }
 
   private String getInstallRoot() {
