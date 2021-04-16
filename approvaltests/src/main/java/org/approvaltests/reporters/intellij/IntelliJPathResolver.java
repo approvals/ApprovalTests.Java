@@ -15,10 +15,8 @@ import java.util.stream.Stream;
 public class IntelliJPathResolver
 {
   private final String channelsPath;
-  private final String runtimeSuffix;
   public IntelliJPathResolver(Edition edition)
   {
-    this.runtimeSuffix = getRuntimeSuffix();
     this.channelsPath = getInstallRoot() + "/JetBrains/Toolbox/apps/" + edition.getDirectory() + "/ch-0/";
   }
 
@@ -85,6 +83,6 @@ public class IntelliJPathResolver
   }
   private Path getPath(Version version)
   {
-    return Paths.get(channelsPath + version.version + runtimeSuffix).toAbsolutePath();
+    return Paths.get(channelsPath + version.version + getRuntimeSuffix()).toAbsolutePath();
   }
 }
