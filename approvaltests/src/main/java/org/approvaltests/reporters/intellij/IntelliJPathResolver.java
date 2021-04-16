@@ -36,6 +36,16 @@ public class IntelliJPathResolver
       appData += "/.local/share";
       runtimeSuffix = "/bin/idea.sh";
     }
+    if (SystemUtils.isWindowsEnviroment())
+    {
+
+    }
+    else if (SystemUtils.isMacEnviroment())
+    {
+    }
+    else // Linux
+    {
+    }
     String toolboxPath = appData + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
