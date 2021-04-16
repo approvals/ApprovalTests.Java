@@ -20,7 +20,7 @@ public class IntelliJPathResolver
   {
     String installRoot = getInstallRoot();
     this.runtimeSuffix = getRuntimeSuffix();
-    this.channelsPath = installRoot + "/JetBrains/Toolbox" + "/apps/" + edition.getDirectory() + "/ch-0/";
+    this.channelsPath = installRoot + "/JetBrains/Toolbox/apps/" + edition.getDirectory() + "/ch-0/";
   }
 
   private String getRuntimeSuffix() {
