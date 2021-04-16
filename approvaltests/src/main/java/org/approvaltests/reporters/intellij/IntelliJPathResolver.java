@@ -36,20 +36,18 @@ public class IntelliJPathResolver
   }
 
   private String getInstallRoot() {
-    String installRoot = "";
     if (SystemUtils.isWindowsEnviroment())
     {
-      installRoot = System.getenv("LOCALAPPDATA");
+      return System.getenv("LOCALAPPDATA");
     }
     else if (SystemUtils.isMacEnviroment())
     {
-      installRoot = System.getenv("HOME") + "/Library/Application Support";
+      return System.getenv("HOME") + "/Library/Application Support";
     }
     else // Linux
     {
-      installRoot = System.getenv("HOME") +  "/.local/share";
+      return System.getenv("HOME") +  "/.local/share";
     }
-    return installRoot;
   }
 
   public String findIt()
