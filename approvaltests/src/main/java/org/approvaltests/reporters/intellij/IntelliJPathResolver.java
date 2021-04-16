@@ -43,13 +43,11 @@ public class IntelliJPathResolver
     }
     else if (SystemUtils.isMacEnviroment())
     {
-      installRoot = System.getenv("HOME");
-      installRoot += "/Library/Application Support";
+      installRoot = System.getenv("HOME") + "/Library/Application Support";
     }
     else // Linux
     {
-      installRoot = System.getenv("HOME");
-      installRoot += "/.local/share";
+      installRoot = System.getenv("HOME") +  "/.local/share";
     }
     return installRoot;
   }
