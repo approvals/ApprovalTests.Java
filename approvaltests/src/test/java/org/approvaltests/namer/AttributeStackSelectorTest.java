@@ -14,9 +14,8 @@ public class AttributeStackSelectorTest {
 
     // these methods are overloads of the test method
     // to simulate flaky failures
-    // will be enabled after refactor
-//    public void selectElement(String unused) { }
-//    public void selectElement(Integer unused) { }
-//    public void selectElement(AttributeStackSelectorTest unused) { }
-//    public void selectElement(StackTraceElement unused) { }
+    public void selectElement(String unused) { }
+    public void selectElement(Integer unused) { }
+    public void selectElement(AttributeStackSelectorTest unused) { }
+    public void selectElement(StackTraceElement unused) { }
 }
