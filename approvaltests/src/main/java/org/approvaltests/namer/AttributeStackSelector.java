@@ -3,6 +3,7 @@ package org.approvaltests.namer;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.spun.util.ObjectUtils;
@@ -81,7 +82,7 @@ public class AttributeStackSelector implements StackElementSelector
   private boolean isTestAttribute(Class<?> clazz, String methodName)
       throws ClassNotFoundException, SecurityException
   {
-    Method method = getMethodByName(clazz, methodName);
+    Method method = getMethodByName(clazz, methodName).get(0);
     if (method == null)
     { return false; }
     for (Class<? extends Annotation> attribute : attributes)
@@ -91,7 +92,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return false;
   }
-  public Method getMethodByName(Class<?> clazz, String methodName)
+  public List<Method> getMethodByName(Class<?> clazz, String methodName)
   {
     Method method = null;
     try
@@ -108,7 +109,7 @@ public class AttributeStackSelector implements StackElementSelector
     catch (Throwable e)
     {
     }
-    return method;
+    return Arrays.asList(method);
   }
   @Override
   public void increment()
