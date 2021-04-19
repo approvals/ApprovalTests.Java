@@ -104,6 +104,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     catch (Throwable e)
     {
+      return new ArrayList<>();
     }
     return methods;
   }
