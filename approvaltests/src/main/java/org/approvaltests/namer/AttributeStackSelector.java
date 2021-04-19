@@ -86,7 +86,8 @@ public class AttributeStackSelector implements StackElementSelector
     List<Method> methods = getMethodsByName(clazz, methodName);
     if (methods.isEmpty())
     { return false; }
-    for (Method method : methods) {
+    for (Method method : methods)
+    {
       for (Class<? extends Annotation> attribute : attributes)
       {
         if (method.isAnnotationPresent(attribute))
@@ -99,9 +100,8 @@ public class AttributeStackSelector implements StackElementSelector
   {
     try
     {
-      return  Arrays.stream(clazz.getDeclaredMethods())
-                    .filter(m -> m.getName().equals(methodName))
-                    .collect(Collectors.toList());
+      return Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName))
+          .collect(Collectors.toList());
     }
     catch (Throwable e)
     {
