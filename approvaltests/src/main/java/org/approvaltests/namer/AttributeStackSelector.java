@@ -100,8 +100,7 @@ public class AttributeStackSelector implements StackElementSelector
     List<Method> methods = new ArrayList<>();
     try
     {
-      Method[] declaredMethods = clazz.getDeclaredMethods();
-      methods = Arrays.stream(declaredMethods).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
+      methods = Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
     }
     catch (Throwable e)
     {
