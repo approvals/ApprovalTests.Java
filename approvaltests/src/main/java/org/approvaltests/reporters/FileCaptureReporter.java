@@ -34,7 +34,8 @@ public class FileCaptureReporter implements ApprovalFailureReporter
       Process process = Runtime.getRuntime().exec(command);
       process.waitFor();
       final int exitValue = process.exitValue();
-      if (exitValue != 0) {
+      if (exitValue != 0)
+      {
         SimpleLogger.warning(FileUtils.readStream(process.getInputStream()));
         SimpleLogger.warning(FileUtils.readStream(process.getErrorStream()));
       }
