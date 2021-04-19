@@ -2,6 +2,8 @@ package org.approvaltests.reporters;
 
 import java.io.IOException;
 
+import com.spun.util.StringUtils;
+import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.ApprovalFailureReporter;
 
@@ -31,6 +33,11 @@ public class FileCaptureReporter implements ApprovalFailureReporter
     {
       Process process = Runtime.getRuntime().exec(command);
       process.waitFor();
+      final int exitValue = process.exitValue();
+      if (exitValue != 0) {
+        SimpleLogger.warning(FileUtils.readStream(process.getInputStream()));
+        SimpleLogger.warning(FileUtils.readStream(process.getErrorStream()));
+      }
     }
     catch (IOException | InterruptedException e)
     {
