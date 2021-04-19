@@ -3,6 +3,7 @@ package org.approvaltests.reporters.intellij;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Scrubber;
+import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -16,15 +17,18 @@ class IntelliJPathResolverTest
   void testDetectionOfIntellijOnDevMachines()
   {
     // begin-snippet: runOnlyOnSpecificMachines
-    if (!NamerFactory.asMachineNameSpecificTest().isCurrentEnvironmentValidFor("Larss-Air.lan", "macbook13"))
-    { return; }
-    // the rest of your test...
-    // end-snippet
-    final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJReporter()
-        .getWorkingReportersForEnviroment().get(0);
-    final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");
-    // the moment it breaks and we are annoyed, start scrubbing.
-    final Scrubber scrubber = new RegExScrubber("/211.\\d+.\\d+/", "/211.xxx.xxx/");
-    Approvals.verify(commandLine[0], new Options(scrubber));
+    try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
+    {
+      if (!namedEnvironment.isCurrentEnvironmentValidFor("Larss-Air.lan", "macbook13", "Larss-MacBook-Air.local"))
+      { return; }
+      // the rest of your test...
+      // end-snippet
+      final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJReporter()
+          .getWorkingReportersForEnviroment().get(0);
+      final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");
+      // the moment it breaks and we are annoyed, start scrubbing.
+      final Scrubber scrubber = new RegExScrubber("/211.\\d+.\\d+/", "/211.xxx.xxx/");
+      Approvals.verify(commandLine[0], new Options(scrubber));
+    }
   }
 }
