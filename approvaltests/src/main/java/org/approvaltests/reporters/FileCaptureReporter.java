@@ -36,8 +36,9 @@ public class FileCaptureReporter implements ApprovalFailureReporter
       final int exitValue = process.exitValue();
       if (exitValue != 0)
       {
-        SimpleLogger.warning(FileUtils.readStream(process.getInputStream()));
-        SimpleLogger.warning(FileUtils.readStream(process.getErrorStream()));
+        final String stdout = FileUtils.readStream(process.getInputStream());
+        final String stderr = FileUtils.readStream(process.getErrorStream());
+        SimpleLogger.warning(String.format("stdout:\n%s\nstderr:\n%s", stdout, stderr));
       }
     }
     catch (IOException | InterruptedException e)
