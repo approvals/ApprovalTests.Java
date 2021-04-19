@@ -97,16 +97,14 @@ public class AttributeStackSelector implements StackElementSelector
   }
   public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
-    List<Method> methods = new ArrayList<>();
     try
     {
-      methods = Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
+      return  Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
     }
     catch (Throwable e)
     {
       return new ArrayList<>();
     }
-    return methods;
   }
   @Override
   public void increment()
