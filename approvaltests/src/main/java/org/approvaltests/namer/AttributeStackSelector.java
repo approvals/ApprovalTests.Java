@@ -82,7 +82,7 @@ public class AttributeStackSelector implements StackElementSelector
   private boolean isTestAttribute(Class<?> clazz, String methodName)
       throws ClassNotFoundException, SecurityException
   {
-    Method method = getMethodByName(clazz, methodName).get(0);
+    Method method = getMethodsByName(clazz, methodName).get(0);
     if (method == null)
     { return false; }
     for (Class<? extends Annotation> attribute : attributes)
@@ -92,7 +92,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return false;
   }
-  public List<Method> getMethodByName(Class<?> clazz, String methodName)
+  public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
     Method method = null;
     try
