@@ -9,7 +9,7 @@ import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
 
-@UseReporter({ClipboardReporter.class})
+@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest
 {
   @DisabledOnJre({JRE.JAVA_8})
@@ -19,12 +19,12 @@ public class ApprovalsTest
     final CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
   }
-  //  @DisabledOnJre({JRE.JAVA_8})
+  @DisabledOnJre({JRE.JAVA_8})
   @Test
   void customPanelWithText()
   {
     final CustomPanel panel = new CustomPanel(true, 20);
-    AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
+    AwtApprovals.verify(panel);
   }
   @EnabledOnJre({JRE.JAVA_8})
   @Test
