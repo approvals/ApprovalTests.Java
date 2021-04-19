@@ -99,7 +99,9 @@ public class AttributeStackSelector implements StackElementSelector
   {
     try
     {
-      return  Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
+      return  Arrays.stream(clazz.getDeclaredMethods())
+                    .filter(m -> m.getName().equals(methodName))
+                    .collect(Collectors.toList());
     }
     catch (Throwable e)
     {
