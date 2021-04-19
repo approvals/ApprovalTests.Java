@@ -85,9 +85,10 @@ public class AttributeStackSelector implements StackElementSelector
     List<Method> methods = getMethodsByName(clazz, methodName);
     if (methods.isEmpty())
     { return false; }
+    Method method = methods.get(0);
     for (Class<? extends Annotation> attribute : attributes)
     {
-      if (methods.get(0).isAnnotationPresent(attribute))
+      if (method.isAnnotationPresent(attribute))
       { return true; }
     }
     return false;
