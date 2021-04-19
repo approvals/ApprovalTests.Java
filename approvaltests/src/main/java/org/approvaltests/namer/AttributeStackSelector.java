@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
@@ -100,13 +101,7 @@ public class AttributeStackSelector implements StackElementSelector
     try
     {
       Method[] declaredMethods = clazz.getDeclaredMethods();
-      for (Method m : declaredMethods)
-      {
-        if (m.getName().equals(methodName))
-        {
-          methods.add(m);
-        }
-      }
+      methods = Arrays.stream(declaredMethods).filter(m -> m.getName().equals(methodName)).collect(Collectors.toList());
     }
     catch (Throwable e)
     {
