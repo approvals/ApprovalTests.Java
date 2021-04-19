@@ -3,7 +3,9 @@ package org.approvaltests.namer;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
@@ -81,34 +83,30 @@ public class AttributeStackSelector implements StackElementSelector
   private boolean isTestAttribute(Class<?> clazz, String methodName)
       throws ClassNotFoundException, SecurityException
   {
-    Method method = getMethodByName(clazz, methodName);
-    if (method == null)
+    List<Method> methods = getMethodsByName(clazz, methodName);
+    if (methods.isEmpty())
     { return false; }
-    for (Class<? extends Annotation> attribute : attributes)
-    {
-      if (method.isAnnotationPresent(attribute))
-      { return true; }
+    for (Method method : methods) {
+      for (Class<? extends Annotation> attribute : attributes)
+      {
+        if (method.isAnnotationPresent(attribute))
+        { return true; }
+      }
     }
     return false;
   }
-  public Method getMethodByName(Class<?> clazz, String methodName)
+  public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
-    Method method = null;
     try
     {
-      Method[] declaredMethods = clazz.getDeclaredMethods();
-      for (Method m : declaredMethods)
-      {
-        if (m.getName().equals(methodName))
-        {
-          method = m;
-        }
-      }
+      return  Arrays.stream(clazz.getDeclaredMethods())
+                    .filter(m -> m.getName().equals(methodName))
+                    .collect(Collectors.toList());
     }
     catch (Throwable e)
     {
+      return new ArrayList<>();
     }
-    return method;
   }
   @Override
   public void increment()
