@@ -1,13 +1,13 @@
 package org.approvaltests.reporters;
 
 import java.io.IOException;
+import java.util.Arrays;
 
-import com.spun.util.StringUtils;
-import com.spun.util.io.FileUtils;
-import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.ApprovalFailureReporter;
 
 import com.spun.util.ObjectUtils;
+import com.spun.util.io.FileUtils;
+import com.spun.util.logger.SimpleLogger;
 
 public class FileCaptureReporter implements ApprovalFailureReporter
 {
@@ -22,13 +22,13 @@ public class FileCaptureReporter implements ApprovalFailureReporter
   @Override
   public void report(String received, String approved)
   {
-    run("git add --force " + received);
-    run(String.format("git commit -m '%s'", message));
-    run("git push");
+    run("git", "add", "--force", received);
+    run("git", "commit", "-m", "'" + message + "'");
+    run("git", "push");
   }
-  private void run(String command)
+  private void run(String... command)
   {
-    SimpleLogger.event(command);
+    SimpleLogger.event(Arrays.toString(command));
     try
     {
       Process process = Runtime.getRuntime().exec(command);
