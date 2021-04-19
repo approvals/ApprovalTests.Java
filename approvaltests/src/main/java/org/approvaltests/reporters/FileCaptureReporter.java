@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import java.io.IOException;
 
+import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.ApprovalFailureReporter;
 
 import com.spun.util.ObjectUtils;
@@ -23,12 +24,13 @@ public class FileCaptureReporter implements ApprovalFailureReporter
     run(String.format("git commit -m '%s'", message));
     run("git push");
   }
-  private void run(String s)
+  private void run(String command)
   {
+    SimpleLogger.event(command);
     try
     {
-      Process command = Runtime.getRuntime().exec(s);
-      command.waitFor();
+      Process process = Runtime.getRuntime().exec(command);
+      process.waitFor();
     }
     catch (IOException | InterruptedException e)
     {

@@ -4,6 +4,7 @@ import org.approvaltests.core.Options;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.FileCaptureReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.graalvm.compiler.lir.amd64.AMD64BinaryConsumer.Op;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
@@ -24,7 +25,7 @@ public class ApprovalsTest
   void customPanelWithText()
   {
     final CustomPanel panel = new CustomPanel(true, 20);
-    AwtApprovals.verify(panel);
+    AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
   }
   @EnabledOnJre({JRE.JAVA_8})
   @Test
