@@ -82,19 +82,19 @@ public class AttributeStackSelector implements StackElementSelector
   private boolean isTestAttribute(Class<?> clazz, String methodName)
       throws ClassNotFoundException, SecurityException
   {
-    Method method = getMethodsByName(clazz, methodName).get(0);
-    if (method == null)
+    List<Method> methods = getMethodsByName(clazz, methodName);
+    if (methods.isEmpty())
     { return false; }
     for (Class<? extends Annotation> attribute : attributes)
     {
-      if (method.isAnnotationPresent(attribute))
+      if (methods.get(0).isAnnotationPresent(attribute))
       { return true; }
     }
     return false;
   }
   public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
-    Method method = null;
+    List<Method> methods = new ArrayList<>();
     try
     {
       Method[] declaredMethods = clazz.getDeclaredMethods();
@@ -102,14 +102,14 @@ public class AttributeStackSelector implements StackElementSelector
       {
         if (m.getName().equals(methodName))
         {
-          method = m;
+          methods.add(m);
         }
       }
     }
     catch (Throwable e)
     {
     }
-    return Arrays.asList(method);
+    return methods;
   }
   @Override
   public void increment()
