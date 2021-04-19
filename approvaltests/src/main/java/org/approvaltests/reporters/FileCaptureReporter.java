@@ -22,6 +22,10 @@ public class FileCaptureReporter implements ApprovalFailureReporter
   @Override
   public void report(String received, String approved)
   {
+    // TODO: continue here
+    // checkGitUserConfigured();
+    //        git config --local user.email "action@github.com"
+    //        git config --local user.name "GitHub Action"
     run("git", "add", "--force", received);
     run("git", "commit", "-m", "'" + message + "'");
     run("git", "push");
