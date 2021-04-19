@@ -1,8 +1,9 @@
 package org.approvaltests.awt;
 
+import org.approvaltests.core.Options;
 import org.approvaltests.reporters.ClipboardReporter;
+import org.approvaltests.reporters.FileCaptureReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
@@ -19,12 +20,11 @@ public class ApprovalsTest
     AwtApprovals.verify(panel);
   }
   //  @DisabledOnJre({JRE.JAVA_8})
-  @Disabled("continue here next week")
   @Test
   void customPanelWithText()
   {
     final CustomPanel panel = new CustomPanel(true, 20);
-    AwtApprovals.verify(panel);
+    AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
   }
   @EnabledOnJre({JRE.JAVA_8})
   @Test

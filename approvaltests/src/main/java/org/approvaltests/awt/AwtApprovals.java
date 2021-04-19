@@ -3,6 +3,7 @@ package org.approvaltests.awt;
 import com.spun.swing.Paintable;
 import com.spun.util.images.ImageWriter;
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
@@ -36,6 +37,10 @@ public class AwtApprovals
   }
   public static void verify(Paintable c)
   {
-    Approvals.verify(new PaintableApprovalWriter(c));
+    verify(c, new Options());
+  }
+  public static void verify(Paintable c, Options options)
+  {
+    Approvals.verify(new PaintableApprovalWriter(c), options);
   }
 }
