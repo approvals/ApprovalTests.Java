@@ -3,6 +3,7 @@ package org.approvaltests.awt;
 import com.spun.swing.Paintable;
 import com.spun.swing.SwingUtils;
 import com.spun.util.WindowUtils;
+import org.lambda.actions.Action0;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -51,4 +52,7 @@ public class CustomPanel implements Paintable
       square++;
     }
   }
+
+  @Override
+  public void registerRepaint(Action0 repaint) {}
 }

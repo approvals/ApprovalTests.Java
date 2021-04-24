@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 public class Paintables
 {
-  public static JPanel asPanel(Paintable paintable)
+  public static <P extends Paintable> PaintablePanel<P> asPanel(P paintable)
   {
     return new PaintablePanel(paintable);
   }
