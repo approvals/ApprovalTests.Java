@@ -21,7 +21,6 @@ public class NamerSamples
       public File call(Class clazz, String fileName)
       {
         return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", "/"));
-
       }
     };
     // end-snippet

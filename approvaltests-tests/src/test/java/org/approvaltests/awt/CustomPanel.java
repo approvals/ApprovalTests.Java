@@ -52,7 +52,8 @@ public class CustomPanel implements Paintable
       square++;
     }
   }
-
   @Override
-  public void registerRepaint(Action0 repaint) {}
+  public void registerRepaint(Action0 repaint)
+  {
+  }
 }
