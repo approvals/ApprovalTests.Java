@@ -150,7 +150,7 @@ Function2<Class, String, File> myFinder = new Function2<Class, String, File>()
   @Override
   public File call(Class clazz, String fileName)
   {
-    return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", File.separator));
+    return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", "/"));
   }
 };
 ```
