@@ -20,7 +20,8 @@ public class NamerSamples
       @Override
       public File call(Class clazz, String fileName)
       {
-        return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", File.separator));
+        return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", "/"));
+
       }
     };
     // end-snippet
