@@ -2,7 +2,6 @@ package org.approvaltests.reporters.linux;
 
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.intellij.IntelliJReporter;
-import org.approvaltests.reporters.macosx.DiffMergeReporter;
 
 public class LinuxDiffReporter extends FirstWorkingReporter
 {
