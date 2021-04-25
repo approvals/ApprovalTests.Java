@@ -3,6 +3,7 @@ package org.approvaltests;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
+import org.approvaltests.core.Scrubber;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
@@ -24,6 +26,20 @@ import com.spun.util.ArrayUtils;
 
 public class OptionsTest
 {
+  @Test
+  void cannotInstantiateWithoutScrubber()
+  {
+    Scrubber nullScrubber = null;
+    assertThrows(NullPointerException.class, () -> new Options(nullScrubber));
+    assertThrows(NullPointerException.class, () -> new Options().withScrubber(nullScrubber));
+  }
+  @Test
+  void cannotInstantiateWithoutReporter()
+  {
+    ApprovalFailureReporter nullReporter = null;
+    assertThrows(NullPointerException.class, () -> new Options(nullReporter));
+    assertThrows(NullPointerException.class, () -> new Options().withReporter(nullReporter));
+  }
   @Test
   void verifyWithReporterInOptions()
   {

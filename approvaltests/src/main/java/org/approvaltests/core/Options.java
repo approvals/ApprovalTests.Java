@@ -6,6 +6,8 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 
+import java.util.Objects;
+
 public class Options
 {
   private Scrubber                scrubber    = NoOpScrubber.INSTANCE;
@@ -16,10 +18,12 @@ public class Options
   }
   public Options(Scrubber scrubber)
   {
+    Objects.requireNonNull(scrubber, "need to provide a scrubber");
     this.scrubber = scrubber;
   }
   public Options(ApprovalFailureReporter reporter)
   {
+    Objects.requireNonNull(reporter, "need to provide a reporter");
     this.reporter = reporter;
   }
   private Options(Scrubber scrubber, ApprovalFailureReporter reporter, FileOptions fileOptions)
@@ -38,10 +42,12 @@ public class Options
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
+    Objects.requireNonNull(reporter, "need to provide a reporter");
     return new Options(this.scrubber, reporter, fileOptions);
   }
   public Options withScrubber(Scrubber scrubber)
   {
+    Objects.requireNonNull(scrubber, "need to provide a scrubber");
     return new Options(scrubber, this.reporter, fileOptions);
   }
   public String scrub(String input)
