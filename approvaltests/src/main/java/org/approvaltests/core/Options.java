@@ -1,7 +1,5 @@
 package org.approvaltests.core;
 
-import java.util.Optional;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
@@ -10,9 +8,9 @@ import org.approvaltests.scrubbers.NoOpScrubber;
 
 public class Options
 {
-  private Scrubber                          scrubber    = NoOpScrubber.INSTANCE;
-  private Optional<ApprovalFailureReporter> reporter    = Optional.empty();
-  private FileOptions                       fileOptions = new FileOptions();
+  private Scrubber                scrubber    = NoOpScrubber.INSTANCE;
+  private ApprovalFailureReporter reporter    = ReporterFactory.get();
+  private FileOptions             fileOptions = new FileOptions();
   public Options()
   {
   }
@@ -22,9 +20,9 @@ public class Options
   }
   public Options(ApprovalFailureReporter reporter)
   {
-    this.reporter = Optional.ofNullable(reporter);
+    this.reporter = reporter;
   }
-  private Options(Scrubber scrubber, Optional<ApprovalFailureReporter> reporter, FileOptions fileOptions)
+  private Options(Scrubber scrubber, ApprovalFailureReporter reporter, FileOptions fileOptions)
   {
     this.scrubber = scrubber;
     this.reporter = reporter;
@@ -36,11 +34,11 @@ public class Options
   }
   public ApprovalFailureReporter getReporter()
   {
-    return this.reporter.orElse(ReporterFactory.get());
+    return this.reporter;
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
-    return new Options(this.scrubber, Optional.ofNullable(reporter), fileOptions);
+    return new Options(this.scrubber, reporter, fileOptions);
   }
   public Options withScrubber(Scrubber scrubber)
   {
