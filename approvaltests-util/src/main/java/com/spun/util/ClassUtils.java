@@ -207,8 +207,8 @@ public class ClassUtils
     Class first = Queryable.as(allCommon).orderBy(Order.Descending, x -> x.getMethods().length).first();
     return first;
   }
-
-  public static File getAdjacentFile(Class<?> aClass, String relativeFileName) {
+  public static File getAdjacentFile(Class<?> aClass, String relativeFileName)
+  {
     return new File(getSourceDirectory(aClass), relativeFileName);
   }
 }

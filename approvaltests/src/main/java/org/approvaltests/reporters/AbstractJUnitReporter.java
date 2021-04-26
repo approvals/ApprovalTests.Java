@@ -7,37 +7,43 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter {
-    private String className;
-
-    public AbstractJUnitReporter(String className) {
-        this.className = className;
+public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter
+{
+  private String className;
+  public AbstractJUnitReporter(String className)
+  {
+    this.className = className;
+  }
+  public void assertEquals(String expected, String actual)
+  {
+    try
+    {
+      Class<?> clazz = ObjectUtils.loadClass(className);
+      Method assertEquals = clazz.getMethod("assertEquals", Object.class, Object.class);
+      assertEquals.invoke(null, expected, actual);
     }
-
-    public void assertEquals(String expected, String actual) {
-        try {
-            Class<?> clazz = ObjectUtils.loadClass(className);
-            Method assertEquals = clazz.getMethod("assertEquals", Object.class, Object.class);
-            assertEquals.invoke(null, expected, actual);
-        } catch(InvocationTargetException exception) {
-            throw ObjectUtils.throwAsError(exception.getTargetException());
-        }catch   (Throwable throwable) {
-            throw ObjectUtils.throwAsError(throwable);
-        }
+    catch (InvocationTargetException exception)
+    {
+      throw ObjectUtils.throwAsError(exception.getTargetException());
     }
-
-    @Override
-    public void report(String received, String approved) {
-        String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
-        String rText = FileUtils.readFile(received);
-        String approveCommand = "To approve run : " + ClipboardReporter.getAcceptApprovalText(received, approved);
-        System.out.println(approveCommand);
-        assertEquals(aText, rText);
+    catch (Throwable throwable)
+    {
+      throw ObjectUtils.throwAsError(throwable);
     }
-
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile) {
-        boolean present = ObjectUtils.isClassPresent(className);
-        return present && GenericDiffReporter.isFileExtensionValid(forFile, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
-    }
+  }
+  @Override
+  public void report(String received, String approved)
+  {
+    String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
+    String rText = FileUtils.readFile(received);
+    String approveCommand = "To approve run : " + ClipboardReporter.getAcceptApprovalText(received, approved);
+    System.out.println(approveCommand);
+    assertEquals(aText, rText);
+  }
+  @Override
+  public boolean isWorkingInThisEnvironment(String forFile)
+  {
+    boolean present = ObjectUtils.isClassPresent(className);
+    return present && GenericDiffReporter.isFileExtensionValid(forFile, GenericDiffReporter.TEXT_FILE_EXTENSIONS);
+  }
 }
