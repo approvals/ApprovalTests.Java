@@ -51,7 +51,7 @@ IntelliJReporter.INSTANCE, VisualStudioCodeReporter.INSTANCE
 ```java
 DiffMergeReporter.INSTANCE, MeldMergeReporter.INSTANCE, IntelliJReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Configuring a Reporter
