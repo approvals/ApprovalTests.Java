@@ -36,7 +36,7 @@ public class Options
   }
   public ApprovalFailureReporter getReporter()
   {
-    return this.reporter.orElse(ReporterFactory.get());
+    return this.reporter.orElseGet(ReporterFactory::get);
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
