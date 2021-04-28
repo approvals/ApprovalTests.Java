@@ -2,7 +2,7 @@ package org.approvaltests.reporters.intellij;
 
 import static java.lang.Integer.parseInt;
 
-class Version implements Comparable<Version>
+public class Version implements Comparable<Version>
 {
   final String version;
   Version(String version)

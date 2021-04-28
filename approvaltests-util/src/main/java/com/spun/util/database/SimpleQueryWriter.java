@@ -4,7 +4,7 @@ import com.spun.util.DatabaseUtils;
 import com.spun.util.database.SQLQuery.FromPart;
 import com.spun.util.database.SQLQuery.OrderByPart;
 
-class SimpleQueryWriter implements SQLQueryWriter
+public class SimpleQueryWriter implements SQLQueryWriter
 {
   private int databaseType;
   public SimpleQueryWriter(int databaseType)

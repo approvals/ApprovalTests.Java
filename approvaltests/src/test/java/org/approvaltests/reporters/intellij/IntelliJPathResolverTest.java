@@ -10,7 +10,7 @@ import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 
-class IntelliJPathResolverTest
+public class IntelliJPathResolverTest
 {
   @UseReporter(IntelliJMacSiliconReporter.class)
   @Test
