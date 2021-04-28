@@ -17,4 +17,8 @@ public class PaintablePanel<P extends Paintable> extends JPanel
   {
     paintable.paint(g);
   }
+  public P get()
+  {
+    return paintable;
+  }
 }
