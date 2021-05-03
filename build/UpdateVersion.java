@@ -8,6 +8,8 @@ public class UpdateVersion {
     final String version = args[0];
     replaceTextInFile("README.md", "<version>\\d+.\\d+.\\d+</version>",
         "<version>" + version + "</version>");
+    replaceTextInFile("README.md", "com.approvaltests:approvaltests:\\d+.\\d+.\\d+",
+    "com.approvaltests:approvaltests:\\d+.\\d+.\\d+" + version);
   }
 
   private static void replaceTextInFile(String fileName, String regex, String replacement)
