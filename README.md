@@ -70,7 +70,7 @@ If you're using Maven, add this to your pom file:
 
 ```gradle
 dependencies {
-    testImplementation("com.approvaltests:approvaltests:d+.d+.d+11.2.3")
+    testImplementation("com.approvaltests:approvaltests:11.2.3")
 }
 ```
 
