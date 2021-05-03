@@ -8,7 +8,8 @@ import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
-import org.lambda.functions.Function0;
+
+import com.spun.util.ArrayUtils;
 
 public class Options
 {
@@ -35,22 +36,7 @@ public class Options
   }
   public ApprovalFailureReporter getReporter()
   {
-    return getOrElse("reporter", ReporterFactory::get);
-  }
-  private <T> T getOrElse(String key, Function0<T> defaultIfNotFound)
-  {
-    return getOrElse(fields, key, defaultIfNotFound);
-  }
-  public static <T> T getOrElse(Map<String, Object> fields, String key, Function0<T> defaultIfNotFound)
-  {
-    if (fields.containsKey(key))
-    {
-      return (T) fields.get(key);
-    }
-    else
-    {
-      return defaultIfNotFound.call();
-    }
+    return ArrayUtils.getOrElse(fields, "reporter", ReporterFactory::get);
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
@@ -66,7 +52,7 @@ public class Options
   }
   private Scrubber getScrubber()
   {
-    return getOrElse("scrubber", () -> NoOpScrubber.INSTANCE);
+    return ArrayUtils.getOrElse(fields, "scrubber", () -> NoOpScrubber.INSTANCE);
   }
   public FileOptions forFile()
   {
@@ -89,11 +75,11 @@ public class Options
     }
     public ApprovalNamer getNamer()
     {
-      return getOrElse(fields, "fileOptions.namer", Approvals::createApprovalNamer);
+      return ArrayUtils.getOrElse(fields, "fileOptions.namer", Approvals::createApprovalNamer);
     }
     public String getFileExtension()
     {
-      return getOrElse(fields, "fileOptions.fileExtension", () -> ".txt");
+      return ArrayUtils.getOrElse(fields, "fileOptions.fileExtension", () -> ".txt");
     }
     public Options withBaseName(String fileBaseName)
     {
