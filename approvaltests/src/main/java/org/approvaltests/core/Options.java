@@ -1,80 +1,83 @@
 package org.approvaltests.core;
 
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
+import org.lambda.functions.Function0;
 
 public class Options
 {
-  private Scrubber                          scrubber    = NoOpScrubber.INSTANCE;
-  private Optional<ApprovalFailureReporter> reporter    = Optional.empty();
-  private FileOptions                       fileOptions = new FileOptions();
+  private final Map<String, Object> fields = new HashMap<>();
   public Options()
   {
   }
   public Options(Scrubber scrubber)
   {
-    this.scrubber = scrubber;
+    fields.put("scrubber", scrubber);
   }
   public Options(ApprovalFailureReporter reporter)
   {
-    this.reporter = Optional.ofNullable(reporter);
+    fields.put("reporter", reporter);
   }
-  private Options(Scrubber scrubber, Optional<ApprovalFailureReporter> reporter, FileOptions fileOptions)
+  private Options(Map<String, Object> fields, String key, Object value)
   {
-    this.scrubber = scrubber;
-    this.reporter = reporter;
-    this.fileOptions = fileOptions;
+    this.fields.putAll(fields);
+    this.fields.put(key, value);
   }
   public Options(Options parent, FileOptions fileOptions)
   {
-    this(parent.scrubber, parent.reporter, fileOptions);
+    this(parent.fields, "fileOptions", fileOptions);
   }
   public ApprovalFailureReporter getReporter()
   {
-    return this.reporter.orElseGet(ReporterFactory::get);
+    return getOrElse("reporter", ReporterFactory::get);
+  }
+  private <T> T getOrElse(String key, Function0<T> defaultIfNotFound)
+  {
+    return getOrElse(fields, key, defaultIfNotFound);
+  }
+  public static <T> T getOrElse(Map<String, Object> fields, String key, Function0<T> defaultIfNotFound)
+  {
+    if (fields.containsKey(key))
+    {
+      return (T) fields.get(key);
+    }
+    else
+    {
+      return defaultIfNotFound.call();
+    }
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
-    return new Options(this.scrubber, Optional.ofNullable(reporter), fileOptions);
+    return new Options(fields, "reporter", reporter);
   }
   public Options withScrubber(Scrubber scrubber)
   {
-    return new Options(scrubber, this.reporter, fileOptions);
+    return new Options(fields, "scrubber", scrubber);
   }
   public String scrub(String input)
   {
-    return scrubber.scrub(input);
+    return getScrubber().scrub(input);
+  }
+  private Scrubber getScrubber()
+  {
+    return getOrElse("scrubber", () -> NoOpScrubber.INSTANCE);
   }
   public FileOptions forFile()
   {
-    fileOptions.setParent(this);
-    return fileOptions;
+    return new FileOptions(this.fields);
   }
   public static class FileOptions
   {
-    private String         fileExtension = ".txt";
-    protected NamerWrapper approvalNamer = null;
-    protected Options      parent;
-    public FileOptions()
+    private final Map<String, Object> fields;
+    public FileOptions(Map<String, Object> fields)
     {
-    }
-    public FileOptions(String fileExtension)
-    {
-      this.fileExtension = fileExtension;
-    }
-    public FileOptions(NamerWrapper approvalNamer, String fileExtension)
-    {
-      this.approvalNamer = approvalNamer;
-      this.fileExtension = fileExtension;
-    }
-    public void setParent(Options parent)
-    {
-      this.parent = parent;
+      this.fields = fields;
     }
     public Options withExtension(String fileExtensionWithDot)
     {
@@ -82,28 +85,27 @@ public class Options
       {
         fileExtensionWithDot = "." + fileExtensionWithDot;
       }
-      FileOptions f = new FileOptions(this.approvalNamer, fileExtensionWithDot);
-      return new Options(parent, f);
+      return new Options(fields, "fileOptions.fileExtension", fileExtensionWithDot);
     }
     public ApprovalNamer getNamer()
     {
-      return approvalNamer == null ? Approvals.createApprovalNamer() : approvalNamer;
+      return getOrElse(fields, "fileOptions.namer", Approvals::createApprovalNamer);
     }
     public String getFileExtension()
     {
-      return fileExtension;
+      return getOrElse(fields, "fileOptions.fileExtension", () -> ".txt");
     }
     public Options withBaseName(String fileBaseName)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      FileOptions f = new FileOptions(approvalNamer, this.fileExtension);
-      return new Options(parent, f);
+      return new Options(fields, "fileOptions.namer", approvalNamer);
     }
     public Options withName(String fileBaseName, String extension)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      FileOptions f = new FileOptions(approvalNamer, extension);
-      return new Options(parent, f);
+      HashMap<String, Object> newFields = new HashMap<>(fields);
+      newFields.put("fileOptions.fileExtension", extension);
+      return new Options(newFields, "fileOptions.namer", approvalNamer);
     }
   }
 }
