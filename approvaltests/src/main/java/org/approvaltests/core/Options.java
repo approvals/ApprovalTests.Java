@@ -13,38 +13,37 @@ import com.spun.util.ArrayUtils;
 
 public class Options
 {
-  private final Map<String, Object> fields = new HashMap<>();
+  private enum Fields {
+                      SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER;
+  }
+  private final Map<Fields, Object> fields = new HashMap<>();
   public Options()
   {
   }
   public Options(Scrubber scrubber)
   {
-    fields.put("scrubber", scrubber);
+    fields.put(Fields.SCRUBBER, scrubber);
   }
   public Options(ApprovalFailureReporter reporter)
   {
-    fields.put("reporter", reporter);
+    fields.put(Fields.REPORTER, reporter);
   }
-  private Options(Map<String, Object> fields, String key, Object value)
+  private Options(Map<Fields, Object> fields, Fields key, Object value)
   {
     this.fields.putAll(fields);
     this.fields.put(key, value);
   }
-  public Options(Options parent, FileOptions fileOptions)
-  {
-    this(parent.fields, "fileOptions", fileOptions);
-  }
   public ApprovalFailureReporter getReporter()
   {
-    return ArrayUtils.getOrElse(fields, "reporter", ReporterFactory::get);
+    return ArrayUtils.getOrElse(fields, Fields.REPORTER, ReporterFactory::get);
   }
   public Options withReporter(ApprovalFailureReporter reporter)
   {
-    return new Options(fields, "reporter", reporter);
+    return new Options(fields, Fields.REPORTER, reporter);
   }
   public Options withScrubber(Scrubber scrubber)
   {
-    return new Options(fields, "scrubber", scrubber);
+    return new Options(fields, Fields.SCRUBBER, scrubber);
   }
   public String scrub(String input)
   {
@@ -52,7 +51,7 @@ public class Options
   }
   private Scrubber getScrubber()
   {
-    return ArrayUtils.getOrElse(fields, "scrubber", () -> NoOpScrubber.INSTANCE);
+    return ArrayUtils.getOrElse(fields, Fields.SCRUBBER, () -> NoOpScrubber.INSTANCE);
   }
   public FileOptions forFile()
   {
@@ -60,8 +59,8 @@ public class Options
   }
   public static class FileOptions
   {
-    private final Map<String, Object> fields;
-    public FileOptions(Map<String, Object> fields)
+    private final Map<Fields, Object> fields;
+    public FileOptions(Map<Fields, Object> fields)
     {
       this.fields = fields;
     }
@@ -71,27 +70,27 @@ public class Options
       {
         fileExtensionWithDot = "." + fileExtensionWithDot;
       }
-      return new Options(fields, "fileOptions.fileExtension", fileExtensionWithDot);
+      return new Options(fields, Fields.FILE_OPTIONS_FILE_EXTENSION, fileExtensionWithDot);
     }
     public ApprovalNamer getNamer()
     {
-      return ArrayUtils.getOrElse(fields, "fileOptions.namer", Approvals::createApprovalNamer);
+      return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_NAMER, Approvals::createApprovalNamer);
     }
     public String getFileExtension()
     {
-      return ArrayUtils.getOrElse(fields, "fileOptions.fileExtension", () -> ".txt");
+      return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_FILE_EXTENSION, () -> ".txt");
     }
     public Options withBaseName(String fileBaseName)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      return new Options(fields, "fileOptions.namer", approvalNamer);
+      return new Options(fields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
     }
     public Options withName(String fileBaseName, String extension)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      HashMap<String, Object> newFields = new HashMap<>(fields);
-      newFields.put("fileOptions.fileExtension", extension);
-      return new Options(newFields, "fileOptions.namer", approvalNamer);
+      HashMap<Fields, Object> newFields = new HashMap<>(fields);
+      newFields.put(Fields.FILE_OPTIONS_FILE_EXTENSION, extension);
+      return new Options(newFields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
     }
   }
 }
