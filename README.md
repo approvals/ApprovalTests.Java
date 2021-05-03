@@ -49,8 +49,10 @@ It is a maven project and can be imported into any editor.
 
 
 ## How to get it
-It's on Maven Central, search for 'approvaltests'. If you're using Maven,
-add this to your pom file:
+It's on Maven Central, search for 'approvaltests'.
+
+### Maven 
+If you're using Maven, add this to your pom file:
 
 ``` xml
 <dependency>
@@ -58,6 +60,14 @@ add this to your pom file:
     <artifactId>approvaltests</artifactId>
     <version>11.2.2</version>
 </dependency>
+```
+
+### Gradle
+
+```gradle
+dependencies {
+    testImplementation("com.approvaltests:approvaltests:11.2.2")
+}
 ```
 
 or [download the jars from maven central repository](https://repo1.maven.org/maven2/com/approvaltests/approvaltests/)
