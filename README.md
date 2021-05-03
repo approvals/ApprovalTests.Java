@@ -9,6 +9,8 @@
   * [Documentation](#documentation)
   * [Getting started](#getting-started)
   * [How to get it](#how-to-get-it)
+    * [Maven](#maven)
+    * [Gradle](#gradle)
   * [Podcasts](#podcasts)
   * [Examples](#examples)
   * [Approved File Artifacts](#approved-file-artifacts)
