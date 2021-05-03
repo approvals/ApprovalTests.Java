@@ -14,7 +14,7 @@ import com.spun.util.ArrayUtils;
 public class Options
 {
   private enum Fields {
-                      SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER;
+                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER;
   }
   private final Map<Fields, Object> fields = new HashMap<>();
   public Options()
