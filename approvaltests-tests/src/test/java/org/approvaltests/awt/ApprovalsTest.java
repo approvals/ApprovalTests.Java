@@ -33,11 +33,11 @@ public class ApprovalsTest
     final CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
   }
-
   @Test
   @UseReporter(ImageWebReporter.class)
-  void testSequence() {
+  void testSequence()
+  {
     SquareDrawer squareDrawer = new SquareDrawer();
-    AwtApprovals.verifySequence(5,  f -> squareDrawer.setSquareSize(f*10) );
+    AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
   }
 }
