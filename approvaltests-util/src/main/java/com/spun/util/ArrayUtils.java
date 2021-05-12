@@ -10,8 +10,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
+import org.lambda.functions.Function0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
@@ -275,6 +277,18 @@ public class ArrayUtils
   public static <T> T[] toArray(List<T> list, Class<T> type)
   {
     return Queryable.as(list, type).asArray();
+  }
+  public static <KEY, VALUES, SPECIFIC_VALUE extends VALUES> SPECIFIC_VALUE getOrElse(Map<KEY, VALUES> fields,
+      KEY key, Function0<SPECIFIC_VALUE> defaultIfNotFound)
+  {
+    if (fields.containsKey(key))
+    {
+      return (SPECIFIC_VALUE) fields.get(key);
+    }
+    else
+    {
+      return defaultIfNotFound.call();
+    }
   }
   public static class IterableWrapper<T> implements Iterable<T>
   {

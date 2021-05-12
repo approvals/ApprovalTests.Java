@@ -9,6 +9,8 @@
   * [Documentation](#documentation)
   * [Getting started](#getting-started)
   * [How to get it](#how-to-get-it)
+    * [Maven](#maven)
+    * [Gradle](#gradle)
   * [Podcasts](#podcasts)
   * [Examples](#examples)
   * [Approved File Artifacts](#approved-file-artifacts)
@@ -44,20 +46,32 @@ Approval Tests can be used for verifying objects that require more than a simple
 
 ## Getting started
 
-The best way to get started is download and open the [Starter Project](https://github.com/approvals/approvaltests.java.starterproject).  
-It is a maven project and can be imported into any editor.
+The best way to get started is download and open one of 
+* [Maven Starter Project](https://github.com/approvals/approvaltests.java.starterproject)
+* [Gradle Starter Project](https://github.com/approvals/approvaltests.java.starterproject.gradle)  
+It is a standard project and can be imported into any editor or IDE.
 
 
 ## How to get it
-It's on Maven Central, search for 'approvaltests'. If you're using Maven,
-add this to your pom file:
+It's on Maven Central, search for 'approvaltests'.
+
+### Maven 
+If you're using Maven, add this to your pom file:
 
 ``` xml
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>11.2.2</version>
+    <version>11.2.3</version>
 </dependency>
+```
+
+### Gradle
+
+```gradle
+dependencies {
+    testImplementation("com.approvaltests:approvaltests:11.2.3")
+}
 ```
 
 or [download the jars from maven central repository](https://repo1.maven.org/maven2/com/approvaltests/approvaltests/)
