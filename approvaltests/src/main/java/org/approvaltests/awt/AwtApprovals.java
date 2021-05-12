@@ -9,6 +9,7 @@ import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.approvaltests.writers.ImageApprovalWriter;
 import org.approvaltests.writers.PaintableApprovalWriter;
+import org.lambda.functions.Function1;
 
 import java.awt.Component;
 import java.awt.Image;
@@ -42,5 +43,8 @@ public class AwtApprovals
   public static void verify(Paintable c, Options options)
   {
     Approvals.verify(new PaintableApprovalWriter(c), options);
+  }
+  public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer) {
+    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), new Options());
   }
 }

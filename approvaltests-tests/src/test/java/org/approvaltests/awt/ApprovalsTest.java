@@ -1,15 +1,14 @@
 package org.approvaltests.awt;
 
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.FileCaptureReporter;
-import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
 
-@UseReporter({FileCaptureReporter.class})
+//@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest
 {
   @DisabledOnJre({JRE.JAVA_8})
@@ -33,5 +32,12 @@ public class ApprovalsTest
   {
     final CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
+  }
+
+  @Test
+  @UseReporter(ImageWebReporter.class)
+  void testSequence() {
+    SquareDrawer squareDrawer = new SquareDrawer();
+    AwtApprovals.verifySequence(5,  f -> squareDrawer.setSquareSize(f*10) );
   }
 }
