@@ -57,7 +57,8 @@ public class AwtApprovals
   {
     verifySequence(numberOfFrames, sequenceRenderer, new Options());
   }
-  public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer, Options options)
+  public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer,
+      Options options)
   {
     Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), options);
   }
