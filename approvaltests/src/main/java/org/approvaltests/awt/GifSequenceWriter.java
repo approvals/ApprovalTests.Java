@@ -76,15 +76,16 @@ public class GifSequenceWriter implements AutoCloseable
     IIOMetadataNode child = new IIOMetadataNode("ApplicationExtension");
     child.setAttribute("applicationID", "NETSCAPE");
     child.setAttribute("authenticationCode", "2.0");
-    child.setUserObject(getBytesForUseContinuously(loopContinuously));
+    child.setUserObject(getBytesForLoopContinuously(loopContinuously));
     appEntensionsNode.appendChild(child);
     imageMetaData2.setFromTree(metaFormatName, root);
     return imageMetaData2;
   }
-  public static byte[] getBytesForUseContinuously(boolean loopContinuously)
+  public static byte[] getBytesForLoopContinuously(boolean loopContinuously)
   {
-    int loop = loopContinuously ? 0 : 1;
-    return new byte[]{0x1, (byte) (loop & 0xFF), (byte) ((loop >> 8) & 0xFF)};
+    byte[] loop = {1, 0, 0};
+    byte[] once = {1, 1, 0};
+    return loopContinuously ? loop : once;
   }
   static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFramesMS)
   {
