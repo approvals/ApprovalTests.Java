@@ -32,6 +32,8 @@ import com.spun.util.ObjectUtils;
 
 public class GifSequenceWriter implements AutoCloseable
 {
+  private final int         imageType;
+  private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
   protected IIOMetadata     imageMetaData;
@@ -49,16 +51,16 @@ public class GifSequenceWriter implements AutoCloseable
   public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFramesMS,
       boolean loopContinuously) throws IIOException, IOException
   {
+    this.imageType = imageType;
+    this.loopContinuously = loopContinuously;
     // my method to create a writer
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
-    IIOMetadata imageMetaData2 = getMetadata(imageType, timeBetweenFramesMS, loopContinuously);
-    imageMetaData = imageMetaData2;
+    imageMetaData = getMetadata(timeBetweenFramesMS);
     gifWriter.setOutput(outputStream);
     gifWriter.prepareWriteSequence(null);
   }
-  private IIOMetadata getMetadata(int imageType, Duration timeBetweenFramesMS, boolean loopContinuously)
-      throws IIOInvalidTreeException
+  private IIOMetadata getMetadata(Duration timeBetweenFramesMS) throws IIOInvalidTreeException
   {
     ImageTypeSpecifier imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(imageType);
     IIOMetadata imageMetaData2 = gifWriter.getDefaultImageMetadata(imageTypeSpecifier, imageWriteParam);
