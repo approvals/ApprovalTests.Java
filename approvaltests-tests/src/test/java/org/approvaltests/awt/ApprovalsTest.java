@@ -1,14 +1,18 @@
 package org.approvaltests.awt;
 
-import com.spun.util.Tuple;
 import java.time.Duration;
+
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.*;
+import org.approvaltests.reporters.FileCaptureReporter;
+import org.approvaltests.reporters.ImageWebReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
+
+import com.spun.util.Tuple;
 
 //@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest
@@ -41,7 +45,15 @@ public class ApprovalsTest
   {
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
-//    AwtApprovals.verifySequence(5, Duration.ofMillis(500), f -> squareDrawer.setSquareSize(f * 10));
-//    AwtApprovals.verifySequence(5, f -> new Tuple(squareDrawer.setSquareSize(f * 10), Duration.ofMillis(500));
+    //    AwtApprovals.verifySequence(5, Duration.ofMillis(500), f -> squareDrawer.setSquareSize(f * 10));
+  }
+  @Test
+  @UseReporter(ImageWebReporter.class)
+  void testSequenceWithTimings()
+  {
+    SquareDrawer squareDrawer = new SquareDrawer();
+    AwtApprovals.verifySequenceWithTimings(5,
+        f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
+    // TODO: write documentation
   }
 }

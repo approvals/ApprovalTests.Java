@@ -3,6 +3,7 @@ package org.approvaltests.awt;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.time.Duration;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
@@ -14,6 +15,7 @@ import org.approvaltests.writers.PaintableApprovalWriter;
 import org.lambda.functions.Function1;
 
 import com.spun.swing.Paintable;
+import com.spun.util.Tuple;
 import com.spun.util.images.ImageWriter;
 
 public class AwtApprovals
@@ -57,9 +59,20 @@ public class AwtApprovals
   {
     verifySequence(numberOfFrames, sequenceRenderer, new Options());
   }
+  public static void verifySequenceWithTimings(int numberOfFrames,
+      Function1<Integer, Tuple<Paintable, Duration>> sequenceRenderer)
+  {
+    verifySequenceWithTimings(numberOfFrames, sequenceRenderer, new Options());
+  }
+  public static void verifySequenceWithTimings(int numberOfFrames,
+      Function1<Integer, Tuple<Paintable, Duration>> sequenceRenderer, Options options)
+  {
+    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), options);
+  }
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer,
       Options options)
   {
-    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), options);
+    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames,
+        c -> new Tuple<>(sequenceRenderer.call(c), Duration.ofMillis(500))), options);
   }
 }

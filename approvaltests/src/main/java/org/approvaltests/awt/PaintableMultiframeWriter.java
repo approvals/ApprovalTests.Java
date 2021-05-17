@@ -1,5 +1,6 @@
 package org.approvaltests.awt;
 
+import com.spun.util.Tuple;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.Duration;
@@ -14,8 +15,8 @@ import com.spun.swing.Paintable;
 public class PaintableMultiframeWriter implements ApprovalWriter
 {
   private int                           numberOfFrames;
-  private Function1<Integer, Paintable> frameGetter;
-  public PaintableMultiframeWriter(int numberOfFrames, Function1<Integer, Paintable> frameGetter)
+  private Function1<Integer, Tuple<Paintable,Duration>> frameGetter;
+  public PaintableMultiframeWriter(int numberOfFrames, Function1<Integer, Tuple<Paintable,Duration>> frameGetter)
   {
     this.numberOfFrames = numberOfFrames;
     this.frameGetter = frameGetter;
@@ -23,15 +24,16 @@ public class PaintableMultiframeWriter implements ApprovalWriter
   @Override
   public File writeReceivedFile(File received)
   {
-    return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages(), Duration.ofMillis(500));
+    return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages());
   }
-  private ArrayList<BufferedImage> getBufferedImages()
+  private ArrayList<Tuple<BufferedImage, Duration>> getBufferedImages()
   {
-    ArrayList<BufferedImage> images = new ArrayList<>();
+    ArrayList<Tuple<BufferedImage, Duration>> images = new ArrayList<>();
     for (int i = 0; i < numberOfFrames; i++)
     {
-      BufferedImage image = PaintableApprovalWriter.drawComponent(frameGetter.call(i));
-      images.add(image);
+      final Tuple<Paintable, Duration> tuple = frameGetter.call(i);
+      BufferedImage image = PaintableApprovalWriter.drawComponent(tuple.getFirst());
+      images.add(new Tuple<>(image, tuple.getSecond()));
     }
     return images;
   }

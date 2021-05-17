@@ -8,6 +8,7 @@ package org.approvaltests.awt;
 // License. To view a copy of this license, visit
 // http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
 // Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+import com.spun.util.Tuple;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import java.util.List;
 import javax.imageio.IIOException;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
@@ -88,16 +90,16 @@ public class GifSequenceWriter implements AutoCloseable
     byte[] once = {1, 1, 0};
     return loopContinuously ? loop : once;
   }
-  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFrames)
+  static File writeAnimatedGif(File imageFile, List<Tuple<BufferedImage, Duration>> images)
   {
     try (ImageOutputStream output = new FileImageOutputStream(imageFile))
     {
-      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getType(), timeBetweenFrames,
+      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getFirst().getType(), Duration.ZERO,
           true))
       {
-        for (BufferedImage image : images)
+        for (Tuple<BufferedImage, Duration> image : images)
         {
-          writer.writeToSequence(image, timeBetweenFrames);
+          writer.writeToSequence(image.getFirst(), image.getSecond());
         }
       }
     }
