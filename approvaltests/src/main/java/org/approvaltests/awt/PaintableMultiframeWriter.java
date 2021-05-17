@@ -1,20 +1,14 @@
 package org.approvaltests.awt;
 
-import com.spun.swing.Paintable;
-import com.spun.util.ObjectUtils;
-import com.spun.util.persistence.ExecutableQuery;
-import org.approvaltests.approvers.ApprovalApprover;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.ArrayList;
+
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.writers.PaintableApprovalWriter;
 import org.lambda.functions.Function1;
 
-import javax.imageio.stream.FileImageOutputStream;
-import javax.imageio.stream.ImageOutputStream;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Map;
+import com.spun.swing.Paintable;
 
 public class PaintableMultiframeWriter implements ApprovalWriter
 {
@@ -28,25 +22,7 @@ public class PaintableMultiframeWriter implements ApprovalWriter
   @Override
   public File writeReceivedFile(File received)
   {
-    try
-    {
-      ArrayList<BufferedImage> images = getBufferedImages();
-      try (ImageOutputStream output = new FileImageOutputStream(received))
-      {
-        try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getType(), 500, true))
-        {
-          for (BufferedImage image : images)
-          {
-            writer.writeToSequence(image);
-          }
-        }
-      }
-      return received;
-    }
-    catch (Exception e)
-    {
-      throw ObjectUtils.throwAsError(e);
-    }
+    return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages(), 500);
   }
   private ArrayList<BufferedImage> getBufferedImages()
   {

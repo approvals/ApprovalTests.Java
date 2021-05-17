@@ -8,12 +8,25 @@ package org.approvaltests.awt;
 // License. To view a copy of this license, visit
 // http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
 // Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
-import javax.imageio.*;
-import javax.imageio.metadata.*;
-import javax.imageio.stream.*;
-import java.awt.image.*;
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+
+import javax.imageio.IIOException;
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageTypeSpecifier;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.metadata.IIOMetadataNode;
+import javax.imageio.stream.FileImageOutputStream;
+import javax.imageio.stream.ImageOutputStream;
+
+import com.spun.util.ObjectUtils;
 
 public class GifSequenceWriter implements AutoCloseable
 {
@@ -59,6 +72,25 @@ public class GifSequenceWriter implements AutoCloseable
     imageMetaData.setFromTree(metaFormatName, root);
     gifWriter.setOutput(outputStream);
     gifWriter.prepareWriteSequence(null);
+  }
+  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, int timeBetweenFramesMS)
+  {
+    try (ImageOutputStream output = new FileImageOutputStream(imageFile))
+    {
+      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getType(), timeBetweenFramesMS,
+          true))
+      {
+        for (BufferedImage image : images)
+        {
+          writer.writeToSequence(image);
+        }
+      }
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
+    return imageFile;
   }
   public void writeToSequence(RenderedImage img) throws IOException
   {
@@ -111,38 +143,5 @@ public class GifSequenceWriter implements AutoCloseable
     IIOMetadataNode node = new IIOMetadataNode(nodeName);
     rootNode.appendChild(node);
     return (node);
-  }
-  /**
-   public GifSequenceWriter(
-   BufferedOutputStream outputStream,
-   int imageType,
-   int timeBetweenFramesMS,
-   boolean loopContinuously) {
-   */
-  public static void main(String[] args) throws Exception
-  {
-    if (args.length > 1)
-    {
-      // grab the output image type from the first image in the sequence
-      BufferedImage firstImage = ImageIO.read(new File(args[0]));
-      // create a new BufferedOutputStream with the last argument
-      ImageOutputStream output = new FileImageOutputStream(new File(args[args.length - 1]));
-      // create a gif sequence with the type of the first image, 1 second
-      // between frames, which loops continuously
-      GifSequenceWriter writer = new GifSequenceWriter(output, firstImage.getType(), 1, false);
-      // write out the first image to our sequence...
-      writer.writeToSequence(firstImage);
-      for (int i = 1; i < args.length - 1; i++)
-      {
-        BufferedImage nextImage = ImageIO.read(new File(args[i]));
-        writer.writeToSequence(nextImage);
-      }
-      writer.close();
-      output.close();
-    }
-    else
-    {
-      System.out.println("Usage: java GifSequenceWriter [list of gif files] [output file]");
-    }
   }
 }

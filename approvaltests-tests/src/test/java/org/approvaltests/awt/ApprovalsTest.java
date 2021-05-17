@@ -1,5 +1,7 @@
 package org.approvaltests.awt;
 
+import com.spun.util.Tuple;
+import java.time.Duration;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.*;
 import org.junit.jupiter.api.Disabled;
@@ -39,5 +41,7 @@ public class ApprovalsTest
   {
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
+//    AwtApprovals.verifySequence(5, Duration.ofMillis(500), f -> squareDrawer.setSquareSize(f * 10));
+//    AwtApprovals.verifySequence(5, f -> new Tuple(squareDrawer.setSquareSize(f * 10), Duration.ofMillis(500));
   }
 }
