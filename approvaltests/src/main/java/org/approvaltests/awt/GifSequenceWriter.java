@@ -33,6 +33,7 @@ import com.spun.util.ObjectUtils;
 public class GifSequenceWriter implements AutoCloseable
 {
   private final int         imageType;
+  private final Duration    timeBetweenFramesMS;
   private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
@@ -42,21 +43,21 @@ public class GifSequenceWriter implements AutoCloseable
    *
    * @param outputStream the ImageOutputStream to be written to
    * @param imageType one of the imageTypes specified in BufferedImage
-   * @param timeBetweenFramesMS the time between frames in miliseconds
+   * @param timeBetweenFrames the time between frames in miliseconds
    * @param loopContinuously wether the gif should loop repeatedly
    * @throws IIOException if no gif ImageWriters are found
    *
    * @author Elliot Kroo (elliot[at]kroo[dot]net)
    */
-  public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFramesMS,
-      boolean loopContinuously) throws IIOException, IOException
+  public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFrames,
+      boolean loopContinuously) throws IOException
   {
     this.imageType = imageType;
+    this.timeBetweenFramesMS = timeBetweenFrames;
     this.loopContinuously = loopContinuously;
-    // my method to create a writer
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
-    imageMetaData = getMetadata(timeBetweenFramesMS);
+    imageMetaData = getMetadata(timeBetweenFrames);
     gifWriter.setOutput(outputStream);
     gifWriter.prepareWriteSequence(null);
   }
