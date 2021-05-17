@@ -2,6 +2,8 @@ name: auto-merge
 
 on:
   pull_request:
+  schedule:
+    - cron: "*/5 * * * *"
 
 jobs:
   auto-merge:
@@ -10,5 +12,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
-          target: minor
+          target: major
           github-token: ${{ secrets.GITHUB_TOKEN }}
