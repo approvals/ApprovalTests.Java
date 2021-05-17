@@ -14,9 +14,9 @@ import com.spun.swing.Paintable;
 
 public class PaintableMultiframeWriter implements ApprovalWriter
 {
-  private int                           numberOfFrames;
-  private Function1<Integer, Tuple<Paintable,Duration>> frameGetter;
-  public PaintableMultiframeWriter(int numberOfFrames, Function1<Integer, Tuple<Paintable,Duration>> frameGetter)
+  private int                                            numberOfFrames;
+  private Function1<Integer, Tuple<Paintable, Duration>> frameGetter;
+  public PaintableMultiframeWriter(int numberOfFrames, Function1<Integer, Tuple<Paintable, Duration>> frameGetter)
   {
     this.numberOfFrames = numberOfFrames;
     this.frameGetter = frameGetter;

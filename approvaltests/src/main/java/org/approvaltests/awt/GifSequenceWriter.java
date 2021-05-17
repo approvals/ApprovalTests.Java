@@ -35,7 +35,7 @@ import com.spun.util.ObjectUtils;
 public class GifSequenceWriter implements AutoCloseable
 {
   private final int         imageType;
-  private final Duration timeBetweenFrames;
+  private final Duration    timeBetweenFrames;
   private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
@@ -94,8 +94,8 @@ public class GifSequenceWriter implements AutoCloseable
   {
     try (ImageOutputStream output = new FileImageOutputStream(imageFile))
     {
-      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getFirst().getType(), Duration.ZERO,
-          true))
+      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getFirst().getType(),
+          Duration.ZERO, true))
       {
         for (Tuple<BufferedImage, Duration> image : images)
         {
