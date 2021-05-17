@@ -37,7 +37,6 @@ public class GifSequenceWriter implements AutoCloseable
   private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
-  protected IIOMetadata     imageMetaData;
   /**
    * Creates a new GifSequenceWriter
    *
@@ -57,7 +56,6 @@ public class GifSequenceWriter implements AutoCloseable
     this.loopContinuously = loopContinuously;
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
-    imageMetaData = getMetadata(timeBetweenFrames);
     gifWriter.setOutput(outputStream);
     gifWriter.prepareWriteSequence(null);
   }
@@ -111,7 +109,7 @@ public class GifSequenceWriter implements AutoCloseable
   }
   public void writeToSequence(RenderedImage img) throws IOException
   {
-    gifWriter.writeToSequence(new IIOImage(img, null, imageMetaData), imageWriteParam);
+    gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFramesMS)), imageWriteParam);
   }
   /**
    * Close this GifSequenceWriter object. This does not close the underlying
