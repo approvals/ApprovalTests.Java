@@ -2,8 +2,7 @@ name: auto-merge
 
 on:
   pull_request:
-  schedule:
-    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 jobs:
   auto-merge:
