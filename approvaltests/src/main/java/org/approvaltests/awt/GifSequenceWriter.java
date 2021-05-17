@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageTypeSpecifier;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
+import javax.imageio.metadata.IIOInvalidTreeException;
 import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.FileImageOutputStream;
@@ -51,10 +52,18 @@ public class GifSequenceWriter implements AutoCloseable
     // my method to create a writer
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
+    IIOMetadata imageMetaData2 = getMetadata(imageType, timeBetweenFramesMS, loopContinuously);
+    imageMetaData = imageMetaData2;
+    gifWriter.setOutput(outputStream);
+    gifWriter.prepareWriteSequence(null);
+  }
+  private IIOMetadata getMetadata(int imageType, Duration timeBetweenFramesMS, boolean loopContinuously)
+      throws IIOInvalidTreeException
+  {
     ImageTypeSpecifier imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(imageType);
-    imageMetaData = gifWriter.getDefaultImageMetadata(imageTypeSpecifier, imageWriteParam);
-    String metaFormatName = imageMetaData.getNativeMetadataFormatName();
-    IIOMetadataNode root = (IIOMetadataNode) imageMetaData.getAsTree(metaFormatName);
+    IIOMetadata imageMetaData2 = gifWriter.getDefaultImageMetadata(imageTypeSpecifier, imageWriteParam);
+    String metaFormatName = imageMetaData2.getNativeMetadataFormatName();
+    IIOMetadataNode root = (IIOMetadataNode) imageMetaData2.getAsTree(metaFormatName);
     IIOMetadataNode graphicsControlExtensionNode = getNode(root, "GraphicControlExtension");
     graphicsControlExtensionNode.setAttribute("disposalMethod", "none");
     graphicsControlExtensionNode.setAttribute("userInputFlag", "FALSE");
@@ -67,12 +76,15 @@ public class GifSequenceWriter implements AutoCloseable
     IIOMetadataNode child = new IIOMetadataNode("ApplicationExtension");
     child.setAttribute("applicationID", "NETSCAPE");
     child.setAttribute("authenticationCode", "2.0");
-    int loop = loopContinuously ? 0 : 1;
-    child.setUserObject(new byte[]{0x1, (byte) (loop & 0xFF), (byte) ((loop >> 8) & 0xFF)});
+    child.setUserObject(getBytesForUseContinuously(loopContinuously));
     appEntensionsNode.appendChild(child);
-    imageMetaData.setFromTree(metaFormatName, root);
-    gifWriter.setOutput(outputStream);
-    gifWriter.prepareWriteSequence(null);
+    imageMetaData2.setFromTree(metaFormatName, root);
+    return imageMetaData2;
+  }
+  public static byte[] getBytesForUseContinuously(boolean loopContinuously)
+  {
+    int loop = loopContinuously ? 0 : 1;
+    return new byte[]{0x1, (byte) (loop & 0xFF), (byte) ((loop >> 8) & 0xFF)};
   }
   static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFramesMS)
   {
