@@ -97,7 +97,7 @@ public class GifSequenceWriter implements AutoCloseable
       {
         for (BufferedImage image : images)
         {
-          writer.writeToSequence(image);
+          writer.writeToSequence(image, timeBetweenFrames);
         }
       }
     }
@@ -107,7 +107,7 @@ public class GifSequenceWriter implements AutoCloseable
     }
     return imageFile;
   }
-  public void writeToSequence(RenderedImage img) throws IOException
+  public void writeToSequence(RenderedImage img, Duration timeBetweenFrames) throws IOException
   {
     gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam);
   }
