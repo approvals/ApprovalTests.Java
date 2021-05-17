@@ -33,7 +33,7 @@ import com.spun.util.ObjectUtils;
 public class GifSequenceWriter implements AutoCloseable
 {
   private final int         imageType;
-  private final Duration    timeBetweenFramesMS;
+  private final Duration timeBetweenFrames;
   private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
@@ -52,7 +52,7 @@ public class GifSequenceWriter implements AutoCloseable
       boolean loopContinuously) throws IOException
   {
     this.imageType = imageType;
-    this.timeBetweenFramesMS = timeBetweenFrames;
+    this.timeBetweenFrames = timeBetweenFrames;
     this.loopContinuously = loopContinuously;
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
@@ -88,11 +88,11 @@ public class GifSequenceWriter implements AutoCloseable
     byte[] once = {1, 1, 0};
     return loopContinuously ? loop : once;
   }
-  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFramesMS)
+  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFrames)
   {
     try (ImageOutputStream output = new FileImageOutputStream(imageFile))
     {
-      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getType(), timeBetweenFramesMS,
+      try (GifSequenceWriter writer = new GifSequenceWriter(output, images.get(0).getType(), timeBetweenFrames,
           true))
       {
         for (BufferedImage image : images)
@@ -109,7 +109,7 @@ public class GifSequenceWriter implements AutoCloseable
   }
   public void writeToSequence(RenderedImage img) throws IOException
   {
-    gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFramesMS)), imageWriteParam);
+    gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam);
   }
   /**
    * Close this GifSequenceWriter object. This does not close the underlying
