@@ -2,6 +2,7 @@ package org.approvaltests.awt;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.time.Duration;
 import java.util.ArrayList;
 
 import org.approvaltests.core.ApprovalWriter;
@@ -22,7 +23,7 @@ public class PaintableMultiframeWriter implements ApprovalWriter
   @Override
   public File writeReceivedFile(File received)
   {
-    return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages(), 500);
+    return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages(), Duration.ofMillis(500));
   }
   private ArrayList<BufferedImage> getBufferedImages()
   {

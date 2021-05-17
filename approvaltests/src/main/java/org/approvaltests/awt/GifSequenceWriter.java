@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -44,7 +45,7 @@ public class GifSequenceWriter implements AutoCloseable
    *
    * @author Elliot Kroo (elliot[at]kroo[dot]net)
    */
-  public GifSequenceWriter(ImageOutputStream outputStream, int imageType, int timeBetweenFramesMS,
+  public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFramesMS,
       boolean loopContinuously) throws IIOException, IOException
   {
     // my method to create a writer
@@ -58,7 +59,7 @@ public class GifSequenceWriter implements AutoCloseable
     graphicsControlExtensionNode.setAttribute("disposalMethod", "none");
     graphicsControlExtensionNode.setAttribute("userInputFlag", "FALSE");
     graphicsControlExtensionNode.setAttribute("transparentColorFlag", "FALSE");
-    graphicsControlExtensionNode.setAttribute("delayTime", Integer.toString(timeBetweenFramesMS / 10));
+    graphicsControlExtensionNode.setAttribute("delayTime", "" + timeBetweenFramesMS.toMillis() / 10);
     graphicsControlExtensionNode.setAttribute("transparentColorIndex", "0");
     IIOMetadataNode commentsNode = getNode(root, "CommentExtensions");
     commentsNode.setAttribute("CommentExtension", "Created by MAH");
@@ -73,7 +74,7 @@ public class GifSequenceWriter implements AutoCloseable
     gifWriter.setOutput(outputStream);
     gifWriter.prepareWriteSequence(null);
   }
-  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, int timeBetweenFramesMS)
+  static File writeAnimatedGif(File imageFile, ArrayList<BufferedImage> images, Duration timeBetweenFramesMS)
   {
     try (ImageOutputStream output = new FileImageOutputStream(imageFile))
     {
