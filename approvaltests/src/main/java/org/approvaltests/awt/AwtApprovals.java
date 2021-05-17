@@ -1,7 +1,9 @@
 package org.approvaltests.awt;
 
-import com.spun.swing.Paintable;
-import com.spun.util.images.ImageWriter;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.NamedEnvironment;
@@ -11,29 +13,36 @@ import org.approvaltests.writers.ImageApprovalWriter;
 import org.approvaltests.writers.PaintableApprovalWriter;
 import org.lambda.functions.Function1;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import com.spun.swing.Paintable;
+import com.spun.util.images.ImageWriter;
 
 public class AwtApprovals
 {
   public static void verify(Image image)
   {
-    verifyBufferedImage(ImageWriter.toBufferedImage(image));
+    verify(image, new Options());
   }
-  private static void verifyBufferedImage(BufferedImage bufferedImage)
+  public static void verify(Image image, Options options)
   {
-    Approvals.verify(new ImageApprovalWriter(bufferedImage));
+    verify(ImageWriter.toBufferedImage(image), options);
   }
   public static void verify(BufferedImage bufferedImage)
   {
-    Approvals.verify(new ImageApprovalWriter(bufferedImage));
+    Approvals.verify(bufferedImage, new Options());
+  }
+  public static void verify(BufferedImage bufferedImage, Options options)
+  {
+    Approvals.verify(new ImageApprovalWriter(bufferedImage), options);
   }
   public static void verify(Component c)
   {
+    verify(c, new Options());
+  }
+  public static void verify(Component c, Options options)
+  {
     try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
     {
-      Approvals.verify(new ComponentApprovalWriter(c));
+      Approvals.verify(new ComponentApprovalWriter(c), options);
     }
   }
   public static void verify(Paintable c)
@@ -46,6 +55,10 @@ public class AwtApprovals
   }
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer)
   {
-    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), new Options());
+    verifySequence(numberOfFrames, sequenceRenderer, new Options());
+  }
+  public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer, Options options)
+  {
+    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), options);
   }
 }

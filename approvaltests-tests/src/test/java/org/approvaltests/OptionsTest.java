@@ -9,6 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.List;
 
+import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
@@ -72,6 +73,7 @@ public class OptionsTest
   {
     verifyEachVerifyMethodHasOneWithOptions(Approvals.class);
     verifyEachVerifyMethodHasOneWithOptions(CombinationApprovals.class);
+    verifyEachVerifyMethodHasOneWithOptions(AwtApprovals.class);
   }
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
   {
