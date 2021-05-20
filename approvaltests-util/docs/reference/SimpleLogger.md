@@ -38,7 +38,16 @@ convenience functions to properly format and call based on that format.
   SimpleLogger, instead, allows you to toggle individual event types.
   For example, the following would allow you to turn on only the queries and where they came from:
   
-snippet: simple_logger_toggles
+<!-- snippet: simple_logger_toggles -->
+<a id='snippet-simple_logger_toggles'></a>
+```java
+SimpleLogger.get().marker = true;
+SimpleLogger.get().event = false;
+SimpleLogger.get().variable = false;
+SimpleLogger.get().query = true;
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L42-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_toggles' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 * **Can be used concurrently with SimpleLogger**  
   There is nothing that prevents using both simultaneously
