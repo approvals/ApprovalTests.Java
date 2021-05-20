@@ -29,10 +29,17 @@ public class SimpleLoggerTest
     }
     Approvals.verify(output);
   }
+  @Test
+  void testMarkers()
+  {
+    StringBuffer log = SimpleLogger.logToString();
+    new Sample().methodThatLogs();
+    Approvals.verify(log);
+  }
   public void sample()
   {
     // begin-snippet: log_nothing
     SimpleLogger.logToNothing();
-    // end-snippet 
+    // end-snippet
   }
 }

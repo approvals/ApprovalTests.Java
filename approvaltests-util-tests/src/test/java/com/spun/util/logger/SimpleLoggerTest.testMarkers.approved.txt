@@ -1,0 +1,11 @@
+=> Sample.methodThatLogs() - IN
+   => Sample.innerMethod() - IN
+      Variable: i = '0'
+   <= Sample.innerMethod() - OUT
+   => Sample.innerMethod() - IN
+      Variable: i = '1'
+   <= Sample.innerMethod() - OUT
+   => Sample.innerMethod() - IN
+      Variable: i = '2'
+   <= Sample.innerMethod() - OUT
+<= Sample.methodThatLogs() - OUT
