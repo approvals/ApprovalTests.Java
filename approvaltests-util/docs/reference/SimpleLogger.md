@@ -36,8 +36,10 @@ convenience functions to properly format and call based on that format.
 * **Finer control over turning off noise**  
   Log4J will allow you to set a level of output. In practice, this usually means everything, or just warnings.
   SimpleLogger, instead, allows you to toggle individual event types.
-  For example, the following would allow you to turn on only the queries and where they came from:  
-  snippet: simple_logger_toggles
+  For example, the following would allow you to turn on only the queries and where they came from:
+  
+snippet: simple_logger_toggles
+
 * **Can be used concurrently with SimpleLogger**  
   There is nothing that prevents using both simultaneously
 ### Logging method calls
