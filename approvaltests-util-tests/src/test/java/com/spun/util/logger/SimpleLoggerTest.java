@@ -8,7 +8,9 @@ public class SimpleLoggerTest
   @Test
   public void test()
   {
+    // begin-snippet: log_to_string
     StringBuffer output = SimpleLogger.logToString();
+    // end-snippet
     try (Markers m = SimpleLogger.useMarkers();)
     {
       try (Markers m2 = SimpleLogger.useMarkers();)
