@@ -36,9 +36,9 @@ public class SimpleLoggerTest
     Approvals.verify(log);
     // end-snippet
   }
-
   @Test
-  void testToggles() {
+  void testToggles()
+  {
     // begin-snippet: simple_logger_toggles
     SimpleLogger.get().marker = true;
     SimpleLogger.get().event = false;
@@ -46,7 +46,6 @@ public class SimpleLoggerTest
     SimpleLogger.get().query = true;
     // end-snippet
   }
-
   public void sample()
   {
     // begin-snippet: log_nothing
