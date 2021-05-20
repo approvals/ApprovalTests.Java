@@ -70,43 +70,7 @@ Action0 thru Action9 all have an implementation of the null object pattern for y
 
 
 ## SimpleLogger.logToNothing()
-
-SimpleLogger is used to make approvaltesting easier, but approvalTests also uses it internally. Something these bleed out in the form of messages like
-
-<!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt -->
-<a id='snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt'></a>
-```txt
-=> SimpleLoggerTest.test() - IN
-   => SimpleLoggerTest.test() - IN
-      Event: Starting Logging
-      Variable: name = 'llewellyn'
-      Sql: Select * from people
-      .........1.........2.........3.........4..
-      Variable: Numbers.length = 5
-      Numbers[0] = 1
-      Numbers[1] = 2
-      Numbers[2] = 3
-      Numbers[3] = 4
-      Numbers[4] = 5
-******************************************************************************************
-      
-java.lang.Error -  null
-******************************************************************************************
-   <= SimpleLoggerTest.test() - OUT
-<= SimpleLoggerTest.test() - OUT
-```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt#L1-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.test.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-if you want to turn them all off just run
-
-<!-- snippet: log_nothing -->
-<a id='snippet-log_nothing'></a>
-```java
-SimpleLogger.logToNothing();
-```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L41-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+ see [SimpleLogger.logToNothing()](reference/SimpleLogger.md#simpleloggerlogtonothing)
 
 ## NullLogger
 
