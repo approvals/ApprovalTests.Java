@@ -2,7 +2,12 @@
 
 # SimpleLogger
 
-toc
+<!-- toc -->
+## Contents
+
+  * [How SimpleLogger works](#how-simplelogger-works)
+  * [HowTos](#howtos)
+  * [SimpleLogger.logToNothing()](#simpleloggerlogtonothing)<!-- endToc -->
 
 ## How SimpleLogger works
 Unlike many logging frameworks, SimpleLogger is a combination of static methods that allows you to log based on event 

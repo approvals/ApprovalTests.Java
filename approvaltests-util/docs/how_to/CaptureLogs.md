@@ -7,7 +7,7 @@
 
   * [Why use logs?](#why-use-logs)
   * [Capturing logs in test](#capturing-logs-in-test)
-  * [How SimpleLogger works](#how-simplelogger-works)<!-- endToc -->
+  * [See also](#see-also)<!-- endToc -->
 
 
 ## Why use logs?
@@ -21,9 +21,11 @@ Here's how to do it using the SimpleLogger:
 <!-- snippet: log_to_string -->
 <a id='snippet-log_to_string'></a>
 ```java
-StringBuffer output = SimpleLogger.logToString();
+StringBuffer log = SimpleLogger.logToString();
+new Sample().methodThatLogs();
+Approvals.verify(log);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L11-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_to_string' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L33-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_to_string' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## See also
