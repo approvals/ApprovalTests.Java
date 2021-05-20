@@ -8,9 +8,7 @@ public class SimpleLoggerTest
   @Test
   public void test()
   {
-    // begin-snippet: log_to_string
     StringBuffer output = SimpleLogger.logToString();
-    // end-snippet
     try (Markers m = SimpleLogger.useMarkers();)
     {
       try (Markers m2 = SimpleLogger.useMarkers();)
@@ -32,9 +30,11 @@ public class SimpleLoggerTest
   @Test
   void testMarkers()
   {
+    // begin-snippet: log_to_string
     StringBuffer log = SimpleLogger.logToString();
     new Sample().methodThatLogs();
     Approvals.verify(log);
+    // end-snippet
   }
   public void sample()
   {
