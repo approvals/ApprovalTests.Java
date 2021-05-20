@@ -121,4 +121,8 @@ public class SimpleLogger
   {
     return log.getLogTo();
   }
+
+  public static SimpleLoggerInstance get() {
+    return log;
+  }
 }

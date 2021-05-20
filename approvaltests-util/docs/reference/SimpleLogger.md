@@ -16,6 +16,29 @@ for test purposes, rather than setting a verbosity level. For example, you could
 or "Show me all the method entries". Also, because SimpleLogger is tagging based on the event type, it has many 
 convenience functions to properly format and call based on that format.
 
+### Differences vs. System.out
+* **Single point of control**  
+  SimpleLogger puts a single place where you can collect all log statements. From here it is trivial to log to a file or
+  string or both. SimpleLogger also allows you to easily turn off types of logging allowing you to control the 
+  signal-to-noise ratio.
+* **Convenience functions for metadata**  
+  SimpleLogger adds formatting and class names making logs consistent and robust after changing method or class names.
+  This helps with both the writing and the reading of the logs.
+* **Time stamps**  
+  SimpleLogger automatically adds timestamps plus time differences to easily detected when a problem happened and where a performance bottleneck is
+### Differences vs. Log4J
+* **Don't need to hold on to logging objects**    
+  The common patter for Log4J is that every class has a field named `LOG`
+  This tends to clutter up your files. SimpleLogger does not do this, opting instead to make all of its calls static.
+* **Finer control over turning off noise**  
+  Log4J will allow you to set a level of output. In practice, this usually means everything, or just warnings.
+  SimpleLogger, instead, allows you to toggle individual event types.
+  For example, the following would allow you to turn on only the queries and where they came from:  
+  snippet: simple_logger_toggles
+* **Can be used concurrently with SimpleLogger**  
+  There is nothing that prevents using both simultaneously
+### Logging method calls
+
 For example, here's how you would log entry and exit from a method:
 <!-- snippet: simple_logger_use_markers -->
 <a id='snippet-simple_logger_use_markers'></a>
@@ -62,6 +85,7 @@ Will produce the following logs:
 
 ## HowTos
 * [How to capture logs for testing](../how_to/CaptureLogs.md#top)
+* [How to do performance profiling](../how_to/PerformanceProfilingWithSimpleLogger.md#top)
 
 ## SimpleLogger.logToNothing()
 
