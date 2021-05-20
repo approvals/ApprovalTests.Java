@@ -5,7 +5,9 @@
 <!-- toc -->
 ## Contents
 
-  * [Capturing logs in test](#capturing-logs-in-test)<!-- endToc -->
+  * [Why use logs?](#why-use-logs)
+  * [Capturing logs in test](#capturing-logs-in-test)
+  * [How SimpleLogger works](#how-simplelogger-works)<!-- endToc -->
 
 
 ## Why use logs?
@@ -32,7 +34,45 @@ or "Show me all the method entries". Also, because SimpleLogger is tagging based
 convenience functions to properly format and call based on that format.
 
 For example, here's how you would log entry and exit from a method:
-snippet: simple_logger_use_markers
+<!-- snippet: simple_logger_use_markers -->
+<a id='snippet-simple_logger_use_markers'></a>
+```java
+public void methodThatLogs()
+{
+  try (Markers markers = SimpleLogger.useMarkers())
+  {
+    for (int i = 0; i < 3; i++)
+    {
+      innerMethod(i);
+    }
+  }
+}
+private void innerMethod(int i)
+{
+  try (Markers markers = SimpleLogger.useMarkers())
+  {
+    SimpleLogger.variable("i", i);
+  }
+}
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/Sample.java#L5-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_use_markers' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Will produce the following logs:
-snippet: SimpleLoggerTest.testMarkers.approved.txt
+<!-- snippet: SimpleLoggerTest.testMarkers.approved.txt -->
+<a id='snippet-SimpleLoggerTest.testMarkers.approved.txt'></a>
+```txt
+=> Sample.methodThatLogs() - IN
+   => Sample.innerMethod() - IN
+      Variable: i = '0'
+   <= Sample.innerMethod() - OUT
+   => Sample.innerMethod() - IN
+      Variable: i = '1'
+   <= Sample.innerMethod() - OUT
+   => Sample.innerMethod() - IN
+      Variable: i = '2'
+   <= Sample.innerMethod() - OUT
+<= Sample.methodThatLogs() - OUT
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.testMarkers.approved.txt#L1-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-SimpleLoggerTest.testMarkers.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
