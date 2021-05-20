@@ -6,6 +6,9 @@
 ## Contents
 
   * [How SimpleLogger works](#how-simplelogger-works)
+    * [Differences vs. System.out](#differences-vs-systemout)
+    * [Differences vs. Log4J](#differences-vs-log4j)
+    * [Logging method calls](#logging-method-calls)
   * [HowTos](#howtos)
   * [SimpleLogger.logToNothing()](#simpleloggerlogtonothing)<!-- endToc -->
 
@@ -123,5 +126,5 @@ if you want to turn them all off just run
 ```java
 SimpleLogger.logToNothing();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L41-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L52-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
