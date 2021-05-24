@@ -213,7 +213,9 @@ public class ArrayUtils
   }
   public static <T> T[] combine(T a, T... b)
   {
-    final T[] toArray = (T[]) Array.newInstance(a.getClass(), 1);
+    final Class<?> type = a != null ? a.getClass() : b.getClass().getComponentType();
+
+    final T[] toArray = (T[]) Array.newInstance(type, 1);
     toArray[0] = a;
     return combine(toArray, b);
   }

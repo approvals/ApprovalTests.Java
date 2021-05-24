@@ -43,6 +43,9 @@ public class ArrayUtilsTest
     Integer[] ints = new Integer[]{5, 6, 7};
     assertEquals("[1, 5, 6, 7]", Arrays.toString(ArrayUtils.combine(1, ints)));
     assertEquals("[1]", Arrays.toString(ArrayUtils.combine(1)));
+    assertEquals("[null, a, b, c]", Arrays.toString(ArrayUtils.combine(null, "a", "b", "c")));
+    String empty = null;
+    assertEquals("[null]", Arrays.toString(ArrayUtils.combine(empty)));
   }
   @Test
   void testToArray()
