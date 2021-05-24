@@ -1,1 +1,1 @@
-/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-ARM/ch-0/211.xxx.xxx/IntelliJ IDEA 2021.1 EAP.app/Contents/MacOS/idea
+/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/211.xxx.xxx/IntelliJ IDEA.app/Contents/MacOS/idea
