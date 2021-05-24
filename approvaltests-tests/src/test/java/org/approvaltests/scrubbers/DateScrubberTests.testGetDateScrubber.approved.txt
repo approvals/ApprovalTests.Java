@@ -66,3 +66,8 @@ RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z]
 Example: {'date':"[Date1]"}
 
 
+Scrubbing for 20210505T091112Z:
+RegExScrubber[\d{8}T\d{6}Z]
+Example: {'date':"[Date1]"}
+
+

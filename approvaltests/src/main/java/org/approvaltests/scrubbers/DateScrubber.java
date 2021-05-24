@@ -1,9 +1,9 @@
 package org.approvaltests.scrubbers;
 
-import com.spun.util.ArrayUtils;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
+import com.spun.util.ArrayUtils;
 import com.spun.util.FormattedException;
 
 public class DateScrubber extends RegExScrubber
@@ -34,7 +34,8 @@ public class DateScrubber extends RegExScrubber
                                      "2020-09-9T08:07Z", "2020-09-10T8:07Z", "2020-09-10T08:07Z"),
                                  _("\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}:\\d{2}Z", "2020-09-10T08:07:89Z"),
                                  _("\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}\\:\\d{2}\\.\\d{3}Z",
-                                     "2020-09-10T01:23:45.678Z")};
+                                     "2020-09-10T01:23:45.678Z"),
+                                 _("\\d{8}T\\d{6}Z", "20210505T091112Z")};
   }
   private static SupportedFormat _(String regex, String... examples)
   {

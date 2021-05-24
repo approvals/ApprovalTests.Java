@@ -1,10 +1,16 @@
 package org.approvaltests.scrubbers;
 
+import org.approvaltests.core.Scrubber;
+
 public class Scrubbers
 {
   public static String scrubGuid(String input)
   {
     return new GuidScrubber().scrub(input);
+  }
+  public static Scrubber scrubAll(Scrubber one, Scrubber... others)
+  {
+    return new MultiScrubber(one, others);
   }
   /**
    * Provides methods that can be inlined as example code.

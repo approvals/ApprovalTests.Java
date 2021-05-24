@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.core.Scrubber;
 import org.junit.jupiter.api.Test;
 
 class ScrubberTest
@@ -38,5 +39,15 @@ class ScrubberTest
     // begin-snippet: guid-scrubbing-2
     Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
     // end-snippet
+  }
+  @Test
+  void scrubMultipleThings()
+  {
+    final Scrubber portScrubber = new RegExScrubber(":\\d+/", ":[port]/");
+    final Scrubber dateScrubber = DateScrubber.getScrubberFor("20210505T091112Z");
+    final Scrubber signatureScrubber = new RegExScrubber("Signature=.+", "Signature=[signature]");
+    Scrubber scrubber = Scrubbers.scrubAll(portScrubber, dateScrubber, signatureScrubber);
+    Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
+        new Options(scrubber));
   }
 }
