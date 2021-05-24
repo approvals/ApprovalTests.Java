@@ -2,7 +2,14 @@
 
 # How to create non-empty arrays with var args
 
-toc
+<!-- toc -->
+## Contents
+
+  * [The problem](#the-problem)
+    * [Runtime solution](#runtime-solution)
+    * [Compile time solution](#compile-time-solution)
+    * [Advantages](#advantages)
+    * [Where to use this](#where-to-use-this)<!-- endToc -->
 
 ## The problem
 
@@ -11,7 +18,17 @@ Most solutions for this occur at runtime. Of course, it would be better if they 
 
 ### Runtime solution
 
-snippet: minimalVarargsRuntime
+<!-- snippet: minimalVarargsRuntime -->
+<a id='snippet-minimalvarargsruntime'></a>
+```java
+public Integer findSmallest(Integer... numbers)
+{
+  if (numbers == null || numbers.length < 1)
+  { throw new IllegalArgumentException("you must have at least one number"); }
+  // rest of the code
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsruntime' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Compile time solution
 
@@ -19,14 +36,29 @@ An easy way to deal with this is force the first parameter by declaring it expli
 If you do this, you will want to recombine this array almost immediately `ArrayUtils.combine(T, T...)` is an elegant way to do this.
 Please be aware that it will not work with primitives.
 
-snippet: minimalVarargsCompileTime
+<!-- snippet: minimalVarargsCompileTime -->
+<a id='snippet-minimalvarargscompiletime'></a>
+```java
+public Integer findSmallest(Integer first, Integer... numbers)
+{
+  Integer[] combined = ArrayUtils.combine(first, numbers);
+  // rest of the code
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L23-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargscompiletime' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Advantages
 
 If you use the runtime solution, the following will compile but throw an error when you run it.  
 If you use the compile time solution, it will not compile.
 
-snippet: minimalVarargsException
+<!-- snippet: minimalVarargsException -->
+<a id='snippet-minimalvarargsexception'></a>
+```java
+int smallest = findSmallest();
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Where to use this
 
