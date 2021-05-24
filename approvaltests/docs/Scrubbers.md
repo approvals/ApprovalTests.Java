@@ -11,6 +11,7 @@
   * [Date Scrubbing](#date-scrubbing)
     * [How to do it](#how-to-do-it)
     * [Supported formats](#supported-formats)
+  * [Scrubbing multiple parts of a string](#scrubbing-multiple-parts-of-a-string)
   * [Using templates](#using-templates)<!-- endToc -->
 
 ![scrubber flow](https://raw.githubusercontent.com/approvals/ApprovalTests.cpp/master/doc/images/ScrubberOverview.png)
@@ -36,7 +37,7 @@ String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"};
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L31-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L32-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 You can make this output deterministic by using a scrubber in the options.
 For example:
@@ -45,7 +46,7 @@ For example:
 ```java
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L38-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 **Note:** Options is available on all Approvals.verify methods.
 This will result in the following `.approved.txt` file
@@ -123,17 +124,35 @@ created at [Date1]
 | 2020-9-10T08:07Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z |
 | 2020-09-10T08:07:89Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}Z |
 | 2020-09-10T01:23:45.678Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z |
+| 20210505T091112Z | \d{8}T\d{6}Z |
 <!-- endInclude -->
 
 ## Scrubbing multiple parts of a string
 
 If you need to do scrubbing of multiple things, the easiest way is to create multiple scrubbers and then combine them.
 
-snippet: MultiScrubber
+<!-- snippet: MultiScrubber -->
+<a id='snippet-multiscrubber'></a>
+```java
+final Scrubber portScrubber = new RegExScrubber(":\\d+/", ":[port]/");
+final Scrubber dateScrubber = DateScrubber.getScrubberFor("20210505T091112Z");
+final Scrubber signatureScrubber = new RegExScrubber("Signature=.+", "Signature=[signature]");
+Scrubber scrubber = Scrubbers.scrubAll(portScrubber, dateScrubber, signatureScrubber);
+Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
+    new Options(scrubber));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L46-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiscrubber' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 will result in
 
-snippet: ScrubberTest.scrubMultipleThings.approved.txt
+<!-- snippet: ScrubberTest.scrubMultipleThings.approved.txt -->
+<a id='snippet-ScrubberTest.scrubMultipleThings.approved.txt'></a>
+```txt
+http://127.0.0.1:[port]/foo/bar?Date=[Date1]&Signature=[signature]
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubMultipleThings.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-ScrubberTest.scrubMultipleThings.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Using templates
 
