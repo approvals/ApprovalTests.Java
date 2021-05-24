@@ -65,6 +65,7 @@ public class DiffPrograms
   public static class Linux
   {
     public static DiffInfo DIFF_MERGE = new DiffInfo("/usr/bin/diffmerge", "--nosplash %s %s ", TEXT);
-    public static DiffInfo MELD_MERGE = new DiffInfo(One.of("/usr/bin/meld", "/usr/local/bin/meld"), "%s %s ", TEXT);
+    public static DiffInfo MELD_MERGE = new DiffInfo(One.of("/usr/bin/meld", "/usr/local/bin/meld"), "%s %s ",
+        TEXT);
   }
 }
