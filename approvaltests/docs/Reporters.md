@@ -24,11 +24,16 @@ Currently the search goes in this order:
 <!-- snippet: mac_diff_reporters -->
 <a id='snippet-mac_diff_reporters'></a>
 ```java
-BeyondCompareMacReporter.INSTANCE, DiffMergeReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE,
-P4MergeReporter.INSTANCE, KDiff3Reporter.INSTANCE, TkDiffReporter.INSTANCE, IntelliJReporter.INSTANCE,
+BeyondCompareMacReporter.INSTANCE,
+DiffMergeReporter.INSTANCE,
+KaleidoscopeDiffReporter.INSTANCE,
+P4MergeReporter.INSTANCE,
+KDiff3Reporter.INSTANCE,
+TkDiffReporter.INSTANCE,
+IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L12-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L13-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -37,11 +42,16 @@ VisualStudioCodeReporter.INSTANCE
 <!-- snippet: windows_diff_reporters -->
 <a id='snippet-windows_diff_reporters'></a>
 ```java
-TortoiseDiffReporter.INSTANCE, BeyondCompareReporter.INSTANCE, WinMergeReporter.INSTANCE,
-AraxisMergeReporter.INSTANCE, CodeCompareReporter.INSTANCE, KDiff3Reporter.INSTANCE,
-IntelliJReporter.INSTANCE, VisualStudioCodeReporter.INSTANCE
+TortoiseDiffReporter.INSTANCE,
+BeyondCompareReporter.INSTANCE,
+WinMergeReporter.INSTANCE,
+AraxisMergeReporter.INSTANCE,
+CodeCompareReporter.INSTANCE,
+KDiff3Reporter.INSTANCE,
+IntelliJReporter.INSTANCE,
+VisualStudioCodeReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L12-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L13-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Linux
@@ -49,9 +59,11 @@ IntelliJReporter.INSTANCE, VisualStudioCodeReporter.INSTANCE
 <!-- snippet: linux_diff_reporters -->
 <a id='snippet-linux_diff_reporters'></a>
 ```java
-DiffMergeReporter.INSTANCE, MeldMergeReporter.INSTANCE, IntelliJReporter.INSTANCE
+DiffMergeReporter.INSTANCE,
+MeldMergeReporter.INSTANCE,
+IntelliJReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Configuring a Reporter
