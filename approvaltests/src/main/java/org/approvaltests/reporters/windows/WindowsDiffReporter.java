@@ -9,11 +9,18 @@ public class WindowsDiffReporter extends FirstWorkingReporter
   public WindowsDiffReporter()
   {
     super(
+        // @formatter:off
         // begin-snippet: windows_diff_reporters
-        TortoiseDiffReporter.INSTANCE, BeyondCompareReporter.INSTANCE, WinMergeReporter.INSTANCE,
-        AraxisMergeReporter.INSTANCE, CodeCompareReporter.INSTANCE, KDiff3Reporter.INSTANCE,
-        IntelliJReporter.INSTANCE, VisualStudioCodeReporter.INSTANCE
-    // end-snippet
+        TortoiseDiffReporter.INSTANCE,
+        BeyondCompareReporter.INSTANCE,
+        WinMergeReporter.INSTANCE,
+        AraxisMergeReporter.INSTANCE,
+        CodeCompareReporter.INSTANCE,
+        KDiff3Reporter.INSTANCE,
+        IntelliJReporter.INSTANCE,
+        VisualStudioCodeReporter.INSTANCE
+        // end-snippet
+        // @formatter:on
     );
   }
 }
