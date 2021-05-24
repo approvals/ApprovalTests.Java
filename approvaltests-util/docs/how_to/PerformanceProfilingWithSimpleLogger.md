@@ -5,7 +5,8 @@
 <!-- toc -->
 ## Contents
 
-  * [Understanding timings in log output](#understanding-timings-in-log-output)<!-- endToc -->
+  * [Understanding timings in log output](#understanding-timings-in-log-output)
+  * [See also](#see-also)<!-- endToc -->
 
 ## Understanding timings in log output
 When SimpleLogger logs to a file or Standard.out it includes timings (these are turned off by default if you are logging
