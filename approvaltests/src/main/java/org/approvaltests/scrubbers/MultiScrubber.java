@@ -9,7 +9,7 @@ public class MultiScrubber implements Scrubber
   private final Scrubber[] scrubbers;
   public MultiScrubber(Scrubber one, Scrubber[] others)
   {
-    this.scrubbers = ArrayUtils.combine(new Scrubber[]{one}, others);
+    this.scrubbers = ArrayUtils.combine(one, others);
   }
   @Override
   public String scrub(String input)

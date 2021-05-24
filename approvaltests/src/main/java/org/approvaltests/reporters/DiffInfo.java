@@ -61,7 +61,7 @@ public class DiffInfo
   {
     public static String of(String pathOne, String... paths)
     {
-      final String[] all = ArrayUtils.combine(new String[]{pathOne}, paths);
+      final String[] all = ArrayUtils.combine(pathOne, paths);
       for (String path : all)
       {
         if (new File(path).exists())

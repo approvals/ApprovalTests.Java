@@ -284,7 +284,6 @@ public class ArrayUtils
   {
     return Queryable.as(list, type).asArray();
   }
-
   public static <KEY, VALUES, SPECIFIC_VALUE extends VALUES> SPECIFIC_VALUE getOrElse(Map<KEY, VALUES> fields,
       KEY key, Function0<SPECIFIC_VALUE> defaultIfNotFound)
   {
@@ -297,7 +296,6 @@ public class ArrayUtils
       return defaultIfNotFound.call();
     }
   }
-
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;

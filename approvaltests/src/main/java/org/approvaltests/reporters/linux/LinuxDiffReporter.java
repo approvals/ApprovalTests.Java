@@ -9,7 +9,7 @@ public class LinuxDiffReporter extends FirstWorkingReporter
   public LinuxDiffReporter()
   {
     super(
-        // @formatter:off
+    // @formatter:off
         // begin-snippet: linux_diff_reporters
         DiffMergeReporter.INSTANCE,
         MeldMergeReporter.INSTANCE,

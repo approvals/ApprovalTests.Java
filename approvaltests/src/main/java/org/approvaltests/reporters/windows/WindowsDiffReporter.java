@@ -9,7 +9,7 @@ public class WindowsDiffReporter extends FirstWorkingReporter
   public WindowsDiffReporter()
   {
     super(
-        // @formatter:off
+    // @formatter:off
         // begin-snippet: windows_diff_reporters
         TortoiseDiffReporter.INSTANCE,
         BeyondCompareReporter.INSTANCE,

@@ -9,7 +9,7 @@ public class MacDiffReporter extends FirstWorkingReporter
   public MacDiffReporter()
   {
     super(
-        // @formatter:off
+    // @formatter:off
         // begin-snippet: mac_diff_reporters
         BeyondCompareMacReporter.INSTANCE,
         DiffMergeReporter.INSTANCE,
