@@ -43,11 +43,13 @@ class ScrubberTest
   @Test
   void scrubMultipleThings()
   {
+    // begin-snippet: MultiScrubber
     final Scrubber portScrubber = new RegExScrubber(":\\d+/", ":[port]/");
     final Scrubber dateScrubber = DateScrubber.getScrubberFor("20210505T091112Z");
     final Scrubber signatureScrubber = new RegExScrubber("Signature=.+", "Signature=[signature]");
     Scrubber scrubber = Scrubbers.scrubAll(portScrubber, dateScrubber, signatureScrubber);
     Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
         new Options(scrubber));
+    // end-snippet
   }
 }

@@ -125,6 +125,16 @@ created at [Date1]
 | 2020-09-10T01:23:45.678Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z |
 <!-- endInclude -->
 
+## Scrubbing multiple parts of a string
+
+If you need to do scrubbing of multiple things, the easiest way is to create multiple scrubbers and then combine them.
+
+snippet: MultiScrubber
+
+will result in
+
+snippet: ScrubberTest.scrubMultipleThings.approved.txt
+
 ## Using templates
 
 `Scrubbers.Templates` contains many templates that can be inlined.
