@@ -20,3 +20,6 @@ Here's an example of the output:
 ```
 The important part here is `~000047ms` which represents the number of milliseconds that have passed since the previous line SimpleLogger 
  logged. This allows an easy way to detect bottlenecks by adding log statements and test improvements.
+
+## See also
+* [SimpleLogger](../reference/SimpleLogger.md#top)
