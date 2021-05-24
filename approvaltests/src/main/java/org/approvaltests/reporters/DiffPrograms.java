@@ -6,6 +6,7 @@ import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 import java.util.List;
 
+import org.approvaltests.reporters.DiffInfo.One;
 import org.approvaltests.reporters.intellij.IntelliJPathResolver;
 
 import com.spun.util.ArrayUtils;
@@ -64,6 +65,6 @@ public class DiffPrograms
   public static class Linux
   {
     public static DiffInfo DIFF_MERGE = new DiffInfo("/usr/bin/diffmerge", "--nosplash %s %s ", TEXT);
-    public static DiffInfo MELD_MERGE = new DiffInfo("/usr/bin/meld", "%s %s ", TEXT);
+    public static DiffInfo MELD_MERGE = new DiffInfo(One.of("/usr/bin/meld", "/usr/local/bin/meld"), "%s %s ", TEXT);
   }
 }

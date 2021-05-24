@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 
+import com.spun.util.ArrayUtils;
+import java.util.Objects;
+
 public class DiffInfo
 {
   public String       diffProgram;
@@ -48,10 +51,23 @@ public class DiffInfo
   }
   public static String[] getProgramFilesPaths()
   {
-    HashSet<String> paths = new HashSet<String>();
+    HashSet<String> paths = new HashSet<>();
     paths.add(System.getenv("ProgramFiles(x86)"));
     paths.add(System.getenv("ProgramFiles"));
     paths.add(System.getenv("ProgramW6432"));
-    return paths.stream().filter(p -> p != null).toArray(s -> new String[s]);
+    return paths.stream().filter(Objects::nonNull).toArray(String[]::new);
+  }
+  public static class One
+  {
+    public static String of(String pathOne, String... paths)
+    {
+      final String[] all = ArrayUtils.combine(new String[]{pathOne}, paths);
+      for (String path : all)
+      {
+        if (new File(path).exists())
+        { return path; }
+      }
+      return pathOne;
+    }
   }
 }
