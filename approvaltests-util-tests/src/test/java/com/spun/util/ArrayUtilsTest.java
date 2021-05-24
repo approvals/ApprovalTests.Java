@@ -38,6 +38,13 @@ public class ArrayUtilsTest
     assertEquals("[1, 2, 3, 5, 6, 7]", ArrayUtils.combine(list1, list2).toString());
   }
   @Test
+  public void testCombineArrays()
+  {
+    Integer[] ints = new Integer[]{5, 6, 7};
+    assertEquals("[1, 5, 6, 7]", Arrays.toString(ArrayUtils.combine(1, ints)));
+    assertEquals("[1]", Arrays.toString(ArrayUtils.combine(1)));
+  }
+  @Test
   void testToArray()
   {
     // begin-snippet: toArray

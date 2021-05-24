@@ -211,6 +211,12 @@ public class ArrayUtils
       return newArray;
     }
   }
+  public static <T> T[] combine(T a, T... b)
+  {
+    final T[] toArray = (T[]) Array.newInstance(a.getClass(), 1);
+    toArray[0] = a;
+    return combine(toArray, b);
+  }
   public static <T> boolean contains(T[] values, T value)
   {
     for (int i = 0; i < values.length; i++)
@@ -278,6 +284,7 @@ public class ArrayUtils
   {
     return Queryable.as(list, type).asArray();
   }
+
   public static <KEY, VALUES, SPECIFIC_VALUE extends VALUES> SPECIFIC_VALUE getOrElse(Map<KEY, VALUES> fields,
       KEY key, Function0<SPECIFIC_VALUE> defaultIfNotFound)
   {
@@ -290,6 +297,7 @@ public class ArrayUtils
       return defaultIfNotFound.call();
     }
   }
+
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;
