@@ -112,7 +112,7 @@ public class OptionsTest
     Class<?>[] parameters = Query.where(parameterTypes, t -> !t.equals(Options.class)).toArray(new Class[0]);
     return parameters;
   }
-  private boolean isOptionsPresent(Method m)
+  public static boolean isOptionsPresent(Method m)
   {
     return ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class)
         || ArrayUtils.getFirst(m.getParameterTypes()).equals(Options.class);
