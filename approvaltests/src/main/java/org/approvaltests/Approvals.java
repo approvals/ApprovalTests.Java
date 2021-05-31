@@ -152,7 +152,7 @@ public class Approvals
   }
   public static void verify(File generateFile, Options options)
   {
-    verify(new FileApprovalWriter(generateFile), options);
+    verify(options.createWriter(generateFile), options);
   }
   /**
    * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
@@ -238,7 +238,7 @@ public class Approvals
   }
   public static void verify(ResultSet rs, Options options)
   {
-    verify(new ResultSetApprovalWriter(rs), options);
+    verify(options.createWriter(rs), options);
   }
   public static <T> void verify(SqlLoader<T> loader)
   {
@@ -285,7 +285,7 @@ public class Approvals
       {
         try
         {
-          verify(new FileApprovalWriter(f), new MasterDirectoryNamer(f, options), options);
+          verify(options.createWriter(f), new MasterDirectoryNamer(f, options), options);
         }
         catch (Throwable e)
         {

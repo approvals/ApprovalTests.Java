@@ -11,7 +11,6 @@ import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.approvaltests.writers.ImageApprovalWriter;
-import org.approvaltests.writers.PaintableApprovalWriter;
 import org.lambda.functions.Function1;
 
 import com.spun.swing.Paintable;
@@ -53,7 +52,7 @@ public class AwtApprovals
   }
   public static void verify(Paintable c, Options options)
   {
-    Approvals.verify(new PaintableApprovalWriter(c), options);
+    Approvals.verify(options.createWriter(c), options);
   }
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer)
   {
@@ -67,12 +66,12 @@ public class AwtApprovals
   public static void verifySequenceWithTimings(int numberOfFrames,
       Function1<Integer, Tuple<Paintable, Duration>> sequenceRenderer, Options options)
   {
-    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames, sequenceRenderer), options);
+    Approvals.verify(options.createWriter(new PaintableMultiFrame(numberOfFrames, sequenceRenderer)), options);
   }
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer,
       Options options)
   {
-    Approvals.verify(new PaintableMultiframeWriter(numberOfFrames,
-        c -> new Tuple<>(sequenceRenderer.call(c), Duration.ofMillis(500))), options);
+    Approvals.verify(options.createWriter(new PaintableMultiFrame(numberOfFrames,
+        c -> new Tuple<>(sequenceRenderer.call(c), Duration.ofMillis(500)))), options);
   }
 }

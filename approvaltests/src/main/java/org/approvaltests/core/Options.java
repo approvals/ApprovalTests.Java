@@ -57,7 +57,8 @@ public class Options
   }
   public ApprovalWriter createWriter(Object o)
   {
-    ApprovalWriterFactory factory = ArrayUtils.getOrElse(fields, Fields.WRITER, ApprovalTextWriter::getFactory);
+    ApprovalWriterFactory factory = ArrayUtils.getOrElse(fields, Fields.WRITER,
+        ApprovalWriterFactory::getDefaultFactory);
     return factory.create(o, this);
   }
   public Options withWriter(ApprovalWriterFactory approvalWriterFactory)
