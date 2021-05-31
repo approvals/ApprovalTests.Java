@@ -184,7 +184,8 @@ public class Approvals
   }
   public static void verifyXml(String xml, Options options)
   {
-    verify(new ApprovalXmlWriter(xml, options), options);
+    final String formattedXml = ApprovalXmlWriter.prettyPrint(xml, 2);
+    verify(formattedXml, options.forFile().withExtension(".xml"));
   }
   public static void verify(ApprovalApprover approver)
   {
