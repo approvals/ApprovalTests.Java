@@ -161,25 +161,34 @@ public class OptionsTest
     }
   }
   @Test
-  void customWriter()
+  void testDefaultWriterForOptions()
   {
     final Options options = new Options();
     ApprovalWriter writer = options.createWriter("any text");
     Approvals.verify(writer);
-    ApprovalWriter approvalWriter = new ApprovalWriter()
+  }
+  @Test
+  void testCustomWriter()
+  {
+    final Options options = new Options();
+    ApprovalWriter anotherWriter = options.withWriter(MyWriter::getFactory).createWriter("any text");
+    assertTrue(anotherWriter instanceof MyWriter);
+  }
+  public static class MyWriter implements ApprovalWriter
+  {
+    public static ApprovalWriter getFactory(Object content, Options options)
     {
-      @Override
-      public File writeReceivedFile(File received)
-      {
-        return null;
-      }
-      @Override
-      public String getFileExtensionWithDot()
-      {
-        return null;
-      }
-    };
-    ApprovalWriter anotherWriter = options.withWriter((c, o) -> approvalWriter).createWriter("any text");
-    assertEquals(anotherWriter, approvalWriter);
+      return new MyWriter();
+    }
+    @Override
+    public File writeReceivedFile(File received)
+    {
+      return null;
+    }
+    @Override
+    public String getFileExtensionWithDot()
+    {
+      return null;
+    }
   }
 }

@@ -9,26 +9,12 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalTextWriter;
-import org.lambda.functions.Function2;
+import org.approvaltests.writers.ApprovalWriterFactory;
 
 import com.spun.util.ArrayUtils;
 
 public class Options
 {
-  public ApprovalWriter createWriter(Object o)
-  {
-    return getWriter().call(o, this);
-    //    writer.build(o);
-    //    return writer;
-  }
-  private Function2<Object, Options, ApprovalWriter> getWriter()
-  {
-    return ArrayUtils.getOrElse(fields, Fields.WRITER, () -> (c, o) -> new ApprovalTextWriter("" + c, o));
-  }
-  public Options withWriter(Function2<Object, Options, ApprovalWriter> approvalWriterSupplier)
-  {
-    return new Options(fields, Fields.WRITER, approvalWriterSupplier);
-  }
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER;
   }
@@ -68,6 +54,15 @@ public class Options
   private Scrubber getScrubber()
   {
     return ArrayUtils.getOrElse(fields, Fields.SCRUBBER, () -> NoOpScrubber.INSTANCE);
+  }
+  public ApprovalWriter createWriter(Object o)
+  {
+    ApprovalWriterFactory factory = ArrayUtils.getOrElse(fields, Fields.WRITER, ApprovalTextWriter::getFactory);
+    return factory.create(o, this);
+  }
+  public Options withWriter(ApprovalWriterFactory approvalWriterFactory)
+  {
+    return new Options(fields, Fields.WRITER, approvalWriterFactory);
   }
   public FileOptions forFile()
   {
