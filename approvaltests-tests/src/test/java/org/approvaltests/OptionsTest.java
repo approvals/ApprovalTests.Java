@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -157,5 +159,27 @@ public class OptionsTest
     {
       return hasBeenCalled;
     }
+  }
+  @Test
+  void customWriter()
+  {
+    final Options options = new Options();
+    ApprovalWriter writer = options.createWriter("any text");
+    Approvals.verify(writer);
+    ApprovalWriter approvalWriter = new ApprovalWriter()
+    {
+      @Override
+      public File writeReceivedFile(File received)
+      {
+        return null;
+      }
+      @Override
+      public String getFileExtensionWithDot()
+      {
+        return null;
+      }
+    };
+    ApprovalWriter anotherWriter = options.withWriter((c, o) -> approvalWriter).createWriter("any text");
+    assertEquals(anotherWriter, approvalWriter);
   }
 }

@@ -8,13 +8,29 @@ import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
+import org.approvaltests.writers.ApprovalTextWriter;
+import org.lambda.functions.Function2;
 
 import com.spun.util.ArrayUtils;
 
 public class Options
 {
+  public ApprovalWriter createWriter(Object o)
+  {
+    return getWriter().call(o, this);
+    //    writer.build(o);
+    //    return writer;
+  }
+  private Function2<Object, Options, ApprovalWriter> getWriter()
+  {
+    return ArrayUtils.getOrElse(fields, Fields.WRITER, () -> (c, o) -> new ApprovalTextWriter("" + c, o));
+  }
+  public Options withWriter(Function2<Object, Options, ApprovalWriter> approvalWriterSupplier)
+  {
+    return new Options(fields, Fields.WRITER, approvalWriterSupplier);
+  }
   private enum Fields {
-                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER;
+                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER;
   }
   private final Map<Fields, Object> fields = new HashMap<>();
   public Options()

@@ -52,7 +52,7 @@ public class Approvals
   }
   public static void verify(String response, Options options)
   {
-    verify(new ApprovalTextWriter(response, options), options);
+    verify(options.createWriter(response), options);
   }
   public static void verify(Object object)
   {
