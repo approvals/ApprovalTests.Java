@@ -17,25 +17,16 @@ public class DefaultApprovalWriterFactory
   static
   {
     addDefault(o -> o instanceof ResultSet, (c, o) -> new ResultSetApprovalWriter((ResultSet) c));
+    addDefault(o -> o instanceof File, (c, o) -> new FileApprovalWriter((File) c));
+    addDefault(o -> o instanceof ResultSet, (c, o) -> new ResultSetApprovalWriter((ResultSet) c));
   }
   public static ApprovalWriterFactory getDefaultFactory()
   {
     return (c, o) -> {
-      Tuple<Function1<Object, Boolean>, ApprovalWriterFactory> first = factories
-          .first(t -> t.getFirst().call(c));
+      Tuple<Function1<Object, Boolean>, ApprovalWriterFactory> first = factories.first(t -> t.getFirst().call(c));
       if (first != null)
-      { return first.getSecond().create(c, o); }
-      if (c instanceof File)
       {
-        return new FileApprovalWriter((File) c);
-      }
-      else if (c instanceof Paintable)
-      {
-        return new PaintableApprovalWriter((Paintable) c);
-      }
-      else if (c instanceof PaintableMultiFrame)
-      {
-        return new PaintableMultiframeWriter((PaintableMultiFrame) c);
+        return first.getSecond().create(c, o);
       }
       else
       {
