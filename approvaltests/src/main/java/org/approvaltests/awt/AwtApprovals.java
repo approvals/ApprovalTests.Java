@@ -9,7 +9,9 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
+import org.approvaltests.writers.ApprovalWriterFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
+import org.approvaltests.writers.DefaultApprovalWriterFactory;
 import org.approvaltests.writers.ImageApprovalWriter;
 import org.lambda.functions.Function1;
 
@@ -19,6 +21,11 @@ import com.spun.util.images.ImageWriter;
 
 public class AwtApprovals
 {
+  static
+  {
+    DefaultApprovalWriterFactory.addDefault(c -> c instanceof Component,
+        (Object c, Options o) -> new ComponentApprovalWriter((Component) c));
+  }
   public static void verify(Image image)
   {
     verify(image, new Options());

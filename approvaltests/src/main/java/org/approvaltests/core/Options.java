@@ -8,10 +8,10 @@ import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
-import org.approvaltests.writers.ApprovalTextWriter;
 import org.approvaltests.writers.ApprovalWriterFactory;
 
 import com.spun.util.ArrayUtils;
+import org.approvaltests.writers.DefaultApprovalWriterFactory;
 
 public class Options
 {
@@ -58,7 +58,7 @@ public class Options
   public ApprovalWriter createWriter(Object o)
   {
     ApprovalWriterFactory factory = ArrayUtils.getOrElse(fields, Fields.WRITER,
-        ApprovalWriterFactory::getDefaultFactory);
+        DefaultApprovalWriterFactory::getDefaultFactory);
     return factory.create(o, this);
   }
   public Options withWriter(ApprovalWriterFactory approvalWriterFactory)
