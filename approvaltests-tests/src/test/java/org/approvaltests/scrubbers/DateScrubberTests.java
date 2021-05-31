@@ -2,6 +2,7 @@ package org.approvaltests.scrubbers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -9,6 +10,7 @@ import java.util.stream.Stream;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.velocity.VelocityApprovals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class DateScrubberTests
@@ -53,5 +55,12 @@ public class DateScrubberTests
     VelocityApprovals.verify(c -> {
       c.put("formats", DateScrubber.getSupportedFormats());
     }, ".md");
+  }
+  @Disabled
+  @Test
+  void nextWeek()
+  {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//    new DateScrubber(sdf);
   }
 }
