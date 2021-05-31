@@ -45,6 +45,6 @@ public class DefaultApprovalWriterFactory
   }
   public static void addDefault(Function1<Object, Boolean> isValidFor, ApprovalWriterFactory factory)
   {
-    factories.add(new Tuple<>(isValidFor, factory));
+    factories.add(0, new Tuple<>(isValidFor, factory));
   }
 }
