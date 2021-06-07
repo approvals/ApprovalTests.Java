@@ -129,20 +129,6 @@ public class OptionsTest
     Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
     Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
   }
-  @Disabled("todo")
-  @Test
-  void verifyFilePath()
-  {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
-        new Options().forFile().withExtension(".html"));
-  }
-  @Disabled("todo")
-  @Test
-  void verifyFileRelativePath()
-  {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
-        new Options().forFile().withExtension(".html"));
-  }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {
     private boolean hasBeenCalled;
