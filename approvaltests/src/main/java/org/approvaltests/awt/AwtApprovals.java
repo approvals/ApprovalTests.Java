@@ -82,7 +82,19 @@ public class AwtApprovals
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer,
       Options options)
   {
-    Approvals.verify(options.createWriter(new PaintableMultiFrame(numberOfFrames,
-        c -> new Tuple<>(sequenceRenderer.call(c), Duration.ofMillis(500)))), options);
+    verifySequence(numberOfFrames, Duration.ofMillis(500), sequenceRenderer, options);
+  }
+  public static void verifySequence(int numberOfFrames, Duration duration,
+      Function1<Integer, Paintable> sequenceRenderer)
+  {
+    verifySequence(numberOfFrames, duration, sequenceRenderer, new Options());
+  }
+  public static void verifySequence(int numberOfFrames, Duration duration,
+      Function1<Integer, Paintable> sequenceRenderer, Options options)
+  {
+    Approvals.verify(
+        options.createWriter(
+            new PaintableMultiFrame(numberOfFrames, c -> new Tuple<>(sequenceRenderer.call(c), duration))),
+        options);
   }
 }
