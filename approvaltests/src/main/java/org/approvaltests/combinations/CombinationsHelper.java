@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.lambda.actions.Action9;
 import org.lambda.functions.Function9;
 
 public class CombinationsHelper
@@ -35,21 +36,21 @@ public class CombinationsHelper
                   {
                     for (IN9 in9 : parameters9)
                     {
-                      String result;
-                      try
-                      {
-                        result = "" + call.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
+                      Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> foo =
+                      (in11, in12, in13, in14, in15, in16, in17, in18, in19) -> {
+                        String result;
+                        try {
+                          result = "" + call.call(in11, in12, in13, in14, in15, in16, in17, in18, in19);
+                        } catch (SkipCombination e) {
+                          return;
+                        } catch (Throwable t) {
+                          result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
+                        }
+                        output.append(String.format("%s => %s \n",
+                            filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result));
+                      };
+                      foo.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
                       }
-                      catch (SkipCombination e)
-                      {
-                        continue;
-                      }
-                      catch (Throwable t)
-                      {
-                        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
-                      }
-                      output.append(String.format("%s => %s \n",
-                          filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
                     }
                   }
                 }
@@ -58,7 +59,6 @@ public class CombinationsHelper
           }
         }
       }
-    }
     Approvals.verify(output, options);
   }
   public static List<Object> filterEmpty(Object... objects)
