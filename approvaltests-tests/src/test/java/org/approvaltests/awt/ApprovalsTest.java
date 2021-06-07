@@ -25,6 +25,7 @@ public class ApprovalsTest
     AwtApprovals.verify(panel);
   }
   //  @DisabledOnJre({JRE.JAVA_8})
+  // TODO
   @Disabled("continue here next week")
   @Test
   void customPanelWithText()
@@ -43,8 +44,11 @@ public class ApprovalsTest
   @UseReporter(ImageWebReporter.class)
   void testSequence()
   {
+    // begin-snippet: SequencePaintables
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
+    // end-snippet
+
     AwtApprovals.verifySequence(5, Duration.ofMillis(500), f1 -> squareDrawer.setSquareSize(f1 * 10));
   }
   @Test
@@ -54,6 +58,5 @@ public class ApprovalsTest
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequenceWithTimings(5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
-    // TODO: write documentation
   }
 }
