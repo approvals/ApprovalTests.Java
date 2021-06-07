@@ -19,7 +19,6 @@ public class ReportInjectionTest
     }
   }
   private static Class<? extends MyReporter> called = null;
-  // TODO:
   @UseReporter(MyReporter.class)
   @Test
   public void testOverrideReporterByParameter()
