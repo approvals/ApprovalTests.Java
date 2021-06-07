@@ -48,7 +48,6 @@ public class ApprovalsTest
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
     // end-snippet
-
     AwtApprovals.verifySequence(5, Duration.ofMillis(500), f1 -> squareDrawer.setSquareSize(f1 * 10));
   }
   @Test
