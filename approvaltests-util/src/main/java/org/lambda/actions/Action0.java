@@ -13,7 +13,7 @@ public interface Action0
     };
   }
   public void call();
-  public static Action0 runtime(Action0WithExceptions exceptions)
+  public static Action0 runtime(Action0WithException exceptions)
   {
     return () -> {
       try
@@ -25,9 +25,5 @@ public interface Action0
         throw ObjectUtils.throwAsError(t);
       }
     };
-  }
-  public static interface Action0WithExceptions
-  {
-    public void call() throws Throwable;
   }
 }

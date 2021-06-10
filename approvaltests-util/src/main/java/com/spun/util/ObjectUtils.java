@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import org.lambda.actions.Action0;
+import org.lambda.actions.Action0WithException;
 import org.lambda.functions.Function0WithException;
 import org.lambda.query.Query;
 
@@ -236,6 +237,17 @@ public class ObjectUtils
     try
     {
       return code.call();
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
+  }
+  public static void throwAsError(Action0WithException code)
+  {
+    try
+    {
+      code.call();
     }
     catch (Throwable t)
     {
