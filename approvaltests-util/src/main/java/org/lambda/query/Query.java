@@ -151,6 +151,10 @@ public class Query<In>
   {
     return first(array, funct) != null;
   }
+  public static <In> boolean any(In[] array, Function1<In, Boolean> funct)
+  {
+    return first(array, funct) != null;
+  }
   public static <In> Queryable<In> distinct(List<In> list)
   {
     Queryable<In> distinct = new Queryable<>();
@@ -162,5 +166,16 @@ public class Query<In>
       }
     }
     return distinct;
+  }
+
+    public static <In> In last(In[] list) {
+      return last(Arrays.asList(list));
+    }
+
+   static <In> In last(List<In> asList) {
+      if (asList.isEmpty()) {
+        return null;
+      }
+      return asList.get(asList.size() - 1);
   }
 }
