@@ -18,9 +18,11 @@ public class StoryBoardTest
     gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
     Approvals.verify(StoryBoard.createSequence(gameOfLife, 3, gameOfLife::advance));
     gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
+    // begin-snippet: StoryBoardExample
     Approvals.verify(new StoryBoard().add(gameOfLife).addFrames(3, gameOfLife::advance));
+    // end-snippet
   }
-  private class GameOfLife
+  private static class GameOfLife
   {
     private Function2<Integer, Integer, Boolean> board;
     public GameOfLife(Function2<Integer, Integer, Boolean> board)
