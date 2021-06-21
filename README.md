@@ -62,7 +62,7 @@ If you're using Maven, add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>11.6.0</version>
+    <version>11.7.0</version>
 </dependency>
 ```
 
@@ -70,7 +70,7 @@ If you're using Maven, add this to your pom file:
 
 ```gradle
 dependencies {
-    testImplementation("com.approvaltests:approvaltests:11.6.0")
+    testImplementation("com.approvaltests:approvaltests:11.7.0")
 }
 ```
 
