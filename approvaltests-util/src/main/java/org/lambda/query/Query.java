@@ -147,6 +147,14 @@ public class Query<In>
   {
     return (T) min((List) numbers, (Comparable a) -> a);
   }
+  public static <In> boolean all(In[] array, Function1<In, Boolean> funct)
+  {
+    return array.length == where(array, funct).size();
+  }
+  public static <In> boolean all(List<In> array, Function1<In, Boolean> funct)
+  {
+    return array.size() == where(array, funct).size();
+  }
   public static <In> boolean any(List<In> array, Function1<In, Boolean> funct)
   {
     return first(array, funct) != null;

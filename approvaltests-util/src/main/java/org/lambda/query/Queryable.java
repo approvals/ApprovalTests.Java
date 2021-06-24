@@ -54,6 +54,10 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.first(this, filter);
   }
+  public boolean all(Function1<In, Boolean> filter)
+  {
+    return Query.all(this, filter);
+  }
   public <Out extends Comparable<Out>> In max(Function1<In, Out> f1)
   {
     return Query.max(this, f1);
