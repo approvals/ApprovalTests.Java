@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -132,20 +134,6 @@ public class OptionsTest
     Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
     Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
   }
-  @Disabled("todo")
-  @Test
-  void verifyFilePath()
-  {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
-        new Options().forFile().withExtension(".html"));
-  }
-  @Disabled("todo")
-  @Test
-  void verifyFileRelativePath()
-  {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
-        new Options().forFile().withExtension(".html"));
-  }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {
     private boolean hasBeenCalled;
@@ -161,6 +149,37 @@ public class OptionsTest
     public boolean hasBeenCalled()
     {
       return hasBeenCalled;
+    }
+  }
+  @Test
+  void testDefaultWriterForOptions()
+  {
+    final Options options = new Options();
+    ApprovalWriter writer = options.createWriter("any text");
+    Approvals.verify(writer);
+  }
+  @Test
+  void testCustomWriter()
+  {
+    final Options options = new Options();
+    ApprovalWriter anotherWriter = options.withWriter(MyWriter::getFactory).createWriter("any text");
+    assertTrue(anotherWriter instanceof MyWriter);
+  }
+  public static class MyWriter implements ApprovalWriter
+  {
+    public static ApprovalWriter getFactory(Object content, Options options)
+    {
+      return new MyWriter();
+    }
+    @Override
+    public File writeReceivedFile(File received)
+    {
+      return null;
+    }
+    @Override
+    public String getFileExtensionWithDot()
+    {
+      return null;
     }
   }
 }

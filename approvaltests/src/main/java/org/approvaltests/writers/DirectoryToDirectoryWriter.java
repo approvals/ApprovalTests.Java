@@ -10,9 +10,9 @@ public class DirectoryToDirectoryWriter implements ApprovalWriter
 {
   private final File recieved;
   private final File goldMasterDirectory;
-  public DirectoryToDirectoryWriter(File recieved, File goldMasterDirectory)
+  public DirectoryToDirectoryWriter(File received, File goldMasterDirectory)
   {
-    this.recieved = recieved;
+    this.recieved = received;
     this.goldMasterDirectory = goldMasterDirectory;
   }
   @Override

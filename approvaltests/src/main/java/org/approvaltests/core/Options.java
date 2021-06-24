@@ -8,13 +8,15 @@ import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
+import org.approvaltests.writers.ApprovalWriterFactory;
 
 import com.spun.util.ArrayUtils;
+import org.approvaltests.writers.DefaultApprovalWriterFactory;
 
 public class Options
 {
   private enum Fields {
-                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER;
+                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER;
   }
   private final Map<Fields, Object> fields = new HashMap<>();
   public Options()
@@ -52,6 +54,16 @@ public class Options
   private Scrubber getScrubber()
   {
     return ArrayUtils.getOrElse(fields, Fields.SCRUBBER, () -> NoOpScrubber.INSTANCE);
+  }
+  public ApprovalWriter createWriter(Object o)
+  {
+    ApprovalWriterFactory factory = ArrayUtils.getOrElse(fields, Fields.WRITER,
+        DefaultApprovalWriterFactory::getDefaultFactory);
+    return factory.create(o, this);
+  }
+  public Options withWriter(ApprovalWriterFactory approvalWriterFactory)
+  {
+    return new Options(fields, Fields.WRITER, approvalWriterFactory);
   }
   public FileOptions forFile()
   {

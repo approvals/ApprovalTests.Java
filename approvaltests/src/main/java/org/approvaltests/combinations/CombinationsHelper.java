@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.lambda.actions.Action9;
 import org.lambda.functions.Function9;
 
 public class CombinationsHelper
@@ -17,6 +18,35 @@ public class CombinationsHelper
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
     StringBuffer output = new StringBuffer();
+    Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> foo = (in11, in12, in13, in14, in15, in16, in17, in18,
+        in19) -> {
+      String result;
+      try
+      {
+        result = "" + call.call(in11, in12, in13, in14, in15, in16, in17, in18, in19);
+      }
+      catch (SkipCombination e)
+      {
+        return;
+      }
+      catch (Throwable t)
+      {
+        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
+      }
+      output.append(
+          String.format("%s => %s \n", filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result));
+    };
+    doForAllCombinations(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7,
+        parameters8, parameters9, foo);
+    // TODO: we still end up with 1 file which is not what we wanted in the case of SVGs or other file formats
+    Approvals.verify(output, options);
+  }
+  // TODO: do we want to revert the changes here then again?!
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> void doForAllCombinations(IN1[] parameters1,
+      IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6,
+      IN7[] parameters7, IN8[] parameters8, IN9[] parameters9,
+      Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> action)
+  {
     for (IN1 in1 : parameters1)
     {
       for (IN2 in2 : parameters2)
@@ -35,21 +65,7 @@ public class CombinationsHelper
                   {
                     for (IN9 in9 : parameters9)
                     {
-                      String result;
-                      try
-                      {
-                        result = "" + call.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
-                      }
-                      catch (SkipCombination e)
-                      {
-                        continue;
-                      }
-                      catch (Throwable t)
-                      {
-                        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
-                      }
-                      output.append(String.format("%s => %s \n",
-                          filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
+                      action.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
                     }
                   }
                 }
@@ -59,7 +75,6 @@ public class CombinationsHelper
         }
       }
     }
-    Approvals.verify(output, options);
   }
   public static List<Object> filterEmpty(Object... objects)
   {

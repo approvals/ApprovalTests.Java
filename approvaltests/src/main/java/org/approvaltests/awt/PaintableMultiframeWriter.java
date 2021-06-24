@@ -16,10 +16,10 @@ public class PaintableMultiframeWriter implements ApprovalWriter
 {
   private int                                            numberOfFrames;
   private Function1<Integer, Tuple<Paintable, Duration>> frameGetter;
-  public PaintableMultiframeWriter(int numberOfFrames, Function1<Integer, Tuple<Paintable, Duration>> frameGetter)
+  public PaintableMultiframeWriter(PaintableMultiFrame paintableMultiFrame)
   {
-    this.numberOfFrames = numberOfFrames;
-    this.frameGetter = frameGetter;
+    this.numberOfFrames = paintableMultiFrame.getNumberOfFrames();
+    this.frameGetter = paintableMultiFrame.getFrameGetter();
   }
   @Override
   public File writeReceivedFile(File received)

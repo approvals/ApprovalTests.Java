@@ -52,7 +52,7 @@ public class Approvals
   }
   public static void verify(String response, Options options)
   {
-    verify(new ApprovalTextWriter(response, options), options);
+    verify(options.createWriter(response), options);
   }
   public static void verify(Object object)
   {
@@ -152,7 +152,7 @@ public class Approvals
   }
   public static void verify(File generateFile, Options options)
   {
-    verify(new FileApprovalWriter(generateFile), options);
+    verify(options.createWriter(generateFile), options);
   }
   /**
    * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
@@ -184,7 +184,8 @@ public class Approvals
   }
   public static void verifyXml(String xml, Options options)
   {
-    verify(new ApprovalXmlWriter(xml, options), options);
+    final String formattedXml = ApprovalXmlWriter.prettyPrint(xml, 2);
+    verify(formattedXml, options.forFile().withExtension(".xml"));
   }
   public static void verify(ApprovalApprover approver)
   {
@@ -237,7 +238,7 @@ public class Approvals
   }
   public static void verify(ResultSet rs, Options options)
   {
-    verify(new ResultSetApprovalWriter(rs), options);
+    verify(options.createWriter(rs), options);
   }
   public static <T> void verify(SqlLoader<T> loader)
   {
@@ -284,7 +285,7 @@ public class Approvals
       {
         try
         {
-          verify(new FileApprovalWriter(f), new MasterDirectoryNamer(f, options), options);
+          verify(options.createWriter(f), new MasterDirectoryNamer(f, options), options);
         }
         catch (Throwable e)
         {
