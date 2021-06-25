@@ -87,7 +87,7 @@ public class SimpleLoggerInstance
   }
   public void stopTimer(long startTime, long maxTime, String function)
   {
-    long diff = (System.currentTimeMillis() - startTime);
+    long diff = System.currentTimeMillis() - startTime;
     if (diff > maxTime)
     {
       warning("Time Limit Exceeded - " + function + " [" + new DateDifference(diff).getStandardTimeText(2) + " > "
@@ -169,7 +169,7 @@ public class SimpleLoggerInstance
     }
     String theIndention = getIndent();
     StringBuffer buffer = new StringBuffer(message);
-    for (int i = (v.size() - 1); i >= 0; i--)
+    for (int i = v.size() - 1; i >= 0; i--)
     {
       int tempPlace = v.get(i);
       buffer.insert(tempPlace + 1, theIndention);
@@ -236,7 +236,7 @@ public class SimpleLoggerInstance
   {
     if (!variable)
     { return; }
-    name = (name == null ? "array" : name);
+    name = name == null ? "array" : name;
     if (array == null)
     {
       array = new Object[0];

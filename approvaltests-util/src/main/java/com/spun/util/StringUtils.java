@@ -485,7 +485,7 @@ public class StringUtils
   public static <T> String toString(String name, T[] array)
   {
     StringBuffer buffer = new StringBuffer();
-    name = (name == null ? "array" : name);
+    name = name == null ? "array" : name;
     if (array == null || array.length == 0)
     {
       buffer.append(name + ".length = 0");
@@ -503,7 +503,7 @@ public class StringUtils
   public static <T> String toString(String name, Iterable<T> array)
   {
     StringBuffer buffer = new StringBuffer();
-    name = (name == null ? "array" : name);
+    name = name == null ? "array" : name;
     if (array != null)
     {
       int count = 0;

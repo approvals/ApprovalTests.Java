@@ -220,7 +220,7 @@ public class NumberUtils
     }
     public int compare(Shuffler s1, Shuffler s2)
     {
-      return Double.compare(s1.newPosition, (s2).newPosition);
+      return Double.compare(s1.newPosition, s2.newPosition);
     }
   }
   public static IntStream toIntStream(int[] numbers)

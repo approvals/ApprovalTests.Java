@@ -50,7 +50,7 @@ public class SteppingIterator
     size += includeOffset ? offset : 0;
     if (includeStepping && (size % stepping[0]) != 0)
     {
-      size += (stepping[0] - (size % stepping[0]));
+      size += stepping[0] - (size % stepping[0]);
     }
     return size;
   }

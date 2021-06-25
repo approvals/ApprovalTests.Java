@@ -169,8 +169,8 @@ public class DateUtils
    **/
   public static int compareDates(Date date1, Date date2)
   {
-    long l1 = ((date1 == null) ? 0 : date1.getTime());
-    long l2 = ((date2 == null) ? 0 : date2.getTime());
+    long l1 = (date1 == null) ? 0 : date1.getTime();
+    long l2 = (date2 == null) ? 0 : date2.getTime();
     long diff = l1 - l2;
     return (diff == 0) ? 0 : (int) (diff / Math.abs(diff));
   }

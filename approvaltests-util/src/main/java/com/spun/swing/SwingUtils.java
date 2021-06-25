@@ -9,9 +9,9 @@ public class SwingUtils
   {
     FontMetrics metrics = g.getFontMetrics();
     int width = metrics.stringWidth(text);
-    x -= (width / 2);
+    x -= width / 2;
     int height = metrics.getHeight();
-    y -= (height / 2);
+    y -= height / 2;
     y += metrics.getAscent();
     g.drawString(text, x, y);
   }

@@ -20,7 +20,7 @@ public class TimedObject
   {
     try
     {
-      boolean launch = (lastTimeAccessed == 0);
+      boolean launch = lastTimeAccessed == 0;
       this.lastTimeAccessed = System.currentTimeMillis();
       if (launch)
       {

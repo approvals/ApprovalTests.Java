@@ -52,7 +52,7 @@ public class PrintUtils implements Printable
   {
     if (pageIndex > 0)
     {
-      return (NO_SUCH_PAGE);
+      return NO_SUCH_PAGE;
     }
     else
     {
@@ -64,7 +64,7 @@ public class PrintUtils implements Printable
       disableDoubleBuffering(componentToBePrinted);
       componentToBePrinted.paint(g2d);
       enableDoubleBuffering(componentToBePrinted);
-      return (PAGE_EXISTS);
+      return PAGE_EXISTS;
     }
   }
   public static void disableDoubleBuffering(Component c)

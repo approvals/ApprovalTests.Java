@@ -136,7 +136,7 @@ public class Query<In>
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static <T extends Number> T max(List<T> numbers)
   {
-    return (T) max(numbers, (a) -> (Comparable) a);
+    return (T) max(numbers, a -> (Comparable) a);
   }
   public static <T extends Number> T max(T[] numbers)
   {
