@@ -73,15 +73,15 @@ public class OptionsTest
   @Test
   void testEachMethodHasOneWithOptions()
   {
-    for (Class c: getApprovalClasses()) {
+    for (Class c : getApprovalClasses())
+    {
       verifyEachVerifyMethodHasOneWithOptions(c);
     }
   }
-
-  public static List<Class <?>> getApprovalClasses() {
+  public static List<Class<?>> getApprovalClasses()
+  {
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class);
   }
-
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
   {
     Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());

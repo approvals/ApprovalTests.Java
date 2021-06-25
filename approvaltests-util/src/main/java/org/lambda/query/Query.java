@@ -175,15 +175,14 @@ public class Query<In>
     }
     return distinct;
   }
-
-    public static <In> In last(In[] list) {
-      return last(Arrays.asList(list));
-    }
-
-   static <In> In last(List<In> asList) {
-      if (asList.isEmpty()) {
-        return null;
-      }
-      return asList.get(asList.size() - 1);
+  public static <In> In last(In[] list)
+  {
+    return last(Arrays.asList(list));
+  }
+  static <In> In last(List<In> asList)
+  {
+    if (asList.isEmpty())
+    { return null; }
+    return asList.get(asList.size() - 1);
   }
 }

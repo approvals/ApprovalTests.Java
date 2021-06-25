@@ -1,5 +1,6 @@
 package org.lambda.actions;
 
-public interface Action0WithException {
-    public void call() throws Throwable;
+public interface Action0WithException
+{
+  public void call() throws Throwable;
 }
