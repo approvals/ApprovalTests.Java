@@ -91,11 +91,14 @@ public class DocumentHelpers
     Queryable<CtMethod> part1 = Query.where(cc.getDeclaredMethods(), m -> m.getName().equals(method.getName()));
     Queryable<CtMethod> part2 = part1
         .where(Functions.unchecked(m -> m.getParameterTypes().length == method.getParameterTypes().length));
-    Queryable<CtMethod> part3 = part2.where(Functions.unchecked(m -> Query.all(m.getParameterTypes(),
-        p -> Query.any(method.getParameterTypes(), Functions.unchecked(mp -> mp.getSimpleName().equals(p.getSimpleName()))))));
+    Queryable<CtMethod> part3 = part2
+        .where(Functions.unchecked(m -> Query.all(m.getParameterTypes(), p -> Query.any(method.getParameterTypes(),
+            Functions.unchecked(mp -> mp.getSimpleName().equals(p.getSimpleName()))))));
     CtMethod methodX = part3.first();
-    if (methodX == null) {
-      Queryable<String> select = part2.select(Functions.unchecked(m -> Query.select(m.getParameterTypes(), Functions.unchecked(p -> p.getName())).toString()));
+    if (methodX == null)
+    {
+      Queryable<String> select = part2.select(Functions
+          .unchecked(m -> Query.select(m.getParameterTypes(), Functions.unchecked(p -> p.getName())).toString()));
       String originalMethod = Query.select(method.getParameterTypes(), p -> p.getSimpleName()).toString();
       String foo = "[Ljava.lang.Object;";
       throw new FormattedException("Couldn't find method for %s", method.getName());
