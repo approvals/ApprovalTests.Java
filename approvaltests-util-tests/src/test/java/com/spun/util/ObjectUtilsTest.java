@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
+import org.lambda.functions.Functions;
+import org.lambda.query.Queryable;
 
 public class ObjectUtilsTest
 {
@@ -56,5 +59,51 @@ public class ObjectUtilsTest
     {
       return d;
     }
+  }
+
+  @Test
+  void throwAsErrorExample() {
+    // begin-snippet: throw_as_error
+    try {
+      methodThatMightThrowCheckedException();
+      methodThatMightThrowRuntimeException();
+      methodThatMightThrowError();
+    } catch (Throwable t) {
+      throw ObjectUtils.throwAsError(t);
+    }
+    // end-snippet
+  }
+
+  @Test
+  void throwLambdaExecution() {
+    // begin-snippet: throw_as_error_lambda
+    ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedException());
+    int i = ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedExceptionWithReturnValue());
+    // end-snippet
+  }
+
+  @Test
+  void uncheckedLambdas() {
+    Queryable<String> files = Queryable.as("1.txt", "2.txt", "3.txt");
+    // begin-snippet: throw_as_unchecked
+    Queryable<String> paths = files.select(
+            Functions.unchecked(
+                    // throws IOException
+                    s -> new File(s).getCanonicalPath()
+            ));
+    // end-snippet
+  }
+
+  private int methodThatMightThrowCheckedExceptionWithReturnValue() throws Exception {
+    return 1;
+  }
+
+  private void methodThatMightThrowError() throws Error {
+  }
+
+  private void methodThatMightThrowRuntimeException() throws RuntimeException {
+  }
+
+  private void methodThatMightThrowCheckedException() throws Exception {
   }
 }
