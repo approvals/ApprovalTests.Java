@@ -25,7 +25,7 @@ independently of OS and CI.
 Sometimes you want to verify a series of steps. A great way to visualize this is with an animated
 gif.
 
-![Hexagonal Game of Life](https://github.com/isidore/HexGameOfLife/blob/master/src/test/java/org/gameoflife/hex/GameOfLifePanelTest.testCompellingSequence.approved.gif)
+![Hexagonal Game of Life](https://github.com/isidore/HexGameOfLife/blob/master/src/test/java/org/gameoflife/hex/graphics/GameOfLifePanelTest.testCompellingSequence.approved.gif)
 
 To create such a gif you pass the number of frames you want plus a function that returns a Paintable
 for every frame. Here is an example for a simple expanding box:
