@@ -7,8 +7,8 @@
 
   * [Why](#why)
   * [1. Throw as error (Exception)](#1-throw-as-error-exception)
-    * [Unnecessary Wrapping](#unnecessary-wrapping)
-    * [Returning Exceptions](#returning-exceptions)
+    * [A. Unnecessary Wrapping](#a-unnecessary-wrapping)
+    * [B. Returning Exceptions](#b-returning-exceptions)
   * [2. Throw as error (Action/Function)](#2-throw-as-error-actionfunction)
   * [3. Wrapping Actions/Functions](#3-wrapping-actionsfunctions)<!-- endToc -->
 
