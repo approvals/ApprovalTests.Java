@@ -25,15 +25,18 @@ The most basic method to do this is to wrap a checked exception in a runtime exc
 <!-- snippet: throw_as_error -->
 <a id='snippet-throw_as_error'></a>
 ```java
-try {
+try
+{
   methodThatMightThrowCheckedException();
   methodThatMightThrowRuntimeException();
   methodThatMightThrowError();
-} catch (Throwable t) {
+}
+catch (Throwable t)
+{
   throw ObjectUtils.throwAsError(t);
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L66-L74' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L66-L77' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 There are two things to note in this implementation.
@@ -55,7 +58,7 @@ the use of lambdas. Here are examples with and without return values:
 ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedException());
 int i = ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedExceptionWithReturnValue());
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L79-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error_lambda' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L82-L85' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## 3. Wrapping Actions/Functions
@@ -66,13 +69,11 @@ Here's an example which allows us to wrap a lambda that throws an `IOException`:
 <!-- snippet: throw_as_unchecked -->
 <a id='snippet-throw_as_unchecked'></a>
 ```java
-Queryable<String> paths = files.select(
-        Functions.unchecked(
-                // throws IOException
-                s -> new File(s).getCanonicalPath()
-        ));
+Queryable<String> paths = files.select(Functions.unchecked(
+    // throws IOException
+    s -> new File(s).getCanonicalPath()));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L88-L94' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L91-L95' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---
