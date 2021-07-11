@@ -32,6 +32,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations and PackageSetting
 
 [Reporters](Reporters.md#top) Namers & Writers are the 3 pieces that allow ApprovalTests to work. 
  
+**Verify** [verify(object)](reference/Verify.md) is the main pattern to use in ApprovalTests. 
 **Writers** write to a file  
 **Namers** figure out what the file should be called and where it is located  
 **Reporters** are called on failure to help you determine what went wrong.  
