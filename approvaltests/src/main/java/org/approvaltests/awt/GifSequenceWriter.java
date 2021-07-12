@@ -159,6 +159,6 @@ public class GifSequenceWriter implements AutoCloseable
     }
     IIOMetadataNode node = new IIOMetadataNode(nodeName);
     rootNode.appendChild(node);
-    return (node);
+    return node;
   }
 }
