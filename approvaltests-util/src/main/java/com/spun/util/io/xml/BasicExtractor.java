@@ -27,7 +27,7 @@ public class BasicExtractor
     {
       extractor = BooleanExtractor.INSTANCE;
     }
-    else if (Timestamp.class.isAssignableFrom(clazz) || Timestamp.class.isAssignableFrom(clazz))
+    else if (Timestamp.class.isAssignableFrom(clazz))
     {
       extractor = TimestampExtractor.INSTANCE;
     }

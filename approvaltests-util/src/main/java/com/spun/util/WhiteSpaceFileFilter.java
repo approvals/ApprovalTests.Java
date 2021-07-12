@@ -7,7 +7,7 @@ public class WhiteSpaceFileFilter implements java.io.FileFilter
   @Override
   public boolean accept(File pathname)
   {
-    if (pathname.getName().equals(".") || pathname.getName().equals("."))
+    if (pathname.getName().equals("."))
     {
       return false;
     }
