@@ -17,7 +17,7 @@
 ## toArray
 see [ArrayUtils.toArray](ArrayUtils.md#toArray) 
 ## Queryable and Extendable
-see [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
+see [Query](how_to/ExtendQueryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 
 ## Functions
 

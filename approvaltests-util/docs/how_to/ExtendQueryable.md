@@ -1,13 +1,5 @@
 <a id="top"></a>
-
-# Queryable
-
-<!-- toc -->
-## Contents
-
-  * [Extending Queryable](#extending-queryable)<!-- endToc -->
-
-## Extending Queryable
+# Extending Queryable
 
 You have a function you wish was part of Queryable.
 <!-- snippet: custom-query -->
@@ -76,6 +68,8 @@ Queryable<String> firstWordsOnlyStatic = CustomQuery
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L56-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom-query-example-static' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+## See also
+* [Query](../reference/Query.md#top)
 ---
 
-[Back to User Guide](README.md#top)
+[Back to User Guide](../README.md#top)

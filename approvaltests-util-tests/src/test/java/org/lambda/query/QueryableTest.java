@@ -114,5 +114,13 @@ class QueryableTest
     queryable.add(2.4);
     Comparable[] asArray = queryable.asArray();
     Approvals.verifyAll("", asArray);
+    Temp<String> t = new Temp(Integer.class, "HELLO");
+  }
+  public static class Temp<H> {
+    private final Class<H> c;
+
+    public Temp(Class<H> c, H h) {
+        this.c = c;
+    }
   }
 }

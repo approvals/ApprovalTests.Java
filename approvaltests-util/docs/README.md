@@ -16,7 +16,7 @@ A set of convenience functions to make life easier.
 
 * [Strings](StringUtils.md#top)
 * [Arrays](ArrayUtils.md#top)
-* [Query](Queryable.md#top) a group of map-reduce functions based on the linq (sql) syntax.
+* [Query](reference/Query.md#top) a group of map-reduce functions based on the linq (sql) syntax.
 * Working with [Checked Exceptions](reference/RuntimeExceptions.md#top): tools to hide them.
 * [SimpleLogger](reference/SimpleLogger.md#top) 
 
