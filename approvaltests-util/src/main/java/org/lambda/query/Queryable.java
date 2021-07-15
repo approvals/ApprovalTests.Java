@@ -78,10 +78,16 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.orderBy(this, order, f1);
   }
+  /**
+   * Why does sum() return double? see {@link org.lambda.query.Query#sum(Out[])}
+   */
   public <Out extends Number> Double sum(Function1<In, Out> f1)
   {
     return Query.sum(this, f1);
   }
+  /**
+   * Why does sum() return double? see {@link org.lambda.query.Query#sum(Number[])}
+   */
   public Double sum()
   {
     return Query.sum((List<Number>) this);

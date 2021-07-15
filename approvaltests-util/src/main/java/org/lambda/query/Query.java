@@ -112,10 +112,16 @@ public class Query<In>
     Collections.sort(list, new OrderBy<T, Comparable<?>>(order, f1));
     return Queryable.as(list);
   }
+  /**
+   * Why does sum() return double? see {@link #sum(Out[])}
+   */
   public static <In, Out extends Number> Double sum(In[] list, Function1<In, Out> f1)
   {
     return sum(ArrayUtils.asList(list), f1);
   }
+  /**
+   * Why does sum() return double? see {@link #sum(Out[])}
+   */
   public static <In, Out extends Number> Double sum(Collection<In> list, Function1<In, Out> f1)
   {
     double sum = 0;
@@ -125,10 +131,21 @@ public class Query<In>
     }
     return sum;
   }
+  /**
+   * Why does sum() return double? see {@link #sum(Out[])}
+   */
   public static <Out extends Number> Double sum(Collection<Out> list)
   {
     return sum(list, a -> a);
   }
+  /**
+   * <H1>Why does sum() return double?</H1><br>
+   * sum() needs to handle possible overflow.<br>
+   * For example:<br>
+   * <code>Queryable.as(100, 100, 100).sum(n -> n.byteValue())</code> should equal 300.<br>
+   * Because Double handles the largest range of any number, that is what is returned by default. You can convert
+   * it to whichever type you want, but be aware that overflowed values may be truncated.
+   */
   public static <Out extends Number> Double sum(Out[] list)
   {
     return sum(list, a -> a);
