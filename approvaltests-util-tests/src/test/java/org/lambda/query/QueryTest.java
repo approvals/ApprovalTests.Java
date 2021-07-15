@@ -4,6 +4,7 @@ import org.approvaltests.legacycode.Range;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,25 +29,32 @@ public class QueryTest
 
   @Test
   void queryVsStreamExample() {
-    // begin-snippet: query_example
-    Integer[] numbers = Range.get(1, 20);
-    Integer[] evenQueryNumbers = Query
-            .where(numbers, n -> n % 2 == 0)
-            .orderBy(OrderBy.Order.Descending,  n -> n)
-            .asArray();
-    // end-snippet
-    // begin-snippet: stream_example
-    Integer[] evenStreamNumbers = Arrays.stream(numbers)
-            .filter(n -> n % 2 == 0)
-            .sorted((o1, o2) -> o2.compareTo(o1))
-            .toArray(Integer[]::new);
-    // end-snippet
-    Assertions.assertArrayEquals(evenQueryNumbers, evenStreamNumbers);
+    {
+      // begin-snippet: query_example
+      Integer[] numbers = Range.get(1, 20);
+      Integer[] evenQueryNumbers = Query
+              .where(numbers, n -> n % 2 == 0)
+              .orderBy(OrderBy.Order.Descending, n -> n)
+              .asArray();
+      // end-snippet
+      // begin-snippet: stream_example
+      Integer[] evenStreamNumbers = Arrays.stream(numbers)
+              .filter(n -> n % 2 == 0)
+              .sorted((o1, o2) -> o2.compareTo(o1))
+              .toArray(Integer[]::new);
+      // end-snippet
+      Assertions.assertArrayEquals(evenQueryNumbers, evenStreamNumbers);
+    }
 
-    int sumOfSquaresQuery = Query.sum(evenQueryNumbers, n -> n * n).intValue();
-    int sumOfSquaresStream = Arrays.stream(evenStreamNumbers).mapToInt(n -> n * n).sum();
-    int sumOfSquaresStream2 = Arrays.stream(evenStreamNumbers).map(n -> n * n).reduce(0, (a, b) -> a + b);
-    Assertions.assertEquals(sumOfSquaresQuery, sumOfSquaresStream);
-    Assertions.assertEquals(sumOfSquaresQuery, sumOfSquaresStream2);
+    {
+      // begin-snippet: query_sum_example
+      String[] names = {"Llewellyn", "Scott"};
+      int lengthsFromQuery = Query.sum(names, n -> n.length()).intValue();
+      // end-snippet
+      // begin-snippet: stream_sum_example
+      int lengthsFromStream = (int)Arrays.stream(names).map(n -> n.length()).reduce(0, (a, b) -> a + b);
+      // end-snippet
+      Assertions.assertEquals(lengthsFromQuery, lengthsFromStream);
+    }
   }
 }

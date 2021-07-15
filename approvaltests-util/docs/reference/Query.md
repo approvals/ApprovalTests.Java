@@ -19,6 +19,14 @@ Here is the exact same function but using Java Streams:
 
 snippet: stream_example
 
+Another example using sum() vs. reduce():
+
+snippet: query_sum_example
+
+Here is the exact same function but using Java Streams:
+
+snippet: stream_sum_example
+
 #### Other benefits
 * Simpler interface
 * Queryable<T> extends List<T>
