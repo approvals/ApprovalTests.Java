@@ -22,7 +22,6 @@
 * publish release also on github: https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository
 
 # Documentation
-* Docs for Query
 * Documentation for ExecutableQuery
 * Combination Approvals
 * docs for graph for ci consistent
@@ -32,6 +31,7 @@
 * Documentation for loaders and savers
 * Document and build examples for Runtime Generics
 * Documentation for Story Board
+* Docs for Query
 
 # Other
 * Add Take and Skip to Query

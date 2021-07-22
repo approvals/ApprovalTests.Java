@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.JsonUtils;
 import com.spun.util.io.NetUtils;
 import com.spun.util.persistence.ExecutableQuery;
 
@@ -23,6 +24,6 @@ public class PokemonLoader implements ExecutableQuery
    */
   public String executeQuery(String query)
   {
-    return NetUtils.readWebpage(query);
+    return JsonUtils.prettyPrint(NetUtils.readWebpage(query));
   }
 }

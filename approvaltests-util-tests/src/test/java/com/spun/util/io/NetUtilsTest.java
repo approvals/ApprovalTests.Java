@@ -28,8 +28,8 @@ public class NetUtilsTest
     String password = p.getProperty("password");
     FTPConfig config = new FTPConfig(server, 22, username, password);
     String remoteString = p.getProperty("remoteFilename");
-    NetUtils.sftpUpload(config, f, remoteString);
-    File f2 = NetUtils.sftpDownload(config, createTempFile(), remoteString);
+    SshUtils.sftpUpload(config, f, remoteString);
+    File f2 = SshUtils.sftpDownload(config, createTempFile(), remoteString);
     assertEquals(FileUtils.readFile(f), FileUtils.readFile(f2));
   }
   private File createFile() throws IOException
