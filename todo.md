@@ -31,5 +31,7 @@
 * 404 for Getting Started Doc link in readme
 * Documentation for loaders and savers
 * Document and build examples for Runtime Generics
+* Documentation for Story Board
 
 # Other
+* Add Take and Skip to Query

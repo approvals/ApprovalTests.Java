@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -50,6 +51,11 @@ public class QueryTest
       int lengthsFromStream = (int) Arrays.stream(names).map(n -> n.length()).reduce(0, (a, b) -> a + b);
       // end-snippet
       Assertions.assertEquals(lengthsFromQuery, lengthsFromStream);
+    }
+    {
+      Integer[] numbers = Range.get(1, 20);
+      List<String> strings = Query.select(numbers, n -> "" + n);
+      List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
     }
   }
 }
