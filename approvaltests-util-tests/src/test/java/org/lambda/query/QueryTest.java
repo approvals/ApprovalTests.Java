@@ -54,8 +54,12 @@ public class QueryTest
     }
     {
       Integer[] numbers = Range.get(1, 20);
+      // begin-snippet: list_is_queryable
       List<String> strings = Query.select(numbers, n -> "" + n);
+      // end-snippet
+      // begin-snippet: list_from_stream
       List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
+      // end-snippet
     }
   }
 }

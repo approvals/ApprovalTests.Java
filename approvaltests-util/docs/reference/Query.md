@@ -63,6 +63,16 @@ int lengthsFromStream = (int) Arrays.stream(names).map(n -> n.length()).reduce(0
 * Queryable is customizable
 * Uses SQL syntax
 
+### Queryable extends List
+Another advantage of Query and Queryable is that Queryable extends List. Here is an example of converting
+an Array of Integers to Strings:
+
+Using Query:
+snippet: list_is_queryable
+
+Using Streams:
+snippet: list_from_stream
+
 ## HowTos
 * [How to extend Queryable](../how_to/ExtendQueryable.md#top)
 
