@@ -7,6 +7,7 @@
 
     * [Comparison vs. Streams](#comparison-vs-streams)
       * [Other benefits](#other-benefits)
+    * [Queryable extends List](#queryable-extends-list)
   * [HowTos](#howtos)<!-- endToc -->
 ## What it is
 Query (and the Queryable wrapper) is an alternative to Streams. In other words it is an implementation of Map/Reduce 
@@ -68,10 +69,22 @@ Another advantage of Query and Queryable is that Queryable extends List. Here is
 an Array of Integers to Strings:
 
 Using Query:
-snippet: list_is_queryable
+<!-- snippet: list_is_queryable -->
+<a id='snippet-list_is_queryable'></a>
+```java
+List<String> strings = Query.select(numbers, n -> "" + n);
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L57-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_is_queryable' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Using Streams:
-snippet: list_from_stream
+<!-- snippet: list_from_stream -->
+<a id='snippet-list_from_stream'></a>
+```java
+List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L60-L62' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## HowTos
 * [How to extend Queryable](../how_to/ExtendQueryable.md#top)
