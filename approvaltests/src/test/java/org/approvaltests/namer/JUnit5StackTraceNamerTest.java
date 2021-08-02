@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.integrations.junit5.JUnit5Approvals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
@@ -19,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.lambda.actions.Action0;
 
 import com.spun.util.LambdaThreadLauncher;
 import com.spun.util.ObjectUtils;
@@ -95,13 +95,13 @@ public class JUnit5StackTraceNamerTest
   Collection<DynamicTest> testFactory()
   {
     return Arrays.asList(
-        verifyDynamicTest("test 1",
+        JUnit5Approvals.dynamicTest("test 1",
             () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_1")),
-        verifyDynamicTest("test 3",
+        JUnit5Approvals.dynamicTest("test 3",
             () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_3")),
-        verifyDynamicTest("test 2", () -> StackTraceNamerUtils
+        JUnit5Approvals.dynamicTest("test 2", () -> StackTraceNamerUtils
             .assertNamerForFramework(this.getClass().getSimpleName(), "testFactory.test_2")));
   }
   @TestFactory
@@ -118,19 +118,5 @@ public class JUnit5StackTraceNamerTest
         assertEquals("Use dynamicApprovals(String, Executable) instead", e.getMessage());
       }
     }));
-  }
-  //  @Experimental
-  private DynamicTest verifyDynamicTest(String displayName, Action0 action0)
-  {
-    return dynamicTest(displayName, () -> {
-      try (NamedEnvironment en = NamerFactory.withParameters(convertToLegalFileName(displayName)))
-      {
-        action0.call();
-      }
-    });
-  }
-  public static String convertToLegalFileName(String uri)
-  {
-    return uri.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");
   }
 }

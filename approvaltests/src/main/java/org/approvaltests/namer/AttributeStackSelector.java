@@ -1,6 +1,5 @@
 package org.approvaltests.namer;
 
-import com.spun.util.StringUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.lambda.functions.Function0;
 
+import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
@@ -107,7 +107,8 @@ public class AttributeStackSelector implements StackElementSelector
       return () -> {
         if (NamerFactory.isEmpty())
         {
-          throw new RuntimeException("Use dynamicApprovals(String, Executable) instead");
+          throw new FormattedException("When using dynamic tests and Approvals, you need to use %s instead.",
+              "org.approvaltests.integrations.junit5.JUnit5Approvals.dynamicTest(String, Executable)");
         }
         return true;
       };
