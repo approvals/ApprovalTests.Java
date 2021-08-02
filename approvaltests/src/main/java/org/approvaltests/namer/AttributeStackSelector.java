@@ -1,11 +1,14 @@
 package org.approvaltests.namer;
 
+import com.spun.util.StringUtils;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.lambda.functions.Function0;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
@@ -16,6 +19,7 @@ public class AttributeStackSelector implements StackElementSelector
   public static String                      classNames[] = {"org.testng.annotations.Test",
                                                             "org.junit.Test",
                                                             "org.junit.jupiter.api.Test",
+                                                            "org.junit.jupiter.api.TestFactory",
                                                             "org.junit.jupiter.api.RepeatedTest",
                                                             "org.junit.jupiter.params.ParameterizedTest"};
   private List<Class<? extends Annotation>> attributes;
@@ -91,10 +95,24 @@ public class AttributeStackSelector implements StackElementSelector
       for (Class<? extends Annotation> attribute : attributes)
       {
         if (method.isAnnotationPresent(attribute))
-        { return true; }
+        { return getConditionsForAttribute(attribute).call(); }
       }
     }
     return false;
+  }
+  private Function0<Boolean> getConditionsForAttribute(Class<? extends Annotation> attribute)
+  {
+    if ("org.junit.jupiter.api.TestFactory".equals(attribute.getName()))
+    {
+      return () -> {
+        if (NamerFactory.isEmpty())
+        {
+          throw new RuntimeException("Use dynamicApprovals(String, Executable) instead");
+        }
+        return true;
+      };
+    }
+    return () -> true;
   }
   public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {

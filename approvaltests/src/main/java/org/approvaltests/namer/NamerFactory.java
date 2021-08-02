@@ -55,4 +55,8 @@ public class NamerFactory
   {
     return new NamedEnvironment(StringUtils.join(parameters, ".", o -> "" + o));
   }
+  public static boolean isEmpty()
+  {
+    return additionalInformation == null;
+  }
 }

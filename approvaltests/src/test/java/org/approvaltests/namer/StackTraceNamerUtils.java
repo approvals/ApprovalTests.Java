@@ -9,17 +9,16 @@ public class StackTraceNamerUtils
 {
   public static void assertNamerForFramework(String className, String methodName)
   {
-    StackTraceNamerUtils.assertApprovalName(className, methodName);
-    StackTraceNamerUtils.assertSourceFilePath(className);
+    final StackTraceNamer namer = new StackTraceNamer();
+    StackTraceNamerUtils.assertApprovalName(className, methodName, namer);
+    StackTraceNamerUtils.assertSourceFilePath(className, namer);
   }
-  public static void assertApprovalName(String className, String methodName)
+  public static void assertApprovalName(String className, String methodName, StackTraceNamer namer)
   {
-    StackTraceNamer name = new StackTraceNamer();
-    Assert.assertEquals(className + "." + methodName, name.getApprovalName());
+    Assert.assertEquals(className + "." + methodName, namer.getApprovalName());
   }
-  public static void assertSourceFilePath(String className)
+  public static void assertSourceFilePath(String className, StackTraceNamer name)
   {
-    StackTraceNamer name = new StackTraceNamer();
     File file = new File(name.getSourceFilePath() + className + ".java");
     Assert.assertTrue(file.exists());
   }
