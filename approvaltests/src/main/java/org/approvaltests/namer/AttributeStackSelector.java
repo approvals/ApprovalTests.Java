@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.lambda.functions.Function0;
-
 import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
@@ -95,25 +93,25 @@ public class AttributeStackSelector implements StackElementSelector
       for (Class<? extends Annotation> attribute : attributes)
       {
         if (method.isAnnotationPresent(attribute))
-        { return getConditionsForAttribute(attribute).call(); }
+        {
+          checkConditionsForAttribute(attribute);
+          return true;
+        }
       }
     }
     return false;
   }
-  private Function0<Boolean> getConditionsForAttribute(Class<? extends Annotation> attribute)
+  // TODO: clean this up, should be pluggable
+  private void checkConditionsForAttribute(Class<? extends Annotation> attribute)
   {
     if ("org.junit.jupiter.api.TestFactory".equals(attribute.getName()))
     {
-      return () -> {
-        if (NamerFactory.isEmpty())
-        {
-          throw new FormattedException("When using dynamic tests and Approvals, you need to use %s instead.",
-              "org.approvaltests.integrations.junit5.JUnit5Approvals.dynamicTest(String, Executable)");
-        }
-        return true;
-      };
+      if (NamerFactory.isEmpty())
+      {
+        throw new FormattedException("When using dynamic tests and Approvals, you need to use %s instead.",
+            "org.approvaltests.integrations.junit5.JUnit5Approvals.dynamicTest(String, Executable)");
+      }
     }
-    return () -> true;
   }
   public List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
