@@ -88,8 +88,7 @@ public class JUnit5StackTraceNamerTest
       File file = new File(name.getSourceFilePath() + this.getClass().getSimpleName() + ".java");
       Assertions.assertFalse(file.exists());
     }
-    StackTraceNamerUtils.assertSourceFilePath(this.getClass().getSimpleName(),
-        new StackTraceNamer());
+    StackTraceNamerUtils.assertSourceFilePath(this.getClass().getSimpleName(), new StackTraceNamer());
   }
   @TestFactory
   Collection<DynamicTest> testFactory()
