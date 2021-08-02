@@ -114,7 +114,7 @@ public class JUnit5StackTraceNamerTest
       }
       catch (RuntimeException e)
       {
-        assertEquals("Use dynamicApprovals(String, Executable) instead", e.getMessage());
+        assertEquals("When using dynamic tests and Approvals, you need to use org.approvaltests.integrations.junit5.JUnit5Approvals.dynamicTest(String, Executable) instead.", e.getMessage());
       }
     }));
   }
