@@ -93,6 +93,13 @@
                 <version>3.0.0-M5</version>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>
+                    src/java
+                </directory>
+            </resource>
+        </resources>
     </build>
 
 </project>

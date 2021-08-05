@@ -26,9 +26,7 @@ public class VelocityUtilsTest
     try (WithTimeZone tz = new WithTimeZone())
     {
       Timestamp date = DateUtils.parse("2001/02/03");
-      VelocityApprovals.verify(c -> {
-        c.put("date", date);
-      });
+      VelocityApprovals.verify(c -> c.put("date", date), ".md");
     }
   }
 }
