@@ -96,7 +96,7 @@
         <resources>
             <resource>
                 <directory>
-                    src/java
+                    src/test/java
                 </directory>
             </resource>
         </resources>

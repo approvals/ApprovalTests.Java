@@ -21,7 +21,6 @@ class LoaderTest {
     @Test
     void testWithDatabaseAccess() {
         Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
-//        Approvals.verify(new SqlLoader.ExecutableWrapper(new LoadShiftsFromDatabase(day)));
         Approvals.verify(new LoadShiftsFromDatabase(day));
     }
 }
