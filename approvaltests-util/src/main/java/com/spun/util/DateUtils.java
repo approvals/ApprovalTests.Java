@@ -285,4 +285,8 @@ public class DateUtils
   {
     return Date.from(dateTime.atZone(zoneId).toInstant());
   }
+
+  public static Calendar setTime(Calendar day, int hour, int minute) {
+    return new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), hour, minute);
+  }
 }
