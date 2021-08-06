@@ -15,7 +15,7 @@ import java.util.List;
 class LoaderTest
 {
   @Test
-  @UseReporter(DiffMergeReporter.class)
+  //@UseReporter(DiffMergeReporter.class)
   void testWithMockedData()
   {
     Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
