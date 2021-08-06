@@ -7,14 +7,14 @@ public class MinimumVarargSamples
   @Test
   void testCompilation()
   {
-    try {
+    try
+    {
       // begin-snippet: minimalVarargsException
       int smallest = findSmallest();
       // end-snippet
     }
     catch (IllegalArgumentException e)
     {
-
     }
   }
   // begin-snippet: minimalVarargsRuntime
