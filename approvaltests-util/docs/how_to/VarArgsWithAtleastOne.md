@@ -27,7 +27,7 @@ public Integer findSmallest(Integer... numbers)
   { throw new IllegalArgumentException("you must have at least one number"); }
   // rest of the code
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsruntime' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L20-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsruntime' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Compile time solution
@@ -44,7 +44,7 @@ public Integer findSmallest(Integer first, Integer... numbers)
   Integer[] combined = ArrayUtils.combine(first, numbers);
   // rest of the code
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L23-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargscompiletime' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L29-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargscompiletime' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Advantages
@@ -57,7 +57,7 @@ If you use the compile time solution, it will not compile.
 ```java
 int smallest = findSmallest();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L11-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Where to use this
