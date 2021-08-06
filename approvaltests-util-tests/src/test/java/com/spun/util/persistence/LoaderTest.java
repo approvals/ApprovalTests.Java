@@ -4,6 +4,8 @@ import com.spun.util.DateUtils;
 import com.spun.util.persistence.test.MockLoader;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,6 +15,7 @@ import java.util.List;
 class LoaderTest
 {
   @Test
+  @UseReporter(DiffMergeReporter.class)
   void testWithMockedData()
   {
     Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
