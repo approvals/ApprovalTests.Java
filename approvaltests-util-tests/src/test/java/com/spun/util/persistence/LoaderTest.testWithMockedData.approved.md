@@ -4,5 +4,5 @@
 
 | Person | Position | Start Time | 
 | ---- | ------- | ------ |
-| Scott | Chef | 4:00 PM |
-| Llewellyn | Dishwasher | 5:30 PM |
+| Scott | Chef | 5:00 PM |
+| Llewellyn | Dishwasher | 6:30 PM |
