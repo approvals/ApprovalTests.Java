@@ -57,7 +57,7 @@ If you use the compile time solution, it will not compile.
 ```java
 int smallest = findSmallest();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L11-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Where to use this
