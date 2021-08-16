@@ -87,6 +87,7 @@ public class Pairwise implements Iterable<Case>
     public Pairwise build()
     {
       List<Case> minimalCases = getMinimalCases(parameters);
+      Case.resetRandom();
       return new Pairwise(this.parameters, minimalCases);
     }
     public static List<Case> getMinimalCases(List<OptionsForAParameter<?>> parameters)

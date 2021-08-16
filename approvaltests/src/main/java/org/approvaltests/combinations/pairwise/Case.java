@@ -37,6 +37,10 @@ public class Case
     }
     return c;
   }
+  public static void resetRandom()
+  {
+    random = new Random(5);
+  }
   public String getLastKey()
   {
     return keySet().stream().reduce((ignored, o) -> o).orElse(null);
