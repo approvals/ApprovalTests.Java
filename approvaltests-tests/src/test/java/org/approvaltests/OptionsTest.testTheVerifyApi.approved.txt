@@ -2,8 +2,8 @@ verifyMethods
 
 
 private static void org.approvaltests.Approvals.verifyEachFileAgainstMasterDirectory(java.io.File[],org.approvaltests.core.Options) throws java.lang.Error
-public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.ExecutableQuery)
-public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.ExecutableQuery,org.approvaltests.core.Options)
+public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.ExecutableCommand)
+public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.ExecutableCommand,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.SqlLoader)
 public static void org.approvaltests.Approvals.verify(com.spun.util.persistence.SqlLoader,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(java.io.File)

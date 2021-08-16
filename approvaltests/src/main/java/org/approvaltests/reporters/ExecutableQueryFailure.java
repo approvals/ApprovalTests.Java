@@ -1,5 +1,6 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.persistence.ExecutableCommand;
 import java.io.File;
 
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -7,19 +8,18 @@ import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.Options;
 
 import com.spun.util.io.FileUtils;
-import com.spun.util.persistence.ExecutableQuery;
 
 public class ExecutableQueryFailure implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {
   private static final String           FILE_ADDITION = ".queryresults.txt";
-  private final ExecutableQuery         query;
+  private final ExecutableCommand       query;
   private final ApprovalFailureReporter reporter;
-  private ExecutableQueryFailure(ExecutableQuery query, ApprovalFailureReporter reporter)
+  private ExecutableQueryFailure(ExecutableCommand query, ApprovalFailureReporter reporter)
   {
     this.query = query;
     this.reporter = reporter;
   }
-  public static Options create(ExecutableQuery query, Options options)
+  public static Options create(ExecutableCommand query, Options options)
   {
     ExecutableQueryFailure executableQueryFailure = new ExecutableQueryFailure(query, options.getReporter());
     return options.withReporter(executableQueryFailure);
@@ -34,7 +34,7 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     if (!new File(filename).exists())
     { return filename; }
     String newQuery = FileUtils.readFile(filename).trim();
-    String newResult = query.executeQuery(newQuery);
+    String newResult = query.executeCommand(newQuery);
     File newFile = new File(filename + FILE_ADDITION);
     String header = "\t\tDo NOT approve\n\t\tThis File will be Deleted\n\t\tit is for feedback purposes only\n";
     FileUtils.writeFile(newFile, String.format("%squery:\n%s\n\nresult:\n%s", header, newQuery, newResult));

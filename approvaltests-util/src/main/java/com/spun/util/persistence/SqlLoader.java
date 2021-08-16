@@ -10,7 +10,7 @@ import com.spun.util.database.SQLStatementUtils;
 
 public interface SqlLoader<T> extends Loader<T>
 {
-  public static class ExecutableWrapper<T> implements ExecutableQuery
+  public static class ExecutableWrapper<T> implements ExecutableCommand
   {
     private SqlLoader<T> loader;
     public ExecutableWrapper(SqlLoader<T> loader)
@@ -18,12 +18,12 @@ public interface SqlLoader<T> extends Loader<T>
       this.loader = loader;
     }
     @Override
-    public String executeQuery(String query)
+    public String executeCommand(String command)
     {
       ResultSet sql;
       try
       {
-        sql = SQLStatementUtils.executeQuery(query, loader.getStatement());
+        sql = SQLStatementUtils.executeQuery(command, loader.getStatement());
         return ResultSetWriter.toString(sql);
       }
       catch (Exception e)
@@ -32,7 +32,7 @@ public interface SqlLoader<T> extends Loader<T>
       }
     }
     @Override
-    public String getQuery()
+    public String getCommand()
     {
       return loader.getQuery().toString();
     }

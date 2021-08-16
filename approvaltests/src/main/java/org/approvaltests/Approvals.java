@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.persistence.ExecutableCommand;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -20,10 +21,7 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
-import org.approvaltests.writers.ApprovalTextWriter;
 import org.approvaltests.writers.ApprovalXmlWriter;
-import org.approvaltests.writers.FileApprovalWriter;
-import org.approvaltests.writers.ResultSetApprovalWriter;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
@@ -33,7 +31,6 @@ import com.spun.util.FormattedException;
 import com.spun.util.JsonUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
-import com.spun.util.persistence.ExecutableQuery;
 import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
 
@@ -216,13 +213,13 @@ public class Approvals
       approver.fail();
     }
   }
-  public static void verify(ExecutableQuery query)
+  public static void verify(ExecutableCommand query)
   {
     verify(query, new Options());
   }
-  public static void verify(ExecutableQuery query, Options options)
+  public static void verify(ExecutableCommand query, Options options)
   {
-    verify(query.getQuery(), ExecutableQueryFailure.create(query, options));
+    verify(query.getCommand(), ExecutableQueryFailure.create(query, options));
   }
   public static void verify(Map<?, ?> map)
   {
