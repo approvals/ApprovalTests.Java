@@ -13,22 +13,25 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-class LoaderTest {
-    @Test
-    @UseReporter(DiffMergeReporter.class)
-    void testWithMockedData() {
-        try (WithTimeZone tz = new WithTimeZone("PST")) {
-            Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
-            MockLoader<List<Shift>> shifts = new MockLoader<>(
-                    Arrays.asList(new Shift("Scott", "Chef", DateUtils.setTime(day, 8, 0)),
-                            new Shift("Llewellyn", "Dishwasher", DateUtils.setTime(day, 9, 30))));
-            Approvals.verify(KitchenScheduler.print(shifts, day), new Options().forFile().withExtension(".md"));
-        }
+class LoaderTest
+{
+  @Test
+  @UseReporter(DiffMergeReporter.class)
+  void testWithMockedData()
+  {
+    try (WithTimeZone tz = new WithTimeZone("PST"))
+    {
+      Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
+      MockLoader<List<Shift>> shifts = new MockLoader<>(
+          Arrays.asList(new Shift("Scott", "Chef", DateUtils.setTime(day, 8, 0)),
+              new Shift("Llewellyn", "Dishwasher", DateUtils.setTime(day, 9, 30))));
+      Approvals.verify(KitchenScheduler.print(shifts, day), new Options().forFile().withExtension(".md"));
     }
-
-    @Test
-    void testWithDatabaseAccess() {
-        Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
-        Approvals.verify(new LoadShiftsFromDatabase(day));
-    }
+  }
+  @Test
+  void testWithDatabaseAccess()
+  {
+    Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
+    Approvals.verify(new LoadShiftsFromDatabase(day));
+  }
 }
