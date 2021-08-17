@@ -27,7 +27,7 @@ public class IntelliJPathResolverTest
           .getWorkingReportersForEnviroment().get(0);
       final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");
       // the moment it breaks and we are annoyed, start scrubbing.
-      final Scrubber scrubber = new RegExScrubber("/211.\\d+.\\d+/", "/211.xxx.xxx/");
+      final Scrubber scrubber = new RegExScrubber("/21\\d.\\d+.\\d+/", "/211.xxx.xxx/");
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
