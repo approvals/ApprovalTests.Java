@@ -22,6 +22,7 @@
 * verify [Images](reference/AwtApprovals.md#top)
 * remove inconsistent output using [Scrubbers](Scrubbers.md#top)
 * have [Consistent Time Zones](how_to/ConsistentTimeZones.md#top) in your tests 
+* separate and test [Data Access and Rendering](how_to/PatternsForTestingDataAccessAndRendering.md#top)
 
 ## Configuration
 
