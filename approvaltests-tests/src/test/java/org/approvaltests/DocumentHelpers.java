@@ -28,8 +28,7 @@ public class DocumentHelpers
     Queryable<String> lines = methods.select(m -> String.format("%s. [%s ](%s) (%s)",
         m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParameters(m)))
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
-    Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l),
-        new Options().forFile().withExtension(".md"));
+    Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
   @Test
   public void testLineNumberOfThisMethod() throws NoSuchMethodException
