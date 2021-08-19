@@ -3,7 +3,10 @@
 # How to separate and test data access and data rendering
 
 <!-- toc -->
-<!-- endToc -->
+## Contents
+
+  * [The problem](#the-problem)
+  * [The scenario](#the-scenario)<!-- endToc -->
 
 
 ## The problem
