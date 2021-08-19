@@ -21,6 +21,7 @@
 * use [MachineNameSpecific Tests](how_to/MachineNameSpecificTest.md#top)
 * verify [Images](reference/AwtApprovals.md#top)
 * remove inconsistent output using [Scrubbers](Scrubbers.md#top)
+* have [Consistent Time Zones](how_to/ConsistentTimeZones.md#top) in your tests 
 
 ## Configuration
 
