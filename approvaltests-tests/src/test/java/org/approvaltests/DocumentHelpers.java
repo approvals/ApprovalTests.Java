@@ -29,7 +29,7 @@ public class DocumentHelpers
         m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParameters(m)))
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l),
-        new Options().forFile().withExtension(".md").withReporter(QuietReporter.INSTANCE));
+        new Options().forFile().withExtension(".md"));
   }
   @Test
   public void testLineNumberOfThisMethod() throws NoSuchMethodException
