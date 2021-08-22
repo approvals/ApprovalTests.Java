@@ -19,21 +19,38 @@ public class FileApprover implements ApprovalApprover
   private File                                approved;
   private final ApprovalWriter                writer;
   private Function2<File, File, VerifyResult> approver;
+  private boolean                             autoApprove;
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
-    this(writer, namer, FileApprover::approveTextFile);
+    this(writer, namer, FileApprover::approveTextFile, false);
   }
-  public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver)
+  public FileApprover(ApprovalWriter writer, ApprovalNamer namer, boolean autoApprove)
+  {
+    this(writer, namer, FileApprover::approveTextFile, autoApprove);
+  }
+  public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver,
+      boolean autoApprove)
   {
     this.writer = writer;
     received = namer.getReceivedFile(writer.getFileExtensionWithDot());
     approved = namer.getApprovedFile(writer.getFileExtensionWithDot());
     this.approver = approver;
+    this.autoApprove = autoApprove;
   }
   public VerifyResult approve()
   {
-    received = writer.writeReceivedFile(received);
-    return approver.call(received, approved);
+    File result = null;
+    if (autoApprove)
+    {
+      approved = writer.writeReceivedFile(approved);
+      result = approved;
+    }
+    else
+    {
+      received = writer.writeReceivedFile(received);
+      result = received;
+    }
+    return approver.call(result, approved);
   }
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter)
   {

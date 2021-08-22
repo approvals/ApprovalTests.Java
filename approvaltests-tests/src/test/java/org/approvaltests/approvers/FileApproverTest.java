@@ -67,7 +67,7 @@ public class FileApproverTest
     ApprovalTextWriter writer = new ApprovalTextWriter("Random: ", new Options());
     ApprovalNamer namer = Approvals.createApprovalNamer();
     Function2<File, File, VerifyResult> approveEverything = (r, a) -> VerifyResult.SUCCESS;
-    Approvals.verify(new FileApprover(writer, namer, approveEverything));
+    Approvals.verify(new FileApprover(writer, namer, approveEverything, false));
     // end-snippet
   }
 }
