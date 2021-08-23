@@ -136,7 +136,7 @@ public class EventTime
     public SortEventTimers(SortBy type, boolean asc)
     {
       this.type = type;
-      this.asc = (asc) ? 1 : -1;
+      this.asc = asc ? 1 : -1;
     }
     public int compare(EventTime o1, EventTime o2) throws java.lang.ClassCastException
     {
