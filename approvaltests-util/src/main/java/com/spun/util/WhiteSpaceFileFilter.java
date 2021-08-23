@@ -7,22 +7,18 @@ public class WhiteSpaceFileFilter implements java.io.FileFilter
   @Override
   public boolean accept(File pathname)
   {
-    if (pathname.getName().equals(".") || pathname.getName().equals("."))
+    if (".".equals(pathname.getName()))
     {
       return false;
     }
-    else if (pathname.getName().equalsIgnoreCase("email"))
+    else if ("email".equalsIgnoreCase(pathname.getName()))
     {
       return false;
-    }
-    else if (pathname.isDirectory() || (pathname.getName().contains(".htm"))
-        || (pathname.getName().contains(".txt")))
-    {
-      return true;
     }
     else
     {
-      return false;
+      return pathname.isDirectory() || (pathname.getName().contains(".htm"))
+          || (pathname.getName().contains(".txt"));
     }
   }
 }
