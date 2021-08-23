@@ -31,11 +31,10 @@ class LoaderTest
     }
   }
   // end-snippet
-
-  private void verifyMarkdown(String print) {
+  private void verifyMarkdown(String print)
+  {
     Approvals.verify(print, new Options().forFile().withExtension(".md"));
   }
-
   @Test
   void testWithDatabaseAccess()
   {

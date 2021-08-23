@@ -35,7 +35,7 @@ public class VelocityUtilsTest
     // begin-snippet: with_time_zone
     try (WithTimeZone tz = new WithTimeZone("UTC"))
     {
-        // All code within this block will see the computer as being in the UTC time zone
+      // All code within this block will see the computer as being in the UTC time zone
     }
     // The computer's time zone will revert to previous setting here
     // end-snippet
