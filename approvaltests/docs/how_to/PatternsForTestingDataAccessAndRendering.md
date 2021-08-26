@@ -11,7 +11,16 @@
     * [01/02/2020](#01022020)
   * [Pattern #1: Separating the database](#pattern-1-separating-the-database)
     * [Summary](#summary)
-  * [Pattern #2: Testing the loaders](#pattern-2-testing-the-loaders)<!-- endToc -->
+  * [Pattern #2: Testing the loaders](#pattern-2-testing-the-loaders)
+    * [The Test](#the-test)
+    * [Testing Executable Commands](#testing-executable-commands)
+      * [The ExecutableCommand interface](#the-executablecommand-interface)
+      * [Testing Pattern](#testing-pattern)
+        * [On First Failure](#on-first-failure)
+        * [On Success](#on-success)
+        * [On Subsequent Failure](#on-subsequent-failure)
+      * [Making Loader Implement ExecutableCommand](#making-loader-implement-executablecommand)
+        * [Making an adapter for your Loader](#making-an-adapter-for-your-loader)<!-- endToc -->
 
 
 ## The problem
@@ -105,7 +114,18 @@ We will start by showing you the test. We will point out a couple of important t
 1. It does not require a database (to pass)
 1. Passing tests execute very quickly
 
-snippet: testing_executable_command
+<!-- snippet: testing_executable_command -->
+<a id='snippet-testing_executable_command'></a>
+```java
+@Test
+void testWithDatabaseAccess()
+{
+  Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
+  Approvals.verify(new LoadShiftsFromDatabase(day));
+}
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L38-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ### Testing Executable Commands
 
@@ -113,7 +133,19 @@ snippet: testing_executable_command
 
 The reason the above test is so simple to write is because we have made our loader also implement an ExecutableCommand. Let's start with what an ExecutableCommand is:
 
-snippet: ExecutableCommand.java
+<!-- snippet: ExecutableCommand.java -->
+<a id='snippet-ExecutableCommand.java'></a>
+```java
+package com.spun.util.persistence;
+
+public interface ExecutableCommand
+{
+  public String getCommand();
+  public String executeCommand(String command);
+}
+```
+<sup><a href='/approvaltests-util/src/main/java/com/spun/util/persistence/ExecutableCommand.java#L1-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-ExecutableCommand.java' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 As you can see an ExecutableCommand is a simple interface that allows you to **get a command** as a text string and allows you to **give a command** as text and also get a result as text.
 
