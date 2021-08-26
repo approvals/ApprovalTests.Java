@@ -103,7 +103,7 @@ public class SQLQuery
   public String addFromWithJoin(String table, String joinWith, String joinOn, String joinType)
   {
     String alias = "" + (char) ('a' + tableAliasOffset + from.size());
-    String sql = (joinType + " " + table + " AS " + alias + " ON " + joinWith + " = " + alias + "." + joinOn);
+    String sql = joinType + " " + table + " AS " + alias + " ON " + joinWith + " = " + alias + "." + joinOn;
     from.add(new FromPart(sql, true));
     return alias;
   }

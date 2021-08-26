@@ -80,7 +80,7 @@ public class LapTimer
     SimpleLogger.variable("difference", difference);
     lapTimes.add(new LapTime(difference, label));
     lapTime = newTime;
-    endTime = (end) ? newTime : 0;
+    endTime = end ? newTime : 0;
     return difference;
   }
   public LapTime[] getLapTimes()

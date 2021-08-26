@@ -76,7 +76,7 @@ public class ProgessFrame extends JDialog
   }
   public void setStateWithTime(int progress)
   {
-    long time = (System.currentTimeMillis() - startTime);
+    long time = System.currentTimeMillis() - startTime;
     double speed = (progress + 1) / (double) time;
     long totalTime = (long) (this.maxSteps / speed);
     long remainingTime = totalTime - time;

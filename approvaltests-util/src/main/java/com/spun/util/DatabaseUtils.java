@@ -218,10 +218,10 @@ public class DatabaseUtils
   public static String makeSQL2000URL(String protocol, String server, String port, String database)
   {
     String theURL = "";
-    protocol = (StringUtils.isNonZero(protocol)) ? (protocol) + "://" : "";
-    server = (StringUtils.isNonZero(server)) ? (server) : "";
-    port = (StringUtils.isNonZero(port)) ? (":" + port) : "";
-    database = (StringUtils.isNonZero(database)) ? (";DatabaseName=" + database) : "";
+    protocol = StringUtils.isNonZero(protocol) ? protocol + "://" : "";
+    server = StringUtils.isNonZero(server) ? server : "";
+    port = StringUtils.isNonZero(port) ? ":" + port : "";
+    database = StringUtils.isNonZero(database) ? ";DatabaseName=" + database : "";
     theURL = protocol + server + port + database + ";SelectMethod=cursor";
     return theURL;
   }
@@ -231,10 +231,10 @@ public class DatabaseUtils
   public static String makeMySqlURL(String protocol, String server, String port, String database)
   {
     String theURL = "";
-    protocol = (StringUtils.isNonZero(protocol)) ? (protocol) + "://" : "";
-    server = (StringUtils.isNonZero(server)) ? (server) : "";
-    port = (StringUtils.isNonZero(port)) ? (":" + port) : "";
-    database = (StringUtils.isNonZero(database)) ? ("/" + database) : "";
+    protocol = StringUtils.isNonZero(protocol) ? protocol + "://" : "";
+    server = StringUtils.isNonZero(server) ? server : "";
+    port = StringUtils.isNonZero(port) ? ":" + port : "";
+    database = StringUtils.isNonZero(database) ? "/" + database : "";
     theURL = protocol + server + port + database;
     return theURL;
   }
@@ -266,8 +266,6 @@ public class DatabaseUtils
   public static String makeJDBCAccessURL(String protocol, String server, String port, String database)
   {
     String theURL = "";
-    //    port = (StringUtils.isNonZero(port)) ? (":" + port) : "";
-    //    server = (StringUtils.isNonZero(server)) ? (server) : "";
     database = (StringUtils.isNonZero(database)) ? ("" + database) : "";
     theURL = protocol + database;
     return theURL;
@@ -282,10 +280,9 @@ public class DatabaseUtils
     String theURL = null;
     try
     {
-      driver = (StringUtils.isNonZero(driver)) ? (driver) : "sun.jdbc.odbc.JdbcOdbcDriver";
+      driver = StringUtils.isNonZero(driver) ? driver : "sun.jdbc.odbc.JdbcOdbcDriver";
       theURL = makeURL(protocol, server, port, database, type);
       SimpleLogger.variable("URL = " + theURL);
-      //       My_System.variable(driver);
       Class.forName(driver).newInstance();
       con = DriverManager.getConnection(theURL, userName, password);
     }
@@ -352,7 +349,7 @@ public class DatabaseUtils
       {
         returning.append(upper.charAt(++place));
       }
-      else if ((place == 0) && (capFirstLetter))
+      else if (place == 0 && capFirstLetter)
       {
         returning.append(upper.charAt(0));
       }
@@ -547,7 +544,7 @@ public class DatabaseUtils
   }
   public static String formatBoolean(boolean b)
   {
-    return (b) ? "'1'" : "'0'"; // added quotes for postgres
+    return b ? "'1'" : "'0'"; // added quotes for postgres
   }
   /**
    * This is for none space single words, such as email, name, handle

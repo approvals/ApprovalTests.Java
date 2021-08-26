@@ -87,7 +87,7 @@ public class SimpleLoggerInstance
   }
   public void stopTimer(long startTime, long maxTime, String function)
   {
-    long diff = (System.currentTimeMillis() - startTime);
+    long diff = System.currentTimeMillis() - startTime;
     if (diff > maxTime)
     {
       warning("Time Limit Exceeded - " + function + " [" + new DateDifference(diff).getStandardTimeText(2) + " > "
