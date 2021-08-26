@@ -35,10 +35,12 @@ class LoaderTest
   {
     Approvals.verify(print, new Options().forFile().withExtension(".md"));
   }
+  // begin-snippet: testing_executable_command
   @Test
   void testWithDatabaseAccess()
   {
     Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
     Approvals.verify(new LoadShiftsFromDatabase(day));
   }
+  // end-snippet
 }
