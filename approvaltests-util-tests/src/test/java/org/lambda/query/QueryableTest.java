@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.approvaltests.Approvals;
@@ -123,5 +124,12 @@ class QueryableTest
     {
       this.c = c;
     }
+  }
+
+  @Test
+  void testSelectMany() {
+    Queryable<List<String>> names = Queryable.as(Arrays.asList("Anna", "Abby", "Alice"), Arrays.asList("Bob", "Barbara", "Barry"));
+    Queryable<String> allNames = names.selectMany(n -> n);
+    Approvals.verifyAll("", allNames);
   }
 }

@@ -3,6 +3,7 @@ package org.lambda.query;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import org.lambda.Extendable;
@@ -141,5 +142,9 @@ public class Queryable<In> extends ArrayList<In>
       type = (Class<In>) ClassUtils.getGreatestCommonBaseType(this);
     }
     return type;
+  }
+
+  public <Out> Queryable<Out> selectMany(Function1<In, Collection<Out>> selector) {
+    return Query.selectMany(this, selector);
   }
 }

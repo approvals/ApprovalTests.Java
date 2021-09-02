@@ -202,4 +202,13 @@ public class Query<In>
     { return null; }
     return asList.get(asList.size() - 1);
   }
+
+  public static <Out, In> Queryable<Out> selectMany(Queryable<In> list, Function1<In,Collection<Out>> selector) {
+    Queryable<Collection<Out>> result = select(list, selector);
+    Queryable<Out> out = new Queryable<>();
+    for (Collection<Out> item : result) {
+      out.addAll(item);
+    }
+    return out;
+  }
 }
