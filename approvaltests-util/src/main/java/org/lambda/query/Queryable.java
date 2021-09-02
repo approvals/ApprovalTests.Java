@@ -143,12 +143,12 @@ public class Queryable<In> extends ArrayList<In>
     }
     return type;
   }
-
-  public <Out> Queryable<Out> selectMany(Function1<In, Collection<Out>> selector) {
+  public <Out> Queryable<Out> selectMany(Function1<In, Collection<Out>> selector)
+  {
     return Query.selectMany(this, selector);
   }
-
-  public <Out> Queryable<Out> selectManyArray(Function1<In, Out[]> selector) {
+  public <Out> Queryable<Out> selectManyArray(Function1<In, Out[]> selector)
+  {
     return Query.selectManyArray(this, selector);
   }
 }

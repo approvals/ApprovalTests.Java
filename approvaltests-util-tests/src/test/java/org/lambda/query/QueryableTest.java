@@ -126,18 +126,20 @@ class QueryableTest
       this.c = c;
     }
   }
-
   @Test
-  void testSelectMany() {
-    Queryable<List<String>> names = Queryable.as(Arrays.asList("Anna", "Abby", "Alice"), Arrays.asList("Bob", "Barbara", "Barry"));
+  void testSelectMany()
+  {
+    Queryable<List<String>> names = Queryable.as(Arrays.asList("Anna", "Abby", "Alice"),
+        Arrays.asList("Bob", "Barbara", "Barry"));
     Queryable<String> allNames = names.selectMany(n -> n);
     Approvals.verifyAll("", allNames);
   }
-
   @Test
-  void testSelectManyCharacters() {
+  void testSelectManyCharacters()
+  {
     // begin-snippet: queryable_select_many
-    Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven years ago", "When in the course of human events");
+    Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven years ago",
+        "When in the course of human events");
     Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
     // end-snippet
     Approvals.verifyAll("", allNames);

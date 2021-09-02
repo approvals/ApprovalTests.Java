@@ -297,15 +297,15 @@ public class ArrayUtils
       return defaultIfNotFound.call();
     }
   }
-
-  public static Collection<Character> asList(char[] toCharArray) {
+  public static Collection<Character> asList(char[] toCharArray)
+  {
     ArrayList<Character> allChars = new ArrayList<>();
-    for (char ch : toCharArray) {
+    for (char ch : toCharArray)
+    {
       allChars.add(ch);
     }
     return allChars;
   }
-
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;

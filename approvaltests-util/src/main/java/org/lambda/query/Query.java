@@ -202,8 +202,8 @@ public class Query<In>
     { return null; }
     return asList.get(asList.size() - 1);
   }
-
-  public static <Out, In> Queryable<Out> selectMany(Queryable<In> list, Function1<In,Collection<Out>> selector) {
+  public static <Out, In> Queryable<Out> selectMany(Queryable<In> list, Function1<In, Collection<Out>> selector)
+  {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
     {
@@ -211,8 +211,8 @@ public class Query<In>
     }
     return out;
   }
-
-  public static <Out, In> Queryable<Out> selectManyArray(Queryable<In> list, Function1<In,Out[]> selector) {
+  public static <Out, In> Queryable<Out> selectManyArray(Queryable<In> list, Function1<In, Out[]> selector)
+  {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
     {
