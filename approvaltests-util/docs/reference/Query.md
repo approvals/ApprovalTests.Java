@@ -86,6 +86,30 @@ List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collecto
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L60-L62' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+### API
+
+#### SelectMany
+
+SelectMany allows you to flatten query results.
+
+For example:  
+
+If each element of your SELECT statement is a List<String> you would get back a List<List<String>>. If you would like to flatten that into a List<String>, the easiest way is to do a Query.selectMany(). 
+
+##### SelectMany vs SelectManyArray
+
+Because of the limitations of the Java language, we could not override the function to allow you to return either a list or an array in your query. As a workaround we overrode the name, so if you are returning a String[] you would need to call selectManyArray.
+
+##### Example:
+
+The following code extracts the words from the following sentences, and orders them alphabetically:
+
+snippet: queryable_select_many
+
+resulting in
+
+snippet: QueryableTest.testSelectManyCharacters.approved.txt
+
 ## HowTos
 * [How to extend Queryable](../how_to/ExtendQueryable.md#top)
 

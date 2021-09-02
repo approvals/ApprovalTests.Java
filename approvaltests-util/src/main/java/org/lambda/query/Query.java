@@ -211,4 +211,13 @@ public class Query<In>
     }
     return out;
   }
+
+  public static <Out, In> Queryable<Out> selectManyArray(Queryable<In> list, Function1<In,Out[]> selector) {
+    Queryable<Out> out = new Queryable<Out>();
+    for (In i : list)
+    {
+      out.addAll(Arrays.asList(selector.call(i)));
+    }
+    return out;
+  }
 }
