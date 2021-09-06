@@ -229,11 +229,18 @@ public class Query<In>
   public static <Key, In> Queryable<Map.Entry<Key, Queryable<In>>> groupBy(Queryable<In> list,
       Function1<In, Key> keySelector)
   {
-    Queryable<Map.Entry<Key, Queryable<In>>> tuples = new Queryable<>();
-    Queryable<Map.Entry<Key, In>> objectsWithKey = list.select(i -> new SimpleEntry<>(keySelector.call(i), i));
-    for (Map.Entry<Key, In> tuple : objectsWithKey)
+    return groupBy(list, keySelector, v -> v, r -> r);
+  }
+  public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Queryable<In> list,
+      Function1<In, Key> keySelector, Function1<In, Out1> valueSelector,
+      Function1<Queryable<Out1>, Out2> resultSelector)
+  {
+    Queryable<Map.Entry<Key, Queryable<Out1>>> tuples = new Queryable<>();
+    Queryable<Map.Entry<Key, Out1>> objectsWithKey = list
+        .select(i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
+    for (Entry<Key, Out1> tuple : objectsWithKey)
     {
-      Map.Entry<Key, Queryable<In>> first = tuples.first(o -> o.getKey().equals(tuple.getKey()));
+      Map.Entry<Key, Queryable<Out1>> first = tuples.first(o -> o.getKey().equals(tuple.getKey()));
       if (first == null)
       {
         first = new SimpleEntry<>(tuple.getKey(), Queryable.as(tuple.getValue()));
@@ -244,28 +251,6 @@ public class Query<In>
         first.getValue().add(tuple.getValue());
       }
     }
-    return tuples;
-  }
-  public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Queryable<In> list,
-      Function1<In, Key> keySelector, Function1<In, Out1> valueSelector,
-      Function1<List<Out1>, Out2> resultSelector)
-  {
-    Queryable<Map.Entry<Key, Queryable<Out1>>> tuples = new Queryable<>();
-    Queryable<Map.Entry<Key, Out1>> objectsWithKey = list
-        .select(i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
-    for (Entry<Key, Out1> tuple : objectsWithKey)
-    {
-      Map.Entry<Key, Queryable<Out1>> first = tuples.first(o -> o.getKey().equals(tuple.getKey()));
-      if (first == null)
-      {
-        first = new SimpleEntry(tuple.getKey(), Queryable.as(tuple.getValue()));
-        tuples.add(first);
-      }
-      else
-      {
-        first.getValue().add(tuple.getValue());
-      }
-    }
-    return tuples.select(t -> new SimpleEntry(t.getKey(), resultSelector.call(t.getValue())));
+    return tuples.select(t -> new SimpleEntry<>(t.getKey(), resultSelector.call(t.getValue())));
   }
 }

@@ -157,7 +157,7 @@ public class Queryable<In> extends ArrayList<In>
     return Query.groupBy(this, keySelector);
   }
   public <Key, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Function1<In, Key> keySelector,
-      Function1<In, Out1> valueSelector, Function1<List<Out1>, Out2> resultSelector)
+      Function1<In, Out1> valueSelector, Function1<Queryable<Out1>, Out2> resultSelector)
   {
     return Query.groupBy(this, keySelector, valueSelector, resultSelector);
   }
