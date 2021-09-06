@@ -5,6 +5,7 @@
 <!-- toc -->
 ## Contents
 
+  * [What it is](#what-it-is)
     * [Comparison vs. Streams](#comparison-vs-streams)
       * [Other benefits](#other-benefits)
     * [Queryable extends List](#queryable-extends-list)
@@ -15,6 +16,7 @@
     * [GroupBy](#groupby)
       * [Full transforms](#full-transforms)
   * [HowTos](#howtos)<!-- endToc -->
+
 ## What it is
 Query (and the Queryable wrapper) is an alternative to Streams. In other words it is an implementation of Map/Reduce 
 based on the naming style of MS Linq.
