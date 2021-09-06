@@ -166,4 +166,18 @@ class QueryableTest
     Queryable<Entry<String, Integer>> result = words.groupBy(w -> w, w -> w, r -> r.size());
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
+  @Test
+  void testGroupByCombineWordsOfSimilarLengths()
+  {
+    Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
+    Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
+        r -> r.join("_"));
+    Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
+  }
+  @Test
+  void testJoin()
+  {
+    String result = Queryable.as("hello", null, "world").join("_");
+    assertEquals("hello_null_world", result);
+  }
 }

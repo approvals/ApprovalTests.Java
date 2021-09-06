@@ -161,4 +161,8 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.groupBy(this, keySelector, valueSelector, resultSelector);
   }
+  public String join(String joinCharacter)
+  {
+    return String.join(joinCharacter, this.select(t -> "" + t));
+  }
 }
