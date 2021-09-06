@@ -8,6 +8,10 @@
     * [Comparison vs. Streams](#comparison-vs-streams)
       * [Other benefits](#other-benefits)
     * [Queryable extends List](#queryable-extends-list)
+    * [API](#api)
+      * [SelectMany](#selectmany)
+        * [SelectMany vs SelectManyArray](#selectmany-vs-selectmanyarray)
+        * [Example:](#example)
   * [HowTos](#howtos)<!-- endToc -->
 ## What it is
 Query (and the Queryable wrapper) is an alternative to Streams. In other words it is an implementation of Map/Reduce 
@@ -104,11 +108,40 @@ Because of the limitations of the Java language, we could not override the funct
 
 The following code extracts the words from the following sentences, and orders them alphabetically:
 
-snippet: queryable_select_many
+<!-- snippet: queryable_select_many -->
+<a id='snippet-queryable_select_many'></a>
+```java
+Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven years ago",
+    "When in the course of human events");
+Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L140-L144' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 resulting in
 
-snippet: QueryableTest.testSelectManyCharacters.approved.txt
+<!-- snippet: QueryableTest.testSelectManyCharacters.approved.txt -->
+<a id='snippet-QueryableTest.testSelectManyCharacters.approved.txt'></a>
+```txt
+[0] = Fourscore
+[1] = Now
+[2] = When
+[3] = ago
+[4] = and
+[5] = course
+[6] = events
+[7] = human
+[8] = in
+[9] = is
+[10] = of
+[11] = seven
+[12] = the
+[13] = the
+[14] = time
+[15] = years
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.testSelectManyCharacters.approved.txt#L1-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-QueryableTest.testSelectManyCharacters.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## HowTos
 * [How to extend Queryable](../how_to/ExtendQueryable.md#top)
