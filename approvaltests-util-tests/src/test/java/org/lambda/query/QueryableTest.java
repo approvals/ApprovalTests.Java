@@ -183,4 +183,10 @@ class QueryableTest
     String result = Queryable.as("hello", null, "world").join("_");
     assertEquals("hello_null_world", result);
   }
+  @Test
+  void testJoinWithTransformation()
+  {
+    String result = Queryable.as("Hello", "World").join("_", String::toUpperCase);
+    assertEquals("HELLO_WORLD", result);
+  }
 }

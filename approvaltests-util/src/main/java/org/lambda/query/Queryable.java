@@ -165,4 +165,8 @@ public class Queryable<In> extends ArrayList<In>
   {
     return String.join(joinCharacter, this.select(t -> "" + t));
   }
+  public <Out> String join(String joinCharacter, Function1<In, Out> transformer)
+  {
+    return String.join(joinCharacter, this.select(t -> "" + transformer.call(t)));
+  }
 }
