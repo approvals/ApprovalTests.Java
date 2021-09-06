@@ -1,0 +1,5 @@
+[0] = One=[One]
+[1] = Fish=[Fish, Fish, Fish, Fish]
+[2] = Two=[Two]
+[3] = Red=[Red]
+[4] = Blue=[Blue]

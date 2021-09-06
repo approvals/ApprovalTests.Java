@@ -6,8 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import com.spun.util.ArrayUtils;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
@@ -143,5 +144,26 @@ class QueryableTest
     Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
     // end-snippet
     Approvals.verifyAll("", allNames);
+  }
+  @Test
+  void testGroupBy()
+  {
+    Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
+    Queryable<Map.Entry<String, Queryable<String>>> result = words.groupBy(w -> w);
+    Approvals.verifyAll("", result);
+  }
+  @Test
+  void testGroupByWordLength()
+  {
+    Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
+    Queryable<Entry<Object, Queryable<String>>> result = words.groupBy(w -> w.length());
+    Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
+  }
+  @Test
+  void testGroupByWordCount()
+  {
+    Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
+    Queryable<Entry<String, Integer>> result = words.groupBy(w -> w, w -> w, r -> r.size());
+    Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
 }

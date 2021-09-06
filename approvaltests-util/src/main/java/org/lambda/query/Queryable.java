@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.lambda.Extendable;
 import org.lambda.functions.Function1;
@@ -150,5 +151,14 @@ public class Queryable<In> extends ArrayList<In>
   public <Out> Queryable<Out> selectManyArray(Function1<In, Out[]> selector)
   {
     return Query.selectManyArray(this, selector);
+  }
+  public <Key> Queryable<Entry<Key, Queryable<In>>> groupBy(Function1<In, Key> keySelector)
+  {
+    return Query.groupBy(this, keySelector);
+  }
+  public <Key, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Function1<In, Key> keySelector,
+      Function1<In, Out1> valueSelector, Function1<List<Out1>, Out2> resultSelector)
+  {
+    return Query.groupBy(this, keySelector, valueSelector, resultSelector);
   }
 }
