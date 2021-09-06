@@ -1,0 +1,16 @@
+[0] = Fourscore
+[1] = Now
+[2] = When
+[3] = ago
+[4] = and
+[5] = course
+[6] = events
+[7] = human
+[8] = in
+[9] = is
+[10] = of
+[11] = seven
+[12] = the
+[13] = the
+[14] = time
+[15] = years
