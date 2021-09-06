@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.approvaltests.Approvals;
@@ -148,8 +147,10 @@ class QueryableTest
   @Test
   void testGroupBy()
   {
-    Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
-    Queryable<Map.Entry<String, Queryable<String>>> result = words.groupBy(w -> w);
+    // begin-snippet: group_by_key
+    Queryable<String> words = Queryable.as("Jack", "and", "Jill", "jumped", "up", "the", "hill");
+    Queryable<Entry<Character, Queryable<String>>> result = words.groupBy(w -> w.toLowerCase().charAt(0));
+    // end-snippet
     Approvals.verifyAll("", result);
   }
   @Test
@@ -169,9 +170,11 @@ class QueryableTest
   @Test
   void testGroupByCombineWordsOfSimilarLengths()
   {
+    // begin-snippet: group_by_full
     Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
     Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
         r -> r.join("_"));
+    // end-snippet
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
   @Test

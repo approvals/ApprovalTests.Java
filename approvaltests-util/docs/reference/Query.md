@@ -12,6 +12,8 @@
       * [SelectMany](#selectmany)
         * [SelectMany vs SelectManyArray](#selectmany-vs-selectmanyarray)
         * [Example:](#example)
+    * [GroupBy](#groupby)
+      * [Full transforms](#full-transforms)
   * [HowTos](#howtos)<!-- endToc -->
 ## What it is
 Query (and the Queryable wrapper) is an alternative to Streams. In other words it is an implementation of Map/Reduce 
@@ -141,6 +143,56 @@ resulting in
 [15] = years
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.testSelectManyCharacters.approved.txt#L1-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-QueryableTest.testSelectManyCharacters.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+
+### GroupBy
+
+Here is a simple example of grouping words by their first letter.
+<!-- snippet: group_by_key -->
+<a id='snippet-group_by_key'></a>
+```java
+Queryable<String> words = Queryable.as("Jack", "and", "Jill", "jumped", "up", "the", "hill");
+Queryable<Entry<Character, Queryable<String>>> result = words.groupBy(w -> w.toLowerCase().charAt(0));
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L150-L153' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_key' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+producing:
+<!-- snippet: QueryableTest.testGroupBy.approved.txt -->
+<a id='snippet-QueryableTest.testGroupBy.approved.txt'></a>
+```txt
+[0] = j=[Jack, Jill, jumped]
+[1] = a=[and]
+[2] = u=[up]
+[3] = t=[the]
+[4] = h=[hill]
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.testGroupBy.approved.txt#L1-L5' title='Snippet source file'>snippet source</a> | <a href='#snippet-QueryableTest.testGroupBy.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+#### Full transforms
+
+In a group by, you can select both how the key is selected and how each object for the key is selected,
+as well as how the final list is transformed.
+
+Here is an example of doing all three to count the number of words of the same length:
+<!-- snippet: group_by_full -->
+<a id='snippet-group_by_full'></a>
+```java
+Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
+Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
+    r -> r.join("_"));
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L173-L177' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+resulting in
+<!-- snippet: QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt -->
+<a id='snippet-QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt'></a>
+```txt
+3 = one_two_red
+4 = fish_fish_fish_blue_fish
+```
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## HowTos
