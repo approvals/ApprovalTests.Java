@@ -1,12 +1,12 @@
 package org.approvaltests.combinations;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.lambda.actions.Action9;
 import org.lambda.functions.Function9;
+import org.lambda.query.Query;
 
 public class CombinationsHelper
 {
@@ -80,14 +80,6 @@ public class CombinationsHelper
   }
   public static List<Object> filterEmpty(Object... objects)
   {
-    List<Object> list = new ArrayList<>();
-    for (Object object : objects)
-    {
-      if (object != EMPTY_ENTRY)
-      {
-        list.add(object);
-      }
-    }
-    return list;
+    return Query.where(objects, o -> o != EMPTY_ENTRY);
   }
 }
