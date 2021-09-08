@@ -18,13 +18,12 @@ public class CombinationsHelper
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
     StringBuffer output = new StringBuffer();
-    Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> foo = (in11, in12, in13, in14, in15, in16, in17, in18,
+    Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> addToOutput = (in11, in12, in13, in14, in15, in16, in17, in18,
         in19) -> {
       output.append(getCombinationText(call, in11, in12, in13, in14, in15, in16, in17, in18, in19));
     };
     doForAllCombinations(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7,
-        parameters8, parameters9, foo);
-    // TODO: we still end up with 1 file which is not what we wanted in the case of SVGs or other file formats
+        parameters8, parameters9, addToOutput);
     Approvals.verify(output, options);
   }
 
@@ -45,7 +44,6 @@ public class CombinationsHelper
     return String.format("%s => %s \n", filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result);
   }
 
-  // TODO: do we want to revert the changes here then again?!
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> void doForAllCombinations(IN1[] parameters1,
       IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6,
       IN7[] parameters7, IN8[] parameters8, IN9[] parameters9,
