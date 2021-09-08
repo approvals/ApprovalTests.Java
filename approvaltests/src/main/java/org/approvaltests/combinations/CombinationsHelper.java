@@ -20,27 +20,31 @@ public class CombinationsHelper
     StringBuffer output = new StringBuffer();
     Action9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> foo = (in11, in12, in13, in14, in15, in16, in17, in18,
         in19) -> {
-      String result;
-      try
-      {
-        result = "" + call.call(in11, in12, in13, in14, in15, in16, in17, in18, in19);
-      }
-      catch (SkipCombination e)
-      {
-        return;
-      }
-      catch (Throwable t)
-      {
-        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
-      }
-      output.append(
-          String.format("%s => %s \n", filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result));
+      output.append(getCombinationText(call, in11, in12, in13, in14, in15, in16, in17, in18, in19));
     };
     doForAllCombinations(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7,
         parameters8, parameters9, foo);
     // TODO: we still end up with 1 file which is not what we wanted in the case of SVGs or other file formats
     Approvals.verify(output, options);
   }
+
+  private static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> String getCombinationText(Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1 in11, IN2 in12, IN3 in13, IN4 in14, IN5 in15, IN6 in16, IN7 in17, IN8 in18, IN9 in19) {
+    String result;
+    try
+    {
+      result = "" + call.call(in11, in12, in13, in14, in15, in16, in17, in18, in19);
+    }
+    catch (SkipCombination e)
+    {
+      return "";
+    }
+    catch (Throwable t)
+    {
+      result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
+    }
+    return String.format("%s => %s \n", filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result);
+  }
+
   // TODO: do we want to revert the changes here then again?!
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> void doForAllCombinations(IN1[] parameters1,
       IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6,
