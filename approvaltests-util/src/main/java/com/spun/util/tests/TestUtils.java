@@ -26,13 +26,14 @@ import com.spun.util.io.StackElementSelector;
 
 public class TestUtils
 {
-  private static Random                         random;
-  private static Function2<Class, String, File> getSourceDirectory = ClassUtils::getSourceDirectory;
+  private static Random                                            random;
+  private static final ThreadLocal<Function2<Class, String, File>> getSourceDirectory = ThreadLocal
+      .withInitial(() -> ClassUtils::getSourceDirectory);
   public static SourceDirectoryRestorer registerSourceDirectoryFinder(
       Function2<Class, String, File> sourceDirectoryFinder)
   {
     SourceDirectoryRestorer c = new SourceDirectoryRestorer();
-    TestUtils.getSourceDirectory = sourceDirectoryFinder;
+    TestUtils.getSourceDirectory.set(sourceDirectoryFinder);
     return c;
   }
   public static class SourceDirectoryRestorer implements AutoCloseable
@@ -40,12 +41,12 @@ public class TestUtils
     private final Function2<Class, String, File> original;
     public SourceDirectoryRestorer()
     {
-      this.original = TestUtils.getSourceDirectory;
+      this.original = TestUtils.getSourceDirectory.get();
     }
     @Override
     public void close()
     {
-      TestUtils.getSourceDirectory = original;
+      TestUtils.getSourceDirectory.set(original);
     }
   }
   public static File getFile(String startingDir)
@@ -210,7 +211,7 @@ public class TestUtils
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);
     className = handleInnerClasses(className);
     String fileName = element.getFileName();
-    File dir = getSourceDirectory.call(ObjectUtils.loadClass(fullClassName), fileName);
+    File dir = getSourceDirectory.get().call(ObjectUtils.loadClass(fullClassName), fileName);
     String methodName = unrollLambda(element.getMethodName());
     return new StackTraceReflectionResult(dir, className, fullClassName, methodName);
   }
