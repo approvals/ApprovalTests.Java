@@ -9,18 +9,18 @@ import com.spun.util.SystemUtils;
 
 public class NamerFactory
 {
-  public static String additionalInformation;
+  private static final ThreadLocal<String> additionalInformation = new ThreadLocal<>();
   public static String getAndClearAdditionalInformation()
   {
     String result = getAdditionalInformation();
-    additionalInformation = null;
+    additionalInformation.set(null);
     return result;
   }
   public static String getAdditionalInformation()
   {
-    if (additionalInformation == null)
+    if (additionalInformation.get() == null)
     { return ""; }
-    return "." + additionalInformation;
+    return "." + additionalInformation.get();
   }
   public static ApprovalResults ApprovalResults = new ApprovalResults();
   public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)
@@ -57,6 +57,10 @@ public class NamerFactory
   }
   public static boolean isEmpty()
   {
-    return additionalInformation == null;
+    return additionalInformation.get() == null;
+  }
+  public static void setAdditionalInformation(String info)
+  {
+    additionalInformation.set(info);
   }
 }
