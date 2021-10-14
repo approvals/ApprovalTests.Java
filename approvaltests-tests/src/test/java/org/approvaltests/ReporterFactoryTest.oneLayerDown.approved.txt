@@ -1,0 +1,4 @@
+StackListings [
+  methods=[@org.approvaltests.reporters.UseReporter(value=[class org.approvaltests.reporters.DiffReporter])]
+  classes=[@org.approvaltests.reporters.UseReporter(value=[class org.approvaltests.reporters.ClipboardReporter])]
+]
