@@ -12,7 +12,7 @@ import com.spun.util.io.FileUtils;
 public class DirectoryOutputTest
 {
   @Test
-  public void testAllFilesInDirectory() throws Exception
+  public void testAllFilesInDirectory()
   {
     File directory = FileUtils.createTempDirectory();
     createFilesFor(directory, 3);

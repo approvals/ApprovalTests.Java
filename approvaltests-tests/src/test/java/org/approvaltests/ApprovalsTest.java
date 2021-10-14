@@ -16,12 +16,12 @@ import javax.swing.JButton;
 public class ApprovalsTest
 {
   @Test
-  public void testToString() throws Exception
+  public void testToString()
   {
     Approvals.verify(new Rectangle(5, 10, 100, 200));
   }
   @Test
-  public void testAsJson() throws Exception
+  public void testAsJson()
   {
     Approvals.verifyAsJson(new Rectangle(5, 10, 100, 200));
   }

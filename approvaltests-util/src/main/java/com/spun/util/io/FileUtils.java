@@ -33,14 +33,14 @@ import com.spun.util.ObjectUtils;
  **/
 public class FileUtils
 {
-  public static File createTempDirectory() throws IOException
+  public static File createTempDirectory()
   {
-    File tempFile = File.createTempFile("TEMP", null);
+    File tempFile = ObjectUtils.throwAsError(() -> File.createTempFile("TEMP", null));
     tempFile.delete();
     tempFile.mkdirs();
     return tempFile;
   }
-  public static void deleteDirectory(File directory) throws IOException
+  public static void deleteDirectory(File directory)
   {
     // delete all directory
     File directories[] = directory.listFiles(new SimpleDirectoryFilter());

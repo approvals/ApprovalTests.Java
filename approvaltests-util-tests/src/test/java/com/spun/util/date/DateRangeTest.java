@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import org.approvaltests.Approvals;
+import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 
@@ -65,8 +66,11 @@ public class DateRangeTest
   @Test
   public void testGetMonths() throws Exception
   {
-    DateRange d = new DateRange(DateUtils.parse("2008/01/01"), DateUtils.parse("2009/01/01"));
-    Approvals.verifyAll("months", d.getMonths());
+    try (WithTimeZone tz = new WithTimeZone("UTC"))
+    {
+      DateRange d = new DateRange(DateUtils.parse("2008/01/01"), DateUtils.parse("2009/01/01"));
+      Approvals.verifyAll("months", d.getMonths());
+    }
   }
   @Test
   public void testGetQuarters() throws Exception
