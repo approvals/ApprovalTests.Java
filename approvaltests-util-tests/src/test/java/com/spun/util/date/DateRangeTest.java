@@ -73,8 +73,11 @@ public class DateRangeTest
   }
   @Test
   public void testGetRangeContaining() {
-    DateRange d = new DateRange(DateUtils.parse("2008/01/01"), DateUtils.parse("2009/01/01"));
-    DateRange containing = DateRange.getRangeContaining(d.getQuarters(), d.getMonths()[0]);
-    Approvals.verify(containing.toString());
+    try (WithTimeZone tz = new WithTimeZone("UTC"))
+    {
+      DateRange d = new DateRange(DateUtils.parse("2008/01/01"), DateUtils.parse("2009/01/01"));
+      DateRange containing = DateRange.getRangeContaining(d.getQuarters(), d.getMonths()[0]);
+      Approvals.verify(containing.toString());
+    }
   }
 }

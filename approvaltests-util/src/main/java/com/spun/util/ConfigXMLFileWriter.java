@@ -24,7 +24,7 @@ import org.w3c.dom.Element;
  **/
 public class ConfigXMLFileWriter
 {
-  public static void writeToFile(Class<?> clazz, String fileName, String exclude[]) throws Exception
+  public static void writeToFile(Class<?> clazz, String fileName, String exclude[])
   {
     Document domDocument = createDocument();
     Field fields[] = getFields(clazz, exclude);
@@ -61,24 +61,29 @@ public class ConfigXMLFileWriter
     fields = Query.where(fields, selector).toArray(new Field[0]);
     return Query.orderBy(fields, a -> (a.getName()));
   }
-  private static Document createDocument() throws Exception
+  private static Document createDocument()
   {
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     documentBuilderFactory.setNamespaceAware(false);
     documentBuilderFactory.setIgnoringElementContentWhitespace(true);
-    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+    DocumentBuilder documentBuilder =
+            ObjectUtils.throwAsError(() -> documentBuilderFactory.newDocumentBuilder());
     return documentBuilder.getDOMImplementation().createDocument("", "XML", null);
   }
-  public static void writeToIndentedXMLFile(String configFile, Document domDocument) throws Exception
+  public static void writeToIndentedXMLFile(String configFile, Document domDocument)
   {
-    DataOutputStream out = new DataOutputStream(new FileOutputStream(configFile));
-    TransformerFactory tFactory = TransformerFactory.newInstance();
-    Transformer transformer = tFactory.newTransformer();
-    DOMSource source = new DOMSource(domDocument);
-    StreamResult result = new StreamResult(out);
-    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-    transformer.transform(source, result);
-    out.close();
+    try {
+      DataOutputStream out = new DataOutputStream(new FileOutputStream(configFile));
+      TransformerFactory tFactory = TransformerFactory.newInstance();
+      Transformer transformer = tFactory.newTransformer();
+      DOMSource source = new DOMSource(domDocument);
+      StreamResult result = new StreamResult(out);
+      transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+      transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+      transformer.transform(source, result);
+      out.close();
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
 }
