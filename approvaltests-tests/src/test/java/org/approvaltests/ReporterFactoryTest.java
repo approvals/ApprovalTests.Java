@@ -15,23 +15,12 @@ import com.spun.util.ThreadUtils;
 public class ReporterFactoryTest
 {
   @Test
-  public void testReportersAtClassLevel() throws Exception
-  {
+  public void testReportersAtClassLevel() {
     assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
-  /*
   @Test
-  @UseReporter(PitReporter.class)
-  public void testReportersAtMethodLevel() throws Exception
-  {
-    oneLayerDown();
-    assertEquals(PitReporter.class, ReporterFactoryHelper.getClassFor());
-  }
-  
-   */
   @UseReporter(DiffReporter.class)
-  public void oneLayerDown() throws Exception
-  {
+  public void oneLayerDown() {
     StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class,
         ThreadUtils.getStackTrace());
     Approvals.verify(listings);
