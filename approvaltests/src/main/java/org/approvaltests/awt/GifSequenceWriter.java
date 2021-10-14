@@ -111,7 +111,8 @@ public class GifSequenceWriter implements AutoCloseable
   }
   public void writeToSequence(RenderedImage img, Duration timeBetweenFrames)
   {
-    ObjectUtils.throwAsError(() -> gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam));
+    ObjectUtils.throwAsError(
+        () -> gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam));
   }
   /**
    * Close this GifSequenceWriter object. This does not close the underlying

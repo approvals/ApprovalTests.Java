@@ -63,16 +63,20 @@ public class XMLUtils
   }
   public static Document parseXML(String xml)
   {
-    try {
+    try
+    {
       DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
       return builder.parse(new InputSource(new StringReader(xml)));
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
   public static Document parseXML(File xml)
   {
-    return ObjectUtils.throwAsError(() -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new FileInputStream(xml)));
+    return ObjectUtils.throwAsError(
+        () -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new FileInputStream(xml)));
   }
   public static Document parseXML(InputStream stream)
   {

@@ -19,7 +19,8 @@ public class AttributeStackSelectorTest
         m -> String.format("%s -> %s", m, TestUtils.unrollLambda(m)));
   }
   @RepeatedTest(10)
-  public void selectElement() {
+  public void selectElement()
+  {
     callUnusedMethods();
     AttributeStackSelector selector = new AttributeStackSelector();
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();

@@ -38,17 +38,21 @@ public class DatabaseWriterTest
   }
   private ResultSet mockResultSet(String[][] data)
   {
-    try {
+    try
+    {
       ResultSet rs = EasyMock.createMock(ResultSet.class);
       ResultSetMetaData metaData = EasyMock.createMock(ResultSetMetaData.class);
       EasyMock.expect(rs.getMetaData()).andReturn(metaData).anyTimes();
       EasyMock.expect(metaData.getColumnCount()).andReturn(data[0].length).anyTimes();
-      for (int i = 0; i < data[0].length; i++) {
+      for (int i = 0; i < data[0].length; i++)
+      {
         EasyMock.expect(metaData.getColumnName(i + 1)).andReturn(data[0][i]).anyTimes();
       }
-      for (int i = 1; i < data.length; i++) {
+      for (int i = 1; i < data.length; i++)
+      {
         EasyMock.expect(rs.next()).andReturn(true);
-        for (int j = 0; j < data[i].length; j++) {
+        for (int j = 0; j < data[i].length; j++)
+        {
           EasyMock.expect(rs.getString(j + 1)).andReturn(data[i][j]);
         }
       }
@@ -56,7 +60,9 @@ public class DatabaseWriterTest
       EasyMock.replay(rs);
       EasyMock.replay(metaData);
       return rs;
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

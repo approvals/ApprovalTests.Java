@@ -51,7 +51,8 @@ public class ReporterChainingTest
     }
   }
   @Test
-  public void testFirstWorkingReporter() {
+  public void testFirstWorkingReporter()
+  {
     WorkingReporter workingReporter = new WorkingReporter();
     WorkingReporter workingReporter2 = new WorkingReporter();
     FirstWorkingReporter reporter = new FirstWorkingReporter(new NonWorkingReporter(), workingReporter,

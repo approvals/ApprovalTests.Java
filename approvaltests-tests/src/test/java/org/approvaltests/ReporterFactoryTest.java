@@ -15,12 +15,14 @@ import com.spun.util.ThreadUtils;
 public class ReporterFactoryTest
 {
   @Test
-  public void testReportersAtClassLevel() {
+  public void testReportersAtClassLevel()
+  {
     assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
   @Test
   @UseReporter(DiffReporter.class)
-  public void oneLayerDown() {
+  public void oneLayerDown()
+  {
     StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class,
         ThreadUtils.getStackTrace());
     Approvals.verify(listings);

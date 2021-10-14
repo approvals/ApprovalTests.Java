@@ -66,13 +66,13 @@ public class ConfigXMLFileWriter
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     documentBuilderFactory.setNamespaceAware(false);
     documentBuilderFactory.setIgnoringElementContentWhitespace(true);
-    DocumentBuilder documentBuilder =
-            ObjectUtils.throwAsError(() -> documentBuilderFactory.newDocumentBuilder());
+    DocumentBuilder documentBuilder = ObjectUtils.throwAsError(() -> documentBuilderFactory.newDocumentBuilder());
     return documentBuilder.getDOMImplementation().createDocument("", "XML", null);
   }
   public static void writeToIndentedXMLFile(String configFile, Document domDocument)
   {
-    try {
+    try
+    {
       DataOutputStream out = new DataOutputStream(new FileOutputStream(configFile));
       TransformerFactory tFactory = TransformerFactory.newInstance();
       Transformer transformer = tFactory.newTransformer();
@@ -82,7 +82,9 @@ public class ConfigXMLFileWriter
       transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
       transformer.transform(source, result);
       out.close();
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

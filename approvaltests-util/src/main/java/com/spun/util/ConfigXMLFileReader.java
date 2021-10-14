@@ -35,25 +35,40 @@ public class ConfigXMLFileReader
   }
   private static void assignField(Field field, HashMap<String, Object> properties)
   {
-    try {
+    try
+    {
       String name = field.getName();
       Object value = properties.get(name);
-      if (value == null) {
+      if (value == null)
+      {
       } // do nothing, leave default
-      else if (field.getType().isAssignableFrom(String.class)) {
+      else if (field.getType().isAssignableFrom(String.class))
+      {
         field.set(null, value);
-      } else if (field.getType().isAssignableFrom(String[].class)) {
+      }
+      else if (field.getType().isAssignableFrom(String[].class))
+      {
         field.set(null, value);
-      } else if (field.getType().isAssignableFrom(int.class)) {
+      }
+      else if (field.getType().isAssignableFrom(int.class))
+      {
         field.setInt(null, NumberUtils.load((String) value, field.getInt(null)));
-      } else if (field.getType().isAssignableFrom(double.class)) {
+      }
+      else if (field.getType().isAssignableFrom(double.class))
+      {
         field.setDouble(null, NumberUtils.load((String) value, field.getDouble(null)));
-      } else if (field.getType().isAssignableFrom(boolean.class)) {
+      }
+      else if (field.getType().isAssignableFrom(boolean.class))
+      {
         field.setBoolean(null, NumberUtils.load((String) value, field.getBoolean(null)));
-      } else {
+      }
+      else
+      {
         throw new Error("don't know how to handle field of type " + field.getType().getName());
       }
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

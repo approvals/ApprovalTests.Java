@@ -474,17 +474,24 @@ public class DatabaseUtils
   }
   private static void beginTransaction(Connection con, int offset)
   {
-    try {
-      if (getConnection(connections, con) == null) {
-        synchronized (connections) {
+    try
+    {
+      if (getConnection(connections, con) == null)
+      {
+        synchronized (connections)
+        {
           SimpleLogger.event("Starting transaction " + DatabaseTransactionInfo.getOriginatorText(offset + 1));
           connections.add(new DatabaseTransactionInfo(con, 1 + offset));
         }
         con.setAutoCommit(false);
-      } else {
+      }
+      else
+      {
         SimpleLogger.event("already exist");
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -528,10 +535,13 @@ public class DatabaseUtils
     }
     if (commit != null)
     {
-      try {
+      try
+      {
         con.commit();
         commit.cleanConnection();
-      } catch (SQLException e) {
+      }
+      catch (SQLException e)
+      {
         throw ObjectUtils.throwAsError(e);
       }
     }
@@ -601,11 +611,15 @@ public class DatabaseUtils
   }
   public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt)
   {
-    try {
-      for (int i = 0; i < databaseObjects.length; i++) {
+    try
+    {
+      for (int i = 0; i < databaseObjects.length; i++)
+      {
         databaseObjects[i].save(stmt);
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

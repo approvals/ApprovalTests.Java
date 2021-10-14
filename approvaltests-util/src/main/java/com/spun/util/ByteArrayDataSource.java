@@ -94,8 +94,7 @@ public class ByteArrayDataSource implements DataSource
   public InputStream getInputStream()
   {
     if (data == null)
-    {
-      throw new RuntimeException("no data"); }
+    { throw new RuntimeException("no data"); }
     return new ByteArrayInputStream(data);
   }
   public OutputStream getOutputStream()

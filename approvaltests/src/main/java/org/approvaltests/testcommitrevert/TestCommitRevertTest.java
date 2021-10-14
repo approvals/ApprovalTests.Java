@@ -11,5 +11,4 @@ import org.junit.runners.model.FrameworkMethod;
 @Deprecated()
 public class TestCommitRevertTest
 {
-
 }
