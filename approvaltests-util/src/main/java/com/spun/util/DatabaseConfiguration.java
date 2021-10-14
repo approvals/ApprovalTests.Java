@@ -89,7 +89,7 @@ public class DatabaseConfiguration
       {
         DatabaseUtils.beginTransaction(con);
       }
-      catch (SQLException e)
+      catch (Exception e)
       {
         throw ObjectUtils.throwAsError(e);
       }

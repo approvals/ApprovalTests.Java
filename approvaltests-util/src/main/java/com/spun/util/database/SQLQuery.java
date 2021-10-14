@@ -133,7 +133,7 @@ public class SQLQuery
     {
       return toString(DatabaseUtils.getDatabaseType(stmt));
     }
-    catch (SQLException e)
+    catch (Exception e)
     {
       throw ObjectUtils.throwAsError(e);
     }
