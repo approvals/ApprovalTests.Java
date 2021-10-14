@@ -51,7 +51,7 @@ public class GifSequenceWriter implements AutoCloseable
    * @author Elliot Kroo (elliot[at]kroo[dot]net)
    */
   public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFrames,
-      boolean loopContinuously) throws IOException
+      boolean loopContinuously)
   {
     this.imageType = imageType;
     this.timeBetweenFrames = timeBetweenFrames;
@@ -59,7 +59,11 @@ public class GifSequenceWriter implements AutoCloseable
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
     gifWriter.setOutput(outputStream);
-    gifWriter.prepareWriteSequence(null);
+    try {
+      gifWriter.prepareWriteSequence(null);
+    } catch (IOException e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private IIOMetadata getMetadata(Duration timeBetweenFramesMS) throws IIOInvalidTreeException
   {
@@ -128,12 +132,12 @@ public class GifSequenceWriter implements AutoCloseable
    * @return a GIF ImageWriter object
    * @throws IIOException if no GIF image writers are returned
    */
-  private static ImageWriter getWriter() throws IIOException
+  private static ImageWriter getWriter()
   {
     Iterator<ImageWriter> iter = ImageIO.getImageWritersBySuffix("gif");
     if (!iter.hasNext())
     {
-      throw new IIOException("No GIF Image Writers Exist");
+      throw new RuntimeException("No GIF Image Writers Exist");
     }
     else
     {
