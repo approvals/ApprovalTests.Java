@@ -273,7 +273,7 @@ public class Approvals
   {
     verifyEachFileAgainstMasterDirectory(directory.listFiles(filter), options);
   }
-  private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options) throws Error
+  private static void verifyEachFileAgainstMasterDirectory(File[] files, Options options)
   {
     List<File> mismatched = new ArrayList<>();
     for (File f : files)

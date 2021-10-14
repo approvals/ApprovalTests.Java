@@ -61,7 +61,7 @@ public class JUnit5StackTraceNamerTest
     StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "repeatedTest");
   }
   @Test
-  void approvalFromInsideLambda() throws Exception
+  void approvalFromInsideLambda()
   {
     Throwable[] caught = new Throwable[1];
     LambdaThreadLauncher lambda = new LambdaThreadLauncher((() -> {
@@ -74,7 +74,7 @@ public class JUnit5StackTraceNamerTest
         caught[0] = e;
       }
     }));
-    lambda.getThread().join(1000);
+    ObjectUtils.throwAsError(() -> lambda.getThread().join(1000));
     if (caught[0] != null)
     { throw ObjectUtils.throwAsError(caught[0]); }
   }

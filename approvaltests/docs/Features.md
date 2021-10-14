@@ -137,17 +137,7 @@ Note: this currently only works on mac and will default to the normal swing othe
 
 ## Test Commit Revert (TCR)
 
-This is a convenience class to follow the practice 'Test Commit/Revert' from Kent Beck. Simply adding
-### Method 1 - extend class
-<!-- snippet: test_commit_revert -->
-<a id='snippet-test_commit_revert'></a>
-```java
-extends
-  TestCommitRevertTest
-```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L12-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-to your test class
+Note: This has been removed. Please use [TCR-Extension](https://github.com/LarsEckart/tcr-extension)
 
 ### Method 2 - use Runner
 <!-- snippet: test_commit_revert_runner -->
