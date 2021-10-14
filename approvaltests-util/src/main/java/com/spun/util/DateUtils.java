@@ -241,7 +241,7 @@ public class DateUtils
   {
     return getDayOfWeek(dayOfWeek, true);
   }
-  private static Timestamp getDayOfWeek(int dayOfWeek, boolean foward) throws Error
+  private static Timestamp getDayOfWeek(int dayOfWeek, boolean foward)
   {
     int multiplier = foward ? -1 : 1;
     for (int i = 0; i < 7; i++)

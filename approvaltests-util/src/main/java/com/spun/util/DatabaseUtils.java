@@ -12,6 +12,7 @@ import com.spun.util.database.DatabaseObject;
 import com.spun.util.database.DatabaseTransactionInfo;
 import com.spun.util.database.SqlConnectionException;
 import com.spun.util.logger.SimpleLogger;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * A static class of convenience functions for database access
@@ -43,13 +44,13 @@ public class DatabaseUtils
   {
     return DATABASE_TYPES[type];
   }
-  public static int getDatabaseType(Statement stmt) throws SQLException
+  public static int getDatabaseType(Statement stmt)
   {
-    return getDatabaseType(stmt.getConnection());
+    return ObjectUtils.throwAsError(() -> getDatabaseType(stmt.getConnection()));
   }
-  public static int getDatabaseType(Connection con) throws SQLException
+  public static int getDatabaseType(Connection con)
   {
-    String dbName = con.getMetaData().getDatabaseProductName();
+    String dbName = ObjectUtils.throwAsError(() -> con.getMetaData().getDatabaseProductName());
     for (int i = 0; i < DATABASE_TYPES.length; i++)
     {
       if (DATABASE_TYPES[i].equalsIgnoreCase(dbName.trim()))
@@ -463,28 +464,28 @@ public class DatabaseUtils
     }
     return b.toString();
   }
-  public static void beginTransaction(Statement stmt) throws SQLException
+  public static void beginTransaction(Statement stmt)
   {
-    beginTransaction(stmt.getConnection(), 2);
+    ObjectUtils.throwAsError(() -> beginTransaction(stmt.getConnection(), 2));
   }
-  public static void beginTransaction(Connection con) throws SQLException
+  public static void beginTransaction(Connection con)
   {
     beginTransaction(con, 2);
   }
-  private static void beginTransaction(Connection con, int offset) throws SQLException
+  private static void beginTransaction(Connection con, int offset)
   {
-    if (getConnection(connections, con) == null)
-    {
-      synchronized (connections)
-      {
-        //My_System.event("Starting transaction " + DatabaseTransactionInfo.getOriginatorText(offset + 1));
-        connections.add(new DatabaseTransactionInfo(con, 1 + offset));
+    try {
+      if (getConnection(connections, con) == null) {
+        synchronized (connections) {
+          SimpleLogger.event("Starting transaction " + DatabaseTransactionInfo.getOriginatorText(offset + 1));
+          connections.add(new DatabaseTransactionInfo(con, 1 + offset));
+        }
+        con.setAutoCommit(false);
+      } else {
+        SimpleLogger.event("already exist");
       }
-      con.setAutoCommit(false);
-    }
-    else
-    {
-      //My_System.event("already exist");
+    } catch (SQLException e) {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   private static DatabaseTransactionInfo getConnection(ArrayList<DatabaseTransactionInfo> connections2,
@@ -497,15 +498,15 @@ public class DatabaseUtils
     }
     return null;
   }
-  public static void commit(Statement stmt) throws SQLException
+  public static void commit(Statement stmt)
   {
-    commit(stmt.getConnection(), 2);
+    ObjectUtils.throwAsError(() -> commit(stmt.getConnection(), 2));
   }
-  public static void commit(Connection con) throws SQLException
+  public static void commit(Connection con)
   {
     commit(con, 2);
   }
-  private static void commit(Connection con, int offset) throws SQLException
+  private static void commit(Connection con, int offset)
   {
     DatabaseTransactionInfo commit = null;
     synchronized (connections)
@@ -527,19 +528,23 @@ public class DatabaseUtils
     }
     if (commit != null)
     {
-      con.commit();
-      commit.cleanConnection();
+      try {
+        con.commit();
+        commit.cleanConnection();
+      } catch (SQLException e) {
+        throw ObjectUtils.throwAsError(e);
+      }
     }
   }
-  public static void rollback(Statement stmt) throws SQLException
+  public static void rollback(Statement stmt)
   {
-    rollback(stmt.getConnection());
+    ObjectUtils.throwAsError(() -> rollback(stmt.getConnection()));
   }
-  public static void rollback(Connection con) throws SQLException
+  public static void rollback(Connection con)
   {
     if (con != null)
     {
-      con.rollback();
+      ObjectUtils.throwAsError(() -> con.rollback());
     }
   }
   public static String formatBoolean(boolean b)
@@ -594,11 +599,14 @@ public class DatabaseUtils
     }
     return value;
   }
-  public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt) throws SQLException
+  public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt)
   {
-    for (int i = 0; i < databaseObjects.length; i++)
-    {
-      databaseObjects[i].save(stmt);
+    try {
+      for (int i = 0; i < databaseObjects.length; i++) {
+        databaseObjects[i].save(stmt);
+      }
+    } catch (SQLException e) {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   public static void close(ResultSet rs)
