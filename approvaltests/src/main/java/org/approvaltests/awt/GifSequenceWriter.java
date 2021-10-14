@@ -109,17 +109,17 @@ public class GifSequenceWriter implements AutoCloseable
     }
     return imageFile;
   }
-  public void writeToSequence(RenderedImage img, Duration timeBetweenFrames) throws IOException
+  public void writeToSequence(RenderedImage img, Duration timeBetweenFrames)
   {
-    gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam);
+    ObjectUtils.throwAsError(() -> gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam));
   }
   /**
    * Close this GifSequenceWriter object. This does not close the underlying
    * stream, just finishes off the GIF.
    */
-  public void close() throws IOException
+  public void close()
   {
-    gifWriter.endWriteSequence();
+    ObjectUtils.throwAsError(() -> gifWriter.endWriteSequence());
   }
   /**
    * Returns the first available GIF ImageWriter using
