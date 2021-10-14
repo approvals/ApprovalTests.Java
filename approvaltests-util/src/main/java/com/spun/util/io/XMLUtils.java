@@ -10,6 +10,7 @@ import java.util.HashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import com.spun.util.ObjectUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -20,7 +21,7 @@ import com.spun.util.logger.SimpleLogger;
 
 public class XMLUtils
 {
-  public static String locateFile(String fileLocation, String backupPaths[]) throws Exception
+  public static String locateFile(String fileLocation, String backupPaths[])
   {
     String[] newArray = new String[backupPaths.length + 1];
     System.arraycopy(backupPaths, 0, newArray, 1, backupPaths.length);
@@ -37,7 +38,6 @@ public class XMLUtils
         Arrays.asList(backupPaths), new File(".").getAbsolutePath()));
   }
   public static HashMap<String, Object> parseProperties(String absoluteFileLocation, XMLNodeExtractor extractor)
-      throws Exception
   {
     try
     {
@@ -48,7 +48,7 @@ public class XMLUtils
     catch (Exception e)
     {
       SimpleLogger.variable("Property File ", absoluteFileLocation);
-      throw e;
+      throw ObjectUtils.throwAsError(e);
     }
   }
   private static HashMap<String, Object> extractProperties(Document document, XMLNodeExtractor extractor)
@@ -61,18 +61,22 @@ public class XMLUtils
     }
     return properties;
   }
-  public static Document parseXML(String xml) throws Exception
+  public static Document parseXML(String xml)
   {
-    DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-    return builder.parse(new InputSource(new StringReader(xml)));
+    try {
+      DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+      return builder.parse(new InputSource(new StringReader(xml)));
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
-  public static Document parseXML(File xml) throws Exception
+  public static Document parseXML(File xml)
   {
-    return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new FileInputStream(xml));
+    return ObjectUtils.throwAsError(() -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new FileInputStream(xml)));
   }
-  public static Document parseXML(InputStream stream) throws Exception
+  public static Document parseXML(InputStream stream)
   {
-    return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(stream);
+    return ObjectUtils.throwAsError(() -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(stream));
   }
   public static String extractStringValue(Node node)
   {

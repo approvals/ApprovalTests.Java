@@ -91,15 +91,16 @@ public class ByteArrayDataSource implements DataSource
    * Return an InputStream for the data.
    * Note - a new stream must be returned each time.
    */
-  public InputStream getInputStream() throws IOException
+  public InputStream getInputStream()
   {
     if (data == null)
-    { throw new IOException("no data"); }
+    {
+      throw new RuntimeException("no data"); }
     return new ByteArrayInputStream(data);
   }
-  public OutputStream getOutputStream() throws IOException
+  public OutputStream getOutputStream()
   {
-    throw new IOException("cannot do this");
+    throw new RuntimeException("cannot do this");
   }
   public String getContentType()
   {
