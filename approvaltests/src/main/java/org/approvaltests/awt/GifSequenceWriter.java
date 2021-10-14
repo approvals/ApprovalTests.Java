@@ -59,13 +59,9 @@ public class GifSequenceWriter implements AutoCloseable
     gifWriter = getWriter();
     imageWriteParam = gifWriter.getDefaultWriteParam();
     gifWriter.setOutput(outputStream);
-    try {
-      gifWriter.prepareWriteSequence(null);
-    } catch (IOException e) {
-      throw ObjectUtils.throwAsError(e);
-    }
+    ObjectUtils.throwAsError(() -> gifWriter.prepareWriteSequence(null));
   }
-  private IIOMetadata getMetadata(Duration timeBetweenFramesMS) throws IIOInvalidTreeException
+  private IIOMetadata getMetadata(Duration timeBetweenFramesMS)
   {
     ImageTypeSpecifier imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(imageType);
     IIOMetadata imageMetaData2 = gifWriter.getDefaultImageMetadata(imageTypeSpecifier, imageWriteParam);
@@ -85,7 +81,7 @@ public class GifSequenceWriter implements AutoCloseable
     child.setAttribute("authenticationCode", "2.0");
     child.setUserObject(getBytesForLoopContinuously(loopContinuously));
     appEntensionsNode.appendChild(child);
-    imageMetaData2.setFromTree(metaFormatName, root);
+    ObjectUtils.throwAsError(() -> imageMetaData2.setFromTree(metaFormatName, root));
     return imageMetaData2;
   }
   public static byte[] getBytesForLoopContinuously(boolean loopContinuously)
