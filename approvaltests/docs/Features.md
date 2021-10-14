@@ -139,29 +139,6 @@ Note: this currently only works on mac and will default to the normal swing othe
 
 Note: This has been removed. Please use [TCR-Extension](https://github.com/LarsEckart/tcr-extension)
 
-### Method 2 - use Runner
-<!-- snippet: test_commit_revert_runner -->
-<a id='snippet-test_commit_revert_runner'></a>
-```java
-@RunWith(TestCommitRevertRunner.class)
-public class TestCommitRevertSample
-```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/testcommitrevert/TestCommitRevertSample.java#L8-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-test_commit_revert_runner' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-to annotate your class
-
-### Results 
-
-Whichever method you use, on test run TRC will invoke 1 of 2 options
-
-*  On success
-A dialog will appear asking for a commit message. Once given it will commit all files with that message
-![prompt](images/commit_dialog.png)
-
-* On failure
-It will revert all changes
-
-Note: this currently only works with git
 
 ### Usage
 
