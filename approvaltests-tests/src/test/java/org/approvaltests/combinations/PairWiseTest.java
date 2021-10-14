@@ -187,8 +187,7 @@ public class PairWiseTest
     Approvals.verify(output);
   }
   @Test
-  void testHorizontalGrowth() throws Exception
-  {
+  void testHorizontalGrowth() {
     ArrayList<Case> cases = new ArrayList<>();
     cases.add(new Case("Lars", 1, "Tartu"));
     cases.add(new Case("Lars", 1, "Tallinn"));
@@ -208,8 +207,7 @@ public class PairWiseTest
   }
   // duplicate to 1st test, but with some result analysis
   @Test
-  void testGeneratePairs() throws Exception
-  {
+  void testGeneratePairs() {
     String[] names = {"Jupe", "Pete", "Bob"};
     String[] towns = {"Tartu", "Heidelberg"};
     String[] bloodTypes = {"A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"};
@@ -219,8 +217,7 @@ public class PairWiseTest
     // empty list, list with bloodtype+name, list with bloodtype+town and 3town+name cases
     Approvals.verify(strb.toString());
   }
-  List<List<Case>> generatePairs(Object[]... parameters) throws Exception
-  {
+  List<List<Case>> generatePairs(Object[]... parameters) {
     ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
     for (int i = 0; i < parameters.length; i++)
     {
