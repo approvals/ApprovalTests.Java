@@ -11,6 +11,7 @@
 ** VelocityApprovals doesn't know about Options yet
 
 * remove all checked exceptions
+* Think about removing MethodExcecutionPath
 * remove all warnings
 * handle manual install of intellij
 * build script to update gradle starter project during release process
