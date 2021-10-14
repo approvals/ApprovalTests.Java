@@ -26,9 +26,6 @@
   * [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
   * [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
   * [Test Commit Revert (TCR)](#test-commit-revert-tcr)
-    * [Method 1 - extend class](#method-1---extend-class)
-    * [Method 2 - use Runner](#method-2---use-runner)
-    * [Results](#results)
     * [Usage](#usage)<!-- endToc -->
 
 ## x.y.z
