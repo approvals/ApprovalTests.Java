@@ -145,7 +145,7 @@ The suggested fix is to add
 
 
 ## LICENSE
-[Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
+[Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 
 Questions?
