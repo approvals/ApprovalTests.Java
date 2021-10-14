@@ -52,7 +52,7 @@ public class AttributeStackSelector implements StackElementSelector
     return clazz;
   }
   @Override
-  public StackTraceElement selectElement(StackTraceElement[] trace) throws Exception
+  public StackTraceElement selectElement(StackTraceElement[] trace)
   {
     boolean inTestCase = false;
     for (int i = 0; i < trace.length; i++)
@@ -67,7 +67,7 @@ public class AttributeStackSelector implements StackElementSelector
     throw new RuntimeException(
         "Could not find Junit/TestNg TestCase you are running, supported frameworks: Junit3, Junit4, Junit5, TestNg");
   }
-  private boolean isTestCase(StackTraceElement element) throws ClassNotFoundException
+  private boolean isTestCase(StackTraceElement element)
   {
     String fullClassName = element.getClassName();
     Class<?> clazz = loadClass(fullClassName);
@@ -83,7 +83,6 @@ public class AttributeStackSelector implements StackElementSelector
     return testcase != null && ObjectUtils.isThisInstanceOfThat(clazz, testcase);
   }
   private boolean isTestAttribute(Class<?> clazz, String methodName)
-      throws ClassNotFoundException, SecurityException
   {
     List<Method> methods = getMethodsByName(clazz, methodName);
     if (methods.isEmpty())
