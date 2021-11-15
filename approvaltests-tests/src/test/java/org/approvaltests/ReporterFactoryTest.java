@@ -31,18 +31,20 @@ public class ReporterFactoryTest
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
   }
-
   @Test
   public void testPrintUseReporterInJava11()
   {
-    String text = StackListings.printUserReporter("@org.approvaltests.reporters.UseReporter(value={org.approvaltests.reporters.DiffReporter.class})", new Class[0]);
+    String text = StackListings.printUserReporter(
+        "@org.approvaltests.reporters.UseReporter(value={org.approvaltests.reporters.DiffReporter.class})",
+        new Class[0]);
     assertEquals("@org.approvaltests.reporters.UseReporter(value=[])", text);
   }
-
   @Test
   public void testPrintUseReporterInJava16()
   {
-    String text = StackListings.printUserReporter("@org.approvaltests.reporters.UseReporter({org.approvaltests.reporters.DiffReporter.class})", new Class[0]);
+    String text = StackListings.printUserReporter(
+        "@org.approvaltests.reporters.UseReporter({org.approvaltests.reporters.DiffReporter.class})",
+        new Class[0]);
     assertEquals("@org.approvaltests.reporters.UseReporter(value=[])", text);
   }
 }

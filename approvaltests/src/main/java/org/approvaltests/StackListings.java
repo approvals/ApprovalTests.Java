@@ -51,8 +51,8 @@ public class StackListings<T>
       return text;
     }
   }
-
-  public static String printUserReporter(String text, Class<? extends ApprovalFailureReporter>[] values) {
+  public static String printUserReporter(String text, Class<? extends ApprovalFailureReporter>[] values)
+  {
     text = makeConsistentBetweenJavaVersions(text);
     StringBuilder sb = new StringBuilder();
     // on windows it uses 'interface' instead of '@'
@@ -66,11 +66,10 @@ public class StackListings<T>
     sb.append("])");
     return sb.toString();
   }
-
-  private static String makeConsistentBetweenJavaVersions(String text) {
+  private static String makeConsistentBetweenJavaVersions(String text)
+  {
     return text.replace(".UseReporter({", ".UseReporter(value={");
   }
-
   public T getFirst()
   {
     if (!methods.isEmpty())
