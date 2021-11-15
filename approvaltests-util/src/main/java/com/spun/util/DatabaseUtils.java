@@ -12,7 +12,6 @@ import com.spun.util.database.DatabaseObject;
 import com.spun.util.database.DatabaseTransactionInfo;
 import com.spun.util.database.SqlConnectionException;
 import com.spun.util.logger.SimpleLogger;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 /**
  * A static class of convenience functions for database access

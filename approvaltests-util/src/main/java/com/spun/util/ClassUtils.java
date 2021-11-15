@@ -192,7 +192,7 @@ public class ClassUtils
    */
   public static <T> Class getGreatestCommonInterface(List<T> list)
   {
-    List<Class> allInterfaces = org.apache.commons.lang.ClassUtils.getAllInterfaces(list.get(0).getClass());
+    List<Class<?>> allInterfaces = org.apache.commons.lang3.ClassUtils.getAllInterfaces(list.get(0).getClass());
     for (int i = 1; i < list.size(); i++)
     {
       for (int j = allInterfaces.size() - 1; 0 < j; j--)
@@ -203,7 +203,7 @@ public class ClassUtils
         }
       }
     }
-    List<Class> allCommon = allInterfaces;
+    List<Class<?>> allCommon = allInterfaces;
     Class first = Queryable.as(allCommon).orderBy(Order.Descending, x -> x.getMethods().length).first();
     return first;
   }
