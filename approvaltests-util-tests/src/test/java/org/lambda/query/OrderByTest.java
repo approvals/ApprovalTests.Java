@@ -4,6 +4,7 @@ import com.spun.util.DateUtils;
 import java.sql.Timestamp;
 import java.util.List;
 import org.approvaltests.Approvals;
+import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.OrderBy.Order;
 
@@ -30,8 +31,11 @@ public class OrderByTest
   @Test
   public void testDates()
   {
-    String[] dates = {"2010/05/21", "1975/06/28", "2000/01/01", "1999/12/31", "2001/10/02"};
-    List<Timestamp> t = Query.select(dates, a -> DateUtils.parse(a));
-    Approvals.verifyAll("i", Query.orderBy(t, Order.Descending, a -> a));
+    try(WithTimeZone i = new WithTimeZone())
+    {
+      String[] dates = {"2010/05/21", "1975/06/28", "2000/01/01", "1999/12/31", "2001/10/02"};
+      List<Timestamp> t = Query.select(dates, a -> DateUtils.parse(a));
+      Approvals.verifyAll("i", Query.orderBy(t, Order.Descending, a -> a));
+    }
   }
 }
