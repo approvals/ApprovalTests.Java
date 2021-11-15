@@ -22,6 +22,8 @@ public class SquareDrawer implements Paintable
   @Override
   public void paint(Graphics g)
   {
+    g.setColor(Color.WHITE);
+    g.fillRect(0,0, getSize().width, getSize().height);
     g.setColor(Colors.Purples.Thistle);
     g.fillRect(10, 10, size, size);
   }

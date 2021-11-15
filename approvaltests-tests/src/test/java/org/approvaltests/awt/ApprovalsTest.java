@@ -52,6 +52,16 @@ public class ApprovalsTest
   }
   @Test
   @UseReporter(ImageWebReporter.class)
+  void testSequenceWithInitialState()
+  {
+    SquareDrawer squareDrawer = new SquareDrawer();
+    squareDrawer.setSquareSize(80);
+    AwtApprovals.verifySequence(squareDrawer,4, f -> squareDrawer.setSquareSize(f * 10+1));
+    squareDrawer.setSquareSize(80);
+    AwtApprovals.verifySequence(squareDrawer, 4, Duration.ofMillis(500), f1 -> squareDrawer.setSquareSize(f1 * 10+1));
+  }
+  @Test
+  @UseReporter(ImageWebReporter.class)
   void testSequenceWithTimings()
   {
     SquareDrawer squareDrawer = new SquareDrawer();

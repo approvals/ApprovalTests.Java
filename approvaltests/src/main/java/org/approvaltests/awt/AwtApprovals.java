@@ -97,4 +97,30 @@ public class AwtApprovals
             new PaintableMultiFrame(numberOfFrames, c -> new Tuple<>(sequenceRenderer.call(c), duration))),
         options);
   }
+  public static void verifySequence(Paintable initialFrame, int numberOfFrames,
+      Function1<Integer, Paintable> sequenceRenderer)
+  {
+    verifySequence(initialFrame,numberOfFrames, sequenceRenderer, new Options());
+  }
+  public static void verifySequence(Paintable initialFrame, int numberOfFrames,
+      Function1<Integer, Paintable> sequenceRenderer, Options options)
+  {
+    verifySequence(initialFrame,numberOfFrames, Duration.ofMillis(500), sequenceRenderer, options);
+  }
+  public static void verifySequence(Paintable initialFrame, int numberOfFrames, Duration duration,
+      Function1<Integer, Paintable> sequenceRenderer)
+  {
+    verifySequence(initialFrame,numberOfFrames, duration, sequenceRenderer, new Options());
+  }
+  public static void verifySequence(Paintable initialFrame, int numberOfFrames, Duration duration,
+      Function1<Integer, Paintable> sequenceRenderer, Options options)
+  {
+    verifySequence(numberOfFrames+1, duration, n -> {
+      if(n==0){
+        return initialFrame;
+      } else {
+        return sequenceRenderer.call(n-1);
+      }
+    }, options);
+  }
 }
