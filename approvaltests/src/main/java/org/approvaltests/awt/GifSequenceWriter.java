@@ -39,7 +39,6 @@ public class GifSequenceWriter implements AutoCloseable
   private final boolean     loopContinuously;
   protected ImageWriter     gifWriter;
   protected ImageWriteParam imageWriteParam;
-
   public GifSequenceWriter(ImageOutputStream outputStream, int imageType, Duration timeBetweenFrames,
       boolean loopContinuously)
   {
