@@ -23,7 +23,8 @@ public class DateUtilsTest
   @Test
   public void testToDate()
   {
-    try(WithTimeZone i = new WithTimeZone()) {
+    try (WithTimeZone i = new WithTimeZone())
+    {
       LocalDateTime time = LocalDateTime.of(2000, Month.JANUARY, 2, 3, 4, 5);
       assertEquals("2 Jan 2000 03:04:05 GMT", DateUtils.toDateInUTC(time).toGMTString());
       assertEquals("2 Jan 2000 02:04:05 GMT", DateUtils.toDate(time, ZoneOffset.ofHours(1)).toGMTString());
