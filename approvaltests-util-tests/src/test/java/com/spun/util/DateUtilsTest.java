@@ -12,6 +12,8 @@ import java.time.ZoneOffset;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 
 public class DateUtilsTest
@@ -21,9 +23,11 @@ public class DateUtilsTest
   @Test
   public void testToDate()
   {
-    LocalDateTime time = LocalDateTime.of(2000, Month.JANUARY, 2, 3, 4, 5);
-    assertEquals("2 Jan 2000 03:04:05 GMT", DateUtils.toDateInUTC(time).toGMTString());
-    assertEquals("2 Jan 2000 02:04:05 GMT", DateUtils.toDate(time, ZoneOffset.ofHours(1)).toGMTString());
+    try(WithTimeZone i = new WithTimeZone()) {
+      LocalDateTime time = LocalDateTime.of(2000, Month.JANUARY, 2, 3, 4, 5);
+      assertEquals("2 Jan 2000 03:04:05 GMT", DateUtils.toDateInUTC(time).toGMTString());
+      assertEquals("2 Jan 2000 02:04:05 GMT", DateUtils.toDate(time, ZoneOffset.ofHours(1)).toGMTString());
+    }
   }
   @Test
   public void testStartAndEndUseCases()
