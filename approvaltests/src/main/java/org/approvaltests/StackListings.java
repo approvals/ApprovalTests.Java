@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.UseReporter;
 
 import java.lang.annotation.Annotation;
@@ -43,7 +44,7 @@ public class StackListings<T>
     if (annotation.annotationType().isAssignableFrom(UseReporter.class))
     {
       UseReporter useReporter = (UseReporter) annotation;
-      return printUserReporter(text, useReporter);
+      return printUserReporter(text, useReporter.value());
     }
     else
     {
@@ -51,19 +52,23 @@ public class StackListings<T>
     }
   }
 
-  private String printUserReporter(String text, UseReporter useReporter) {
+  public static String printUserReporter(String text, Class<? extends ApprovalFailureReporter>[] values) {
+    text = makeConsistentBetweenJavaVersions(text);
     StringBuilder sb = new StringBuilder();
-    String useReporterAsString = text;
     // on windows it uses 'interface' instead of '@'
-    useReporterAsString = useReporterAsString.replace("interface", "@");
+    text = text.replace("interface", "@");
     // on windows it uses all sorts of curly brackets and stuff for displaying the 'value' array,
     // so discard that part of the string, and re-create it.
-    useReporterAsString = useReporterAsString.substring(0, useReporterAsString.indexOf("(value"));
-    sb.append(useReporterAsString);
+    text = text.substring(0, text.indexOf("(value"));
+    sb.append(text);
     sb.append("(value=[");
-    sb.append(Arrays.stream(useReporter.value()).map(Class::toString).collect(Collectors.joining(", ")));
+    sb.append(Arrays.stream(values).map(Class::toString).collect(Collectors.joining(", ")));
     sb.append("])");
     return sb.toString();
+  }
+
+  private static String makeConsistentBetweenJavaVersions(String text) {
+    return text.replace(".UseReporter({", ".UseReporter(value={");
   }
 
   public T getFirst()

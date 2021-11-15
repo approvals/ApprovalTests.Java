@@ -2,6 +2,7 @@ package org.approvaltests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
@@ -10,6 +11,8 @@ import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
 import com.spun.util.ThreadUtils;
+
+import java.lang.annotation.Annotation;
 
 @UseReporter(ClipboardReporter.class)
 public class ReporterFactoryTest
@@ -27,6 +30,20 @@ public class ReporterFactoryTest
         ThreadUtils.getStackTrace());
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
+  }
+
+  @Test
+  public void testPrintUseReporterInJava11()
+  {
+    String text = StackListings.printUserReporter("@org.approvaltests.reporters.UseReporter(value={org.approvaltests.reporters.DiffReporter.class})", new Class[0]);
+    assertEquals("@org.approvaltests.reporters.UseReporter(value=[])", text);
+  }
+
+  @Test
+  public void testPrintUseReporterInJava16()
+  {
+    String text = StackListings.printUserReporter("@org.approvaltests.reporters.UseReporter({org.approvaltests.reporters.DiffReporter.class})", new Class[0]);
+    assertEquals("@org.approvaltests.reporters.UseReporter(value=[])", text);
   }
 }
 
