@@ -39,27 +39,33 @@ public class StackListings<T>
    */
   private String printAnnotation(Annotation annotation)
   {
-    StringBuilder sb = new StringBuilder();
+    String text = annotation.toString();
     if (annotation.annotationType().isAssignableFrom(UseReporter.class))
     {
       UseReporter useReporter = (UseReporter) annotation;
-      String useReporterAsString = useReporter.toString();
-      // on windows it uses 'interface' instead of '@'
-      useReporterAsString = useReporterAsString.replace("interface", "@");
-      // on windows it uses all sorts of curly brackets and stuff for displaying the 'value' array,
-      // so discard that part of the string, and re-create it.
-      useReporterAsString = useReporterAsString.substring(0, useReporterAsString.indexOf("(value"));
-      sb.append(useReporterAsString);
-      sb.append("(value=[");
-      sb.append(Arrays.stream(useReporter.value()).map(Class::toString).collect(Collectors.joining(", ")));
-      sb.append("])");
+      return printUserReporter(text, useReporter);
     }
     else
     {
-      sb.append(annotation.toString());
+      return text;
     }
+  }
+
+  private String printUserReporter(String text, UseReporter useReporter) {
+    StringBuilder sb = new StringBuilder();
+    String useReporterAsString = text;
+    // on windows it uses 'interface' instead of '@'
+    useReporterAsString = useReporterAsString.replace("interface", "@");
+    // on windows it uses all sorts of curly brackets and stuff for displaying the 'value' array,
+    // so discard that part of the string, and re-create it.
+    useReporterAsString = useReporterAsString.substring(0, useReporterAsString.indexOf("(value"));
+    sb.append(useReporterAsString);
+    sb.append("(value=[");
+    sb.append(Arrays.stream(useReporter.value()).map(Class::toString).collect(Collectors.joining(", ")));
+    sb.append("])");
     return sb.toString();
   }
+
   public T getFirst()
   {
     if (!methods.isEmpty())
