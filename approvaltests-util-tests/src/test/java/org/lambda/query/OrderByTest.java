@@ -31,7 +31,7 @@ public class OrderByTest
   @Test
   public void testDates()
   {
-    try(WithTimeZone i = new WithTimeZone())
+    try (WithTimeZone i = new WithTimeZone())
     {
       String[] dates = {"2010/05/21", "1975/06/28", "2000/01/01", "1999/12/31", "2001/10/02"};
       List<Timestamp> t = Query.select(dates, a -> DateUtils.parse(a));
