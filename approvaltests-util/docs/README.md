@@ -20,6 +20,10 @@ A set of convenience functions to make life easier.
 * Working with [Checked Exceptions](reference/RuntimeExceptions.md#top): tools to hide them.
 * [SimpleLogger](reference/SimpleLogger.md#top) 
 
+## Lambdas
+
+* [Mutable](how_to/UseMutablesInLambdas.md)
+
 ---
 
 [Back to User Guide](README.md#top)
