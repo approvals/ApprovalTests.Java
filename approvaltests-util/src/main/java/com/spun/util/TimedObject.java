@@ -5,9 +5,9 @@ import org.lambda.functions.Function0;
 
 public class TimedObject
 {
-  private Object object           = null;
-  private long   timeOutInMillis  = 1000;
-  private long   lastTimeAccessed = 0;
+  private Object          object           = null;
+  private long            timeOutInMillis  = 1000;
+  private long            lastTimeAccessed = 0;
   private Function0<Long> currentTime;
   // TODO: consider Duration object
   public TimedObject(long timeOutInMillis)
@@ -19,7 +19,6 @@ public class TimedObject
     this.timeOutInMillis = timeOutInMillis;
     this.currentTime = currentTime;
   }
-
   public Object get()
   {
     touched();

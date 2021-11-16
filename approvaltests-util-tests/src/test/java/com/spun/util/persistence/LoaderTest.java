@@ -39,7 +39,8 @@ class LoaderTest
   @Test
   void testWithDatabaseAccess()
   {
-    try (WithTimeZone withTimeZone = new WithTimeZone()) {
+    try (WithTimeZone withTimeZone = new WithTimeZone())
+    {
       Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
       Approvals.verify(new LoadShiftsFromDatabase(day));
     }
