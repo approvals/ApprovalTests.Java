@@ -120,13 +120,14 @@ We will start by showing you the test. We will point out a couple of important t
 @Test
 void testWithDatabaseAccess()
 {
-  try (WithTimeZone withTimeZone = new WithTimeZone()) {
+  try (WithTimeZone withTimeZone = new WithTimeZone())
+  {
     Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
     Approvals.verify(new LoadShiftsFromDatabase(day));
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L38-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L38-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Testing Executable Commands
