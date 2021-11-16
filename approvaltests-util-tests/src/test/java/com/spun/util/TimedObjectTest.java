@@ -3,32 +3,29 @@ package com.spun.util;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.spun.util.logger.SimpleLogger;
-import org.junit.jupiter.api.Test;
-
-import com.spun.util.tests.TestUtils;
+import org.junit.jupiter.api.RepeatedTest;
 
 public class TimedObjectTest
 {
-  @Test
+  @RepeatedTest(10000)
   public void test() throws InterruptedException
   {
-    SimpleLogger.message(String.format("Be aware that this test %s  can randomly fail if the thread is interrupted during execution", this.getClass().getSimpleName()));
-    double multiplier = TestUtils.getTimerMultiplier();
-    TimedObject object = new TimedObject((long) (200 * multiplier));
+    Long[] time = new Long[]{0L};
+    TimedObject object = new TimedObject(100L, () -> time[0]);
     object.set(Boolean.FALSE);
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(75);
+    time[0] += 75;
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(75);
+    time[0] += 75;
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(75);
+    time[0] += 75;
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(75);
+    time[0] += 75;
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(75);
+    time[0] += 75;
     assertNotNull(object.get(), "Still false");
-    Thread.sleep(350);
+    time[0] += 350;
+    ThreadUtils.sleep(150);
     assertNull(object.get(), "Cleared");
   }
 }
