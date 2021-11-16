@@ -7,7 +7,8 @@ A set of convenience functions to make life easier.
 ## Contents
 
   * [Features](#features)
-  * [BasicUtils](#basicutils)<!-- endToc -->
+  * [BasicUtils](#basicutils)
+  * [Lambdas](#lambdas)<!-- endToc -->
 
 ## Features
 [New Features documented here](Features.md#top)
