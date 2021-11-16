@@ -48,6 +48,7 @@ public class TimedObject
       while (currentTime.call() < (lastTimeAccessed + timeOutInMillis))
       {
         long diff = (lastTimeAccessed + timeOutInMillis) - currentTime.call();
+        diff = Math.max(diff, 1);
         Thread.sleep(diff);
       }
     }
