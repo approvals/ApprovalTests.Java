@@ -9,7 +9,7 @@ public class MutableTest
   @Test
   public void exampleOfSingleElementArray()
   {
-    // snippet: single_element_array
+    // begin-snippet: single_element_array
     final int[] i = {1};
     Function0<Integer> counter = () -> i[0]++;
     // end-snippet
@@ -17,7 +17,7 @@ public class MutableTest
   @Test
   public void exampleOfMutable()
   {
-    // snippet: mutable_example
+    // begin-snippet: mutable_example
     Mutable<String> i = new Mutable<>("Brian");
     Scheduler scheduler = new Scheduler(() -> i.get());
     scheduler.addEvent();
