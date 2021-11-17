@@ -23,7 +23,7 @@ public class DateScrubberTests
       DateScrubber dateScrubber = new DateScrubber(supportedFormat.getRegex());
       for (String example : supportedFormat.getExamples())
       {
-        assertEquals(dateScrubber.scrub(example), "[Date1]",
+        assertEquals("[Date1]", dateScrubber.scrub(example),
             () -> "didn't work for regex " + supportedFormat.getRegex());
       }
     }
