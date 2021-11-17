@@ -19,6 +19,8 @@ public class DateScrubber extends RegExScrubber
   public static SupportedFormat[] getSupportedFormats()
   {
     return new SupportedFormat[]{_("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}", "Tue May 13 16:30:00"),
+                                 _("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [a-zA-Z]{3} \\d{4}",
+                                     "Wed Nov 17 22:28:33 EET 2021"),
                                  _("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{4} \\d{2}:\\d{2}:\\d{2}.\\d{3}",
                                      "Tue May 13 2014 23:30:00.789"),
                                  _("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2} -\\d{4} \\d{4}",
