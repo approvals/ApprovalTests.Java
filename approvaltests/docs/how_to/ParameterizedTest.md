@@ -28,7 +28,9 @@ void sampleParameterizedTest(String parameter)
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/Samples.java#L38-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-This will make it so that the approved file includes the parameters, for example: Samples.sampleParameterizedTest.`parameter1`.approved.txt 
-and Samples.sampleParameterizedTest.`parameter2`.approved.txt
+This will make it so that the approved file includes the parameters.  
+For example: 
+1. Samples.sampleParameterizedTest.`parameter1`.approved.txt 
+1. Samples.sampleParameterizedTest.`parameter2`.approved.txt
 
 Note, you might also want to give Approvals.verifyAll() in combination with `@Test` a try.
