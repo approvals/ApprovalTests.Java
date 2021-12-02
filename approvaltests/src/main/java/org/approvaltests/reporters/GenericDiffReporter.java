@@ -72,7 +72,8 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
       throw ObjectUtils.throwAsError(e);
     }
   }
-  protected void processOutput(String received, Process process) {
+  protected void processOutput(String received, Process process)
+  {
   }
   private void preventProcessFromClosing(ProcessBuilder builder)
   {
