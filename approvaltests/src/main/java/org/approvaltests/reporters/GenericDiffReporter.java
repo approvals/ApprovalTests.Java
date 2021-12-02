@@ -63,13 +63,16 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     {
       ProcessBuilder builder = new ProcessBuilder(getCommandLine(received, approved));
       preventProcessFromClosing(builder);
-      builder.start();
+      Process process = builder.start();
+      processOutput(received, process);
       ThreadUtils.sleep(800); //Give program time to start}
     }
     catch (Exception e)
     {
       throw ObjectUtils.throwAsError(e);
     }
+  }
+  protected void processOutput(String received, Process process) {
   }
   private void preventProcessFromClosing(ProcessBuilder builder)
   {
