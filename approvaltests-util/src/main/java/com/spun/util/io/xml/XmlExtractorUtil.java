@@ -1,14 +1,14 @@
 package com.spun.util.io.xml;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+
 public class XmlExtractorUtil
 {
-  public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz) throws Exception
+  private XmlExtractorUtil(){}  // Static class should not be instantiated
+  public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz)
   {
     ArrayList<Object> list = new ArrayList<Object>();
     extractAndTranslateForNode(traverseToTag("XML", node), list, XmlMapTranslator.get(ArrayList.class,
@@ -42,7 +42,6 @@ public class XmlExtractorUtil
     return null;
   }
   public static Object extractAndTranslateForNode(Node node, Object addToObject, XmlTranslator translator)
-      throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException
   {
     NodeList childNodes = node.getChildNodes();
     for (int i = 0; i < childNodes.getLength(); i++)

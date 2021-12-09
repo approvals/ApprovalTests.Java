@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import com.spun.util.ObjectUtils;
 import org.w3c.dom.Node;
 
 public class XmlTranslator
@@ -20,7 +22,6 @@ public class XmlTranslator
     }
   }
   public Object extractAndTranslateForNode(Node node, Object addToObject)
-      throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, InstantiationException
   {
     String name = node.getNodeName();
     Method method = (Method) setters.get(name);
@@ -42,15 +43,14 @@ public class XmlTranslator
     return buffer.toString();
   }
   private void setObject(Object o, Object addToObject, Method settingMethod)
-      throws IllegalArgumentException, IllegalAccessException, InvocationTargetException
   {
     try
     {
       settingMethod.invoke(addToObject, new Object[]{o});
     }
-    catch (IllegalArgumentException e)
+    catch (Exception e)
     {
-      throw e;
+      throw ObjectUtils.throwAsError(e);
     }
   }
   public String toString()
