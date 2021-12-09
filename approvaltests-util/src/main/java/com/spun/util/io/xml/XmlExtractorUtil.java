@@ -8,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 public class XmlExtractorUtil
 {
-  public static Object[] extract(Node node, String xmlName, Class<?> clazz) throws Exception
+  public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz) throws Exception
   {
     ArrayList<Object> list = new ArrayList<Object>();
     extractAndTranslateForNode(traverseToTag("XML", node), list, XmlMapTranslator.get(ArrayList.class,

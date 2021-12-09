@@ -38,7 +38,7 @@ public class XmlMap
     this.settingFunction = settingFunction;
     this.extractor = extractor;
   }
-  public void initialize(Class<?> clazz) throws InstantiationException, IllegalAccessException
+  public void initialize(Class<?> clazz)
   {
     List<Method> methods = Query.where(clazz.getMethods(), m -> isSetterMethod(m, type, settingFunction));
     settingMethod = getBestMethodFit(methods);
@@ -48,7 +48,7 @@ public class XmlMap
       extractor = getExtractorFor(takes);
     }
   }
-  private XmlExtractor getExtractorFor(Class<?> takes) throws InstantiationException, IllegalAccessException
+  private XmlExtractor getExtractorFor(Class<?> takes)
   {
     XmlExtractor extractor = BasicExtractor.get(takes);
     // basic type get basic type extractor
@@ -57,7 +57,7 @@ public class XmlMap
     }
     else if (XmlExtractable.class.isAssignableFrom(takes))
     {
-      extractor = new XmlMapExtractor(takes);
+      extractor = new XmlMapExtractor((Class<? extends XmlExtractable>) takes);
     }
     else
     {
