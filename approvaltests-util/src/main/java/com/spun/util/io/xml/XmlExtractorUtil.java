@@ -10,7 +10,7 @@ public class XmlExtractorUtil
   private XmlExtractorUtil(){}  // Static class should not be instantiated
   public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz)
   {
-    ArrayList<Object> list = new ArrayList<Object>();
+    ArrayList<Object> list = new ArrayList<>();
     extractAndTranslateForNode(traverseToTag("XML", node), list, XmlMapTranslator.get(ArrayList.class,
         new XmlMap[]{new XmlMap(xmlName, "add", new XmlMapExtractor(clazz))}));
     return list.toArray();

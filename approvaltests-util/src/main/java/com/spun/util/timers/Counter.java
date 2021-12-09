@@ -1,5 +1,6 @@
 package com.spun.util.timers;
 
+import com.spun.util.ArrayUtils;
 import com.spun.util.DateDifference;
 
 /**
@@ -59,31 +60,9 @@ public class Counter
   {
     return "Counter [Count, Time] = [" + count + ", " + getLastTimeDifference().getStandardTimeText(2) + "]";
   }
-  /**
-   * A convenience function to turn a vector of Counter objects
-   * into an Array of the Counter objects.
-   * @param vectorOf a Vector of Counter objects
-   * @return the array of Counter.
-   * @throws Error if an element of vectorOf is not a Counter object.
-   **/
-  public static Counter[] toArray(java.util.Vector vectorOf)
+  public static Counter[] toArray(java.util.List counters)
   {
-    if (vectorOf == null)
-    { return new Counter[0]; }
-    Counter array[] = new Counter[vectorOf.size()];
-    for (int i = 0; i < array.length; i++)
-    {
-      java.lang.Object rowObject = vectorOf.elementAt(i);
-      if (rowObject instanceof Counter)
-      {
-        array[i] = (Counter) rowObject;
-      }
-      else
-      {
-        throw new Error("toArray[i] is not an instance of Counter but a " + rowObject.getClass().getName());
-      }
-    }
-    return array;
+    return ArrayUtils.toArray(counters, Counter.class);
   }
   public String getLabel()
   {
