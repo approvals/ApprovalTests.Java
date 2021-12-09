@@ -78,6 +78,7 @@ public class FileUtils
     if (!directory.isDirectory())
     { throw new Error("File is not a directory: " + directory.getName()); }
     File directories[] = directory.listFiles(new SimpleDirectoryFilter());
+    directories = directories == null ? new File[0] : directories;
     for (int i = 0; i < directories.length; i++)
     {
       ArrayUtils.addArray(list, getRecursiveFileList(directories[i], filter));
