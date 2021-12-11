@@ -6,12 +6,12 @@ import org.approvaltests.reporters.GenericDiffReporter;
 
 import java.io.File;
 
-public class CyberDojoReporter extends GenericDiffReporter
+public class ReportByCreatingDiffFile extends GenericDiffReporter
 {
   private static DiffInfo               info     = new DiffInfo("/usr/bin/diff",
       GenericDiffReporter.TEXT_FILE_EXTENSIONS);
-  public static final CyberDojoReporter INSTANCE = new CyberDojoReporter();
-  public CyberDojoReporter()
+  public static final ReportByCreatingDiffFile INSTANCE = new ReportByCreatingDiffFile();
+  public ReportByCreatingDiffFile()
   {
     super(info);
   }
