@@ -151,7 +151,7 @@ public class DateDifferenceTest
         Timestamp b = DateUtils.parse("2010/03/0" + i);
         DateDifference dif = new DateDifference(a, b);
         String standardTimeText = dif.getStandardTimeText(2, "days", "seconds", null, null);
-        buffer.append(f.format(a) + ", " + f.format(b) + " => " + standardTimeText + "\n");
+        buffer.append(String.format("%s, %s => %s\n", f.format(a), f.format(b), standardTimeText));
       }
       Approvals.verify(buffer.toString());
     }
