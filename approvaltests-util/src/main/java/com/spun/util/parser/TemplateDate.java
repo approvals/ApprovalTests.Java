@@ -10,7 +10,6 @@ import com.spun.util.StringUtils;
 
 public class TemplateDate
 {
-  public static final TemplateDate INSTANCE = new TemplateDate();
   public static final class FORMATS
   {
     public static final DateFormat DATE_SHORT_DAY  = new SimpleDateFormat("EEE MM/dd/yyyy");
@@ -26,8 +25,9 @@ public class TemplateDate
     public static final DateFormat TIME_MILLI      = new SimpleDateFormat("H:mm:ss:SSS");
   }
   //private static DateFormat dateTimeFormat = DateFormat.getDateTimeInstance(DateFormat.FULL ,DateFormat.SHORT);
-  private Date           frozen     = null;
-  private DateDifference difference = null;
+  public static final TemplateDate INSTANCE   = new TemplateDate();
+  private Date                     frozen     = null;
+  private DateDifference           difference = null;
   public TemplateDate()
   {
   }
