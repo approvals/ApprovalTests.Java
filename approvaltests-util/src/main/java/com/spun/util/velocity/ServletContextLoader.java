@@ -1,8 +1,8 @@
 package com.spun.util.velocity;
 
+import jakarta.servlet.ServletContext;
 import java.io.InputStream;
 import java.util.Arrays;
-import javax.servlet.ServletContext;
 import org.apache.commons.collections.ExtendedProperties;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.Resource;
