@@ -8,7 +8,7 @@ import java.io.File;
 
 public class ReportByCreatingDiffFile extends GenericDiffReporter
 {
-  private static DiffInfo               info     = new DiffInfo("/usr/bin/diff",
+  private static DiffInfo                      info     = new DiffInfo("/usr/bin/diff",
       GenericDiffReporter.TEXT_FILE_EXTENSIONS);
   public static final ReportByCreatingDiffFile INSTANCE = new ReportByCreatingDiffFile();
   public ReportByCreatingDiffFile()
