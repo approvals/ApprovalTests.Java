@@ -12,8 +12,8 @@ public interface DatabaseObject
   public int getPkey();
   public boolean setPkey(int i);
   public Metadata getMetadata();
-  public boolean save(Statement stmt) ;
-  public boolean deleteFromDatabase(java.sql.Statement stmt) ;
+  public boolean save(Statement stmt);
+  public boolean deleteFromDatabase(java.sql.Statement stmt);
   /**                     Inner Classes                                 **/
   public static class FilterNew implements com.spun.util.filters.Filter<DatabaseObject>
   {
@@ -31,7 +31,7 @@ public interface DatabaseObject
   }
   public static class Utils
   {
-    public static void saveAll(DatabaseObject[] objects, Statement stmt) 
+    public static void saveAll(DatabaseObject[] objects, Statement stmt)
     {
       java.util.HashSet<DatabaseObject> set = new java.util.HashSet<DatabaseObject>();
       for (int i = 0; i < objects.length; i++)

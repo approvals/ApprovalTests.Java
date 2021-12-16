@@ -10,55 +10,55 @@ import com.spun.util.DatabaseUtils;
 
 public class MockDatabaseMetaData implements DatabaseMetaData
 {
-  public boolean allProceduresAreCallable() 
+  public boolean allProceduresAreCallable()
   {
     return false;
   }
-  public boolean allTablesAreSelectable() 
+  public boolean allTablesAreSelectable()
   {
     return false;
   }
-  public String getURL() 
+  public String getURL()
   {
     return null;
   }
-  public String getUserName() 
+  public String getUserName()
   {
     return null;
   }
-  public boolean isReadOnly() 
+  public boolean isReadOnly()
   {
     return false;
   }
-  public boolean nullsAreSortedHigh() 
+  public boolean nullsAreSortedHigh()
   {
     return false;
   }
-  public boolean nullsAreSortedLow() 
+  public boolean nullsAreSortedLow()
   {
     return false;
   }
-  public boolean nullsAreSortedAtStart() 
+  public boolean nullsAreSortedAtStart()
   {
     return false;
   }
-  public boolean nullsAreSortedAtEnd() 
+  public boolean nullsAreSortedAtEnd()
   {
     return false;
   }
-  public String getDatabaseProductName() 
+  public String getDatabaseProductName()
   {
     return DatabaseUtils.DATABASE_TYPES[DatabaseUtils.POSTGRESQL];
   }
-  public String getDatabaseProductVersion() 
+  public String getDatabaseProductVersion()
   {
     return null;
   }
-  public String getDriverName() 
+  public String getDriverName()
   {
     return null;
   }
-  public String getDriverVersion() 
+  public String getDriverVersion()
   {
     return null;
   }
@@ -70,659 +70,651 @@ public class MockDatabaseMetaData implements DatabaseMetaData
   {
     return 0;
   }
-  public boolean usesLocalFiles() 
+  public boolean usesLocalFiles()
   {
     return false;
   }
-  public boolean usesLocalFilePerTable() 
+  public boolean usesLocalFilePerTable()
   {
     return false;
   }
-  public boolean supportsMixedCaseIdentifiers() 
+  public boolean supportsMixedCaseIdentifiers()
   {
     return false;
   }
-  public boolean storesUpperCaseIdentifiers() 
+  public boolean storesUpperCaseIdentifiers()
   {
     return false;
   }
-  public boolean storesLowerCaseIdentifiers() 
+  public boolean storesLowerCaseIdentifiers()
   {
     return false;
   }
-  public boolean storesMixedCaseIdentifiers() 
+  public boolean storesMixedCaseIdentifiers()
   {
     return false;
   }
-  public boolean supportsMixedCaseQuotedIdentifiers() 
+  public boolean supportsMixedCaseQuotedIdentifiers()
   {
     return false;
   }
-  public boolean storesUpperCaseQuotedIdentifiers() 
+  public boolean storesUpperCaseQuotedIdentifiers()
   {
     return false;
   }
-  public boolean storesLowerCaseQuotedIdentifiers() 
+  public boolean storesLowerCaseQuotedIdentifiers()
   {
     return false;
   }
-  public boolean storesMixedCaseQuotedIdentifiers() 
+  public boolean storesMixedCaseQuotedIdentifiers()
   {
     return false;
   }
-  public String getIdentifierQuoteString() 
-  {
-    return null;
-  }
-  public String getSQLKeywords() 
+  public String getIdentifierQuoteString()
   {
     return null;
   }
-  public String getNumericFunctions() 
+  public String getSQLKeywords()
   {
     return null;
   }
-  public String getStringFunctions() 
+  public String getNumericFunctions()
   {
     return null;
   }
-  public String getSystemFunctions() 
+  public String getStringFunctions()
   {
     return null;
   }
-  public String getTimeDateFunctions() 
+  public String getSystemFunctions()
   {
     return null;
   }
-  public String getSearchStringEscape() 
+  public String getTimeDateFunctions()
   {
     return null;
   }
-  public String getExtraNameCharacters() 
+  public String getSearchStringEscape()
   {
     return null;
   }
-  public boolean supportsAlterTableWithAddColumn() 
-  {
-    return false;
-  }
-  public boolean supportsAlterTableWithDropColumn() 
-  {
-    return false;
-  }
-  public boolean supportsColumnAliasing() 
-  {
-    return false;
-  }
-  public boolean nullPlusNonNullIsNull() 
-  {
-    return false;
-  }
-  public boolean supportsConvert() 
-  {
-    return false;
-  }
-  public boolean supportsConvert(int fromType, int toType) 
-  {
-    return false;
-  }
-  public boolean supportsTableCorrelationNames() 
-  {
-    return false;
-  }
-  public boolean supportsDifferentTableCorrelationNames() 
-  {
-    return false;
-  }
-  public boolean supportsExpressionsInOrderBy() 
-  {
-    return false;
-  }
-  public boolean supportsOrderByUnrelated() 
-  {
-    return false;
-  }
-  public boolean supportsGroupBy() 
-  {
-    return false;
-  }
-  public boolean supportsGroupByUnrelated() 
-  {
-    return false;
-  }
-  public boolean supportsGroupByBeyondSelect() 
-  {
-    return false;
-  }
-  public boolean supportsLikeEscapeClause() 
-  {
-    return false;
-  }
-  public boolean supportsMultipleResultSets() 
-  {
-    return false;
-  }
-  public boolean supportsMultipleTransactions() 
-  {
-    return false;
-  }
-  public boolean supportsNonNullableColumns() 
-  {
-    return false;
-  }
-  public boolean supportsMinimumSQLGrammar() 
-  {
-    return false;
-  }
-  public boolean supportsCoreSQLGrammar() 
-  {
-    return false;
-  }
-  public boolean supportsExtendedSQLGrammar() 
-  {
-    return false;
-  }
-  public boolean supportsANSI92EntryLevelSQL() 
-  {
-    return false;
-  }
-  public boolean supportsANSI92IntermediateSQL() 
-  {
-    return false;
-  }
-  public boolean supportsANSI92FullSQL() 
-  {
-    return false;
-  }
-  public boolean supportsIntegrityEnhancementFacility() 
-  {
-    return false;
-  }
-  public boolean supportsOuterJoins() 
-  {
-    return false;
-  }
-  public boolean supportsFullOuterJoins() 
-  {
-    return false;
-  }
-  public boolean supportsLimitedOuterJoins() 
-  {
-    return false;
-  }
-  public String getSchemaTerm() 
+  public String getExtraNameCharacters()
   {
     return null;
   }
-  public String getProcedureTerm() 
+  public boolean supportsAlterTableWithAddColumn()
+  {
+    return false;
+  }
+  public boolean supportsAlterTableWithDropColumn()
+  {
+    return false;
+  }
+  public boolean supportsColumnAliasing()
+  {
+    return false;
+  }
+  public boolean nullPlusNonNullIsNull()
+  {
+    return false;
+  }
+  public boolean supportsConvert()
+  {
+    return false;
+  }
+  public boolean supportsConvert(int fromType, int toType)
+  {
+    return false;
+  }
+  public boolean supportsTableCorrelationNames()
+  {
+    return false;
+  }
+  public boolean supportsDifferentTableCorrelationNames()
+  {
+    return false;
+  }
+  public boolean supportsExpressionsInOrderBy()
+  {
+    return false;
+  }
+  public boolean supportsOrderByUnrelated()
+  {
+    return false;
+  }
+  public boolean supportsGroupBy()
+  {
+    return false;
+  }
+  public boolean supportsGroupByUnrelated()
+  {
+    return false;
+  }
+  public boolean supportsGroupByBeyondSelect()
+  {
+    return false;
+  }
+  public boolean supportsLikeEscapeClause()
+  {
+    return false;
+  }
+  public boolean supportsMultipleResultSets()
+  {
+    return false;
+  }
+  public boolean supportsMultipleTransactions()
+  {
+    return false;
+  }
+  public boolean supportsNonNullableColumns()
+  {
+    return false;
+  }
+  public boolean supportsMinimumSQLGrammar()
+  {
+    return false;
+  }
+  public boolean supportsCoreSQLGrammar()
+  {
+    return false;
+  }
+  public boolean supportsExtendedSQLGrammar()
+  {
+    return false;
+  }
+  public boolean supportsANSI92EntryLevelSQL()
+  {
+    return false;
+  }
+  public boolean supportsANSI92IntermediateSQL()
+  {
+    return false;
+  }
+  public boolean supportsANSI92FullSQL()
+  {
+    return false;
+  }
+  public boolean supportsIntegrityEnhancementFacility()
+  {
+    return false;
+  }
+  public boolean supportsOuterJoins()
+  {
+    return false;
+  }
+  public boolean supportsFullOuterJoins()
+  {
+    return false;
+  }
+  public boolean supportsLimitedOuterJoins()
+  {
+    return false;
+  }
+  public String getSchemaTerm()
   {
     return null;
   }
-  public String getCatalogTerm() 
+  public String getProcedureTerm()
   {
     return null;
   }
-  public boolean isCatalogAtStart() 
-  {
-    return false;
-  }
-  public String getCatalogSeparator() 
+  public String getCatalogTerm()
   {
     return null;
   }
-  public boolean supportsSchemasInDataManipulation() 
+  public boolean isCatalogAtStart()
   {
     return false;
   }
-  public boolean supportsSchemasInProcedureCalls() 
+  public String getCatalogSeparator()
+  {
+    return null;
+  }
+  public boolean supportsSchemasInDataManipulation()
   {
     return false;
   }
-  public boolean supportsSchemasInTableDefinitions() 
+  public boolean supportsSchemasInProcedureCalls()
   {
     return false;
   }
-  public boolean supportsSchemasInIndexDefinitions() 
+  public boolean supportsSchemasInTableDefinitions()
   {
     return false;
   }
-  public boolean supportsSchemasInPrivilegeDefinitions() 
+  public boolean supportsSchemasInIndexDefinitions()
   {
     return false;
   }
-  public boolean supportsCatalogsInDataManipulation() 
+  public boolean supportsSchemasInPrivilegeDefinitions()
   {
     return false;
   }
-  public boolean supportsCatalogsInProcedureCalls() 
+  public boolean supportsCatalogsInDataManipulation()
   {
     return false;
   }
-  public boolean supportsCatalogsInTableDefinitions() 
+  public boolean supportsCatalogsInProcedureCalls()
   {
     return false;
   }
-  public boolean supportsCatalogsInIndexDefinitions() 
+  public boolean supportsCatalogsInTableDefinitions()
   {
     return false;
   }
-  public boolean supportsCatalogsInPrivilegeDefinitions() 
+  public boolean supportsCatalogsInIndexDefinitions()
   {
     return false;
   }
-  public boolean supportsPositionedDelete() 
+  public boolean supportsCatalogsInPrivilegeDefinitions()
   {
     return false;
   }
-  public boolean supportsPositionedUpdate() 
+  public boolean supportsPositionedDelete()
   {
     return false;
   }
-  public boolean supportsSelectForUpdate() 
+  public boolean supportsPositionedUpdate()
   {
     return false;
   }
-  public boolean supportsStoredProcedures() 
+  public boolean supportsSelectForUpdate()
   {
     return false;
   }
-  public boolean supportsSubqueriesInComparisons() 
+  public boolean supportsStoredProcedures()
   {
     return false;
   }
-  public boolean supportsSubqueriesInExists() 
+  public boolean supportsSubqueriesInComparisons()
   {
     return false;
   }
-  public boolean supportsSubqueriesInIns() 
+  public boolean supportsSubqueriesInExists()
   {
     return false;
   }
-  public boolean supportsSubqueriesInQuantifieds() 
+  public boolean supportsSubqueriesInIns()
   {
     return false;
   }
-  public boolean supportsCorrelatedSubqueries() 
+  public boolean supportsSubqueriesInQuantifieds()
   {
     return false;
   }
-  public boolean supportsUnion() 
+  public boolean supportsCorrelatedSubqueries()
   {
     return false;
   }
-  public boolean supportsUnionAll() 
+  public boolean supportsUnion()
   {
     return false;
   }
-  public boolean supportsOpenCursorsAcrossCommit() 
+  public boolean supportsUnionAll()
   {
     return false;
   }
-  public boolean supportsOpenCursorsAcrossRollback() 
+  public boolean supportsOpenCursorsAcrossCommit()
   {
     return false;
   }
-  public boolean supportsOpenStatementsAcrossCommit() 
+  public boolean supportsOpenCursorsAcrossRollback()
   {
     return false;
   }
-  public boolean supportsOpenStatementsAcrossRollback() 
+  public boolean supportsOpenStatementsAcrossCommit()
   {
     return false;
   }
-  public int getMaxBinaryLiteralLength() 
+  public boolean supportsOpenStatementsAcrossRollback()
+  {
+    return false;
+  }
+  public int getMaxBinaryLiteralLength()
   {
     return 0;
   }
-  public int getMaxCharLiteralLength() 
+  public int getMaxCharLiteralLength()
   {
     return 0;
   }
-  public int getMaxColumnNameLength() 
+  public int getMaxColumnNameLength()
   {
     return 0;
   }
-  public int getMaxColumnsInGroupBy() 
+  public int getMaxColumnsInGroupBy()
   {
     return 0;
   }
-  public int getMaxColumnsInIndex() 
+  public int getMaxColumnsInIndex()
   {
     return 0;
   }
-  public int getMaxColumnsInOrderBy() 
+  public int getMaxColumnsInOrderBy()
   {
     return 0;
   }
-  public int getMaxColumnsInSelect() 
+  public int getMaxColumnsInSelect()
   {
     return 0;
   }
-  public int getMaxColumnsInTable() 
+  public int getMaxColumnsInTable()
   {
     return 0;
   }
-  public int getMaxConnections() 
+  public int getMaxConnections()
   {
     return 0;
   }
-  public int getMaxCursorNameLength() 
+  public int getMaxCursorNameLength()
   {
     return 0;
   }
-  public int getMaxIndexLength() 
+  public int getMaxIndexLength()
   {
     return 0;
   }
-  public int getMaxSchemaNameLength() 
+  public int getMaxSchemaNameLength()
   {
     return 0;
   }
-  public int getMaxProcedureNameLength() 
+  public int getMaxProcedureNameLength()
   {
     return 0;
   }
-  public int getMaxCatalogNameLength() 
+  public int getMaxCatalogNameLength()
   {
     return 0;
   }
-  public int getMaxRowSize() 
+  public int getMaxRowSize()
   {
     return 0;
   }
-  public boolean doesMaxRowSizeIncludeBlobs() 
+  public boolean doesMaxRowSizeIncludeBlobs()
   {
     return false;
   }
-  public int getMaxStatementLength() 
+  public int getMaxStatementLength()
   {
     return 0;
   }
-  public int getMaxStatements() 
+  public int getMaxStatements()
   {
     return 0;
   }
-  public int getMaxTableNameLength() 
+  public int getMaxTableNameLength()
   {
     return 0;
   }
-  public int getMaxTablesInSelect() 
+  public int getMaxTablesInSelect()
   {
     return 0;
   }
-  public int getMaxUserNameLength() 
+  public int getMaxUserNameLength()
   {
     return 0;
   }
-  public int getDefaultTransactionIsolation() 
+  public int getDefaultTransactionIsolation()
   {
     return 0;
   }
-  public boolean supportsTransactions() 
+  public boolean supportsTransactions()
   {
     return false;
   }
-  public boolean supportsTransactionIsolationLevel(int level) 
+  public boolean supportsTransactionIsolationLevel(int level)
   {
     return false;
   }
-  public boolean supportsDataDefinitionAndDataManipulationTransactions() 
+  public boolean supportsDataDefinitionAndDataManipulationTransactions()
   {
     return false;
   }
-  public boolean supportsDataManipulationTransactionsOnly() 
+  public boolean supportsDataManipulationTransactionsOnly()
   {
     return false;
   }
-  public boolean dataDefinitionCausesTransactionCommit() 
+  public boolean dataDefinitionCausesTransactionCommit()
   {
     return false;
   }
-  public boolean dataDefinitionIgnoredInTransactions() 
+  public boolean dataDefinitionIgnoredInTransactions()
   {
     return false;
   }
   public ResultSet getProcedures(String catalog, String schemaPattern, String procedureNamePattern)
-      
   {
     return null;
   }
   public ResultSet getProcedureColumns(String catalog, String schemaPattern, String procedureNamePattern,
-      String columnNamePattern) 
+      String columnNamePattern)
   {
     return null;
   }
   public ResultSet getTables(String catalog, String schemaPattern, String tableNamePattern, String[] types)
-      
   {
     return null;
   }
-  public ResultSet getSchemas() 
+  public ResultSet getSchemas()
   {
     return null;
   }
-  public ResultSet getCatalogs() 
+  public ResultSet getCatalogs()
   {
     return null;
   }
-  public ResultSet getTableTypes() 
+  public ResultSet getTableTypes()
   {
     return null;
   }
   public ResultSet getColumns(String catalog, String schemaPattern, String tableNamePattern,
-      String columnNamePattern) 
+      String columnNamePattern)
   {
     return null;
   }
   public ResultSet getColumnPrivileges(String catalog, String schema, String table, String columnNamePattern)
-      
   {
     return null;
   }
   public ResultSet getTablePrivileges(String catalog, String schemaPattern, String tableNamePattern)
-      
   {
     return null;
   }
   public ResultSet getBestRowIdentifier(String catalog, String schema, String table, int scope, boolean nullable)
-      
   {
     return null;
   }
-  public ResultSet getVersionColumns(String catalog, String schema, String table) 
+  public ResultSet getVersionColumns(String catalog, String schema, String table)
   {
     return null;
   }
-  public ResultSet getPrimaryKeys(String catalog, String schema, String table) 
+  public ResultSet getPrimaryKeys(String catalog, String schema, String table)
   {
     return null;
   }
-  public ResultSet getImportedKeys(String catalog, String schema, String table) 
+  public ResultSet getImportedKeys(String catalog, String schema, String table)
   {
     return null;
   }
-  public ResultSet getExportedKeys(String catalog, String schema, String table) 
+  public ResultSet getExportedKeys(String catalog, String schema, String table)
   {
     return null;
   }
   public ResultSet getCrossReference(String primaryCatalog, String primarySchema, String primaryTable,
-      String foreignCatalog, String foreignSchema, String foreignTable) 
+      String foreignCatalog, String foreignSchema, String foreignTable)
   {
     return null;
   }
-  public ResultSet getTypeInfo() 
+  public ResultSet getTypeInfo()
   {
     return null;
   }
   public ResultSet getIndexInfo(String catalog, String schema, String table, boolean unique, boolean approximate)
-      
   {
     return null;
   }
-  public boolean supportsResultSetType(int type) 
+  public boolean supportsResultSetType(int type)
   {
     return false;
   }
-  public boolean supportsResultSetConcurrency(int type, int concurrency) 
+  public boolean supportsResultSetConcurrency(int type, int concurrency)
   {
     return false;
   }
-  public boolean ownUpdatesAreVisible(int type) 
+  public boolean ownUpdatesAreVisible(int type)
   {
     return false;
   }
-  public boolean ownDeletesAreVisible(int type) 
+  public boolean ownDeletesAreVisible(int type)
   {
     return false;
   }
-  public boolean ownInsertsAreVisible(int type) 
+  public boolean ownInsertsAreVisible(int type)
   {
     return false;
   }
-  public boolean othersUpdatesAreVisible(int type) 
+  public boolean othersUpdatesAreVisible(int type)
   {
     return false;
   }
-  public boolean othersDeletesAreVisible(int type) 
+  public boolean othersDeletesAreVisible(int type)
   {
     return false;
   }
-  public boolean othersInsertsAreVisible(int type) 
+  public boolean othersInsertsAreVisible(int type)
   {
     return false;
   }
-  public boolean updatesAreDetected(int type) 
+  public boolean updatesAreDetected(int type)
   {
     return false;
   }
-  public boolean deletesAreDetected(int type) 
+  public boolean deletesAreDetected(int type)
   {
     return false;
   }
-  public boolean insertsAreDetected(int type) 
+  public boolean insertsAreDetected(int type)
   {
     return false;
   }
-  public boolean supportsBatchUpdates() 
+  public boolean supportsBatchUpdates()
   {
     return false;
   }
   public ResultSet getUDTs(String catalog, String schemaPattern, String typeNamePattern, int[] types)
-      
   {
     return null;
   }
-  public Connection getConnection() 
+  public Connection getConnection()
   {
     return null;
   }
-  public boolean supportsSavepoints() 
+  public boolean supportsSavepoints()
   {
     return false;
   }
-  public boolean supportsNamedParameters() 
+  public boolean supportsNamedParameters()
   {
     return false;
   }
-  public boolean supportsMultipleOpenResults() 
+  public boolean supportsMultipleOpenResults()
   {
     return false;
   }
-  public boolean supportsGetGeneratedKeys() 
+  public boolean supportsGetGeneratedKeys()
   {
     return false;
   }
-  public ResultSet getSuperTypes(String catalog, String schemaPattern, String typeNamePattern) 
+  public ResultSet getSuperTypes(String catalog, String schemaPattern, String typeNamePattern)
   {
     return null;
   }
   public ResultSet getSuperTables(String catalog, String schemaPattern, String tableNamePattern)
-      
   {
     return null;
   }
   public ResultSet getAttributes(String catalog, String schemaPattern, String typeNamePattern,
-      String attributeNamePattern) 
+      String attributeNamePattern)
   {
     return null;
   }
-  public boolean supportsResultSetHoldability(int holdability) 
+  public boolean supportsResultSetHoldability(int holdability)
   {
     return false;
   }
-  public int getResultSetHoldability() 
+  public int getResultSetHoldability()
   {
     return 0;
   }
-  public int getDatabaseMajorVersion() 
+  public int getDatabaseMajorVersion()
   {
     return 0;
   }
-  public int getDatabaseMinorVersion() 
+  public int getDatabaseMinorVersion()
   {
     return 0;
   }
-  public int getJDBCMajorVersion() 
+  public int getJDBCMajorVersion()
   {
     return 0;
   }
-  public int getJDBCMinorVersion() 
+  public int getJDBCMinorVersion()
   {
     return 0;
   }
-  public int getSQLStateType() 
+  public int getSQLStateType()
   {
     return 0;
   }
-  public boolean locatorsUpdateCopy() 
+  public boolean locatorsUpdateCopy()
   {
     return false;
   }
-  public boolean supportsStatementPooling() 
+  public boolean supportsStatementPooling()
   {
     return false;
   }
-  public boolean autoCommitFailureClosesAllResultSets() 
+  public boolean autoCommitFailureClosesAllResultSets()
   {
     return false;
   }
-  public ResultSet getClientInfoProperties() 
+  public ResultSet getClientInfoProperties()
   {
     return null;
   }
-  public ResultSet getFunctionColumns(String arg0, String arg1, String arg2, String arg3) 
+  public ResultSet getFunctionColumns(String arg0, String arg1, String arg2, String arg3)
   {
     return null;
   }
-  public ResultSet getFunctions(String arg0, String arg1, String arg2) 
+  public ResultSet getFunctions(String arg0, String arg1, String arg2)
   {
     return null;
   }
-  public RowIdLifetime getRowIdLifetime() 
+  public RowIdLifetime getRowIdLifetime()
   {
     return null;
   }
-  public ResultSet getSchemas(String arg0, String arg1) 
+  public ResultSet getSchemas(String arg0, String arg1)
   {
     return null;
   }
-  public boolean supportsStoredFunctionsUsingCallSyntax() 
+  public boolean supportsStoredFunctionsUsingCallSyntax()
   {
     return false;
   }
-  public boolean isWrapperFor(Class<?> arg0) 
+  public boolean isWrapperFor(Class<?> arg0)
   {
     return false;
   }
-  public <T> T unwrap(Class<T> arg0) 
+  public <T> T unwrap(Class<T> arg0)
   {
     return null;
   }
-  public boolean generatedKeyAlwaysReturned() 
+  public boolean generatedKeyAlwaysReturned()
   {
     return false;
   }
-  public ResultSet getPseudoColumns(String arg0, String arg1, String arg2, String arg3) 
+  public ResultSet getPseudoColumns(String arg0, String arg1, String arg2, String arg3)
   {
     return null;
   }

@@ -36,21 +36,24 @@ public class SQLUtils
     sql.append(") ");
     return sql.toString();
   }
-  public static String loadInSQLStatement(ResultSet rs) 
+  public static String loadInSQLStatement(ResultSet rs)
   {
     StringBuffer sql = new StringBuffer("(");
-    try {
-      while (rs.next()) {
+    try
+    {
+      while (rs.next())
+      {
         sql.append(DatabaseUtils.formatNullableObject(rs.getObject(1)));
         sql.append(", ");
       }
-      if (sql.length() == 1) {
-        return null;
-      }
+      if (sql.length() == 1)
+      { return null; }
       sql.setLength(sql.length() - 2);
       sql.append(") ");
       return sql.toString();
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

@@ -17,31 +17,37 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
   }
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
-    try {
-      if (atStage == INSERT_COMPLETED) {
+    try
+    {
+      if (atStage == INSERT_COMPLETED)
+      {
         // My_System.variable("datase type", stmt.getConnection().getMetaData().getDatabaseProductName());
-        switch (DatabaseUtils.getDatabaseType(stmt.getConnection())) {
-          case DatabaseUtils.SQLSERVER2005:
-          case DatabaseUtils.SQLSERVER2000:
-          case DatabaseUtils.SQLSERVER:
+        switch (DatabaseUtils.getDatabaseType(stmt.getConnection()))
+        {
+          case DatabaseUtils.SQLSERVER2005 :
+          case DatabaseUtils.SQLSERVER2000 :
+          case DatabaseUtils.SQLSERVER :
             loadBySQL(forObject, atStage, stmt);
             break;
-          case DatabaseUtils.MY_SQL:
+          case DatabaseUtils.MY_SQL :
             loadBySequenceMySQL(forObject, stmt);
             break;
-          case DatabaseUtils.POSTGRESQL:
+          case DatabaseUtils.POSTGRESQL :
             loadBySequence(forObject, atStage, stmt);
             break;
-          default:
+          default :
             loadByJDBC(forObject, atStage, stmt);
             break;
         }
-        if (forObject.getPkey() == 0) {
+        if (forObject.getPkey() == 0)
+        {
           throw new Error(
-                  "Couldn't retrieve a pkey for insert into table : " + forObject.getMetadata().getTableName());
+              "Couldn't retrieve a pkey for insert into table : " + forObject.getMetadata().getTableName());
         }
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -65,7 +71,9 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       {
         forObject.setPkey(rs.getInt(1));
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -77,7 +85,9 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       {
         forObject.setPkey(rs.getInt(1));
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

@@ -17,14 +17,16 @@ public class XmlMapExtractor implements XmlExtractor
   {
     this(ClassUtils.create(clazz).getXmlMap(), clazz);
   }
-
   public Object extractObjectForNode(Node node)
   {
-    try {
+    try
+    {
       Object object = ClassUtils.create(clazz);
       XmlExtractorUtil.extractAndTranslateForNode(node, object, translator);
       return object;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

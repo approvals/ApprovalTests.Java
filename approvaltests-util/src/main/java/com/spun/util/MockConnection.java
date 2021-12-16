@@ -23,170 +23,170 @@ public class MockConnection implements Connection
 {
   public int autoCommitCount = 0;
   public int commitCount     = 0;
-  public int getHoldability() 
+  public int getHoldability()
   {
     return 0;
   }
-  public int getTransactionIsolation() 
+  public int getTransactionIsolation()
   {
     return 0;
   }
-  public void clearWarnings() 
+  public void clearWarnings()
   {
   }
-  public void close() 
+  public void close()
   {
   }
-  public void commit() 
+  public void commit()
   {
     commitCount++;
   }
-  public void rollback() 
+  public void rollback()
   {
   }
-  public boolean getAutoCommit() 
-  {
-    return false;
-  }
-  public boolean isClosed() 
+  public boolean getAutoCommit()
   {
     return false;
   }
-  public boolean isReadOnly() 
+  public boolean isClosed()
   {
     return false;
   }
-  public void setHoldability(int arg0) 
+  public boolean isReadOnly()
+  {
+    return false;
+  }
+  public void setHoldability(int arg0)
   {
   }
-  public void setTransactionIsolation(int arg0) 
+  public void setTransactionIsolation(int arg0)
   {
   }
-  public void setAutoCommit(boolean arg0) 
+  public void setAutoCommit(boolean arg0)
   {
     autoCommitCount++;
   }
-  public void setReadOnly(boolean arg0) 
+  public void setReadOnly(boolean arg0)
   {
   }
-  public String getCatalog() 
-  {
-    return null;
-  }
-  public void setCatalog(String arg0) 
-  {
-  }
-  public DatabaseMetaData getMetaData() 
+  public String getCatalog()
   {
     return null;
   }
-  public SQLWarning getWarnings() 
+  public void setCatalog(String arg0)
+  {
+  }
+  public DatabaseMetaData getMetaData()
   {
     return null;
   }
-  public Savepoint setSavepoint() 
+  public SQLWarning getWarnings()
   {
     return null;
   }
-  public void releaseSavepoint(Savepoint arg0) 
-  {
-  }
-  public void rollback(Savepoint arg0) 
-  {
-  }
-  public Statement createStatement() 
+  public Savepoint setSavepoint()
   {
     return null;
   }
-  public Statement createStatement(int arg0, int arg1) 
+  public void releaseSavepoint(Savepoint arg0)
+  {
+  }
+  public void rollback(Savepoint arg0)
+  {
+  }
+  public Statement createStatement()
   {
     return null;
   }
-  public Statement createStatement(int arg0, int arg1, int arg2) 
+  public Statement createStatement(int arg0, int arg1)
   {
     return null;
   }
-  public Map<String, Class<?>> getTypeMap() 
+  public Statement createStatement(int arg0, int arg1, int arg2)
   {
     return null;
   }
-  public String nativeSQL(String arg0) 
+  public Map<String, Class<?>> getTypeMap()
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0) 
+  public String nativeSQL(String arg0)
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0, int arg1, int arg2) 
+  public CallableStatement prepareCall(String arg0)
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) 
+  public CallableStatement prepareCall(String arg0, int arg1, int arg2)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0) 
+  public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1) 
+  public PreparedStatement prepareStatement(String arg0)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) 
+  public PreparedStatement prepareStatement(String arg0, int arg1)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) 
+  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int[] arg1) 
+  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3)
   {
     return null;
   }
-  public Savepoint setSavepoint(String arg0) 
+  public PreparedStatement prepareStatement(String arg0, int[] arg1)
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, String[] arg1) 
+  public Savepoint setSavepoint(String arg0)
   {
     return null;
   }
-  public Array createArrayOf(String arg0, Object[] arg1) 
+  public PreparedStatement prepareStatement(String arg0, String[] arg1)
   {
     return null;
   }
-  public Blob createBlob() 
+  public Array createArrayOf(String arg0, Object[] arg1)
   {
     return null;
   }
-  public Clob createClob() 
+  public Blob createBlob()
   {
     return null;
   }
-  public NClob createNClob() 
+  public Clob createClob()
   {
     return null;
   }
-  public SQLXML createSQLXML() 
+  public NClob createNClob()
   {
     return null;
   }
-  public Struct createStruct(String arg0, Object[] arg1) 
+  public SQLXML createSQLXML()
   {
     return null;
   }
-  public Properties getClientInfo() 
+  public Struct createStruct(String arg0, Object[] arg1)
   {
     return null;
   }
-  public String getClientInfo(String arg0) 
+  public Properties getClientInfo()
   {
     return null;
   }
-  public boolean isValid(int arg0) 
+  public String getClientInfo(String arg0)
+  {
+    return null;
+  }
+  public boolean isValid(int arg0)
   {
     return false;
   }
@@ -196,32 +196,32 @@ public class MockConnection implements Connection
   public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException
   {
   }
-  public void setTypeMap(Map<String, Class<?>> arg0) 
+  public void setTypeMap(Map<String, Class<?>> arg0)
   {
   }
-  public boolean isWrapperFor(Class<?> arg0) 
+  public boolean isWrapperFor(Class<?> arg0)
   {
     return false;
   }
-  public <T> T unwrap(Class<T> arg0) 
+  public <T> T unwrap(Class<T> arg0)
   {
     return null;
   }
-  public void abort(Executor executor) 
+  public void abort(Executor executor)
   {
   }
-  public int getNetworkTimeout() 
+  public int getNetworkTimeout()
   {
     return 0;
   }
-  public String getSchema() 
+  public String getSchema()
   {
     return null;
   }
-  public void setNetworkTimeout(Executor executor, int milliseconds) 
+  public void setNetworkTimeout(Executor executor, int milliseconds)
   {
   }
-  public void setSchema(String schema) 
+  public void setSchema(String schema)
   {
   }
 }

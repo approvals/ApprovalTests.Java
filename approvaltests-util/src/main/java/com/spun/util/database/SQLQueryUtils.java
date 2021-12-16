@@ -20,7 +20,7 @@ public class SQLQueryUtils
   public static class IntegerExtractor implements ResultSetExtractor<Integer>
   {
     @Override
-    public Integer extract(ResultSet rs) 
+    public Integer extract(ResultSet rs)
     {
       return ObjectUtils.throwAsError(() -> rs.getInt(1));
     }
@@ -35,7 +35,7 @@ public class SQLQueryUtils
   }
   public static interface ResultSetExtractor<T>
   {
-    public T extract(ResultSet rs) ;
+    public T extract(ResultSet rs);
   }
   public static SQLQuery extractCountingQuery(SQLQuery query)
   {
@@ -64,32 +64,37 @@ public class SQLQueryUtils
     }
     return query;
   }
-  public static int executeCountOnQuery(SQLQuery query, Statement stmt) 
+  public static int executeCountOnQuery(SQLQuery query, Statement stmt)
   {
     return executeSingleIntQuery(extractCountingQuery(query).toString(), stmt);
   }
-  public static int executeSingleIntQuery(String sql, Statement stmt) 
+  public static int executeSingleIntQuery(String sql, Statement stmt)
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new IntegerExtractor());
   }
-  public static Timestamp executeSingleDateQuery(String sql, Statement stmt) 
+  public static Timestamp executeSingleDateQuery(String sql, Statement stmt)
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new TimestampExtractor());
   }
   private static <T> T extractSingleRow(String sql, ResultSet rs, ResultSetExtractor<T> extractor)
-      
   {
-    try {
-      if (rs.next()) {
+    try
+    {
+      if (rs.next())
+      {
         T out = extractor.extract(rs);
         rs.close();
         return out;
-      } else {
+      }
+      else
+      {
         throw new RuntimeException("No results returned from query - " + sql);
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

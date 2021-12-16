@@ -36,19 +36,19 @@ public class SshConnection implements Connection
     this.ssh = ssh;
     this.con = connection;
   }
-  public int getHoldability() 
+  public int getHoldability()
   {
     return ObjectUtils.throwAsError(() -> con.getHoldability());
   }
-  public int getTransactionIsolation() 
+  public int getTransactionIsolation()
   {
     return ObjectUtils.throwAsError(() -> con.getTransactionIsolation());
   }
-  public void clearWarnings() 
+  public void clearWarnings()
   {
     ObjectUtils.throwAsError(() -> con.clearWarnings());
   }
-  public void close() 
+  public void close()
   {
     if (con != null)
     {
@@ -57,135 +57,136 @@ public class SshConnection implements Connection
       con = null;
     }
   }
-  public void commit() 
+  public void commit()
   {
     ObjectUtils.throwAsError(() -> con.commit());
   }
-  public void rollback() 
+  public void rollback()
   {
     ObjectUtils.throwAsError(() -> con.rollback());
   }
-  public boolean getAutoCommit() 
+  public boolean getAutoCommit()
   {
     return ObjectUtils.throwAsError(() -> con.getAutoCommit());
   }
-  public boolean isClosed() 
+  public boolean isClosed()
   {
     return ObjectUtils.throwAsError(() -> con.isClosed());
   }
-  public boolean isReadOnly() 
+  public boolean isReadOnly()
   {
     return ObjectUtils.throwAsError(() -> con.isReadOnly());
   }
-  public void setHoldability(int holdability) 
+  public void setHoldability(int holdability)
   {
     ObjectUtils.throwAsError(() -> con.setHoldability(holdability));
   }
-  public void setTransactionIsolation(int level) 
+  public void setTransactionIsolation(int level)
   {
     ObjectUtils.throwAsError(() -> con.setTransactionIsolation(level));
   }
-  public void setAutoCommit(boolean autoCommit) 
+  public void setAutoCommit(boolean autoCommit)
   {
     ObjectUtils.throwAsError(() -> con.setAutoCommit(autoCommit));
   }
-  public void setReadOnly(boolean readOnly) 
+  public void setReadOnly(boolean readOnly)
   {
     ObjectUtils.throwAsError(() -> con.setReadOnly(readOnly));
   }
-  public String getCatalog() 
+  public String getCatalog()
   {
     return ObjectUtils.throwAsError(() -> con.getCatalog());
   }
-  public void setCatalog(String catalog) 
+  public void setCatalog(String catalog)
   {
     ObjectUtils.throwAsError(() -> con.setCatalog(catalog));
   }
-  public DatabaseMetaData getMetaData() 
+  public DatabaseMetaData getMetaData()
   {
     return ObjectUtils.throwAsError(() -> con.getMetaData());
   }
-  public SQLWarning getWarnings() 
+  public SQLWarning getWarnings()
   {
     return ObjectUtils.throwAsError(() -> con.getWarnings());
   }
-  public Savepoint setSavepoint() 
+  public Savepoint setSavepoint()
   {
     return ObjectUtils.throwAsError(() -> con.setSavepoint());
   }
-  public void releaseSavepoint(Savepoint savepoint) 
+  public void releaseSavepoint(Savepoint savepoint)
   {
     ObjectUtils.throwAsError(() -> con.releaseSavepoint(savepoint));
   }
-  public void rollback(Savepoint savepoint) 
+  public void rollback(Savepoint savepoint)
   {
     ObjectUtils.throwAsError(() -> con.rollback(savepoint));
   }
-  public Statement createStatement() 
+  public Statement createStatement()
   {
     return ObjectUtils.throwAsError(() -> con.createStatement());
   }
-  public Statement createStatement(int resultSetType, int resultSetConcurrency) 
+  public Statement createStatement(int resultSetType, int resultSetConcurrency)
   {
     return ObjectUtils.throwAsError(() -> con.createStatement(resultSetType, resultSetConcurrency));
   }
   public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability)
-      
   {
-    return ObjectUtils.throwAsError(() -> con.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability));
+    return ObjectUtils
+        .throwAsError(() -> con.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public Map<String, Class<?>> getTypeMap() 
+  public Map<String, Class<?>> getTypeMap()
   {
     return ObjectUtils.throwAsError(() -> con.getTypeMap());
   }
-  public void setTypeMap(Map<String, Class<?>> arg0) 
+  public void setTypeMap(Map<String, Class<?>> arg0)
   {
     ObjectUtils.throwAsError(() -> con.setTypeMap(arg0));
   }
-  public String nativeSQL(String sql) 
+  public String nativeSQL(String sql)
   {
     return ObjectUtils.throwAsError(() -> con.nativeSQL(sql));
   }
-  public CallableStatement prepareCall(String sql) 
+  public CallableStatement prepareCall(String sql)
   {
     return ObjectUtils.throwAsError(() -> con.prepareCall(sql));
   }
-  public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) 
+  public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency)
   {
     return ObjectUtils.throwAsError(() -> con.prepareCall(sql, resultSetType, resultSetConcurrency));
   }
   public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
-      int resultSetHoldability) 
+      int resultSetHoldability)
   {
-    return ObjectUtils.throwAsError(() -> con.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
+    return ObjectUtils
+        .throwAsError(() -> con.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public PreparedStatement prepareStatement(String sql) 
+  public PreparedStatement prepareStatement(String sql)
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql));
   }
-  public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) 
+  public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys)
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, autoGeneratedKeys));
   }
   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
-      
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, resultSetType, resultSetConcurrency));
   }
   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency,
-      int resultSetHoldability) 
+      int resultSetHoldability)
   {
-    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
+    return ObjectUtils
+        .throwAsError(() -> con.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public PreparedStatement prepareStatement(String sql, int[] columnIndexes) 
+  public PreparedStatement prepareStatement(String sql, int[] columnIndexes)
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, columnIndexes));
   }
-  public Savepoint setSavepoint(String name) 
+  public Savepoint setSavepoint(String name)
   {
     return ObjectUtils.throwAsError(() -> con.setSavepoint(name));
   }
-  public PreparedStatement prepareStatement(String sql, String[] columnNames) 
+  public PreparedStatement prepareStatement(String sql, String[] columnNames)
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, columnNames));
   }
@@ -194,39 +195,39 @@ public class SshConnection implements Connection
     super.finalize();
     close();
   }
-  public Array createArrayOf(String arg0, Object[] arg1) 
+  public Array createArrayOf(String arg0, Object[] arg1)
   {
     return ObjectUtils.throwAsError(() -> con.createArrayOf(arg0, arg1));
   }
-  public Blob createBlob() 
+  public Blob createBlob()
   {
     return ObjectUtils.throwAsError(() -> con.createBlob());
   }
-  public Clob createClob() 
+  public Clob createClob()
   {
     return ObjectUtils.throwAsError(() -> con.createClob());
   }
-  public NClob createNClob() 
+  public NClob createNClob()
   {
     return ObjectUtils.throwAsError(() -> con.createNClob());
   }
-  public SQLXML createSQLXML() 
+  public SQLXML createSQLXML()
   {
     return ObjectUtils.throwAsError(() -> con.createSQLXML());
   }
-  public Struct createStruct(String arg0, Object[] arg1) 
+  public Struct createStruct(String arg0, Object[] arg1)
   {
     return ObjectUtils.throwAsError(() -> con.createStruct(arg0, arg1));
   }
-  public Properties getClientInfo() 
+  public Properties getClientInfo()
   {
     return ObjectUtils.throwAsError(() -> con.getClientInfo());
   }
-  public String getClientInfo(String arg0) 
+  public String getClientInfo(String arg0)
   {
     return ObjectUtils.throwAsError(() -> con.getClientInfo(arg0));
   }
-  public boolean isValid(int arg0) 
+  public boolean isValid(int arg0)
   {
     return ObjectUtils.throwAsError(() -> con.isValid(arg0));
   }
@@ -238,29 +239,29 @@ public class SshConnection implements Connection
   {
     con.setClientInfo(arg0, arg1);
   }
-  public boolean isWrapperFor(Class<?> arg0) 
+  public boolean isWrapperFor(Class<?> arg0)
   {
     return ObjectUtils.throwAsError(() -> con.isWrapperFor(arg0));
   }
-  public <T> T unwrap(Class<T> arg0) 
+  public <T> T unwrap(Class<T> arg0)
   {
     return ObjectUtils.throwAsError(() -> con.unwrap(arg0));
   }
-  public void abort(Executor executor) 
+  public void abort(Executor executor)
   {
   }
-  public int getNetworkTimeout() 
+  public int getNetworkTimeout()
   {
     return 0;
   }
-  public String getSchema() 
+  public String getSchema()
   {
     return null;
   }
-  public void setNetworkTimeout(Executor executor, int milliseconds) 
+  public void setNetworkTimeout(Executor executor, int milliseconds)
   {
   }
-  public void setSchema(String schema) 
+  public void setSchema(String schema)
   {
   }
 }

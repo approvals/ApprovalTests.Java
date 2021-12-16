@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 public class XmlExtractorUtil
 {
-  private XmlExtractorUtil(){}  // Static class should not be instantiated
+  private XmlExtractorUtil()
+  {
+  } // Static class should not be instantiated
   public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz)
   {
     ArrayList<Object> list = new ArrayList<>();

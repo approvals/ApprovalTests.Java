@@ -132,7 +132,7 @@ public class DatabaseLifeCycleUtils
       writer.flush();
     }
   }
-  private static void backupSQLServer(Statement stmt, String databaseName, String fileName) 
+  private static void backupSQLServer(Statement stmt, String databaseName, String fileName)
   {
     String sql = "BACKUP DATABASE " + databaseName + " TO DISK = '" + fileName + "'";
     SimpleLogger.query("BACKUP", sql);
@@ -158,7 +158,7 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
-  private static void restoreMySQL(Statement stmt, String databaseName, String fileName) 
+  private static void restoreMySQL(Statement stmt, String databaseName, String fileName)
   {
     String restoreCommand = "LOAD DATA INFILE '" + fileName + "' REPLACE ...";
     SimpleLogger.query(restoreCommand);
@@ -210,15 +210,18 @@ public class DatabaseLifeCycleUtils
     if (process.exitValue() != 0)
     { throw new Error(extractError(commandLine, process.getErrorStream())); }
   }
-  private static void restoreSQLServer(Statement stmt, String databaseName, String fileName) 
+  private static void restoreSQLServer(Statement stmt, String databaseName, String fileName)
   {
-    try {
+    try
+    {
       stmt.execute("USE master");
       String restoreCommand = "RESTORE DATABASE " + databaseName + " FROM DISK =  '" + fileName + "'";
       SimpleLogger.query(restoreCommand);
       stmt.execute(restoreCommand);
       stmt.execute("USE " + databaseName);
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -244,7 +247,7 @@ public class DatabaseLifeCycleUtils
     }
     return errorBuffer.toString();
   }
-  public static void deleteTable(String tableName, int databaseType, Statement stmt) 
+  public static void deleteTable(String tableName, int databaseType, Statement stmt)
   {
     switch (databaseType)
     {
@@ -263,21 +266,25 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
-  private static void deleteMySqlTable(String tableName, Statement stmt) 
+  private static void deleteMySqlTable(String tableName, Statement stmt)
   {
     ObjectUtils.throwAsError(() -> stmt.executeUpdate("TRUNCATE " + tableName));
   }
-  private static void deletePostgreSQLTable(String tableName, Statement stmt) 
+  private static void deletePostgreSQLTable(String tableName, Statement stmt)
   {
-    try {
+    try
+    {
       stmt.executeUpdate("DELETE FROM " + tableName);
-      try (ResultSet resultSet = stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)")) {
+      try (ResultSet resultSet = stmt.executeQuery("select setval('" + tableName + "_pkey_seq',1)"))
+      {
       }
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static void resetTableIndex(String tableName, int databaseType, Statement stmt) 
+  public static void resetTableIndex(String tableName, int databaseType, Statement stmt)
   {
     switch (databaseType)
     {
@@ -294,22 +301,27 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
-  private static void resetPostgreIndex(String tableName, Statement stmt) 
+  private static void resetPostgreIndex(String tableName, Statement stmt)
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
     SimpleLogger.query("reset index", sql);
     try (ResultSet resultSet = stmt.executeQuery(sql))
     {
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
-  private static void deleteSQLServerTable(String tableName, Statement stmt) 
+  private static void deleteSQLServerTable(String tableName, Statement stmt)
   {
-    try {
+    try
+    {
       stmt.executeUpdate("DELETE FROM " + tableName);
       stmt.executeUpdate("DBCC CHECKIDENT('" + tableName + "', RESEED, 1)");
-    } catch (SQLException e) {
+    }
+    catch (SQLException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

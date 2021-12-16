@@ -17,11 +17,11 @@ public interface DatabaseCache<T extends DatabaseObject>
   /**
    * loads the cache from the database
    **/
-  public void load(Statement stmt) ;
+  public void load(Statement stmt);
   /**
    * clears the cache and reloads it from the database
    **/
-  public void reset(Statement stmt) ;
+  public void reset(Statement stmt);
   /**
    * @return the object from the cache with the corresponding pkey
    **/

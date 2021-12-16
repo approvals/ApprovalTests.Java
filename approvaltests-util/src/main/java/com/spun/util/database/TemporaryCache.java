@@ -64,14 +64,14 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   /** 
    * loads the chache from the database
    **/
-  public synchronized void load(Statement stmt) 
+  public synchronized void load(Statement stmt)
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }
   /** 
    * clears the cache and reloads it from the database
    **/
-  public void reset(Statement stmt) 
+  public void reset(Statement stmt)
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }

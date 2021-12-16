@@ -30,12 +30,12 @@ public class NullDatabaseObject implements DatabaseObject
     return null;
   }
   @Override
-  public boolean save(Statement stmt) 
+  public boolean save(Statement stmt)
   {
     return false;
   }
   @Override
-  public boolean deleteFromDatabase(Statement stmt) 
+  public boolean deleteFromDatabase(Statement stmt)
   {
     return false;
   }

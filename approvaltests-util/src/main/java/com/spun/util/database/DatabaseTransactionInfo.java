@@ -15,7 +15,7 @@ public class DatabaseTransactionInfo
   /** 
    * returns the object from the cache with the corosponding pkey
    **/
-  public DatabaseTransactionInfo(Connection con, int levelsOfRemoval) 
+  public DatabaseTransactionInfo(Connection con, int levelsOfRemoval)
   {
     this.automaticCommit = ObjectUtils.throwAsError(() -> con.getAutoCommit());
     this.connectionReference = new WeakReference<Connection>(con);
@@ -44,7 +44,7 @@ public class DatabaseTransactionInfo
   {
     return this.connectionReference.get();
   }
-  public void cleanConnection() 
+  public void cleanConnection()
   {
     Connection con = getConnection();
     ObjectUtils.throwAsError(() -> con.setAutoCommit(automaticCommit));
