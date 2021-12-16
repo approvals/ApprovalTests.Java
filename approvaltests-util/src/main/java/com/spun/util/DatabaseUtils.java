@@ -610,16 +610,9 @@ public class DatabaseUtils
   }
   public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt)
   {
-    try
+    for (int i = 0; i < databaseObjects.length; i++)
     {
-      for (int i = 0; i < databaseObjects.length; i++)
-      {
-        databaseObjects[i].save(stmt);
-      }
-    }
-    catch (SQLException e)
-    {
-      throw ObjectUtils.throwAsError(e);
+      databaseObjects[i].save(stmt);
     }
   }
   public static void close(ResultSet rs)

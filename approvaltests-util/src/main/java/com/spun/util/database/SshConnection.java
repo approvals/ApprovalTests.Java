@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+import com.spun.util.ObjectUtils;
 import com.sshtools.j2ssh.SshClient;
 
 public class SshConnection implements Connection
@@ -35,199 +36,199 @@ public class SshConnection implements Connection
     this.ssh = ssh;
     this.con = connection;
   }
-  public int getHoldability() throws SQLException
+  public int getHoldability() 
   {
-    return con.getHoldability();
+    return ObjectUtils.throwAsError(() -> con.getHoldability());
   }
-  public int getTransactionIsolation() throws SQLException
+  public int getTransactionIsolation() 
   {
-    return con.getTransactionIsolation();
+    return ObjectUtils.throwAsError(() -> con.getTransactionIsolation());
   }
-  public void clearWarnings() throws SQLException
+  public void clearWarnings() 
   {
-    con.clearWarnings();
+    ObjectUtils.throwAsError(() -> con.clearWarnings());
   }
-  public void close() throws SQLException
+  public void close() 
   {
     if (con != null)
     {
-      con.close();
+      ObjectUtils.throwAsError(() -> con.close());
       closeSsh();
       con = null;
     }
   }
-  public void commit() throws SQLException
+  public void commit() 
   {
-    con.commit();
+    ObjectUtils.throwAsError(() -> con.commit());
   }
-  public void rollback() throws SQLException
+  public void rollback() 
   {
-    con.rollback();
+    ObjectUtils.throwAsError(() -> con.rollback());
   }
-  public boolean getAutoCommit() throws SQLException
+  public boolean getAutoCommit() 
   {
-    return con.getAutoCommit();
+    return ObjectUtils.throwAsError(() -> con.getAutoCommit());
   }
-  public boolean isClosed() throws SQLException
+  public boolean isClosed() 
   {
-    return con.isClosed();
+    return ObjectUtils.throwAsError(() -> con.isClosed());
   }
-  public boolean isReadOnly() throws SQLException
+  public boolean isReadOnly() 
   {
-    return con.isReadOnly();
+    return ObjectUtils.throwAsError(() -> con.isReadOnly());
   }
-  public void setHoldability(int holdability) throws SQLException
+  public void setHoldability(int holdability) 
   {
-    con.setHoldability(holdability);
+    ObjectUtils.throwAsError(() -> con.setHoldability(holdability));
   }
-  public void setTransactionIsolation(int level) throws SQLException
+  public void setTransactionIsolation(int level) 
   {
-    con.setTransactionIsolation(level);
+    ObjectUtils.throwAsError(() -> con.setTransactionIsolation(level));
   }
-  public void setAutoCommit(boolean autoCommit) throws SQLException
+  public void setAutoCommit(boolean autoCommit) 
   {
-    con.setAutoCommit(autoCommit);
+    ObjectUtils.throwAsError(() -> con.setAutoCommit(autoCommit));
   }
-  public void setReadOnly(boolean readOnly) throws SQLException
+  public void setReadOnly(boolean readOnly) 
   {
-    con.setReadOnly(readOnly);
+    ObjectUtils.throwAsError(() -> con.setReadOnly(readOnly));
   }
-  public String getCatalog() throws SQLException
+  public String getCatalog() 
   {
-    return con.getCatalog();
+    return ObjectUtils.throwAsError(() -> con.getCatalog());
   }
-  public void setCatalog(String catalog) throws SQLException
+  public void setCatalog(String catalog) 
   {
-    con.setCatalog(catalog);
+    ObjectUtils.throwAsError(() -> con.setCatalog(catalog));
   }
-  public DatabaseMetaData getMetaData() throws SQLException
+  public DatabaseMetaData getMetaData() 
   {
-    return con.getMetaData();
+    return ObjectUtils.throwAsError(() -> con.getMetaData());
   }
-  public SQLWarning getWarnings() throws SQLException
+  public SQLWarning getWarnings() 
   {
-    return con.getWarnings();
+    return ObjectUtils.throwAsError(() -> con.getWarnings());
   }
-  public Savepoint setSavepoint() throws SQLException
+  public Savepoint setSavepoint() 
   {
-    return con.setSavepoint();
+    return ObjectUtils.throwAsError(() -> con.setSavepoint());
   }
-  public void releaseSavepoint(Savepoint savepoint) throws SQLException
+  public void releaseSavepoint(Savepoint savepoint) 
   {
-    con.releaseSavepoint(savepoint);
+    ObjectUtils.throwAsError(() -> con.releaseSavepoint(savepoint));
   }
-  public void rollback(Savepoint savepoint) throws SQLException
+  public void rollback(Savepoint savepoint) 
   {
-    con.rollback(savepoint);
+    ObjectUtils.throwAsError(() -> con.rollback(savepoint));
   }
-  public Statement createStatement() throws SQLException
+  public Statement createStatement() 
   {
-    return con.createStatement();
+    return ObjectUtils.throwAsError(() -> con.createStatement());
   }
-  public Statement createStatement(int resultSetType, int resultSetConcurrency) throws SQLException
+  public Statement createStatement(int resultSetType, int resultSetConcurrency) 
   {
-    return con.createStatement(resultSetType, resultSetConcurrency);
+    return ObjectUtils.throwAsError(() -> con.createStatement(resultSetType, resultSetConcurrency));
   }
   public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability)
-      throws SQLException
+      
   {
-    return con.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
+    return ObjectUtils.throwAsError(() -> con.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public Map<String, Class<?>> getTypeMap() throws SQLException
+  public Map<String, Class<?>> getTypeMap() 
   {
-    return con.getTypeMap();
+    return ObjectUtils.throwAsError(() -> con.getTypeMap());
   }
-  public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException
+  public void setTypeMap(Map<String, Class<?>> arg0) 
   {
-    con.setTypeMap(arg0);
+    ObjectUtils.throwAsError(() -> con.setTypeMap(arg0));
   }
-  public String nativeSQL(String sql) throws SQLException
+  public String nativeSQL(String sql) 
   {
-    return con.nativeSQL(sql);
+    return ObjectUtils.throwAsError(() -> con.nativeSQL(sql));
   }
-  public CallableStatement prepareCall(String sql) throws SQLException
+  public CallableStatement prepareCall(String sql) 
   {
-    return con.prepareCall(sql);
+    return ObjectUtils.throwAsError(() -> con.prepareCall(sql));
   }
-  public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException
+  public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) 
   {
-    return con.prepareCall(sql, resultSetType, resultSetConcurrency);
+    return ObjectUtils.throwAsError(() -> con.prepareCall(sql, resultSetType, resultSetConcurrency));
   }
   public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
-      int resultSetHoldability) throws SQLException
+      int resultSetHoldability) 
   {
-    return con.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+    return ObjectUtils.throwAsError(() -> con.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public PreparedStatement prepareStatement(String sql) throws SQLException
+  public PreparedStatement prepareStatement(String sql) 
   {
-    return con.prepareStatement(sql);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql));
   }
-  public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException
+  public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) 
   {
-    return con.prepareStatement(sql, autoGeneratedKeys);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, autoGeneratedKeys));
   }
   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency)
-      throws SQLException
+      
   {
-    return con.prepareStatement(sql, resultSetType, resultSetConcurrency);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, resultSetType, resultSetConcurrency));
   }
   public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency,
-      int resultSetHoldability) throws SQLException
+      int resultSetHoldability) 
   {
-    return con.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability));
   }
-  public PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException
+  public PreparedStatement prepareStatement(String sql, int[] columnIndexes) 
   {
-    return con.prepareStatement(sql, columnIndexes);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, columnIndexes));
   }
-  public Savepoint setSavepoint(String name) throws SQLException
+  public Savepoint setSavepoint(String name) 
   {
-    return con.setSavepoint(name);
+    return ObjectUtils.throwAsError(() -> con.setSavepoint(name));
   }
-  public PreparedStatement prepareStatement(String sql, String[] columnNames) throws SQLException
+  public PreparedStatement prepareStatement(String sql, String[] columnNames) 
   {
-    return con.prepareStatement(sql, columnNames);
+    return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, columnNames));
   }
   protected void finalize() throws Throwable
   {
     super.finalize();
     close();
   }
-  public Array createArrayOf(String arg0, Object[] arg1) throws SQLException
+  public Array createArrayOf(String arg0, Object[] arg1) 
   {
-    return con.createArrayOf(arg0, arg1);
+    return ObjectUtils.throwAsError(() -> con.createArrayOf(arg0, arg1));
   }
-  public Blob createBlob() throws SQLException
+  public Blob createBlob() 
   {
-    return con.createBlob();
+    return ObjectUtils.throwAsError(() -> con.createBlob());
   }
-  public Clob createClob() throws SQLException
+  public Clob createClob() 
   {
-    return con.createClob();
+    return ObjectUtils.throwAsError(() -> con.createClob());
   }
-  public NClob createNClob() throws SQLException
+  public NClob createNClob() 
   {
-    return con.createNClob();
+    return ObjectUtils.throwAsError(() -> con.createNClob());
   }
-  public SQLXML createSQLXML() throws SQLException
+  public SQLXML createSQLXML() 
   {
-    return con.createSQLXML();
+    return ObjectUtils.throwAsError(() -> con.createSQLXML());
   }
-  public Struct createStruct(String arg0, Object[] arg1) throws SQLException
+  public Struct createStruct(String arg0, Object[] arg1) 
   {
-    return con.createStruct(arg0, arg1);
+    return ObjectUtils.throwAsError(() -> con.createStruct(arg0, arg1));
   }
-  public Properties getClientInfo() throws SQLException
+  public Properties getClientInfo() 
   {
-    return con.getClientInfo();
+    return ObjectUtils.throwAsError(() -> con.getClientInfo());
   }
-  public String getClientInfo(String arg0) throws SQLException
+  public String getClientInfo(String arg0) 
   {
-    return con.getClientInfo(arg0);
+    return ObjectUtils.throwAsError(() -> con.getClientInfo(arg0));
   }
-  public boolean isValid(int arg0) throws SQLException
+  public boolean isValid(int arg0) 
   {
-    return con.isValid(arg0);
+    return ObjectUtils.throwAsError(() -> con.isValid(arg0));
   }
   public void setClientInfo(Properties arg0) throws SQLClientInfoException
   {
@@ -237,29 +238,29 @@ public class SshConnection implements Connection
   {
     con.setClientInfo(arg0, arg1);
   }
-  public boolean isWrapperFor(Class<?> arg0) throws SQLException
+  public boolean isWrapperFor(Class<?> arg0) 
   {
-    return con.isWrapperFor(arg0);
+    return ObjectUtils.throwAsError(() -> con.isWrapperFor(arg0));
   }
-  public <T> T unwrap(Class<T> arg0) throws SQLException
+  public <T> T unwrap(Class<T> arg0) 
   {
-    return con.unwrap(arg0);
+    return ObjectUtils.throwAsError(() -> con.unwrap(arg0));
   }
-  public void abort(Executor executor) throws SQLException
+  public void abort(Executor executor) 
   {
   }
-  public int getNetworkTimeout() throws SQLException
+  public int getNetworkTimeout() 
   {
     return 0;
   }
-  public String getSchema() throws SQLException
+  public String getSchema() 
   {
     return null;
   }
-  public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException
+  public void setNetworkTimeout(Executor executor, int milliseconds) 
   {
   }
-  public void setSchema(String schema) throws SQLException
+  public void setSchema(String schema) 
   {
   }
 }

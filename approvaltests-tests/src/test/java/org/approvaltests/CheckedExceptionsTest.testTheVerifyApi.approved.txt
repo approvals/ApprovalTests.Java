@@ -1,0 +1,90 @@
+Methods with checked exceptions
+
+
+public abstract boolean com.spun.util.filters.Filter.isExtracted(java.lang.Object) throws java.lang.IllegalArgumentException
+public abstract java.lang.Object com.spun.util.persistence.Saver.save(java.lang.Object) throws com.spun.util.persistence.SavingException
+public abstract java.lang.Object org.lambda.functions.Function0WithException.call() throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function1WithException.call(java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function3WithException.call(java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function4WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function5WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function6WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.Object org.lambda.functions.Function9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract java.lang.StackTraceElement com.spun.util.io.StackElementSelector.selectElement(java.lang.StackTraceElement[]) throws java.lang.Exception
+public abstract void com.spun.util.io.xml.XMLSerializable.serializeXML(java.util.HashMap,java.io.Writer) throws java.io.IOException
+public abstract void com.spun.util.persistence.Deletor.delete(java.lang.Object) throws com.spun.util.persistence.SavingException
+public abstract void org.lambda.actions.Action0WithException.call() throws java.lang.Throwable
+public abstract void org.lambda.actions.Action1WithException.call(java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action3WithException.call(java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action4WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action5WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action6WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
+public boolean com.spun.util.io.SpaceDelimitedReader.next() throws java.io.IOException
+public boolean com.spun.util.io.TabDelimitedFileReader.next() throws java.io.IOException
+public com.spun.util.database.DatabaseObject com.spun.util.persistence.DatabaseObjectSaver.save(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
+public int com.spun.util.MultiSorter.compare(java.lang.Object,java.lang.Object) throws java.lang.ClassCastException
+public int com.spun.util.io.CharSequenceInputStream.read() throws java.io.IOException
+public java.lang.Appendable com.spun.util.logger.NullLogger.append(char) throws java.io.IOException
+public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence) throws java.io.IOException
+public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence,int,int) throws java.io.IOException
+public java.lang.Object com.spun.util.persistence.DatabaseObjectSaver.save(java.lang.Object) throws com.spun.util.persistence.SavingException
+public java.lang.String com.spun.util.io.SpaceDelimitedReader.prepNext() throws java.io.IOException
+public java.lang.String com.spun.util.io.TabDelimitedFileReader.prepNext() throws java.io.IOException
+public java.lang.String[] com.spun.util.io.SpaceDelimitedReader.readLine(int) throws java.io.IOException
+public java.lang.String[] com.spun.util.io.SpaceDelimitedReader.readLine(int[]) throws java.io.IOException
+public java.lang.String[] com.spun.util.io.TabDelimitedFileReader.readLine(int) throws java.io.IOException
+public java.util.Iterator com.spun.util.velocity.TestableUberspect.getIterator(java.lang.Object,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
+public org.apache.velocity.util.introspection.VelMethod com.spun.util.velocity.TestableUberspect.getMethod(java.lang.Object,java.lang.String,java.lang.Object[],org.apache.velocity.util.introspection.Info) throws java.lang.Exception
+public org.apache.velocity.util.introspection.VelPropertyGet com.spun.util.velocity.TestableUberspect.getPropertyGet(java.lang.Object,java.lang.String,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
+public org.apache.velocity.util.introspection.VelPropertySet com.spun.util.velocity.TestableUberspect.getPropertySet(java.lang.Object,java.lang.String,java.lang.Object,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
+public static boolean com.spun.util.database.SQLStatementUtils.execute(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
+public static double com.spun.util.tests.TestUtils.getTimerMultiplier() throws java.lang.InterruptedException
+public static int com.spun.util.database.SQLStatementUtils.executeUpdate(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
+public static java.io.File com.spun.util.io.SshUtils.sftpDownload(com.spun.util.io.FTPConfig,java.io.File,java.lang.String) throws java.io.IOException
+public static java.io.File com.spun.util.io.ZipUtils.doCreateZipFile(java.io.File[],java.io.File) throws java.io.IOException
+public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.io.File,java.io.File) throws java.io.IOException
+public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.lang.String,java.lang.String) throws java.io.IOException
+public static java.io.File[] com.spun.util.io.ZipUtils.doUnzip(java.io.File,java.io.File) throws java.io.IOException
+public static java.lang.Class com.spun.util.ObjectUtils.loadClass(java.lang.String) throws java.lang.ClassNotFoundException
+public static java.lang.Class com.spun.util.parser.ParserCommons.getClass(java.lang.String) throws java.lang.ClassNotFoundException
+public static java.lang.Class org.packagesettings.PackageLevelSettings.loadClass(java.lang.String) throws java.lang.ClassNotFoundException
+public static java.lang.Error com.spun.util.ObjectUtils.throwAsError(java.lang.Throwable) throws java.lang.Error
+public static java.lang.Object com.spun.util.parser.ParserCommons.createNew(java.lang.String) throws java.lang.InstantiationException,java.lang.IllegalAccessException,java.lang.ClassNotFoundException
+public static java.lang.String com.spun.util.database.DatabaseLifeCycleUtils.extractText(java.io.InputStream) throws java.io.IOException
+public static java.lang.reflect.Method com.spun.util.ObjectUtils.getGreatestCommonDenominator(java.lang.Object[],java.lang.String) throws java.lang.SecurityException,java.lang.NoSuchMethodException
+public static java.lang.reflect.Method[] com.spun.util.ObjectUtils.getMethodsForObject(java.lang.Object,java.lang.String[]) throws java.lang.SecurityException,java.lang.NoSuchMethodException
+public static java.sql.ResultSet com.spun.util.database.SQLStatementUtils.executeQuery(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
+public static java.util.ArrayList com.spun.util.introspection.ClassGetter.getClasses(java.lang.String,java.lang.String) throws java.lang.ClassNotFoundException
+public static java.util.Map org.packagesettings.PackageLevelSettings.getForStackTrace(java.lang.StackTraceElement[]) throws java.lang.Error
+public static synchronized org.apache.velocity.app.VelocityEngine com.spun.util.velocity.VelocityParser.initializeEngine(java.util.Properties) throws java.lang.Exception
+public static void com.spun.util.database.DatabaseLifeCycleUtils.backupDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
+public static void com.spun.util.database.DatabaseLifeCycleUtils.restoreDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
+public static void com.spun.util.io.SshUtils.ftpUpload(com.spun.util.io.FTPConfig,java.lang.String,java.io.File) throws java.io.IOException
+public static void com.spun.util.io.SshUtils.ftpUpload(com.spun.util.io.FTPConfig,java.lang.String,java.io.File,java.lang.String) throws java.io.IOException
+public static void com.spun.util.io.SshUtils.sftpUpload(com.spun.util.io.FTPConfig,java.io.File,java.lang.String) throws java.io.IOException
+public static void com.spun.util.io.ZipUtils.main(java.lang.String[]) throws java.io.IOException
+public static void com.spun.util.tests.TestUtils.displayExcel(java.lang.String) throws java.io.IOException,java.lang.InterruptedException
+public static void com.spun.util.tests.TestUtils.displayHtml(java.lang.String,java.lang.String) throws java.io.FileNotFoundException,java.io.IOException,java.lang.InterruptedException
+public static void com.spun.util.tests.TestUtils.displayHtmlFile(java.io.File) throws java.io.IOException
+public static void com.spun.util.tests.TestUtils.displayHtmlFile(java.lang.String) throws java.io.IOException
+public static void com.spun.util.tests.TestUtils.displayImage(java.awt.image.BufferedImage) throws java.lang.Exception
+public static void com.spun.util.tests.TestUtils.displayText(java.lang.String) throws java.io.IOException,java.lang.InterruptedException
+public synchronized java.io.InputStream com.spun.util.velocity.ServletContextLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
+public synchronized java.io.InputStream com.spun.util.velocity.StringResourceLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
+public void com.spun.util.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
+public void com.spun.util.MockConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
+public void com.spun.util.database.SshConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
+public void com.spun.util.database.SshConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
+public void com.spun.util.logger.AppendableWriter.write(char[],int,int) throws java.io.IOException
+public void com.spun.util.logger.AppendableWriter.write(int) throws java.io.IOException
+public void com.spun.util.persistence.DatabaseObjectDeletor.delete(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
+public void com.spun.util.persistence.DatabaseObjectDeletor.delete(java.lang.Object) throws com.spun.util.persistence.SavingException
+public void com.spun.util.sql.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
+public void com.spun.util.sql.MockConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException

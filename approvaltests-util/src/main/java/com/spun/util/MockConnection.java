@@ -23,170 +23,170 @@ public class MockConnection implements Connection
 {
   public int autoCommitCount = 0;
   public int commitCount     = 0;
-  public int getHoldability() throws SQLException
+  public int getHoldability() 
   {
     return 0;
   }
-  public int getTransactionIsolation() throws SQLException
+  public int getTransactionIsolation() 
   {
     return 0;
   }
-  public void clearWarnings() throws SQLException
+  public void clearWarnings() 
   {
   }
-  public void close() throws SQLException
+  public void close() 
   {
   }
-  public void commit() throws SQLException
+  public void commit() 
   {
     commitCount++;
   }
-  public void rollback() throws SQLException
+  public void rollback() 
   {
   }
-  public boolean getAutoCommit() throws SQLException
-  {
-    return false;
-  }
-  public boolean isClosed() throws SQLException
+  public boolean getAutoCommit() 
   {
     return false;
   }
-  public boolean isReadOnly() throws SQLException
+  public boolean isClosed() 
   {
     return false;
   }
-  public void setHoldability(int arg0) throws SQLException
+  public boolean isReadOnly() 
+  {
+    return false;
+  }
+  public void setHoldability(int arg0) 
   {
   }
-  public void setTransactionIsolation(int arg0) throws SQLException
+  public void setTransactionIsolation(int arg0) 
   {
   }
-  public void setAutoCommit(boolean arg0) throws SQLException
+  public void setAutoCommit(boolean arg0) 
   {
     autoCommitCount++;
   }
-  public void setReadOnly(boolean arg0) throws SQLException
+  public void setReadOnly(boolean arg0) 
   {
   }
-  public String getCatalog() throws SQLException
-  {
-    return null;
-  }
-  public void setCatalog(String arg0) throws SQLException
-  {
-  }
-  public DatabaseMetaData getMetaData() throws SQLException
+  public String getCatalog() 
   {
     return null;
   }
-  public SQLWarning getWarnings() throws SQLException
+  public void setCatalog(String arg0) 
+  {
+  }
+  public DatabaseMetaData getMetaData() 
   {
     return null;
   }
-  public Savepoint setSavepoint() throws SQLException
+  public SQLWarning getWarnings() 
   {
     return null;
   }
-  public void releaseSavepoint(Savepoint arg0) throws SQLException
-  {
-  }
-  public void rollback(Savepoint arg0) throws SQLException
-  {
-  }
-  public Statement createStatement() throws SQLException
+  public Savepoint setSavepoint() 
   {
     return null;
   }
-  public Statement createStatement(int arg0, int arg1) throws SQLException
+  public void releaseSavepoint(Savepoint arg0) 
+  {
+  }
+  public void rollback(Savepoint arg0) 
+  {
+  }
+  public Statement createStatement() 
   {
     return null;
   }
-  public Statement createStatement(int arg0, int arg1, int arg2) throws SQLException
+  public Statement createStatement(int arg0, int arg1) 
   {
     return null;
   }
-  public Map<String, Class<?>> getTypeMap() throws SQLException
+  public Statement createStatement(int arg0, int arg1, int arg2) 
   {
     return null;
   }
-  public String nativeSQL(String arg0) throws SQLException
+  public Map<String, Class<?>> getTypeMap() 
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0) throws SQLException
+  public String nativeSQL(String arg0) 
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0, int arg1, int arg2) throws SQLException
+  public CallableStatement prepareCall(String arg0) 
   {
     return null;
   }
-  public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) throws SQLException
+  public CallableStatement prepareCall(String arg0, int arg1, int arg2) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0) throws SQLException
+  public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1) throws SQLException
+  public PreparedStatement prepareStatement(String arg0) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) throws SQLException
+  public PreparedStatement prepareStatement(String arg0, int arg1) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) throws SQLException
+  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, int[] arg1) throws SQLException
+  public PreparedStatement prepareStatement(String arg0, int arg1, int arg2, int arg3) 
   {
     return null;
   }
-  public Savepoint setSavepoint(String arg0) throws SQLException
+  public PreparedStatement prepareStatement(String arg0, int[] arg1) 
   {
     return null;
   }
-  public PreparedStatement prepareStatement(String arg0, String[] arg1) throws SQLException
+  public Savepoint setSavepoint(String arg0) 
   {
     return null;
   }
-  public Array createArrayOf(String arg0, Object[] arg1) throws SQLException
+  public PreparedStatement prepareStatement(String arg0, String[] arg1) 
   {
     return null;
   }
-  public Blob createBlob() throws SQLException
+  public Array createArrayOf(String arg0, Object[] arg1) 
   {
     return null;
   }
-  public Clob createClob() throws SQLException
+  public Blob createBlob() 
   {
     return null;
   }
-  public NClob createNClob() throws SQLException
+  public Clob createClob() 
   {
     return null;
   }
-  public SQLXML createSQLXML() throws SQLException
+  public NClob createNClob() 
   {
     return null;
   }
-  public Struct createStruct(String arg0, Object[] arg1) throws SQLException
+  public SQLXML createSQLXML() 
   {
     return null;
   }
-  public Properties getClientInfo() throws SQLException
+  public Struct createStruct(String arg0, Object[] arg1) 
   {
     return null;
   }
-  public String getClientInfo(String arg0) throws SQLException
+  public Properties getClientInfo() 
   {
     return null;
   }
-  public boolean isValid(int arg0) throws SQLException
+  public String getClientInfo(String arg0) 
+  {
+    return null;
+  }
+  public boolean isValid(int arg0) 
   {
     return false;
   }
@@ -196,32 +196,32 @@ public class MockConnection implements Connection
   public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException
   {
   }
-  public void setTypeMap(Map<String, Class<?>> arg0) throws SQLException
+  public void setTypeMap(Map<String, Class<?>> arg0) 
   {
   }
-  public boolean isWrapperFor(Class<?> arg0) throws SQLException
+  public boolean isWrapperFor(Class<?> arg0) 
   {
     return false;
   }
-  public <T> T unwrap(Class<T> arg0) throws SQLException
+  public <T> T unwrap(Class<T> arg0) 
   {
     return null;
   }
-  public void abort(Executor executor) throws SQLException
+  public void abort(Executor executor) 
   {
   }
-  public int getNetworkTimeout() throws SQLException
+  public int getNetworkTimeout() 
   {
     return 0;
   }
-  public String getSchema() throws SQLException
+  public String getSchema() 
   {
     return null;
   }
-  public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException
+  public void setNetworkTimeout(Executor executor, int milliseconds) 
   {
   }
-  public void setSchema(String schema) throws SQLException
+  public void setSchema(String schema) 
   {
   }
 }

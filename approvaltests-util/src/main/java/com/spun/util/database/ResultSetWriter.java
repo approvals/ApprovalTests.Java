@@ -11,7 +11,7 @@ import com.spun.util.ObjectUtils;
 
 public class ResultSetWriter
 {
-  public static String toString(ResultSet rs) throws SQLException
+  public static String toString(ResultSet rs) 
   {
     List<String[]> results = extractResults(rs);
     List<String> metaData = extractMetaData(rs);

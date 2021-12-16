@@ -14,13 +14,6 @@ public class DatabaseObjectDeletor<T extends DatabaseObject> implements Deletor<
   }
   public void delete(T delete) throws SavingException
   {
-    try
-    {
-      delete.deleteFromDatabase(stmt);
-    }
-    catch (SQLException e)
-    {
-      throw new SavingException(e);
-    }
+    delete.deleteFromDatabase(stmt);
   }
 }

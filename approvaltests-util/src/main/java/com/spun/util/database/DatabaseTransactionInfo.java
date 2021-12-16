@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
 
 public class DatabaseTransactionInfo
@@ -14,9 +15,9 @@ public class DatabaseTransactionInfo
   /** 
    * returns the object from the cache with the corosponding pkey
    **/
-  public DatabaseTransactionInfo(Connection con, int levelsOfRemoval) throws SQLException
+  public DatabaseTransactionInfo(Connection con, int levelsOfRemoval) 
   {
-    this.automaticCommit = con.getAutoCommit();
+    this.automaticCommit = ObjectUtils.throwAsError(() -> con.getAutoCommit());
     this.connectionReference = new WeakReference<Connection>(con);
     this.originator = getOriginatorText(levelsOfRemoval + 1);
     //My_System.variable("getOriginatorText for creation", originator + con.toString());
@@ -43,9 +44,9 @@ public class DatabaseTransactionInfo
   {
     return this.connectionReference.get();
   }
-  public void cleanConnection() throws SQLException
+  public void cleanConnection() 
   {
     Connection con = getConnection();
-    con.setAutoCommit(automaticCommit);
+    ObjectUtils.throwAsError(() -> con.setAutoCommit(automaticCommit));
   }
 }

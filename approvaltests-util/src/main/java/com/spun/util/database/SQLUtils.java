@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.spun.util.DatabaseUtils;
+import com.spun.util.ObjectUtils;
 
 public class SQLUtils
 {
@@ -35,19 +36,23 @@ public class SQLUtils
     sql.append(") ");
     return sql.toString();
   }
-  public static String loadInSQLStatement(ResultSet rs) throws SQLException
+  public static String loadInSQLStatement(ResultSet rs) 
   {
     StringBuffer sql = new StringBuffer("(");
-    while (rs.next())
-    {
-      sql.append(DatabaseUtils.formatNullableObject(rs.getObject(1)));
-      sql.append(", ");
+    try {
+      while (rs.next()) {
+        sql.append(DatabaseUtils.formatNullableObject(rs.getObject(1)));
+        sql.append(", ");
+      }
+      if (sql.length() == 1) {
+        return null;
+      }
+      sql.setLength(sql.length() - 2);
+      sql.append(") ");
+      return sql.toString();
+    } catch (SQLException e) {
+      throw ObjectUtils.throwAsError(e);
     }
-    if (sql.length() == 1)
-    { return null; }
-    sql.setLength(sql.length() - 2);
-    sql.append(") ");
-    return sql.toString();
   }
   public static String createSQLBetween(String lowerValue, String betweenVariable, String upperValue)
   {

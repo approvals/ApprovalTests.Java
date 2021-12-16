@@ -31,11 +31,11 @@ public final class DatabaseLoader<T extends DatabaseObject> implements DatabaseC
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
-  public void load(Statement stmt) throws SQLException
+  public void load(Statement stmt) 
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
-  public void reset(Statement stmt) throws SQLException
+  public void reset(Statement stmt) 
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }

@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.database.SQLQuery.FromPart;
 import com.spun.util.database.SQLQuery.LimitPart;
 
@@ -19,22 +20,22 @@ public class SQLQueryUtils
   public static class IntegerExtractor implements ResultSetExtractor<Integer>
   {
     @Override
-    public Integer extract(ResultSet rs) throws SQLException
+    public Integer extract(ResultSet rs) 
     {
-      return rs.getInt(1);
+      return ObjectUtils.throwAsError(() -> rs.getInt(1));
     }
   }
   public static class TimestampExtractor implements ResultSetExtractor<Timestamp>
   {
     @Override
-    public Timestamp extract(ResultSet rs) throws SQLException
+    public Timestamp extract(ResultSet rs)
     {
-      return rs.getTimestamp(1);
+      return ObjectUtils.throwAsError(() -> rs.getTimestamp(1));
     }
   }
   public static interface ResultSetExtractor<T>
   {
-    public T extract(ResultSet rs) throws SQLException;
+    public T extract(ResultSet rs) ;
   }
   public static SQLQuery extractCountingQuery(SQLQuery query)
   {
@@ -63,32 +64,33 @@ public class SQLQueryUtils
     }
     return query;
   }
-  public static int executeCountOnQuery(SQLQuery query, Statement stmt) throws SQLException
+  public static int executeCountOnQuery(SQLQuery query, Statement stmt) 
   {
     return executeSingleIntQuery(extractCountingQuery(query).toString(), stmt);
   }
-  public static int executeSingleIntQuery(String sql, Statement stmt) throws SQLException
+  public static int executeSingleIntQuery(String sql, Statement stmt) 
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new IntegerExtractor());
   }
-  public static Timestamp executeSingleDateQuery(String sql, Statement stmt) throws SQLException
+  public static Timestamp executeSingleDateQuery(String sql, Statement stmt) 
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new TimestampExtractor());
   }
   private static <T> T extractSingleRow(String sql, ResultSet rs, ResultSetExtractor<T> extractor)
-      throws SQLException
+      
   {
-    if (rs.next())
-    {
-      T out = extractor.extract(rs);
-      rs.close();
-      return out;
-    }
-    else
-    {
-      throw new SQLException("No results returned from query - " + sql);
+    try {
+      if (rs.next()) {
+        T out = extractor.extract(rs);
+        rs.close();
+        return out;
+      } else {
+        throw new RuntimeException("No results returned from query - " + sql);
+      }
+    } catch (SQLException e) {
+      throw ObjectUtils.throwAsError(e);
     }
   }
 }

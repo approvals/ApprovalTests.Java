@@ -23,7 +23,7 @@ public class CheckedExceptionsTest
     // Get all of the classes for all the packages
     Queryable<Class<?>> classes = getAllClasses();
     // Filter for methods in the classes that have a checked exception
-    Queryable<Method> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s));
+    Queryable<Method> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s)).orderBy(m -> m.toString());
     // Verify the methods
     Approvals.verifyAll("Methods with checked exceptions", methods, c -> c.toString(), new Options());
   }

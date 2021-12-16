@@ -13,14 +13,7 @@ public class DatabaseObjectSaver<T extends DatabaseObject> implements Saver<T>
   }
   public DatabaseObject save(DatabaseObject save) throws SavingException
   {
-    try
-    {
-      save.save(stmt);
-      return save;
-    }
-    catch (SQLException e)
-    {
-      throw new SavingException(e);
-    }
+    save.save(stmt);
+    return save;
   }
 }

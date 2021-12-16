@@ -8,7 +8,7 @@ import com.spun.util.DatabaseUtils;
 
 public class SQLStatementUtils
 {
-  public static ResultSet executeQuery(SQLQuery query, Statement stmt) throws SQLException
+  public static ResultSet executeQuery(SQLQuery query, Statement stmt) 
   {
     return executeQuery(query.toString(DatabaseUtils.getDatabaseType(stmt)), stmt);
   }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class DatabaseUtilsTest
 {
   @Test
-  public void testTransaction() throws SQLException
+  public void testTransaction() 
   {
     MockConnection connection1 = new MockConnection();
     MockConnection connection2 = new MockConnection();
