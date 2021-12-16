@@ -13,7 +13,7 @@ public class AddDateVariableSetter implements AutomaticVariableSetter
   private AddDateVariableSetter()
   {
   }
-  public void setFor(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
+  public void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     AddDateAware addDate = (AddDateAware) forObject;
     if (atStage == AutomaticVariableSetter.INSERT && addDate.getAddDate() == null)

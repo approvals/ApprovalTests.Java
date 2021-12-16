@@ -3,6 +3,7 @@ package com.spun.util.database.automaticsetter;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.database.AutomaticVariableSetter;
 import com.spun.util.database.DatabaseObject;
 import com.spun.util.logger.SimpleLogger;
@@ -13,7 +14,7 @@ public class EndDateVariableSetter implements AutomaticVariableSetter
   private EndDateVariableSetter()
   {
   }
-  public synchronized void setFor(DatabaseObject forObject, int atStage, Statement stmt) throws SQLException
+  public synchronized void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     // Grab a lock
     if (atStage == AutomaticVariableSetter.INSERT)
@@ -22,7 +23,7 @@ public class EndDateVariableSetter implements AutomaticVariableSetter
           + ((AddDateAware) forObject).getAddDate() + "' " + "WHERE end_date IS NULL " + "  AND "
           + ((EndDateAware) forObject).getEffectivityKey();
       SimpleLogger.query("END DATE", endDateSQL);
-      int rowsChanged = stmt.executeUpdate(endDateSQL);
+      int rowsChanged = ObjectUtils.throwAsError(() -> stmt.executeUpdate(endDateSQL));
       if (rowsChanged > 1)
       {
         SimpleLogger.query("endDateSQL", endDateSQL);

@@ -13,6 +13,24 @@
 
     <dependencies>
         <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>quartz</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.5.2</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.8.0</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>sshtools</groupId>
             <artifactId>j2ssh-core</artifactId>
             <version>0.2.9</version>

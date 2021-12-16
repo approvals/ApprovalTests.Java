@@ -5,12 +5,14 @@ import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.support.ModifierSupport;
 import org.lambda.functions.Functions;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
 import java.io.File;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 public class CheckedExceptionsTest
@@ -28,7 +30,7 @@ public class CheckedExceptionsTest
 
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass) {
     Method[] declaredMethods = aClass.getDeclaredMethods();
-    return Query.where(declaredMethods, m -> m.getExceptionTypes().length != 0);
+    return Query.where(declaredMethods, m -> m.getExceptionTypes().length != 0 && Modifier.isPublic(m.getModifiers()));
   }
 
   private Queryable<Class<?>> getAllClasses() {
