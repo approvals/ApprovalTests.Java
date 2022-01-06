@@ -1,8 +1,6 @@
 Methods with checked exceptions
 
 
-public abstract boolean com.spun.util.filters.Filter.isExtracted(java.lang.Object) throws java.lang.IllegalArgumentException
-public abstract java.lang.Object com.spun.util.persistence.Saver.save(java.lang.Object) throws com.spun.util.persistence.SavingException
 public abstract java.lang.Object org.lambda.functions.Function0WithException.call() throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function1WithException.call(java.lang.Object) throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
@@ -13,7 +11,6 @@ public abstract java.lang.Object org.lambda.functions.Function6WithException.cal
 public abstract java.lang.Object org.lambda.functions.Function7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.StackTraceElement com.spun.util.io.StackElementSelector.selectElement(java.lang.StackTraceElement[]) throws java.lang.Exception
 public abstract void com.spun.util.io.xml.XMLSerializable.serializeXML(java.util.HashMap,java.io.Writer) throws java.io.IOException
 public abstract void com.spun.util.persistence.Deletor.delete(java.lang.Object) throws com.spun.util.persistence.SavingException
 public abstract void org.lambda.actions.Action0WithException.call() throws java.lang.Throwable
@@ -26,20 +23,12 @@ public abstract void org.lambda.actions.Action6WithException.call(java.lang.Obje
 public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public boolean com.spun.util.io.SpaceDelimitedReader.next() throws java.io.IOException
-public boolean com.spun.util.io.TabDelimitedFileReader.next() throws java.io.IOException
 public com.spun.util.database.DatabaseObject com.spun.util.persistence.DatabaseObjectSaver.save(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
 public int com.spun.util.MultiSorter.compare(java.lang.Object,java.lang.Object) throws java.lang.ClassCastException
 public int com.spun.util.io.CharSequenceInputStream.read() throws java.io.IOException
 public java.lang.Appendable com.spun.util.logger.NullLogger.append(char) throws java.io.IOException
 public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence) throws java.io.IOException
 public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence,int,int) throws java.io.IOException
-public java.lang.Object com.spun.util.persistence.DatabaseObjectSaver.save(java.lang.Object) throws com.spun.util.persistence.SavingException
-public java.lang.String com.spun.util.io.SpaceDelimitedReader.prepNext() throws java.io.IOException
-public java.lang.String com.spun.util.io.TabDelimitedFileReader.prepNext() throws java.io.IOException
-public java.lang.String[] com.spun.util.io.SpaceDelimitedReader.readLine(int) throws java.io.IOException
-public java.lang.String[] com.spun.util.io.SpaceDelimitedReader.readLine(int[]) throws java.io.IOException
-public java.lang.String[] com.spun.util.io.TabDelimitedFileReader.readLine(int) throws java.io.IOException
 public java.util.Iterator com.spun.util.velocity.TestableUberspect.getIterator(java.lang.Object,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
 public org.apache.velocity.util.introspection.VelMethod com.spun.util.velocity.TestableUberspect.getMethod(java.lang.Object,java.lang.String,java.lang.Object[],org.apache.velocity.util.introspection.Info) throws java.lang.Exception
 public org.apache.velocity.util.introspection.VelPropertyGet com.spun.util.velocity.TestableUberspect.getPropertyGet(java.lang.Object,java.lang.String,org.apache.velocity.util.introspection.Info) throws java.lang.Exception

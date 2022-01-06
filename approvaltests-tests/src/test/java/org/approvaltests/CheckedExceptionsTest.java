@@ -4,6 +4,9 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.GenericDiffReporter;
+import org.approvaltests.reporters.JunitReporter;
+import org.approvaltests.reporters.intellij.IntelliJReporter;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.lambda.functions.Functions;
@@ -26,7 +29,11 @@ public class CheckedExceptionsTest
     Queryable<Method> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s))
         .orderBy(m -> m.toString());
     // Verify the methods
-    Approvals.verifyAll("Methods with checked exceptions", methods, c -> c.toString(), new Options());
+    GenericDiffReporter reporter = new GenericDiffReporter("C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.2.1\\bin\\idea64.exe", "diff %s %s", "");
+
+    Options options = new Options();
+//    options = options.withReporter(reporter);
+    Approvals.verifyAll("Methods with checked exceptions", methods, c -> c.toString(), options);
   }
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {

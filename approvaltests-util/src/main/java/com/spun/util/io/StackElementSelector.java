@@ -2,6 +2,6 @@ package com.spun.util.io;
 
 public interface StackElementSelector
 {
-  public abstract StackTraceElement selectElement(StackTraceElement[] trace) throws Exception;
-  public abstract void increment();
+  public StackTraceElement selectElement(StackTraceElement[] trace);
+  public void increment();
 }

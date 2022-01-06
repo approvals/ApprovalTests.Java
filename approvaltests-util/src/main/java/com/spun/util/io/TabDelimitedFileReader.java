@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 
 /**
@@ -16,28 +17,32 @@ public class TabDelimitedFileReader
   private BufferedReader reader   = null;
   private String         lastRead = null;
   private boolean        trim     = false;
-  public TabDelimitedFileReader(String absoluteFileName, boolean trim) throws IOException
+  public TabDelimitedFileReader(String absoluteFileName, boolean trim)
   {
-    this.reader = Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8);
+    this.reader = ObjectUtils.throwAsError(() -> Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8));
     this.trim = trim;
   }
-  public boolean next() throws IOException
+  public boolean next()
   {
     return prepNext() != null;
   }
-  public String prepNext() throws IOException
+  public String prepNext()
   {
-    if (reader == null)
-    { return null; }
-    lastRead = reader.readLine();
-    if (lastRead == null)
-    {
-      reader.close();
-      reader = null;
+    try {
+      if (reader == null) {
+        return null;
+      }
+      lastRead = reader.readLine();
+      if (lastRead == null) {
+        reader.close();
+        reader = null;
+      }
+      return lastRead;
+    } catch (IOException e) {
+      throw ObjectUtils.throwAsError(e);
     }
-    return lastRead;
   }
-  public String[] readLine(int minimumIndexReturned) throws IOException
+  public String[] readLine(int minimumIndexReturned)
   {
     if (lastRead == null)
     {

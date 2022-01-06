@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.logger.SimpleLogger;
 
 /**
@@ -19,28 +20,32 @@ public class SpaceDelimitedReader
     this.reader = new BufferedReader(new StringReader(input));
     this.trim = trim;
   }
-  public boolean next() throws IOException
+  public boolean next()
   {
     return prepNext() != null;
   }
-  public String prepNext() throws IOException
+  public String prepNext()
   {
-    if (reader == null)
-    { return null; }
-    lastRead = reader.readLine();
-    if (lastRead == null)
-    {
-      reader.close();
-      reader = null;
+    try {
+      if (reader == null) {
+        return null;
+      }
+      lastRead = reader.readLine();
+      if (lastRead == null) {
+        reader.close();
+        reader = null;
+      }
+      SimpleLogger.variable(lastRead);
+      return lastRead;
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
     }
-    SimpleLogger.variable(lastRead);
-    return lastRead;
   }
-  public String[] readLine(int i) throws IOException
+  public String[] readLine(int i)
   {
     return readLine(new int[]{i});
   }
-  public String[] readLine(int[] breakPoints) throws IOException
+  public String[] readLine(int[] breakPoints)
   {
     if (lastRead == null)
     {

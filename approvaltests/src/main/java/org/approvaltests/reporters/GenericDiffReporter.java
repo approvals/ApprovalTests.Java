@@ -32,7 +32,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   {
     this(diffProgram, STANDARD_ARGUMENTS, diffProgramNotFoundMessage);
   }
-  private GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage)
+  public GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage)
   {
     this(diffProgram, argumentsFormat, diffProgramNotFoundMessage, TEXT_FILE_EXTENSIONS);
   }
