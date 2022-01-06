@@ -4,7 +4,7 @@
 
 <!-- toc -->
 ## Contents
-
+ 
   * [Paintables](#paintables)
     * [Why](#why)
   * [How To](#how-to)
