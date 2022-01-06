@@ -1,16 +1,6 @@
 Methods with checked exceptions
 
 
-com.spun.util.MockConnection.setClientInfo
-com.spun.util.MockConnection.setClientInfo
-com.spun.util.database.SshConnection.setClientInfo
-com.spun.util.database.SshConnection.setClientInfo
-com.spun.util.logger.AppendableWriter.write
-com.spun.util.logger.AppendableWriter.write
-com.spun.util.persistence.DatabaseObjectDeletor.delete
-com.spun.util.sql.MockConnection.setClientInfo
-com.spun.util.sql.MockConnection.setClientInfo
-com.spun.util.velocity.StringResourceLoader.getResourceStream
 org.lambda.actions.Action0WithException.call
 org.lambda.actions.Action1WithException.call
 org.lambda.actions.Action2WithException.call

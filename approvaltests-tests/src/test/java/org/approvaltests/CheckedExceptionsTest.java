@@ -30,10 +30,7 @@ public class CheckedExceptionsTest
         .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(),m.getName()))
         .orderBy(m -> m.toString());
     // Verify the methods
-    GenericDiffReporter reporter = new GenericDiffReporter("C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.2.1\\bin\\idea64.exe", "diff %s %s", "");
-
     Options options = new Options();
-//    options = options.withReporter(reporter);
     Approvals.verifyAll("Methods with checked exceptions", methods, c -> c.toString(), options);
   }
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)

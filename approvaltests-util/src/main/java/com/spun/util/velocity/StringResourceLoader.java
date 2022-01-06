@@ -38,7 +38,7 @@ public class StringResourceLoader extends ResourceLoader
   {
     return 0;
   }
-  public synchronized InputStream getResourceStream(String name) throws ResourceNotFoundException
+  public synchronized InputStream getResourceStream(String name)
   {
     return StringUtils.convertToInputStream(name);
   }

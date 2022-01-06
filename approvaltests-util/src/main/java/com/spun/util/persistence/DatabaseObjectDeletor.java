@@ -12,7 +12,7 @@ public class DatabaseObjectDeletor<T extends DatabaseObject> implements Deletor<
   {
     this.stmt = stmt;
   }
-  public void delete(T delete) throws SavingException
+  public void delete(T delete)
   {
     delete.deleteFromDatabase(stmt);
   }

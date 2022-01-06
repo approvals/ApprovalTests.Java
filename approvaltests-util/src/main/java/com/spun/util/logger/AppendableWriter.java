@@ -1,5 +1,7 @@
 package com.spun.util.logger;
 
+import com.spun.util.ObjectUtils;
+
 import java.io.IOException;
 import java.io.Writer;
 
@@ -10,13 +12,13 @@ public class AppendableWriter extends Writer
   {
     this.appendable = appendable;
   }
-  public void write(char[] chars, int offset, int length) throws IOException
+  public void write(char[] chars, int offset, int length)
   {
-    appendable.append(new String(chars), offset, offset + length);
+    ObjectUtils.throwAsError(() -> appendable.append(new String(chars), offset, offset + length));
   }
-  public void write(int i) throws IOException
+  public void write(int i)
   {
-    appendable.append((char) i);
+    ObjectUtils.throwAsError(() -> appendable.append((char) i));
   }
   public void flush()
   {

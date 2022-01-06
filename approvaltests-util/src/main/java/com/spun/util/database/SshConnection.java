@@ -190,9 +190,9 @@ public class SshConnection implements Connection
   {
     return ObjectUtils.throwAsError(() -> con.prepareStatement(sql, columnNames));
   }
-  protected void finalize() throws Throwable
+  protected void finalize()
   {
-    super.finalize();
+    ObjectUtils.throwAsError(() -> super.finalize());
     close();
   }
   public Array createArrayOf(String arg0, Object[] arg1)
@@ -231,13 +231,13 @@ public class SshConnection implements Connection
   {
     return ObjectUtils.throwAsError(() -> con.isValid(arg0));
   }
-  public void setClientInfo(Properties arg0) throws SQLClientInfoException
+  public void setClientInfo(Properties arg0)
   {
-    con.setClientInfo(arg0);
+    ObjectUtils.throwAsError(() -> con.setClientInfo(arg0));
   }
-  public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException
+  public void setClientInfo(String arg0, String arg1)
   {
-    con.setClientInfo(arg0, arg1);
+    ObjectUtils.throwAsError(() -> con.setClientInfo(arg0, arg1));
   }
   public boolean isWrapperFor(Class<?> arg0)
   {

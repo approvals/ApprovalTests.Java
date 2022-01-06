@@ -190,10 +190,10 @@ public class MockConnection implements Connection
   {
     return false;
   }
-  public void setClientInfo(Properties arg0) throws SQLClientInfoException
+  public void setClientInfo(Properties arg0)
   {
   }
-  public void setClientInfo(String arg0, String arg1) throws SQLClientInfoException
+  public void setClientInfo(String arg0, String arg1)
   {
   }
   public void setTypeMap(Map<String, Class<?>> arg0)
