@@ -86,7 +86,8 @@ public class PackageLevelSettings
   }
   public static Class<?> loadClass(String className)
   {
-    return ObjectUtils.throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
+    return ObjectUtils
+        .throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
   }
   public static Object getValueFor(String key)
   {

@@ -19,7 +19,8 @@ public class SshUtils
 {
   public static void ftpUpload(FTPConfig config, String directory, File file, String remoteFileName)
   {
-    try {
+    try
+    {
       FTPClient server = new FTPClient();
       server.connect(config.host, config.port);
       assertValidReplyCode(server.getReplyCode(), server);
@@ -32,7 +33,9 @@ public class SshUtils
       assertValidReplyCode(server.getReplyCode(), server);
       server.sendNoOp();
       server.disconnect();
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -42,20 +45,24 @@ public class SshUtils
   }
   public static void sftpUpload(FTPConfig config, File file, String remoteFileName)
   {
-    try {
+    try
+    {
       SshClient ssh = new SshClient();
       SftpClient sftp = sshLogin(config, ssh);
       sftp.mkdirs(remoteFileName.substring(0, remoteFileName.lastIndexOf("/")));
       sftp.put(new FileInputStream(file), remoteFileName);
       sftp.quit();
       ssh.disconnect();
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
   private static SftpClient sshLogin(FTPConfig config, SshClient ssh)
   {
-    try {
+    try
+    {
       ssh.setSocketTimeout(60000);
       ssh.connect(config.host, new IgnoreHostKeyVerification());
       PasswordAuthenticationClient pwd = new PasswordAuthenticationClient();
@@ -64,20 +71,25 @@ public class SshUtils
       ssh.authenticate(pwd);
       SftpClient sftp = ssh.openSftpClient();
       return sftp;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
   public static File sftpDownload(FTPConfig config, File file, String remoteFileName)
   {
-    try {
+    try
+    {
       SshClient ssh = new SshClient();
       SftpClient sftp = sshLogin(config, ssh);
       sftp.get(remoteFileName, new FileOutputStream(file));
       sftp.quit();
       ssh.disconnect();
       return file;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

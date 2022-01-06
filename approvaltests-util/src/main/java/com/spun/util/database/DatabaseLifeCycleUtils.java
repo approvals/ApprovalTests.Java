@@ -40,19 +40,21 @@ public class DatabaseLifeCycleUtils
   }
   private static void backupMySQL(String databaseName, String fileName)
   {
-    try {
+    try
+    {
       File file = new File(fileName);
-      if (!file.getParentFile().exists()) {
+      if (!file.getParentFile().exists())
+      {
         file.getParentFile().createNewFile();
       }
       String commandLine = "mysqldump -r " + fileName + " " + databaseName;
       Process process = Runtime.getRuntime().exec(commandLine);
       process.waitFor();
-      if (process.exitValue() != 0) {
-        throw new Error(extractError(commandLine, process.getErrorStream()));
-      }
+      if (process.exitValue() != 0)
+      { throw new Error(extractError(commandLine, process.getErrorStream())); }
     }
-    catch (Exception e) {
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
@@ -94,46 +96,61 @@ public class DatabaseLifeCycleUtils
   }
   private static boolean getPasswordPrompt(Process process)
   {
-    try {
-        StringBuffer prompt;
-        try (InputStream error = process.getErrorStream()) {
-            try (InputStream in = process.getInputStream()) {
-                int TIMEOUT = 3;
-                long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-                prompt = new StringBuffer();
-                while (System.currentTimeMillis() < timeOut) {
-                    if (in.available() == 0 && error.available() == 0) {
-                        Thread.sleep(500);
-                    } else {
-                        if (in.available() != 0) {
-                            prompt.append((char) in.read());
-                        }
-                        if (error.available() != 0) {
-                            prompt.append((char) error.read());
-                        }
-                        timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-                    }
-                }
+    try
+    {
+      StringBuffer prompt;
+      try (InputStream error = process.getErrorStream())
+      {
+        try (InputStream in = process.getInputStream())
+        {
+          int TIMEOUT = 3;
+          long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+          prompt = new StringBuffer();
+          while (System.currentTimeMillis() < timeOut)
+          {
+            if (in.available() == 0 && error.available() == 0)
+            {
+              Thread.sleep(500);
             }
+            else
+            {
+              if (in.available() != 0)
+              {
+                prompt.append((char) in.read());
+              }
+              if (error.available() != 0)
+              {
+                prompt.append((char) error.read());
+              }
+              timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+            }
+          }
         }
-        SimpleLogger.variable("prompt", prompt.toString());
-        return prompt.toString().startsWith("Password");
-    } catch (Exception e) {
-        throw ObjectUtils.throwAsError(e);
+      }
+      SimpleLogger.variable("prompt", prompt.toString());
+      return prompt.toString().startsWith("Password");
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   private static void sendPassword(Process process, String password)
   {
-      try {
-          OutputStreamWriter out = new OutputStreamWriter(process.getOutputStream(), StandardCharsets.UTF_8);
-          try (BufferedWriter writer = new BufferedWriter(out)) {
-              writer.write(password);
-              writer.newLine();
-              writer.flush();
-          }
-      } catch (Exception e) {
-          throw ObjectUtils.throwAsError(e);
+    try
+    {
+      OutputStreamWriter out = new OutputStreamWriter(process.getOutputStream(), StandardCharsets.UTF_8);
+      try (BufferedWriter writer = new BufferedWriter(out))
+      {
+        writer.write(password);
+        writer.newLine();
+        writer.flush();
       }
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName)
   {
@@ -169,43 +186,55 @@ public class DatabaseLifeCycleUtils
   }
   private static void restorePostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
   {
-      try {
-          String commandLine;
-          if (System.getProperty("os.name").indexOf("Windows") >= 0) {
-              commandLine = "psql -f " + fileName + " -U " + config.userName + " " + databaseName;
-          } else {
-              commandLine = "psql -f " + fileName + " " + databaseName;
-          }
-          SimpleLogger.event("RUNNING : " + commandLine);
-          Process process = Runtime.getRuntime().exec(commandLine);
-          if (getPasswordPrompt(process)) {
-              sendPassword(process, config.getPassword());
-          }
-          Thread.sleep(2000);
-          String string = null;
-          InputStreamReader in = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8);
-          try (BufferedReader reader = new BufferedReader(in)) {
-              if (reader.ready()) {
-                  while ((string = reader.readLine()) != null) {
-                      SimpleLogger.variable(string);
-                  }
-              }
-          }
-          try (BufferedReader reader = new BufferedReader(
-                  new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8))) {
-              if (reader.ready()) {
-                  while ((string = reader.readLine()) != null) {
-                      SimpleLogger.variable(string);
-                  }
-              }
-              process.waitFor();
-          }
-          if (process.exitValue() != 0) {
-              throw new Error(extractError(commandLine, process.getErrorStream()));
-          }
-      } catch (Exception e) {
-          throw ObjectUtils.throwAsError(e);
+    try
+    {
+      String commandLine;
+      if (System.getProperty("os.name").indexOf("Windows") >= 0)
+      {
+        commandLine = "psql -f " + fileName + " -U " + config.userName + " " + databaseName;
       }
+      else
+      {
+        commandLine = "psql -f " + fileName + " " + databaseName;
+      }
+      SimpleLogger.event("RUNNING : " + commandLine);
+      Process process = Runtime.getRuntime().exec(commandLine);
+      if (getPasswordPrompt(process))
+      {
+        sendPassword(process, config.getPassword());
+      }
+      Thread.sleep(2000);
+      String string = null;
+      InputStreamReader in = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8);
+      try (BufferedReader reader = new BufferedReader(in))
+      {
+        if (reader.ready())
+        {
+          while ((string = reader.readLine()) != null)
+          {
+            SimpleLogger.variable(string);
+          }
+        }
+      }
+      try (BufferedReader reader = new BufferedReader(
+          new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8)))
+      {
+        if (reader.ready())
+        {
+          while ((string = reader.readLine()) != null)
+          {
+            SimpleLogger.variable(string);
+          }
+        }
+        process.waitFor();
+      }
+      if (process.exitValue() != 0)
+      { throw new Error(extractError(commandLine, process.getErrorStream())); }
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private static void restoreSQLServer(Statement stmt, String databaseName, String fileName)
   {
@@ -233,20 +262,23 @@ public class DatabaseLifeCycleUtils
   }
   public static String extractText(InputStream inStream)
   {
-      try {
-    StringBuffer errorBuffer = new StringBuffer();
-    InputStreamReader isr = new InputStreamReader(inStream, StandardCharsets.UTF_8);
-    try (BufferedReader in = new BufferedReader(isr))
+    try
     {
-      while (in.ready())
+      StringBuffer errorBuffer = new StringBuffer();
+      InputStreamReader isr = new InputStreamReader(inStream, StandardCharsets.UTF_8);
+      try (BufferedReader in = new BufferedReader(isr))
       {
-        errorBuffer.append(in.readLine());
+        while (in.ready())
+        {
+          errorBuffer.append(in.readLine());
+        }
       }
+      return errorBuffer.toString();
     }
-    return errorBuffer.toString();
-      } catch (Exception e) {
-          throw ObjectUtils.throwAsError(e);
-      }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   public static void deleteTable(String tableName, int databaseType, Statement stmt)
   {

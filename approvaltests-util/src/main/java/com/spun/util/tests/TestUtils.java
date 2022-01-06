@@ -177,11 +177,14 @@ public class TestUtils
   }
   public static void displayImage(BufferedImage image)
   {
-    try {
+    try
+    {
       File f = File.createTempFile("temp", ".gif");
       ImageWriter.writeImage(image, new FileOutputStream(f), ImageWriter.Encoding.GIF);
       Runtime.getRuntime().exec("C:\\PROGRA~1\\MOZILL~1\\FIREFOX.EXE " + f.getAbsolutePath());
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

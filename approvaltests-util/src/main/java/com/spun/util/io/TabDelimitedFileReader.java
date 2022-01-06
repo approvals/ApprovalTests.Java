@@ -19,7 +19,8 @@ public class TabDelimitedFileReader
   private boolean        trim     = false;
   public TabDelimitedFileReader(String absoluteFileName, boolean trim)
   {
-    this.reader = ObjectUtils.throwAsError(() -> Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8));
+    this.reader = ObjectUtils
+        .throwAsError(() -> Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8));
     this.trim = trim;
   }
   public boolean next()
@@ -28,17 +29,20 @@ public class TabDelimitedFileReader
   }
   public String prepNext()
   {
-    try {
-      if (reader == null) {
-        return null;
-      }
+    try
+    {
+      if (reader == null)
+      { return null; }
       lastRead = reader.readLine();
-      if (lastRead == null) {
+      if (lastRead == null)
+      {
         reader.close();
         reader = null;
       }
       return lastRead;
-    } catch (IOException e) {
+    }
+    catch (IOException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

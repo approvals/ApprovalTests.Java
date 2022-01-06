@@ -26,18 +26,21 @@ public class SpaceDelimitedReader
   }
   public String prepNext()
   {
-    try {
-      if (reader == null) {
-        return null;
-      }
+    try
+    {
+      if (reader == null)
+      { return null; }
       lastRead = reader.readLine();
-      if (lastRead == null) {
+      if (lastRead == null)
+      {
         reader.close();
         reader = null;
       }
       SimpleLogger.variable(lastRead);
       return lastRead;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

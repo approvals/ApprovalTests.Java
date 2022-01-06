@@ -129,7 +129,9 @@ public class ObjectUtils
         }
       }
     }
-    return classes.size() == 0 ? null : throwAsError(() -> ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null));
+    return classes.size() == 0
+        ? null
+        : throwAsError(() -> ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null));
   }
   private static Class<?>[] getAllCastableClasses(Object object)
   {

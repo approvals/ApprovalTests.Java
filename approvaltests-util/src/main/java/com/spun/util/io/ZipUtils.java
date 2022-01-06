@@ -26,18 +26,21 @@ public class ZipUtils
   }
   public static File doCreateZipFile(File[] files, File zipFile)
   {
-    try {
+    try
+    {
       byte[] buf = new byte[1024];
       zipFile.getParentFile().mkdirs();
       FileOutputStream fileOut = new FileOutputStream(zipFile);
       ZipOutputStream out = new ZipOutputStream(fileOut);
       // Compress the files
-      for (int i = 0; i < files.length; i++) {
+      for (int i = 0; i < files.length; i++)
+      {
         FileInputStream in = new FileInputStream(files[i]);
         out.putNextEntry(new ZipEntry(files[i].getName()));
         // Transfer bytes from the file to the ZIP file
         int len;
-        while ((len = in.read(buf)) > 0) {
+        while ((len = in.read(buf)) > 0)
+        {
           out.write(buf, 0, len);
         }
         // Complete the entry
@@ -48,29 +51,37 @@ public class ZipUtils
       out.close();
       fileOut.close();
       return zipFile;
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }
   public static File[] doUnzip(File destination, File zipFile)
   {
-    try {
+    try
+    {
       ArrayList<File> list = new ArrayList<File>();
       byte[] buf = new byte[1024];
       FileInputStream fileIn = new FileInputStream(zipFile);
       ZipInputStream in = new ZipInputStream(fileIn);
       // DeCompress the files
       ZipEntry entry = in.getNextEntry();
-      while (entry != null) {
+      while (entry != null)
+      {
         File file = new File(destination, entry.getName());
-        if (entry.isDirectory()) {
+        if (entry.isDirectory())
+        {
           file.mkdirs();
-        } else {
+        }
+        else
+        {
           list.add(file);
           FileOutputStream out = new FileOutputStream(file);
           // Transfer bytes from the file to the ZIP file
           int len;
-          while ((len = in.read(buf)) > 0) {
+          while ((len = in.read(buf)) > 0)
+          {
             out.write(buf, 0, len);
           }
           // Complete the entry
@@ -83,7 +94,9 @@ public class ZipUtils
       in.close();
       fileIn.close();
       return list.toArray(new File[0]);
-    } catch (Exception e) {
+    }
+    catch (Exception e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

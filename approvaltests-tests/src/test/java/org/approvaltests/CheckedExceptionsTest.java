@@ -27,7 +27,7 @@ public class CheckedExceptionsTest
     Queryable<Class<?>> classes = getAllClasses();
     // Filter for methods in the classes that have a checked exception
     Queryable<String> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s))
-        .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(),m.getName()))
+        .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(), m.getName()))
         .orderBy(m -> m.toString());
     // Verify the methods
     Options options = new Options();
