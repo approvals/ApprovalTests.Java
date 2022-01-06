@@ -45,7 +45,7 @@ public class AttributeStackSelector implements StackElementSelector
     {
       clazz = (Class<? extends Annotation>) ObjectUtils.loadClass(className);
     }
-    catch (ClassNotFoundException e)
+    catch (Throwable e)
     {
       clazz = null;
     }

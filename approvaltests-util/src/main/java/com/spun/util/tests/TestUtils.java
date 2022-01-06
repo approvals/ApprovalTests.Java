@@ -87,18 +87,17 @@ public class TestUtils
   {
     displayHtml(null, ".html", htmlOutput, 3);
   }
-  public static void displayHtmlFile(String fileName) throws IOException
+  public static void displayHtmlFile(String fileName)
   {
     displayFile(fileName);
   }
-  public static void displayHtmlFile(File file) throws IOException
+  public static void displayHtmlFile(File file)
   {
     if (!file.exists())
     { return; }
     displayHtmlFile(file.getAbsolutePath());
   }
   public static void displayHtml(String outputFile, String htmlOutput)
-      throws FileNotFoundException, IOException, InterruptedException
   {
     displayHtml(outputFile, ".html", htmlOutput, 15);
   }
@@ -120,11 +119,11 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static void displayText(String output) throws IOException, InterruptedException
+  public static void displayText(String output)
   {
     displayHtml(null, ".txt", output, 3);
   }
-  public static void displayExcel(String output) throws IOException, InterruptedException
+  public static void displayExcel(String output)
   {
     displayHtml(null, ".csv", output, 3);
     //    Runtime.getRuntime().exec("notepad.exe " + outputFile);
@@ -169,18 +168,22 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static double getTimerMultiplier() throws InterruptedException
+  public static double getTimerMultiplier()
   {
     long start = System.currentTimeMillis();
-    Thread.sleep(500);
+    ThreadUtils.sleep(500);
     long end = System.currentTimeMillis();
     return (end - start) / 500.00;
   }
-  public static void displayImage(BufferedImage image) throws Exception
+  public static void displayImage(BufferedImage image)
   {
-    File f = File.createTempFile("temp", ".gif");
-    ImageWriter.writeImage(image, new FileOutputStream(f), ImageWriter.Encoding.GIF);
-    Runtime.getRuntime().exec("C:\\PROGRA~1\\MOZILL~1\\FIREFOX.EXE " + f.getAbsolutePath());
+    try {
+      File f = File.createTempFile("temp", ".gif");
+      ImageWriter.writeImage(image, new FileOutputStream(f), ImageWriter.Encoding.GIF);
+      Runtime.getRuntime().exec("C:\\PROGRA~1\\MOZILL~1\\FIREFOX.EXE " + f.getAbsolutePath());
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   public static StackTraceReflectionResult getCurrentFileForMethod(int ignoreLevels)
   {
@@ -205,7 +208,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-  private static StackTraceReflectionResult getInfo(StackTraceElement element) throws ClassNotFoundException
+  private static StackTraceReflectionResult getInfo(StackTraceElement element)
   {
     String fullClassName = element.getClassName();
     String className = fullClassName.substring(fullClassName.lastIndexOf(".") + 1);

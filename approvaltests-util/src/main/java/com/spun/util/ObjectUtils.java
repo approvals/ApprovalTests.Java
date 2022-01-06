@@ -13,9 +13,9 @@ import org.lambda.query.Query;
  **/
 public class ObjectUtils
 {
-  public static Class<?> loadClass(String className) throws ClassNotFoundException
+  public static Class<?> loadClass(String className)
   {
-    return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
+    return throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
   }
   public static int generateHashCode(Object... relevantMembers)
   {
@@ -215,7 +215,7 @@ public class ObjectUtils
       Class<?> loadClass = loadClass(className);
       return loadClass != null;
     }
-    catch (ClassNotFoundException e)
+    catch (Throwable e)
     {
       return false;
     }

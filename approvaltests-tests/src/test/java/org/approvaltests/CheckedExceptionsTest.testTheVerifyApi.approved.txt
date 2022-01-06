@@ -21,15 +21,10 @@ public abstract void org.lambda.actions.Action6WithException.call(java.lang.Obje
 public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public static boolean com.spun.util.database.SQLStatementUtils.execute(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
-public static double com.spun.util.tests.TestUtils.getTimerMultiplier() throws java.lang.InterruptedException
-public static int com.spun.util.database.SQLStatementUtils.executeUpdate(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
-public static java.io.File com.spun.util.io.SshUtils.sftpDownload(com.spun.util.io.FTPConfig,java.io.File,java.lang.String) throws java.io.IOException
 public static java.io.File com.spun.util.io.ZipUtils.doCreateZipFile(java.io.File[],java.io.File) throws java.io.IOException
 public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.io.File,java.io.File) throws java.io.IOException
 public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.lang.String,java.lang.String) throws java.io.IOException
 public static java.io.File[] com.spun.util.io.ZipUtils.doUnzip(java.io.File,java.io.File) throws java.io.IOException
-public static java.lang.Class com.spun.util.ObjectUtils.loadClass(java.lang.String) throws java.lang.ClassNotFoundException
 public static java.lang.Class com.spun.util.parser.ParserCommons.getClass(java.lang.String) throws java.lang.ClassNotFoundException
 public static java.lang.Class org.packagesettings.PackageLevelSettings.loadClass(java.lang.String) throws java.lang.ClassNotFoundException
 public static java.lang.Error com.spun.util.ObjectUtils.throwAsError(java.lang.Throwable) throws java.lang.Error
@@ -37,22 +32,12 @@ public static java.lang.Object com.spun.util.parser.ParserCommons.createNew(java
 public static java.lang.String com.spun.util.database.DatabaseLifeCycleUtils.extractText(java.io.InputStream) throws java.io.IOException
 public static java.lang.reflect.Method com.spun.util.ObjectUtils.getGreatestCommonDenominator(java.lang.Object[],java.lang.String) throws java.lang.SecurityException,java.lang.NoSuchMethodException
 public static java.lang.reflect.Method[] com.spun.util.ObjectUtils.getMethodsForObject(java.lang.Object,java.lang.String[]) throws java.lang.SecurityException,java.lang.NoSuchMethodException
-public static java.sql.ResultSet com.spun.util.database.SQLStatementUtils.executeQuery(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
 public static java.util.ArrayList com.spun.util.introspection.ClassGetter.getClasses(java.lang.String,java.lang.String) throws java.lang.ClassNotFoundException
 public static java.util.Map org.packagesettings.PackageLevelSettings.getForStackTrace(java.lang.StackTraceElement[]) throws java.lang.Error
 public static synchronized org.apache.velocity.app.VelocityEngine com.spun.util.velocity.VelocityParser.initializeEngine(java.util.Properties) throws java.lang.Exception
 public static void com.spun.util.database.DatabaseLifeCycleUtils.backupDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
 public static void com.spun.util.database.DatabaseLifeCycleUtils.restoreDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
-public static void com.spun.util.io.SshUtils.ftpUpload(com.spun.util.io.FTPConfig,java.lang.String,java.io.File) throws java.io.IOException
-public static void com.spun.util.io.SshUtils.ftpUpload(com.spun.util.io.FTPConfig,java.lang.String,java.io.File,java.lang.String) throws java.io.IOException
-public static void com.spun.util.io.SshUtils.sftpUpload(com.spun.util.io.FTPConfig,java.io.File,java.lang.String) throws java.io.IOException
 public static void com.spun.util.io.ZipUtils.main(java.lang.String[]) throws java.io.IOException
-public static void com.spun.util.tests.TestUtils.displayExcel(java.lang.String) throws java.io.IOException,java.lang.InterruptedException
-public static void com.spun.util.tests.TestUtils.displayHtml(java.lang.String,java.lang.String) throws java.io.FileNotFoundException,java.io.IOException,java.lang.InterruptedException
-public static void com.spun.util.tests.TestUtils.displayHtmlFile(java.io.File) throws java.io.IOException
-public static void com.spun.util.tests.TestUtils.displayHtmlFile(java.lang.String) throws java.io.IOException
-public static void com.spun.util.tests.TestUtils.displayImage(java.awt.image.BufferedImage) throws java.lang.Exception
-public static void com.spun.util.tests.TestUtils.displayText(java.lang.String) throws java.io.IOException,java.lang.InterruptedException
 public synchronized java.io.InputStream com.spun.util.velocity.ServletContextLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
 public synchronized java.io.InputStream com.spun.util.velocity.StringResourceLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
 public void com.spun.util.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException

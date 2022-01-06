@@ -1,5 +1,6 @@
 package com.spun.util.io;
 
+import com.spun.util.ObjectUtils;
 import com.spun.util.logger.SimpleLogger;
 import com.sshtools.j2ssh.SftpClient;
 import com.sshtools.j2ssh.SshClient;
@@ -17,53 +18,68 @@ import java.io.IOException;
 public class SshUtils
 {
   public static void ftpUpload(FTPConfig config, String directory, File file, String remoteFileName)
-      throws IOException
   {
-    FTPClient server = new FTPClient();
-    server.connect(config.host, config.port);
-    assertValidReplyCode(server.getReplyCode(), server);
-    server.login(config.userName, config.password);
-    assertValidReplyCode(server.getReplyCode(), server);
-    assertValidReplyCode(server.cwd(directory), server);
-    server.setFileTransferMode(FTP.BINARY_FILE_TYPE);
-    server.setFileType(FTP.BINARY_FILE_TYPE);
-    server.storeFile(remoteFileName, new FileInputStream(file));
-    assertValidReplyCode(server.getReplyCode(), server);
-    server.sendNoOp();
-    server.disconnect();
+    try {
+      FTPClient server = new FTPClient();
+      server.connect(config.host, config.port);
+      assertValidReplyCode(server.getReplyCode(), server);
+      server.login(config.userName, config.password);
+      assertValidReplyCode(server.getReplyCode(), server);
+      assertValidReplyCode(server.cwd(directory), server);
+      server.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+      server.setFileType(FTP.BINARY_FILE_TYPE);
+      server.storeFile(remoteFileName, new FileInputStream(file));
+      assertValidReplyCode(server.getReplyCode(), server);
+      server.sendNoOp();
+      server.disconnect();
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
-  public static void ftpUpload(FTPConfig config, String directory, File file) throws IOException
+  public static void ftpUpload(FTPConfig config, String directory, File file)
   {
     ftpUpload(config, directory, file, file.getName());
   }
-  public static void sftpUpload(FTPConfig config, File file, String remoteFileName) throws IOException
+  public static void sftpUpload(FTPConfig config, File file, String remoteFileName)
   {
-    SshClient ssh = new SshClient();
-    SftpClient sftp = sshLogin(config, ssh);
-    sftp.mkdirs(remoteFileName.substring(0, remoteFileName.lastIndexOf("/")));
-    sftp.put(new FileInputStream(file), remoteFileName);
-    sftp.quit();
-    ssh.disconnect();
+    try {
+      SshClient ssh = new SshClient();
+      SftpClient sftp = sshLogin(config, ssh);
+      sftp.mkdirs(remoteFileName.substring(0, remoteFileName.lastIndexOf("/")));
+      sftp.put(new FileInputStream(file), remoteFileName);
+      sftp.quit();
+      ssh.disconnect();
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
-  private static SftpClient sshLogin(FTPConfig config, SshClient ssh) throws IOException
+  private static SftpClient sshLogin(FTPConfig config, SshClient ssh)
   {
-    ssh.setSocketTimeout(60000);
-    ssh.connect(config.host, new IgnoreHostKeyVerification());
-    PasswordAuthenticationClient pwd = new PasswordAuthenticationClient();
-    pwd.setUsername(config.userName);
-    pwd.setPassword(config.password);
-    ssh.authenticate(pwd);
-    SftpClient sftp = ssh.openSftpClient();
-    return sftp;
+    try {
+      ssh.setSocketTimeout(60000);
+      ssh.connect(config.host, new IgnoreHostKeyVerification());
+      PasswordAuthenticationClient pwd = new PasswordAuthenticationClient();
+      pwd.setUsername(config.userName);
+      pwd.setPassword(config.password);
+      ssh.authenticate(pwd);
+      SftpClient sftp = ssh.openSftpClient();
+      return sftp;
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
-  public static File sftpDownload(FTPConfig config, File file, String remoteFileName) throws IOException
+  public static File sftpDownload(FTPConfig config, File file, String remoteFileName)
   {
-    SshClient ssh = new SshClient();
-    SftpClient sftp = sshLogin(config, ssh);
-    sftp.get(remoteFileName, new FileOutputStream(file));
-    sftp.quit();
-    ssh.disconnect();
-    return file;
+    try {
+      SshClient ssh = new SshClient();
+      SftpClient sftp = sshLogin(config, ssh);
+      sftp.get(remoteFileName, new FileOutputStream(file));
+      sftp.quit();
+      ssh.disconnect();
+      return file;
+    } catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private static void assertValidReplyCode(int code, FTPClient ftp)
   {
