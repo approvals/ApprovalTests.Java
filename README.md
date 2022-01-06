@@ -143,6 +143,9 @@ The suggested fix is to add
 
 - [ApprovalTests.com](https://approvaltests.com/)
 
+### No Checked Exceptions Philosophy
+Approval Tests follows the [no checked exceptions"](approvaltests/docs/explanations/NoCheckedExceptions.md) philosophy. That is, our API only throws runtime exceptions.
+
 
 ## LICENSE
 [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
