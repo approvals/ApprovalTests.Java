@@ -19,7 +19,7 @@ import java.sql.Statement;
 public class DatabaseLifeCycleUtils
 {
   public static void backupDatabase(Statement stmt, String databaseName, DatabaseConfiguration config,
-      String fileName) throws Exception
+      String fileName)
   {
     switch (config.type)
     {
@@ -38,21 +38,25 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
-  private static void backupMySQL(String databaseName, String fileName) throws Exception
+  private static void backupMySQL(String databaseName, String fileName)
   {
-    File file = new File(fileName);
-    if (!file.getParentFile().exists())
-    {
-      file.getParentFile().createNewFile();
+    try {
+      File file = new File(fileName);
+      if (!file.getParentFile().exists()) {
+        file.getParentFile().createNewFile();
+      }
+      String commandLine = "mysqldump -r " + fileName + " " + databaseName;
+      Process process = Runtime.getRuntime().exec(commandLine);
+      process.waitFor();
+      if (process.exitValue() != 0) {
+        throw new Error(extractError(commandLine, process.getErrorStream()));
+      }
     }
-    String commandLine = "mysqldump -r " + fileName + " " + databaseName;
-    Process process = Runtime.getRuntime().exec(commandLine);
-    process.waitFor();
-    if (process.exitValue() != 0)
-    { throw new Error(extractError(commandLine, process.getErrorStream())); }
+    catch (Exception e) {
+      throw ObjectUtils.throwAsError(e);
+    }
   }
   private static void backupPostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
-      throws Exception
   {
     String commandLine = null;
     try
@@ -82,55 +86,54 @@ public class DatabaseLifeCycleUtils
       if (process.exitValue() != 0)
       { throw new Error(extractError(commandLine, process.getErrorStream())); }
     }
-    catch (IOException e)
+    catch (Exception e)
     {
       SimpleLogger.variable("CommandLine", commandLine);
-      throw e;
+      throw ObjectUtils.throwAsError(e);
     }
   }
-  private static boolean getPasswordPrompt(Process process) throws Exception
+  private static boolean getPasswordPrompt(Process process)
   {
-    StringBuffer prompt;
-    try (InputStream error = process.getErrorStream())
-    {
-      try (InputStream in = process.getInputStream())
-      {
-        int TIMEOUT = 3;
-        long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-        prompt = new StringBuffer();
-        while (System.currentTimeMillis() < timeOut)
-        {
-          if (in.available() == 0 && error.available() == 0)
-          {
-            Thread.sleep(500);
-          }
-          else
-          {
-            if (in.available() != 0)
-            {
-              prompt.append((char) in.read());
+    try {
+        StringBuffer prompt;
+        try (InputStream error = process.getErrorStream()) {
+            try (InputStream in = process.getInputStream()) {
+                int TIMEOUT = 3;
+                long timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+                prompt = new StringBuffer();
+                while (System.currentTimeMillis() < timeOut) {
+                    if (in.available() == 0 && error.available() == 0) {
+                        Thread.sleep(500);
+                    } else {
+                        if (in.available() != 0) {
+                            prompt.append((char) in.read());
+                        }
+                        if (error.available() != 0) {
+                            prompt.append((char) error.read());
+                        }
+                        timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
+                    }
+                }
             }
-            if (error.available() != 0)
-            {
-              prompt.append((char) error.read());
-            }
-            timeOut = System.currentTimeMillis() + (TIMEOUT * 1000);
-          }
         }
-      }
+        SimpleLogger.variable("prompt", prompt.toString());
+        return prompt.toString().startsWith("Password");
+    } catch (Exception e) {
+        throw ObjectUtils.throwAsError(e);
     }
-    SimpleLogger.variable("prompt", prompt.toString());
-    return prompt.toString().startsWith("Password");
   }
-  private static void sendPassword(Process process, String password) throws Exception
+  private static void sendPassword(Process process, String password)
   {
-    OutputStreamWriter out = new OutputStreamWriter(process.getOutputStream(), StandardCharsets.UTF_8);
-    try (BufferedWriter writer = new BufferedWriter(out))
-    {
-      writer.write(password);
-      writer.newLine();
-      writer.flush();
-    }
+      try {
+          OutputStreamWriter out = new OutputStreamWriter(process.getOutputStream(), StandardCharsets.UTF_8);
+          try (BufferedWriter writer = new BufferedWriter(out)) {
+              writer.write(password);
+              writer.newLine();
+              writer.flush();
+          }
+      } catch (Exception e) {
+          throw ObjectUtils.throwAsError(e);
+      }
   }
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName)
   {
@@ -139,7 +142,7 @@ public class DatabaseLifeCycleUtils
     ObjectUtils.throwAsError(() -> stmt.execute(sql));
   }
   public static void restoreDatabase(Statement stmt, String databaseName, DatabaseConfiguration config,
-      String fileName) throws Exception
+      String fileName)
   {
     switch (config.type)
     {
@@ -165,50 +168,44 @@ public class DatabaseLifeCycleUtils
     ObjectUtils.throwAsError(() -> stmt.execute(restoreCommand));
   }
   private static void restorePostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
-      throws Error, Exception
   {
-    String commandLine;
-    if (System.getProperty("os.name").indexOf("Windows") >= 0)
-    {
-      commandLine = "psql -f " + fileName + " -U " + config.userName + " " + databaseName;
-    }
-    else
-    {
-      commandLine = "psql -f " + fileName + " " + databaseName;
-    }
-    SimpleLogger.event("RUNNING : " + commandLine);
-    Process process = Runtime.getRuntime().exec(commandLine);
-    if (getPasswordPrompt(process))
-    {
-      sendPassword(process, config.getPassword());
-    }
-    Thread.sleep(2000);
-    String string = null;
-    InputStreamReader in = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8);
-    try (BufferedReader reader = new BufferedReader(in))
-    {
-      if (reader.ready())
-      {
-        while ((string = reader.readLine()) != null)
-        {
-          SimpleLogger.variable(string);
-        }
+      try {
+          String commandLine;
+          if (System.getProperty("os.name").indexOf("Windows") >= 0) {
+              commandLine = "psql -f " + fileName + " -U " + config.userName + " " + databaseName;
+          } else {
+              commandLine = "psql -f " + fileName + " " + databaseName;
+          }
+          SimpleLogger.event("RUNNING : " + commandLine);
+          Process process = Runtime.getRuntime().exec(commandLine);
+          if (getPasswordPrompt(process)) {
+              sendPassword(process, config.getPassword());
+          }
+          Thread.sleep(2000);
+          String string = null;
+          InputStreamReader in = new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8);
+          try (BufferedReader reader = new BufferedReader(in)) {
+              if (reader.ready()) {
+                  while ((string = reader.readLine()) != null) {
+                      SimpleLogger.variable(string);
+                  }
+              }
+          }
+          try (BufferedReader reader = new BufferedReader(
+                  new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8))) {
+              if (reader.ready()) {
+                  while ((string = reader.readLine()) != null) {
+                      SimpleLogger.variable(string);
+                  }
+              }
+              process.waitFor();
+          }
+          if (process.exitValue() != 0) {
+              throw new Error(extractError(commandLine, process.getErrorStream()));
+          }
+      } catch (Exception e) {
+          throw ObjectUtils.throwAsError(e);
       }
-    }
-    try (BufferedReader reader = new BufferedReader(
-        new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8)))
-    {
-      if (reader.ready())
-      {
-        while ((string = reader.readLine()) != null)
-        {
-          SimpleLogger.variable(string);
-        }
-      }
-      process.waitFor();
-    }
-    if (process.exitValue() != 0)
-    { throw new Error(extractError(commandLine, process.getErrorStream())); }
   }
   private static void restoreSQLServer(Statement stmt, String databaseName, String fileName)
   {
@@ -225,7 +222,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  private static String extractError(String commandLine, InputStream error) throws Exception
+  private static String extractError(String commandLine, InputStream error)
   {
     /*
      Process whoami = Runtime.getRuntime().exec("whoami");
@@ -234,8 +231,9 @@ public class DatabaseLifeCycleUtils
     String errorText = extractText(error);
     return "Error Executing '" + commandLine + /*"' AS USER '" + userName + */"'- " + errorText;
   }
-  public static String extractText(InputStream inStream) throws IOException
+  public static String extractText(InputStream inStream)
   {
+      try {
     StringBuffer errorBuffer = new StringBuffer();
     InputStreamReader isr = new InputStreamReader(inStream, StandardCharsets.UTF_8);
     try (BufferedReader in = new BufferedReader(isr))
@@ -246,6 +244,9 @@ public class DatabaseLifeCycleUtils
       }
     }
     return errorBuffer.toString();
+      } catch (Exception e) {
+          throw ObjectUtils.throwAsError(e);
+      }
   }
   public static void deleteTable(String tableName, int databaseType, Statement stmt)
   {

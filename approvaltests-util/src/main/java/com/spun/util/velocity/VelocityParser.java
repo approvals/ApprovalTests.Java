@@ -96,7 +96,7 @@ public class VelocityParser
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static synchronized VelocityEngine initializeEngine(Properties props) throws Exception
+  public static synchronized VelocityEngine initializeEngine(Properties props)
   {
     if (currentEngine == null || isDifferentForProperties(props, currentEngine,
         new String[]{"resource.loader", "file.resource.loader.path"}))

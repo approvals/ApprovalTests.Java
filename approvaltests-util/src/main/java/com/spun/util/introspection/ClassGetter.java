@@ -10,7 +10,6 @@ import com.spun.util.io.filefilters.JavaClassFileFilter;
 public class ClassGetter
 {
   public static ArrayList<Class<?>> getClasses(String packageName, String classSuffix)
-      throws ClassNotFoundException
   {
     ArrayList<Class<?>> classes = new ArrayList<>();
     File[] testFiles = FileUtils.getRecursiveFileList(new File("."),

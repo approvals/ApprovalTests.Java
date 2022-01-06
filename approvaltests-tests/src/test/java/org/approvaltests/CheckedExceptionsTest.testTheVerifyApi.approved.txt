@@ -1,39 +1,33 @@
 Methods with checked exceptions
 
 
-public abstract java.lang.Object org.lambda.functions.Function0WithException.call() throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function1WithException.call(java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function3WithException.call(java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function4WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function5WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function6WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract java.lang.Object org.lambda.functions.Function9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action0WithException.call() throws java.lang.Throwable
-public abstract void org.lambda.actions.Action1WithException.call(java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action3WithException.call(java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action4WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action5WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action6WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public static java.lang.String com.spun.util.database.DatabaseLifeCycleUtils.extractText(java.io.InputStream) throws java.io.IOException
-public static java.util.ArrayList com.spun.util.introspection.ClassGetter.getClasses(java.lang.String,java.lang.String) throws java.lang.ClassNotFoundException
-public static synchronized org.apache.velocity.app.VelocityEngine com.spun.util.velocity.VelocityParser.initializeEngine(java.util.Properties) throws java.lang.Exception
-public static void com.spun.util.database.DatabaseLifeCycleUtils.backupDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
-public static void com.spun.util.database.DatabaseLifeCycleUtils.restoreDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
-public synchronized java.io.InputStream com.spun.util.velocity.ServletContextLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
-public synchronized java.io.InputStream com.spun.util.velocity.StringResourceLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
-public void com.spun.util.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
-public void com.spun.util.MockConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
-public void com.spun.util.database.SshConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
-public void com.spun.util.database.SshConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
-public void com.spun.util.logger.AppendableWriter.write(char[],int,int) throws java.io.IOException
-public void com.spun.util.logger.AppendableWriter.write(int) throws java.io.IOException
-public void com.spun.util.persistence.DatabaseObjectDeletor.delete(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
-public void com.spun.util.sql.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
-public void com.spun.util.sql.MockConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
+com.spun.util.MockConnection.setClientInfo
+com.spun.util.MockConnection.setClientInfo
+com.spun.util.database.SshConnection.setClientInfo
+com.spun.util.database.SshConnection.setClientInfo
+com.spun.util.logger.AppendableWriter.write
+com.spun.util.logger.AppendableWriter.write
+com.spun.util.persistence.DatabaseObjectDeletor.delete
+com.spun.util.sql.MockConnection.setClientInfo
+com.spun.util.sql.MockConnection.setClientInfo
+com.spun.util.velocity.StringResourceLoader.getResourceStream
+org.lambda.actions.Action0WithException.call
+org.lambda.actions.Action1WithException.call
+org.lambda.actions.Action2WithException.call
+org.lambda.actions.Action3WithException.call
+org.lambda.actions.Action4WithException.call
+org.lambda.actions.Action5WithException.call
+org.lambda.actions.Action6WithException.call
+org.lambda.actions.Action7WithException.call
+org.lambda.actions.Action8WithException.call
+org.lambda.actions.Action9WithException.call
+org.lambda.functions.Function0WithException.call
+org.lambda.functions.Function1WithException.call
+org.lambda.functions.Function2WithException.call
+org.lambda.functions.Function3WithException.call
+org.lambda.functions.Function4WithException.call
+org.lambda.functions.Function5WithException.call
+org.lambda.functions.Function6WithException.call
+org.lambda.functions.Function7WithException.call
+org.lambda.functions.Function8WithException.call
+org.lambda.functions.Function9WithException.call

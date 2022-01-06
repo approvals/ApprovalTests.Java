@@ -26,7 +26,8 @@ public class CheckedExceptionsTest
     // Get all of the classes for all the packages
     Queryable<Class<?>> classes = getAllClasses();
     // Filter for methods in the classes that have a checked exception
-    Queryable<Method> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s))
+    Queryable<String> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s))
+        .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(),m.getName()))
         .orderBy(m -> m.toString());
     // Verify the methods
     GenericDiffReporter reporter = new GenericDiffReporter("C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.2.1\\bin\\idea64.exe", "diff %s %s", "");

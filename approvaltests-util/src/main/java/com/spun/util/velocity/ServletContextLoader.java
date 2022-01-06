@@ -50,10 +50,8 @@ public class ServletContextLoader extends ResourceLoader
    *
    * @param name name of template to get
    * @return InputStream containing the template
-   * @throws ResourceNotFoundException if template not found
-   *         in  classpath.
    */
-  public synchronized InputStream getResourceStream(String name) throws ResourceNotFoundException
+  public synchronized InputStream getResourceStream(String name)
   {
     if (name == null || name.length() == 0)
     { return null; }
