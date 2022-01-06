@@ -11,7 +11,7 @@ public class DatabaseObjectSaver<T extends DatabaseObject> implements Saver<T>
   {
     this.stmt = stmt;
   }
-  public DatabaseObject save(DatabaseObject save) throws SavingException
+  public DatabaseObject save(DatabaseObject save)
   {
     save.save(stmt);
     return save;

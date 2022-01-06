@@ -58,7 +58,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   {
     beKindToNulls = behavior;
   }
-  public Iterator<?> getIterator(Object obj, Info i) throws Exception
+  public Iterator<?> getIterator(Object obj, Info i)
   {
     return getStandardIterator(obj, i);
   }
@@ -84,7 +84,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     { return new EnumerationIterator((Enumeration<?>) obj); }
     throw new VelocityParsingError("Could not determine type of iterator in " + "#foreach loop ", i);
   }
-  public VelMethod getMethod(Object obj, String methodName, Object[] args, Info i) throws Exception
+  public VelMethod getMethod(Object obj, String methodName, Object[] args, Info i)
   {
     if (obj == null)
     {
@@ -115,7 +115,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     }
     return className + "." + methodName + "(" + methodSignature + ") ";
   }
-  public VelPropertyGet getPropertyGet(Object obj, String identifier, Info i) throws Exception
+  public VelPropertyGet getPropertyGet(Object obj, String identifier, Info i)
   {
     AbstractExecutor executor;
     if (obj == null)
@@ -141,7 +141,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
   {
     return className + "." + identifier + " ";
   }
-  public VelPropertySet getPropertySet(Object obj, String identifier, Object arg, Info i) throws Exception
+  public VelPropertySet getPropertySet(Object obj, String identifier, Object arg, Info i)
   {
     Class<? extends Object> claz = obj.getClass();
     VelMethod vm = null;
@@ -197,9 +197,9 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       method = m;
     }
-    public Object invoke(Object o, Object[] params) throws Exception
+    public Object invoke(Object o, Object[] params)
     {
-      return method.invoke(o, params);
+      return ObjectUtils.throwAsError(() -> method.invoke(o, params));
     }
     public boolean isCacheable()
     {
@@ -221,9 +221,9 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       ae = exec;
     }
-    public Object invoke(Object o) throws Exception
+    public Object invoke(Object o)
     {
-      return ae.execute(o);
+      return ObjectUtils.throwAsError(() -> ae.execute(o));
     }
     public boolean isCacheable()
     {
@@ -247,7 +247,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       this.vm = velmethod;
       putKey = key;
     }
-    public Object invoke(Object o, Object value) throws Exception
+    public Object invoke(Object o, Object value)
     {
       ArrayList<Object> al = new ArrayList<Object>();
       if (putKey != null)
@@ -259,7 +259,7 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
       {
         al.add(value);
       }
-      return vm.invoke(o, al.toArray());
+      return ObjectUtils.throwAsError(() -> vm.invoke(o, al.toArray()));
     }
     public boolean isCacheable()
     {

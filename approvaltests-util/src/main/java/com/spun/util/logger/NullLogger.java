@@ -5,17 +5,17 @@ import java.io.IOException;
 public class NullLogger implements Appendable
 {
   @Override
-  public Appendable append(CharSequence csq) throws IOException
+  public Appendable append(CharSequence csq)
   {
     return this;
   }
   @Override
-  public Appendable append(CharSequence csq, int start, int end) throws IOException
+  public Appendable append(CharSequence csq, int start, int end)
   {
     return this;
   }
   @Override
-  public Appendable append(char c) throws IOException
+  public Appendable append(char c)
   {
     return this;
   }

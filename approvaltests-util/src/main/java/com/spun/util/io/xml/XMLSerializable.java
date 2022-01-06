@@ -17,6 +17,5 @@ public interface XMLSerializable
   /**
    * Serializes this object , plus dependencies to xml via the writer.
    **/
-  public void serializeXML(java.util.HashMap<DatabaseObject, Integer> saved, java.io.Writer writer)
-      throws java.io.IOException;
+  public void serializeXML(java.util.HashMap<DatabaseObject, Integer> saved, java.io.Writer writer);
 }

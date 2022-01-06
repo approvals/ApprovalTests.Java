@@ -11,8 +11,6 @@ public abstract java.lang.Object org.lambda.functions.Function6WithException.cal
 public abstract java.lang.Object org.lambda.functions.Function7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract java.lang.Object org.lambda.functions.Function9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public abstract void com.spun.util.io.xml.XMLSerializable.serializeXML(java.util.HashMap,java.io.Writer) throws java.io.IOException
-public abstract void com.spun.util.persistence.Deletor.delete(java.lang.Object) throws com.spun.util.persistence.SavingException
 public abstract void org.lambda.actions.Action0WithException.call() throws java.lang.Throwable
 public abstract void org.lambda.actions.Action1WithException.call(java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action2WithException.call(java.lang.Object,java.lang.Object) throws java.lang.Throwable
@@ -23,16 +21,6 @@ public abstract void org.lambda.actions.Action6WithException.call(java.lang.Obje
 public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public com.spun.util.database.DatabaseObject com.spun.util.persistence.DatabaseObjectSaver.save(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
-public int com.spun.util.MultiSorter.compare(java.lang.Object,java.lang.Object) throws java.lang.ClassCastException
-public int com.spun.util.io.CharSequenceInputStream.read() throws java.io.IOException
-public java.lang.Appendable com.spun.util.logger.NullLogger.append(char) throws java.io.IOException
-public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence) throws java.io.IOException
-public java.lang.Appendable com.spun.util.logger.NullLogger.append(java.lang.CharSequence,int,int) throws java.io.IOException
-public java.util.Iterator com.spun.util.velocity.TestableUberspect.getIterator(java.lang.Object,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
-public org.apache.velocity.util.introspection.VelMethod com.spun.util.velocity.TestableUberspect.getMethod(java.lang.Object,java.lang.String,java.lang.Object[],org.apache.velocity.util.introspection.Info) throws java.lang.Exception
-public org.apache.velocity.util.introspection.VelPropertyGet com.spun.util.velocity.TestableUberspect.getPropertyGet(java.lang.Object,java.lang.String,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
-public org.apache.velocity.util.introspection.VelPropertySet com.spun.util.velocity.TestableUberspect.getPropertySet(java.lang.Object,java.lang.String,java.lang.Object,org.apache.velocity.util.introspection.Info) throws java.lang.Exception
 public static boolean com.spun.util.database.SQLStatementUtils.execute(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
 public static double com.spun.util.tests.TestUtils.getTimerMultiplier() throws java.lang.InterruptedException
 public static int com.spun.util.database.SQLStatementUtils.executeUpdate(java.lang.String,java.sql.Statement) throws com.spun.util.database.SQLInformationException
@@ -74,6 +62,5 @@ public void com.spun.util.database.SshConnection.setClientInfo(java.util.Propert
 public void com.spun.util.logger.AppendableWriter.write(char[],int,int) throws java.io.IOException
 public void com.spun.util.logger.AppendableWriter.write(int) throws java.io.IOException
 public void com.spun.util.persistence.DatabaseObjectDeletor.delete(com.spun.util.database.DatabaseObject) throws com.spun.util.persistence.SavingException
-public void com.spun.util.persistence.DatabaseObjectDeletor.delete(java.lang.Object) throws com.spun.util.persistence.SavingException
 public void com.spun.util.sql.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException
 public void com.spun.util.sql.MockConnection.setClientInfo(java.util.Properties) throws java.sql.SQLClientInfoException
