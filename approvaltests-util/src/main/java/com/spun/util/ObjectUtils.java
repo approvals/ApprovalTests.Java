@@ -51,13 +51,14 @@ public class ObjectUtils
     }
   }
   public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
-      throws SecurityException, NoSuchMethodException
   {
     Method methods[] = new Method[passedMethods.length];
     Class<?> clazz = o2.getClass();
     for (int i = 0; i < passedMethods.length; i++)
     {
-      methods[i] = clazz.getMethod(passedMethods[i], (Class[]) null);
+      String methodName = passedMethods[i];
+      Class[] parameters = null;
+      methods[i] = throwAsError(() -> clazz.getMethod(methodName, parameters));
     }
     return methods;
   }
@@ -92,7 +93,7 @@ public class ObjectUtils
   {
     return that.isAssignableFrom(thiz);
   }
-  public static Error throwAsError(Throwable t) throws Error
+  public static Error throwAsError(Throwable t)
   {
     if (t instanceof RuntimeException)
     {
@@ -114,7 +115,6 @@ public class ObjectUtils
     return array[NumberUtils.RANDOM.nextInt(array.length)];
   }
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
-      throws SecurityException, NoSuchMethodException
   {
     List<Class<?>> classes = new ArrayList<>();
     ArrayUtils.addArray(classes, getAllCastableClasses(from[0]));
@@ -129,7 +129,7 @@ public class ObjectUtils
         }
       }
     }
-    return classes.size() == 0 ? null : ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null);
+    return classes.size() == 0 ? null : throwAsError(() -> ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null));
   }
   private static Class<?>[] getAllCastableClasses(Object object)
   {

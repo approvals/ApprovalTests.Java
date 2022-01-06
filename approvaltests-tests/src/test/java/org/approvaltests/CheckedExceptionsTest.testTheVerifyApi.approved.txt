@@ -21,23 +21,11 @@ public abstract void org.lambda.actions.Action6WithException.call(java.lang.Obje
 public abstract void org.lambda.actions.Action7WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action8WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
 public abstract void org.lambda.actions.Action9WithException.call(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object) throws java.lang.Throwable
-public static java.io.File com.spun.util.io.ZipUtils.doCreateZipFile(java.io.File[],java.io.File) throws java.io.IOException
-public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.io.File,java.io.File) throws java.io.IOException
-public static java.io.File com.spun.util.io.ZipUtils.zipDirectory(java.lang.String,java.lang.String) throws java.io.IOException
-public static java.io.File[] com.spun.util.io.ZipUtils.doUnzip(java.io.File,java.io.File) throws java.io.IOException
-public static java.lang.Class com.spun.util.parser.ParserCommons.getClass(java.lang.String) throws java.lang.ClassNotFoundException
-public static java.lang.Class org.packagesettings.PackageLevelSettings.loadClass(java.lang.String) throws java.lang.ClassNotFoundException
-public static java.lang.Error com.spun.util.ObjectUtils.throwAsError(java.lang.Throwable) throws java.lang.Error
-public static java.lang.Object com.spun.util.parser.ParserCommons.createNew(java.lang.String) throws java.lang.InstantiationException,java.lang.IllegalAccessException,java.lang.ClassNotFoundException
 public static java.lang.String com.spun.util.database.DatabaseLifeCycleUtils.extractText(java.io.InputStream) throws java.io.IOException
-public static java.lang.reflect.Method com.spun.util.ObjectUtils.getGreatestCommonDenominator(java.lang.Object[],java.lang.String) throws java.lang.SecurityException,java.lang.NoSuchMethodException
-public static java.lang.reflect.Method[] com.spun.util.ObjectUtils.getMethodsForObject(java.lang.Object,java.lang.String[]) throws java.lang.SecurityException,java.lang.NoSuchMethodException
 public static java.util.ArrayList com.spun.util.introspection.ClassGetter.getClasses(java.lang.String,java.lang.String) throws java.lang.ClassNotFoundException
-public static java.util.Map org.packagesettings.PackageLevelSettings.getForStackTrace(java.lang.StackTraceElement[]) throws java.lang.Error
 public static synchronized org.apache.velocity.app.VelocityEngine com.spun.util.velocity.VelocityParser.initializeEngine(java.util.Properties) throws java.lang.Exception
 public static void com.spun.util.database.DatabaseLifeCycleUtils.backupDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
 public static void com.spun.util.database.DatabaseLifeCycleUtils.restoreDatabase(java.sql.Statement,java.lang.String,com.spun.util.DatabaseConfiguration,java.lang.String) throws java.lang.Exception
-public static void com.spun.util.io.ZipUtils.main(java.lang.String[]) throws java.io.IOException
 public synchronized java.io.InputStream com.spun.util.velocity.ServletContextLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
 public synchronized java.io.InputStream com.spun.util.velocity.StringResourceLoader.getResourceStream(java.lang.String) throws org.apache.velocity.exception.ResourceNotFoundException
 public void com.spun.util.MockConnection.setClientInfo(java.lang.String,java.lang.String) throws java.sql.SQLClientInfoException

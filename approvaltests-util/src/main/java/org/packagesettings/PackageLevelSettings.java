@@ -18,7 +18,7 @@ public class PackageLevelSettings
   {
     return getForStackTrace(ThreadUtils.getStackTrace());
   }
-  public static Map<String, Settings> getForStackTrace(StackTraceElement[] trace) throws Error
+  public static Map<String, Settings> getForStackTrace(StackTraceElement[] trace)
   {
     Map<String, Settings> settings = new HashMap<String, Settings>();
     try
@@ -59,7 +59,7 @@ public class PackageLevelSettings
         }
       }
     }
-    catch (ClassNotFoundException | InstantiationException | IllegalAccessException e)
+    catch (Throwable e)
     {
       //Ignore
     }
@@ -84,9 +84,9 @@ public class PackageLevelSettings
     int last = className.lastIndexOf(".");
     return (last < 0) ? null : className.substring(0, last);
   }
-  public static Class<?> loadClass(String className) throws ClassNotFoundException
+  public static Class<?> loadClass(String className)
   {
-    return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
+    return ObjectUtils.throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
   }
   public static Object getValueFor(String key)
   {

@@ -20,14 +20,13 @@ public class ParserCommons
   {
     return numberUtils;
   }
-  public static Class<?> getClass(String clazz) throws ClassNotFoundException
+  public static Class<?> getClass(String clazz)
   {
-    return Class.forName(clazz);
+    return ObjectUtils.throwAsError(() -> Class.forName(clazz));
   }
   public static Object createNew(String clazz)
-      throws InstantiationException, IllegalAccessException, ClassNotFoundException
   {
-    return getClass(clazz).newInstance();
+    return ObjectUtils.throwAsError(() -> getClass(clazz).newInstance());
   }
   public static Object getNull()
   {
