@@ -15,6 +15,7 @@
   * [Examples](#examples)
   * [Approved File Artifacts](#approved-file-artifacts)
   * [More Info](#more-info)
+    * [No Checked Exceptions Philosophy](#no-checked-exceptions-philosophy)
   * [LICENSE](#license)
   * [Developer notes](#developer-notes)<!-- endToc -->
 
