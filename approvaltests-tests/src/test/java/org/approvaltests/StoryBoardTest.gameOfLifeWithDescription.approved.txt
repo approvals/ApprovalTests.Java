@@ -6,7 +6,9 @@ Initial:
 .  x  x  x  .  
 .  .  .  .  .  
 .  .  .  .  .  
-Start Game
+
+
+Start Game:
 .  .  .  .  .  
 .  .  x  .  .  
 .  .  x  .  .  
