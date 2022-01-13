@@ -38,8 +38,8 @@ public class StoryBoardTest
   }
   private static class GameOfLife
   {
-    private String deadSymbol = ".";
-    private String aliveSymbol = "x";
+    private String                               deadSymbol  = ".";
+    private String                               aliveSymbol = "x";
     private Function2<Integer, Integer, Boolean> board;
     public GameOfLife(Function2<Integer, Integer, Boolean> board)
     {
@@ -63,13 +63,13 @@ public class StoryBoardTest
     {
       return Grid.print(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
     }
-
-    public String setAliveCell(String s) {
+    public String setAliveCell(String s)
+    {
       this.aliveSymbol = s;
       return s;
     }
-
-    public String setDeadCell(String s) {
+    public String setDeadCell(String s)
+    {
       this.deadSymbol = s;
       return s;
     }
