@@ -30,11 +30,16 @@ public class StoryBoardTest
     storyboard.addDescription("Game of Life");
     storyboard.add(gameOfLife);
     storyboard.addFrame("Start Game", gameOfLife.advance());
-    storyboard.addFrames(3, gameOfLife::advance);
+    storyboard.addFrame(gameOfLife.advance());
+    storyboard.addDescriptionWithData("setting alive", gameOfLife.setAliveCell("*"));
+    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell("_"));
+    storyboard.addFrames(2, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
   private static class GameOfLife
   {
+    private String deadSymbol = ".";
+    private String aliveSymbol = "x";
     private Function2<Integer, Integer, Boolean> board;
     public GameOfLife(Function2<Integer, Integer, Boolean> board)
     {
@@ -56,7 +61,17 @@ public class StoryBoardTest
     @Override
     public String toString()
     {
-      return Grid.print(5, 5, (x, y) -> board.call(x, y) ? "x " : ". ");
+      return Grid.print(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
+    }
+
+    public String setAliveCell(String s) {
+      this.aliveSymbol = s;
+      return s;
+    }
+
+    public String setDeadCell(String s) {
+      this.deadSymbol = s;
+      return s;
     }
   }
 }
