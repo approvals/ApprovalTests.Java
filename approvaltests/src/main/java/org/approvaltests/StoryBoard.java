@@ -12,7 +12,6 @@ public class StoryBoard
   }
   public <T> StoryBoard add(T object)
   {
-
     String title = index == 0 ? "Initial:" : "\n\nFrame #" + index + ":";
     stringBuffer.append(String.format("%s\n%s", title, object));
     index++;
@@ -36,5 +35,11 @@ public class StoryBoard
     stringBuffer.append(game_of_life);
     stringBuffer.append("\n");
     stringBuffer.append("\n");
+  }
+
+  public StoryBoard addFrame(String title, Object frame) {
+    stringBuffer.append(String.format("%s\n%s", title, frame));
+    index++;
+    return this;
   }
 }

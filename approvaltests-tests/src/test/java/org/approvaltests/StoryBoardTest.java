@@ -29,6 +29,7 @@ public class StoryBoardTest
     StoryBoard storyboard = new StoryBoard();
     storyboard.addDescription("Game of Life");
     storyboard.add(gameOfLife);
+    storyboard.addFrame("Start Game", gameOfLife.advance());
     storyboard.addFrames(3, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
