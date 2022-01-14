@@ -1,5 +1,6 @@
 Game of Life
 
+
 Initial:
 .  .  .  .  .  
 .  .  .  .  .  
@@ -27,6 +28,7 @@ Frame #2:
 setting alive: *
 setting dead: _
 
+
 Frame #3:
 _  _  _  _  _  
 _  _  *  _  _  
@@ -41,3 +43,14 @@ _  _  _  _  _
 _  *  *  *  _  
 _  _  _  _  _  
 _  _  _  _  _  
+
+
+setting dead:  
+
+
+Frame #5:
+               
+      *        
+      *        
+      *        
+               

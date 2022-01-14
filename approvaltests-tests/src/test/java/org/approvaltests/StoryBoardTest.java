@@ -34,6 +34,8 @@ public class StoryBoardTest
     storyboard.addDescriptionWithData("setting alive", gameOfLife.setAliveCell("*"));
     storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell("_"));
     storyboard.addFrames(2, gameOfLife::advance);
+    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell(" "));
+    storyboard.addFrames(1, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
   private static class GameOfLife

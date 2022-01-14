@@ -4,9 +4,10 @@ import org.lambda.functions.Function0;
 
 public class StoryBoard
 {
+  enum Types  {None, Description, Frame}
   private StringBuffer stringBuffer  = new StringBuffer();
   int                  index         = 0;
-  private boolean      newLineNeeded = false;
+  private Types      last = Types.None;
   public static <T> StoryBoard createSequence(T initial, int additionalFrames, Function0<T> getNextFrame)
   {
     return new StoryBoard().add(initial).addFrames(additionalFrames, getNextFrame);
@@ -18,11 +19,29 @@ public class StoryBoard
   }
   public <T> StoryBoard addFrame(String title, T frame)
   {
-    String frameTitle = index == 0 ? title : "\n\n" + title;
+    addNewLines(Types.Frame);
+    String frameTitle =  title;
     stringBuffer.append(String.format("%s:\n%s", frameTitle, frame));
     index++;
     return this;
   }
+
+  private void addNewLines(Types type) {
+    switch (last){
+      case None:
+        break;
+      case Description:
+        if (type == Types.Frame){
+          stringBuffer.append("\n\n");
+        }
+        break;
+      case Frame:
+        stringBuffer.append("\n\n");
+        break;
+    }
+    last = type;
+  }
+
   public <T> StoryBoard addFrames(int howMany, Function0<T> getNextFrame)
   {
     for (int i = 0; i < howMany; i++)
@@ -36,11 +55,11 @@ public class StoryBoard
   {
     return stringBuffer.toString();
   }
-  public void addDescription(String game_of_life)
+  public StoryBoard addDescription(String game_of_life)
   {
-    stringBuffer.append(game_of_life);
-    stringBuffer.append("\n");
-    stringBuffer.append("\n");
+    addNewLines(Types.Description);
+    stringBuffer.append(game_of_life+"\n");
+    return this;
   }
   public <T> StoryBoard addFrame(T frame)
   {
@@ -48,16 +67,8 @@ public class StoryBoard
   }
   public <T> StoryBoard addDescriptionWithData(String description, String data)
   {
-    if (newLineNeeded)
-    {
-      stringBuffer.append("\n");
-    }
-    else
-    {
-      stringBuffer.append("\n\n");
-    }
-    newLineNeeded = true;
-    stringBuffer.append(description + ": " + data);
+    addNewLines(Types.Description);
+    stringBuffer.append(description + ": " + data + "\n");
     return this;
   }
 }
