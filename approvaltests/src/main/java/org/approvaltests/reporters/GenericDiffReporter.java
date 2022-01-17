@@ -65,7 +65,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
       preventProcessFromClosing(builder);
       Process process = builder.start();
       processOutput(received, process);
-      ThreadUtils.sleep(800); //Give program time to start}
+      ThreadUtils.sleep(800); //Give program time to start
     }
     catch (Exception e)
     {
@@ -75,7 +75,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   protected void processOutput(String received, Process process)
   {
   }
-  private void preventProcessFromClosing(ProcessBuilder builder)
+  protected void preventProcessFromClosing(ProcessBuilder builder)
   {
     if (!SystemUtils.isWindowsEnviroment())
     {

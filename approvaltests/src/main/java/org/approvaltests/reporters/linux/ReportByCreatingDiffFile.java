@@ -21,4 +21,9 @@ public class ReportByCreatingDiffFile extends GenericDiffReporter
     String diffFile = received.replace(".received" + extensionWithDot, ".diff");
     FileUtils.writeFile(new File(diffFile), process.getInputStream());
   }
+
+  @Override
+  protected void preventProcessFromClosing(ProcessBuilder builder) {
+    // prevent writing to /dev/null
+  }
 }
