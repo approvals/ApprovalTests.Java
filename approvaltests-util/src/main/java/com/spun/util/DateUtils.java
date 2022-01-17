@@ -14,7 +14,7 @@ import java.util.TimeZone;
 import com.spun.util.logger.SimpleLogger;
 
 /**
- * A static class of convence functions for database access
+ * A static class of convenience functions for database access
  **/
 public class DateUtils
 {

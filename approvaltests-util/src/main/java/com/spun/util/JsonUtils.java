@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import org.lambda.functions.Function1;
 
 public class JsonUtils
 {
@@ -29,7 +30,17 @@ public class JsonUtils
   }
   public static String asJson(Object o)
   {
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    return asJson(o, (b) -> b);
+  }
+  public static <T> String asJsonWithBuilder(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass)
+  {
+    if (!ObjectUtils.isThisInstanceOfThat(gsonBuilderClass, com.google.gson.GsonBuilder.class))
+    { throw new FormattedException("Class must be of type %s", GsonBuilder.class.getName()); }
+    return asJson(o, (Function1<GsonBuilder, GsonBuilder>) gsonBuilder);
+  }
+  public static <T> String asJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  {
+    Gson gson = gsonBuilder.call(new GsonBuilder().setPrettyPrinting()).create();
     return gson.toJson(o);
   }
 }

@@ -42,6 +42,8 @@ public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.l
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.String,java.lang.Object[],org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyAsJson(java.lang.Object)
 public static void org.approvaltests.Approvals.verifyAsJson(java.lang.Object,org.approvaltests.core.Options)
+public static void org.approvaltests.Approvals.verifyAsJson(java.lang.Object,org.lambda.functions.Function1,java.lang.Class)
+public static void org.approvaltests.Approvals.verifyAsJson(java.lang.Object,org.lambda.functions.Function1,java.lang.Class,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File,java.io.FileFilter)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File,java.io.FileFilter,org.approvaltests.core.Options)

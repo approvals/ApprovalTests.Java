@@ -332,6 +332,22 @@ public class Approvals
   {
     verifyAsJson(o, new Options());
   }
+  /**
+   * @param gsonBuilderClass this MUST BE `com.google.gson.GsonBuilder.class`. It is here for compiler reasons.
+   */
+  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass)
+  {
+    verifyAsJson(o, gsonBuilder, gsonBuilderClass, new Options());
+  }
+  /**
+   * {@link #verifyAsJson(Object, Function1, Class)} Why GsonBuilder.class}
+   */
+  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass,
+      Options options)
+  {
+    verify(JsonUtils.asJsonWithBuilder(o, gsonBuilder, gsonBuilderClass),
+        options.forFile().withExtension(".json"));
+  }
   public static void verifyAsJson(Object o, Options options)
   {
     verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));

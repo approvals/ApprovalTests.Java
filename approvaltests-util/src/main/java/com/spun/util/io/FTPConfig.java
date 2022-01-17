@@ -1,7 +1,7 @@
 package com.spun.util.io;
 
 /**
-  * A static class of convence functions for Files
+  * A static class of convenience functions for Files
   **/
 public class FTPConfig
 {

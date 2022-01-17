@@ -12,7 +12,7 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 /**
- * A static class of convence functions for Files
+ * A static class of convenience functions for Files
  **/
 public class ZipUtils
 {
