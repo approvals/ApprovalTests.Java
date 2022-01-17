@@ -22,8 +22,10 @@ public class JsonFormattingTest {
 
   @Test
   void demonstrateNullIssueInVerifyJson() {
+    // begin-snippet: CustomGsonBuilderShowingNull
     Person person = new Person("Max", null, 1);
     Approvals.verifyAsJson(person, GsonBuilder::serializeNulls, GsonBuilder.class);
+    // end-snippet
   }
 
   static class Person {
