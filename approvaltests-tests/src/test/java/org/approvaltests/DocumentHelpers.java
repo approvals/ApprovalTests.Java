@@ -57,9 +57,13 @@ public class DocumentHelpers
     {
       modifier = 12;
     }
+    else if (simpleName.equals("JsonApprovals"))
+    {
+      modifier = 2;
+    }
     else
     {
-      throw new FormattedException("Unknown modifier for class %s", simpleName);
+      throw new FormattedException("Unknown modifier (%s) for class %s", modifier, simpleName);
     }
     return m.getMethodInfo().getLineNumber(0) + modifier;
   }

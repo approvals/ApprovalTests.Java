@@ -300,13 +300,21 @@ public class Approvals
   {
     return Query.select(mismatched, a -> a.getName()).toString();
   }
+  /**
+   * @deprecated Use JsonApprovals
+   */
+  @Deprecated
   public static void verifyJson(String json)
   {
-    verifyJson(json, new Options());
+    JsonApprovals.verifyJson(json);
   }
+  /**
+   * @deprecated Use JsonApprovals
+   */
+  @Deprecated
   public static void verifyJson(String json, Options options)
   {
-    verify(JsonUtils.prettyPrint(json), options.forFile().withExtension(".json"));
+    JsonApprovals.verifyJson(json, options);
   }
   /**
    * @deprecated View method source for example.
@@ -328,29 +336,39 @@ public class Approvals
   {
     return ReporterFactory.get();
   }
+  /**
+   * @deprecated Use JsonApprovals
+   */
+  @Deprecated
   public static void verifyAsJson(Object o)
   {
-    verifyAsJson(o, new Options());
+    JsonApprovals.verifyAsJson(o);
   }
   /**
-   * @param gsonBuilderClass this MUST BE `com.google.gson.GsonBuilder.class`. It is here for compiler reasons.
+   * @deprecated Use JsonApprovals
    */
+  @Deprecated
   public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass)
   {
     verifyAsJson(o, gsonBuilder, gsonBuilderClass, new Options());
   }
   /**
-   * {@link #verifyAsJson(Object, Function1, Class)} Why GsonBuilder.class}
+   * @deprecated Use JsonApprovals
    */
+  @Deprecated
   public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass,
       Options options)
   {
     verify(JsonUtils.asJsonWithBuilder(o, gsonBuilder, gsonBuilderClass),
         options.forFile().withExtension(".json"));
   }
+  /**
+   * @deprecated Use JsonApprovals
+   */
+  @Deprecated
   public static void verifyAsJson(Object o, Options options)
   {
-    verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
+    JsonApprovals.verifyAsJson(o, options);
   }
   public static void verifyException(Action0 runnableBlock)
   {
