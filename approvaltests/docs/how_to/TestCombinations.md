@@ -83,8 +83,10 @@ The format is carefully chosen to show both inputs and outputs, to make the test
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.testCombinationsOfTwo.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationTest.testCombinationsOfTwo.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
 For 
 advice on effective formatting, see [Tips for Designing Strings](https://github.com/approvals/ApprovalTests.cpp/blob/master/doc/explanations/TipsForDesigningStrings.md#top). As you write out larger volumes of data in your approval files, experience has shown that the choice of layout of text in approval files can make a big difference to maintainability of tests, when failures occur.
+
 ---
 
 [Back to User Guide](/doc/README.md#top)
