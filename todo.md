@@ -1,6 +1,4 @@
 # Code
-* Continue to evolve StoryBoard
-
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
 * better default FrontloadedReporter to handle CI
 * NamedEnvironment with execute around pattern?
@@ -10,7 +8,6 @@
 ** update mrunit and fix tests
 ** VelocityApprovals doesn't know about Options yet
 
-* remove all checked exceptions
 * Think about removing MethodExcecutionPath
 * remove all warnings
 * handle manual install of intellij
