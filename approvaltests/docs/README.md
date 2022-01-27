@@ -24,6 +24,7 @@
 * have [Consistent Time Zones](how_to/ConsistentTimeZones.md#top) in your tests 
 * separate and test [Data Access and Rendering](how_to/PatternsForTestingDataAccessAndRendering.md#top)
 * show [nulls in verifyAsJson](how_to/ShowNullsInJson.md#top)
+* [test a variety of values](reference/CombinationApprovals.md)
 
 ## Configuration
 

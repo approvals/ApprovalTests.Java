@@ -7,9 +7,7 @@
 
   * [When to use Combinations](#when-to-use-combinations)
   * [Steps](#steps)
-  * [The Basics](#the-basics)
-    * [Passing in a Reporter](#passing-in-a-reporter)
-  * [C++ Language Versions](#c-language-versions)<!-- endToc -->
+  * [The Basics](#the-basics)<!-- endToc -->
 
 ## When to use Combinations
 
