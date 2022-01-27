@@ -12,7 +12,7 @@
 
 When you want to test a lot of variations for a single input value.
 
-If you have more than one parameter that you want to vary, check out [Testing Combinations](TestingCombinations.md#top).
+If you have more than one parameter that you want to vary, check out [Testing Combinations](TestCombinations.md#top).
 
 ## Steps
 

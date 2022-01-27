@@ -13,7 +13,7 @@
 
 You have a function that takes, for example, 3 parameters, and you want to test its behaviour with a bunch of different values for each of those parameters.
 
-If you have only one parameter that you want to vary, check out [How to Test a Variety of Values for One Input](/doc/how_tos/TestAVarietyOfValues.md#top).
+If you have only one parameter that you want to vary, check out [How to Test a Variety of Values for One Input](TestAVarietyOfValues.md#top).
 
 ## Steps
 
