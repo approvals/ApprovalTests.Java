@@ -49,8 +49,7 @@ public class JsonApprovals
   }
   public static void verifyAsJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder, Options options)
   {
-    Approvals.verify(JsonUtils.asJson(o, gsonBuilder),
-        options.forFile().withExtension(".json"));
+    Approvals.verify(JsonUtils.asJson(o, gsonBuilder), options.forFile().withExtension(".json"));
   }
   public static void verifyAsJson(Object o, Options options)
   {

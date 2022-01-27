@@ -36,18 +36,18 @@ public class CombinationTest
     { throw new SkipCombination(); }
     return String.format("[%s, %s]", i, s);
   }
-
   @Test
-  void templateCode() {
+  void templateCode()
+  {
     // begin-snippet: CombinationsStartingPoint
     String[] inputs1 = {"input1.value1", "input1.value2"};
     String[] inputs2 = {"input2.value1", "input2.value2", "input2.value3"};
-    CombinationApprovals.verifyAllCombinations((a,b) -> "placeholder", inputs1, inputs2);
+    CombinationApprovals.verifyAllCombinations((a, b) -> "placeholder", inputs1, inputs2);
     // end-snippet
   }
-
   @Test
-  void testCombinationsOfTwo() {
+  void testCombinationsOfTwo()
+  {
     // begin-snippet: YouCanVerifyCombinationsOf2
     String[] strings = {"hello", "world"};
     Integer[] numbers = {1, 2, 3};

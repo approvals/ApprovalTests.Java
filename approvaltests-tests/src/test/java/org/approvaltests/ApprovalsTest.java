@@ -34,12 +34,12 @@ public class ApprovalsTest
       Approvals.verify(b, new Options(new QuietReporter()));
     });
   }
-
   @Test
-  void verifyAllTemplate() {
+  void verifyAllTemplate()
+  {
     // begin-snippet: VerifyAllStartingPoint
     String[] inputs = {"input.value1", "input.value2"};
-    Approvals.verifyAll("TITLE", inputs,s -> "placeholder " + s);
+    Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
     // end-snippet
   }
 }
