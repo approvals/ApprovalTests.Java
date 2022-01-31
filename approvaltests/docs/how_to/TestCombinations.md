@@ -38,11 +38,11 @@ matters at this point: all combinations of your own input values should be liste
 <!-- snippet: CombinationTest.templateCode.approved.txt -->
 <a id='snippet-CombinationTest.templateCode.approved.txt'></a>
 ```txt
-[input1.value1, input2.value1] => placeholder
-[input1.value1, input2.value2] => placeholder
-[input1.value1, input2.value3] => placeholder
-[input1.value2, input2.value1] => placeholder
-[input1.value2, input2.value2] => placeholder
+[input1.value1, input2.value1] => placeholder 
+[input1.value1, input2.value2] => placeholder 
+[input1.value1, input2.value3] => placeholder 
+[input1.value2, input2.value1] => placeholder 
+[input1.value2, input2.value2] => placeholder 
 [input1.value2, input2.value3] => placeholder
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.templateCode.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationTest.templateCode.approved.txt' title='Start of snippet'>anchor</a></sup>
@@ -74,11 +74,11 @@ The format is carefully chosen to show both inputs and outputs, to make the test
 <!-- snippet: CombinationTest.testCombinationsOfTwo.approved.txt -->
 <a id='snippet-CombinationTest.testCombinationsOfTwo.approved.txt'></a>
 ```txt
-[hello, 1] => (hello,1)
-[hello, 2] => (hello,2)
-[hello, 3] => (hello,3)
-[world, 1] => (world,1)
-[world, 2] => (world,2)
+[hello, 1] => (hello,1) 
+[hello, 2] => (hello,2) 
+[hello, 3] => (hello,3) 
+[world, 1] => (world,1) 
+[world, 2] => (world,2) 
 [world, 3] => (world,3)
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.testCombinationsOfTwo.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationTest.testCombinationsOfTwo.approved.txt' title='Start of snippet'>anchor</a></sup>
