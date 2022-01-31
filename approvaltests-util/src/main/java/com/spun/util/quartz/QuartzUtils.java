@@ -1,7 +1,8 @@
 package com.spun.util.quartz;
 
-import java.util.Date;
 import org.quartz.Trigger;
+
+import java.util.Date;
 
 public class QuartzUtils
 {

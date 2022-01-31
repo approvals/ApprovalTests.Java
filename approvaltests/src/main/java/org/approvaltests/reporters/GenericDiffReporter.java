@@ -1,16 +1,16 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.SystemUtils;
+import com.spun.util.ThreadUtils;
+import com.spun.util.io.FileUtils;
+
 import java.io.File;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import com.spun.util.ObjectUtils;
-import com.spun.util.SystemUtils;
-import com.spun.util.ThreadUtils;
-import com.spun.util.io.FileUtils;
 
 public class GenericDiffReporter implements EnvironmentAwareReporter
 {

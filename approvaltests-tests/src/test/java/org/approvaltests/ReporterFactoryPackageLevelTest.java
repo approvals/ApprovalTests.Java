@@ -1,9 +1,9 @@
 package org.approvaltests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.approvaltests.PackageSettings.ApprovalTestsPackageLevelReporter;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReporterFactoryPackageLevelTest
 {

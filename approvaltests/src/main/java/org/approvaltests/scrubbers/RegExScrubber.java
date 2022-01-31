@@ -1,13 +1,12 @@
 package org.approvaltests.scrubbers;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-
+import com.spun.util.StringUtils;
 import org.approvaltests.core.Scrubber;
 import org.lambda.functions.Function1;
 
-import com.spun.util.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class RegExScrubber implements Scrubber
 {

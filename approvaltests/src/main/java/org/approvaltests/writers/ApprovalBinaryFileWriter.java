@@ -1,16 +1,12 @@
 package org.approvaltests.writers;
 
+import com.spun.util.io.FileUtils;
+import org.approvaltests.core.ApprovalWriter;
+
 import java.io.File;
 import java.io.InputStream;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import org.approvaltests.core.ApprovalWriter;
-
-import com.spun.util.io.FileUtils;
 
 public class ApprovalBinaryFileWriter implements ApprovalWriter
 {

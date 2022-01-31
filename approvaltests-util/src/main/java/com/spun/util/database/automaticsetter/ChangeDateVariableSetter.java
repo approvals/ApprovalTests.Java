@@ -1,11 +1,10 @@
 package com.spun.util.database.automaticsetter;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-
 import com.spun.util.database.AutomaticVariableSetter;
 import com.spun.util.database.DatabaseObject;
+
+import java.sql.Statement;
+import java.sql.Timestamp;
 
 public class ChangeDateVariableSetter implements AutomaticVariableSetter
 {

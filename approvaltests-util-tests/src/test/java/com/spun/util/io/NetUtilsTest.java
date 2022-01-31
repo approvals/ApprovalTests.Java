@@ -1,13 +1,14 @@
 package com.spun.util.io;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.spun.util.NumberUtils;
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NetUtilsTest
 {

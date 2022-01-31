@@ -1,10 +1,10 @@
 package org.lambda.query;
 
+import org.lambda.functions.Function1;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.lambda.functions.Function1;
 
 public class Counter<T>
 {

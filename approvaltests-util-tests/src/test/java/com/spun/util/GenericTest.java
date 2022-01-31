@@ -1,7 +1,8 @@
 package com.spun.util;
 
-import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 public class GenericTest
 {

@@ -1,5 +1,9 @@
 package com.spun.util;
 
+import org.lambda.functions.Function0;
+import org.lambda.functions.Function1;
+import org.lambda.query.Queryable;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,10 +16,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
-
-import org.lambda.functions.Function0;
-import org.lambda.functions.Function1;
-import org.lambda.query.Queryable;
 
 /**
  * A static class of convenience methods for arrays and collections.

@@ -1,8 +1,8 @@
 package com.spun.util.logger;
 
-import java.io.IOException;
-
 import com.spun.util.ObjectUtils;
+
+import java.io.IOException;
 
 public class Outputable implements Output
 {

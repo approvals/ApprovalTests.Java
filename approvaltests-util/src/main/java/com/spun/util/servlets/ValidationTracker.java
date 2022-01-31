@@ -1,10 +1,10 @@
 package com.spun.util.servlets;
 
+import com.spun.util.StringUtils;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.spun.util.StringUtils;
 
 public class ValidationTracker implements Serializable
 {

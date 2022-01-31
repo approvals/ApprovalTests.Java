@@ -1,11 +1,11 @@
 package com.spun.util.timers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import com.spun.util.logger.SimpleLogger;
 import com.spun.util.timers.test.MockClock;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class LapTimerTest
 {

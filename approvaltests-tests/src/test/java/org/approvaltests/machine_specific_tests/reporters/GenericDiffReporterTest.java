@@ -1,7 +1,6 @@
 package org.approvaltests.machine_specific_tests.reporters;
 
-import java.io.File;
-
+import com.spun.util.ClassUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.machine_specific_tests.MachineSpecificTest;
 import org.approvaltests.namer.NamedEnvironment;
@@ -14,7 +13,7 @@ import org.approvaltests.reporters.windows.WinMergeReporter;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.ClassUtils;
+import java.io.File;
 
 public class GenericDiffReporterTest extends MachineSpecificTest
 {

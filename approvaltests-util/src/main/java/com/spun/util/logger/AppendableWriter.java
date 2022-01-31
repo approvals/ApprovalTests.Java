@@ -2,7 +2,6 @@ package com.spun.util.logger;
 
 import com.spun.util.ObjectUtils;
 
-import java.io.IOException;
 import java.io.Writer;
 
 public class AppendableWriter extends Writer

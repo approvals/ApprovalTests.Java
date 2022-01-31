@@ -1,11 +1,10 @@
 package com.spun.util.filters;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import com.spun.util.ObjectUtils;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 
-import com.spun.util.ObjectUtils;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FilterTest
 {

@@ -1,9 +1,9 @@
 package com.spun.util.date;
 
+import com.spun.util.DateUtils;
+
 import java.sql.Timestamp;
 import java.util.Date;
-
-import com.spun.util.DateUtils;
 
 public class DateRangeUtils
 {

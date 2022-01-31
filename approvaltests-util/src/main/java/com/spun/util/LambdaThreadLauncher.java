@@ -1,8 +1,7 @@
 package com.spun.util;
 
-import org.lambda.actions.Action0;
-
 import com.spun.util.logger.SimpleLogger;
+import org.lambda.actions.Action0;
 
 public class LambdaThreadLauncher implements Runnable
 {

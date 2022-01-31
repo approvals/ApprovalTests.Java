@@ -1,8 +1,6 @@
 package org.approvaltests.namer;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.namer.MultipleFilesLabeller;
-import org.approvaltests.namer.NamerFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

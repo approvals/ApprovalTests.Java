@@ -3,12 +3,10 @@ package org.approvaltests.writers;
 import com.spun.swing.Paintable;
 import org.approvaltests.core.ApprovalWriter;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import javax.swing.JFrame;
 
 public class PaintableApprovalWriter implements ApprovalWriter
 {

@@ -1,12 +1,11 @@
 package org.approvaltests.reporters;
 
-import java.io.File;
-
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.VerifyResult;
 
-import com.spun.util.io.FileUtils;
+import java.io.File;
 
 public class AutoApproveWhenEmptyReporter implements ReporterWithApprovalPower
 {

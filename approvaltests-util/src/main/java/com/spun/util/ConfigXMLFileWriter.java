@@ -1,10 +1,9 @@
 package com.spun.util;
 
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
+import org.lambda.functions.Function1;
+import org.lambda.query.Query;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,11 +12,11 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-
-import org.lambda.functions.Function1;
-import org.lambda.query.Query;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * A static class of convenience functions for database access

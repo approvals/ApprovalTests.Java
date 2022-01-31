@@ -1,9 +1,9 @@
 package com.spun.util.timers;
 
-import java.util.ArrayList;
-
 import com.spun.util.DateDifference;
 import com.spun.util.logger.SimpleLogger;
+
+import java.util.ArrayList;
 
 /**
  * A Utility for timing things. this is NOT multi-thread safe.

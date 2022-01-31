@@ -1,9 +1,9 @@
 package org.approvaltests.reporters;
 
-import java.awt.GraphicsEnvironment;
-
 import com.spun.util.StringUtils;
 import com.spun.util.WindowUtils;
+
+import java.awt.GraphicsEnvironment;
 
 /**
  * A getReporter which creates the command to accept the received

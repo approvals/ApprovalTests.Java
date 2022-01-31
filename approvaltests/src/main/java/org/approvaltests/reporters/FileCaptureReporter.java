@@ -1,16 +1,14 @@
 package org.approvaltests.reporters;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.concurrent.Callable;
-
-import org.apache.commons.lang.StringUtils;
-import org.approvaltests.core.ApprovalFailureReporter;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
+import org.apache.commons.lang.StringUtils;
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.lambda.functions.Function0;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 public class FileCaptureReporter implements ApprovalFailureReporter
 {

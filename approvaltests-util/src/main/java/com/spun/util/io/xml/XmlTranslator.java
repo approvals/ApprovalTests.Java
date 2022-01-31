@@ -1,12 +1,11 @@
 package com.spun.util.io.xml;
 
-import java.lang.reflect.InvocationTargetException;
+import com.spun.util.ObjectUtils;
+import org.w3c.dom.Node;
+
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import com.spun.util.ObjectUtils;
-import org.w3c.dom.Node;
 
 public class XmlTranslator
 {

@@ -1,11 +1,10 @@
 package org.approvaltests.reporters;
 
-import java.io.File;
-
-import org.testng.Assert;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+import org.testng.Assert;
+
+import java.io.File;
 
 public class TestNgReporter implements EnvironmentAwareReporter
 {

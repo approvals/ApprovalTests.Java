@@ -1,13 +1,5 @@
 package com.spun.util.io.xml;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
-import org.lambda.query.Query;
-import org.w3c.dom.Node;
-
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.database.DatabaseObject;
@@ -15,6 +7,13 @@ import com.spun.util.database.Syncable;
 import com.spun.util.database.TemporaryCache;
 import com.spun.util.database.XmlDatabaseMapExtractor;
 import com.spun.util.io.XMLUtils;
+import org.lambda.query.Query;
+import org.w3c.dom.Node;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class DatabaseObjectXMLUtils
 {

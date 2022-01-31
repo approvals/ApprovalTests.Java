@@ -1,11 +1,10 @@
 package org.approvaltests.namer;
 
+import com.spun.util.StringUtils;
+import com.spun.util.SystemUtils;
 import org.approvaltests.core.ApprovalTestPackageSettings;
 import org.lambda.functions.Function0;
 import org.packagesettings.PackageLevelSettings;
-
-import com.spun.util.StringUtils;
-import com.spun.util.SystemUtils;
 
 public class NamerFactory
 {

@@ -1,9 +1,9 @@
 package com.spun.util.parser;
 
+import com.spun.util.NumberUtils;
+
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import com.spun.util.NumberUtils;
 
 public class TemplateDouble
 {

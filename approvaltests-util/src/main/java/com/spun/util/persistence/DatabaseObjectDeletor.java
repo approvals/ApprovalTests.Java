@@ -1,9 +1,8 @@
 package com.spun.util.persistence;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.spun.util.database.DatabaseObject;
+
+import java.sql.Statement;
 
 public class DatabaseObjectDeletor<T extends DatabaseObject> implements Deletor<T>
 {

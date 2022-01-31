@@ -1,8 +1,9 @@
 package org.approvaltests.awt;
 
-import java.util.Arrays;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 class GifSequenceWriterTest
 {

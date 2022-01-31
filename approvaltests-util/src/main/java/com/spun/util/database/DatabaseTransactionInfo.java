@@ -1,11 +1,10 @@
 package com.spun.util.database;
 
-import java.lang.ref.WeakReference;
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
+
+import java.lang.ref.WeakReference;
+import java.sql.Connection;
 
 public class DatabaseTransactionInfo
 {

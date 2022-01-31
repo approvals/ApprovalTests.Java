@@ -1,12 +1,13 @@
 package com.spun.util.io;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.File;
 import com.spun.util.io.FileMonitor.FileListener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileMonitorTest
 {

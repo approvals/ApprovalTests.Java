@@ -1,12 +1,11 @@
 package com.spun.util.sql;
 
+import com.spun.util.DatabaseUtils;
+
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.RowIdLifetime;
-import java.sql.SQLException;
-
-import com.spun.util.DatabaseUtils;
 
 public class MockDatabaseMetaData implements DatabaseMetaData
 {

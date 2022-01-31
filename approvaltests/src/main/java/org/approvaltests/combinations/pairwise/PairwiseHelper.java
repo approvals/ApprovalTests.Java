@@ -1,12 +1,12 @@
 package org.approvaltests.combinations.pairwise;
 
-import java.util.List;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationsHelper;
 import org.approvaltests.combinations.SkipCombination;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function9;
+
+import java.util.List;
 
 public class PairwiseHelper
 {

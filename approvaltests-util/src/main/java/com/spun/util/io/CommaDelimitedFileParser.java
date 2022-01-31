@@ -1,5 +1,7 @@
 package com.spun.util.io;
 
+import com.spun.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.spun.util.StringUtils;
 
 public class CommaDelimitedFileParser
 {

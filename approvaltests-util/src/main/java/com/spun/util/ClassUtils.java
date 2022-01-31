@@ -1,5 +1,11 @@
 package com.spun.util;
 
+import com.spun.util.io.FileUtils;
+import org.lambda.functions.Function1;
+import org.lambda.query.OrderBy.Order;
+import org.lambda.query.Query;
+import org.lambda.query.Queryable;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,13 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import org.lambda.functions.Function1;
-import org.lambda.query.OrderBy.Order;
-import org.lambda.query.Query;
-import org.lambda.query.Queryable;
-
-import com.spun.util.io.FileUtils;
 
 public class ClassUtils
 {

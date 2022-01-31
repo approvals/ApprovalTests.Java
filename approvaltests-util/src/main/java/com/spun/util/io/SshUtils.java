@@ -13,7 +13,6 @@ import org.apache.commons.net.ftp.FTPReply;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class SshUtils
 {

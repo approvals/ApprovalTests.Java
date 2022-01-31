@@ -1,6 +1,11 @@
 package com.spun.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.spun.util.parser.TemplateDate;
+import com.spun.util.parser.TemplateStringUtils;
+import org.approvaltests.Approvals;
+import org.approvaltests.utils.WithTimeZone;
+import org.junit.jupiter.api.Test;
+import org.lambda.functions.Function1;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -8,13 +13,7 @@ import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.approvaltests.Approvals;
-import org.approvaltests.utils.WithTimeZone;
-import org.junit.jupiter.api.Test;
-import org.lambda.functions.Function1;
-
-import com.spun.util.parser.TemplateDate;
-import com.spun.util.parser.TemplateStringUtils;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DateDifferenceTest
 {

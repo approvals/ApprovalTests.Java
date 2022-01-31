@@ -4,7 +4,9 @@ import com.spun.swing.Paintable;
 import com.spun.util.Colors;
 import org.lambda.actions.Action0;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 
 public class SquareDrawer implements Paintable
 {

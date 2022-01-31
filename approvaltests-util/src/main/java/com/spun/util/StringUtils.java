@@ -1,5 +1,8 @@
 package com.spun.util;
 
+import org.lambda.functions.Function1;
+import org.lambda.query.Query;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -13,10 +16,6 @@ import java.util.Properties;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
-import org.lambda.functions.Function1;
-import org.lambda.query.Query;
 
 /**
  * A static class of convenience functions for database access

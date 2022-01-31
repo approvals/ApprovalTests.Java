@@ -1,12 +1,12 @@
 package com.spun.util.persistence;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.database.ResultSetWriter;
 import com.spun.util.database.SQLQuery;
 import com.spun.util.database.SQLStatementUtils;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public interface SqlLoader<T> extends Loader<T>
 {

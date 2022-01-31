@@ -1,13 +1,12 @@
 package com.spun.util;
 
+import com.spun.util.filters.Filter;
+import org.lambda.query.Query;
+
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
-
-import org.lambda.query.Query;
-
-import com.spun.util.filters.Filter;
 
 public class MethodExecutionPath implements Serializable
 {

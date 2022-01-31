@@ -1,13 +1,12 @@
 package org.approvaltests.namer;
 
-import java.io.File;
-
+import com.spun.util.tests.TestUtils;
+import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function2;
 
-import com.spun.util.tests.TestUtils;
-import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
+import java.io.File;
 
 public class NamerSamples
 {

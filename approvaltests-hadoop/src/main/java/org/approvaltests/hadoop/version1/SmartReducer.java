@@ -5,6 +5,8 @@ import org.approvaltests.hadoop.Transform;
 
 public abstract class SmartReducer<KeyIn, ValueIn, KeyOut, ValueOut>
     extends
-      Reducer<KeyIn, ValueIn, KeyOut, ValueOut> implements Transform<KeyIn, ValueIn, KeyOut, ValueOut>
+      Reducer<KeyIn, ValueIn, KeyOut, ValueOut>
+    implements
+      Transform<KeyIn, ValueIn, KeyOut, ValueOut>
 {
 }

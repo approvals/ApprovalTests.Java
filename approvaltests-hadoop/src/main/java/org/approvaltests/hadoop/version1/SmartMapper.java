@@ -5,6 +5,8 @@ import org.approvaltests.hadoop.Transform;
 
 public abstract class SmartMapper<KeyIn, ValueIn, KeyOut, ValueOut>
     extends
-      Mapper<KeyIn, ValueIn, KeyOut, ValueOut> implements Transform<KeyIn, ValueIn, KeyOut, ValueOut>
+      Mapper<KeyIn, ValueIn, KeyOut, ValueOut>
+    implements
+      Transform<KeyIn, ValueIn, KeyOut, ValueOut>
 {
 }

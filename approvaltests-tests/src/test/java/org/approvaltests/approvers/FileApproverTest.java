@@ -1,12 +1,9 @@
 package org.approvaltests.approvers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.File;
-import java.io.IOException;
-
+import com.spun.util.ObjectUtils;
+import com.spun.util.io.FileUtils;
+import com.spun.util.tests.StackTraceReflectionResult;
+import com.spun.util.tests.TestUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.VerifyResult;
@@ -15,10 +12,12 @@ import org.approvaltests.writers.ApprovalTextWriter;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function2;
 
-import com.spun.util.ObjectUtils;
-import com.spun.util.io.FileUtils;
-import com.spun.util.tests.StackTraceReflectionResult;
-import com.spun.util.tests.TestUtils;
+import java.io.File;
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileApproverTest
 {

@@ -1,5 +1,9 @@
 package org.lambda.query;
 
+import com.spun.util.ArrayUtils;
+import org.lambda.functions.Function1;
+import org.lambda.query.OrderBy.Order;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,11 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.lambda.functions.Function1;
-import org.lambda.query.OrderBy.Order;
-
-import com.spun.util.ArrayUtils;
 
 public class Query<In>
 {

@@ -1,12 +1,11 @@
 package org.approvaltests.webpages;
 
-import java.io.File;
-import java.net.URI;
-
-import org.approvaltests.Approvals;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+import org.approvaltests.Approvals;
+
+import java.io.File;
+import java.net.URI;
 
 public class WebPageApproval
 {

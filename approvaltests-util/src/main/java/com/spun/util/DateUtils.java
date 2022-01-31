@@ -1,5 +1,7 @@
 package com.spun.util;
 
+import com.spun.util.logger.SimpleLogger;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,8 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
-
-import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convenience functions for database access

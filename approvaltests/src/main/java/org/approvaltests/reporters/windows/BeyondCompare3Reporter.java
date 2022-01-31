@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.windows;
 
-import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.DiffPrograms.Windows;
+import org.approvaltests.reporters.GenericDiffReporter;
 
 public class BeyondCompare3Reporter extends GenericDiffReporter
 {

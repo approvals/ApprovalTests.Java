@@ -1,10 +1,9 @@
 package org.lambda.query;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
+import com.spun.util.LambdaThreadLauncher;
 import org.lambda.actions.Action1;
 
-import com.spun.util.LambdaThreadLauncher;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParallelLoops
 {

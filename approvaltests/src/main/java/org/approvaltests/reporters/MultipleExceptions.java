@@ -1,8 +1,8 @@
 package org.approvaltests.reporters;
 
-import java.util.ArrayList;
-
 import com.spun.util.ObjectUtils;
+
+import java.util.ArrayList;
 
 public class MultipleExceptions extends RuntimeException
 {

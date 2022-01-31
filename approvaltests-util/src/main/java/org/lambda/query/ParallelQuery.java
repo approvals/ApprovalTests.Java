@@ -1,12 +1,11 @@
 package org.lambda.query;
 
+import com.spun.util.LambdaThreadLauncher;
+import org.lambda.functions.Function1;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import org.lambda.functions.Function1;
-
-import com.spun.util.LambdaThreadLauncher;
 
 public class ParallelQuery
 {

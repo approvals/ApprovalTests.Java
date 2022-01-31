@@ -1,7 +1,7 @@
 package org.approvaltests.approvers;
 
-import java.io.File;
-
+import com.spun.util.ObjectUtils;
+import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
@@ -10,8 +10,7 @@ import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.reporters.ReporterWithApprovalPower;
 import org.lambda.functions.Function2;
 
-import com.spun.util.ObjectUtils;
-import com.spun.util.io.FileUtils;
+import java.io.File;
 
 public class FileApprover implements ApprovalApprover
 {

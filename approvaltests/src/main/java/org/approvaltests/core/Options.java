@@ -1,17 +1,16 @@
 package org.approvaltests.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.spun.util.ArrayUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalWriterFactory;
-
-import com.spun.util.ArrayUtils;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Options
 {

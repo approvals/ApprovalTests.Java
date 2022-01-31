@@ -1,11 +1,11 @@
 package com.spun.util.io;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.spun.util.io.xml.XmlExtractorUtil;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class XMLUtilsTest
 {

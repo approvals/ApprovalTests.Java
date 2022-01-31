@@ -1,11 +1,11 @@
 package com.spun.util.velocity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.apache.velocity.context.Context;
 import org.apache.velocity.util.introspection.Info;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VelocityInfoTest implements ContextAware
 {

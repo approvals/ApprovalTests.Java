@@ -1,10 +1,9 @@
 package org.approvaltests.scrubbers;
 
-import org.lambda.functions.Function1;
-import org.lambda.query.Query;
-
 import com.spun.util.ArrayUtils;
 import com.spun.util.FormattedException;
+import org.lambda.functions.Function1;
+import org.lambda.query.Query;
 
 public class DateScrubber extends RegExScrubber
 {

@@ -1,15 +1,14 @@
 package org.approvaltests.reporters;
 
-import static org.approvaltests.reporters.intellij.Edition.Community;
-import static org.approvaltests.reporters.intellij.Edition.Silicon;
-import static org.approvaltests.reporters.intellij.Edition.Ultimate;
-
-import java.util.List;
-
+import com.spun.util.ArrayUtils;
 import org.approvaltests.reporters.DiffInfo.One;
 import org.approvaltests.reporters.intellij.IntelliJPathResolver;
 
-import com.spun.util.ArrayUtils;
+import java.util.List;
+
+import static org.approvaltests.reporters.intellij.Edition.Community;
+import static org.approvaltests.reporters.intellij.Edition.Silicon;
+import static org.approvaltests.reporters.intellij.Edition.Ultimate;
 
 public class DiffPrograms
 {

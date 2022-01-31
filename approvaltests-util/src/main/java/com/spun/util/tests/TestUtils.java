@@ -1,20 +1,5 @@
 package com.spun.util.tests;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.mail.Message;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-
-import org.lambda.functions.Function2;
-
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
@@ -23,6 +8,17 @@ import com.spun.util.images.ImageWriter;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.StackElementLevelSelector;
 import com.spun.util.io.StackElementSelector;
+import org.lambda.functions.Function2;
+
+import javax.mail.Message;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestUtils
 {

@@ -1,10 +1,8 @@
 package org.approvaltests.awt;
 
-import java.awt.Component;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.time.Duration;
-
+import com.spun.swing.Paintable;
+import com.spun.util.Tuple;
+import com.spun.util.images.ImageWriter;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.NamedEnvironment;
@@ -15,9 +13,10 @@ import org.approvaltests.writers.ImageApprovalWriter;
 import org.approvaltests.writers.PaintableApprovalWriter;
 import org.lambda.functions.Function1;
 
-import com.spun.swing.Paintable;
-import com.spun.util.Tuple;
-import com.spun.util.images.ImageWriter;
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.time.Duration;
 
 public class AwtApprovals
 {

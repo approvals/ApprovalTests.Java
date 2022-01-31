@@ -1,23 +1,21 @@
 package com.spun.util.io;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
+import com.spun.util.logger.SimpleLogger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import com.spun.util.ObjectUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
-import com.spun.util.StringUtils;
-import com.spun.util.logger.SimpleLogger;
 
 public class XMLUtils
 {

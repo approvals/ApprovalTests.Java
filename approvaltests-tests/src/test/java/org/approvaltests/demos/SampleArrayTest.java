@@ -1,9 +1,9 @@
 package org.approvaltests.demos;
 
-import java.util.Arrays;
-
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 // begin-snippet: demo
 public class SampleArrayTest

@@ -1,8 +1,8 @@
 package org.approvaltests.namer;
 
-import java.io.File;
-
 import org.approvaltests.writers.Writer;
+
+import java.io.File;
 
 public class NamerWrapper implements ApprovalNamer
 {

@@ -1,13 +1,9 @@
 package org.approvaltests.namer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
+import com.spun.util.LambdaThreadLauncher;
+import com.spun.util.ObjectUtils;
+import com.spun.util.tests.TestUtils;
+import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 import org.approvaltests.Approvals;
 import org.approvaltests.integrations.junit5.JUnit5Approvals;
 import org.junit.jupiter.api.Assertions;
@@ -21,10 +17,13 @@ import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.spun.util.LambdaThreadLauncher;
-import com.spun.util.ObjectUtils;
-import com.spun.util.tests.TestUtils;
-import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 public class JUnit5StackTraceNamerTest
 {

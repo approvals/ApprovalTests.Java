@@ -1,12 +1,8 @@
 package org.approvaltests.combinations;
 
-import com.spun.util.MapBuilder;
 import org.approvaltests.Approvals;
 import org.approvaltests.strings.Printable;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

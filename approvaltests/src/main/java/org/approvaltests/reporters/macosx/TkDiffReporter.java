@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.macosx;
 
-import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.DiffPrograms.Mac;
+import org.approvaltests.reporters.GenericDiffReporter;
 
 public class TkDiffReporter extends GenericDiffReporter
 {

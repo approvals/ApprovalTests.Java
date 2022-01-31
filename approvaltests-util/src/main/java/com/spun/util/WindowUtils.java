@@ -1,15 +1,14 @@
 package com.spun.util;
 
-import java.awt.Dimension;
-import java.awt.event.WindowAdapter;
+import com.spun.swing.Paintable;
+import com.spun.swing.Paintables;
+import com.spun.util.logger.SimpleLogger;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import com.spun.swing.Paintable;
-import com.spun.swing.Paintables;
-import com.spun.util.logger.SimpleLogger;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
 
 public class WindowUtils
 {

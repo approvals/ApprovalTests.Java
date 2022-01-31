@@ -1,12 +1,11 @@
 package com.spun.util.database.automaticsetter;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.database.AutomaticVariableSetter;
 import com.spun.util.database.DatabaseObject;
 import com.spun.util.logger.SimpleLogger;
+
+import java.sql.Statement;
 
 public class EndDateVariableSetter implements AutomaticVariableSetter
 {

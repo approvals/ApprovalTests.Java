@@ -1,5 +1,11 @@
 package com.spun.util.io;
 
+import com.spun.util.ArrayUtils;
+import com.spun.util.Asserts;
+import com.spun.util.FormattedException;
+import com.spun.util.ObjectUtils;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,13 +26,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import com.spun.util.ArrayUtils;
-import com.spun.util.Asserts;
-import com.spun.util.FormattedException;
-import com.spun.util.ObjectUtils;
 
 /**
  * A static class of convenience functions for Files

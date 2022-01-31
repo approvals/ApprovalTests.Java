@@ -1,12 +1,13 @@
 package org.lambda.query;
 
 import com.spun.util.DateUtils;
-import java.sql.Timestamp;
-import java.util.List;
 import org.approvaltests.Approvals;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.OrderBy.Order;
+
+import java.sql.Timestamp;
+import java.util.List;
 
 public class OrderByTest
 {

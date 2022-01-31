@@ -1,11 +1,11 @@
 package com.spun.util.introspection;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.filefilters.JavaClassFileFilter;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class ClassGetter
 {

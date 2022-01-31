@@ -1,18 +1,17 @@
 package org.lambda.query;
 
+import com.spun.util.ClassUtils;
+import com.spun.util.ObjectUtils;
+import org.lambda.Extendable;
+import org.lambda.functions.Function1;
+import org.lambda.query.OrderBy.Order;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
-
-import org.lambda.Extendable;
-import org.lambda.functions.Function1;
-import org.lambda.query.OrderBy.Order;
-
-import com.spun.util.ClassUtils;
-import com.spun.util.ObjectUtils;
 
 public class Queryable<In> extends ArrayList<In>
 {

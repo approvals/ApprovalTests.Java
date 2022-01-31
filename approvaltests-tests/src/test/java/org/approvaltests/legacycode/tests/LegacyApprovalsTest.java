@@ -1,11 +1,11 @@
 package org.approvaltests.legacycode.tests;
 
-import java.awt.*;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.legacycode.AllPoints;
 import org.approvaltests.legacycode.LegacyApprovals;
 import org.junit.jupiter.api.Test;
+
+import java.awt.Point;
 
 public class LegacyApprovalsTest
 {

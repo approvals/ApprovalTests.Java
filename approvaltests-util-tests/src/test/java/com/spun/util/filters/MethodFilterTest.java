@@ -1,12 +1,13 @@
 package com.spun.util.filters;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+import org.lambda.query.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import org.junit.jupiter.api.Test;
-import org.lambda.query.Query;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MethodFilterTest
 {

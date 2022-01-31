@@ -1,15 +1,6 @@
 package org.approvaltests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.File;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.Arrays;
-import java.util.List;
-
+import com.spun.util.ArrayUtils;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -18,12 +9,19 @@ import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
-import com.spun.util.ArrayUtils;
+import java.io.File;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OptionsTest
 {

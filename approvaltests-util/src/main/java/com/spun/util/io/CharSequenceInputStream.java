@@ -1,6 +1,5 @@
 package com.spun.util.io;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 public class CharSequenceInputStream extends InputStream

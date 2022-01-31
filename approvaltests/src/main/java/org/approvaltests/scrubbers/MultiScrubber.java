@@ -1,8 +1,7 @@
 package org.approvaltests.scrubbers;
 
-import org.approvaltests.core.Scrubber;
-
 import com.spun.util.ArrayUtils;
+import org.approvaltests.core.Scrubber;
 
 public class MultiScrubber implements Scrubber
 {

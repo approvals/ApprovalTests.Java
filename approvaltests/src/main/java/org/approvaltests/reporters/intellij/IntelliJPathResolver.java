@@ -1,5 +1,8 @@
 package org.approvaltests.reporters.intellij;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.SystemUtils;
+
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
@@ -9,9 +12,6 @@ import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import com.spun.util.ObjectUtils;
-import com.spun.util.SystemUtils;
 
 public class IntelliJPathResolver
 {

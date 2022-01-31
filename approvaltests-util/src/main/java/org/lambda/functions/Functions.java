@@ -1,9 +1,6 @@
 package org.lambda.functions;
 
 import com.spun.util.ObjectUtils;
-import org.lambda.actions.Action9;
-import org.lambda.actions.Action9WithException;
-import org.lambda.functions.*;
 
 public class Functions
 {

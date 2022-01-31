@@ -1,8 +1,8 @@
 package org.packagesettings;
 
-import java.util.Map;
-
 import org.lambda.functions.Function0;
+
+import java.util.Map;
 
 public class Field<T>
 {

@@ -1,10 +1,10 @@
 package com.spun.util.io.xml;
 
+import org.lambda.query.Query;
+
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
-
-import org.lambda.query.Query;
 
 public class XmlMap
 {

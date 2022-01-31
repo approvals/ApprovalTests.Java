@@ -1,12 +1,11 @@
 package org.approvaltests;
 
-import java.io.File;
-
+import com.spun.util.io.FileUtils;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.io.FileUtils;
+import java.io.File;
 
 @UseReporter(DiffReporter.class)
 public class DirectoryOutputTest

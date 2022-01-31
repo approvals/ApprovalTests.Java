@@ -15,14 +15,12 @@ package com.spun.util.velocity;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.io.InputStream;
-
+import com.spun.util.StringUtils;
 import org.apache.commons.collections.ExtendedProperties;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.Resource;
 import org.apache.velocity.runtime.resource.loader.ResourceLoader;
 
-import com.spun.util.StringUtils;
+import java.io.InputStream;
 
 /**
  * This is a simple resource loader that loads the string as a template

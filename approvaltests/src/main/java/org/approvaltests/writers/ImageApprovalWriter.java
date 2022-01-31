@@ -1,13 +1,11 @@
 package org.approvaltests.writers;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
+import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalWriter;
 
-import com.spun.util.ObjectUtils;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class ImageApprovalWriter implements ApprovalWriter
 {

@@ -6,14 +6,14 @@
  */
 package com.spun.util.database;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.database.SQLQuery.FromPart;
+import com.spun.util.database.SQLQuery.LimitPart;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-
-import com.spun.util.ObjectUtils;
-import com.spun.util.database.SQLQuery.FromPart;
-import com.spun.util.database.SQLQuery.LimitPart;
 
 public class SQLQueryUtils
 {

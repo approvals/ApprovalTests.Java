@@ -7,7 +7,6 @@ import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.QuietReporter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Functions;

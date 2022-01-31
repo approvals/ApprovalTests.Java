@@ -1,13 +1,13 @@
 package com.spun.util.io;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import com.spun.util.ObjectUtils;
-import com.spun.util.StringUtils;
 
 /**
   * A static class of convenience functions for Files

@@ -1,12 +1,12 @@
 package org.approvaltests.packagesettings.basedirectory;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.text.MessageFormat;
 
-import org.approvaltests.Approvals;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestApprovalDirectoryConfig
 {

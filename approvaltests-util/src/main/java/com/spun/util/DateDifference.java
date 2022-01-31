@@ -1,9 +1,9 @@
 package com.spun.util;
 
+import com.spun.util.logger.SimpleLogger;
+
 import java.util.Calendar;
 import java.util.Date;
-
-import com.spun.util.logger.SimpleLogger;
 
 public class DateDifference
 {

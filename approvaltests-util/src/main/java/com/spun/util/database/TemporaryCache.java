@@ -1,6 +1,5 @@
 package com.spun.util.database;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collections;
 import java.util.HashMap;

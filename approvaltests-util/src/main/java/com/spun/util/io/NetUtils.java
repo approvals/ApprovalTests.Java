@@ -1,12 +1,11 @@
 package com.spun.util.io;
 
-import java.io.InputStream;
-import java.net.URL;
-
+import com.spun.util.ObjectUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 
-import com.spun.util.ObjectUtils;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * A static class of convenience functions for Files

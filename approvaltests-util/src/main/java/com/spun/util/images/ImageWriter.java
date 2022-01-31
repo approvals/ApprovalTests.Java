@@ -3,7 +3,8 @@ package com.spun.util.images;
 import com.spun.util.logger.SimpleLogger;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;

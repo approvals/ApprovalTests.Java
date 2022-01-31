@@ -1,12 +1,11 @@
 package com.spun.util;
 
-import java.awt.Dimension;
-import java.awt.Frame;
-
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import java.awt.Dimension;
+import java.awt.Frame;
 
 public class ProgessFrame extends JDialog
 {

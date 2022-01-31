@@ -1,7 +1,7 @@
 package com.spun.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.approvaltests.utils.WithTimeZone;
+import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -13,8 +13,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.approvaltests.utils.WithTimeZone;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DateUtilsTest
 {

@@ -1,8 +1,5 @@
 package com.spun.util.database;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import org.w3c.dom.Node;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.xml.XmlExtractable;
 import com.spun.util.io.xml.XmlExtractor;
@@ -10,6 +7,10 @@ import com.spun.util.io.xml.XmlExtractorUtil;
 import com.spun.util.io.xml.XmlMap;
 import com.spun.util.io.xml.XmlMapTranslator;
 import com.spun.util.io.xml.XmlTranslator;
+import org.w3c.dom.Node;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class XmlDatabaseMapExtractor implements XmlExtractor
 {

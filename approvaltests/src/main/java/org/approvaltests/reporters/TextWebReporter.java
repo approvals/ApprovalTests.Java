@@ -1,11 +1,10 @@
 package org.approvaltests.reporters;
 
-import java.io.File;
-
-import org.approvaltests.core.ApprovalFailureReporter;
-
 import com.spun.util.io.FileUtils;
 import com.spun.util.tests.TestUtils;
+import org.approvaltests.core.ApprovalFailureReporter;
+
+import java.io.File;
 
 public class TextWebReporter implements ApprovalFailureReporter
 {

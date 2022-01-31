@@ -1,8 +1,5 @@
 package com.spun.util.database;
 
-import java.io.IOException;
-import java.sql.Connection;
-import org.apache.commons.logging.LogFactory;
 import com.spun.util.DatabaseConfiguration;
 import com.spun.util.DatabaseConfigurationWrapper;
 import com.spun.util.ObjectUtils;
@@ -10,6 +7,10 @@ import com.sshtools.j2ssh.SshClient;
 import com.sshtools.j2ssh.authentication.PasswordAuthenticationClient;
 import com.sshtools.j2ssh.forwarding.ForwardingClient;
 import com.sshtools.j2ssh.transport.IgnoreHostKeyVerification;
+import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+import java.sql.Connection;
 
 public class SshDatabaseWrapper implements DatabaseConfigurationWrapper
 {

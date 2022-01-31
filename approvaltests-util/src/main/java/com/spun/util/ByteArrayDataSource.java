@@ -1,12 +1,12 @@
 package com.spun.util;
 
+import javax.activation.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import javax.activation.DataSource;
 
 /**
  * Comment By LLewellyn: This is a needed class for using mail. For some reason wasn't 

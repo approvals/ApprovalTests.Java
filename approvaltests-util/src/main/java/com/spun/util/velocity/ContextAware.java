@@ -1,9 +1,9 @@
 package com.spun.util.velocity;
 
+import org.apache.velocity.context.Context;
+
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import org.apache.velocity.context.Context;
 
 public interface ContextAware
 {

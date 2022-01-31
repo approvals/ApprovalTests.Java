@@ -1,10 +1,10 @@
 package com.spun.util.database;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.spun.util.DatabaseUtils;
 import com.spun.util.ObjectUtils;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class SQLUtils
 {

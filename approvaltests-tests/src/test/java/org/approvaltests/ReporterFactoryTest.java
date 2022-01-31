@@ -1,8 +1,6 @@
 package org.approvaltests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.approvaltests.core.ApprovalFailureReporter;
+import com.spun.util.ThreadUtils;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
@@ -10,9 +8,7 @@ import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.ThreadUtils;
-
-import java.lang.annotation.Annotation;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @UseReporter(ClipboardReporter.class)
 public class ReporterFactoryTest

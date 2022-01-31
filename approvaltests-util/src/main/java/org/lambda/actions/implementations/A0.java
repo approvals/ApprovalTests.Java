@@ -1,8 +1,7 @@
 package org.lambda.actions.implementations;
 
-import org.lambda.functions.implementations.F1;
-
 import com.spun.util.DeprecatedException;
+import org.lambda.functions.implementations.F1;
 
 /**
  * @deprecated use lambdas:  () {@literal -> ...your code...}

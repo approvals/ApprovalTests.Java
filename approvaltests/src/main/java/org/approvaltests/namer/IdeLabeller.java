@@ -1,8 +1,7 @@
 package org.approvaltests.namer;
 
-import org.lambda.functions.Function0;
-
 import com.spun.util.ThreadUtils;
+import org.lambda.functions.Function0;
 
 public class IdeLabeller implements Function0<String>
 {

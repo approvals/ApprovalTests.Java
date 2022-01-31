@@ -1,7 +1,7 @@
 package org.approvaltests.reporters.intellij;
 
-import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.DiffPrograms.All;
+import org.approvaltests.reporters.GenericDiffReporter;
 
 public class IntelliJUltimateReporter extends GenericDiffReporter
 {

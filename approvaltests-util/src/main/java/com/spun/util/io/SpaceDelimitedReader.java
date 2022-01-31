@@ -1,11 +1,10 @@
 package com.spun.util.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.logger.SimpleLogger;
+
+import java.io.BufferedReader;
+import java.io.StringReader;
 
 /**
   * A static class of convence functions for Files

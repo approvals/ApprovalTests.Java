@@ -1,8 +1,5 @@
 package org.approvaltests;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
-
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
@@ -11,6 +8,8 @@ import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 public class ApprovalsTest

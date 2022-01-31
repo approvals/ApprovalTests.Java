@@ -1,8 +1,8 @@
 package com.spun.util.timers;
 
-import org.apache.velocity.context.Context;
 import com.spun.util.velocity.ContextAware;
 import com.spun.util.velocity.VelocityParser;
+import org.apache.velocity.context.Context;
 
 /**
  * A Utility for timing things. this is multi-thread safe.

@@ -1,18 +1,17 @@
 package org.counterdisplay;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.io.File;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.spun.swing.SwingUtils;
 import com.spun.util.Colors;
 import com.spun.util.WindowUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.io.File;
 
 public class CounterDisplay extends JPanel
 {

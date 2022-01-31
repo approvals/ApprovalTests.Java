@@ -1,15 +1,11 @@
 package org.approvaltests.writers;
 
-import java.io.File;
-import java.sql.ResultSet;
-
-import org.approvaltests.awt.PaintableMultiFrame;
-import org.approvaltests.awt.PaintableMultiframeWriter;
+import com.spun.util.Tuple;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
-import com.spun.swing.Paintable;
-import com.spun.util.Tuple;
+import java.io.File;
+import java.sql.ResultSet;
 
 public class DefaultApprovalWriterFactory
 {

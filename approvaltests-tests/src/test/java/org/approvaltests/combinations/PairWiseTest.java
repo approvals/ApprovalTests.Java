@@ -1,14 +1,5 @@
 package org.approvaltests.combinations;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
@@ -16,13 +7,20 @@ import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.core.Options;
 import org.approvaltests.legacycode.Range;
-import org.approvaltests.reporters.FileLauncherReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.macosx.BeyondCompareMacReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 import org.lambda.actions.Action2;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @UseReporter(DiffMergeReporter.class)
 public class PairWiseTest

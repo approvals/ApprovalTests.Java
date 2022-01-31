@@ -1,16 +1,15 @@
 package org.approvaltests.writers;
 
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-
 import com.spun.util.ObjectUtils;
+import com.spun.util.io.CommaDelimitedFileParser;
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.io.CommaDelimitedFileParser;
-import com.spun.util.io.FileUtils;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 
 public class DatabaseWriterTest
 {

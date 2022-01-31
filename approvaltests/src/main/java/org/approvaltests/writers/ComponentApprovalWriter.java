@@ -1,13 +1,12 @@
 package org.approvaltests.writers;
 
+import org.approvaltests.core.ApprovalWriter;
+
+import javax.swing.JFrame;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-import javax.swing.JFrame;
-
-import org.approvaltests.core.ApprovalWriter;
 
 public class ComponentApprovalWriter implements ApprovalWriter
 {

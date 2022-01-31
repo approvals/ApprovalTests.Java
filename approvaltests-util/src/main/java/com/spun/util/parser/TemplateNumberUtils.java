@@ -1,8 +1,7 @@
 package com.spun.util.parser;
 
-import org.lambda.query.Query;
-
 import com.spun.util.NumberUtils;
+import org.lambda.query.Query;
 
 public class TemplateNumberUtils
 {

@@ -1,13 +1,12 @@
 package org.approvaltests.namer;
 
-import java.io.File;
-
-import org.approvaltests.writers.Writer;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
+import org.approvaltests.writers.Writer;
+
+import java.io.File;
 
 public class StackTraceNamer implements ApprovalNamer
 {

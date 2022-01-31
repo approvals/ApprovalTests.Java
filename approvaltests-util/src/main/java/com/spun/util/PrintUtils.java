@@ -1,5 +1,8 @@
 package com.spun.util;
 
+import com.spun.util.logger.SimpleLogger;
+
+import javax.swing.RepaintManager;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,10 +11,6 @@ import java.awt.print.Paper;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-
-import javax.swing.RepaintManager;
-
-import com.spun.util.logger.SimpleLogger;
 
 public class PrintUtils implements Printable
 {

@@ -1,11 +1,11 @@
 package org.approvaltests.scrubbers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Scrubber;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScrubberTest
 {

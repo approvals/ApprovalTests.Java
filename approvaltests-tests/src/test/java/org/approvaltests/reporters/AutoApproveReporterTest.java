@@ -1,12 +1,10 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.junit.jupiter.api.Test;
-
-import com.spun.util.io.FileUtils;
 
 class AutoApproveReporterTest
 {

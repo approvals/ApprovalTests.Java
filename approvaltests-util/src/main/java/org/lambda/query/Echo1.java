@@ -1,8 +1,7 @@
 package org.lambda.query;
 
-import org.lambda.functions.Function1;
-
 import com.spun.util.DeprecatedException;
+import org.lambda.functions.Function1;
 
 /**
  * @deprecated use lambdas: {@literal  a -> a }

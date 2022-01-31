@@ -1,10 +1,10 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.ArrayUtils;
+
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
-
-import com.spun.util.ArrayUtils;
 import java.util.Objects;
 
 public class DiffInfo

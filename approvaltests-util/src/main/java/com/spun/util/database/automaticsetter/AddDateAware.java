@@ -1,10 +1,10 @@
 package com.spun.util.database.automaticsetter;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.filters.Filter;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 public interface AddDateAware
 {

@@ -1,10 +1,11 @@
 package com.spun.util;
 
-import java.lang.reflect.Field;
-import java.util.List;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 public class ConfigXMLFileWriterTest
 {

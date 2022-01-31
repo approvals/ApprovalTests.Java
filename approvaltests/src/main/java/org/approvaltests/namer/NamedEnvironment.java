@@ -1,8 +1,8 @@
 package org.approvaltests.namer;
 
-import java.util.Arrays;
-
 import com.spun.util.logger.SimpleLogger;
+
+import java.util.Arrays;
 
 public class NamedEnvironment implements AutoCloseable
 {

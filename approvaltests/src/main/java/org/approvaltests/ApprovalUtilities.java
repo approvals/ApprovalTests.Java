@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import com.spun.util.ObjectUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;

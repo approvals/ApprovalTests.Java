@@ -1,21 +1,19 @@
 package org.approvaltests.webpages;
 
+import com.spun.util.Colors;
+import com.spun.util.ObjectUtils;
+import com.spun.util.WindowUtils;
+import org.approvaltests.approvers.FileApprover;
+import org.approvaltests.core.VerifyResult;
+import org.approvaltests.reporters.DiffReporter;
+
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
-
-import javax.swing.JFrame;
-
-import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.core.VerifyResult;
-import org.approvaltests.reporters.DiffReporter;
-
-import com.spun.util.Colors;
-import com.spun.util.ObjectUtils;
-import com.spun.util.WindowUtils;
 
 public class WebPageChangeDetector implements ActionListener
 {

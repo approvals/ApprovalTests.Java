@@ -1,8 +1,8 @@
 package org.lambda.query;
 
-import java.util.Comparator;
-
 import org.lambda.functions.Function1;
+
+import java.util.Comparator;
 
 public class OrderBy<T, Out extends Comparable<?>> implements Comparator<T>
 {

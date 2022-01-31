@@ -1,10 +1,9 @@
 package org.approvaltests.writers;
 
-import java.io.File;
-
+import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalWriter;
 
-import com.spun.util.io.FileUtils;
+import java.io.File;
 
 public class FileApprovalWriter implements ApprovalWriter
 {

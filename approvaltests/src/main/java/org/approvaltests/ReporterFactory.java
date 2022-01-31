@@ -1,11 +1,8 @@
 package org.approvaltests;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.spun.util.ClassUtils;
+import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalTestPackageSettings;
 import org.approvaltests.reporters.DefaultFrontLoadedReporter;
@@ -17,9 +14,11 @@ import org.approvaltests.reporters.UseReporter;
 import org.packagesettings.PackageLevelSettings;
 import org.packagesettings.Settings;
 
-import com.spun.util.ClassUtils;
-import com.spun.util.ObjectUtils;
-import com.spun.util.ThreadUtils;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ReporterFactory
 {

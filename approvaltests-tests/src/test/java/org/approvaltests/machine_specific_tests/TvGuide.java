@@ -1,11 +1,10 @@
 package org.approvaltests.machine_specific_tests;
 
-import java.awt.Dimension;
-import java.awt.GridLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class TvGuide extends JPanel

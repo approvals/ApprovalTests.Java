@@ -1,9 +1,8 @@
 package com.spun.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DatabaseUtilsTest
 {

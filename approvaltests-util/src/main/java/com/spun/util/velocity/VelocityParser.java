@@ -1,10 +1,9 @@
 package com.spun.util.velocity;
 
-import java.io.File;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.Properties;
-
+import com.spun.util.Asserts;
+import com.spun.util.ObjectUtils;
+import com.spun.util.io.FileUtils;
+import com.spun.util.parser.ParserCommons;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.velocity.Template;
@@ -14,10 +13,10 @@ import org.apache.velocity.context.Context;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.log.NullLogChute;
 
-import com.spun.util.Asserts;
-import com.spun.util.ObjectUtils;
-import com.spun.util.io.FileUtils;
-import com.spun.util.parser.ParserCommons;
+import java.io.File;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.Properties;
 
 public class VelocityParser
 {

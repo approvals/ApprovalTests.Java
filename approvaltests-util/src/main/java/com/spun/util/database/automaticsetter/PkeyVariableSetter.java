@@ -1,13 +1,13 @@
 package com.spun.util.database.automaticsetter;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import com.spun.util.DatabaseUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.database.AutomaticVariableSetter;
 import com.spun.util.database.DatabaseObject;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class PkeyVariableSetter implements AutomaticVariableSetter
 {

@@ -1,12 +1,12 @@
 package org.approvaltests.core;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
+
+import java.lang.reflect.Field;
+import java.util.HashMap;
 
 class ApprovalTestPackageSettingsTest
 {

@@ -1,9 +1,9 @@
 package com.spun.util;
 
+import com.spun.util.io.XMLUtils;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
-
-import com.spun.util.io.XMLUtils;
 
 /**
  * @author Llewellyn Falco

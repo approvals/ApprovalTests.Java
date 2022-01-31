@@ -1,10 +1,9 @@
 package com.spun.util.io;
 
-import java.net.InetAddress;
-
+import com.spun.util.logger.SimpleLogger;
 import org.apache.commons.net.echo.EchoTCPClient;
 
-import com.spun.util.logger.SimpleLogger;
+import java.net.InetAddress;
 
 /**
  * A static class of convenience functions for Files

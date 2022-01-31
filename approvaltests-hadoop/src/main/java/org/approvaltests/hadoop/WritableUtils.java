@@ -5,11 +5,11 @@ import java.lang.reflect.Method;
 
 public class WritableUtils
 {
-
-  public static <T> T createWritable(Object value, Class<T> writableType) throws InstantiationException,
-      IllegalAccessException, InvocationTargetException, NoSuchMethodException
+  public static <T> T createWritable(Object value, Class<T> writableType)
+      throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException
   {
-    if (writableType.isInstance(value)) { return (T) value; }
+    if (writableType.isInstance(value))
+    { return (T) value; }
     Object writable = writableType.newInstance();
     try
     {
@@ -31,8 +31,8 @@ public class WritableUtils
         }
         catch (Exception e)
         {
-          throw new RuntimeException(String.format("Could not convert %s => %s", value.getClass().getName(),
-              writableType.getName()), e);
+          throw new RuntimeException(
+              String.format("Could not convert %s => %s", value.getClass().getName(), writableType.getName()), e);
         }
       }
     }

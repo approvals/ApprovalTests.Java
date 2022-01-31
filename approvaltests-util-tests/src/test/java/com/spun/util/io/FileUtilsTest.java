@@ -1,7 +1,10 @@
 package com.spun.util.io;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.reporters.ClipboardReporter;
+import org.approvaltests.reporters.UseReporter;
+import org.junit.jupiter.api.Test;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,11 +12,9 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.UseReporter;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * A static class of convenience functions for Files

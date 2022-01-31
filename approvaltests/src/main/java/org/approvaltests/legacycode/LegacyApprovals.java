@@ -1,15 +1,11 @@
 package org.approvaltests.legacycode;
 
+import com.spun.util.MethodExecutionPath.Parameters;
+import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
+
 import java.lang.reflect.Method;
 import java.util.Arrays;
-
-import org.approvaltests.Approvals;
-import org.approvaltests.ReporterFactory;
-import org.approvaltests.core.Options;
-import org.approvaltests.namer.StackTraceNamer;
-import org.approvaltests.writers.ApprovalTextWriter;
-
-import com.spun.util.MethodExecutionPath.Parameters;
 
 public class LegacyApprovals
 {

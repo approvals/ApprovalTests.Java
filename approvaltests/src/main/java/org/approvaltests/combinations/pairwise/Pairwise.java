@@ -1,13 +1,13 @@
 package org.approvaltests.combinations.pairwise;
 
+import org.lambda.query.Query;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.lambda.query.Query;
 
 public class Pairwise implements Iterable<Case>
 {

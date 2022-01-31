@@ -1,8 +1,8 @@
 package com.spun.util.parser;
 
-import java.io.File;
-
 import com.spun.util.StringUtils;
+
+import java.io.File;
 
 public class TemplateStringUtils
 {

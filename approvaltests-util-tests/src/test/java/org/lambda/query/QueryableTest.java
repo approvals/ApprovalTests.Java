@@ -1,16 +1,16 @@
 package org.lambda.query;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Test;
+import org.lambda.Extendable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.approvaltests.Approvals;
-import org.junit.jupiter.api.Test;
-import org.lambda.Extendable;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class QueryableTest
 {

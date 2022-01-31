@@ -1,12 +1,13 @@
 package com.spun.util;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import org.lambda.actions.Action0;
 import org.lambda.actions.Action0WithException;
 import org.lambda.functions.Function0WithException;
 import org.lambda.query.Query;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A static class of convenience functions for Manipulating objects

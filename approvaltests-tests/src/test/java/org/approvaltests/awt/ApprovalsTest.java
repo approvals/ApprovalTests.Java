@@ -1,7 +1,6 @@
 package org.approvaltests.awt;
 
-import java.time.Duration;
-
+import com.spun.util.Tuple;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FileCaptureReporter;
 import org.approvaltests.reporters.ImageWebReporter;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
 
-import com.spun.util.Tuple;
+import java.time.Duration;
 
 //@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest

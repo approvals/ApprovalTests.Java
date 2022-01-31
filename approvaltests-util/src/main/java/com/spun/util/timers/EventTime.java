@@ -1,8 +1,8 @@
 package com.spun.util.timers;
 
-import java.io.Serializable;
-
 import com.spun.util.DateDifference;
+
+import java.io.Serializable;
 
 /**
  * A Utility for timing an event multiple times.

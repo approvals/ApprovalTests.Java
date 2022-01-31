@@ -1,11 +1,10 @@
 package com.spun.util.io;
 
-import java.util.HashMap;
-
+import com.spun.util.StringUtils;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.spun.util.StringUtils;
+import java.util.HashMap;
 
 public interface XMLNodeExtractor
 {

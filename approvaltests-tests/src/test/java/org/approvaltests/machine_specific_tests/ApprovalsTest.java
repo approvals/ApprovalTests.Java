@@ -1,14 +1,12 @@
 package org.approvaltests.machine_specific_tests;
 
-import java.awt.Dimension;
-
-import javax.swing.JButton;
-
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.ImageReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
+
+import javax.swing.JButton;
+import java.awt.Dimension;
 
 @UseReporter({ClipboardReporter.class})
 public class ApprovalsTest extends MachineSpecificTest

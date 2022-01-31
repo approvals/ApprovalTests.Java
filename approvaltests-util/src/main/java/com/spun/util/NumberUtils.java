@@ -1,6 +1,7 @@
 package com.spun.util;
 
 import com.spun.util.logger.SimpleLogger;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package com.spun.swing;
 
-import java.awt.Graphics;
 import javax.swing.JPanel;
+import java.awt.Graphics;
 
 public class PaintablePanel<P extends Paintable> extends JPanel
 {

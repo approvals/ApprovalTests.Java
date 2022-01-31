@@ -1,10 +1,10 @@
 package org.approvaltests.reporters;
 
+import org.approvaltests.core.ApprovalFailureReporter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-
-import org.approvaltests.core.ApprovalFailureReporter;
 
 public class MultiReporter implements ApprovalFailureReporter
 {

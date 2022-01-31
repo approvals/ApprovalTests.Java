@@ -1,16 +1,17 @@
 package com.spun.util;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.lambda.functions.Functions;
+import org.lambda.query.Queryable;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
-import org.junit.jupiter.api.Test;
-import org.lambda.functions.Functions;
-import org.lambda.query.Queryable;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ObjectUtilsTest
 {

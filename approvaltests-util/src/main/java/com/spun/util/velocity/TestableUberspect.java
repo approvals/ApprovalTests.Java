@@ -1,12 +1,6 @@
 package com.spun.util.velocity;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Map;
-
+import com.spun.util.ObjectUtils;
 import org.apache.velocity.runtime.RuntimeLogger;
 import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.AbstractExecutor;
@@ -24,7 +18,12 @@ import org.apache.velocity.util.introspection.VelMethod;
 import org.apache.velocity.util.introspection.VelPropertyGet;
 import org.apache.velocity.util.introspection.VelPropertySet;
 
-import com.spun.util.ObjectUtils;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *  Implementation of Uberspect to provide the default introspective

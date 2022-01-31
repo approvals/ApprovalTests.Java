@@ -1,13 +1,12 @@
 package org.approvaltests.namer;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import com.spun.util.ThreadUtils;
+import com.spun.util.tests.TestUtils;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.ThreadUtils;
-import com.spun.util.tests.TestUtils;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AttributeStackSelectorTest
 {

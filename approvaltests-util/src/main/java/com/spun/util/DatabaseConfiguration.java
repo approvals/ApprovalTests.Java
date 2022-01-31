@@ -1,10 +1,10 @@
 package com.spun.util;
 
+import com.spun.util.timers.Counter;
+
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Properties;
-import com.spun.util.timers.Counter;
 
 /**
  * A static class of convence functions for database access

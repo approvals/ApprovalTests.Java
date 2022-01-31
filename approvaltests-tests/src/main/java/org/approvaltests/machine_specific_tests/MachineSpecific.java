@@ -1,9 +1,9 @@
 package org.approvaltests.machine_specific_tests;
 
+import com.spun.util.SystemUtils;
+
 import java.util.Arrays;
 import java.util.List;
-
-import com.spun.util.SystemUtils;
 
 public class MachineSpecific
 {

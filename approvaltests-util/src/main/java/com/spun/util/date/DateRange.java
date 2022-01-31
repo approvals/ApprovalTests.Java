@@ -1,16 +1,14 @@
 package com.spun.util.date;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.lambda.functions.Function1;
-
 import com.spun.util.DateUtils;
-import com.spun.util.DeprecatedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.filters.Filter;
 import com.spun.util.parser.TemplateDate;
+import org.lambda.functions.Function1;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DateRange
 {

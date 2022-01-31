@@ -1,16 +1,15 @@
 package org.packagesettings;
 
+import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
+import org.lambda.functions.Function0;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-
-import org.lambda.functions.Function0;
-
-import com.spun.util.ObjectUtils;
-import com.spun.util.ThreadUtils;
 
 public class PackageLevelSettings
 {

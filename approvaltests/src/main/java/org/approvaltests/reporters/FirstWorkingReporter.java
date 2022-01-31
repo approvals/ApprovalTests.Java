@@ -1,10 +1,10 @@
 package org.approvaltests.reporters;
 
-import java.util.List;
-
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
+
+import java.util.List;
 
 public class FirstWorkingReporter implements EnvironmentAwareReporter
 {

@@ -1,12 +1,13 @@
 package org.lambda.functions;
 
-import java.awt.Point;
-import java.util.HashMap;
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.utils.Grid;
+
+import java.awt.Point;
+import java.util.HashMap;
 
 @UseReporter(TortoiseTextDiffReporter.class)
 public class F2Test

@@ -1,13 +1,12 @@
 package com.spun.util.database;
 
+import com.spun.util.ObjectUtils;
+
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.spun.util.ObjectUtils;
 
 public class ResultSetWriter
 {

@@ -1,5 +1,10 @@
 package com.spun.util;
 
+import com.spun.util.database.DatabaseObject;
+import com.spun.util.database.DatabaseTransactionInfo;
+import com.spun.util.database.SqlConnectionException;
+import com.spun.util.logger.SimpleLogger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,11 +12,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import com.spun.util.database.DatabaseObject;
-import com.spun.util.database.DatabaseTransactionInfo;
-import com.spun.util.database.SqlConnectionException;
-import com.spun.util.logger.SimpleLogger;
 
 /**
  * A static class of convenience functions for database access

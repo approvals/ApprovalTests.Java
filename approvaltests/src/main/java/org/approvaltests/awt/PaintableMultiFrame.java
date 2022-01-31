@@ -1,11 +1,10 @@
 package org.approvaltests.awt;
 
-import java.time.Duration;
-
-import org.lambda.functions.Function1;
-
 import com.spun.swing.Paintable;
 import com.spun.util.Tuple;
+import org.lambda.functions.Function1;
+
+import java.time.Duration;
 
 public class PaintableMultiFrame
 {

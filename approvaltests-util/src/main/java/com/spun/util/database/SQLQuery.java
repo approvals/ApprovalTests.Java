@@ -1,11 +1,11 @@
 package com.spun.util.database;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import com.spun.util.DatabaseUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
+
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class SQLQuery
 {

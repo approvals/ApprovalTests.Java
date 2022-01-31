@@ -1,10 +1,10 @@
 package org.approvaltests.scrubbers;
 
-import java.util.Random;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 class RegExScrubberTest
 {

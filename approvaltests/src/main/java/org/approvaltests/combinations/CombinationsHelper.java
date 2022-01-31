@@ -1,12 +1,12 @@
 package org.approvaltests.combinations;
 
-import java.util.List;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.lambda.actions.Action9;
 import org.lambda.functions.Function9;
 import org.lambda.query.Query;
+
+import java.util.List;
 
 public class CombinationsHelper
 {

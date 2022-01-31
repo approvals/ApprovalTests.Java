@@ -1,14 +1,14 @@
 package com.spun.util.parser;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-
 import com.spun.util.ObjectUtils;
 import com.spun.util.PhoneNumber;
 import com.spun.util.parser.VelocityList.Item;
 import com.spun.util.velocity.ParserDateUtils;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class ParserCommons
 {

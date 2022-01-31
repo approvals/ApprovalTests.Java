@@ -1,10 +1,9 @@
 package org.approvaltests.machine_specific_tests;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-
+import com.spun.util.SystemUtils;
 import org.junit.jupiter.api.BeforeEach;
 
-import com.spun.util.SystemUtils;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class MachineSpecificTest
 {

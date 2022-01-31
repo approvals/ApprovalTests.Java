@@ -1,8 +1,5 @@
 package org.approvaltests.testcommitrevert;
 
-import org.junit.runner.Result;
-import org.junit.runner.notification.RunListener;
-import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;
 import org.junit.runners.model.InitializationError;
 

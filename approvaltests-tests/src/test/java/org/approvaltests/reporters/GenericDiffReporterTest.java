@@ -1,10 +1,7 @@
 package org.approvaltests.reporters;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.File;
-
+import com.spun.util.ClassUtils;
+import com.spun.util.SystemUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
@@ -13,8 +10,10 @@ import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
 import org.junit.jupiter.api.Test;
 
-import com.spun.util.ClassUtils;
-import com.spun.util.SystemUtils;
+import java.io.File;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GenericDiffReporterTest
 {

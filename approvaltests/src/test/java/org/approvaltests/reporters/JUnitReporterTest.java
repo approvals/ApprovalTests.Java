@@ -1,10 +1,9 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.ClassUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.junit.jupiter.api.Test;
-
-import com.spun.util.ClassUtils;
 
 public class JUnitReporterTest
 {

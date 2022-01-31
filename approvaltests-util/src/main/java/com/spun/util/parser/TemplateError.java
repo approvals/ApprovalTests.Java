@@ -1,9 +1,10 @@
 package com.spun.util.parser;
 
+import com.spun.util.velocity.ContextAware;
+import org.apache.velocity.context.Context;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import org.apache.velocity.context.Context;
-import com.spun.util.velocity.ContextAware;
 
 public class TemplateError implements ContextAware
 {

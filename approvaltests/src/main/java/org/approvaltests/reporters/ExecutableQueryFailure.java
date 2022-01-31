@@ -1,13 +1,12 @@
 package org.approvaltests.reporters;
 
+import com.spun.util.io.FileUtils;
 import com.spun.util.persistence.ExecutableCommand;
-import java.io.File;
-
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.Options;
 
-import com.spun.util.io.FileUtils;
+import java.io.File;
 
 public class ExecutableQueryFailure implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {

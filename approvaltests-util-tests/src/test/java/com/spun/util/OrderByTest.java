@@ -1,9 +1,10 @@
 package com.spun.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.OrderBy;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

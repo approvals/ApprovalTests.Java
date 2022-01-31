@@ -1,8 +1,7 @@
 package org.approvaltests.reporters;
 
-import org.approvaltests.core.ApprovalFailureReporter;
-
 import com.spun.util.ObjectUtils;
+import org.approvaltests.core.ApprovalFailureReporter;
 
 public class NotePadLancher implements ApprovalFailureReporter
 {

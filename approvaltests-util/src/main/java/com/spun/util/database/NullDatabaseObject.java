@@ -1,6 +1,5 @@
 package com.spun.util.database;
 
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class NullDatabaseObject implements DatabaseObject

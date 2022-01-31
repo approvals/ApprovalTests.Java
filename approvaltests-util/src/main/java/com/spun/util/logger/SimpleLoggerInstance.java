@@ -1,5 +1,9 @@
 package com.spun.util.logger;
 
+import com.spun.util.DateDifference;
+import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
+
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -11,10 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.spun.util.DateDifference;
-import com.spun.util.ObjectUtils;
-import com.spun.util.ThreadUtils;
 
 public class SimpleLoggerInstance
 {

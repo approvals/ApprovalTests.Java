@@ -1,11 +1,11 @@
 package com.spun.util.servlets;
 
+import com.spun.util.StringUtils;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-
-import com.spun.util.StringUtils;
 
 public class ValidationError extends RuntimeException
 {

@@ -1,10 +1,10 @@
 package com.spun.util.database;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 import com.spun.util.DatabaseUtils;
 import com.spun.util.date.DateRange;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 /*
  * This class is immutable

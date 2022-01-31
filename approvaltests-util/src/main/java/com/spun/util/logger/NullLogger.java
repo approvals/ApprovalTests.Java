@@ -1,7 +1,5 @@
 package com.spun.util.logger;
 
-import java.io.IOException;
-
 public class NullLogger implements Appendable
 {
   @Override

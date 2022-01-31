@@ -1,8 +1,8 @@
 package org.approvaltests.reporters;
 
-import java.awt.GraphicsEnvironment;
-
 import com.spun.util.tests.TestUtils;
+
+import java.awt.GraphicsEnvironment;
 
 public class ImageWebReporter implements EnvironmentAwareReporter
 {

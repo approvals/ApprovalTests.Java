@@ -1,16 +1,15 @@
 package org.approvaltests.combinations.pairwise;
 
+import com.spun.util.Tuple;
+import org.lambda.query.Counter;
+import org.lambda.query.Query;
+import org.lambda.query.Queryable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import org.lambda.query.Counter;
-import org.lambda.query.Query;
-import org.lambda.query.Queryable;
-
-import com.spun.util.Tuple;
 
 public final class InParameterOrderStrategy
 {

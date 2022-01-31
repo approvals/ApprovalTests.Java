@@ -16,8 +16,8 @@ public class MapperWrapper<KeyIn, ValueIn, KeyOut, ValueOut>
   private final Class<KeyOut>                            keyOut;
   private final Class<ValueOut>                          valueOut;
   private final Mapper<KeyIn, ValueIn, KeyOut, ValueOut> mapper;
-  public MapperWrapper(Mapper<KeyIn, ValueIn, KeyOut, ValueOut> mapper, Class<KeyIn> keyIn,
-      Class<ValueIn> valueIn, Class<KeyOut> keyOut, Class<ValueOut> valueOut)
+  public MapperWrapper(Mapper<KeyIn, ValueIn, KeyOut, ValueOut> mapper, Class<KeyIn> keyIn, Class<ValueIn> valueIn,
+      Class<KeyOut> keyOut, Class<ValueOut> valueOut)
   {
     this.mapper = mapper;
     this.keyIn = keyIn;

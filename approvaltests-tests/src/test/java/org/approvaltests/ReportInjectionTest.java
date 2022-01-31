@@ -1,11 +1,11 @@
 package org.approvaltests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @UseReporter(QuietReporter.class)
 public class ReportInjectionTest

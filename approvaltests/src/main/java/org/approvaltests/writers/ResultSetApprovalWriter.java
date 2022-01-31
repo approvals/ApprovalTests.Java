@@ -1,15 +1,14 @@
 package org.approvaltests.writers;
 
-import java.io.File;
-import java.sql.ResultSet;
-
-import org.approvaltests.core.ApprovalWriter;
-
 import com.spun.util.database.ResultSetWriter;
 import com.spun.util.io.FileUtils;
 import com.spun.util.velocity.ContextAware;
 import com.spun.util.velocity.ContextAware.ContextAwareMap;
 import com.spun.util.velocity.VelocityParser;
+import org.approvaltests.core.ApprovalWriter;
+
+import java.io.File;
+import java.sql.ResultSet;
 
 public class ResultSetApprovalWriter implements ApprovalWriter
 {

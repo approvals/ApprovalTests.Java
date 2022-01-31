@@ -1,10 +1,9 @@
 package com.spun.util.io.xml;
 
-import java.sql.Timestamp;
-
+import com.spun.util.io.XMLUtils;
 import org.w3c.dom.Node;
 
-import com.spun.util.io.XMLUtils;
+import java.sql.Timestamp;
 
 public class BasicExtractor
 {

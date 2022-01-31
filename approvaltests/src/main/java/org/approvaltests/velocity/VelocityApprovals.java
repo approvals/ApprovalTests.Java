@@ -1,11 +1,10 @@
 package org.approvaltests.velocity;
 
-import org.approvaltests.Approvals;
-import org.approvaltests.namer.ApprovalNamer;
-
 import com.spun.util.io.FileUtils;
 import com.spun.util.velocity.ContextAware;
 import com.spun.util.velocity.VelocityParser;
+import org.approvaltests.Approvals;
+import org.approvaltests.namer.ApprovalNamer;
 
 public class VelocityApprovals
 {
