@@ -1,4 +1,7 @@
-toc
+<!-- toc -->
+## Contents
+
+  * [Verifying a Variety of Inputs](#verifying-a-variety-of-inputs)<!-- endToc -->
 
 ## Verifying a Variety of Inputs
 

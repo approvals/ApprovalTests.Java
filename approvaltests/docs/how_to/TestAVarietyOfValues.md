@@ -22,7 +22,7 @@ If you have more than one parameter that you want to vary, check out [Testing Co
 <a id='snippet-verifyallstartingpoint'></a>
 ```java
 String[] inputs = {"input.value1", "input.value2"};
-Approvals.verifyAll("TITLE", inputs,s -> "placeholder " + s);
+Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L40-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifyallstartingpoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
