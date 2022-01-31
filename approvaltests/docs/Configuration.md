@@ -154,7 +154,7 @@ Function2<Class, String, File> myFinder = new Function2<Class, String, File>()
   }
 };
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L17-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-define_alternative_source_directory_finder' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L16-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-define_alternative_source_directory_finder' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 ### Using alternatives
 Thanks to the try block, the default is restored afterwards allowing tests to be independent.
@@ -167,7 +167,7 @@ try (SourceDirectoryRestorer sdr = TestUtils.registerSourceDirectoryFinder(myFin
   Approvals.verify("Ragunath");
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L27-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_alternative_source_directory' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerSamples.java#L26-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_alternative_source_directory' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---

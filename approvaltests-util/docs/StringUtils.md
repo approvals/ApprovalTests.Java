@@ -23,7 +23,7 @@ For example
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ");
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L51-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L52-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 will produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollection.approved.txt -->
@@ -44,7 +44,7 @@ For example:
 List<Integer> number = Arrays.asList(1, 2, 3, 4, 5);
 String text = StringUtils.join(number, ", ", n -> StringUtils.padNumber(n, 3));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L60-L63' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection_with_lambda' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.java#L61-L64' title='Snippet source file'>snippet source</a> | <a href='#snippet-join_collection_with_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 will Produce
 <!-- snippet: /approvaltests-util-tests/src/test/java/com/spun/util/StringUtilsTest.testJoinCollectionWithFunction.approved.txt -->
