@@ -9,6 +9,7 @@ import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
+import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -78,7 +79,7 @@ public class OptionsTest
   }
   public static List<Class<?>> getApprovalClasses()
   {
-    return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class);
+    return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class, VelocityApprovals.class);
   }
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
   {
