@@ -8,7 +8,7 @@ import org.lambda.functions.Function2;
 
 import java.io.File;
 
-public class NamerSamples
+public class NamerSamplesTest
 {
   @Test
   void useAlternativeSourceFileFinder()

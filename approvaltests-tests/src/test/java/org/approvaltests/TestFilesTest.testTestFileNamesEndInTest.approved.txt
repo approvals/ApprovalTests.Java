@@ -4,8 +4,3 @@ Test Methods in files that do not contain the word 'Test' (these will not be run
 org.approvaltests.DocumentHelpers.listAllVerifyFunctions
 org.approvaltests.DocumentHelpers.testLineNumberOfThisMethod
 org.approvaltests.DocumentHelpers.testLineNumbers
-org.approvaltests.Samples.sampleParameterizedTest
-org.approvaltests.Samples.testArray
-org.approvaltests.Samples.testObject
-org.approvaltests.Samples.testString
-org.approvaltests.namer.NamerSamples.useAlternativeSourceFileFinder

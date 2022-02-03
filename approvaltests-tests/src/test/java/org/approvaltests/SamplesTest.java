@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
-public class Samples
+public class SamplesTest
 {
   @Test
   public void testString()
