@@ -15,19 +15,28 @@ public class VelocityApprovals
   }
   public static void verify(ContextAware context, Options options)
   {
-    verify(context, ".txt", options);
+    ApprovalNamer namer = Approvals.createApprovalNamer();
+    String fileExtentsionWithDot = options.forFile().getFileExtension();
+    String file = namer.getSourceFilePath() + namer.getApprovalName() + ".template" + fileExtentsionWithDot;
+    FileUtils.createIfNeeded(file);
+    String text = VelocityParser.parseFile(file, context);
+    Approvals.verify(text, options);
   }
+  /**
+   * @deprecated use {@code Options.forFile().withExtension(fileExtensionWithDot) }
+   */
+  @Deprecated
   public static void verify(ContextAware context, String fileExtentsionWithDot)
   {
     verify(context, fileExtentsionWithDot, new Options());
   }
+  /**
+   * @deprecated use {@code Options.forFile().withExtension(fileExtensionWithDot) }
+   */
+  @Deprecated
   public static void verify(ContextAware context, String fileExtentsionWithDot, Options options)
   {
-    ApprovalNamer namer = Approvals.createApprovalNamer();
-    String file = namer.getSourceFilePath() + namer.getApprovalName() + ".template" + fileExtentsionWithDot;
-    FileUtils.createIfNeeded(file);
-    String text = VelocityParser.parseFile(file, context);
     options = options.forFile().withExtension(fileExtentsionWithDot);
-    Approvals.verify(text, options);
+    verify(context, options);
   }
 }
