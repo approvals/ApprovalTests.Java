@@ -96,22 +96,22 @@ The easiest way to scrub a date is by calling
 ```java
 Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTests.java#L48-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.java#L48-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce
 
-<!-- snippet: DateScrubberTests.exampleForDocumentation.approved.txt -->
-<a id='snippet-DateScrubberTests.exampleForDocumentation.approved.txt'></a>
+<!-- snippet: DateScrubberTest.exampleForDocumentation.approved.txt -->
+<a id='snippet-DateScrubberTest.exampleForDocumentation.approved.txt'></a>
 ```txt
 created at [Date1]
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTests.exampleForDocumentation.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-DateScrubberTests.exampleForDocumentation.approved.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.exampleForDocumentation.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-DateScrubberTest.exampleForDocumentation.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Supported formats
 
-<!-- include: DateScrubberTests.supportedFormats.approved.md -->
+<!-- include: DateScrubberTest.supportedFormats.approved.md -->
 | Example Date | RegEx Pattern |
 | :-------------------- | :----------------------- | 
 | Tue May 13 16:30:00 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} |
