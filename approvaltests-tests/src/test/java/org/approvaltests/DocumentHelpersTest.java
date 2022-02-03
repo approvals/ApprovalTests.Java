@@ -18,7 +18,7 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class DocumentHelpers
+public class DocumentHelpersTest
 {
   @Test
   void listAllVerifyFunctions()
@@ -32,7 +32,7 @@ public class DocumentHelpers
   @Test
   public void testLineNumberOfThisMethod() throws NoSuchMethodException
   {
-    Method method = DocumentHelpers.class.getMethod("testLineNumberOfThisMethod");
+    Method method = DocumentHelpersTest.class.getMethod("testLineNumberOfThisMethod");
     CtMethod m = getMethodX(method);
     Assertions.assertEquals(33.0, getLineNumber(m), 1.01);
   }
@@ -40,7 +40,7 @@ public class DocumentHelpers
   {
     int modifier = 0;
     String simpleName = m.getDeclaringClass().getSimpleName();
-    if (simpleName.equals("DocumentHelpers"))
+    if (simpleName.equals("DocumentHelpersTest"))
     {
       modifier = -2;
     }

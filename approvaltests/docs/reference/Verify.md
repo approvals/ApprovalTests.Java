@@ -9,7 +9,7 @@
 ## API
 Approvals provides many convenience functions to verify different scenarios. Here is a list:
 
- * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L191-L194) (ApprovalApprover)   <!-- include: DocumentHelpers.listAllVerifyFunctions.approved.md -->
+ * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L191-L194) (ApprovalApprover)   <!-- include: DocumentHelpersTest.listAllVerifyFunctions.approved.md -->
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L174-L177) (ApprovalWriter)  
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L166-L169) (ApprovalWriter,ApprovalNamer)  
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L220-L223) (ExecutableCommand)  

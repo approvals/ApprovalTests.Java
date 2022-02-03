@@ -1,6 +1,3 @@
 Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)
 
 
-org.approvaltests.DocumentHelpers.listAllVerifyFunctions
-org.approvaltests.DocumentHelpers.testLineNumberOfThisMethod
-org.approvaltests.DocumentHelpers.testLineNumbers
