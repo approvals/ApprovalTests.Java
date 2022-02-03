@@ -7,7 +7,7 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestApprovalDirectoryConfig
+public class ApprovalDirectoryConfigTest
 {
   @Test
   public void testApprovalSubdirectory()

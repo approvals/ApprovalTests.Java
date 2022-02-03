@@ -9,5 +9,3 @@ org.approvaltests.Samples.testArray
 org.approvaltests.Samples.testObject
 org.approvaltests.Samples.testString
 org.approvaltests.namer.NamerSamples.useAlternativeSourceFileFinder
-org.approvaltests.packagesettings.basedirectory.TestApprovalDirectoryConfig.testApprovalBaseDirectory
-org.approvaltests.packagesettings.subdirectory.TestApprovalDirectoryConfig.testApprovalSubdirectory
