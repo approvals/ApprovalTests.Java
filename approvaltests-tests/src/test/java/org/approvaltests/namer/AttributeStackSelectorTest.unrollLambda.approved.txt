@@ -3,3 +3,4 @@ unroll lambda
 
 doStuff -> doStuff
 lambda$handleCallback$0 -> handleCallback
+test_in_kotlin$lambda-1$lambda-0 -> test_in_kotlin
