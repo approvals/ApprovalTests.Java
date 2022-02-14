@@ -49,11 +49,15 @@ public class Queryable<In> extends ArrayList<In>
   }
   public In first()
   {
-    return this.isEmpty() ? null : this.get(0);
+    return firstOrDefault(null);
   }
   public In first(Function1<In, Boolean> filter)
   {
     return Query.first(this, filter);
+  }
+  public In firstOrDefault(In defaultValue)
+  {
+    return this.isEmpty() ? defaultValue : this.get(0);
   }
   public boolean all(Function1<In, Boolean> filter)
   {

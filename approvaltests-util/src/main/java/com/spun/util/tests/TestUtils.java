@@ -9,6 +9,7 @@ import com.spun.util.io.FileUtils;
 import com.spun.util.io.StackElementLevelSelector;
 import com.spun.util.io.StackElementSelector;
 import org.lambda.functions.Function2;
+import org.lambda.query.Queryable;
 
 import javax.mail.Message;
 import javax.swing.JFileChooser;
@@ -223,14 +224,11 @@ public class TestUtils
   }
   public static String unrollLambda(String methodName)
   {
-    Matcher javaMatcher = unrollJavaLambdaPattern.matcher(methodName);
-    if (javaMatcher.matches())
-    { return javaMatcher.group(1); }
-    Matcher kotlinMatcher = unrollKotlinLambdaPattern.matcher(methodName);
-    if (kotlinMatcher.matches())
-    { return kotlinMatcher.group(1); }
-    return methodName;
+    return lambdaPatterns.select(p -> p.matcher(methodName)).where(Matcher::matches).select(m -> m.group(1))
+        .firstOrDefault(methodName);
   }
-  private static final Pattern unrollJavaLambdaPattern   = Pattern.compile("lambda\\$(.*)\\$\\d+");
-  private static final Pattern unrollKotlinLambdaPattern = Pattern.compile("(.*?)(\\$lambda-\\d+)+");
+  private static final Pattern            unrollJavaLambdaPattern   = Pattern.compile("lambda\\$(.*)\\$\\d+");
+  private static final Pattern            unrollKotlinLambdaPattern = Pattern.compile("(.*?)(\\$lambda-\\d+)+");
+  private static final Queryable<Pattern> lambdaPatterns            = Queryable.as(unrollJavaLambdaPattern,
+      unrollKotlinLambdaPattern);
 }
