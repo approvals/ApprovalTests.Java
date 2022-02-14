@@ -221,12 +221,13 @@ public class TestUtils
   {
     return className.replaceAll("\\$", ".");
   }
+
   public static String unrollLambda(String methodName)
   {
-    Pattern p = Pattern.compile("lambda\\$(.*)\\$\\d+");
-    Matcher m = p.matcher(methodName);
+    Matcher m = unrollJavaLambdaPattern.matcher(methodName);
     if (m.matches())
     { return m.group(1); }
     return methodName;
   }
+  private static final Pattern unrollJavaLambdaPattern = Pattern.compile("lambda\\$(.*)\\$\\d+");
 }
