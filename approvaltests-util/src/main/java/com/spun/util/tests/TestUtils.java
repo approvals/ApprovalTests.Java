@@ -224,9 +224,9 @@ public class TestUtils
 
   public static String unrollLambda(String methodName)
   {
-    Matcher m = unrollJavaLambdaPattern.matcher(methodName);
-    if (m.matches())
-    { return m.group(1); }
+    Matcher javaMatcher = unrollJavaLambdaPattern.matcher(methodName);
+    if (javaMatcher.matches())
+    { return javaMatcher.group(1); }
     return methodName;
   }
   private static final Pattern unrollJavaLambdaPattern = Pattern.compile("lambda\\$(.*)\\$\\d+");
