@@ -13,7 +13,7 @@ public class AttributeStackSelectorTest
   @Test
   void unrollLambda()
   {
-    String[] methodNames = {"doStuff", "lambda$handleCallback$0"};
+    String[] methodNames = {"doStuff", "lambda$handleCallback$0", "test_in_kotlin$lambda-1$lambda-0"};
     Approvals.verifyAll("unroll lambda", methodNames,
         m -> String.format("%s -> %s", m, TestUtils.unrollLambda(m)));
   }
