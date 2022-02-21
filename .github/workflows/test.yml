@@ -34,4 +34,4 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: https://github.com/approvals/ApprovalTests.Java/tree/master/.github/actions/dependabot-auto-merges
+      - uses: approvals/ApprovalTests.Java/tree/master/.github/actions/dependabot-auto-merges@master
