@@ -18,20 +18,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Set up JDK
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.java }}
-    - name: Build with Maven
-      run: mvn -B verify --file pom.xml
+#    - uses: actions/cache@v2
+#      with:
+#        path: ~/.m2/repository
+#        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+#        restore-keys: |
+#          ${{ runner.os }}-maven-
+#    - name: Set up JDK
+#      uses: actions/setup-java@v1
+#      with:
+#        java-version: ${{ matrix.java }}
+#    - name: Build with Maven
+#      run: mvn -B verify --file pom.xml
   auto-merge:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/dependabot-auto-merge
+      - uses: https://github.com/approvals/ApprovalTests.Java/tree/master/.github/actions/dependabot-auto-merges
