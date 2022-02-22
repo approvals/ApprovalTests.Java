@@ -50,11 +50,10 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.larseckart</groupId>
-            <artifactId>tcr-extension</artifactId>
-            <version>0.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/tcr-extension.jar</systemPath>
+            <groupId>com.larseckart</groupId>
+            <artifactId>junit-tcr-extensions</artifactId>
+            <version>0.0.1</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
