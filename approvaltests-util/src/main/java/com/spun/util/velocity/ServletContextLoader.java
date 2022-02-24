@@ -55,7 +55,7 @@ public class ServletContextLoader extends ResourceLoader
    * @return InputStream containing the template
    */
   @Override
-  public Reader getResourceReader(String source, String encoding) throws ResourceNotFoundException
+  public Reader getResourceReader(String source, String encoding)
   {
     if (source == null || source.length() == 0)
     { return null; }
