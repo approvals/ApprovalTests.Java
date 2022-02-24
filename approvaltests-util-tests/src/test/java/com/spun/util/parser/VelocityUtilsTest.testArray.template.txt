@@ -10,12 +10,11 @@ Arrays:
 
 Pagination: (offset 1, pagesize:4, 2)
 #foreach($s in $commons.asArray($array, 1,4,2))
- #if ($s.isFirst(0)) 
-  Page:  
+ #if ($s.isFirst(0))
+  Page:
  #end
  #if ($s.isFirst(1)) 
-  row: 
+    row:
  #end
- 
- $s.getIndex(1),$s.getStepCountForRound(1,1)) $commons.ternary($s.isCurrentIndexValid(), $s.get(), "*empty*") 
+    $s.getIndex(1),$s.getStepCountForRound(1,1)) $commons.ternary($s.isCurrentIndexValid(), $s.get(), "*empty*")
 #end

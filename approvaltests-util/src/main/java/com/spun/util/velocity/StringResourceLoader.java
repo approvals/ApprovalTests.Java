@@ -16,11 +16,14 @@ package com.spun.util.velocity;
  * limitations under the License.
  */
 import com.spun.util.StringUtils;
-import org.apache.commons.collections.ExtendedProperties;
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.resource.Resource;
 import org.apache.velocity.runtime.resource.loader.ResourceLoader;
+import org.apache.velocity.util.ExtProperties;
 
 import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 
 /**
  * This is a simple resource loader that loads the string as a template
@@ -28,6 +31,16 @@ import java.io.InputStream;
  **/
 public class StringResourceLoader extends ResourceLoader
 {
+  @Override
+  public void init(ExtProperties extProperties) {
+
+  }
+
+  @Override
+  public Reader getResourceReader(String source, String encoding) {
+    return new StringReader(source);
+  }
+
   public boolean isSourceModified(Resource resource)
   {
     return true;
@@ -35,12 +48,5 @@ public class StringResourceLoader extends ResourceLoader
   public long getLastModified(Resource resource)
   {
     return 0;
-  }
-  public synchronized InputStream getResourceStream(String name)
-  {
-    return StringUtils.convertToInputStream(name);
-  }
-  public void init(ExtendedProperties arg0)
-  {
   }
 }

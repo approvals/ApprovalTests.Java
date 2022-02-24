@@ -1,8 +1,6 @@
 package com.spun.util.velocity;
 
 import com.spun.util.ObjectUtils;
-import org.apache.velocity.runtime.RuntimeLogger;
-import org.apache.velocity.runtime.log.Log;
 import org.apache.velocity.runtime.parser.node.AbstractExecutor;
 import org.apache.velocity.runtime.parser.node.BooleanPropertyExecutor;
 import org.apache.velocity.runtime.parser.node.GetExecutor;
@@ -13,10 +11,11 @@ import org.apache.velocity.util.introspection.Info;
 import org.apache.velocity.util.introspection.Introspector;
 import org.apache.velocity.util.introspection.IntrospectorBase;
 import org.apache.velocity.util.introspection.Uberspect;
-import org.apache.velocity.util.introspection.UberspectLoggable;
 import org.apache.velocity.util.introspection.VelMethod;
 import org.apache.velocity.util.introspection.VelPropertyGet;
 import org.apache.velocity.util.introspection.VelPropertySet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -32,15 +31,14 @@ import java.util.Map;
  * @author <a href="mailto:geirm@optonline.net">Geir Magnusson Jr.</a>
  * @version $Id: UberspectImpl.java,v 1.2.4.1 2004/03/03 23:23:08 geirm Exp $
  */
-public class TestableUberspect implements Uberspect, UberspectLoggable
+public class TestableUberspect implements Uberspect
 {
   /**
    *  the default Velocity introspector
    */
-  private static IntrospectorBase introspector;
-  private static Introspector     introspectorWithLog;
-  private Log                     log;
   private static boolean          beKindToNulls = false;
+  private static Logger           log = LoggerFactory.getLogger(TestableUberspect.class);
+  private static Introspector     introspector = new Introspector(log);
   /**
    *  init - does nothing - we need to have setRuntimeLogger
    *  called before getting our introspector, as the default
@@ -48,10 +46,6 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
    */
   public void init()
   {
-  }
-  public void setRuntimeLogger(RuntimeLogger runtimeLogger)
-  {
-    throw new Error("this is deprecated");
   }
   public void setBeKindToNulls(boolean behavior)
   {
@@ -121,16 +115,16 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     { throw new VelocityParsingError("tried " + getPropertyText("null", identifier), i); }
     Class<? extends Object> claz = obj.getClass();
     // trying getFoo()
-    executor = new PropertyExecutor(log, introspectorWithLog, claz, identifier);
+    executor = new PropertyExecutor(log, introspector, claz, identifier);
     if (!executor.isAlive())
     {
       // trying  get("foo")
-      executor = new GetExecutor(log, introspectorWithLog, claz, identifier);
+      executor = new GetExecutor(log, introspector, claz, identifier);
     }
     if (!executor.isAlive())
     {
       // trying  isFoo()
-      executor = new BooleanPropertyExecutor(log, introspectorWithLog, claz, identifier);
+      executor = new BooleanPropertyExecutor(log, introspector, claz, identifier);
     }
     if (!executor.isAlive())
     { throw new VelocityParsingError("Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
@@ -208,6 +202,12 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       return method.getName();
     }
+
+    @Override
+    public Method getMethod() {
+      return method;
+    }
+
     public Class<?> getReturnType()
     {
       return method.getReturnType();
@@ -268,14 +268,5 @@ public class TestableUberspect implements Uberspect, UberspectLoggable
     {
       return vm.getMethodName();
     }
-  }
-  @Override
-  public void setLog(Log log)
-  {
-    introspector = new IntrospectorBase(log)
-    {
-    };
-    introspectorWithLog = new Introspector(log);
-    this.log = log;
   }
 }

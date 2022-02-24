@@ -1,9 +1,9 @@
 package org.approvaltests.reporters;
 
 import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
-import org.apache.commons.lang.StringUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.lambda.functions.Function0;
 
@@ -17,7 +17,7 @@ public class FileCaptureReporter implements ApprovalFailureReporter
   public FileCaptureReporter()
   {
     this("*** adding received file via FileCaptureReporter for further inspection",
-        () -> StringUtils.isNotEmpty(System.getenv("GITHUB_ACTIONS")));
+        () -> StringUtils.isNonZero(System.getenv("GITHUB_ACTIONS")));
   }
   public FileCaptureReporter(String message, Function0<Boolean> isGitRegistrationNeeded)
   {

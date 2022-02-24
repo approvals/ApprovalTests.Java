@@ -79,9 +79,9 @@
         </dependency>
         <dependency>
                 <groupId>org.apache.velocity</groupId>
-                <artifactId>velocity</artifactId>
+                <artifactId>velocity-engine-core</artifactId>
                 
-             <version>1.7</version>
+             <version>2.0</version>
         </dependency>
 
         <dependency>

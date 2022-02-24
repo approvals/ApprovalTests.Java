@@ -117,7 +117,7 @@ public class DocumentHelpersTest
     //        Class<?> parameterType = m.getParameterTypes()[0];
     Type typeParameters = m.getGenericParameterTypes()[0];
     String name = Query.last(StringUtils.split(typeParameters.getTypeName(), "."));
-    return org.apache.commons.lang.StringUtils.replace(name, "[]", "");
+    return name.replaceAll("\\[\\]", "");
   }
   private static int countNewLines(String code, int untilIndex)
   {
