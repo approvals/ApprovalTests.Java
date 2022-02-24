@@ -32,15 +32,14 @@ import java.io.StringReader;
 public class StringResourceLoader extends ResourceLoader
 {
   @Override
-  public void init(ExtProperties extProperties) {
-
+  public void init(ExtProperties extProperties)
+  {
   }
-
   @Override
-  public Reader getResourceReader(String source, String encoding) {
+  public Reader getResourceReader(String source, String encoding)
+  {
     return new StringReader(source);
   }
-
   public boolean isSourceModified(Resource resource)
   {
     return true;

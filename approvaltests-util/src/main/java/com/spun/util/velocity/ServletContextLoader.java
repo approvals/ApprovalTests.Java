@@ -47,7 +47,6 @@ public class ServletContextLoader extends ResourceLoader
     }
     //My_System.variable("paths", paths);
   }
-
   /**
    * Get an InputStream so that the Runtime can build a
    * template with it.
@@ -56,7 +55,8 @@ public class ServletContextLoader extends ResourceLoader
    * @return InputStream containing the template
    */
   @Override
-  public Reader getResourceReader(String source, String encoding) throws ResourceNotFoundException {
+  public Reader getResourceReader(String source, String encoding) throws ResourceNotFoundException
+  {
     if (source == null || source.length() == 0)
     { return null; }
     /* since the paths always ends in '/',
@@ -76,9 +76,8 @@ public class ServletContextLoader extends ResourceLoader
       }
     }
     throw new ResourceNotFoundException(
-            String.format("Template '%s' not found from %s", source, Arrays.asList(paths)));
+        String.format("Template '%s' not found from %s", source, Arrays.asList(paths)));
   }
-
   /**
    * Defaults to return false.
    */

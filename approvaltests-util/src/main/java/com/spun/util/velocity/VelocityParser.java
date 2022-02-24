@@ -77,7 +77,7 @@ public class VelocityParser
     try
     {
       props.put("directive.foreach.counter.initial.value", "0");
-//      props.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, NullLogChute.class.getName());
+      //      props.put(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, NullLogChute.class.getName());
       VelocityEngine engine = initializeEngine(props);
       VelocityContext context = new VelocityContext();
       Template velocityTemplate = engine.getTemplate(template);

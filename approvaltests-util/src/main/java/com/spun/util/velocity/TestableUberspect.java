@@ -36,9 +36,9 @@ public class TestableUberspect implements Uberspect
   /**
    *  the default Velocity introspector
    */
-  private static boolean          beKindToNulls = false;
-  private static Logger           log = LoggerFactory.getLogger(TestableUberspect.class);
-  private static Introspector     introspector = new Introspector(log);
+  private static boolean      beKindToNulls = false;
+  private static Logger       log           = LoggerFactory.getLogger(TestableUberspect.class);
+  private static Introspector introspector  = new Introspector(log);
   /**
    *  init - does nothing - we need to have setRuntimeLogger
    *  called before getting our introspector, as the default
@@ -202,12 +202,11 @@ public class TestableUberspect implements Uberspect
     {
       return method.getName();
     }
-
     @Override
-    public Method getMethod() {
+    public Method getMethod()
+    {
       return method;
     }
-
     public Class<?> getReturnType()
     {
       return method.getReturnType();
