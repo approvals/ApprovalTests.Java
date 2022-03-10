@@ -53,6 +53,7 @@ The best way to get started is download and open one of the starter projects:
   * [Gradle](https://github.com/approvals/approvaltests.java.starterproject.gradle)
 * [Kotlin](https://github.com/approvals/Approvaltests.Kotlin.StarterProject)
 * [Groovy](https://github.com/approvals/Approvaltests.Groovy.StarterProject)
+* [Scala](https://github.com/approvals/Approvaltests.Scala.StarterProject)
 
 These are standard projects and can be imported into any editor or IDE.  
 They also all have CI with Github actions.
