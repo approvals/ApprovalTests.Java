@@ -1,17 +1,18 @@
 package com.spun.util.logger;
 
-@SuppressWarnings("deprecation")
 public class Markers implements AutoCloseable
 {
+  private SimpleLoggerInstance log;
   private String text;
-  public Markers(String text)
+  public Markers(SimpleLoggerInstance log, String text)
   {
+    this.log = log;
     this.text = text;
-    SimpleLogger.markerIn(text);
+    log.markerIn(text);
   }
   @Override
   public void close()
   {
-    SimpleLogger.markerOut(text);
+    log.markerOut(text);
   }
 }

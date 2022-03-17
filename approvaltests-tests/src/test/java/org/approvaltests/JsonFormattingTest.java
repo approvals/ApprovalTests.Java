@@ -12,20 +12,20 @@ public class JsonFormattingTest
   public void testBasicFormatting()
   {
     String json = "{\"infos\":{\"address\":\"my address\",\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
-    Approvals.verifyJson(json);
+    JsonApprovals.verifyJson(json);
   }
   @Test
   public void testIncorrectFormatting()
   {
     String json = "{\"infos\":{address:my address,\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
-    Approvals.verifyJson(json);
+    JsonApprovals.verifyJson(json);
   }
   @Test
   void demonstrateNullIssueInVerifyJson()
   {
     // begin-snippet: CustomGsonBuilderShowingNull
     Person person = new Person("Max", null, 1);
-    Approvals.verifyAsJson(person, GsonBuilder::serializeNulls, GsonBuilder.class);
+    JsonApprovals.verifyAsJson(person, GsonBuilder::serializeNulls);
     // end-snippet
   }
   static class Person

@@ -344,7 +344,7 @@ public class SimpleLoggerInstance
   public Markers useMarkers()
   {
     final String text = extractMarkerText();
-    return new Markers(text);
+    return new Markers(this, text);
   }
   public StringBuffer logToString()
   {
