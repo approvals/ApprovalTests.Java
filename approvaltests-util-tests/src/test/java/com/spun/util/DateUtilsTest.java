@@ -1,5 +1,6 @@
 package com.spun.util;
 
+import org.apache.commons.lang3.time.DatePrinter;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 
@@ -9,9 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,10 +25,18 @@ public class DateUtilsTest
     try (WithTimeZone i = new WithTimeZone())
     {
       LocalDateTime time = LocalDateTime.of(2000, Month.JANUARY, 2, 3, 4, 5);
-      assertEquals("2 Jan 2000 03:04:05 GMT", DateUtils.toDateInUTC(time).toGMTString());
-      assertEquals("2 Jan 2000 02:04:05 GMT", DateUtils.toDate(time, ZoneOffset.ofHours(1)).toGMTString());
+      assertEquals("02 Jan 2000 03:04:05 UTC", toUtc(DateUtils.toDateInUTC(time)));
+      assertEquals("02 Jan 2000 02:04:05 UTC", toUtc(DateUtils.toDate(time, ZoneOffset.ofHours(1))));
     }
   }
+
+  private String toUtc(Date toDate) {
+    SimpleDateFormat sdf = new SimpleDateFormat();
+    sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+    sdf.applyPattern("dd MMM yyyy HH:mm:ss z");
+    return sdf.format(toDate);
+  }
+
   @Test
   public void testStartAndEndUseCases()
   {

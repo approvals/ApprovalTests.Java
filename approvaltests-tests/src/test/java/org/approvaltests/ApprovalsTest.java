@@ -22,7 +22,7 @@ public class ApprovalsTest
   @Test
   public void testAsJson()
   {
-    Approvals.verifyAsJson(new Rectangle(5, 10, 100, 200));
+    JsonApprovals.verifyAsJson(new Rectangle(5, 10, 100, 200));
   }
   @Test
   public void testWrongCall()

@@ -11,8 +11,6 @@
 * Think about removing MethodExcecutionPath
 * remove all warnings
 * handle manual install of intellij
-* build script to update gradle starter project during release process
-* or setup dependabot for maven & gradle and delete from deploy scripts
 * make the list Query returns  to extendable to reverse polish notation
 
 * update readme, add line for gradle

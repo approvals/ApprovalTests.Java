@@ -3,16 +3,13 @@ package org.approvaltests.scrubbers;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.velocity.VelocityApprovals;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DateScrubberTest
 {
@@ -53,15 +50,6 @@ public class DateScrubberTest
   @Test
   void supportedFormats()
   {
-    VelocityApprovals.verify(c -> {
-      c.put("formats", DateScrubber.getSupportedFormats());
-    }, ".md");
-  }
-  @Disabled
-  @Test
-  void nextWeek()
-  {
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    //    new DateScrubber(sdf);
+    VelocityApprovals.verify(c -> c.put("formats", DateScrubber.getSupportedFormats()), new Options().forFile().withExtension(".md"));
   }
 }
