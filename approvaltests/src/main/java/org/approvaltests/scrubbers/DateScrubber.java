@@ -54,11 +54,6 @@ public class DateScrubber extends RegExScrubber
         "No match found for %s.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 \n Current supported formats are: %s",
         formattedExample, Query.select(getSupportedFormats(), SupportedFormat::getRegex));
   }
-  @Override
-  public String toString()
-  {
-    return super.toString();
-  }
   public static class SupportedFormat
   {
     private final String[] examples;

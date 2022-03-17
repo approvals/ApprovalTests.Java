@@ -4,12 +4,6 @@ import java.io.File;
 
 public class Asserts
 {
-  public static void t()
-  {
-    // can you see it now?  good.
-    // how about this?  
-    // kind of slow...
-  }
   public static <T> T assertNotNull(String label, T o)
   {
     if (o == null)
