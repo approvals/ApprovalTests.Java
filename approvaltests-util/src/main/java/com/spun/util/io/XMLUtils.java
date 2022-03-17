@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class XMLUtils
 {
-  public static String locateFile(String fileLocation, String backupPaths[])
+  public static String locateFile(String fileLocation, String[] backupPaths)
   {
     String[] newArray = new String[backupPaths.length + 1];
     System.arraycopy(backupPaths, 0, newArray, 1, backupPaths.length);

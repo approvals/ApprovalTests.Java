@@ -22,7 +22,7 @@ public class DatabaseObjectXMLUtils
   {
     try
     {
-      DatabaseObject objects[] = extract(XMLUtils.parseXML(xml), xmlMaps);
+      DatabaseObject[] objects = extract(XMLUtils.parseXML(xml), xmlMaps);
       TemporaryCache<DatabaseObject> cache = new TemporaryCache<>(objects);
       cache.forceGenericObjectType();
       Stream.of(objects).map(o -> (Syncable<DatabaseObject>) o).forEach(s -> s.sync(cache));

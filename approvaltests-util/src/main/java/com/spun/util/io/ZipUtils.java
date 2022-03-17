@@ -99,7 +99,7 @@ public class ZipUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public static void main(String args[])
+  public static void main(String[] args)
   {
     zipDirectory("c:\\t", "c:\\t\\t.zip");
   }

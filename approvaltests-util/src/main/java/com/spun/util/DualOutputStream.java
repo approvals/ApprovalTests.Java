@@ -36,7 +36,7 @@ public class DualOutputStream extends OutputStream
     }
     display.write(b);
   }
-  public void write(byte b[])
+  public void write(byte[] b)
   {
     try
     {
@@ -49,7 +49,7 @@ public class DualOutputStream extends OutputStream
     display.println(b);
     flush();
   }
-  public void write(byte b[], int off, int len)
+  public void write(byte[] b, int off, int len)
   {
     try
     {

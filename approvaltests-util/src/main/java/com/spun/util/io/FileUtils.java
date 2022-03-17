@@ -42,13 +42,13 @@ public class FileUtils
   public static void deleteDirectory(File directory)
   {
     // delete all directory
-    File directories[] = directory.listFiles(new SimpleDirectoryFilter());
+    File[] directories = directory.listFiles(new SimpleDirectoryFilter());
     for (int i = 0; i < directories.length; i++)
     {
       deleteDirectory(directories[i]);
     }
     // Delete all Files.
-    File files[] = directory.listFiles(new SimpleFileFilter());
+    File[] files = directory.listFiles(new SimpleFileFilter());
     for (int i = 0; i < files.length; i++)
     {
       files[i].delete();
@@ -76,13 +76,13 @@ public class FileUtils
     ArrayList<File> list = new ArrayList<File>();
     if (!directory.isDirectory())
     { throw new Error("File is not a directory: " + directory.getName()); }
-    File directories[] = directory.listFiles(new SimpleDirectoryFilter());
+    File[] directories = directory.listFiles(new SimpleDirectoryFilter());
     directories = directories == null ? new File[0] : directories;
     for (int i = 0; i < directories.length; i++)
     {
       ArrayUtils.addArray(list, getRecursiveFileList(directories[i], filter));
     }
-    File files[] = directory.listFiles(filter);
+    File[] files = directory.listFiles(filter);
     ArrayUtils.addArray(list, files);
     return list.toArray(new File[list.size()]);
   }

@@ -40,7 +40,7 @@ public class LapTime
   {
     if (ArrayListOf == null)
     { return new LapTime[0]; }
-    LapTime array[] = new LapTime[ArrayListOf.size()];
+    LapTime[] array = new LapTime[ArrayListOf.size()];
     for (int i = 0; i < array.length; i++)
     {
       java.lang.Object rowObject = ArrayListOf.get(i);

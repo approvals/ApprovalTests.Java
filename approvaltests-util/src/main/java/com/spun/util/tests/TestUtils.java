@@ -191,7 +191,7 @@ public class TestUtils
   }
   public static StackTraceReflectionResult getCurrentFileForMethod(StackElementSelector stackElementSelector)
   {
-    StackTraceElement trace[] = ThreadUtils.getStackTrace();
+    StackTraceElement[] trace = ThreadUtils.getStackTrace();
     stackElementSelector.increment();
     return getCurrentFileForMethod(stackElementSelector, trace);
   }

@@ -57,7 +57,7 @@ public class SteppingIterator
   /** 
    * @return the index of the current Step.  
    **/
-  public static int getStepCountForRound(int forSteppingLevel, int onIndex, int stepping[], int indexBase)
+  public static int getStepCountForRound(int forSteppingLevel, int onIndex, int[] stepping, int indexBase)
   {
     if (forSteppingLevel == -1 || stepping[forSteppingLevel] == 1)
     {

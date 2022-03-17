@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class SQLUtils
 {
-  public static String createInSQLStatement(DatabaseObject from[])
+  public static String createInSQLStatement(DatabaseObject[] from)
   {
     from = (from == null) ? new DatabaseObject[0] : from;
     Integer[] array = new Integer[from.length];
@@ -18,11 +18,11 @@ public class SQLUtils
     }
     return createInSQLStatement((Object[]) array);
   }
-  public static String createInSQLStatement(String values[])
+  public static String createInSQLStatement(String[] values)
   {
     return createInSQLStatement((Object[]) values);
   }
-  public static String createInSQLStatement(Object values[])
+  public static String createInSQLStatement(Object[] values)
   {
     if (values == null || values.length == 0)
     { return "(null)"; }

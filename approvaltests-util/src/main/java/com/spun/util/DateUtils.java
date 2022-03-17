@@ -18,7 +18,7 @@ import java.util.TimeZone;
  **/
 public class DateUtils
 {
-  private static int TIME_SCALE[] = {Calendar.YEAR,
+  private static int[] TIME_SCALE = {Calendar.YEAR,
                                      Calendar.MONTH,
                                      Calendar.DATE,
                                      Calendar.HOUR_OF_DAY,
@@ -199,7 +199,7 @@ public class DateUtils
     }
     return rolled.getTime();
   }
-  public static void main(String args[])
+  public static void main(String[] args)
   {
     SimpleLogger.variable("Calendar.DATE = " + Calendar.DATE);
     SimpleLogger.variable("Year", setSignificantDigit(new GregorianCalendar(), Calendar.YEAR).getTime());

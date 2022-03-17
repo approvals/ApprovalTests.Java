@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DateUtilsTest
 {
-  private StartAndEndUseCases startAndEndUseCases[] = {new StartAndEndUseCases(Calendar.YEAR,
+  private StartAndEndUseCases[] startAndEndUseCases = {new StartAndEndUseCases(Calendar.YEAR,
       "2003.05.03 15:20:20:123", "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
   @Test
   public void testToDate()
@@ -60,8 +60,6 @@ public class DateUtilsTest
     Timestamp last = DateUtils.getLastOrCurrent(day);
     assertEquals(day, DateUtils.asCalendar(next).get(Calendar.DAY_OF_WEEK), "next thrusday");
     assertEquals(day, DateUtils.asCalendar(last).get(Calendar.DAY_OF_WEEK), "last thrusday");
-    //SimpleLogger.variable("next",next);
-    //SimpleLogger.variable("last",last);
     assertTrue(next.after(last), "order for " + next + " after" + last);
   }
   public static class StartAndEndUseCases

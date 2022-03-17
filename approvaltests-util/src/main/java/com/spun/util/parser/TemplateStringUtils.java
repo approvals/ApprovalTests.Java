@@ -26,7 +26,7 @@ public class TemplateStringUtils
   {
     return truncate(onString, maxLength, new String[]{"", "", minus1});
   }
-  private String truncate(String onString, int maxLength, String minus[])
+  private String truncate(String onString, int maxLength, String[] minus)
   {
     if (onString == null || onString.equals("null"))
     { return ""; }

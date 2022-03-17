@@ -20,7 +20,7 @@ public class LegacyApprovals
     Method m = null;
     for (Integer[] indexs : perms)
     {
-      Object p[] = getParameters(parametersVariations, indexs);
+      Object[] p = getParameters(parametersVariations, indexs);
       if (m == null)
       {
         m = new Parameters(p).getBestFitMethod(call.getClass(), method);

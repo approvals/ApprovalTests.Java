@@ -13,18 +13,18 @@ import java.util.HashMap;
  */
 public class ConfigXMLFileReader
 {
-  public static String loadXML(Class<?> clazz, String exclude[], String fileLocation, String[] backupPaths)
+  public static String loadXML(Class<?> clazz, String[] exclude, String fileLocation, String[] backupPaths)
   {
     String fileNameUsed = XMLUtils.locateFile(fileLocation, backupPaths);
     loadXML(clazz, exclude, fileNameUsed);
     return fileNameUsed;
   }
-  public static void loadXML(Class<?> clazz, String exclude[], String knownFileLocation)
+  public static void loadXML(Class<?> clazz, String[] exclude, String knownFileLocation)
   {
     HashMap<String, Object> properties = XMLUtils.parseProperties(knownFileLocation, new ConfigXMLNodeExtractor());
     ObjectUtils.throwAsError(() -> loadClass(clazz, exclude, properties));
   }
-  private static void loadClass(Class<?> clazz, String exclude[], HashMap<String, Object> properties)
+  private static void loadClass(Class<?> clazz, String[] exclude, HashMap<String, Object> properties)
   {
     Field[] fields = ConfigXMLFileWriter.getFields(clazz, exclude);
     for (int i = 0; i < fields.length; i++)

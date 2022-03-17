@@ -22,7 +22,7 @@ import java.util.Vector;
  */
 public class ArrayUtils
 {
-  public static <T> java.util.Collection<T> addArray(java.util.Collection<T> v, T array[])
+  public static <T> java.util.Collection<T> addArray(java.util.Collection<T> v, T[] array)
   {
     if ((array == null) || (v == null))
     { return v; }

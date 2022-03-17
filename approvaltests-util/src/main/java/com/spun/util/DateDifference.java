@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class DateDifference
 {
-  public static final String STANDARD_TIME_TEXT[] = {"Year",
+  public static final String[] STANDARD_TIME_TEXT = {"Year",
                                                      "Years",
                                                      "Month",
                                                      "Months",
@@ -31,7 +31,7 @@ public class DateDifference
   public static final String WEEKS                = "weeks";
   public static final String MONTHS               = "months";
   public static final String YEARS                = "years";
-  public static String       TIME_UNITS[]         = {YEARS,
+  public static String[] TIME_UNITS = {YEARS,
                                                      MONTHS,
                                                      WEEKS,
                                                      DAYS,
@@ -40,7 +40,7 @@ public class DateDifference
                                                      SECONDS,
                                                      MILLISECONDS};
   // assumes a 30 day month
-  private static int         TIME_SCALE[]         = {Calendar.YEAR,
+  private static int[] TIME_SCALE = {Calendar.YEAR,
                                                      Calendar.MONTH,
                                                      Calendar.WEEK_OF_YEAR,
                                                      Calendar.DATE,
@@ -48,7 +48,7 @@ public class DateDifference
                                                      Calendar.MINUTE,
                                                      Calendar.SECOND,
                                                      Calendar.MILLISECOND};
-  private static long        DIVIDERS[]           = {1000 * 60 * 60 * 24 * 365L,
+  private static long[] DIVIDERS = {1000 * 60 * 60 * 24 * 365L,
                                                      1000 * 60 * 60 * 24 * 30L,
                                                      1000 * 60 * 60 * 24 * 7L,
                                                      1000 * 60 * 60 * 24L,
@@ -231,7 +231,7 @@ public class DateDifference
     return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText,
         STANDARD_TIME_TEXT);
   }
-  public String getTimeText(int amount, int maxUnit, int minUnit, String nowText, String agoText, String units[])
+  public String getTimeText(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units)
   {
     //		My_System.variable("amount = " + amount + ", maxUnit = " + maxUnit +  ", minUnit = " + minUnit + ", nowText = " + nowText);
     if (amount == 0)

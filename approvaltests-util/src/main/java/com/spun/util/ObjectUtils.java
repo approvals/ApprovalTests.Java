@@ -53,7 +53,7 @@ public class ObjectUtils
   }
   public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
   {
-    Method methods[] = new Method[passedMethods.length];
+    Method[] methods = new Method[passedMethods.length];
     Class<?> clazz = o2.getClass();
     for (int i = 0; i < passedMethods.length; i++)
     {
@@ -163,7 +163,7 @@ public class ObjectUtils
   {
     assertInstance(new Class[]{clazz}, object);
   }
-  public static void assertInstance(Class<?> classes[], Object object)
+  public static void assertInstance(Class<?>[] classes, Object object)
   {
     if (object == null)
     {

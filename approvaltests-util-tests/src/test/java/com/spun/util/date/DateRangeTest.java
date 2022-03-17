@@ -30,7 +30,7 @@ public class DateRangeTest
   public void testFilter()
   {
     DateRange range = new DateRange(quickDate(20), quickDate(40));
-    Timestamp dates[] = {quickDate(50), quickDate(40), quickDate(30), quickDate(20), quickDate(10)};
+    Timestamp[] dates = {quickDate(50), quickDate(40), quickDate(30), quickDate(20), quickDate(10)};
     Approvals.verifyAll("Dates", Query.where(dates, d -> range.contains(d)));
   }
   public static Timestamp quickDate(int daysPastNewYears)

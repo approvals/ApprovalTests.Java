@@ -30,7 +30,7 @@ public class ResultSetWriter
       ArrayList<String[]> found = new ArrayList<String[]>();
       while (rs.next())
       {
-        String rowData[] = new String[columns];
+        String[] rowData = new String[columns];
         for (int i = 1; i <= columns; i++)
         {
           rowData[i - 1] = rs.getString(i);

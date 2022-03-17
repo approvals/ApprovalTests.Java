@@ -113,7 +113,7 @@ public class ColumnMetadata
   {
     if (vectorOf == null)
     { return new com.spun.util.database.ColumnMetadata[0]; }
-    com.spun.util.database.ColumnMetadata array[] = new com.spun.util.database.ColumnMetadata[vectorOf.size()];
+    com.spun.util.database.ColumnMetadata[] array = new com.spun.util.database.ColumnMetadata[vectorOf.size()];
     java.util.Iterator<ColumnMetadata> iterator = vectorOf.iterator();
     int i = 0;
     while (iterator.hasNext())

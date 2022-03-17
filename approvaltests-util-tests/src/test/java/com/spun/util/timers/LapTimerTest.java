@@ -32,10 +32,10 @@ public class LapTimerTest
       fail(e.getMessage());
     }
   }
-  public void checkTimer(LapTimer timer, int totalTime, int lapTimes[])
+  public void checkTimer(LapTimer timer, int totalTime, int[] lapTimes)
   {
     assertEquals(totalTime * 1000L, (Object) timer.getTotalTime(), "Total time");
-    LapTime times[] = timer.getLapTimes();
+    LapTime[] times = timer.getLapTimes();
     for (int i = 0; i < times.length; i++)
     {
       assertEquals(lapTimes[i] * 1000L, (Object) times[i].getLapTime(), "Lap[" + i + "]");

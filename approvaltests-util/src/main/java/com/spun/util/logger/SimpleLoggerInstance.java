@@ -105,7 +105,7 @@ public class SimpleLoggerInstance
   {
     try
     {
-      StackTraceElement trace[] = ThreadUtils.getStackTrace();
+      StackTraceElement[] trace = ThreadUtils.getStackTrace();
       StackTraceElement element = trace[4 + wrapperLevels];
       String className = element.getClassName();
       className = className.substring(className.lastIndexOf(".") + 1);
@@ -232,7 +232,7 @@ public class SimpleLoggerInstance
       throw ObjectUtils.throwAsError(e);
     }
   }
-  public synchronized void variable(String name, Object array[])
+  public synchronized void variable(String name, Object[] array)
   {
     if (!variable)
     { return; }
@@ -247,7 +247,7 @@ public class SimpleLoggerInstance
       logLine(timeStamp() + name + "[" + i + "] = " + array[i]);
     }
   }
-  public synchronized <T> void variable(T array[])
+  public synchronized <T> void variable(T[] array)
   {
     variable(null, array);
   }

@@ -53,11 +53,11 @@ public class SimpleLogger
   {
     log.variable(name, value);
   }
-  public synchronized static void variable(String name, Object array[])
+  public synchronized static void variable(String name, Object[] array)
   {
     log.variable(name, array);
   }
-  public synchronized static <T> void variable(T array[])
+  public synchronized static <T> void variable(T[] array)
   {
     log.variable(array);
   }

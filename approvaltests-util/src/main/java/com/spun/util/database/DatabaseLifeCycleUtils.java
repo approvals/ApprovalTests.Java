@@ -253,10 +253,6 @@ public class DatabaseLifeCycleUtils
   }
   private static String extractError(String commandLine, InputStream error)
   {
-    /*
-     Process whoami = Runtime.getRuntime().exec("whoami");
-     whoami.waitFor();
-     String userName = extractText(whoami.getInputStream());*/
     String errorText = extractText(error);
     return "Error Executing '" + commandLine + /*"' AS USER '" + userName + */"'- " + errorText;
   }

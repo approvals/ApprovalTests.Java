@@ -7,7 +7,7 @@ public class LapTimeStatistics
 {
   private String    label     = null;
   private EventTime totalTime = null;
-  private EventTime times[]   = null;
+  private EventTime[] times = null;
   public LapTimeStatistics(LapTimer lapTimer)
   {
     loadFirstLapTimer(lapTimer);
@@ -28,7 +28,7 @@ public class LapTimeStatistics
     }
     totalTime = new EventTime("Total Time", 0);
     totalTime.add(lapTimer.getTotalTime());
-    LapTime lapTimes[] = lapTimer.getLapTimes();
+    LapTime[] lapTimes = lapTimer.getLapTimes();
     times = new EventTime[lapTimes.length];
     for (int i = 0; i < lapTimes.length; i++)
     {
@@ -53,7 +53,7 @@ public class LapTimeStatistics
     else
     {
       totalTime.add(lapTimer.getTotalTime());
-      LapTime lapTimes[] = lapTimer.getLapTimes();
+      LapTime[] lapTimes = lapTimer.getLapTimes();
       if (lapTimes.length != times.length)
       { throw new Error("Tried to add a LapTimer with " + lapTimes.length + " laps. Must have " + times.length); }
       for (int i = 0; i < lapTimes.length; i++)

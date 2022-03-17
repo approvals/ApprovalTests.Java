@@ -27,14 +27,14 @@ public class PrintableTest
   @Test
   void testOverridingToString()
   {
-    Integer p1[] = {1, 2, 3, 4, 5};
+    Integer[] p1 = {1, 2, 3, 4, 5};
     CombinationApprovals.verifyAllCombinations(n -> n.get(), Printable.create(n -> "#" + n, p1));
   }
   @Test
   void testCreate()
   {
     // begin-snippet: printable_array_lambda
-    Printable<Integer> numbers[] = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
+    Printable<Integer>[] numbers = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
     Approvals.verifyAll("Custom toString method", numbers, p -> String.format("%s -> %s", p, p.get()));
     // end-snippet
   }
@@ -42,7 +42,7 @@ public class PrintableTest
   void testLabels()
   {
     // begin-snippet: printable_array_labels
-    Printable<Integer> labeled[] = Printable.with().label(1, "first").label(2, "second").label(3, "third")
+    Printable<Integer>[] labeled = Printable.with().label(1, "first").label(2, "second").label(3, "third")
         .label(4, "forth").label(5, "fifth").toArray();
     Approvals.verifyAll("Labeled", labeled, p -> String.format("%s -> %s", p, p.get()));
     // end-snippet

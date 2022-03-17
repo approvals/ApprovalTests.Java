@@ -23,7 +23,7 @@ public class DatabaseTransactionInfo
   }
   public static String getOriginatorText(int offset)
   {
-    StackTraceElement trace[] = ThreadUtils.getStackTrace();
+    StackTraceElement[] trace = ThreadUtils.getStackTrace();
     offset = offset + 2;
     StackTraceElement element = trace[offset];
     int size = trace.length - offset;

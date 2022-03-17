@@ -72,7 +72,7 @@ public class VelocityParser
     parse(template, props, process, out);
     return out.toString();
   }
-  public static Writer parse(String template, Properties props, ContextAware process[], Writer out)
+  public static Writer parse(String template, Properties props, ContextAware[] process, Writer out)
   {
     try
     {

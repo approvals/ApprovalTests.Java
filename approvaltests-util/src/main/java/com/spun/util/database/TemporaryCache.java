@@ -27,11 +27,11 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
       cache = Collections.EMPTY_MAP;
     }
   }
-  public TemporaryCache(T objects[])
+  public TemporaryCache(T[] objects)
   {
     this(objects, true);
   }
-  public TemporaryCache(T objects[], boolean linkBack)
+  public TemporaryCache(T[] objects, boolean linkBack)
   {
     this.linkBack = linkBack;
     cache = new HashMap<Integer, T>(objects.length);

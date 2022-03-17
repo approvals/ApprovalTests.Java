@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class PhoneNumberTest
 {
-  private static UseCase useCases[] = {new UseCase("858-775-2868", "(858)775-2868", "+1.858.775.2868"),
+  private static UseCase[] useCases = {new UseCase("858-775-2868", "(858)775-2868", "+1.858.775.2868"),
                                        new UseCase("(800)351-7765", "(800)351-7765", "+1.800.351.7765"),
                                        new UseCase("858-755", null, null),
                                        new UseCase("1858.775.2868", "(858)775-2868", "+1.858.775.2868"),

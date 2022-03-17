@@ -76,8 +76,8 @@ public class NumberUtils
   }
   public static int[] loadArray(String summaryString, String seperator, int defaultWhenLoading)
   {
-    String parts[] = StringUtils.split(summaryString, seperator);
-    int integers[] = new int[parts.length];
+    String[] parts = StringUtils.split(summaryString, seperator);
+    int[] integers = new int[parts.length];
     for (int i = 0; i < parts.length; i++)
     {
       integers[i] = load(parts[i], defaultWhenLoading);
@@ -95,7 +95,7 @@ public class NumberUtils
   /**
    * a unit test of sorts
    **/
-  public static void main(String args[])
+  public static void main(String[] args)
   {
     Random r = new Random();
     for (int i = 0; i < 20; i++)

@@ -31,14 +31,14 @@ public class DatabaseUtils
   public static final int                           SQLSERVER2000    = 5;
   public static final int                           MY_SQL           = 6;
   public static final int                           SQLSERVER2005    = 7;
-  public static final String                        DATABASE_TYPES[] = {"Access",
-                                                                        "PostgreSQL",
-                                                                        "Sybase",
-                                                                        "Oracle",
-                                                                        "Microsoft SQL Server  7.00",
-                                                                        "Microsoft SQL Server  2000",
-                                                                        "MySQL",
-                                                                        "Microsoft SQL Server"};
+  public static final String[]                      DATABASE_TYPES = {"Access",
+                                                                      "PostgreSQL",
+                                                                      "Sybase",
+                                                                      "Oracle",
+                                                                      "Microsoft SQL Server  7.00",
+                                                                      "Microsoft SQL Server  2000",
+                                                                      "MySQL",
+                                                                      "Microsoft SQL Server"};
   public static String getDatabaseType(int type)
   {
     return DATABASE_TYPES[type];

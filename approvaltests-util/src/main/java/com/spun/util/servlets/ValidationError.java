@@ -14,7 +14,7 @@ public class ValidationError extends RuntimeException
   private HashMap<String, String>     errors           = new HashMap<String, String>();
   private HashSet<String>             assertions       = null;
   private ValidationTracker           iterator         = null;
-  public ValidationError(Enum<?> enumumations[])
+  public ValidationError(Enum<?>[] enumumations)
   {
     this.assertions = new HashSet<String>();
     for (Enum<?> e : enumumations)
@@ -22,7 +22,7 @@ public class ValidationError extends RuntimeException
       this.assertions.add(e.toString());
     }
   }
-  public ValidationError(String assertions[])
+  public ValidationError(String[] assertions)
   {
     this.assertions = new HashSet<String>();
     if (assertions != null)

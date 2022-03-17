@@ -24,7 +24,7 @@ public class DateDifferenceTest
   private static final long HOUR_MS                          = 1000 * 60 * 60L;
   private static final long MINUTE_MS                        = 1000 * 60L;
   private static final long SECOND_MS                        = 1000L;
-  private long              getRoundedDifferenceUseCases[][] = {
+  private long[][] getRoundedDifferenceUseCases = {
                                                                 // wanted,                 round,            milli,                     expected
                                                                 {Calendar.MILLISECOND,
                                                                  Calendar.YEAR,
@@ -172,7 +172,7 @@ public class DateDifferenceTest
     int    minUnit;
     String nowText;
     String agoText;
-    String units[];
+    String[] units;
     long   milli;
     String expected;
     public GetTimeTextUseCase(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,

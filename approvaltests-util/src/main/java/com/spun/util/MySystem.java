@@ -60,11 +60,11 @@ public class MySystem
   {
     SimpleLogger.variable(name, value);
   }
-  public synchronized static void variable(String name, Object array[])
+  public synchronized static void variable(String name, Object[] array)
   {
     SimpleLogger.variable(name, array);
   }
-  public synchronized static void variable(Object array[])
+  public synchronized static void variable(Object[] array)
   {
     SimpleLogger.variable(array);
   }

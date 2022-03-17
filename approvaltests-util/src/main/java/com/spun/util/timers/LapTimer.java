@@ -141,7 +141,7 @@ public class LapTimer
    **/
   private String getPrintableLapTimesArray()
   {
-    LapTime times[] = getLapTimes();
+    LapTime[] times = getLapTimes();
     String output = "[";
     for (int i = 0; i < times.length; i++)
     {

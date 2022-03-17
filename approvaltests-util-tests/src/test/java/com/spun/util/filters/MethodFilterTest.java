@@ -15,7 +15,7 @@ public class MethodFilterTest
   public void testDate() throws Exception
   {
     SimpleDateFormat dateParser = new SimpleDateFormat("yyyy-MM-dd");
-    Date dates[] = {dateParser.parse("2006-01-01"), dateParser.parse("2006-12-01")};
+    Date[] dates = {dateParser.parse("2006-01-01"), dateParser.parse("2006-12-01")};
     Date date = dateParser.parse("2006-06-01");
     List<Date> results = Query.where(dates, d -> date.getTime() >= d.getTime());
     assertEquals(dates[0], results.get(0));

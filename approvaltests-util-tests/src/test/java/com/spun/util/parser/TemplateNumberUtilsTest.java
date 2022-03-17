@@ -27,7 +27,7 @@ public class TemplateNumberUtilsTest
   @Test
   public void testMax() throws Exception
   {
-    Double numbers[] = {10.1, 8.0, 13.5, 5.0};
+    Double[] numbers = {10.1, 8.0, 13.5, 5.0};
     assertEquals(13.5, TemplateNumberUtils.max((Number[]) numbers).getAmount());
   }
 }

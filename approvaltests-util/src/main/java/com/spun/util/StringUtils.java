@@ -91,7 +91,7 @@ public class StringUtils
   {
     if ((string == null) || (find == null) || (replace == null))
     { throw new NullPointerException(String.format("[string,find,replace] = [%s,%s,%s]", string, find, replace)); }
-    String parts[] = split(string, find, false);
+    String[] parts = split(string, find, false);
     if (parts.length == 1)
     { return string; }
     String result = "";
@@ -340,7 +340,7 @@ public class StringUtils
   {
     if (vectorOf == null)
     { return new String[0]; }
-    String array[] = new String[vectorOf.size()];
+    String[] array = new String[vectorOf.size()];
     java.util.Iterator<String> iterator = vectorOf.iterator();
     int i = 0;
     while (iterator.hasNext())
@@ -445,7 +445,7 @@ public class StringUtils
    **/
   public static String[] splitName(String fullName)
   {
-    String names[] = {null, null};
+    String[] names = {null, null};
     int split = fullName.lastIndexOf(' ');
     if (split != -1)
     {
@@ -558,7 +558,7 @@ public class StringUtils
   public static String toString(Map<?, ?> map)
   {
     StringBuffer b = new StringBuffer();
-    Object keySet[] = map.keySet().toArray();
+    Object[] keySet = map.keySet().toArray();
     Arrays.sort(keySet);
     for (Object key : keySet)
     {

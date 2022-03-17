@@ -23,10 +23,10 @@ import java.util.List;
  **/
 public class ConfigXMLFileWriter
 {
-  public static void writeToFile(Class<?> clazz, String fileName, String exclude[])
+  public static void writeToFile(Class<?> clazz, String fileName, String[] exclude)
   {
     Document domDocument = createDocument();
-    Field fields[] = getFields(clazz, exclude);
+    Field[] fields = getFields(clazz, exclude);
     for (int i = 0; i < fields.length; i++)
     {
       addLine(fields[i], domDocument);
@@ -53,7 +53,7 @@ public class ConfigXMLFileWriter
   }
   public static Field[] getFields(Class<?> clazz, String... exclude)
   {
-    Field fields[] = clazz.getFields();
+    Field[] fields = clazz.getFields();
     final List<String> excludeNames = Arrays.asList(exclude);
     Function1<Field, Boolean> selector = (Field a) -> (ClassUtils.IsPublicStatic(a)
         && ClassUtils.isPrimitiveField(a) && !excludeNames.contains(a.getName()));

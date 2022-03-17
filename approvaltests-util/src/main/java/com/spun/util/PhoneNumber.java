@@ -225,7 +225,7 @@ public class PhoneNumber
                                                       "995",
                                                       "996",
                                                       "998"};
-  private static final String  REASONS[]           = {"Phone Number Too Long or Too Short",
+  private static final String[] REASONS = {"Phone Number Too Long or Too Short",
                                                       "US Number must be length 10",
                                                       "Unknown Country Code"};
   /** The original value. */
