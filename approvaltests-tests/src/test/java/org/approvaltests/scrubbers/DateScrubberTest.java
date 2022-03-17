@@ -50,6 +50,7 @@ public class DateScrubberTest
   @Test
   void supportedFormats()
   {
-    VelocityApprovals.verify(c -> c.put("formats", DateScrubber.getSupportedFormats()), new Options().forFile().withExtension(".md"));
+    VelocityApprovals.verify(c -> c.put("formats", DateScrubber.getSupportedFormats()),
+        new Options().forFile().withExtension(".md"));
   }
 }

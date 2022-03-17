@@ -20,7 +20,8 @@ public class VelocityUtilsTest
   @Test
   public void testList()
   {
-    VelocityApprovals.verify(c -> c.put("array", Arrays.asList("one", "two", "three")), new Options().forFile().withExtension(".html"));
+    VelocityApprovals.verify(c -> c.put("array", Arrays.asList("one", "two", "three")),
+        new Options().forFile().withExtension(".html"));
   }
   @Test
   public void testDate()

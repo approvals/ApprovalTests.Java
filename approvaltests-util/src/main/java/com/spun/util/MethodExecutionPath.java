@@ -13,9 +13,9 @@ public class MethodExecutionPath implements Serializable
   private static final long       serialVersionUID         = 1L;
   public static final Object      NULL_ENCOUNTERED_ON_PATH = new Object();
   private Class<? extends Object> classType, returnType;
-  private String[] methodNames;
+  private String[]                methodNames;
   private Parameters[]            parameters;
-  private Method[] methods;
+  private Method[]                methods;
   public MethodExecutionPath(Class<? extends Object> clazz, String methodName)
   {
     this(clazz, new String[]{methodName}, null);

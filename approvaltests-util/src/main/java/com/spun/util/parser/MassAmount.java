@@ -4,10 +4,10 @@ import com.spun.util.StringUtils;
 
 public class MassAmount extends TemplateDouble
 {
-  public static final int     GRAMS              = 0;
-  public static final int     KILOGRAMS          = 1;
-  public static final int     POUNDS             = 2;
-  public static final String[] UNITS = {"Grams", "Kilograms", "Pounds"};
+  public static final int       GRAMS            = 0;
+  public static final int       KILOGRAMS        = 1;
+  public static final int       POUNDS           = 2;
+  public static final String[]  UNITS            = {"Grams", "Kilograms", "Pounds"};
   private static final double[] UNIT_CONVERSIONS = {1, .001, 0.00220467};
   public MassAmount(double amount)
   {

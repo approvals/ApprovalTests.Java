@@ -5,7 +5,7 @@ import java.util.Random;
 public class MockRandom extends Random
 {
   private static final long serialVersionUID = 1L;
-  private int[] returnValue;
+  private int[]             returnValue;
   private int               counter          = 0;
   public MockRandom(int[] returnValue)
   {

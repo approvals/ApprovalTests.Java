@@ -23,15 +23,15 @@ public class DateDifference
                                                      "Secs",
                                                      "Milli",
                                                      "Millis"};
-  public static final String MILLISECONDS         = "milliseconds";
-  public static final String SECONDS              = "seconds";
-  public static final String MINUTES              = "minutes";
-  public static final String HOURS                = "hours";
-  public static final String DAYS                 = "days";
-  public static final String WEEKS                = "weeks";
-  public static final String MONTHS               = "months";
-  public static final String YEARS                = "years";
-  public static String[] TIME_UNITS = {YEARS,
+  public static final String   MILLISECONDS       = "milliseconds";
+  public static final String   SECONDS            = "seconds";
+  public static final String   MINUTES            = "minutes";
+  public static final String   HOURS              = "hours";
+  public static final String   DAYS               = "days";
+  public static final String   WEEKS              = "weeks";
+  public static final String   MONTHS             = "months";
+  public static final String   YEARS              = "years";
+  public static String[]       TIME_UNITS         = {YEARS,
                                                      MONTHS,
                                                      WEEKS,
                                                      DAYS,
@@ -40,7 +40,7 @@ public class DateDifference
                                                      SECONDS,
                                                      MILLISECONDS};
   // assumes a 30 day month
-  private static int[] TIME_SCALE = {Calendar.YEAR,
+  private static int[]         TIME_SCALE         = {Calendar.YEAR,
                                                      Calendar.MONTH,
                                                      Calendar.WEEK_OF_YEAR,
                                                      Calendar.DATE,
@@ -48,7 +48,7 @@ public class DateDifference
                                                      Calendar.MINUTE,
                                                      Calendar.SECOND,
                                                      Calendar.MILLISECOND};
-  private static long[] DIVIDERS = {1000 * 60 * 60 * 24 * 365L,
+  private static long[]        DIVIDERS           = {1000 * 60 * 60 * 24 * 365L,
                                                      1000 * 60 * 60 * 24 * 30L,
                                                      1000 * 60 * 60 * 24 * 7L,
                                                      1000 * 60 * 60 * 24L,
@@ -56,7 +56,7 @@ public class DateDifference
                                                      1000 * 60L,
                                                      1000L,
                                                      1L};
-  private long               milli;
+  private long                 milli;
   public DateDifference(long timeDifference)
   {
     this.milli = timeDifference;

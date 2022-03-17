@@ -5,9 +5,9 @@ package com.spun.util.timers;
  **/
 public class LapTimeStatistics
 {
-  private String    label     = null;
-  private EventTime totalTime = null;
-  private EventTime[] times = null;
+  private String      label     = null;
+  private EventTime   totalTime = null;
+  private EventTime[] times     = null;
   public LapTimeStatistics(LapTimer lapTimer)
   {
     loadFirstLapTimer(lapTimer);

@@ -18,19 +18,19 @@ import java.util.Iterator;
  */
 public class DatabaseUtils
 {
-  private static ArrayList<DatabaseTransactionInfo> connections      = new ArrayList<DatabaseTransactionInfo>();
-  public static final int                           NEW              = 1;
-  public static final int                           NEW_MODIFIED     = 2;
-  public static final int                           OLD              = 3;
-  public static final int                           OLD_MODIFIED     = 4;
-  public static final int                           ACCESS           = 0;
-  public static final int                           POSTGRESQL       = 1;
-  public static final int                           SYBASE           = 2;
-  public static final int                           ORACLE           = 3;
-  public static final int                           SQLSERVER        = 4;
-  public static final int                           SQLSERVER2000    = 5;
-  public static final int                           MY_SQL           = 6;
-  public static final int                           SQLSERVER2005    = 7;
+  private static ArrayList<DatabaseTransactionInfo> connections    = new ArrayList<DatabaseTransactionInfo>();
+  public static final int                           NEW            = 1;
+  public static final int                           NEW_MODIFIED   = 2;
+  public static final int                           OLD            = 3;
+  public static final int                           OLD_MODIFIED   = 4;
+  public static final int                           ACCESS         = 0;
+  public static final int                           POSTGRESQL     = 1;
+  public static final int                           SYBASE         = 2;
+  public static final int                           ORACLE         = 3;
+  public static final int                           SQLSERVER      = 4;
+  public static final int                           SQLSERVER2000  = 5;
+  public static final int                           MY_SQL         = 6;
+  public static final int                           SQLSERVER2005  = 7;
   public static final String[]                      DATABASE_TYPES = {"Access",
                                                                       "PostgreSQL",
                                                                       "Sybase",

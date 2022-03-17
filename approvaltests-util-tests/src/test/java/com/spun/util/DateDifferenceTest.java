@@ -17,71 +17,71 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DateDifferenceTest
 {
-  private static final long YEAR_MS                          = 1000 * 60 * 60 * 24 * 365L;
-  private static final long MONTH_MS                         = 1000 * 60 * 60 * 24 * 30L;
+  private static final long YEAR_MS                      = 1000 * 60 * 60 * 24 * 365L;
+  private static final long MONTH_MS                     = 1000 * 60 * 60 * 24 * 30L;
   // private static final long WEEK_MS   = 1000 * 60 * 60 * 24 * 7L; 
-  private static final long DAY_MS                           = 1000 * 60 * 60 * 24L;
-  private static final long HOUR_MS                          = 1000 * 60 * 60L;
-  private static final long MINUTE_MS                        = 1000 * 60L;
-  private static final long SECOND_MS                        = 1000L;
-  private long[][] getRoundedDifferenceUseCases = {
-                                                                // wanted,                 round,            milli,                     expected
-                                                                {Calendar.MILLISECOND,
-                                                                 Calendar.YEAR,
-                                                                 YEAR_MS + 354,
-                                                                 354L},
-                                                                {Calendar.MILLISECOND,
-                                                                 Calendar.YEAR,
-                                                                 YEAR_MS - 354,
-                                                                 YEAR_MS - 354},
-                                                                {Calendar.DATE,
-                                                                 Calendar.YEAR,
-                                                                 YEAR_MS + 3 * DAY_MS,
-                                                                 3L},
-                                                                {Calendar.DATE,
-                                                                 Calendar.YEAR,
-                                                                 YEAR_MS - 3 * DAY_MS,
-                                                                 (YEAR_MS - 3 * DAY_MS) / DAY_MS},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.HOUR,
-                                                                 HOUR_MS + 3 * SECOND_MS,
-                                                                 3L},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.HOUR,
-                                                                 HOUR_MS - 3 * SECOND_MS,
-                                                                 (HOUR_MS - 3 * SECOND_MS) / SECOND_MS},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.HOUR,
-                                                                 HOUR_MS + 3 * MINUTE_MS,
-                                                                 3 * MINUTE_MS / SECOND_MS},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.HOUR,
-                                                                 HOUR_MS - 3 * MINUTE_MS,
-                                                                 (HOUR_MS - 3 * MINUTE_MS) / SECOND_MS},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.MINUTE,
-                                                                 MINUTE_MS + 3 * SECOND_MS,
-                                                                 3L},
-                                                                {Calendar.SECOND,
-                                                                 Calendar.MINUTE,
-                                                                 MINUTE_MS - 3 * SECOND_MS,
-                                                                 (MINUTE_MS - 3 * SECOND_MS) / SECOND_MS},};
-  String[]                  unitsArray                       = {"Year",
-                                                                "Years",
-                                                                "Month",
-                                                                "Months",
-                                                                "Week",
-                                                                "Weeks",
-                                                                "Day",
-                                                                "Days",
-                                                                "Hour",
-                                                                "Hours",
-                                                                "Min",
-                                                                "Mins",
-                                                                "Sec",
-                                                                "Secs",
-                                                                "Milli",
-                                                                "Millis"};
+  private static final long DAY_MS                       = 1000 * 60 * 60 * 24L;
+  private static final long HOUR_MS                      = 1000 * 60 * 60L;
+  private static final long MINUTE_MS                    = 1000 * 60L;
+  private static final long SECOND_MS                    = 1000L;
+  private long[][]          getRoundedDifferenceUseCases = {
+                                                            // wanted,                 round,            milli,                     expected
+                                                            {Calendar.MILLISECOND,
+                                                             Calendar.YEAR,
+                                                             YEAR_MS + 354,
+                                                             354L},
+                                                            {Calendar.MILLISECOND,
+                                                             Calendar.YEAR,
+                                                             YEAR_MS - 354,
+                                                             YEAR_MS - 354},
+                                                            {Calendar.DATE,
+                                                             Calendar.YEAR,
+                                                             YEAR_MS + 3 * DAY_MS,
+                                                             3L},
+                                                            {Calendar.DATE,
+                                                             Calendar.YEAR,
+                                                             YEAR_MS - 3 * DAY_MS,
+                                                             (YEAR_MS - 3 * DAY_MS) / DAY_MS},
+                                                            {Calendar.SECOND,
+                                                             Calendar.HOUR,
+                                                             HOUR_MS + 3 * SECOND_MS,
+                                                             3L},
+                                                            {Calendar.SECOND,
+                                                             Calendar.HOUR,
+                                                             HOUR_MS - 3 * SECOND_MS,
+                                                             (HOUR_MS - 3 * SECOND_MS) / SECOND_MS},
+                                                            {Calendar.SECOND,
+                                                             Calendar.HOUR,
+                                                             HOUR_MS + 3 * MINUTE_MS,
+                                                             3 * MINUTE_MS / SECOND_MS},
+                                                            {Calendar.SECOND,
+                                                             Calendar.HOUR,
+                                                             HOUR_MS - 3 * MINUTE_MS,
+                                                             (HOUR_MS - 3 * MINUTE_MS) / SECOND_MS},
+                                                            {Calendar.SECOND,
+                                                             Calendar.MINUTE,
+                                                             MINUTE_MS + 3 * SECOND_MS,
+                                                             3L},
+                                                            {Calendar.SECOND,
+                                                             Calendar.MINUTE,
+                                                             MINUTE_MS - 3 * SECOND_MS,
+                                                             (MINUTE_MS - 3 * SECOND_MS) / SECOND_MS},};
+  String[]                  unitsArray                   = {"Year",
+                                                            "Years",
+                                                            "Month",
+                                                            "Months",
+                                                            "Week",
+                                                            "Weeks",
+                                                            "Day",
+                                                            "Days",
+                                                            "Hour",
+                                                            "Hours",
+                                                            "Min",
+                                                            "Mins",
+                                                            "Sec",
+                                                            "Secs",
+                                                            "Milli",
+                                                            "Millis"};
   private GetTimeTextUseCase[] getTimeTextUseCases()
   {
     return new GetTimeTextUseCase[]{new GetTimeTextUseCase(5, Calendar.YEAR, Calendar.MILLISECOND, "now", "",
@@ -167,14 +167,14 @@ public class DateDifferenceTest
   }
   private class GetTimeTextUseCase
   {
-    int    amount;
-    int    maxUnit;
-    int    minUnit;
-    String nowText;
-    String agoText;
+    int      amount;
+    int      maxUnit;
+    int      minUnit;
+    String   nowText;
+    String   agoText;
     String[] units;
-    long   milli;
-    String expected;
+    long     milli;
+    String   expected;
     public GetTimeTextUseCase(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         long milli, String expected)
     {

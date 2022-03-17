@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 
 public class AttributeStackSelector implements StackElementSelector
 {
-  public static String[] classNames = {"org.testng.annotations.Test",
-                                       "org.junit.Test",
-                                       "org.junit.jupiter.api.Test",
-                                       "org.junit.jupiter.api.TestFactory",
-                                       "org.junit.jupiter.api.RepeatedTest",
-                                       "org.junit.jupiter.params.ParameterizedTest"};
+  public static String[]                    classNames = {"org.testng.annotations.Test",
+                                                          "org.junit.Test",
+                                                          "org.junit.jupiter.api.Test",
+                                                          "org.junit.jupiter.api.TestFactory",
+                                                          "org.junit.jupiter.api.RepeatedTest",
+                                                          "org.junit.jupiter.params.ParameterizedTest"};
   private List<Class<? extends Annotation>> attributes;
   public AttributeStackSelector()
   {

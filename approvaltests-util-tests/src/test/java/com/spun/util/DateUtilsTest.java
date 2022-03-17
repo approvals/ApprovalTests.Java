@@ -29,14 +29,13 @@ public class DateUtilsTest
       assertEquals("02 Jan 2000 02:04:05 UTC", toUtc(DateUtils.toDate(time, ZoneOffset.ofHours(1))));
     }
   }
-
-  private String toUtc(Date toDate) {
+  private String toUtc(Date toDate)
+  {
     SimpleDateFormat sdf = new SimpleDateFormat();
     sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
     sdf.applyPattern("dd MMM yyyy HH:mm:ss z");
     return sdf.format(toDate);
   }
-
   @Test
   public void testStartAndEndUseCases()
   {

@@ -13,21 +13,21 @@ public class EventTime
   public enum SortBy {
                       NAME, COUNT, TOTAL_TIME, AVERAGE_TIME, MIN_TIME, MAX_TIME, EXCEEDED_COUNT
   }
-  private static final String[] enumeration = {"unknown",
-                                                   "name",
-                                                   "count",
-                                                   "total time",
-                                                   "average time",
-                                                   "min time",
-                                                   "max time",
-                                                   "excceded count"};
-  private int                 count             = 0;
-  private long                totalTime         = 0;
-  private String              label             = null;
-  private long                maxTime           = 0;
-  private long                minTime           = Long.MAX_VALUE;
-  private long                timeLimit         = 0;
-  private Counter             timeLimitExceeded = null;
+  private static final String[] enumeration       = {"unknown",
+                                                     "name",
+                                                     "count",
+                                                     "total time",
+                                                     "average time",
+                                                     "min time",
+                                                     "max time",
+                                                     "excceded count"};
+  private int                   count             = 0;
+  private long                  totalTime         = 0;
+  private String                label             = null;
+  private long                  maxTime           = 0;
+  private long                  minTime           = Long.MAX_VALUE;
+  private long                  timeLimit         = 0;
+  private Counter               timeLimitExceeded = null;
   public EventTime()
   {
   }
