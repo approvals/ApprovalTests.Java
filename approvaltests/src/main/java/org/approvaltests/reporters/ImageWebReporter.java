@@ -10,11 +10,36 @@ public class ImageWebReporter implements EnvironmentAwareReporter
   @Override
   public void report(String received, String approved)
   {
-    String text = "<html><body><center><table border=1><tr><td><img src=\"file:///%s\"></td><td><img src=\"file:///%s\"></td></tr><tr><td>approved</td><td>received</td></tr></table>  %s <br/> <b>to approve :</b> copy clipboard to command window  <br/> <font size=1>%s</font></center></body></html>";
+    //language=HTML
+    String text = "<html>\n" +
+            "<script>\n" +
+            "    function copyToClipboard() {\n" +
+            "        const copyText = document.getElementById(\"moveText\");\n" +
+            "        navigator.clipboard.writeText(copyText.textContent);\n" +
+            "    }\n" +
+            "</script>\n" +
+            "<body>\n" +
+            "<center>\n" +
+            "    <table border=1>\n" +
+            "        <tr>\n" +
+            "            <td><img src=\"file:///%s\"></td>\n" +
+            "            <td><img src=\"file:///%s\"></td>\n" +
+            "        </tr>\n" +
+            "        <tr>\n" +
+            "            <td>approved</td>\n" +
+            "            <td>received</td>\n" +
+            "        </tr>\n" +
+            "    </table>\n" +
+            "    %s <br/> <b>to approve :</b> copy clipboard to command window <br/> <font size=1 id=\"moveText\">%s</font>\n" +
+            "    <br /><button onclick=\"copyToClipboard()\">Copy to clipboard</button>\n" +
+            "</center>\n" +
+            "</body>\n" +
+            "</html>\n";
     String moveText = ClipboardReporter.getAcceptApprovalText(received, approved);
     text = String.format(text, approved, received, received, moveText);
     TestUtils.displayHtml(text);
   }
+
   /**
    * We assume any environment that is not headless will have a web browser to display the image in a web page.
    */

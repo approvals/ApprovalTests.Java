@@ -45,7 +45,7 @@ public class ClipboardReporter implements EnvironmentAwareReporter
     }
     else
     {
-      return String.format("mv %s %s", formatFilePathForCommandLine(received),
+      return String.format("mv -f %s %s", formatFilePathForCommandLine(received),
           formatFilePathForCommandLine(approved));
     }
   }
