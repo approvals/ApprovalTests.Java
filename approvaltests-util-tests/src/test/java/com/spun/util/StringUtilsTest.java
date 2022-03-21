@@ -4,7 +4,10 @@ import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -77,6 +80,16 @@ public class StringUtilsTest
   public void testWriteToString()
   {
     Approvals.verify(StringUtils.toString("things", new Object[]{1, null, "hi"}));
+  }
+  @Test
+  void testSortedMap()
+  {
+    Map<String, String> sortedMap = new TreeMap<>((s1, s2) -> s1.length() - s2.length());
+    sortedMap.put("c", "1");
+    sortedMap.put("mmmm", "1");
+    sortedMap.put("aaa", "1");
+    sortedMap.put("zz", "1");
+    Approvals.verify(sortedMap);
   }
   public class SplitUseCase
   {

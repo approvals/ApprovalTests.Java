@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.SortedMap;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -559,7 +560,9 @@ public class StringUtils
   {
     StringBuffer b = new StringBuffer();
     Object[] keySet = map.keySet().toArray();
-    Arrays.sort(keySet);
+    if (!(map instanceof SortedMap)) {
+      Arrays.sort(keySet);
+    }
     for (Object key : keySet)
     {
       b.append(String.format("%s : %s \n", key, map.get(key)));
