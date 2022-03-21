@@ -560,7 +560,8 @@ public class StringUtils
   {
     StringBuffer b = new StringBuffer();
     Object[] keySet = map.keySet().toArray();
-    if (!(map instanceof SortedMap)) {
+    if (!(map instanceof SortedMap))
+    {
       Arrays.sort(keySet);
     }
     for (Object key : keySet)
