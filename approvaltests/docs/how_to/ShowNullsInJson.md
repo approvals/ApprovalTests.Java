@@ -11,7 +11,7 @@ here is an example on how to do that.
 <a id='snippet-customgsonbuildershowingnull'></a>
 ```java
 Person person = new Person("Max", null, 1);
-Approvals.verifyAsJson(person, GsonBuilder::serializeNulls, GsonBuilder.class);
+JsonApprovals.verifyAsJson(person, GsonBuilder::serializeNulls);
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/JsonFormattingTest.java#L26-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-customgsonbuildershowingnull' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

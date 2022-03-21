@@ -26,5 +26,5 @@ try (WithTimeZone tz = new WithTimeZone("UTC"))
 }
 // The computer's time zone will revert to previous setting here
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/parser/VelocityUtilsTest.java#L36-L42' title='Snippet source file'>snippet source</a> | <a href='#snippet-with_time_zone' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/parser/VelocityUtilsTest.java#L38-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-with_time_zone' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

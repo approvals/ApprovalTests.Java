@@ -61,7 +61,7 @@ For convenience, if you want to do this to a whole list of items we have
 <!-- snippet: printable_array_lambda -->
 <a id='snippet-printable_array_lambda'></a>
 ```java
-Printable<Integer> numbers[] = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
+Printable<Integer>[] numbers = Printable.create(n -> "#" + n, 1, 2, 3, 4, 5);
 Approvals.verifyAll("Custom toString method", numbers, p -> String.format("%s -> %s", p, p.get()));
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/PrintableTest.java#L36-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-printable_array_lambda' title='Start of snippet'>anchor</a></sup>
@@ -91,7 +91,7 @@ We also has a convenience builder if you want each object to have it's own label
 <!-- snippet: printable_array_labels -->
 <a id='snippet-printable_array_labels'></a>
 ```java
-Printable<Integer> labeled[] = Printable.with().label(1, "first").label(2, "second").label(3, "third")
+Printable<Integer>[] labeled = Printable.with().label(1, "first").label(2, "second").label(3, "third")
     .label(4, "forth").label(5, "fifth").toArray();
 Approvals.verifyAll("Labeled", labeled, p -> String.format("%s -> %s", p, p.get()));
 ```
