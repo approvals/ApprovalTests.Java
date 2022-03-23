@@ -1,8 +1,8 @@
 [with spaces.txt, with spaces.txt, true] => move /Y "with spaces.txt"  "with spaces.txt" 
-[with spaces.txt, with spaces.txt, false] => mv "with spaces.txt" "with spaces.txt" 
+[with spaces.txt, with spaces.txt, false] => mv -f "with spaces.txt" "with spaces.txt" 
 [with spaces.txt, withoutSpaces.txt, true] => move /Y "with spaces.txt"  "withoutSpaces.txt" 
-[with spaces.txt, withoutSpaces.txt, false] => mv "with spaces.txt" withoutSpaces.txt 
+[with spaces.txt, withoutSpaces.txt, false] => mv -f "with spaces.txt" withoutSpaces.txt 
 [withoutSpaces.txt, with spaces.txt, true] => move /Y "withoutSpaces.txt"  "with spaces.txt" 
-[withoutSpaces.txt, with spaces.txt, false] => mv withoutSpaces.txt "with spaces.txt" 
+[withoutSpaces.txt, with spaces.txt, false] => mv -f withoutSpaces.txt "with spaces.txt" 
 [withoutSpaces.txt, withoutSpaces.txt, true] => move /Y "withoutSpaces.txt"  "withoutSpaces.txt" 
-[withoutSpaces.txt, withoutSpaces.txt, false] => mv withoutSpaces.txt withoutSpaces.txt 
+[withoutSpaces.txt, withoutSpaces.txt, false] => mv -f withoutSpaces.txt withoutSpaces.txt 
