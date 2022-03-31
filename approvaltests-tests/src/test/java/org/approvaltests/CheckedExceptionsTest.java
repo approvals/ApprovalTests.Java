@@ -11,14 +11,14 @@ import java.util.List;
 import static org.approvaltests.MethodVerification.getClasses;
 import static org.approvaltests.MethodVerification.verifyMethodSignatures;
 
-public class CheckedExceptionsTest {
+public class CheckedExceptionsTest
+{
   @Test
   void testTheVerifyApi()
   {
     verifyMethodSignatures("Methods with checked exceptions", getAllClasses(),
-            this::getMethodsWithCheckedExceptions);
+        this::getMethodsWithCheckedExceptions);
   }
-
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
@@ -27,8 +27,7 @@ public class CheckedExceptionsTest {
   }
   private Queryable<Class<?>> getAllClasses()
   {
-    return getClasses("..", p -> p.contains("main"), 
-            p1 -> p1.contains(".approvaltests.src.") || p1.contains(".approvaltests-util."));
+    return getClasses("..", p -> p.contains("main"),
+        p1 -> p1.contains(".approvaltests.src.") || p1.contains(".approvaltests-util."));
   }
-
 }

@@ -15,8 +15,9 @@ public class TestFilesTest
   @Test
   void testTestFileNamesEndInTest()
   {
-    verifyMethodSignatures("Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)", 
-            getAllClasses(), this::getTestMethods);
+    verifyMethodSignatures(
+        "Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)",
+        getAllClasses(), this::getTestMethods);
   }
   private List<Method> getTestMethods(Class<?> aClass)
   {
@@ -26,7 +27,6 @@ public class TestFilesTest
   }
   private Queryable<Class<?>> getAllClasses()
   {
-    return getClasses(".", p -> p.contains(".test."), 
-            p1 -> !p1.contains("Test.java"));
+    return getClasses(".", p -> p.contains(".test."), p1 -> !p1.contains("Test.java"));
   }
 }
