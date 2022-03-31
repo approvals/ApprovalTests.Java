@@ -1,13 +1,12 @@
 # Code
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
-* better default FrontloadedReporter to handle CI
 * NamedEnvironment with execute around pattern?
 
 * easier API for custom file name & location?! (issue 2, 51)
 ** Options for file path
 ** update mrunit and fix tests
 
-* Think about removing MethodExcecutionPath
+* Think about removing MethodExcecutionPath (not now)
 * remove all warnings
 * handle manual install of intellij
 * make the list Query returns  to extendable to reverse polish notation
