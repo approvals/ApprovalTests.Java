@@ -40,13 +40,7 @@ public class TestFilesTest
   }
   private Queryable<Class<?>> getAllClasses()
   {
-    String startingDirectory = ".";
-    Function1<String, Boolean> pathSelector = p -> p.contains(".test.");
-    Function1<String, Boolean> secondaryPathSelector = p -> !p.contains("Test.java");
-    File[] files = FileUtils.getRecursiveFileList(new File(startingDirectory), f -> f.getName().endsWith(".java"));
-    Queryable<String> paths = Query.select(files,
-        Functions.unchecked(f -> f.getCanonicalPath().replace(File.separatorChar, '.')));
-    paths = paths.where(pathSelector).where(secondaryPathSelector);
-    return paths.select(f -> CheckedExceptionsTest.getJavaClass(f));
+    return CheckedExceptionsTest.getClasses(".", p -> p.contains(".test."), 
+            p1 -> !p1.contains("Test.java"));
   }
 }
