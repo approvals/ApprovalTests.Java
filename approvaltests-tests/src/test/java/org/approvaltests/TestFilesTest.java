@@ -43,28 +43,6 @@ public class TestFilesTest
     Queryable<String> paths = Query.select(files,
         Functions.unchecked(f -> f.getCanonicalPath().replace(File.separatorChar, '.')));
     paths = paths.where(p -> p.contains(".test.")).where(p -> !p.contains("Test.java"));
-    return paths.select(f -> getJavaClass(f));
-  }
-  private Class<?> getJavaClass(String path)
-  {
-    String className = path.substring(0, path.length() - ".java".length());
-    if (className.contains(".com."))
-    {
-      className = className.substring(className.indexOf(".com.") + 1);
-    }
-    if (className.contains(".org."))
-    {
-      className = className.substring(className.indexOf(".org.") + 1);
-    }
-    try
-    {
-      Class<?> aClass = Class.forName(className);
-      return aClass;
-    }
-    catch (Throwable e)
-    {
-      SimpleLogger.variable("Path", path);
-      throw ObjectUtils.throwAsError(e);
-    }
+    return paths.select(f -> CheckedExceptionsTest.getJavaClass(f));
   }
 }

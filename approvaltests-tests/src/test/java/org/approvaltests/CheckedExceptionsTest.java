@@ -44,7 +44,7 @@ public class CheckedExceptionsTest
         .where(p -> p.contains(".approvaltests.src.") || p.contains(".approvaltests-util."));
     return paths.select(f -> getJavaClass(f));
   }
-  private Class<?> getJavaClass(String path)
+  public static Class<?> getJavaClass(String path)
   {
     String className = path.substring(0, path.length() - ".java".length());
     if (className.contains(".com."))
