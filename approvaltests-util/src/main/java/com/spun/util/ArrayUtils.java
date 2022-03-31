@@ -49,9 +49,14 @@ public class ArrayUtils
     }
     return b.toString();
   }
-  public static Vector toReverseVector(Vector<Object> vector)
+
+  /**
+   * @deprecated for removal in 16.0.0
+   */
+  @Deprecated
+  public static Vector<Object> toReverseVector(Vector<Object> vector)
   {
-    Vector<Object> reverse = new Vector<Object>(vector.size());
+    Vector<Object> reverse = new Vector<>(vector.size());
     for (int i = vector.size() - 1; i >= 0; i--)
     {
       reverse.add(vector.elementAt(i));
