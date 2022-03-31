@@ -5,6 +5,7 @@ import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
+import org.lambda.functions.Function1;
 import org.lambda.functions.Functions;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -37,11 +38,14 @@ public class CheckedExceptionsTest
   }
   private Queryable<Class<?>> getAllClasses()
   {
-    File[] files = FileUtils.getRecursiveFileList(new File(".."), f -> f.getName().endsWith(".java"));
+    String startingDirectory = "..";
+    Function1<String, Boolean> pathSelector = p -> p.contains("main");
+    Function1<String, Boolean> secondaryPathSelector = p -> p.contains(".approvaltests.src.") || p.contains(".approvaltests-util.");
+    File[] files = FileUtils.getRecursiveFileList(new File(startingDirectory), f -> f.getName().endsWith(".java"));
     Queryable<String> paths = Query.select(files,
         Functions.unchecked(f -> f.getCanonicalPath().replace(File.separatorChar, '.')));
-    paths = paths.where(p -> p.contains("main"))
-        .where(p -> p.contains(".approvaltests.src.") || p.contains(".approvaltests-util."));
+    paths = paths.where(pathSelector)
+        .where(secondaryPathSelector);
     return paths.select(f -> getJavaClass(f));
   }
   public static Class<?> getJavaClass(String path)
