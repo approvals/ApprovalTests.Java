@@ -1,5 +1,4 @@
 # Code
-* Clean up duplication in CheckedExceptionsTest and TestFileNamesTest
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
 * better default FrontloadedReporter to handle CI
 * NamedEnvironment with execute around pattern?
