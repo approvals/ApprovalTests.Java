@@ -13,6 +13,7 @@ import org.lambda.query.Queryable;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Collection;
 import java.util.List;
 
 public class TestFilesTest
@@ -20,17 +21,8 @@ public class TestFilesTest
   @Test
   void testTestFileNamesEndInTest()
   {
-    // Get all of the classes for all the packages
-    Queryable<Class<?>> classes = getAllClasses();
-    // Filter for methods in the classes that have a checked exception
-    Queryable<String> methods = classes.selectMany(s -> getTestMethods(s))
-        .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(), m.getName()))
-        .orderBy(m -> m.toString());
-    // Verify the methods
-    Options options = new Options();
-    Approvals.verifyAll(
-        "Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)",
-        methods, c -> c.toString(), options);
+    CheckedExceptionsTest.verifyMethodSignatures("Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)", 
+            getAllClasses(), this::getTestMethods);
   }
   private List<Method> getTestMethods(Class<?> aClass)
   {

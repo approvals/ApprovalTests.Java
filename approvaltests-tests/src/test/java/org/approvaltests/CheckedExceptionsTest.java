@@ -13,6 +13,7 @@ import org.lambda.query.Queryable;
 import java.io.File;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Collection;
 import java.util.List;
 
 public class CheckedExceptionsTest
@@ -20,16 +21,18 @@ public class CheckedExceptionsTest
   @Test
   void testTheVerifyApi()
   {
-    // Get all of the classes for all the packages
-    Queryable<Class<?>> classes = getAllClasses();
-    // Filter for methods in the classes that have a checked exception
-    Queryable<String> methods = classes.selectMany(s -> getMethodsWithCheckedExceptions(s))
+    verifyMethodSignatures("Methods with checked exceptions", getAllClasses(),
+            this::getMethodsWithCheckedExceptions);
+  }
+
+  public static void verifyMethodSignatures(String header, Queryable<Class<?>> classes, Function1<Class<?>, Collection<Method>> getMethods) {
+    Queryable<String> methods = classes.selectMany(getMethods)
         .select(m -> String.format("%s.%s", m.getDeclaringClass().getName(), m.getName()))
         .orderBy(m -> m.toString());
-    // Verify the methods
     Options options = new Options();
-    Approvals.verifyAll("Methods with checked exceptions", methods, c -> c.toString(), options);
+    Approvals.verifyAll(header, methods, c -> c.toString(), options);
   }
+
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
