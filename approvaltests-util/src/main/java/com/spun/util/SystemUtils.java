@@ -7,7 +7,16 @@ import java.util.Map;
 
 public class SystemUtils
 {
+  /**
+   * @deprecated Use {@link #isWindowsEnvironment} instead.
+   * For example inline your usage of this method.
+   */
+  @Deprecated
   public static boolean isWindowsEnviroment()
+  {
+    return isWindowsEnvironment();
+  }
+  public static boolean isWindowsEnvironment()
   {
     return "\\".equals(File.separator);
   }
