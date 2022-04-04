@@ -4,6 +4,7 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
+import com.spun.util.logger.SimpleLogger;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -104,7 +105,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     boolean exists = new File(diffProgram).exists();
     if (REPORT_MISSING_FILES && !exists)
     {
-      System.out.println(String.format("%s can't find '%s'", this.getClass().getSimpleName(), diffProgram));
+      SimpleLogger.event(String.format("%s can't find '%s'", this.getClass().getSimpleName(), diffProgram));
     }
     return exists;
   }
