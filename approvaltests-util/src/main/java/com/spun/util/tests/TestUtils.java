@@ -1,6 +1,7 @@
 package com.spun.util.tests;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.WindowUtils;
@@ -17,6 +18,7 @@ import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -143,27 +145,22 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+  private static final List<Opener> openers = Queryable.as(new MacOpener(), new WindowsOpener(),
+      new LinuxOpener());
+  public static void registerOpener(Opener opener)
+  {
+    openers.add(0, opener);
+  }
   public static void displayFile(String fileName)
   {
-    String cmd = "";
-    if (File.separatorChar == '\\')
+    for (Opener opener : openers)
     {
-      cmd = "cmd /C start \"Needed Title\" \"%s\" /B";
+      if (opener.open(fileName))
+      { return; }
     }
-    else
-    {
-      cmd = "open %s";
-    }
-    try
-    {
-      cmd = String.format(cmd, fileName);
-      Runtime.getRuntime().exec(cmd);
-      Thread.sleep(2000);
-    }
-    catch (Exception e)
-    {
-      throw ObjectUtils.throwAsError(e);
-    }
+    throw new FormattedException("No match found for your OS.\n"
+        + "Please add your details at https://github.com/approvals/ApprovalTests.Java/issues/251\n"
+        + "In the meantime, call TestUtils.registerOpener(yourCustomOpener).");
   }
   public static double getTimerMultiplier()
   {

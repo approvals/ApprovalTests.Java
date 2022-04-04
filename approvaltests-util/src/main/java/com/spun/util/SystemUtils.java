@@ -8,7 +8,7 @@ import java.util.Map;
 public class SystemUtils
 {
   /**
-   * @deprecated Use {@link #isWindowsEnvironment} instead.
+   * @deprecated Use {@link #isWindowsEnvironment()} instead.
    * For example inline your usage of this method.
    */
   @Deprecated
@@ -66,7 +66,16 @@ public class SystemUtils
       return fileName.replace(" ", "\\ ");
     }
   }
+  /**
+   * @deprecated Use {@link #isMacEnvironment()} instead.
+   * For example inline your usage of this method.
+   */
+  @Deprecated
   public static boolean isMacEnviroment()
+  {
+    return isMacEnvironment();
+  }
+  public static boolean isMacEnvironment()
   {
     String osName = System.getProperty("os.name").toLowerCase();
     boolean isMacOs = osName.startsWith("mac os x");

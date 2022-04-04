@@ -72,7 +72,7 @@ public class IntelliJPathResolver
   private String runtimeSuffix()
   {
     String runtimeSuffix;
-    if (SystemUtils.isWindowsEnviroment())
+    if (SystemUtils.isWindowsEnvironment())
     {
       runtimeSuffix = "/bin/idea64.exe";
     }
