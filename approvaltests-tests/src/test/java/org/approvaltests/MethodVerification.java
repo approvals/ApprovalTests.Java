@@ -35,15 +35,7 @@ public class MethodVerification
   }
   public static Class<?> getJavaClass(String path)
   {
-    String className = path.substring(0, path.length() - ".java".length());
-    if (className.contains(".com."))
-    {
-      className = className.substring(className.indexOf(".com.") + 1);
-    }
-    if (className.contains(".org."))
-    {
-      className = className.substring(className.indexOf(".org.") + 1);
-    }
+    String className = getJavaClassNameFromPath(path);
     try
     {
       Class<?> aClass = Class.forName(className);
@@ -52,7 +44,20 @@ public class MethodVerification
     catch (Throwable e)
     {
       SimpleLogger.variable("Path", path);
+      SimpleLogger.variable("className", className);
       throw ObjectUtils.throwAsError(e);
     }
+  }
+  public static String getJavaClassNameFromPath(String path)
+  {
+    String className = path.substring(0, path.length() - ".java".length());
+    String[] top = {"com", "org", "tests"};
+    for (String head : top)
+    {
+      head = "." + head + ".";
+      if (className.contains(head))
+      { return className.substring(className.indexOf(head) + 1); }
+    }
+    return className;
   }
 }

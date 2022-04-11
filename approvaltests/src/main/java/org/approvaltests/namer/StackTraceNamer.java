@@ -36,8 +36,8 @@ public class StackTraceNamer implements ApprovalNamer
     if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
     {
       String packageName = info.getFullClassName().substring(0, info.getFullClassName().lastIndexOf("."));
-      String packagepath = packageName.replace('.', File.separatorChar);
-      String currentBase = baseDir.substring(0, baseDir.indexOf(packagepath));
+      String packagepath = File.separator + packageName.replace('.', File.separatorChar);
+      String currentBase = baseDir.substring(0, baseDir.indexOf(packagepath) + 1);
       String newBase = currentBase + NamerFactory.getApprovalBaseDirectory() + File.separator + packagepath;
       baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
     }
