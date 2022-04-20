@@ -6,10 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '11'
+          distribution: 'zulu'
+          java-version: '17'
       - name: Format Code
         run: mvn package -DskipTests=true
       - name: Push changes
