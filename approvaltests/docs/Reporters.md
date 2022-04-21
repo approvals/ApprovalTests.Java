@@ -70,10 +70,17 @@ IntelliJReporter.INSTANCE
 
 You can configure which reporter to use in a few ways. ApprovalTests uses the method of principle of least surprise. Meaning the reporter uses is the one declared closest to the test. 
 
+### Via Options
+
+All the [verify](./reference/Verify.md) functions have an overload that takes an `Options` parameter. You can configure the reporter via the Options like such:
+
+snippet: configure_reporter_with_options
+
 ### Class and Method level
 
 At both the class and method level you can use the @UseReporter attribute to set 1 or multiple reporters.
 
+#### Single Reporter
 <!-- snippet: use_reporter_single -->
 <a id='snippet-use_reporter_single'></a>
 ```java
@@ -83,6 +90,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 <!-- endSnippet -->
 
 <!-- snippet: use_reporter_multiple -->
+#### Multiple Reporters
 <a id='snippet-use_reporter_multiple'></a>
 ```java
 @UseReporter({DiffReporter.class, ClipboardReporter.class})

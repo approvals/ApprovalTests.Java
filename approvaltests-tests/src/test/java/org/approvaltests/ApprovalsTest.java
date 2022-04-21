@@ -5,6 +5,7 @@ import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.windows.BeyondCompareReporter;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.JButton;
@@ -17,7 +18,11 @@ public class ApprovalsTest
   @Test
   public void testToString()
   {
-    Approvals.verify(new Rectangle(5, 10, 100, 200));
+    Rectangle objectUnderTest = new Rectangle(5, 10, 100, 200);
+    // begin-snippet: configure_reporter_with_options
+    Options options = new Options().withReporter(BeyondCompareReporter.INSTANCE);
+    Approvals.verify(objectUnderTest, options);
+    // end-snippet
   }
   @Test
   public void testAsJson()

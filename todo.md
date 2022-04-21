@@ -15,6 +15,7 @@
 * publish release also on github: https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository
 
 # Documentation
+* Describe Options
 * Rework ApprovalTests - GettingStarted.md doc file
 * Combination Approvals
 * docs for graph for ci consistent
