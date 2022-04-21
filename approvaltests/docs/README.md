@@ -25,6 +25,7 @@
 * separate and test [Data Access and Rendering](how_to/PatternsForTestingDataAccessAndRendering.md#top)
 * show [nulls in verifyAsJson](how_to/ShowNullsInJson.md#top)
 * [test a variety of values](reference/CombinationApprovals.md)
+* [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 
 ## Configuration
 

@@ -29,8 +29,10 @@ public class ApprovalsTest
   @Test
   void customPanelWithText()
   {
+    // begin-snippet: file_capture_reporter_example
     final CustomPanel panel = new CustomPanel(true, 20);
     AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
+    // end-snippet
   }
   @EnabledOnJre({JRE.JAVA_8})
   @Test

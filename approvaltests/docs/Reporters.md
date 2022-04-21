@@ -130,6 +130,8 @@ public class CustomReporter extends GenericDiffReporter
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/CustomReporter.java#L3-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+## See Also
+* [How to capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 
 ---
 
