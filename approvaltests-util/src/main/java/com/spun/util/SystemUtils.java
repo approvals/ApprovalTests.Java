@@ -24,7 +24,7 @@ public class SystemUtils
   }
   public static String convertFileForCommandLine(String fileName)
   {
-    return convertFileForCommandLine(fileName, SystemUtils.isWindowsEnviroment());
+    return convertFileForCommandLine(fileName, SystemUtils.isWindowsEnvironment());
   }
   public static String getComputerName()
   {
@@ -81,6 +81,6 @@ public class SystemUtils
   {
     String osName = System.getProperty("os.name").toLowerCase();
     boolean isMacOs = osName.startsWith("mac os x");
-    return !isWindowsEnviroment() && isMacOs;
+    return !isWindowsEnvironment() && isMacOs;
   }
 }

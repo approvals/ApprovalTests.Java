@@ -78,7 +78,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
   }
   protected void preventProcessFromClosing(ProcessBuilder builder)
   {
-    if (!SystemUtils.isWindowsEnviroment())
+    if (!SystemUtils.isWindowsEnvironment())
     {
       File output = new File("/dev/null");
       builder.redirectError(output).redirectOutput(output);

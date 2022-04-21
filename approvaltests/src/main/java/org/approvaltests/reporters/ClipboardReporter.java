@@ -35,7 +35,7 @@ public class ClipboardReporter implements EnvironmentAwareReporter
   }
   public static String getAcceptApprovalText(String received, String approved)
   {
-    return getAcceptApprovalText(received, approved, SystemUtils.isWindowsEnviroment());
+    return getAcceptApprovalText(received, approved, SystemUtils.isWindowsEnvironment());
   }
   public static String getAcceptApprovalText(String received, String approved, boolean windowsEnviroment)
   {

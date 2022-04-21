@@ -24,11 +24,11 @@ public class IntelliJPathResolver
   private String appData()
   {
     String appData = "";
-    if (SystemUtils.isWindowsEnviroment())
+    if (SystemUtils.isWindowsEnvironment())
     {
       appData = System.getenv("LOCALAPPDATA");
     }
-    else if (SystemUtils.isMacEnviroment())
+    else if (SystemUtils.isMacEnvironment())
     {
       appData = System.getenv("HOME");
       appData += "/Library/Application Support";
@@ -76,7 +76,7 @@ public class IntelliJPathResolver
     {
       runtimeSuffix = "/bin/idea64.exe";
     }
-    else if (SystemUtils.isMacEnviroment())
+    else if (SystemUtils.isMacEnvironment())
     {
       try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 3, FileVisitOption.FOLLOW_LINKS))
       {
