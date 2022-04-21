@@ -117,6 +117,15 @@ public class PackageSettings
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+## Combining Reporters
+You can combine reporters in two ways:
+* `MultiReporter`
+    This will launch every single reporter given to it
+* `FirstWorkingReporter`
+    This will launch the reporters in order until it finds the first one that works
+
+You can make custom instances of these or extend them to report however you need to.
+
 ## Custom Reporters
 
 If your favorite diff tool isn't supported out of the box, create your own custom extensions.

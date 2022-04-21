@@ -15,12 +15,12 @@
 * publish release also on github: https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository
 
 # Documentation
-* Describe Options
-* Rework ApprovalTests - GettingStarted.md doc file
+* Docs for Options
+* Update the GettingStarted.md page to use snippets
 * Combination Approvals
-* docs for graph for ci consistent
-** documentation for Options.forFile()
-* write docs on how to make a custom reporter
+* Docs for graph for ci consistent
+* Docs for Options.forFile()
+* Write docs on how to make a custom reporter
 * Documentation for loaders and savers
 * Document and build examples for Runtime Generics
 * Documentation for Story Board
