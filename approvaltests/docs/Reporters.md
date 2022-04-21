@@ -111,7 +111,7 @@ public class PackageSettings
 
 ## Custom Reporters
 
-If your favorite diff tool isn't supported out of the box, create your own custom extentions.
+If your favorite diff tool isn't supported out of the box, create your own custom extensions.
 Here's an example:
 
 <!-- snippet: custom_reporter -->

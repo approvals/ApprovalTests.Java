@@ -1,41 +1,20 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Contents**
+toc
 
-- [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Parts of a Test](#parts-of-a-test)
-  - [Strings](#strings)
-  - [Objects](#objects)
-  - [Arrays](#arrays)
-  - [Swing / AWT](#swing--awt)
-  - [Generate Combinations of Parameter Values](#generate-combinations-of-parameter-values)
-  - [Approving The Result](#approving-the-result)
-  - [Reporters](#reporters)
-  - [Supported Reporters](#supported-reporters)
+# Getting Started
+## Parts of a Test
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-Getting Started
-===============
-Installation
----
-All you need to do to use ApprovalTests is simply include the ApprovalTests.jar in your class path.
-Then use it with your favorite Testing Framework.
-
-Parts of a Test
----
 All tests (unit and otherwise) contain 2 parts:
 
 - Do
 - Verify
 
 ApprovalTests is a way to handle the second part: Verification. All calls will look about the same:
-
+```java
     Approvals.verify(objectToBeVerified)
+```
 
-Strings
----
+## Strings
+
 Letʼs say you wanted to test if a string was being built correctly:
 ```java
     public void testBuildString() {
@@ -51,7 +30,9 @@ Letʼs say you wanted to test if a string was being built correctly:
 ```
 
 Will Produce the following File:    
-SampleTest.testBuildString.received.txt  
+`SampleTest.testBuildString.received.txt`
+
+Containing
 
         ApprovalTests
 
@@ -61,8 +42,8 @@ The 'expected' result is in the file SampleTest.testBuildString.**received**.txt
 When you see the results you want (“ApprovalTests”) as the result,
 simply [Approve The Result](#ApprovingTheResult).
 
-Objects
----
+## Objects
+
 Let's say that you wanted to test that a customized StringBuilder was creating text correctly:
 ```java
     public void testStringBuilder() {
@@ -82,8 +63,7 @@ If you see “ApprovalTests” as the result, simply [Approve The Result](#Appro
 Itʼs important to note that you will need to create a useful instance of the toString()
 Method for objects you want to use.
 
-Arrays
----
+## Arrays
 Letʼs say you wanted to test an array of Strings:
 ```java
     public void testArray() {
@@ -107,8 +87,7 @@ SampleTest.testArray.received.txt
 
 Again, simply [Approve The Result](#ApprovingTheResult)
 
-Swing / AWT
----
+## Swing / AWT
 Letʼs say you wanted to test that youʼve created a JPanel correctly.
 (This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
 
@@ -121,7 +100,7 @@ Letʼs say you wanted to test that youʼve created a JPanel correctly.
 
         ////////// Verify  ///////////
         // Verify the TvGuide
-        Approvals.verify(tv);
+        AwtApprovals.verify(tv);
     }
 ```
 
@@ -137,11 +116,10 @@ the constraints of the UI. I simply expose a selectTime(String value) function.
 __Second__, this will produce a .png file containing a screen shot of the JPanel as a
 result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
 
-__Thrid__, because these will render differently on different operating systems.
+__Third__, because these will render differently on different operating systems.
 These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
 
-Generate Combinations of Parameter Values
----
+## Generate Combinations of Parameter Values
 To simplify getting more comprehensive sets of test cases, or expanding code coverage,
 ApprovalTests can generate combinations of possible parameters for a given function.
 
@@ -158,8 +136,8 @@ passing the method to be called as a lambda. An example follows:
         words);
 ```
 
-SampleTest.testSubstring.recieved.txt  
-u
+SampleTest.testSubstring.received.txt  
+
         [4, Bookkeeper] => Book
         [4, applesauce] => appl
         [5, Bookkeeper] => Bookk
@@ -170,12 +148,11 @@ u
 Here we are writing a single test that tries all 6 ( 3 ints * 2 String) combinations of
 inputs and the results those will produce.
 
-This will generate potentally hundreds or thousands of possible combinations of values.
+This will generate potentially hundreds or thousands of possible combinations of values.
 As before, the output will be displayed and, if the results are satisfactory, [Approve The Result](#ApprovingTheResult).
 
 <a name='ApprovingTheResult'></a>
-Approving The Result
----
+## Approving The Result
 When you run a test using ApprovalTests, it will generate a file named
 “YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same
 directory as your test.
@@ -194,10 +171,9 @@ There are many ways to do this:
 Itʼs doesnʼt matter how you do it.
 
 __Note__: If the files match, then the received file will be deleted.<br>
-__Note__: You must include the received files in your source control.
+__Note__: You must include the `.approved.` files in your source control.
 
-Reporters
----
+## Reporters
 If an approval fails, then a report will be called that will report the “.received” and
 “.approved” files. There are many reporters, and you can create your own.
 
@@ -218,61 +194,8 @@ NotePadLauncher      | Opens the .received file in Notepad++ (MS Windows only)
 QuietReporter        | Outputs the "move" command to the console (great for build systems)
 TextWebReporter      | Opens the text files in a Web browser
 
-Supported Reporters
----
-The following reporters are supported automatically. ApprovalTests will serach for the following
-applications in the following order on the respective platform:
+## Supported Diff Tools
+See [Supported Diff Tools](../Reporters.md#supported-diff-tools)
 
-Mac OSX        | Specified as
------------    |---------
-DiffMerge      | DIFF_MERGE
-Beyond Compare | BEYOND_COMPARE
-Kaleidescope   | KALEIDOSCOPE
-KDiff3         | KDIFF3
-P4Merge        | P4MERGE
-TKDiff         | TK_DIFF
+If your diff tool of choice is not supported, or is in a non-standard install folder, you can always use a [Custom Reporter](../Reporters.md#custom-reporters)
 
-MS Windows          | Specified as
------------         |---------
-Beyond Compare 3    | BEYOND_COMPARE_3
-Beyond Compare 4    | BEYOND_COMPARE_4
-Tortoise Image Diff | TORTOISE_IMAGE_DIFF
-Tortoise Merge      | TORTOISE_TEXT_DIFF
-WinMerge            | WIN_MERGE_REPORTER
-Araxis Merge        | ARAXIS_MERGE
-Code Compare        | CODE_COMPARE
-KDiff3              | KDIFF3
-IntelliJ Ultimate   | INTELLIJ_U
-IntelliJ Community  | INTELLI_C
-
-To use a reporter that is not in the above list, you will need to create a class of the following form:
-
-```java
-    public static class MyWinMergeReporter extends GenericDiffReporter {
-
-        public static final MyWinMergeReporter INSTANCE     = new MyWinMergeReporter();
-        static final String                       DIFF_PROGRAM = "C:\\Program Files (x86)\\WinMerge\\WinMergeU.exe";
-        static final String                       MESSAGE      = MessageFormat.format(
-                "Unable to find WinMerge at {0}", DIFF_PROGRAM);
-
-        MyWinMergeReporter() {
-            this(DIFF_PROGRAM, MESSAGE);
-        }
-        MyWinMergeReporter(String diffProgram, String diffProgramNotFoundMessage) {
-            super(diffProgram, diffProgramNotFoundMessage);
-        }
-    }
-```
-
-To specify a particular reporter to be used for a test method, add the following annotation
-just before the test method definition:
-
-```java
-    @UseReporter(MyWinMergeReporter.class)
-```
-
-Multiple reporters can be specified for a method as follows:
-
-```java
-    @UseReporter({BEYOND_COMPARE, ClipboardReporter.class})
-```

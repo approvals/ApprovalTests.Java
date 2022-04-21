@@ -58,6 +58,8 @@ The best way to get started is download and open one of the starter projects:
 These are standard projects and can be imported into any editor or IDE.  
 They also all have CI with Github actions.
 
+You might also want to check out the [Getting Started Overview](approvaltests/docs/tutorials/GettingStarted.md)
+
 ## How to get it
 It's on Maven Central, search for 'approvaltests'.
 
