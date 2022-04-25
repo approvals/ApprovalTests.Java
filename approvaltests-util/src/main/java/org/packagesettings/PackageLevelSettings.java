@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class PackageLevelSettings
 {
+  public static String PACKAGE_SETTINGS = "PackageSettings";
   public static Map<String, Settings> get()
   {
     return getForStackTrace(ThreadUtils.getStackTrace());
@@ -43,7 +44,7 @@ public class PackageLevelSettings
     settings.putAll(getSettingsFor(getNextLevel(packageName), done));
     try
     {
-      Class<?> clazz = loadClass(packageName + ".PackageSettings");
+      Class<?> clazz = loadClass(packageName + "." + PACKAGE_SETTINGS);
       Field[] declaredFields = clazz.getDeclaredFields();
       Object o = clazz.newInstance();
       for (Field field : declaredFields)
