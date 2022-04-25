@@ -1,5 +1,6 @@
 package org.approvaltests.packagesettings.basedirectory;
 
+import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class ApprovalDirectoryConfigTest
   public void testApprovalBaseDirectory()
   {
     String path = Approvals.createApprovalNamer().getSourceFilePath();
-    System.out.println("path:" + path);
+    SimpleLogger.variable("path", path);
     assertTrue(path.contains(MessageFormat.format("{0}test{0}resources{0}org{0}", File.separator)));
   }
 }

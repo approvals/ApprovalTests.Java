@@ -92,7 +92,7 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     ArrayList<String> commands = new ArrayList<String>();
     commands.add(diffProgram);
     commands.addAll(argsSplitOnSpace);
-    System.out.println(commands);
+    SimpleLogger.variable("commands", commands);
     return commands.toArray(new String[0]);
   }
   @Override

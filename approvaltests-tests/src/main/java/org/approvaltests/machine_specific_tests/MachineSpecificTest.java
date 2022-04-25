@@ -1,6 +1,7 @@
 package org.approvaltests.machine_specific_tests;
 
 import com.spun.util.SystemUtils;
+import com.spun.util.logger.SimpleLogger;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -27,7 +28,7 @@ public class MachineSpecificTest
               + "  1) Set machine_specific_tests.MachineSpecific.FORCE_RUN=true\n"
               + "  2) Add \"%s\" to machine_specific_tests.MachineSpecific.MACHINES",
           SystemUtils.getComputerName());
-      System.out.println(message);
+      SimpleLogger.warning(message);
     }
   }
 }

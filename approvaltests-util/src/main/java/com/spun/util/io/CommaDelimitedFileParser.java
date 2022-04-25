@@ -1,6 +1,7 @@
 package com.spun.util.io;
 
 import com.spun.util.StringUtils;
+import com.spun.util.logger.SimpleLogger;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -118,7 +119,7 @@ public class CommaDelimitedFileParser
     }
     catch (RuntimeException e)
     {
-      System.out.println("Filename : " + file.toString());
+      SimpleLogger.variable("Filename", file);
       throw e;
     }
   }

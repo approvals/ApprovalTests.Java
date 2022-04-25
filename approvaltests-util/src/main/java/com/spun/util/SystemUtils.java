@@ -1,5 +1,7 @@
 package com.spun.util;
 
+import com.spun.util.logger.SimpleLogger;
+
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -46,7 +48,7 @@ public class SystemUtils
       }
       catch (UnknownHostException ex)
       {
-        //System.out.println("Hostname can not be resolved");
+        SimpleLogger.warning("Hostname can not be resolved", ex);
       }
       return hostname;
     }

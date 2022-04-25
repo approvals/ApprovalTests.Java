@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+import com.spun.util.logger.SimpleLogger;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -37,7 +38,7 @@ public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter
     String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
     String rText = FileUtils.readFile(received);
     String approveCommand = "To approve run : " + ClipboardReporter.getAcceptApprovalText(received, approved);
-    System.out.println(approveCommand);
+    SimpleLogger.message(approveCommand);
     assertEquals(aText, rText);
   }
   @Override
