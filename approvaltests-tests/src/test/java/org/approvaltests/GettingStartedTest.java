@@ -79,7 +79,7 @@ public class GettingStartedTest
   {
     try (NamedEnvironment namedEnvironment = NamerFactory.asOsSpecificTest())
     {
-      if (!namedEnvironment.isCurrentEnvironmentValidFor("Window_Server_2022"))
+      if (!namedEnvironment.isCurrentEnvironmentValidFor("Windows_Server_2022"))
       { return; }
     }
     // begin-snippet: verifying_gui
