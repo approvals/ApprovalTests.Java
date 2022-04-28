@@ -24,7 +24,7 @@ If you have more than one parameter that you want to vary, check out [Testing Co
 String[] inputs = {"input.value1", "input.value2"};
 Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L39-L42' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifyallstartingpoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L44-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifyallstartingpoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify the input container for your chosen values.

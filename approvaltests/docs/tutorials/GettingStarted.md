@@ -1,4 +1,15 @@
-toc
+<!-- toc -->
+## Contents
+
+  * [Parts of a Test](#parts-of-a-test)
+  * [Strings](#strings)
+  * [Objects](#objects)
+  * [Arrays](#arrays)
+  * [Swing / AWT](#swing--awt)
+  * [Generate Combinations of Parameter Values](#generate-combinations-of-parameter-values)
+  * [Approving The Result](#approving-the-result)
+  * [Reporters](#reporters)
+  * [Supported Diff Tools](#supported-diff-tools)<!-- endToc -->
 
 # Getting Started
 ## Parts of a Test

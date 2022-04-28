@@ -6,7 +6,8 @@
 ## Contents
 
   * [The problem](#the-problem)
-  * [The solution](#the-solution)<!-- endToc -->
+  * [The solution](#the-solution)
+  * [Compatibility](#compatibility)<!-- endToc -->
 
 
 ## The problem
@@ -19,7 +20,14 @@ ApprovalTests has a reporter `FileCaptureReporter` that, on failure, will add th
 
 Here is an example:
 
-snippet: file_capture_reporter_example
+<!-- snippet: file_capture_reporter_example -->
+<a id='snippet-file_capture_reporter_example'></a>
+```java
+final CustomPanel panel = new CustomPanel(true, 20);
+AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-file_capture_reporter_example' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Compatibility
 This is currently compatible with GitHub actions and any machine where Git is configured so that you can commit and push from the command line. It can be extended as needed for your system.
