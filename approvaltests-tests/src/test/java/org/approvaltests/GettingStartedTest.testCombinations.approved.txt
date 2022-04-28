@@ -1,0 +1,6 @@
+[4, Bookkeeper] => Book 
+[4, applesauce] => appl 
+[5, Bookkeeper] => Bookk 
+[5, applesauce] => apple 
+[10, Bookkeeper] => Bookkeeper 
+[10, applesauce] => applesauce 

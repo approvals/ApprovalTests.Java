@@ -217,23 +217,14 @@ To do this, create an array of possible values for each parameter passed to a fu
 (up to nine parameters). Call the CombinationApprovals.verifyAllCombinations() method
 passing the method to be called as a lambda. An example follows:
 
-```java
-    Integer[] points = new Integer[]{4, 5, 10};
-    String[] words = new String[]{"Bookkeeper", "applesauce"};
-    CombinationApprovals.verifyAllCombinations(
-        (i, s) -> s.substring(0, i),
-        points,
-        words);
-```
+snippet: verify_combinations
 
-SampleTest.testSubstring.received.txt  
+Will Produce the following File:
 
-        [4, Bookkeeper] => Book
-        [4, applesauce] => appl
-        [5, Bookkeeper] => Bookk
-        [5, applesauce] => apple
-        [10, Bookkeeper] => Bookkeeper
-        [10, applesauce] => applesauce
+snippet: GettingStartedTest.testCombinations.approved.txt
+
+**Note on using primitives:**
+We need to use `Integer` rather than `int` so that Java generics will work properly.
 
 Here we are writing a single test that tries all 6 ( 3 ints * 2 String) combinations of
 inputs and the results those will produce.
@@ -244,7 +235,7 @@ As before, the output will be displayed and, if the results are satisfactory, [A
 <a name='ApprovingTheResult'></a>
 ## Approving The Result
 When you run a test using ApprovalTests, it will generate a file named
-“YourTestClass.yourTestMethod.received.txt” (or .png, .html, etc.) and place it in the same
+`YourTestClass.yourTestMethod.received.txt` (or .png, .html, etc.) and place it in the same
 directory as your test.
 
 For the test to pass, this file must match:
@@ -256,15 +247,14 @@ There are many ways to do this:
 1. Rename the .received file
 2. Run the "move" command that is displayed (also added to your clipboard) in the command line
 3. Use "use whole file" on a diff reporter
-4. Use the "approve" command with the approval plugin (available for Eclipse)
 
-Itʼs doesnʼt matter how you do it.
+It doesnʼt matter how you do it.
 
 __Note__: If the files match, then the received file will be deleted.<br>
 __Note__: You must include the `.approved.` files in your source control.
 
 ## Reporters
-If an approval fails, then a report will be called that will report the “.received” and
+If an approval fails, then a reporter will be called that will report the “.received” and
 “.approved” files. There are many reporters, and you can create your own.
 
 The simplest way to have your reporter called is to use the Annotation @UseReporter(Reporter.class)
