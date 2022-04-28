@@ -77,11 +77,11 @@ public class GettingStartedTest
   @UseReporter(FileCaptureReporter.class)
   public void testTvGuide()
   {
-//    try (NamedEnvironment namedEnvironment = NamerFactory.asOsSpecificTest())
-//    {
-//      if (!namedEnvironment.isCurrentEnvironmentValidFor("Windows_Server_2022"))
-//      { return; }
-//    }
+    //    try (NamedEnvironment namedEnvironment = NamerFactory.asOsSpecificTest())
+    //    {
+    //      if (!namedEnvironment.isCurrentEnvironmentValidFor("Windows_Server_2022"))
+    //      { return; }
+    //    }
     // begin-snippet: verifying_gui
     /* Do */
     // create a TV Guide and select a show for 3pm
