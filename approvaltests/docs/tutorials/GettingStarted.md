@@ -4,6 +4,7 @@
   * [Parts of a Test](#parts-of-a-test)
   * [Strings](#strings)
   * [Objects](#objects)
+    * [Using JSON](#using-json)
   * [Arrays](#arrays)
   * [Swing / AWT](#swing--awt)
   * [Generate Combinations of Parameter Values](#generate-combinations-of-parameter-values)
@@ -20,32 +21,49 @@ All tests (unit and otherwise) contain 2 parts:
 - Verify
 
 ApprovalTests is a way to handle the second part: Verification. All calls will look about the same:
+
+<!-- snippet: basic_verified_call -->
+<a id='snippet-basic_verified_call'></a>
 ```java
-    Approvals.verify(objectToBeVerified)
+Approvals.verify(objectToBeVerified);
 ```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L13-L15' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_verified_call' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Strings
 
 Letʼs say you wanted to test if a string was being built correctly:
-```java
-    public void testBuildString() {
-        ////////// Do  ///////////
-        // create a string with "Approval" and append "Tests" to it
-        String s = "Approval";
-        s += "Tests";
 
-        ////////// Verify  ///////////
-        // Verify the resulting string
-        Approvals.verify(s);
-    }
+<!-- snippet: verifying_strings -->
+<a id='snippet-verifying_strings'></a>
+```java
+@Test
+public void testBuildString() {
+    /* Do */
+    // create a string with "Approval" and append "Tests" to it
+    String s = "Approval";
+    s += " Tests";
+
+    /* Verify */
+    // Verify the resulting string
+    Approvals.verify(s);
+}
 ```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L18-L30' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_strings' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Will Produce the following File:    
-`SampleTest.testBuildString.received.txt`
+`GettingStartedTest.testBuildString.approved.txt`
 
 Containing
 
-        ApprovalTests
+<!-- snippet: GettingStartedTest.testBuildString.approved.txt -->
+<a id='snippet-GettingStartedTest.testBuildString.approved.txt'></a>
+```txt
+Approval Tests
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testBuildString.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-GettingStartedTest.testBuildString.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 This is the 'actual result'.   
 The 'expected' result is in the file SampleTest.testBuildString.**received**.txt   
@@ -56,19 +74,65 @@ simply [Approve The Result](#ApprovingTheResult).
 ## Objects
 
 Let's say that you wanted to test that a customized StringBuilder was creating text correctly:
-```java
-    public void testStringBuilder() {
-        ////////// Do  ///////////
-        // create my String Builder and append some strings
-        MyStringBuilder sb = new MyStringBuilder();
-        sb.append("Approval");
-        sb.append("Tests");
 
-        ////////// Verify  ///////////
-        // Verify the object
-        Approvals.verify(sb.toString());
-    }
+<!-- snippet: verifying_objects -->
+<a id='snippet-verifying_objects'></a>
+```java
+@Test
+public void testObject()
+{
+    /* Do */
+    // create an 100 x 200 rectangle with the top corner at (5, 10)
+    Rectangle objectUnderTest = new Rectangle(5, 10, 100, 200);
+    /* Verify */
+    // Verify the rectangle is properly defined
+    Approvals.verify(objectUnderTest.toString());
+}
 ```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L32-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+Will Produce the following File:    
+`GettingStartedTest.testObject.approved.txt`
+
+Containing
+
+<!-- snippet: GettingStartedTest.testObject.approved.txt -->
+<a id='snippet-GettingStartedTest.testObject.approved.txt'></a>
+```txt
+java.awt.Rectangle[x=5,y=10,width=100,height=200]
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testObject.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-GettingStartedTest.testObject.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+### Using JSON
+If the object does not have a toString() method defined, and you do not want to (or can not) create a custom one, you can use JSON to verify the contents of an object:
+
+<!-- snippet: verifying_objects_with_json -->
+<a id='snippet-verifying_objects_with_json'></a>
+```java
+JsonApprovals.verifyAsJson(objectUnderTest);
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L53-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects_with_json' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+Will Produce the following File:    
+`GettingStartedTest.testObjectWithJson.approved.json`
+
+Containing
+
+<!-- snippet: GettingStartedTest.testObjectWithJson.approved.json -->
+<a id='snippet-GettingStartedTest.testObjectWithJson.approved.json'></a>
+```json
+{
+  "x": 5,
+  "y": 10,
+  "width": 100,
+  "height": 200
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testObjectWithJson.approved.json#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-GettingStartedTest.testObjectWithJson.approved.json' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 If you see “ApprovalTests” as the result, simply [Approve The Result](#ApprovingTheResult).
 Itʼs important to note that you will need to create a useful instance of the toString()
@@ -76,25 +140,14 @@ Method for objects you want to use.
 
 ## Arrays
 Letʼs say you wanted to test an array of Strings:
-```java
-    public void testArray() {
-        ////////// Do  ///////////
-        // create a String Array and set values in the indexes
-        String[] s = new String[2];
-        s[0] = "Approval";
-        s[1] = "Tests";
 
-        ////////// Verify  ///////////
-        // Verify the array
-        Approvals.verifyAll("Text", s);
-    }
-```
+snippet: verifying_arrays
+
+Will Produce the following File:    
+
+snippet: GettingStartedTest.testArray.approved.txt
 
 Note the use of the label, "Text". This is used to make the generated output easier to read:    
-SampleTest.testArray.received.txt  
-
-    Text[0] = Approval
-    Text[1] = Tests
 
 Again, simply [Approve The Result](#ApprovingTheResult)
 
@@ -102,18 +155,7 @@ Again, simply [Approve The Result](#ApprovingTheResult)
 Letʼs say you wanted to test that youʼve created a JPanel correctly.
 (This works for anything that extends java.awt.Component : awt, swing, JFrame, Label, etc...)
 
-```java
-    public void testTvGuide() {
-        ////////// Do  ///////////
-        // create a TV Guide and select a show for 3pm
-        TvGuide tv = new TvGuide();
-        tv.selectTime("3pm");
-
-        ////////// Verify  ///////////
-        // Verify the TvGuide
-        AwtApprovals.verify(tv);
-    }
-```
+snippet: verifying_gui
 
 SampleTest.testTvGuide.Mac_OS_X.approved.png  
 ![Expected  Image](ApprovalsTest.testTvGuide.Mac_OS_X.approved.png)
