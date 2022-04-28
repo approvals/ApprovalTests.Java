@@ -27,7 +27,7 @@ ApprovalTests is a way to handle the second part: Verification. All calls will l
 ```java
 Approvals.verify(objectToBeVerified);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L21-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_verified_call' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L18-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_verified_call' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Strings
@@ -49,7 +49,7 @@ public void testBuildString()
   Approvals.verify(s);
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L25-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_strings' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L22-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_strings' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce the following File:    
@@ -89,7 +89,7 @@ public void testObject()
   Approvals.verify(objectUnderTest.toString());
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L38-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L35-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce the following File:    
@@ -113,7 +113,7 @@ If the object does not have a toString() method defined, and you do not want to 
 ```java
 JsonApprovals.verifyAsJson(objectUnderTest);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L58-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects_with_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L55-L57' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_objects_with_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce the following File:    
@@ -157,7 +157,7 @@ public void testArray()
   Approvals.verifyAll("Text", s);
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L62-L75' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_arrays' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L59-L72' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_arrays' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce the following File:    
@@ -190,7 +190,7 @@ tv.selectTime("3pm");
 // Verify the TvGuide
 AwtApprovals.verify(tv);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L85-L93' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_gui' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L81-L89' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_gui' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will Produce the following File:
@@ -217,11 +217,30 @@ To do this, create an array of possible values for each parameter passed to a fu
 (up to nine parameters). Call the CombinationApprovals.verifyAllCombinations() method
 passing the method to be called as a lambda. An example follows:
 
-snippet: verify_combinations
+<!-- snippet: verify_combinations -->
+<a id='snippet-verify_combinations'></a>
+```java
+Integer[] lengths = new Integer[]{4, 5, 10};
+String[] words = new String[]{"Bookkeeper", "applesauce"};
+CombinationApprovals.verifyAllCombinations((i, s) -> s.substring(0, i), lengths, words);
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L94-L98' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_combinations' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Will Produce the following File:
 
-snippet: GettingStartedTest.testCombinations.approved.txt
+<!-- snippet: GettingStartedTest.testCombinations.approved.txt -->
+<a id='snippet-GettingStartedTest.testCombinations.approved.txt'></a>
+```txt
+[4, Bookkeeper] => Book 
+[4, applesauce] => appl 
+[5, Bookkeeper] => Bookk 
+[5, applesauce] => apple 
+[10, Bookkeeper] => Bookkeeper 
+[10, applesauce] => applesauce
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testCombinations.approved.txt#L1-L6' title='Snippet source file'>snippet source</a> | <a href='#snippet-GettingStartedTest.testCombinations.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 **Note on using primitives:**
 We need to use `Integer` rather than `int` so that Java generics will work properly.
