@@ -193,8 +193,9 @@ AwtApprovals.verify(tv);
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.java#L85-L93' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifying_gui' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-SampleTest.testTvGuide.Mac_OS_X.approved.png  
-![Expected  Image](ApprovalsTest.testTvGuide.Mac_OS_X.approved.png)
+Will Produce the following File:
+
+![Expected  Image](../../../approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testTvGuide.Windows_10.approved.png)
 
 
 __First__, I want to note that even though there is a UI and a select box for times,
