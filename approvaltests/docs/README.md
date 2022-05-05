@@ -29,18 +29,17 @@
 
 ## Configuration
 
-Configuration of ApprovalTests mainly occurs via @Annotations and PackageSettings. 
+Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, and Options. 
 [Read More about it here](Configuration.md#top)
 
 
 ## Main concepts for ApprovalTests  
 
-[Reporters](Reporters.md#top) Namers & Writers are the 3 pieces that allow ApprovalTests to work. 
- 
-**Verify** [verify(object)](reference/Verify.md) is the main pattern to use in ApprovalTests. 
-**Writers** write to a file  
-**Namers** figure out what the file should be called and where it is located  
-**Reporters** are called on failure to help you determine what went wrong.  
+1. **Verify** [verify(object)](reference/Verify.md) is the main pattern to use in ApprovalTests.  
+1. **Options** allow you to [configure many aspects of Approvals](reference/Options.md)  
+1. **[Reporters](Reporters.md#top)** (often diff tools) are called on test failure to help you determine what went wrong.  
+1. **Writers** write to a file  
+1. **Namers** figure out what the file should be called and where it is located  
 
 ---
 
