@@ -16,5 +16,12 @@ public class OptionsSamplesTest {
                         .forFile().withExtension(".json");
         // end-snippet
     }
+
+    @Test
+    void fileExtensions() {
+        // begin-snippet: basic_approval_with_file_extension 
+        Approvals.verify("text to be verified", new Options().forFile().withExtension(".xyz"));
+        // end-snippet  
+    }
 }
 

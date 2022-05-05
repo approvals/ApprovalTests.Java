@@ -6,6 +6,7 @@
 ## Contents
 
   * [Interface](#interface)
+  * [Configuring Scrubbers](#configuring-scrubbers)
   * [Guid Scrubbing](#guid-scrubbing)
   * [RegEx Scrubbing](#regex-scrubbing)
   * [Date Scrubbing](#date-scrubbing)
