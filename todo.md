@@ -6,7 +6,7 @@
 ** Options for file path
 ** update mrunit and fix tests
 
-* Think about removing MethodExcecutionPath (not now)
+* Think about removing MethodExecutionPath (not now)
 * remove all warnings
 * handle manual install of intellij
 * make the list Query returns  to extendable to reverse polish notation
@@ -16,10 +16,9 @@
 
 # Documentation
 * Docs for Options
-* Update Starter Project docs
-* Combination Approvals
-* Docs for graph for ci consistent
 * Docs for Options.forFile()
+* Update Starter Project docs
+* Docs for graph for ci consistent
 * Write docs on how to make a custom reporter
 * Documentation for loaders and savers
 * Document and build examples for Runtime Generics

@@ -24,6 +24,18 @@ Fundamentally, a scrubber is function that takes a string and returns a string.
 You can create ones by passing in a function or a lambda. 
 We also have some pre-made ones for your convenience.
 
+## Configuring Scrubbers
+
+You can configure all of the `Approvals.verify` methods to use scrubbers via the `Options` parameter.
+
+For example:
+<!-- snippet: guid-scrubbing-2 -->
+<a id='snippet-guid-scrubbing-2'></a>
+```java
+Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Guid Scrubbing
 
@@ -48,7 +60,6 @@ Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
-**Note:** Options is available on all Approvals.verify methods.
 This will result in the following `.approved.txt` file
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt -->
 <a id='snippet-/src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt'></a>
