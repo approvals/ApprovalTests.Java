@@ -45,15 +45,15 @@ public class JsonFormattingTest
       this.age = age;
     }
   }
-  
   @Test
-  public void testInstantAndOtherDateObjects() {
+  public void testInstantAndOtherDateObjects()
+  {
     DateStuff dateStuff = new DateStuff();
     dateStuff.instant = Instant.ofEpochSecond(1651708441);
-
     JsonApprovals.verifyAsJson(dateStuff);
   }
-  private static class DateStuff {
+  private static class DateStuff
+  {
     public Instant instant;
   }
 }

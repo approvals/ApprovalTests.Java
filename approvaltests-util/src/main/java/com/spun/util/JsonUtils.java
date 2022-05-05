@@ -45,23 +45,22 @@ public class JsonUtils
     Gson gson = gsonBuilder.call(builder).create();
     return gson.toJson(o);
   }
-
-  private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder) {
+  private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder)
+  {
     builder = builder.registerTypeAdapter(Instant.class, new InstantAdapter());
     return builder;
   }
-
-  public static class InstantAdapter extends TypeAdapter<Instant> {
-
+  public static class InstantAdapter extends TypeAdapter<Instant>
+  {
     @Override
-    public void write(JsonWriter jsonWriter, Instant instant) throws IOException {
+    public void write(JsonWriter jsonWriter, Instant instant) throws IOException
+    {
       jsonWriter.value(instant.toString());
     }
-
     @Override
-    public Instant read(JsonReader jsonReader) throws IOException {
+    public Instant read(JsonReader jsonReader) throws IOException
+    {
       throw new IOException("Never called");
     }
   }
-
 }
