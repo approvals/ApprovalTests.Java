@@ -5,23 +5,22 @@ import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.scrubbers.GuidScrubber;
 import org.junit.jupiter.api.Test;
 
-public class OptionsSamplesTest {
-    @Test
-    void showAll() {
-        Options options =
+public class OptionsSamplesTest
+{
+  @Test
+  void showAll()
+  {
+    Options options =
         // begin-snippet: specify_all_the_options 
-                new Options()
-                        .withReporter(new QuietReporter())
-                        .withScrubber(new GuidScrubber())
-                        .forFile().withExtension(".json");
-        // end-snippet
-    }
-
-    @Test
-    void fileExtensions() {
-        // begin-snippet: basic_approval_with_file_extension 
-        Approvals.verify("text to be verified", new Options().forFile().withExtension(".xyz"));
-        // end-snippet  
-    }
+        new Options().withReporter(new QuietReporter()).withScrubber(new GuidScrubber()).forFile()
+            .withExtension(".json");
+    // end-snippet
+  }
+  @Test
+  void fileExtensions()
+  {
+    // begin-snippet: basic_approval_with_file_extension 
+    Approvals.verify("text to be verified", new Options().forFile().withExtension(".xyz"));
+    // end-snippet  
+  }
 }
-
