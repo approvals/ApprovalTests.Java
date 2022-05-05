@@ -73,6 +73,8 @@ The default constructor for Options does:
 
 Each instance of Options is not mutable. Therefore, every call produces a new copy of the Options object. This allows you to modify a specific option from an existing Options object,
 while retaining all other settings, and not changing the original object.
+
+
 ---
 
 [Back to User Guide](../README.md#top)
