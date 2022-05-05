@@ -1,11 +1,12 @@
 package com.spun.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import org.lambda.functions.Function1;
+
+import java.io.IOException;
+import java.time.Instant;
 
 public class JsonUtils
 {
@@ -39,7 +40,28 @@ public class JsonUtils
   }
   public static <T> String asJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
   {
-    Gson gson = gsonBuilder.call(new GsonBuilder().setPrettyPrinting()).create();
+    GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
+    builder = addHandlingForDateObjects(builder);
+    Gson gson = gsonBuilder.call(builder).create();
     return gson.toJson(o);
   }
+
+  private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder) {
+    builder = builder.registerTypeAdapter(Instant.class, new InstantAdapter());
+    return builder;
+  }
+
+  public static class InstantAdapter extends TypeAdapter<Instant> {
+
+    @Override
+    public void write(JsonWriter jsonWriter, Instant instant) throws IOException {
+      jsonWriter.value(instant.toString());
+    }
+
+    @Override
+    public Instant read(JsonReader jsonReader) throws IOException {
+      throw new IOException("Never called");
+    }
+  }
+
 }

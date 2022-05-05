@@ -1,11 +1,16 @@
 package org.approvaltests;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.junit.jupiter.api.Test;
 
-@UseReporter(DiffMergeReporter.class)
+import java.io.IOException;
+import java.time.Instant;
+
 public class JsonFormattingTest
 {
   @Test
@@ -39,5 +44,16 @@ public class JsonFormattingTest
       this.lastName = lastName;
       this.age = age;
     }
+  }
+  
+  @Test
+  public void testInstantAndOtherDateObjects() {
+    DateStuff dateStuff = new DateStuff();
+    dateStuff.instant = Instant.ofEpochSecond(1651708441);
+
+    JsonApprovals.verifyAsJson(dateStuff);
+  }
+  private static class DateStuff {
+    public Instant instant;
   }
 }

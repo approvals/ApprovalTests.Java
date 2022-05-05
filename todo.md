@@ -16,7 +16,7 @@
 
 # Documentation
 * Docs for Options
-* Update the GettingStarted.md page to use snippets
+* Update Starter Project docs
 * Combination Approvals
 * Docs for graph for ci consistent
 * Docs for Options.forFile()
