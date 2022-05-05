@@ -26,12 +26,10 @@ It is on all `verify()` methods, as an optional parameter.
 <!-- snippet: specify_all_the_options -->
 <a id='snippet-specify_all_the_options'></a>
 ```java
-new Options()
-        .withReporter(new QuietReporter())
-        .withScrubber(new GuidScrubber())
-        .forFile().withExtension(".json");
+new Options().withReporter(new QuietReporter()).withScrubber(new GuidScrubber()).forFile()
+    .withExtension(".json");
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/OptionsSamplesTest.java#L12-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-specify_all_the_options' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/OptionsSamplesTest.java#L14-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-specify_all_the_options' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Reporters
