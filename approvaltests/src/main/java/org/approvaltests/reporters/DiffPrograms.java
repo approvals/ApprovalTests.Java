@@ -23,6 +23,7 @@ public class DiffPrograms
         "/Applications/Beyond Compare.app/Contents/MacOS/bcomp", TEXT);
     public static DiffInfo KALEIDOSCOPE       = new DiffInfo(
         "/Applications/Kaleidoscope.app/Contents/MacOS/ksdiff", TEXT_AND_IMAGE);
+    public static DiffInfo KALEIDOSCOPE3      = new DiffInfo("/usr/local/bin/ksdiff", TEXT_AND_IMAGE);
     public static DiffInfo KDIFF3             = new DiffInfo("/Applications/kdiff3.app/Contents/MacOS/kdiff3",
         "%s %s -m", TEXT);
     public static DiffInfo P4MERGE            = new DiffInfo("/Applications/p4merge.app/Contents/MacOS/p4merge",
