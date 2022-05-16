@@ -7,6 +7,7 @@ import org.lambda.functions.Function1;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class JsonUtils
 {
@@ -48,6 +49,7 @@ public class JsonUtils
   private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder)
   {
     builder = builder.registerTypeAdapter(Instant.class, new InstantAdapter());
+    builder = builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
     return builder;
   }
   public static class InstantAdapter extends TypeAdapter<Instant>
@@ -59,6 +61,19 @@ public class JsonUtils
     }
     @Override
     public Instant read(JsonReader jsonReader) throws IOException
+    {
+      throw new IOException("Never called");
+    }
+  }
+  public static class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime>
+  {
+    @Override
+    public void write(JsonWriter jsonWriter, LocalDateTime instant) throws IOException
+    {
+      jsonWriter.value(instant.toString());
+    }
+    @Override
+    public LocalDateTime read(JsonReader jsonReader) throws IOException
     {
       throw new IOException("Never called");
     }
