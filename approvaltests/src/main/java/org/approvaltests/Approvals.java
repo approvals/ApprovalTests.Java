@@ -10,10 +10,7 @@ import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.core.ApprovalFailureReporter;
-import org.approvaltests.core.ApprovalWriter;
-import org.approvaltests.core.Options;
-import org.approvaltests.core.VerifyResult;
+import org.approvaltests.core.*;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.StackTraceNamer;
@@ -58,6 +55,14 @@ public class Approvals
   {
     checkForAwtComponents(object == null ? Object.class : object.getClass());
     verify(Objects.toString(object), options);
+  }
+  public static void verify(OptionsAware object)
+  {
+    verify(object, new Options());
+  }
+  public static void verify(OptionsAware object, Options options)
+  {
+    verify(Objects.toString(object), object.modifyOptions(options));
   }
   private static void checkForAwtComponents(Class<?> type)
   {
