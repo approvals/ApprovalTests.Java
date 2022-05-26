@@ -1,5 +1,7 @@
 package org.approvaltests;
 
+import org.approvaltests.reporters.QuietReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function2;
 import org.lambda.query.Queryable;
@@ -38,8 +40,24 @@ public class StoryBoardTest
     storyboard.addFrames(1, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
-  private static class GameOfLife
+  @Test
+  @UseReporter(QuietReporter.class)
+  void gameOfLifeInMarkdown()
   {
+    GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
+    MarkdownStoryBoard storyboard = new MarkdownStoryBoard();
+    storyboard.addDescription("Game of Life");
+    storyboard.add(gameOfLife);
+    storyboard.addFrame("Start Game", gameOfLife.advance());
+    storyboard.addFrame(gameOfLife.advance());
+    storyboard.addDescriptionWithData("setting alive", gameOfLife.setAliveCell("*"));
+    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell("_"));
+    storyboard.addFrames(2, gameOfLife::advance);
+    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell(" "));
+    storyboard.addFrames(1, gameOfLife::advance);
+    Approvals.verify(storyboard);
+  }
+  private static class GameOfLife implements org.approvaltests.strings.MarkdownCompatible {
     private String                               deadSymbol  = ".";
     private String                               aliveSymbol = "x";
     private Function2<Integer, Integer, Boolean> board;
@@ -64,6 +82,11 @@ public class StoryBoardTest
     public String toString()
     {
       return Grid.print(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
+    }
+    @Override
+    public String toMarkdown()
+    {
+      return Grid.printMarkdown(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
     }
     public String setAliveCell(String s)
     {
