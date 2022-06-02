@@ -56,13 +56,14 @@ public class Approvals
     checkForAwtComponents(object == null ? Object.class : object.getClass());
     verify(Objects.toString(object), options);
   }
-  public static void verify(OptionsAware object)
+  public static void verify(Verifiable object)
   {
     verify(object, new Options());
   }
-  public static void verify(OptionsAware object, Options options)
+  public static void verify(Verifiable object, Options options)
   {
-    verify(Objects.toString(object), object.modifyOptions(options));
+    VerifyParameters verifyParameters = object.getVerifyParameters(options);
+    verify(Objects.toString(object), verifyParameters.getOptions());
   }
   private static void checkForAwtComponents(Class<?> type)
   {

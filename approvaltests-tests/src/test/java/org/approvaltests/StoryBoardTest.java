@@ -46,7 +46,7 @@ public class StoryBoardTest
   {
     GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
     MarkdownStoryBoard storyboard = new MarkdownStoryBoard();
-    storyboard.addDescription("Game of Life");
+    storyboard.addTitle("Game of Life");
     storyboard.add(gameOfLife);
     storyboard.addFrame("Start Game", gameOfLife.advance());
     storyboard.addFrame(gameOfLife.advance());
@@ -86,7 +86,7 @@ public class StoryBoardTest
     @Override
     public String toMarkdown()
     {
-      return Grid.printMarkdown(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
+      return Grid.printMarkdown(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol : deadSymbol);
     }
     public String setAliveCell(String s)
     {
