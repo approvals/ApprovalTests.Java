@@ -26,6 +26,8 @@ public static void org.approvaltests.Approvals.verify(org.approvaltests.core.App
 public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.namer.ApprovalNamer)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.namer.ApprovalNamer,org.approvaltests.core.ApprovalFailureReporter)
 public static void org.approvaltests.Approvals.verify(org.approvaltests.core.ApprovalWriter,org.approvaltests.namer.ApprovalNamer,org.approvaltests.core.Options)
+public static void org.approvaltests.Approvals.verify(org.approvaltests.core.Verifiable)
+public static void org.approvaltests.Approvals.verify(org.approvaltests.core.Verifiable,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.Object[],org.lambda.functions.Function1)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.Object[],org.lambda.functions.Function1,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.Iterable)
