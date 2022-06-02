@@ -26,6 +26,7 @@
 * show [nulls in verifyAsJson](how_to/ShowNullsInJson.md#top)
 * [test a variety of values](reference/CombinationApprovals.md)
 * [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
+* Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
 
 ## Configuration
 
