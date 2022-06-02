@@ -23,8 +23,8 @@ public class Grid
   {
     return print(width, height, (x, y) -> cell);
   }
-
-  public static String printMarkdown(int width, int height, Function2<Integer, Integer, String> f2) {
+  public static String printMarkdown(int width, int height, Function2<Integer, Integer, String> f2)
+  {
     StringBuffer b = new StringBuffer();
     b.append(printHeader(width));
     for (int y = 0; y < height; y++)
@@ -40,15 +40,17 @@ public class Grid
     }
     return b.toString();
   }
-
-  private static String printHeader(int width) {
+  private static String printHeader(int width)
+  {
     StringBuffer b = new StringBuffer();
     b.append("|     |");
-    for (int x = 0; x < width; ++x) {
-      b.append(String.format(" %s |", x)); 
+    for (int x = 0; x < width; ++x)
+    {
+      b.append(String.format(" %s |", x));
     }
     b.append("\n|--");
-    for (int x = 0; x <= width; ++x) {
+    for (int x = 0; x <= width; ++x)
+    {
       b.append("---|");
     }
     b.append("\n");

@@ -57,7 +57,8 @@ public class StoryBoardTest
     storyboard.addFrames(1, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
-  private static class GameOfLife implements org.approvaltests.strings.MarkdownCompatible {
+  private static class GameOfLife implements org.approvaltests.strings.MarkdownCompatible
+  {
     private String                               deadSymbol  = ".";
     private String                               aliveSymbol = "x";
     private Function2<Integer, Integer, Boolean> board;

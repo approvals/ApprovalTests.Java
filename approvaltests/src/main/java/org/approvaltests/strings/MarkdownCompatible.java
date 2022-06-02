@@ -1,5 +1,6 @@
 package org.approvaltests.strings;
 
-public interface MarkdownCompatible {
-    String toMarkdown();
+public interface MarkdownCompatible
+{
+  String toMarkdown();
 }
