@@ -30,8 +30,10 @@ public class JsonApprovals
   {
     Approvals.verify(JsonUtils.asJson(o, gsonBuilder), options.forFile().withExtension(".json"));
   }
+  // begin-snippet: verify_as_json
   public static void verifyAsJson(Object o, Options options)
   {
     Approvals.verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
   }
+  // end-snippet
 }

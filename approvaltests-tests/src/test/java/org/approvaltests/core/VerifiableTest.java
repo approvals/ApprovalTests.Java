@@ -5,6 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.approvaltests.Approvals.verify;
 
 public class VerifiableTest {
+    // begin-snippet: verifiable_object_example 
+    @Test
+    void testVerifiable() {
+        verify(new MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."));
+    }
+    
     public static class MarkdownParagraph implements Verifiable {
         private String title;
         private String paragraph;
@@ -14,6 +20,7 @@ public class VerifiableTest {
             this.paragraph = paragraph;
         }
 
+        @Override
         public VerifyParameters getVerifyParameters(Options options) {
             return new VerifyParameters(options.forFile().withExtension(".md"));
         }
@@ -23,10 +30,5 @@ public class VerifiableTest {
             return String.format("# %s\n%s", title, paragraph);
         }
     }
-
-    @Test
-    void testVerifiable() {
-        verify(new MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."));
-    }
-
+    // end-snippet
 }
