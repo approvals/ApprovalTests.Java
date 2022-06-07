@@ -3,8 +3,8 @@
 <!-- toc -->
 ## Contents
 
-* [Create a Custom Verify Method](#create-a-custom-verify-method)
-* [Create a `Verifiable` Object](#create-a-verifiable-object)<!-- endToc -->
+  * [Create a Custom Verify Method](#create-a-custom-verify-method)
+  * [Create a `Verifiable` Object](#create-a-verifiable-object)<!-- endToc -->
 
 ## Create a Custom Verify Method
 
@@ -14,7 +14,13 @@ For example, as we use it to handle json:
 
 <!-- snippet: verify_as_json -->
 <a id='snippet-verify_as_json'></a>
-<sup><a href='/approvaltests/approvals.py#L191-L206' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+```java
+public static void verifyAsJson(Object o, Options options)
+{
+  Approvals.verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
+}
+```
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L33-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
@@ -31,6 +37,33 @@ for example:
 
 <!-- snippet: verifiable_object_example -->
 <a id='snippet-verifiable_object_example'></a>
-<sup><a href='/tests/test_verify.py#L282-L299' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+```java
+@Test
+void testVerifiable()
+{
+  verify(new MarkdownParagraph("Paragraph Title", "This is where the paragraph text is."));
+}
+public static class MarkdownParagraph implements Verifiable
+{
+  private String title;
+  private String paragraph;
+  public MarkdownParagraph(String title, String paragraph)
+  {
+    this.title = title;
+    this.paragraph = paragraph;
+  }
+  @Override
+  public VerifyParameters getVerifyParameters(Options options)
+  {
+    return new VerifyParameters(options.forFile().withExtension(".md"));
+  }
+  @Override
+  public String toString()
+  {
+    return String.format("# %s\n%s", title, paragraph);
+  }
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/core/VerifiableTest.java#L9-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   
