@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.ArrayUtils;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Verifiable;
 import org.approvaltests.core.VerifyParameters;
@@ -23,12 +24,16 @@ public class TableTest {
         private String markdown;
 
         public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2) {
-            MarkdownTable table = new MarkdownTable();
-            table.markdown = printHeader(column1, column2);
+            MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
             for (I input : inputs) {
                 table.markdown += String.format("| %s | %s |\n", input, o.call(input));
             }
             return table;
+        }
+
+        public MarkdownTable withColumnHeaders(String ... headers) {
+            markdown = printColumnHeaders(headers);
+            return this;
         }
 
         @Override
@@ -46,26 +51,19 @@ public class TableTest {
             return markdown;
         }
 
-        private static String printHeader(String ... headers)
+        public static String printColumnHeaders(String ... headers)
         {
-            StringBuffer b = new StringBuffer();
-            b.append(printRow(headers));
-            for (int x = 0; x < headers.length; ++x)
-            {
-                b.append(" --- |");
-            }
-            b.append("\n");
-            return b.toString();
+            return printRow(headers) + printRow(ArrayUtils.of("---", headers.length));
         }
 
-        private static String printRow(String[] headers) {
+        public static String printRow(String[] headers) {
             StringBuffer b = new StringBuffer();
             b.append("|");
             for (int x = 0; x < headers.length; ++x)
             {
                 b.append(String.format(" %s |", headers[x]));
             }
-            b.append("\n|");
+            b.append("\n");
             return b.toString();
         }
     }
