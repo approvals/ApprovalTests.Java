@@ -1,4 +1,7 @@
 # Code
+* Refactor Grid to use MarkdownTables
+* Refactor PairwiseTest to use MarkdownTables
+* Consider splitting MarkdownTables into VerifiableMarkdownTables (or generally handle the allowing of MarkdownTables in production code)
 * Update koans
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
 * NamedEnvironment with execute around pattern?
