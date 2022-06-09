@@ -26,9 +26,14 @@ public class TableTest {
         public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2) {
             MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
             for (I input : inputs) {
-                table.markdown += String.format("| %s | %s |\n", input, o.call(input));
+                table.addRow(input, o.call(input));
             }
             return table;
+        }
+
+        private MarkdownTable addRow(Object ... columns) {
+            markdown += printRow(columns);
+            return this;
         }
 
         public MarkdownTable withColumnHeaders(String ... headers) {
@@ -56,12 +61,12 @@ public class TableTest {
             return printRow(headers) + printRow(ArrayUtils.of("---", headers.length));
         }
 
-        public static String printRow(String[] headers) {
+        public static String printRow(Object ... columns) {
             StringBuffer b = new StringBuffer();
             b.append("|");
-            for (int x = 0; x < headers.length; ++x)
+            for (int x = 0; x < columns.length; ++x)
             {
-                b.append(String.format(" %s |", headers[x]));
+                b.append(String.format(" %s |", columns[x]));
             }
             b.append("\n");
             return b.toString();
