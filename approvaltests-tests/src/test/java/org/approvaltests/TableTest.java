@@ -11,7 +11,7 @@ import org.lambda.functions.Function1;
 public class TableTest {
     @Test
     void abilityModifier() {
-        Approvals.verify(Table.create(Range.get(1, 20), a -> getModifier(a), "Score", "Modifier"));
+        Approvals.verify(MarkdownTable.create(Range.get(1, 20), a -> getModifier(a), "Score", "Modifier"));
     }
 
     private Integer getModifier(Integer ability) {
@@ -19,13 +19,12 @@ public class TableTest {
     }
 
 
-    private static class Table implements Verifiable, MarkdownCompatible {
+    private static class MarkdownTable implements Verifiable, MarkdownCompatible {
         private String markdown;
 
-        public static <I, O> Table create(I[] inputs, Function1<I, O> o, String column1, String column2) {
-            Table table = new Table();
-            table.markdown = String.format("| %s | %s |\n", column1, column2);
-            table.markdown += "| --- | --- |\n";
+        public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2) {
+            MarkdownTable table = new MarkdownTable();
+            table.markdown = printHeader(column1, column2);
             for (I input : inputs) {
                 table.markdown += String.format("| %s | %s |\n", input, o.call(input));
             }
@@ -45,6 +44,29 @@ public class TableTest {
         @Override
         public String toMarkdown() {
             return markdown;
+        }
+
+        private static String printHeader(String ... headers)
+        {
+            StringBuffer b = new StringBuffer();
+            b.append(printRow(headers));
+            for (int x = 0; x < headers.length; ++x)
+            {
+                b.append(" --- |");
+            }
+            b.append("\n");
+            return b.toString();
+        }
+
+        private static String printRow(String[] headers) {
+            StringBuffer b = new StringBuffer();
+            b.append("|");
+            for (int x = 0; x < headers.length; ++x)
+            {
+                b.append(String.format(" %s |", headers[x]));
+            }
+            b.append("\n|");
+            return b.toString();
         }
     }
 }
