@@ -310,16 +310,16 @@ public class ArrayUtils
     }
     return allChars;
   }
-
-    public static <T> T[] of(T valueOfEachElement, int sizeOfArray) {
-      Queryable<T> queryable = new Queryable(valueOfEachElement.getClass());
-      for (int i = 0; i < sizeOfArray; i++) {
-        queryable.add(valueOfEachElement);
-      }
-      return queryable.asArray();
+  public static <T> T[] of(T valueOfEachElement, int sizeOfArray)
+  {
+    Queryable<T> queryable = new Queryable(valueOfEachElement.getClass());
+    for (int i = 0; i < sizeOfArray; i++)
+    {
+      queryable.add(valueOfEachElement);
     }
-
-    public static class IterableWrapper<T> implements Iterable<T>
+    return queryable.asArray();
+  }
+  public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;
     public IterableWrapper(Iterator<T> iterator)
