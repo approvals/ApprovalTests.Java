@@ -20,23 +20,22 @@ public class MarkdownTable implements Verifiable, MarkdownCompatible
     }
     return table;
   }
-
-    public static MarkdownTable withHeaders(String... columnNames) {
-      MarkdownTable table = new MarkdownTable();
-      return table.withColumnHeaders(columnNames);
-    }
-
-    public <I> MarkdownTable addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
+  public static MarkdownTable withHeaders(String... columnNames)
+  {
+    MarkdownTable table = new MarkdownTable();
+    return table.withColumnHeaders(columnNames);
+  }
+  public <I> MarkdownTable addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
+  {
+    for (I input : inputs)
     {
-      for (I input : inputs)
-      {
-        Queryable<Object> row = Queryable.as(transfers).select(f -> f.call(input));
-        row.add(0, input);
-        addRow(row.toArray());
-      }
-      return this;
+      Queryable<Object> row = Queryable.as(transfers).select(f -> f.call(input));
+      row.add(0, input);
+      addRow(row.toArray());
     }
-    public MarkdownTable addRow(Object... columns)
+    return this;
+  }
+  public MarkdownTable addRow(Object... columns)
   {
     markdown += printRow(columns);
     return this;
