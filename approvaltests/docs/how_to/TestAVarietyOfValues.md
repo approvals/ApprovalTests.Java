@@ -67,7 +67,7 @@ Approvals.verify(table);
 
 which will produce:
 
-<!-- include: TableTest.abilityModifier.approved.md -->
+<!-- include: TableTest.differentCases.approved.md -->
 | Score | Modifier |
 | --- | --- |
 | 1 | -5 |

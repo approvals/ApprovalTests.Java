@@ -6,6 +6,7 @@ import org.approvaltests.core.Verifiable;
 import org.approvaltests.core.VerifyParameters;
 import org.approvaltests.strings.MarkdownCompatible;
 import org.lambda.functions.Function1;
+import org.lambda.query.Queryable;
 
 public class MarkdownTable implements Verifiable, MarkdownCompatible
 {
@@ -19,7 +20,23 @@ public class MarkdownTable implements Verifiable, MarkdownCompatible
     }
     return table;
   }
-  private MarkdownTable addRow(Object... columns)
+
+    public static MarkdownTable withHeaders(String... columnNames) {
+      MarkdownTable table = new MarkdownTable();
+      return table.withColumnHeaders(columnNames);
+    }
+
+    public <I> MarkdownTable addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
+    {
+      for (I input : inputs)
+      {
+        Queryable<Object> row = Queryable.as(transfers).select(f -> f.call(input));
+        row.add(0, input);
+        addRow(row.toArray());
+      }
+      return this;
+    }
+    public MarkdownTable addRow(Object... columns)
   {
     markdown += printRow(columns);
     return this;
