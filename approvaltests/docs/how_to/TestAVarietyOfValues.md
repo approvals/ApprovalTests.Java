@@ -48,6 +48,19 @@ placeholder input.value2
 5. Change the TITLE to something meaningful
 6. Run it, and approve the output.
 
+
+## Tables
+
+Another way to test a variety of inputs is to use a `MarkdownTable`.
+Here's an example:
+
+snippet: markdown_table_example
+
+which will produce:
+
+include: TableTest.abilityModifier.approved.md
+
+
 ---
 
 [Back to User Guide](/doc/README.md#top)

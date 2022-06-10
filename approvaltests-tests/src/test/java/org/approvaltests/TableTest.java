@@ -9,7 +9,11 @@ public class TableTest
   @Test
   void abilityModifier()
   {
-    Approvals.verify(MarkdownTable.create(Range.get(1, 20), a -> getModifier(a), "Score", "Modifier"));
+    // begin-snippet: markdown_table_example
+    Integer[] inputs = Range.get(1, 20);
+    MarkdownTable table = MarkdownTable.create(inputs, a -> getModifier(a), "Score", "Modifier");
+    Approvals.verify(table);
+    // end-snippet
   }
   private Integer getModifier(Integer ability)
   {
