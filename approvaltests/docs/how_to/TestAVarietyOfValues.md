@@ -6,7 +6,8 @@
 ## Contents
 
   * [When to use Approvals::verifyAll()](#when-to-use-approvalsverifyall)
-  * [Steps](#steps)<!-- endToc -->
+  * [Steps](#steps)
+  * [Tables](#tables)<!-- endToc -->
 
 ## When to use Approvals::verifyAll()
 
@@ -54,11 +55,42 @@ placeholder input.value2
 Another way to test a variety of inputs is to use a `MarkdownTable`.
 Here's an example:
 
-snippet: markdown_table_example
+<!-- snippet: markdown_table_example -->
+<a id='snippet-markdown_table_example'></a>
+```java
+Integer[] inputs = Range.get(1, 20);
+MarkdownTable table = MarkdownTable.create(inputs, a -> getModifier(a), "Score", "Modifier");
+Approvals.verify(table);
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L12-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 which will produce:
 
-include: TableTest.abilityModifier.approved.md
+<!-- include: TableTest.abilityModifier.approved.md -->
+| Score | Modifier |
+| --- | --- |
+| 1 | -5 |
+| 2 | -4 |
+| 3 | -4 |
+| 4 | -3 |
+| 5 | -3 |
+| 6 | -2 |
+| 7 | -2 |
+| 8 | -1 |
+| 9 | -1 |
+| 10 | 0 |
+| 11 | 0 |
+| 12 | 1 |
+| 13 | 1 |
+| 14 | 2 |
+| 15 | 2 |
+| 16 | 3 |
+| 17 | 3 |
+| 18 | 4 |
+| 19 | 4 |
+| 20 | 5 |
+<!-- endInclude -->
 
 
 ---
