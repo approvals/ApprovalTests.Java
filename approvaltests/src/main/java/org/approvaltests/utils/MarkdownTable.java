@@ -18,6 +18,9 @@ public class MarkdownTable extends MarkdownTableBasic implements Verifiable
   {
     return new MarkdownTable(MarkdownTableBasic.create(inputs, o, column1, column2));
   }
+  public static MarkdownTable withHeaders(String... columnNames) {
+    return new MarkdownTable(MarkdownTableBasic.withHeaders(columnNames));
+  }
   @Override
   public VerifyParameters getVerifyParameters(Options options)
   {
