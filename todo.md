@@ -1,5 +1,5 @@
 # Code
-* Refactor Grid to use MarkdownTables
+* Change MarkdownTable to have a header element which expands with dashes
 * Refactor PairwiseTest to use MarkdownTables
 * Consider splitting MarkdownTables into VerifiableMarkdownTables (or generally handle the allowing of MarkdownTables in production code)
 * Update koans

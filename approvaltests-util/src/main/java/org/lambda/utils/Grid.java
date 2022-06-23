@@ -29,8 +29,9 @@ public class Grid
   {
     Queryable<Integer> numbers = Range.getAsQueryable(0, width - 1);
     Queryable<String> asQueryable = numbers.select(i -> "" + i);
-    asQueryable.add(0, "   ");
+    asQueryable.add(0, " ");
     MarkdownTable table = MarkdownTable.withHeaders(asQueryable.asArray());
+    table.setColumnsConsistentWidth(true);
     for (int y = 0; y < height; y++) {
       int y2 = y;
       Queryable<String> row = numbers.select(x -> f2.call(x, y2)).select(c -> c == null ? "" : c);

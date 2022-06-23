@@ -6,6 +6,11 @@ import org.lambda.query.Queryable;
 public class MarkdownTable implements MarkdownCompatible
 {
   public Queryable<MarkdownTableElement> markdown = new Queryable<MarkdownTableElement>(MarkdownTableElement.class);
+  private boolean fixedWidth = false;
+  
+  public void setColumnsConsistentWidth(boolean setting) {
+    fixedWidth = setting;
+  }
   public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
   {
     MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
@@ -48,8 +53,23 @@ public class MarkdownTable implements MarkdownCompatible
   @Override
   public String toMarkdown()
   {
+    handleFixedWidth();
     return render(markdown);
   }
+
+  private void handleFixedWidth() {
+    if (!fixedWidth) { return; }
+    Queryable<Queryable<MarkdownTableElement>> rows = markdown.split(e -> e == MarkdownTableElement.NEWLINE);
+    for (int column = 0; column < rows.get(0).size(); column++) {
+      int col = column;
+      if (rows.get(0).get(column) instanceof MarkdownTableContents) {
+          Queryable<MarkdownTableContents> select = rows.select(e -> e.get(col)).where(e -> e instanceof MarkdownTableContents).select(e -> (MarkdownTableContents) e);
+          int length = select.max(e -> e.getLength()).getLength();
+          select.forEach(e -> e.setPadding(length));
+      }
+    }
+  }
+
   public static String printColumnHeaders(String... headers)
   {
     return render(constructColumnHeaders(headers));

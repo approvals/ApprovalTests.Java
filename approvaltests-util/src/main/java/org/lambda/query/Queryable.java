@@ -1,6 +1,7 @@
 package org.lambda.query;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.MarkdownTableContents;
 import com.spun.util.ObjectUtils;
 import org.lambda.Extendable;
 import org.lambda.functions.Function1;
@@ -171,5 +172,20 @@ public class Queryable<In> extends ArrayList<In>
   public <Out> String join(String joinCharacter, Function1<In, Out> transformer)
   {
     return String.join(joinCharacter, this.select(t -> "" + transformer.call(t)));
+  }
+
+  public Queryable<Queryable<In>> split(Function1<In, Boolean> function) {
+    Queryable<Queryable<In>> results = new Queryable<>();
+    Queryable<In> part = new Queryable<>();
+    for (In in : this) {
+      if (function.call(in)) {
+        results.add(part);
+        part = new Queryable<>();
+      }
+      else {
+        part.add(in);
+      }
+    }
+    return results;
   }
 }
