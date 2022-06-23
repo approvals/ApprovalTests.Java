@@ -42,7 +42,7 @@ public class StoryBoardTest
     Approvals.verify(storyboard);
   }
   @Test
-  @UseReporter(QuietReporter.class)
+//  @UseReporter(QuietReporter.class)
   void gameOfLifeInMarkdown()
   {
     GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);

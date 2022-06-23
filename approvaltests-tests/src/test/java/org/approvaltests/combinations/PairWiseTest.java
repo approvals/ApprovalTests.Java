@@ -6,7 +6,7 @@ import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.core.Options;
-import org.approvaltests.legacycode.Range;
+import org.lambda.utils.Range;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;

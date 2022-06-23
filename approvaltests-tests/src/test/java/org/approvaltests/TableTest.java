@@ -1,6 +1,6 @@
 package org.approvaltests;
 
-import org.approvaltests.legacycode.Range;
+import org.lambda.utils.Range;
 import org.approvaltests.utils.VerifiableMarkdownTable;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,6 @@
-package org.approvaltests.legacycode;
+package org.lambda.utils;
+
+import org.lambda.query.Queryable;
 
 import java.util.ArrayList;
 
@@ -12,5 +14,9 @@ public class Range
       a.add(i);
     }
     return (Integer[]) a.toArray(new Integer[a.size()]);
+  }
+
+  public static Queryable<Integer> getAsQueryable(int start, int stop) {
+    return Queryable.as(get(start, stop));
   }
 }

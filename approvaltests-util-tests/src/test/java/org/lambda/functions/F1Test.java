@@ -1,7 +1,7 @@
 package org.lambda.functions;
 
 import org.approvaltests.Approvals;
-import org.approvaltests.legacycode.Range;
+import org.lambda.utils.Range;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.junit.jupiter.api.Test;

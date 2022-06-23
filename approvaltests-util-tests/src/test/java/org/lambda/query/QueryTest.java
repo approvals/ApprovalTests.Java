@@ -1,6 +1,6 @@
 package org.lambda.query;
 
-import org.approvaltests.legacycode.Range;
+import org.lambda.utils.Range;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
