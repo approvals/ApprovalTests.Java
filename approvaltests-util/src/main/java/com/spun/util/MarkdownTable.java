@@ -3,24 +3,24 @@ package com.spun.util;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
-public class MarkdownTableBasic implements MarkdownCompatible
+public class MarkdownTable implements MarkdownCompatible
 {
   protected String markdown;
-  public static <I, O> MarkdownTableBasic create(I[] inputs, Function1<I, O> o, String column1, String column2)
+  public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
   {
-    MarkdownTableBasic table = new MarkdownTableBasic().withColumnHeaders(column1, column2);
+    MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
     for (I input : inputs)
     {
       table.addRow(input, o.call(input));
     }
     return table;
   }
-  public static MarkdownTableBasic withHeaders(String... columnNames)
+  public static MarkdownTable withHeaders(String... columnNames)
   {
-    MarkdownTableBasic table = new MarkdownTableBasic();
+    MarkdownTable table = new MarkdownTable();
     return table.withColumnHeaders(columnNames);
   }
-  public <I> MarkdownTableBasic addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
+  public <I> MarkdownTable addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
   {
     for (I input : inputs)
     {
@@ -30,12 +30,12 @@ public class MarkdownTableBasic implements MarkdownCompatible
     }
     return this;
   }
-  public MarkdownTableBasic addRow(Object... columns)
+  public MarkdownTable addRow(Object... columns)
   {
     markdown += printRow(columns);
     return this;
   }
-  public MarkdownTableBasic withColumnHeaders(String... headers)
+  public MarkdownTable withColumnHeaders(String... headers)
   {
     markdown = printColumnHeaders(headers);
     return this;
