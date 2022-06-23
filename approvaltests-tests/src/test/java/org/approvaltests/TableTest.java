@@ -2,6 +2,7 @@ package org.approvaltests;
 
 import org.approvaltests.legacycode.Range;
 import org.approvaltests.utils.MarkdownTable;
+import org.approvaltests.utils.MarkdownTableBasic;
 import org.junit.jupiter.api.Test;
 
 public class TableTest
@@ -18,9 +19,9 @@ public class TableTest
   {
     // begin-snippet: markdown_table_example
     String[] inputs = {"verify json", "verify all", "verify parameters", "verify as json"};
-    MarkdownTable table = MarkdownTable.withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
+    MarkdownTableBasic table = MarkdownTableBasic.withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
     table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
-    Approvals.verify(table);
+    Approvals.verify(new MarkdownTable(table));
     // end-snippet
   }
   private String toKebabCase(String input)
