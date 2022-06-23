@@ -5,7 +5,7 @@ import org.lambda.query.Queryable;
 
 public class MarkdownTable implements MarkdownCompatible
 {
-  protected String markdown;
+  public Queryable<MarkdownTableElement> markdown = new Queryable<MarkdownTableElement>(MarkdownTableElement.class);
   public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
   {
     MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
@@ -32,12 +32,12 @@ public class MarkdownTable implements MarkdownCompatible
   }
   public MarkdownTable addRow(Object... columns)
   {
-    markdown += printRow(columns);
+    markdown.addAll(constructRow(columns));
     return this;
   }
   public MarkdownTable withColumnHeaders(String... headers)
   {
-    markdown = printColumnHeaders(headers);
+    markdown.addAll(constructColumnHeaders(headers));
     return this;
   }
   @Override
@@ -48,21 +48,37 @@ public class MarkdownTable implements MarkdownCompatible
   @Override
   public String toMarkdown()
   {
-    return markdown;
+    return render(markdown);
   }
   public static String printColumnHeaders(String... headers)
   {
-    return printRow(headers) + printRow(ArrayUtils.of("---", headers.length));
+    return render(constructColumnHeaders(headers));
+  }
+  public static Queryable<MarkdownTableElement> constructColumnHeaders(String... headers)
+  {
+    Queryable<MarkdownTableElement> row = constructRow(headers);
+    row.addAll(constructRow(ArrayUtils.of("---", headers.length)));
+    return row;
   }
   public static String printRow(Object... columns)
   {
-    StringBuffer b = new StringBuffer();
-    b.append("|");
+    return render(constructRow(columns));
+  }
+
+  private static String render(Queryable<MarkdownTableElement> table) {
+    return table.join("");
+  }
+
+  public static Queryable<MarkdownTableElement> constructRow(Object... columns)
+  {
+    Queryable row = new Queryable(MarkdownTableElement.class);
+    row.add(MarkdownTableElement.DELIMITER);
     for (int x = 0; x < columns.length; ++x)
     {
-      b.append(String.format(" %s |", columns[x]));
+      row.add(new MarkdownTableContents("" + columns[x]));
+      row.add(MarkdownTableElement.DELIMITER);
     }
-    b.append("\n");
-    return b.toString();
+    row.add(MarkdownTableElement.NEWLINE);
+    return row;
   }
 }

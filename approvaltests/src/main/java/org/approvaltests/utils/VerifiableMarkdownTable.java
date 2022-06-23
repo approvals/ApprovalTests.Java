@@ -9,7 +9,7 @@ import org.lambda.functions.Function1;
 public class VerifiableMarkdownTable extends MarkdownTable implements Verifiable
 {
   public VerifiableMarkdownTable(MarkdownTable markdownTableBasic) {
-    this.markdown = markdownTableBasic.toMarkdown();
+    this.markdown = markdownTableBasic.markdown;
   }
 
   public static <I, O> VerifiableMarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
