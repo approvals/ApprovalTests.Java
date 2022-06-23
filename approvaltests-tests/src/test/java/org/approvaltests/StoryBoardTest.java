@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.MarkdownCompatible;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,7 @@ public class StoryBoardTest
     storyboard.addFrames(1, gameOfLife::advance);
     Approvals.verify(storyboard);
   }
-  private static class GameOfLife implements org.approvaltests.strings.MarkdownCompatible
+  private static class GameOfLife implements MarkdownCompatible
   {
     private String                               deadSymbol  = ".";
     private String                               aliveSymbol = "x";

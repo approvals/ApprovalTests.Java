@@ -3,7 +3,7 @@ package org.approvaltests;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Verifiable;
 import org.approvaltests.core.VerifyParameters;
-import org.approvaltests.strings.MarkdownCompatible;
+import com.spun.util.MarkdownCompatible;
 import org.lambda.functions.Function0;
 
 public class MarkdownStoryBoard implements Verifiable

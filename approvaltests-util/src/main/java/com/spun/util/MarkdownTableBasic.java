@@ -1,10 +1,5 @@
-package org.approvaltests.utils;
+package com.spun.util;
 
-import com.spun.util.ArrayUtils;
-import org.approvaltests.core.Options;
-import org.approvaltests.core.Verifiable;
-import org.approvaltests.core.VerifyParameters;
-import org.approvaltests.strings.MarkdownCompatible;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 

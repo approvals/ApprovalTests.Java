@@ -1,4 +1,4 @@
-package org.approvaltests.strings;
+package com.spun.util;
 
 public interface MarkdownCompatible
 {

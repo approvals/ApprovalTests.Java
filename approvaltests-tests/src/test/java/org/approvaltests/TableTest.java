@@ -2,7 +2,6 @@ package org.approvaltests;
 
 import org.approvaltests.legacycode.Range;
 import org.approvaltests.utils.MarkdownTable;
-import org.approvaltests.utils.MarkdownTableBasic;
 import org.junit.jupiter.api.Test;
 
 public class TableTest
