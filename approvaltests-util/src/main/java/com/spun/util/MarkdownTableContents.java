@@ -1,6 +1,6 @@
 package com.spun.util;
 
-public class MarkdownTableContents implements MarkdownTableElement {
+public class MarkdownTableContents implements MarkdownTableElement, Resizable {
     private String contents;
     private int padUntil;
 

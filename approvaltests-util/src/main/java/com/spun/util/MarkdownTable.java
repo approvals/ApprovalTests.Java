@@ -6,7 +6,7 @@ import org.lambda.query.Queryable;
 public class MarkdownTable implements MarkdownCompatible
 {
   public Queryable<MarkdownTableElement> markdown = new Queryable<MarkdownTableElement>(MarkdownTableElement.class);
-  private boolean fixedWidth = false;
+  private boolean fixedWidth = true;
   
   public void setColumnsConsistentWidth(boolean setting) {
     fixedWidth = setting;
@@ -63,7 +63,10 @@ public class MarkdownTable implements MarkdownCompatible
     for (int column = 0; column < rows.get(0).size(); column++) {
       int col = column;
       if (rows.get(0).get(column) instanceof MarkdownTableContents) {
-          Queryable<MarkdownTableContents> select = rows.select(e -> e.get(col)).where(e -> e instanceof MarkdownTableContents).select(e -> (MarkdownTableContents) e);
+          Queryable<Resizable> select = rows
+                  .select(e -> e.get(col))
+                  .where(e -> e instanceof Resizable)
+                  .select(e -> (Resizable) e);
           int length = select.max(e -> e.getLength()).getLength();
           select.forEach(e -> e.setPadding(length));
       }
@@ -77,7 +80,12 @@ public class MarkdownTable implements MarkdownCompatible
   public static Queryable<MarkdownTableElement> constructColumnHeaders(String... headers)
   {
     Queryable<MarkdownTableElement> row = constructRow(headers);
-    row.addAll(constructRow(ArrayUtils.of("---", headers.length)));
+    for (int i = 0; i < headers.length; i++) {
+      row.add(MarkdownTableElement.DELIMITER);
+      row.add(new MarkdownTableHeader());
+    }
+    row.add(MarkdownTableElement.DELIMITER);
+    row.add(MarkdownTableElement.NEWLINE);
     return row;
   }
   public static String printRow(Object... columns)

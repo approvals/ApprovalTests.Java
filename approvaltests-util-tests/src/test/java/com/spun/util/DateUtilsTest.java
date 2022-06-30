@@ -1,6 +1,5 @@
 package com.spun.util;
 
-import org.apache.commons.lang3.time.DatePrinter;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 
@@ -17,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DateUtilsTest
 {
-  private StartAndEndUseCases[] startAndEndUseCases = {new StartAndEndUseCases(Calendar.YEAR,
-      "2003.05.03 15:20:20:123", "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
+  private StartAndEndUseCases[] getStartAndEndUseCases() {
+    return new StartAndEndUseCases[] {new StartAndEndUseCases(Calendar.YEAR,
+            "2003.05.03 15:20:20:123", "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
+  }
   @Test
   public void testToDate()
   {
@@ -39,15 +40,19 @@ public class DateUtilsTest
   @Test
   public void testStartAndEndUseCases()
   {
-    for (int i = 0; i < startAndEndUseCases.length; i++)
+    try (WithTimeZone t = new WithTimeZone())
     {
-      assertStartAndEnd(startAndEndUseCases[i]);
+      StartAndEndUseCases[] startAndEndUseCases = getStartAndEndUseCases();
+      for (int i = 0; i < startAndEndUseCases.length; i++)
+      {
+        assertStartAndEnd(startAndEndUseCases[i]);
+      }
     }
   }
   private void assertStartAndEnd(StartAndEndUseCases useCase)
   {
-    assertEquals(useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date), "Start date ");
-    assertEquals(useCase.end, DateUtils.getEndOf(useCase.unit, useCase.date), "End date ");
+      assertEquals(useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date), "Start date ");
+      assertEquals(useCase.end, DateUtils.getEndOf(useCase.unit, useCase.date), "End date ");
   }
   @Test
   public void testNextAndLast()
