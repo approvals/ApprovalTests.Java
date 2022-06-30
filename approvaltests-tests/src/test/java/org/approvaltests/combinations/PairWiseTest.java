@@ -30,10 +30,13 @@ public class PairWiseTest
   @Test
   void forTable()
   {
-    String [] headers = {"Number of Parameters", "Variations per Parameter", "Total Combinations", "Pairwise Combinations"};
+    String[] headers = {"Number of Parameters",
+                        "Variations per Parameter",
+                        "Total Combinations",
+                        "Pairwise Combinations"};
     MarkdownTable table = MarkdownTable.withHeaders(headers);
     table.setColumnProperties(MarkdownColumn.RIGHT_JUSTIFIED);
-//            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
+    //            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
     addPairwiseTableRow(2, 5, table);
     addPairwiseTableRow(3, 3, table);
     addPairwiseTableRow(3, 4, table);
@@ -41,15 +44,16 @@ public class PairWiseTest
     addPairwiseTableRow(5, 6, table);
     addPairwiseTableRow(9, 9, table);
     // added blank lines at beginning due to markdown snippets bug
-    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()), new Options().forFile().withExtension("include.md"));
+    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
+        new Options().forFile().withExtension("include.md"));
   }
   private String addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
   {
     Object[] p = Range.get(1, variations);
     Pairwise pairwise = Pairwise.toPairWise(p, p, 3 <= pCount ? p : CombinationApprovals.EMPTY,
-            4 <= pCount ? p : CombinationApprovals.EMPTY, 5 <= pCount ? p : CombinationApprovals.EMPTY,
-            6 <= pCount ? p : CombinationApprovals.EMPTY, 7 <= pCount ? p : CombinationApprovals.EMPTY,
-            8 <= pCount ? p : CombinationApprovals.EMPTY, 9 <= pCount ? p : CombinationApprovals.EMPTY);
+        4 <= pCount ? p : CombinationApprovals.EMPTY, 5 <= pCount ? p : CombinationApprovals.EMPTY,
+        6 <= pCount ? p : CombinationApprovals.EMPTY, 7 <= pCount ? p : CombinationApprovals.EMPTY,
+        8 <= pCount ? p : CombinationApprovals.EMPTY, 9 <= pCount ? p : CombinationApprovals.EMPTY);
     final List<Case> cases = pairwise.getCases();
     int totalPossibleSize = pairwise.getTotalPossibleCombinations();
     DecimalFormat df = new DecimalFormat("###,###,###");
