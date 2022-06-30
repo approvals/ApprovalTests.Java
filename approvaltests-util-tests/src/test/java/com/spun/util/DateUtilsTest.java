@@ -16,9 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DateUtilsTest
 {
-  private StartAndEndUseCases[] getStartAndEndUseCases() {
-    return new StartAndEndUseCases[] {new StartAndEndUseCases(Calendar.YEAR,
-            "2003.05.03 15:20:20:123", "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
+  private StartAndEndUseCases[] getStartAndEndUseCases()
+  {
+    return new StartAndEndUseCases[]{new StartAndEndUseCases(Calendar.YEAR, "2003.05.03 15:20:20:123",
+        "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
   }
   @Test
   public void testToDate()
@@ -51,8 +52,8 @@ public class DateUtilsTest
   }
   private void assertStartAndEnd(StartAndEndUseCases useCase)
   {
-      assertEquals(useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date), "Start date ");
-      assertEquals(useCase.end, DateUtils.getEndOf(useCase.unit, useCase.date), "End date ");
+    assertEquals(useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date), "Start date ");
+    assertEquals(useCase.end, DateUtils.getEndOf(useCase.unit, useCase.date), "End date ");
   }
   @Test
   public void testNextAndLast()

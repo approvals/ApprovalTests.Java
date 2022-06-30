@@ -8,15 +8,17 @@ import org.lambda.functions.Function1;
 
 public class VerifiableMarkdownTable extends MarkdownTable implements Verifiable
 {
-  public VerifiableMarkdownTable(MarkdownTable markdownTableBasic) {
+  public VerifiableMarkdownTable(MarkdownTable markdownTableBasic)
+  {
     this.markdown = markdownTableBasic.markdown;
   }
-
-  public static <I, O> VerifiableMarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
+  public static <I, O> VerifiableMarkdownTable create(I[] inputs, Function1<I, O> o, String column1,
+      String column2)
   {
     return new VerifiableMarkdownTable(MarkdownTable.create(inputs, o, column1, column2));
   }
-  public static VerifiableMarkdownTable withHeaders(String... columnNames) {
+  public static VerifiableMarkdownTable withHeaders(String... columnNames)
+  {
     return new VerifiableMarkdownTable(MarkdownTable.withHeaders(columnNames));
   }
   @Override

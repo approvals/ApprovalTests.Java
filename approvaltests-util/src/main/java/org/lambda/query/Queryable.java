@@ -173,16 +173,19 @@ public class Queryable<In> extends ArrayList<In>
   {
     return String.join(joinCharacter, this.select(t -> "" + transformer.call(t)));
   }
-
-  public Queryable<Queryable<In>> split(Function1<In, Boolean> function) {
+  public Queryable<Queryable<In>> split(Function1<In, Boolean> function)
+  {
     Queryable<Queryable<In>> results = new Queryable<>();
     Queryable<In> part = new Queryable<>();
-    for (In in : this) {
-      if (function.call(in)) {
+    for (In in : this)
+    {
+      if (function.call(in))
+      {
         results.add(part);
         part = new Queryable<>();
       }
-      else {
+      else
+      {
         part.add(in);
       }
     }

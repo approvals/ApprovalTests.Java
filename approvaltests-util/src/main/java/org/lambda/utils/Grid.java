@@ -32,27 +32,28 @@ public class Grid
     asQueryable.add(0, " ");
     MarkdownTable table = MarkdownTable.withHeaders(asQueryable.asArray());
     table.setColumnsConsistentWidth(true);
-    for (int y = 0; y < height; y++) {
+    for (int y = 0; y < height; y++)
+    {
       int y2 = y;
       Queryable<String> row = numbers.select(x -> f2.call(x, y2)).select(c -> c == null ? "" : c);
       row.add(0, "**" + y + "**");
       table.addRow(row.toArray());
     }
     return table.toMarkdown();
-//    StringBuffer b = new StringBuffer();
-//    b.append(printHeader(width));
-//    for (int y = 0; y < height; y++)
-//    {
-//      b.append("|**" + y + "**|");
-//      for (int x = 0; x < width; x++)
-//      {
-//        String c = f2.call(x, y);
-//        c = c == null ? " " : c;
-//        b.append(" " + c + " |");
-//      }
-//      b.append("\n");
-//    }
-//    return b.toString();
+    //    StringBuffer b = new StringBuffer();
+    //    b.append(printHeader(width));
+    //    for (int y = 0; y < height; y++)
+    //    {
+    //      b.append("|**" + y + "**|");
+    //      for (int x = 0; x < width; x++)
+    //      {
+    //        String c = f2.call(x, y);
+    //        c = c == null ? " " : c;
+    //        b.append(" " + c + " |");
+    //      }
+    //      b.append("\n");
+    //    }
+    //    return b.toString();
   }
   private static String printHeader(int width)
   {

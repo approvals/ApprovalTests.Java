@@ -603,11 +603,13 @@ public class StringUtils
     }
     return input;
   }
-
-  public static String pad(String contents, int targetLength) {
-    while(contents.length() < targetLength) {
+  public static String pad(String contents, int targetLength)
+  {
+    while (contents.length() < targetLength)
+    {
       contents += " ";
-      if (contents.length() < targetLength) {
+      if (contents.length() < targetLength)
+      {
         contents = " " + contents;
       }
     }

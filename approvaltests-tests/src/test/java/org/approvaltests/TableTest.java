@@ -10,7 +10,8 @@ public class TableTest
   void abilityModifier()
   {
     Integer[] inputs = Range.get(1, 20);
-    VerifiableMarkdownTable table = VerifiableMarkdownTable.create(inputs, a -> getModifier(a), "Score", "Modifier");
+    VerifiableMarkdownTable table = VerifiableMarkdownTable.create(inputs, a -> getModifier(a), "Score",
+        "Modifier");
     Approvals.verify(table);
   }
   @Test
@@ -18,7 +19,8 @@ public class TableTest
   {
     // begin-snippet: markdown_table_example
     String[] inputs = {"verify json", "verify all", "verify parameters", "verify as json"};
-    VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
+    VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Camel Case", "Snake Case",
+        "Kebab Case");
     table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
     Approvals.verify(table);
     // end-snippet
