@@ -615,4 +615,11 @@ public class StringUtils
     }
     return contents;
   }
+
+    public static String padLeft(String contents, int targetLength) {
+      while(contents.length() < targetLength) {
+        contents = " " + contents;
+      }
+      return contents;
+    }
 }

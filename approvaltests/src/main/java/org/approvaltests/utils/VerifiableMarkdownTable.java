@@ -1,6 +1,6 @@
 package org.approvaltests.utils;
 
-import com.spun.util.MarkdownTable;
+import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Verifiable;
 import org.approvaltests.core.VerifyParameters;

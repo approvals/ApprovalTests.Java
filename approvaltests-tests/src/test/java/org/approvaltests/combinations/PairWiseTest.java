@@ -1,5 +1,7 @@
 package org.approvaltests.combinations;
 
+import com.spun.util.markdown.table.MarkdownColumn;
+import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.pairwise.Case;
 import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
@@ -22,25 +24,37 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-@UseReporter(DiffMergeReporter.class)
+//@UseReporter(DiffMergeReporter.class)
 public class PairWiseTest
 {
   @Test
   void forTable()
   {
-    StringBuffer output = new StringBuffer();
-    output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
-    output.append(
-        "| Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |\n"
-            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
-    output.append(getPairwiseTableRow(2, 5));
-    output.append(getPairwiseTableRow(3, 3));
-    output.append(getPairwiseTableRow(3, 4));
-    output.append(getPairwiseTableRow(4, 5));
-    output.append(getPairwiseTableRow(5, 6));
-    output.append(getPairwiseTableRow(9, 9));
-    output.append("\n\n"); // added blank lines at beginning due to markdown snippets bug
-    Approvals.verify(output, new Options().forFile().withExtension("include.md"));
+    String [] headers = {"Number of Parameters", "Variations per Parameter", "Total Combinations", "Pairwise Combinations"};
+    MarkdownTable table = MarkdownTable.withHeaders(headers);
+    table.setColumnProperties(MarkdownColumn.RIGHT_JUSTIFIED);
+//            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
+    addPairwiseTableRow(2, 5, table);
+    addPairwiseTableRow(3, 3, table);
+    addPairwiseTableRow(3, 4, table);
+    addPairwiseTableRow(4, 5, table);
+    addPairwiseTableRow(5, 6, table);
+    addPairwiseTableRow(9, 9, table);
+    // added blank lines at beginning due to markdown snippets bug
+    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()), new Options().forFile().withExtension("include.md"));
+  }
+  private String addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
+  {
+    Object[] p = Range.get(1, variations);
+    Pairwise pairwise = Pairwise.toPairWise(p, p, 3 <= pCount ? p : CombinationApprovals.EMPTY,
+            4 <= pCount ? p : CombinationApprovals.EMPTY, 5 <= pCount ? p : CombinationApprovals.EMPTY,
+            6 <= pCount ? p : CombinationApprovals.EMPTY, 7 <= pCount ? p : CombinationApprovals.EMPTY,
+            8 <= pCount ? p : CombinationApprovals.EMPTY, 9 <= pCount ? p : CombinationApprovals.EMPTY);
+    final List<Case> cases = pairwise.getCases();
+    int totalPossibleSize = pairwise.getTotalPossibleCombinations();
+    DecimalFormat df = new DecimalFormat("###,###,###");
+    table.addRow(pCount, p.length, df.format(totalPossibleSize), cases.size());
+    return null;
   }
   private String getPairwiseTableRow(int pCount, int variations)
   {

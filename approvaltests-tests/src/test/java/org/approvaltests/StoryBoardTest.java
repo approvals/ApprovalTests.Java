@@ -1,8 +1,6 @@
 package org.approvaltests;
 
-import com.spun.util.MarkdownCompatible;
-import org.approvaltests.reporters.QuietReporter;
-import org.approvaltests.reporters.UseReporter;
+import com.spun.util.markdown.MarkdownCompatible;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function2;
 import org.lambda.query.Queryable;

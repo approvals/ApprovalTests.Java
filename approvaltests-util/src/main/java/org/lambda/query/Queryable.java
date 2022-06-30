@@ -1,7 +1,6 @@
 package org.lambda.query;
 
 import com.spun.util.ClassUtils;
-import com.spun.util.MarkdownTableContents;
 import com.spun.util.ObjectUtils;
 import org.lambda.Extendable;
 import org.lambda.functions.Function1;

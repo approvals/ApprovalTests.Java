@@ -1,6 +1,6 @@
 package org.lambda.utils;
 
-import com.spun.util.MarkdownTable;
+import com.spun.util.markdown.table.MarkdownTable;
 import org.lambda.functions.Function2;
 import org.lambda.query.Queryable;
 

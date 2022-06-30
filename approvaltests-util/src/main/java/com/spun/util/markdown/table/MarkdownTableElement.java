@@ -1,4 +1,4 @@
-package com.spun.util;
+package com.spun.util.markdown.table;
 
 public interface MarkdownTableElement
 {
