@@ -59,22 +59,23 @@ Here's an example:
 <a id='snippet-markdown_table_example'></a>
 ```java
 String[] inputs = {"verify json", "verify all", "verify parameters", "verify as json"};
-MarkdownTable table = MarkdownTable.withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
+VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Camel Case", "Snake Case",
+    "Kebab Case");
 table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
 Approvals.verify(table);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L19-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L20-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce:
 
 <!-- include: TableTest.differentCases.approved.md -->
-| Input | Camel Case | Snake Case | Kebab Case |
-| --- | --- | --- | --- |
-| verify json | verifyJson | verify_json | verify-json |
-| verify all | verifyAll | verify_all | verify-all |
+|       Input       |    Camel Case    |    Snake Case     |    Kebab Case     |
+|-------------------|------------------|-------------------|-------------------|
+|    verify json    |    verifyJson    |    verify_json    |    verify-json    |
+|    verify all     |    verifyAll     |    verify_all     |    verify-all     |
 | verify parameters | verifyParameters | verify_parameters | verify-parameters |
-| verify as json | verifyAsJson | verify_as_json | verify-as-json |
+|  verify as json   |   verifyAsJson   |  verify_as_json   |  verify-as-json   |
 <!-- endInclude -->
 
 

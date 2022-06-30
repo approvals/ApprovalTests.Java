@@ -54,13 +54,13 @@ Notice that for low numbers of parameters, very little is achieved, but at high 
  <!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
 
 | Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |
-| --------------------: | -----------------------: | ------------------: | ---------------------: |
-|2|5|25|25|
-|3|3|27|11|
-|3|4|64|16|
-|4|5|625|33|
-|5|6|7,776|49|
-|9|9|387,420,489|134|
+|---------------------:|-------------------------:|-------------------:|----------------------:|
+|                    2 |                        5 |                 25 |                    25 |
+|                    3 |                        3 |                 27 |                    11 |
+|                    3 |                        4 |                 64 |                    16 |
+|                    4 |                        5 |                625 |                    33 |
+|                    5 |                        6 |              7,776 |                    49 |
+|                    9 |                        9 |        387,420,489 |                   134 |
 
  <!-- endInclude -->
 
