@@ -48,7 +48,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "e set SNAPSHOT version" -a  || echo "nothing to commit"
+          git commit -m "v ${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
           git checkout -b temp
           git fetch
           git checkout master
