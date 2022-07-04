@@ -11,6 +11,9 @@ import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.time.Duration;
 
 //@UseReporter({FileCaptureReporter.class})
@@ -69,5 +72,19 @@ public class ApprovalsTest
     SquareDrawer squareDrawer = new SquareDrawer();
     AwtApprovals.verifySequenceWithTimings(5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
+  }
+  @Test
+  void testBufferedImage()
+  {
+    BufferedImage bufferedImage = new BufferedImage(60, 30, BufferedImage.TYPE_INT_ARGB);
+    Graphics graphics = bufferedImage.getGraphics();
+    graphics.setColor(Color.BLUE);
+    graphics.fillRect(0, 0, 60, 10);
+    graphics.setColor(Color.BLACK);
+    graphics.fillRect(0, 10, 60, 10);
+    graphics.setColor(Color.WHITE);
+    graphics.fillRect(0, 20, 60, 10);
+    AwtApprovals.verify(bufferedImage);
+    AwtApprovals.verify(bufferedImage, new Options());
   }
 }

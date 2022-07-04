@@ -39,7 +39,7 @@ public class AwtApprovals
   }
   public static void verify(BufferedImage bufferedImage)
   {
-    Approvals.verify(bufferedImage, new Options());
+    verify(bufferedImage, new Options());
   }
   public static void verify(BufferedImage bufferedImage, Options options)
   {
