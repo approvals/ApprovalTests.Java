@@ -8,12 +8,10 @@ import org.approvaltests.combinations.pairwise.InParameterOrderStrategy;
 import org.approvaltests.combinations.pairwise.OptionsForAParameter;
 import org.approvaltests.combinations.pairwise.Pairwise;
 import org.approvaltests.core.Options;
-import org.lambda.utils.Range;
-import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Test;
 import org.lambda.actions.Action2;
+import org.lambda.utils.Range;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,7 +34,6 @@ public class PairWiseTest
                         "Pairwise Combinations"};
     MarkdownTable table = MarkdownTable.withHeaders(headers);
     table.setColumnProperties(MarkdownColumn.RIGHT_JUSTIFIED);
-    //            + "| --------------------: | -----------------------: | ------------------: | ---------------------: |\n");
     addPairwiseTableRow(2, 5, table);
     addPairwiseTableRow(3, 3, table);
     addPairwiseTableRow(3, 4, table);
@@ -47,7 +44,7 @@ public class PairWiseTest
     Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
         new Options().forFile().withExtension("include.md"));
   }
-  private String addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
+  private void addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
   {
     Object[] p = Range.get(1, variations);
     Pairwise pairwise = Pairwise.toPairWise(p, p, 3 <= pCount ? p : CombinationApprovals.EMPTY,
@@ -58,20 +55,6 @@ public class PairWiseTest
     int totalPossibleSize = pairwise.getTotalPossibleCombinations();
     DecimalFormat df = new DecimalFormat("###,###,###");
     table.addRow(pCount, p.length, df.format(totalPossibleSize), cases.size());
-    return null;
-  }
-  private String getPairwiseTableRow(int pCount, int variations)
-  {
-    Object[] p = Range.get(1, variations);
-    Pairwise pairwise = Pairwise.toPairWise(p, p, 3 <= pCount ? p : CombinationApprovals.EMPTY,
-        4 <= pCount ? p : CombinationApprovals.EMPTY, 5 <= pCount ? p : CombinationApprovals.EMPTY,
-        6 <= pCount ? p : CombinationApprovals.EMPTY, 7 <= pCount ? p : CombinationApprovals.EMPTY,
-        8 <= pCount ? p : CombinationApprovals.EMPTY, 9 <= pCount ? p : CombinationApprovals.EMPTY);
-    final List<Case> cases = pairwise.getCases();
-    int totalPossibleSize = pairwise.getTotalPossibleCombinations();
-    DecimalFormat df = new DecimalFormat("###,###,###");
-    String result = String.format("|%s|%s|%s|%s|\n", pCount, p.length, df.format(totalPossibleSize), cases.size());
-    return result;
   }
   @Test
   public void testPairs()
