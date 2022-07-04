@@ -26,7 +26,7 @@ Here is an example:
 final CustomPanel panel = new CustomPanel(true, 20);
 AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-file_capture_reporter_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L35-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-file_capture_reporter_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Compatibility
