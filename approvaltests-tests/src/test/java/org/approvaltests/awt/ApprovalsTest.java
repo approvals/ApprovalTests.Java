@@ -73,6 +73,7 @@ public class ApprovalsTest
     AwtApprovals.verifySequenceWithTimings(5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
   }
+  @DisabledOnJre({JRE.JAVA_8})
   @Test
   void testBufferedImage()
   {
