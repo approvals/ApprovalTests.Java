@@ -1,5 +1,6 @@
 package org.approvaltests.writers;
 
+import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.namer.NamedEnvironment;
@@ -24,7 +25,9 @@ public class ImageApprovalWriter implements ApprovalWriter
   private static String getJreInformation()
   {
     String javaVersion = System.getProperty("java.version");
-    int major = Integer.parseInt(javaVersion.split("\\.")[0]);
+    String majorVersion = javaVersion.split("\\.")[0];
+    majorVersion = NumberUtils.stripNonNumeric(majorVersion);
+    int major = Integer.parseInt(majorVersion);
     return major < 11 ? "jdkPre11" : "jdkPost11";
   }
   @Override

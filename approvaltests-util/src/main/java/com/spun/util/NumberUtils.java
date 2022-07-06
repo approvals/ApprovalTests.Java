@@ -208,6 +208,41 @@ public class NumberUtils
   {
     return percent / 100;
   }
+  public static String stripNonNumeric(String input)
+  {
+    if (input == null)
+    { return null; }
+    StringBuffer result = new StringBuffer();
+    int periods = 0;
+    for (int i = 0; i < input.length(); i++)
+    {
+      char c = input.charAt(i);
+      switch (c)
+      {
+        case '0' :
+        case '1' :
+        case '2' :
+        case '3' :
+        case '4' :
+        case '5' :
+        case '6' :
+        case '7' :
+        case '8' :
+        case '9' :
+          result.append(c);
+          break;
+        case '.' :
+          if (periods < 1)
+          {
+            result.append(c);
+            periods++;
+          }
+        default :
+          break;
+      }
+    }
+    return result.toString();
+  }
   /* INNER CLASS */
   public static class Shuffler implements java.util.Comparator<Shuffler>, Serializable
   {

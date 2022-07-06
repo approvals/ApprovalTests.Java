@@ -1,5 +1,6 @@
 package com.spun.util;
 
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -61,5 +62,12 @@ public class NumberUtilsTest
   private void assertDoubleStream(DoubleStream stream)
   {
     assertTrue(stream instanceof DoubleStream);
+  }
+  @Test
+  void testStripNonNumeric()
+  {
+    String[] inputs = {"11.0", "19-ea", "", null, "19", "1.8.0"};
+    Approvals.verifyAll("Strip non numeric", inputs,
+        s -> String.format("%s -> %s", s, NumberUtils.stripNonNumeric(s)));
   }
 }
