@@ -36,7 +36,7 @@ for every frame. Here is an example for a simple expanding box:
 SquareDrawer squareDrawer = new SquareDrawer();
 AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L51-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-sequencepaintables' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L41-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-sequencepaintables' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **Note**: Method overloads allow specifying the time between frames or the time for each frame.
