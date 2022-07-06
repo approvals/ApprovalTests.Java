@@ -2,10 +2,13 @@ package org.approvaltests.writers;
 
 import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.namer.NamedEnvironment;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
+import static org.approvaltests.namer.NamerFactory.asMachineSpecificTest;
 
 public class ImageApprovalWriter implements ApprovalWriter
 {
@@ -13,6 +16,16 @@ public class ImageApprovalWriter implements ApprovalWriter
   public ImageApprovalWriter(BufferedImage image)
   {
     this.image = image;
+  }
+  public static NamedEnvironment asJreAware()
+  {
+    return asMachineSpecificTest(() -> getJreInformation());
+  }
+  private static String getJreInformation()
+  {
+    String javaVersion = System.getProperty("java.version");
+    int major = Integer.parseInt(javaVersion.split("\\.")[0]);
+    return major < 11 ? "jdkPre11" : "jdkPost11";
   }
   @Override
   public File writeReceivedFile(File received)

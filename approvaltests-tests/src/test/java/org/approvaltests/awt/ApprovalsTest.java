@@ -19,30 +19,20 @@ import java.time.Duration;
 //@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest
 {
-  @DisabledOnJre({JRE.JAVA_8})
   @Test
   void customPanel()
   {
-    final CustomPanel panel = new CustomPanel();
+    CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
   }
-  //  @DisabledOnJre({JRE.JAVA_8})
-  // TODO
   @Disabled("continue here next week")
   @Test
   void customPanelWithText()
   {
     // begin-snippet: file_capture_reporter_example
-    final CustomPanel panel = new CustomPanel(true, 20);
+    CustomPanel panel = new CustomPanel(true, 20);
     AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
     // end-snippet
-  }
-  @EnabledOnJre({JRE.JAVA_8})
-  @Test
-  void customPanelOnJre8()
-  {
-    final CustomPanel panel = new CustomPanel();
-    AwtApprovals.verify(panel);
   }
   @Test
   @UseReporter(ImageWebReporter.class)
@@ -73,8 +63,8 @@ public class ApprovalsTest
     AwtApprovals.verifySequenceWithTimings(5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
   }
-  @DisabledOnJre({JRE.JAVA_8})
   @Test
+  @UseReporter(FileCaptureReporter.class)
   void testBufferedImage()
   {
     BufferedImage bufferedImage = new BufferedImage(60, 30, BufferedImage.TYPE_INT_ARGB);
