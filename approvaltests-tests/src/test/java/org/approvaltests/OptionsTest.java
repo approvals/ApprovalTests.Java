@@ -80,7 +80,7 @@ public class OptionsTest
   public static List<Class<?>> getApprovalClasses()
   {
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
-        VelocityApprovals.class);
+        VelocityApprovals.class, JsonJacksonApprovals.class);
   }
   private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
   {

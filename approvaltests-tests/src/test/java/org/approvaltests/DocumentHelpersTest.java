@@ -60,6 +60,10 @@ public class DocumentHelpersTest
     {
       modifier = 2;
     }
+    else if (simpleName.equals("JsonJacksonApprovals"))
+    {
+      modifier = -2;
+    }
     else if (simpleName.equals("VelocityApprovals"))
     {
       modifier = 2;
