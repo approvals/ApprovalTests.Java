@@ -70,7 +70,7 @@ If you're using Maven, add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>17.0.0</version>
+    <version>17.1.0</version>
 </dependency>
 ```
 
@@ -78,7 +78,7 @@ If you're using Maven, add this to your pom file:
 
 ```gradle
 dependencies {
-    testImplementation("com.approvaltests:approvaltests:17.0.0")
+    testImplementation("com.approvaltests:approvaltests:17.1.0")
 }
 ```
 
