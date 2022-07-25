@@ -11,7 +11,7 @@ public class DatabaseTransactionInfo
   private WeakReference<Connection> connectionReference;
   private String                    originator;
   private boolean                   automaticCommit;
-  /** 
+  /**
    * returns the object from the cache with the corosponding pkey
    **/
   public DatabaseTransactionInfo(Connection con, int levelsOfRemoval)

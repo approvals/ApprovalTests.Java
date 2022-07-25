@@ -173,7 +173,7 @@ public class NumberUtils
   /**
    * randomly chooses a number between the minimum and maximum
    * <div><b>Example:</b> {@code int grade =  NumberUtils.getRandomInt(1,100);} </div>
-   * 
+   *
    * @param minimum
    *          The lowest possible value (inclusive)
    * @param maximum

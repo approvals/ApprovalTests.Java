@@ -19,7 +19,7 @@ public class DateDifferenceTest
 {
   private static final long YEAR_MS                      = 1000 * 60 * 60 * 24 * 365L;
   private static final long MONTH_MS                     = 1000 * 60 * 60 * 24 * 30L;
-  // private static final long WEEK_MS   = 1000 * 60 * 60 * 24 * 7L; 
+  // private static final long WEEK_MS   = 1000 * 60 * 60 * 24 * 7L;
   private static final long DAY_MS                       = 1000 * 60 * 60 * 24L;
   private static final long HOUR_MS                      = 1000 * 60 * 60L;
   private static final long MINUTE_MS                    = 1000 * 60L;

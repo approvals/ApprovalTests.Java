@@ -6,7 +6,7 @@ import static org.approvaltests.Approvals.verify;
 
 public class VerifiableTest
 {
-  // begin-snippet: verifiable_object_example 
+  // begin-snippet: verifiable_object_example
   @Test
   void testVerifiable()
   {

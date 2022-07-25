@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 
 /**
- * Comment By LLewellyn: This is a needed class for using mail. For some reason wasn't 
+ * Comment By LLewellyn: This is a needed class for using mail. For some reason wasn't
  * made as part of the standard mail package.<P>
  *
  * A simple DataSource for demonstration purposes.

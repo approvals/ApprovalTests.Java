@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 // begin-snippet: use_reporter_multiple
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
-// end-snippet 
+// end-snippet
 public class SamplesTest extends MachineSpecificTest
 {
   @Test

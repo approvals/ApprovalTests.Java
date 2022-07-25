@@ -13,7 +13,7 @@ public class Memory
   private java.text.NumberFormat format      = java.text.NumberFormat.getNumberInstance();
   /**
    * Dumps the current memory status [total, used, free].
-   * This forces garbage collection to run first. 
+   * This forces garbage collection to run first.
    **/
   public Memory()
   {

@@ -48,7 +48,7 @@ public class SimpleQueryWriter implements SQLQueryWriter
   }
   private void addOrderByPart(StringBuffer sql, OrderByPart[] orderBys)
   {
-    //order by 
+    //order by
     if (orderBys.length > 0)
     {
       sql.append(SQLQuery.BREAK + "ORDER BY ");

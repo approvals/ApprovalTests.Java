@@ -13,7 +13,7 @@ public class DatabaseLoadingTracker
   {
     return object.getClass().getName() + object.getPkey();
   }
-  /** 
+  /**
     * loads the chache from the database
     **/
   public DatabaseObject load(DatabaseObject newObject)

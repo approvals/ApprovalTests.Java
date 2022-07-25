@@ -4,7 +4,7 @@ import com.spun.util.DeprecatedException;
 
 /**
  * @deprecated use lambdas:  {@literal a -> a instanceof desiredclass or a -> clazz.isInstance(a)}
- * 
+ *
  */
 @Deprecated
 public class ClassFilter implements Filter<Object>

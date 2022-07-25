@@ -29,7 +29,7 @@ public class LapTime
   /**
    * A convenience function to turn a ArrayList of LapTime objects into an Array
    * of the LapTime objects.
-   * 
+   *
    * @param ArrayListOf
    *          a ArrayList of LapTime objects
    * @return the array of LapTime.

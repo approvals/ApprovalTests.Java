@@ -42,10 +42,10 @@ public class StringUtils
   /**
    * Decode a URLEncoded <code>input</code> String.
    * <p>
-   * 
+   *
    * If <code>input</code> is <code>null</code>, <code>URLEncode()</code> will
    * return <code>null</code>.
-   * 
+   *
    * @see java.net.URLDecoder
    */
   public static String URLDecode(String input)
@@ -314,7 +314,7 @@ public class StringUtils
   }
   /**
    * A convenience function to check that a String has at least 1 character.
-   * 
+   *
    * @param string
    *            The string in question
    * @return true if Non Zero.
@@ -330,7 +330,7 @@ public class StringUtils
   /**
    * A convenience function to turn a vector of String objects into an Array
    * of the String objects.
-   * 
+   *
    * @param vectorOf
    *            a Vector of String objects
    * @return the array of String.

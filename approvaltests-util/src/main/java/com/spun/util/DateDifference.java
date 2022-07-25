@@ -116,7 +116,7 @@ public class DateDifference
   /**
    * Gets the remaining amount of [Units]. <BR>
    * i.e. <BR>
-   * Given a  DateDifference of 1 Month 2 Weeks 3 Days, 
+   * Given a  DateDifference of 1 Month 2 Weeks 3 Days,
    * getRemainingDifference(days, months) = 17 days <BR>
    * getRemainingDifference(days, weeks) = 3 days <BR>
    **/
@@ -150,7 +150,7 @@ public class DateDifference
   }
   /**
    * Finds the index for a Calendar.DATE ect.
-   * @return the index in TIME_SCALE[] 
+   * @return the index in TIME_SCALE[]
    **/
   public static int getTimeScaleIndex(int calendarTime)
   {

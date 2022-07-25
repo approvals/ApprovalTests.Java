@@ -60,21 +60,21 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   {
     return linkBack;
   }
-  /** 
+  /**
    * loads the chache from the database
    **/
   public synchronized void load(Statement stmt)
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }
-  /** 
+  /**
    * clears the cache and reloads it from the database
    **/
   public void reset(Statement stmt)
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }
-  /** 
+  /**
    * @return the object from the cache with the corosponding pkey
    **/
   public T get(int pkey)

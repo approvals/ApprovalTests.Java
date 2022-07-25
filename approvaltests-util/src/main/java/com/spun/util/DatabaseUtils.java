@@ -583,7 +583,7 @@ public class DatabaseUtils
   }
   /**
    * A convenience function to turn the int's into readable text for debuging.
-   * 
+   *
    * @param status
    *          The status to be translated
    * @return The Text representation of static variable.

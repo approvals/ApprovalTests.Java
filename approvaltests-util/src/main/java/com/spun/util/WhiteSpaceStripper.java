@@ -125,7 +125,7 @@ public class WhiteSpaceStripper
           break;
         case '\t' :
         case ' ' :
-          break; // donothing;  
+          break; // donothing;
         default :
           inWhiteSpace = false;
           break;

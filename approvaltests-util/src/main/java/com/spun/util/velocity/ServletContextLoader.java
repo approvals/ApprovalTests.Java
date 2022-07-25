@@ -23,7 +23,7 @@ public class ServletContextLoader extends ResourceLoader
    *        been placed in the runtime's application attributes
    *        under its full class name (i.e. "javax.servlet.ServletContext").
    *
-   * @param configuration the {@link ExtProperties} associated with 
+   * @param configuration the {@link ExtProperties} associated with
    *        this resource loader.
    */
   public void init(ExtProperties configuration)

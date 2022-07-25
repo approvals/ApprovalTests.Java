@@ -83,7 +83,7 @@ public class SimpleLogger
   }
   /**
    * Logs the current memory status [total, used, free].
-   * This forces garbage collection to run first. 
+   * This forces garbage collection to run first.
    **/
   public static void logMemoryStatus()
   {

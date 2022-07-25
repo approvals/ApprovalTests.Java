@@ -17,7 +17,7 @@ import java.io.Writer;
 public class ApprovalXmlWriter extends ApprovalTextWriter
 {
   /**
-   * 
+   *
    * @deprecated Just use the {@link org.approvaltests.writers.ApprovalTextWriter}.
    */
   @Deprecated

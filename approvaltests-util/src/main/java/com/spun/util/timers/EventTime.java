@@ -162,7 +162,7 @@ public class EventTime
             return asc
                 * (et1.getTimeLimitExceededCounter().getCount() - et2.getTimeLimitExceededCounter().getCount());
           default :
-            return 0;//this cannot be reached  
+            return 0;//this cannot be reached
         }
       }
       else
