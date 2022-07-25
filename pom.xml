@@ -76,7 +76,7 @@
 
     <build>
         <plugins>
-            <!-- formatter_plugin_begin
+            <!-- formatter_plugin_begin -->
             <plugin>
                 <groupId>net.revelc.code.formatter</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
