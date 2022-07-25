@@ -45,6 +45,7 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <skipFormatCode>false</skipFormatCode>
 
     </properties>
 
@@ -78,7 +79,7 @@
             <plugin>
                 <groupId>net.revelc.code.formatter</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
-                <version>2.16.0</version>
+                <version>2.19.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -87,6 +88,8 @@
                     </execution>
                 </executions>
                 <configuration>
+<!--                    <skip>${skipFormatCode}</skip>-->
+                    <skip>true</skip>
                     <skipHtmlFormatting>true</skipHtmlFormatting>
                     <skipXmlFormatting>true</skipXmlFormatting>
                     <skipJsonFormatting>true</skipJsonFormatting>
