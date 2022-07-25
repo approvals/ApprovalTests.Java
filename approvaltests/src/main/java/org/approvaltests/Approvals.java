@@ -13,6 +13,7 @@ import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.*;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.MasterDirectoryNamer;
+import org.approvaltests.namer.NamerFactoryForOptions;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
 import org.approvaltests.writers.ApprovalXmlWriter;
@@ -32,6 +33,7 @@ import java.util.Objects;
 
 public class Approvals
 {
+  public static final NamerFactoryForOptions NAMES = NamerFactoryForOptions.INSTANCE;
   public static Loader<ApprovalNamer> namerCreater = new Loader<ApprovalNamer>()
   {
     public ApprovalNamer load()
