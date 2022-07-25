@@ -33,14 +33,14 @@ import java.util.Objects;
 
 public class Approvals
 {
-  public static final NamerFactoryForOptions NAMES = NamerFactoryForOptions.INSTANCE;
-  public static Loader<ApprovalNamer> namerCreater = new Loader<ApprovalNamer>()
-  {
-    public ApprovalNamer load()
-    {
-      return new StackTraceNamer();
-    }
-  };
+  public static final NamerFactoryForOptions NAMES        = NamerFactoryForOptions.INSTANCE;
+  public static Loader<ApprovalNamer>        namerCreater = new Loader<ApprovalNamer>()
+                                                          {
+                                                            public ApprovalNamer load()
+                                                            {
+                                                              return new StackTraceNamer();
+                                                            }
+                                                          };
   public static void verify(String response)
   {
     verify(response, new Options());

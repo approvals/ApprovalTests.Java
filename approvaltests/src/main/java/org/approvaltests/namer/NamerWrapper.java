@@ -8,6 +8,11 @@ public class NamerWrapper implements ApprovalNamer
 {
   private GetApprovalName   approvalBaseName;
   private GetSourceFilePath sourceFilePath;
+  public NamerWrapper(ApprovalNamer namer)
+  {
+    this.approvalBaseName = (GetApprovalName) namer;
+    this.sourceFilePath = (GetSourceFilePath) namer;
+  }
   public NamerWrapper(GetApprovalName approvalBaseName, GetSourceFilePath sourceFilePath)
   {
     this.approvalBaseName = unwrapGetApprovalName(approvalBaseName);
@@ -30,11 +35,6 @@ public class NamerWrapper implements ApprovalNamer
       sourceFilePath = wr.sourceFilePath;
     }
     return sourceFilePath;
-  }
-  public NamerWrapper(ApprovalNamer namer)
-  {
-    this.approvalBaseName = (GetApprovalName) namer;
-    this.sourceFilePath = (GetSourceFilePath) namer;
   }
   @Override
   public String getApprovalName()
@@ -66,5 +66,11 @@ public class NamerWrapper implements ApprovalNamer
   public File getApprovedFile(String extensionWithDot)
   {
     return getApprovalFile(extensionWithDot);
+  }
+  @Override
+  public ApprovalNamer addAdditionalInformation(String info)
+  {
+    return new NamerWrapper(((ApprovalNamer) approvalBaseName).addAdditionalInformation(info),
+        ((ApprovalNamer) sourceFilePath).addAdditionalInformation(info));
   }
 }

@@ -13,6 +13,11 @@ public class MasterDirectoryNamer implements ApprovalNamer
     this.namer = options.forFile().getNamer();
     this.approvedFile = comparingFile.getName();
   }
+  public MasterDirectoryNamer(String approvedFile, ApprovalNamer namer)
+  {
+    this.approvedFile = approvedFile;
+    this.namer = namer;
+  }
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -33,5 +38,10 @@ public class MasterDirectoryNamer implements ApprovalNamer
   public String getSourceFilePath()
   {
     return namer.getSourceFilePath();
+  }
+  @Override
+  public ApprovalNamer addAdditionalInformation(String info)
+  {
+    return new MasterDirectoryNamer(this.approvedFile, this.namer.addAdditionalInformation(info));
   }
 }

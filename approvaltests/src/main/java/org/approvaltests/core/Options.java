@@ -87,6 +87,10 @@ public class Options
     {
       return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_NAMER, Approvals::createApprovalNamer);
     }
+    public Options withNamer(ApprovalNamer namer)
+    {
+      return new Options(fields, Fields.FILE_OPTIONS_NAMER, namer);
+    }
     public String getFileExtension()
     {
       return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_FILE_EXTENSION, () -> ".txt");
@@ -94,7 +98,7 @@ public class Options
     public Options withBaseName(String fileBaseName)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      return new Options(fields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
+      return withNamer(approvalNamer);
     }
     public Options withName(String fileBaseName, String extension)
     {
@@ -102,6 +106,10 @@ public class Options
       HashMap<Fields, Object> newFields = new HashMap<>(fields);
       newFields.put(Fields.FILE_OPTIONS_FILE_EXTENSION, extension);
       return new Options(newFields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
+    }
+    public Options withAdditionalInformation(String additionalInformation)
+    {
+      return withNamer(getNamer().addAdditionalInformation(additionalInformation));
     }
   }
 }
