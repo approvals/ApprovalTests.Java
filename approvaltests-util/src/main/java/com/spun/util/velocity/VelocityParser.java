@@ -4,8 +4,6 @@ import com.spun.util.Asserts;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.parser.ParserCommons;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -20,10 +18,6 @@ import java.util.Properties;
 public class VelocityParser
 {
   private static VelocityEngine currentEngine = null;
-  static
-  {
-    LogManager.getRootLogger().atLevel(Level.OFF);
-  }
   public static String parseFile(String template, ContextAware process)
   {
     Asserts.assertFileExists("Velocity template", template);
