@@ -9,7 +9,8 @@ public class ImageReporter extends FirstWorkingReporter
 {
   public ImageReporter()
   {
-    super(TortoiseImageDiffReporter.INSTANCE, TortoiseGitImageDiffReporter.INSTANCE, BeyondCompareReporter.INSTANCE, 
-    	    KaleidoscopeDiffReporter.INSTANCE, ImageWebReporter.INSTANCE, QuietReporter.INSTANCE);
+    super(TortoiseImageDiffReporter.INSTANCE, TortoiseGitImageDiffReporter.INSTANCE,
+        BeyondCompareReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE, ImageWebReporter.INSTANCE,
+        QuietReporter.INSTANCE);
   }
 }
