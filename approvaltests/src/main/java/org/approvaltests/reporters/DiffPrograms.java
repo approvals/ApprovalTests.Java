@@ -43,9 +43,9 @@ public class DiffPrograms
         "/left:%s /right:%s", IMAGE);
     public static DiffInfo TORTOISE_TEXT_DIFF  = new DiffInfo("{ProgramFiles}TortoiseSVN\\bin\\TortoiseMerge.exe",
         TEXT);
-    public static DiffInfo TORTOISE_GIT_IMAGE_DIFF = new DiffInfo("{ProgramFiles}TortoiseGIT\\bin\\TortoiseIDiff.exe",
+    public static DiffInfo TORTOISE_GIT_IMAGE_DIFF = new DiffInfo("{ProgramFiles}TortoiseGIT\\bin\\TortoiseGitIDiff.exe",
     		"/left:%s /right:%s", IMAGE);
-    public static DiffInfo TORTOISE_GIT_TEXT_DIFF  = new DiffInfo("{ProgramFiles}TortoiseGIT\\bin\\TortoiseMerge.exe",
+    public static DiffInfo TORTOISE_GIT_TEXT_DIFF  = new DiffInfo("{ProgramFiles}TortoiseGIT\\bin\\TortoiseGitMerge.exe",
     		TEXT);
     public static DiffInfo WIN_MERGE_REPORTER  = new DiffInfo("{ProgramFiles}WinMerge\\WinMergeU.exe",
         TEXT_AND_IMAGE);
