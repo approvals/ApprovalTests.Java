@@ -1,3 +1,6 @@
+# next time with Lars
+* NamerFactoryForOptions needs everything NamerFactory has (documentation for how to use NFFO needs to exist)
+* retrofit the other places where we use the global NamerFactory to use NFFO
 # Code
 * Update koans
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);

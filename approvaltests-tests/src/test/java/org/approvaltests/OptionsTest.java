@@ -74,7 +74,7 @@ public class OptionsTest
   {
     for (Class c : getApprovalClasses())
     {
-      verifyEachVerifyMethodHasOneWithOptions(c);
+      verifyEachVerifyMethodHasOneWithOptions(c, "verify");
     }
   }
   public static List<Class<?>> getApprovalClasses()
@@ -82,10 +82,10 @@ public class OptionsTest
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
         VelocityApprovals.class, JsonJacksonApprovals.class);
   }
-  private void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass)
+  public static void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass, String methodPrefix)
   {
     Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());
-    Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith("verify")
+    Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith(methodPrefix)
         && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
     List<Method> methodsWithOptions = methodList.where(m -> isOptionsPresent(m));
     List<Method> methodsWithoutOptions = methodList.where(m -> !(isOptionsPresent(m)));
@@ -109,15 +109,16 @@ public class OptionsTest
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
     assertNotEquals(0, methodsWithoutOptions.size());
   }
-  private Class<?>[] getWithoutOptions(Class<?>[] parameterTypes)
+  private static Class<?>[] getWithoutOptions(Class<?>[] parameterTypes)
   {
     Class<?>[] parameters = Query.where(parameterTypes, t -> !t.equals(Options.class)).toArray(new Class[0]);
     return parameters;
   }
   public static boolean isOptionsPresent(Method m)
   {
-    return ArrayUtils.getLast(m.getParameterTypes()).equals(Options.class)
-        || ArrayUtils.getFirst(m.getParameterTypes()).equals(Options.class);
+    Class<?>[] parameterTypes = m.getParameterTypes();
+    return 0 < parameterTypes.length && (ArrayUtils.getLast(parameterTypes).equals(Options.class)
+        || ArrayUtils.getFirst(parameterTypes).equals(Options.class));
   }
   @Test
   void verifyFileExtension()

@@ -8,6 +8,7 @@ import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalWriterFactory;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
+import org.lambda.functions.Function1;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,10 @@ public class Options
   private final Map<Fields, Object> fields = new HashMap<>();
   public Options()
   {
+  }
+  public Options and(Function1<Options, Options> optionsUpdate)
+  {
+    return optionsUpdate.call(this);
   }
   public Options(Scrubber scrubber)
   {
