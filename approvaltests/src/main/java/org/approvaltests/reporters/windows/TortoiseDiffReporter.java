@@ -7,6 +7,7 @@ public class TortoiseDiffReporter extends FirstWorkingReporter
   public static final TortoiseDiffReporter INSTANCE = new TortoiseDiffReporter();
   public TortoiseDiffReporter()
   {
-    super(TortoiseTextDiffReporter.INSTANCE, TortoiseImageDiffReporter.INSTANCE);
+    super(TortoiseTextDiffReporter.INSTANCE, TortoiseImageDiffReporter.INSTANCE,
+        TortoiseGitTextDiffReporter.INSTANCE, TortoiseGitImageDiffReporter.INSTANCE);
   }
 }
