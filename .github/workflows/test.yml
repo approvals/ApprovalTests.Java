@@ -31,8 +31,7 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Build with Maven
       run: |
-        sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
-        sed -i 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
+        ./set_formatting_off.sh
         mvn -B verify --file pom.xml
   auto-merge:
     needs: build

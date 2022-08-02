@@ -21,6 +21,9 @@ jobs:
         id: version
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
+      - name: disable formatting
+        run: ./set_formatting_off.sh
+
       - name: set version
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
@@ -36,6 +39,9 @@ jobs:
       - name: set snapshot version
         run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
 
+      - name: renable formatting
+        run: ./set_formatting_on.sh
+        
       - name: Install Java for script
         uses: actions/setup-java@v1
         with:
