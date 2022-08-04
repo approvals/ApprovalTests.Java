@@ -46,7 +46,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 - [ApprovalTests-util](/approvaltests-util/docs/README.md)
 
 ## Getting started
-
+### New Projects
 The best way to get started is download and open one of the starter projects:
 * Java
   * [Maven](https://github.com/approvals/approvaltests.java.starterproject)
@@ -58,7 +58,11 @@ The best way to get started is download and open one of the starter projects:
 These are standard projects and can be imported into any editor or IDE.  
 They also all have CI with Github actions.
 
+### Docs
 You might also want to check out the [Getting Started Overview](approvaltests/docs/tutorials/GettingStarted.md)
+
+### Learning
+A great way to learn Approval Tests if you are new to it is to try out the [Koans](https://github.com/approvals/ApprovalTests.java.Koans).
 
 ## How to get it
 It's on Maven Central, search for 'approvaltests'.
