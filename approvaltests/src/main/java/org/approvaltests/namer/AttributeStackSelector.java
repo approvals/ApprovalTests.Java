@@ -99,7 +99,6 @@ public class AttributeStackSelector implements StackElementSelector
     { return false; }
     return JUnitUtils.isTestableMethodForJunit(element);
   }
-
   private boolean isJunit3Test(Class<?> clazz)
   {
     Class<?> testcase = loadClass("junit.framework.TestCase");
