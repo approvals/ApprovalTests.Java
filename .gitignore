@@ -20,4 +20,4 @@ target
 .vscode/
 build/venv*/
 __pycache__/
-approvaltests-tests/.jqwik-database
+**/.jqwik-database

@@ -76,9 +76,11 @@ public class AttributeStackSelector implements StackElementSelector
     { return false; }
     if (isJunit3Test(clazz))
     { return true; }
+    if (isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName())))
+    { return true; }
     if (isTestableMethod(element))
     { return true; }
-    return isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName()));
+    return false;
   }
   public static Boolean isJunit5Present = null;
   public static boolean isTestableMethod(StackTraceElement element)
