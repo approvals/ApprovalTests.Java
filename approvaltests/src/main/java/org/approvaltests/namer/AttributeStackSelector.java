@@ -4,8 +4,7 @@ import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
-import org.junit.platform.commons.annotation.Testable;
-import org.junit.platform.commons.util.AnnotationUtils;
+import org.approvaltests.integrations.junit5.JUnitUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -40,7 +39,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return attributes;
   }
-  private static Class<? extends Annotation> loadClass(String className)
+  public static Class<? extends Annotation> loadClass(String className)
   {
     Class<? extends Annotation> clazz = null;
     try
@@ -81,21 +80,26 @@ public class AttributeStackSelector implements StackElementSelector
     { return true; }
     return isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName()));
   }
+  public static Boolean isJunit5Present = null;
   public static boolean isTestableMethod(StackTraceElement element)
   {
-    String fullClassName = element.getClassName();
-    Class<?> clazz = loadClass(fullClassName);
-    String methodName = TestUtils.unrollLambda(element.getMethodName());
-    List<Method> methods = getMethodsByName(clazz, methodName);
-    if (methods.isEmpty())
-    { return false; }
-    for (Method method : methods)
+    if (isJunit5Present == null)
     {
-      if (AnnotationUtils.isAnnotated(method, Testable.class))
-      { return true; }
+      try
+      {
+        Class.forName("org.junit.platform.commons.annotation.Testable");
+        isJunit5Present = true;
+      }
+      catch (ClassNotFoundException e)
+      {
+        isJunit5Present = false;
+      }
     }
-    return false;
+    if (!isJunit5Present)
+    { return false; }
+    return JUnitUtils.isTestableMethodForJunit(element);
   }
+
   private boolean isJunit3Test(Class<?> clazz)
   {
     Class<?> testcase = loadClass("junit.framework.TestCase");

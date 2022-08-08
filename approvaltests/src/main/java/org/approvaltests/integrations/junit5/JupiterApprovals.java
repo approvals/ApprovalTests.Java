@@ -6,7 +6,7 @@ import org.approvaltests.namer.NamerFactory;
 import org.junit.jupiter.api.DynamicTest;
 import org.lambda.actions.Action0;
 
-public class JUnit5Approvals
+public class JupiterApprovals
 {
   @Experimental
   public static DynamicTest dynamicTest(String displayName, Action0 action0)

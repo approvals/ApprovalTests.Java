@@ -5,7 +5,7 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.tests.TestUtils;
 import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 import org.approvaltests.Approvals;
-import org.approvaltests.integrations.junit5.JUnit5Approvals;
+import org.approvaltests.integrations.junit5.JupiterApprovals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DynamicTest;
@@ -93,13 +93,13 @@ public class JUnit5StackTraceNamerTest
   Collection<DynamicTest> testFactory()
   {
     return Arrays.asList(
-        JUnit5Approvals.dynamicTest("test 1",
+        JupiterApprovals.dynamicTest("test 1",
             () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_1")),
-        JUnit5Approvals.dynamicTest("test 3",
+        JupiterApprovals.dynamicTest("test 3",
             () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_3")),
-        JUnit5Approvals.dynamicTest("test 2", () -> StackTraceNamerUtils
+        JupiterApprovals.dynamicTest("test 2", () -> StackTraceNamerUtils
             .assertNamerForFramework(this.getClass().getSimpleName(), "testFactory.test_2")));
   }
   @TestFactory
