@@ -19,6 +19,12 @@ public class AttributeStackSelectorTest
     StackTraceElement element = ThreadUtils.getStackTrace()[2];
     assertTrue(AttributeStackSelector.isTestableMethod(element));
   }
+  @Example()
+  void testDetectionOfAnnotationsThatAreIndirectlyMarkedTestable()
+  {
+    StackTraceElement element = ThreadUtils.getStackTrace()[2];
+    assertTrue(AttributeStackSelector.isTestableMethod(element));
+  }
   @Test
   void unrollLambda()
   {

@@ -5,6 +5,7 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
 import org.junit.platform.commons.annotation.Testable;
+import org.junit.platform.commons.util.AnnotationUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -90,19 +91,10 @@ public class AttributeStackSelector implements StackElementSelector
     { return false; }
     for (Method method : methods)
     {
-      Annotation[] annotations = method.getAnnotations();
-      for (Annotation annotation : annotations)
-      {
-        if (isTestableAnnotation(annotation))
-        { return true; }
-      }
+      if (AnnotationUtils.isAnnotated(method, Testable.class))
+      { return true; }
     }
     return false;
-  }
-  public static boolean isTestableAnnotation(Annotation annotation)
-  {
-    Class<? extends Annotation> annotationType = annotation.annotationType();
-    return annotationType.isAnnotationPresent(Testable.class);
   }
   private boolean isJunit3Test(Class<?> clazz)
   {
