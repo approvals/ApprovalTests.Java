@@ -2,14 +2,23 @@ package org.approvaltests.namer;
 
 import com.spun.util.ThreadUtils;
 import com.spun.util.tests.TestUtils;
+import net.jqwik.api.Example;
+import net.jqwik.api.Property;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AttributeStackSelectorTest
 {
+  @Property(tries = 1)
+  void testDetectionOfAnnotationsThatAreMarkedTestable()
+  {
+    StackTraceElement element = ThreadUtils.getStackTrace()[2];
+    assertTrue(AttributeStackSelector.isTestableMethod(element));
+  }
   @Test
   void unrollLambda()
   {

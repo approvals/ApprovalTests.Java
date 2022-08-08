@@ -4,6 +4,7 @@ import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
+import org.junit.platform.commons.annotation.Testable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -38,7 +39,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return attributes;
   }
-  private Class<? extends Annotation> loadClass(String className)
+  private static Class<? extends Annotation> loadClass(String className)
   {
     Class<? extends Annotation> clazz = null;
     try
@@ -75,7 +76,33 @@ public class AttributeStackSelector implements StackElementSelector
     { return false; }
     if (isJunit3Test(clazz))
     { return true; }
+    if (isTestableMethod(element))
+    { return true; }
     return isTestAttribute(clazz, TestUtils.unrollLambda(element.getMethodName()));
+  }
+  public static boolean isTestableMethod(StackTraceElement element)
+  {
+    String fullClassName = element.getClassName();
+    Class<?> clazz = loadClass(fullClassName);
+    String methodName = TestUtils.unrollLambda(element.getMethodName());
+    List<Method> methods = getMethodsByName(clazz, methodName);
+    if (methods.isEmpty())
+    { return false; }
+    for (Method method : methods)
+    {
+      Annotation[] annotations = method.getAnnotations();
+      for (Annotation annotation : annotations)
+      {
+        if (isTestableAnnotation(annotation))
+        { return true; }
+      }
+    }
+    return false;
+  }
+  public static boolean isTestableAnnotation(Annotation annotation)
+  {
+    Class<? extends Annotation> annotationType = annotation.annotationType();
+    return annotationType.isAnnotationPresent(Testable.class);
   }
   private boolean isJunit3Test(Class<?> clazz)
   {
@@ -101,7 +128,7 @@ public class AttributeStackSelector implements StackElementSelector
     return false;
   }
   // TODO: clean this up, should be pluggable
-  private void checkConditionsForAttribute(Class<? extends Annotation> attribute)
+  private static void checkConditionsForAttribute(Class<? extends Annotation> attribute)
   {
     if ("org.junit.jupiter.api.TestFactory".equals(attribute.getName()))
     {
@@ -112,7 +139,7 @@ public class AttributeStackSelector implements StackElementSelector
       }
     }
   }
-  public List<Method> getMethodsByName(Class<?> clazz, String methodName)
+  public static List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
     try
     {
