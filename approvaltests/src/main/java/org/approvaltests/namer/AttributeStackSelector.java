@@ -132,7 +132,7 @@ public class AttributeStackSelector implements StackElementSelector
       if (NamerFactory.isEmpty())
       {
         throw new FormattedException("When using dynamic tests and Approvals, you need to use %s instead.",
-            "org.approvaltests.integrations.junit5.JUnit5Approvals.dynamicTest(String, Executable)");
+            "org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)");
       }
     }
   }
