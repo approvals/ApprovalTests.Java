@@ -28,6 +28,14 @@
 * [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 * Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
 
+## Reference
+
+* [AWTApprovals](reference/AwtApprovals.md)
+* [Approval File Names](reference/Naming.md)
+* [Options](reference/Options.md)
+* [Story Boards](reference/StoryBoard.md)
+* [The Verify API](reference/Verify.md)
+
 ## Configuration
 
 Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, and Options. 
