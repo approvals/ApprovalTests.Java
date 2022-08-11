@@ -25,11 +25,14 @@ public class NamerFactoryForOptions
   {
     return options.forFile().withAdditionalInformation(SystemUtils.getComputerName());
   }
-  public Options withParameters(String... parameters) {
+  public Options withParameters(String... parameters)
+  {
     return withParameters(new Options(), parameters);
   }
-  public Options withParameters(Options options, String... parameters) {
-    for (String parameter : parameters) {
+  public Options withParameters(Options options, String... parameters)
+  {
+    for (String parameter : parameters)
+    {
       options = options.forFile().withAdditionalInformation(parameter);
     }
     return options;
