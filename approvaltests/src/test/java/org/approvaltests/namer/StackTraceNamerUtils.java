@@ -24,10 +24,7 @@ public class StackTraceNamerUtils
   }
   public static void assertParameterizedTest(String className, String methodName, String input)
   {
-    try (NamedEnvironment en = NamerFactory.asMachineSpecificTest(input))
-    {
-      ApprovalNamer name = Approvals.createApprovalNamer();
-      org.testng.Assert.assertEquals(className + "." + methodName + "." + input, name.getApprovalName());
-    }
+    ApprovalNamer name = Approvals.NAMES.withParameters(input).forFile().getNamer();
+    org.testng.Assert.assertEquals(className + "." + methodName + "." + input, name.getApprovalName());
   }
 }
