@@ -20,7 +20,8 @@ public class GenericDiffReporterTest extends MachineSpecificTest
   @Test
   public void testGetWorkingReportersForEnvironment()
   {
-    Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment(), Approvals.NAMES.asMachineNameSpecificTest());
+    Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment(),
+        Approvals.NAMES.asMachineNameSpecificTest());
   }
   @Disabled("requires windows and TortoiseDiff installed")
   @Test

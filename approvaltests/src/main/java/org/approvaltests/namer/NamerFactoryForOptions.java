@@ -37,14 +37,15 @@ public class NamerFactoryForOptions
     }
     return options;
   }
-
-  public FileCounter useMultipleFiles() {
+  public FileCounter useMultipleFiles()
+  {
     return new FileCounter();
   }
-
-  public static class FileCounter {
+  public static class FileCounter
+  {
     int counter;
-    public Options next() {
+    public Options next()
+    {
       return new Options().forFile().withAdditionalInformation("" + ++counter);
     }
   }
