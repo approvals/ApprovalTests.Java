@@ -17,15 +17,12 @@ where each file name also includes the parameter name.
 @ValueSource(strings = {"parameter1", "parameter2"})
 void sampleParameterizedTest(String parameter)
 {
-  try (NamedEnvironment en = NamerFactory.withParameters(parameter))
-  {
-    // your code goes here
-    Object output = parameter;
-    Approvals.verify(output);
-  }
+  // your code goes here
+  Object output = parameter;
+  Approvals.verify(output, Approvals.NAMES.withParameters(parameter));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/SamplesTest.java#L38-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/SamplesTest.java#L38-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will make it so that the approved file includes the parameters.  
