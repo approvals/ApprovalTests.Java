@@ -20,7 +20,7 @@ public class NamerFactoryTest
   @Test
   public void testMultipleFilesViaOptions()
   {
-    NamerFactoryForOptions.FileCounter labeller = Approvals.NAMES.useMultipleFiles();
+    FileCounter labeller = Approvals.NAMES.useMultipleFiles();
     Approvals.verify("one", labeller.next());
     Approvals.verify("two", labeller.next());
   }

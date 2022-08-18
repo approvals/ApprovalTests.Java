@@ -43,10 +43,7 @@ public class AwtApprovals
   }
   public static void verify(BufferedImage bufferedImage, Options options)
   {
-    try (NamedEnvironment env = ImageApprovalWriter.asJreAware())
-    {
-      Approvals.verify(new ImageApprovalWriter(bufferedImage), options);
-    }
+    Approvals.verify(new ImageApprovalWriter(bufferedImage), options.and(ImageApprovalWriter::asJreAware));
   }
   public static void verify(Component c)
   {
@@ -62,10 +59,7 @@ public class AwtApprovals
   }
   public static void verify(Paintable c, Options options)
   {
-    try (NamedEnvironment env = ImageApprovalWriter.asJreAware())
-    {
-      Approvals.verify(options.createWriter(c), options);
-    }
+    Approvals.verify(options.createWriter(c), options.and(ImageApprovalWriter::asJreAware));
   }
   public static void verifySequence(int numberOfFrames, Function1<Integer, Paintable> sequenceRenderer)
   {

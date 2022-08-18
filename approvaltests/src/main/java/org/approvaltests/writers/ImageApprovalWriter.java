@@ -3,6 +3,7 @@ package org.approvaltests.writers;
 import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.core.Options;
 import org.approvaltests.namer.NamedEnvironment;
 
 import javax.imageio.ImageIO;
@@ -40,5 +41,9 @@ public class ImageApprovalWriter implements ApprovalWriter
   public String getFileExtensionWithDot()
   {
     return ".png";
+  }
+
+  public static Options asJreAware(Options options) {
+    return options.forFile().withAdditionalInformation(getJreInformation());
   }
 }
