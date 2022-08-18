@@ -42,8 +42,8 @@ public class ImageApprovalWriter implements ApprovalWriter
   {
     return ".png";
   }
-
-  public static Options asJreAware(Options options) {
+  public static Options asJreAware(Options options)
+  {
     return options.forFile().withAdditionalInformation(getJreInformation());
   }
 }

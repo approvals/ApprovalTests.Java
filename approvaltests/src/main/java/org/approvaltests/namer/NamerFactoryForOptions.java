@@ -37,9 +37,8 @@ public class NamerFactoryForOptions
     }
     return options;
   }
-
-  public FileCounter useMultipleFiles() {
+  public FileCounter useMultipleFiles()
+  {
     return new FileCounter();
   }
-
 }
