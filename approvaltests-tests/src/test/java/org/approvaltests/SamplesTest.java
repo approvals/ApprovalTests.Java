@@ -40,12 +40,9 @@ public class SamplesTest
   @ValueSource(strings = {"parameter1", "parameter2"})
   void sampleParameterizedTest(String parameter)
   {
-    try (NamedEnvironment en = NamerFactory.withParameters(parameter))
-    {
-      // your code goes here
-      Object output = parameter;
-      Approvals.verify(output);
-    }
+    // your code goes here
+    Object output = parameter;
+    Approvals.verify(output, Approvals.NAMES.withParameters(parameter));
   }
   // end-snippet
 }
