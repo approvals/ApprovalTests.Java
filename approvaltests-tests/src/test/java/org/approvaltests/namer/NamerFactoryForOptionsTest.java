@@ -27,7 +27,7 @@ class NamerFactoryForOptionsTest
     // begin-snippet: namer_factory_example
     try (NamedEnvironment namer = NamerFactory.withParameters("title", "chapter"))
     {
-      Approvals.verify("data", Approvals.NAMES.withParameters("title", "chapter"));
+      Approvals.verify("data");
     }
     // end-snippet
   }
