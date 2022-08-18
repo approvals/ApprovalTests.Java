@@ -54,10 +54,7 @@ public class AwtApprovals
   }
   public static void verify(Component c, Options options)
   {
-    try (NamedEnvironment env = NamerFactory.asOsSpecificTest())
-    {
-      Approvals.verify(new ComponentApprovalWriter(c), options);
-    }
+    Approvals.verify(new ComponentApprovalWriter(c), options.and(Approvals.NAMES::asOsSpecificTest));
   }
   public static void verify(Paintable c)
   {
