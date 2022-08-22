@@ -99,6 +99,9 @@ public class JUnit5StackTraceNamerTest
         JupiterApprovals.dynamicTest("test 3",
             () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_3")),
+        JupiterApprovals.dynamicTest("test 3",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
+                "testFactory.test_3", o.forFile().getNamer())),
         JupiterApprovals.dynamicTest("test 2", () -> StackTraceNamerUtils
             .assertNamerForFramework(this.getClass().getSimpleName(), "testFactory.test_2")));
   }

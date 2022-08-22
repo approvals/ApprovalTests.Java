@@ -2,6 +2,7 @@ package org.approvaltests.namer;
 
 import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
 import org.approvaltests.integrations.junit5.JUnitUtils;
@@ -129,12 +130,22 @@ public class AttributeStackSelector implements StackElementSelector
   {
     if ("org.junit.jupiter.api.TestFactory".equals(attribute.getName()))
     {
-      if (NamerFactory.isEmpty())
+      if (!isDynamicWrapperPresent())
       {
         throw new FormattedException("When using dynamic tests and Approvals, you need to use %s instead.",
             "org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)");
       }
     }
+  }
+  private static boolean isDynamicWrapperPresent()
+  {
+    StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
+    for (StackTraceElement stackTraceElement : stackTrace)
+    {
+      if ("org.approvaltests.integrations.junit5.JupiterApprovals".equals(stackTraceElement.getClassName()))
+      { return true; }
+    }
+    return false;
   }
   public static List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
