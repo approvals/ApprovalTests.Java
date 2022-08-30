@@ -42,6 +42,8 @@
 Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, and Options. 
 [Read More about it here](Configuration.md#top)
 
+**Note:** We are following [Daniele Procida's theory of documentation](https://documentation.divio.com)
+
 
 ## Main concepts for ApprovalTests  
 
