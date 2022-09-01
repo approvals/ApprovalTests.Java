@@ -31,7 +31,7 @@ Integer[] numbers = Range.get(1, 20);
 Integer[] evenQueryNumbers = Query.where(numbers, n -> n % 2 == 0).orderBy(OrderBy.Order.Descending, n -> n)
     .asArray();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L33-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L35-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Here is the exact same function but using Java Streams:
@@ -42,7 +42,7 @@ Here is the exact same function but using Java Streams:
 Integer[] evenStreamNumbers = Arrays.stream(numbers).filter(n -> n % 2 == 0)
     .sorted((o1, o2) -> o2.compareTo(o1)).toArray(Integer[]::new);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L38-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L40-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Another example using sum() vs. reduce():
@@ -53,7 +53,7 @@ Another example using sum() vs. reduce():
 String[] names = {"Llewellyn", "Scott"};
 int lengthsFromQuery = Query.sum(names, n -> n.length()).intValue();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L45-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_sum_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L47-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_sum_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Here is the exact same function but using Java Streams:
@@ -63,7 +63,7 @@ Here is the exact same function but using Java Streams:
 ```java
 int lengthsFromStream = (int) Arrays.stream(names).map(n -> n.length()).reduce(0, (a, b) -> a + b);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L49-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_sum_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L51-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_sum_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 #### Other benefits
@@ -82,7 +82,7 @@ Using Query:
 ```java
 List<String> strings = Query.select(numbers, n -> "" + n);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L56-L58' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_is_queryable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L58-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_is_queryable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Using Streams:
@@ -91,7 +91,7 @@ Using Streams:
 ```java
 List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L59-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L61-L63' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### API
@@ -119,7 +119,7 @@ Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven y
     "When in the course of human events");
 Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L140-L144' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L141-L145' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 resulting in
@@ -157,7 +157,7 @@ Here is a simple example of grouping words by their first letter.
 Queryable<String> words = Queryable.as("Jack", "and", "Jill", "jumped", "up", "the", "hill");
 Queryable<Entry<Character, Queryable<String>>> result = words.groupBy(w -> w.toLowerCase().charAt(0));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L150-L153' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_key' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L151-L154' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_key' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 producing:
 <!-- snippet: QueryableTest.testGroupBy.approved.txt -->
@@ -185,7 +185,7 @@ Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".sp
 Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
     r -> r.join("_"));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L173-L177' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L174-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 resulting in
 <!-- snippet: QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt -->
