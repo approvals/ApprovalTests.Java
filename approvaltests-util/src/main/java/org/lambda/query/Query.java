@@ -253,50 +253,53 @@ public class Query<In>
     }
     return tuples.select(t -> new SimpleEntry<>(t.getKey(), resultSelector.call(t.getValue())));
   }
-
-  public static <In> Queryable<In> skip(Iterable<In> list, int number) {
+  public static <In> Queryable<In> skip(Iterable<In> list, int number)
+  {
     Queryable<In> result = new Queryable<>();
-    if (list == null) {
-      return result;
-    }
+    if (list == null)
+    { return result; }
     int counter = 0;
-    for (In in : list) {
+    for (In in : list)
+    {
       counter++;
-      if (number < counter) {
+      if (number < counter)
+      {
         result.add(in);
       }
     }
     return result;
   }
-  public static <In> Queryable<In> skip(In[] list, int number) {
-    if (list == null || list.length <= number) {
-      return Queryable.createEmpty(list);
-    }
+  public static <In> Queryable<In> skip(In[] list, int number)
+  {
+    if (list == null || list.length <= number)
+    { return Queryable.createEmpty(list); }
     In[] ins = Arrays.copyOfRange(list, number, list.length);
     return Queryable.as(ins);
   }
-
-  public static <In> Queryable<In> take(Iterable<In> list, int number) {
+  public static <In> Queryable<In> take(Iterable<In> list, int number)
+  {
     Queryable<In> result = new Queryable<>();
-    if (list == null) {
-      return result;
-    }
+    if (list == null)
+    { return result; }
     int counter = 0;
-    for (In in : list) {
+    for (In in : list)
+    {
       counter++;
-      if (counter <= number) {
+      if (counter <= number)
+      {
         result.add(in);
-      } else {
+      }
+      else
+      {
         break;
       }
     }
     return result;
   }
-
-  public static <In> Queryable<In> take(In[] list, int number) {
-    if (list == null) {
-      return new Queryable<>();
-    }
+  public static <In> Queryable<In> take(In[] list, int number)
+  {
+    if (list == null)
+    { return new Queryable<>(); }
     In[] ins = Arrays.copyOfRange(list, 0, Math.min(number, list.length));
     return Queryable.as(ins);
   }
