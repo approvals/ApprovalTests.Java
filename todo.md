@@ -5,8 +5,6 @@
 * Update koans
 * Approvals.options.forName.asMachineNameSpecificTest().onlyForEnvironments("Larss-Air.lan", "macbook13").run(this::extracted);
 * NamedEnvironment with execute around pattern?
-* Add Verify Multiple things using NamerFactory.withParameters() (like Python)
-
 * easier API for custom file name & location?! (issue 2, 51)
 ** Options for file path
 ** update mrunit and fix tests
@@ -30,6 +28,3 @@
 * Documentation for Story Board
 * Docs for Query
 * Docs for Query.GroupBy
-
-# Other
-* Add Take and Skip to Query
