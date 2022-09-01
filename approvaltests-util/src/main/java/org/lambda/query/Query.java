@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.BlockingQueue;
 
 public class Query<In>
 {
@@ -251,5 +252,43 @@ public class Query<In>
       }
     }
     return tuples.select(t -> new SimpleEntry<>(t.getKey(), resultSelector.call(t.getValue())));
+  }
+
+  public static <In> Queryable<In> skip(Iterable<In> list, int number) {
+    Queryable<In> result = new Queryable<>();
+    int counter = 0;
+    for (In in : list) {
+      counter++;
+      if (number < counter) {
+        result.add(in);
+      }
+    }
+    return result;
+  }
+  public static <In> Queryable<In> skip(In[] list, int number) {
+    if (list == null || list.length <= number) {
+      return Queryable.createEmpty(list);
+    }
+    In[] ins = Arrays.copyOfRange(list, number, list.length);
+    return Queryable.as(ins);
+  }
+
+  public static <In> Queryable<In> take(Iterable<In> list, int number) {
+    Queryable<In> result = new Queryable<>();
+    int counter = 0;
+    for (In in : list) {
+      counter++;
+      if (counter <= number) {
+        result.add(in);
+      } else {
+        break;
+      }
+    }
+    return result;
+  }
+
+  public static <In> Queryable<In> take(In[] list, int number) {
+    In[] ins = Arrays.copyOfRange(list, 0, number);
+    return Queryable.as(ins);
   }
 }

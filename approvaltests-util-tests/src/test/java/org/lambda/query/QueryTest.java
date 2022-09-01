@@ -1,5 +1,6 @@
 package org.lambda.query;
 
+import org.approvaltests.Approvals;
 import org.lambda.utils.Range;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -60,5 +61,17 @@ public class QueryTest
       List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
       // end-snippet
     }
+  }
+
+  @Test
+  void testTakeAndSkip() {
+    Integer[] integers = Range.get(1, 10);
+    Integer[] skip = Query.skip(integers, 3).asArray();
+    Approvals.verify(Query.take(skip, 4));
+  }
+  @Test
+  void testSkipTooMany() {
+    Integer[] integers = Range.get(1, 3);
+    Approvals.verify(Query.skip(integers, 4));
   }
 }

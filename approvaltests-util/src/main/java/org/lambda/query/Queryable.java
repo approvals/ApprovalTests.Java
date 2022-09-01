@@ -26,6 +26,11 @@ public class Queryable<In> extends ArrayList<In>
   {
     this.type = type;
   }
+
+  public static <In> Queryable<In> createEmpty(In[] list) {
+    return new Queryable<>();
+  }
+
   public <T extends Extendable<List<In>>> T use(Class<T> that)
   {
     try
@@ -189,5 +194,13 @@ public class Queryable<In> extends ArrayList<In>
       }
     }
     return results;
+  }
+
+  public Queryable<In> skip(int number) {
+    return Query.skip(this, number);
+  }
+
+  public Queryable<In> take(int number) {
+    return Query.take(this, number);
   }
 }

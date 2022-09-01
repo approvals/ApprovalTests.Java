@@ -3,6 +3,7 @@ package org.lambda.query;
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
+import org.lambda.utils.Range;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -188,5 +189,10 @@ class QueryableTest
   {
     String result = Queryable.as("Hello", "World").join("_", String::toUpperCase);
     assertEquals("HELLO_WORLD", result);
+  }
+  @Test
+  void testTakeAndSkip() {
+    Integer[] integers = Range.get(1, 10);
+    Approvals.verify(Queryable.as(integers).skip(3).take(4));
   }
 }
