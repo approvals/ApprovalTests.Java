@@ -278,6 +278,9 @@ public class Query<In>
 
   public static <In> Queryable<In> take(Iterable<In> list, int number) {
     Queryable<In> result = new Queryable<>();
+    if (list == null) {
+      return result;
+    }
     int counter = 0;
     for (In in : list) {
       counter++;
@@ -291,7 +294,10 @@ public class Query<In>
   }
 
   public static <In> Queryable<In> take(In[] list, int number) {
-    In[] ins = Arrays.copyOfRange(list, 0, number);
+    if (list == null) {
+      return new Queryable<>();
+    }
+    In[] ins = Arrays.copyOfRange(list, 0, Math.min(number, list.length));
     return Queryable.as(ins);
   }
 }

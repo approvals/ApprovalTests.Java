@@ -74,7 +74,7 @@ public class QueryTest
   void testSkipTooMany() {
     Integer[] integers = Range.get(1, 3);
     List<Integer> list = Arrays.asList(integers);
-    
+
     assertEquals(Query.skip(integers, 3).size(), 0);
     assertEquals(Query.skip(integers, 4).size(), 0);
     integers = null;
@@ -84,5 +84,18 @@ public class QueryTest
     assertEquals(Query.skip(list, 4).size(), 0);
     list = null;
     assertEquals(Query.skip(list, 3).size(), 0);
+  }
+  @Test
+  void testTakeTooMany() {
+    Integer[] integers = Range.get(1, 3);
+    List<Integer> list = Arrays.asList(integers);
+    
+    assertEquals(Query.take(integers, 4).size(), 3);
+    integers = null;
+    assertEquals(Query.take(integers, 3).size(), 0);
+
+    assertEquals(Query.take(list, 4).size(), 3);
+    list = null;
+    assertEquals(Query.take(list, 3).size(), 0);
   }
 }
