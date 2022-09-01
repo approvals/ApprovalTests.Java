@@ -256,6 +256,9 @@ public class Query<In>
 
   public static <In> Queryable<In> skip(Iterable<In> list, int number) {
     Queryable<In> result = new Queryable<>();
+    if (list == null) {
+      return result;
+    }
     int counter = 0;
     for (In in : list) {
       counter++;

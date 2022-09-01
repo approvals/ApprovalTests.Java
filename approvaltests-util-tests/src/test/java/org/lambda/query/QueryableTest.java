@@ -195,4 +195,14 @@ class QueryableTest
     Integer[] integers = Range.get(1, 10);
     Approvals.verify(Queryable.as(integers).skip(3).take(4));
   }
+
+  @Test
+  void testCreateEmpty() {
+    Queryable<Integer> empty = Queryable.createEmpty(null);
+    assertEquals(Object.class, empty.getType());
+    empty = Queryable.createEmpty(new Integer[]{});
+    assertEquals(Integer.class, empty.getType());
+    empty = Queryable.createEmpty(new Integer[]{1});
+    assertEquals(Integer.class, empty.getType());
+  }
 }

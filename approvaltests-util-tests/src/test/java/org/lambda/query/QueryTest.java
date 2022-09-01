@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QueryTest
 {
@@ -72,6 +73,16 @@ public class QueryTest
   @Test
   void testSkipTooMany() {
     Integer[] integers = Range.get(1, 3);
-    Approvals.verify(Query.skip(integers, 4));
+    List<Integer> list = Arrays.asList(integers);
+    
+    assertEquals(Query.skip(integers, 3).size(), 0);
+    assertEquals(Query.skip(integers, 4).size(), 0);
+    integers = null;
+    assertEquals(Query.skip(integers, 3).size(), 0);
+
+    assertEquals(Query.skip(list, 3).size(), 0);
+    assertEquals(Query.skip(list, 4).size(), 0);
+    list = null;
+    assertEquals(Query.skip(list, 3).size(), 0);
   }
 }

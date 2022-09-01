@@ -28,7 +28,11 @@ public class Queryable<In> extends ArrayList<In>
   }
 
   public static <In> Queryable<In> createEmpty(In[] list) {
-    return new Queryable<>();
+    if (list == null) {
+      return new Queryable<>();
+    } else {
+      return new Queryable(list.getClass().getComponentType());
+    }
   }
 
   public <T extends Extendable<List<In>>> T use(Class<T> that)
