@@ -85,8 +85,7 @@ public class Query<In>
     }
     return total / ArrayUtils.size(list);
   }
-  private static <In, Out extends Comparable<Out>> In getTop(In[] list, Function1<In, Out> f1,
-                                                             int modifier)
+  private static <In, Out extends Comparable<Out>> In getTop(In[] list, Function1<In, Out> f1, int modifier)
   {
     return getTop(Arrays.asList(list), f1, modifier);
   }
@@ -176,7 +175,7 @@ public class Query<In>
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static <T extends Number> T min(Iterable<T> numbers)
   {
-    return (T) min((Iterable)numbers, (Comparable a) -> a);
+    return (T) min((Iterable) numbers, (Comparable a) -> a);
   }
   public static <In> boolean all(In[] array, Function1<In, Boolean> funct)
   {

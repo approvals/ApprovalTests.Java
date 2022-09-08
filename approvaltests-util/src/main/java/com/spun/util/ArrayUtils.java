@@ -320,32 +320,30 @@ public class ArrayUtils
     }
     return queryable.asArray();
   }
-
-  public static <In> int size(Iterable<In> array) {
-    if (array instanceof Collection) {
-      return ((Collection)array).size();
-    }
+  public static <In> int size(Iterable<In> array)
+  {
+    if (array instanceof Collection)
+    { return ((Collection) array).size(); }
     return (int) StreamSupport.stream(array.spliterator(), false).count();
   }
-
-  public static <In> In getLast(Iterable<In> array) {
-    if (array == null) {
-      return null;
-    }
-    if (array instanceof List) {
+  public static <In> In getLast(Iterable<In> array)
+  {
+    if (array == null)
+    { return null; }
+    if (array instanceof List)
+    {
       List<In> array1 = (List) array;
-      if (array1.isEmpty()) {
-        return null;
-      }
+      if (array1.isEmpty())
+      { return null; }
       return array1.get(array1.size() - 1);
     }
     In last = null;
-    for (In in : array) {
+    for (In in : array)
+    {
       last = in;
     }
     return last;
   }
-
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;

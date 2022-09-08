@@ -100,24 +100,25 @@ public class QueryTest
     list = null;
     assertEquals(Query.take(list, 3).size(), 0);
   }
-
   @Test
-  void testMax() {
+  void testMax()
+  {
     Integer[] integers = Range.get(1, 3);
     int max = Query.max(Arrays.asList(integers), (i) -> i % 3 * 10);
     assertEquals(2, max);
     max = Query.max(integers, (i) -> i % 3 * 10);
     assertEquals(2, max);
   }
-
   @Test
-  void testArrayAndListParity() {
+  void testArrayAndListParity()
+  {
     // get all methods for Query
     Queryable<Method> declaredMethods = Queryable.as(Query.class.getDeclaredMethods());
     // sort the ones that take an array
-    Queryable<Method> arrays = declaredMethods.where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
-    Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1 && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
-
+    Queryable<Method> arrays = declaredMethods
+        .where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
+    Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1
+        && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
     // sort the ones that take an Iterable
     // for each array that doesn't have a corresponding iterable
     //    make a note
@@ -128,13 +129,13 @@ public class QueryTest
     Queryable<String> missingMethods = arrays.select(m -> printMethod(m)).orderBy(m -> m);
     Approvals.verifyAll("Methods without a corresponding array or list", missingMethods, m -> m);
   }
-
-  private String printMethod(Method m) {
+  private String printMethod(Method m)
+  {
     return String.format("%s.%s(%s)", m.getDeclaringClass().getSimpleName(), m.getName(), showParameters(m));
   }
   private String showParameters(Method m)
   {
     return StringUtils.join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())),
-            ",");
+        ",");
   }
 }
