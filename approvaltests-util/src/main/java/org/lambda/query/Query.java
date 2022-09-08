@@ -69,6 +69,10 @@ public class Query<In>
   {
     return getTop(list, f1, 1);
   }
+  public static <In, Out extends Comparable<Out>> In max(In[] list, Function1<In, Out> f1)
+  {
+    return getTop(list, f1, 1);
+  }
   public static <In, Out extends Comparable<Out>> In min(List<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, -1);
@@ -81,6 +85,11 @@ public class Query<In>
       total += f1.call(in).doubleValue();
     }
     return total / list.size();
+  }
+  private static <In, Out extends Comparable<Out>> In getTop(In[] list, Function1<In, Out> f1,
+                                                             int modifier)
+  {
+    return getTop(Arrays.asList(list), f1, modifier);
   }
   private static <In, Out extends Comparable<Out>> In getTop(Collection<In> list, Function1<In, Out> f1,
       int modifier)

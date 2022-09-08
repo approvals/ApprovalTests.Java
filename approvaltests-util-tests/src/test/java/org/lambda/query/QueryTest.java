@@ -96,4 +96,13 @@ public class QueryTest
     list = null;
     assertEquals(Query.take(list, 3).size(), 0);
   }
+
+  @Test
+  void testMax() {
+    Integer[] integers = Range.get(1, 3);
+    int max = Query.max(Arrays.asList(integers), (i) -> i % 3 * 10);
+    assertEquals(2, max);
+    max = Query.max(integers, (i) -> i % 3 * 10);
+    assertEquals(2, max);
+  }
 }
