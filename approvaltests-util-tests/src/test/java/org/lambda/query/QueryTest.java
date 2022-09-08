@@ -1,10 +1,14 @@
 package org.lambda.query;
 
+import com.spun.util.ClassUtils;
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
 import org.approvaltests.Approvals;
 import org.lambda.utils.Range;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -104,5 +108,33 @@ public class QueryTest
     assertEquals(2, max);
     max = Query.max(integers, (i) -> i % 3 * 10);
     assertEquals(2, max);
+  }
+
+  @Test
+  void testArrayAndListParity() {
+    // get all methods for Query
+    Queryable<Method> declaredMethods = Queryable.as(Query.class.getDeclaredMethods());
+    // sort the ones that take an array
+    Queryable<Method> arrays = declaredMethods.where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
+    Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1 && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
+
+    // sort the ones that take an Iterable
+    // for each array that doesn't have a corresponding iterable
+    //    make a note
+    // for each iterable that doesn't have a corresponding array
+    //   make a note
+    // compare the notes
+    arrays.addAll(iterables);
+    Queryable<String> missingMethods = arrays.select(m -> printMethod(m)).orderBy(m -> m);
+    Approvals.verifyAll("Methods without a corresponding array or list", missingMethods, m -> m);
+  }
+
+  private String printMethod(Method m) {
+    return String.format("%s.%s(%s)", m.getDeclaringClass().getSimpleName(), m.getName(), showParameters(m));
+  }
+  private String showParameters(Method m)
+  {
+    return StringUtils.join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())),
+            ",");
   }
 }

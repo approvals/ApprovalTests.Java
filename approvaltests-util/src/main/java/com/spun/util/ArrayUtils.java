@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
+import java.util.stream.StreamSupport;
 
 /**
  * A static class of convenience methods for arrays and collections.
@@ -90,9 +91,9 @@ public class ArrayUtils
   {
     return ((array == null) || (array.length == 0));
   }
-  public static boolean isEmpty(Collection<?> collection)
+  public static boolean isEmpty(Iterable<?> collection)
   {
-    return ((collection == null) || (collection.size() == 0));
+    return ((collection == null) || (!collection.iterator().hasNext()));
   }
   public static <T> T getSingleton(T[] parts)
   {
@@ -319,6 +320,32 @@ public class ArrayUtils
     }
     return queryable.asArray();
   }
+
+  public static <In> int size(Iterable<In> array) {
+    if (array instanceof Collection) {
+      return ((Collection)array).size();
+    }
+    return (int) StreamSupport.stream(array.spliterator(), false).count();
+  }
+
+  public static <In> In getLast(Iterable<In> array) {
+    if (array == null) {
+      return null;
+    }
+    if (array instanceof List) {
+      List<In> array1 = (List) array;
+      if (array1.isEmpty()) {
+        return null;
+      }
+      return array1.get(array1.size() - 1);
+    }
+    In last = null;
+    for (In in : array) {
+      last = in;
+    }
+    return last;
+  }
+
   public static class IterableWrapper<T> implements Iterable<T>
   {
     private final Iterator<T> iterator;

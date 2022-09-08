@@ -11,11 +11,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.BlockingQueue;
 
 public class Query<In>
 {
-  public static <In, Out> Queryable<Out> select(Collection<In> list, Function1<In, Out> function)
+  public static <In, Out> Queryable<Out> select(Iterable<In> list, Function1<In, Out> function)
   {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
@@ -65,7 +64,7 @@ public class Query<In>
     }
     return out;
   }
-  public static <In, Out extends Comparable<Out>> In max(Collection<In> list, Function1<In, Out> f1)
+  public static <In, Out extends Comparable<Out>> In max(Iterable<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, 1);
   }
@@ -73,25 +72,25 @@ public class Query<In>
   {
     return getTop(list, f1, 1);
   }
-  public static <In, Out extends Comparable<Out>> In min(List<In> list, Function1<In, Out> f1)
+  public static <In, Out extends Comparable<Out>> In min(Iterable<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, -1);
   }
-  public static <In> Double average(List<In> list, Function1<In, Number> f1)
+  public static <In> Double average(Iterable<In> list, Function1<In, Number> f1)
   {
     double total = 0.00;
     for (In in : list)
     {
       total += f1.call(in).doubleValue();
     }
-    return total / list.size();
+    return total / ArrayUtils.size(list);
   }
   private static <In, Out extends Comparable<Out>> In getTop(In[] list, Function1<In, Out> f1,
                                                              int modifier)
   {
     return getTop(Arrays.asList(list), f1, modifier);
   }
-  private static <In, Out extends Comparable<Out>> In getTop(Collection<In> list, Function1<In, Out> f1,
+  private static <In, Out extends Comparable<Out>> In getTop(Iterable<In> list, Function1<In, Out> f1,
       int modifier)
   {
     if (ArrayUtils.isEmpty(list))
@@ -137,7 +136,7 @@ public class Query<In>
   /**
    * Why does sum() return double? see {@link #sum(Number[])}
    */
-  public static <In, Out extends Number> Double sum(Collection<In> list, Function1<In, Out> f1)
+  public static <In, Out extends Number> Double sum(Iterable<In> list, Function1<In, Out> f1)
   {
     double sum = 0;
     for (In in : list)
@@ -149,7 +148,7 @@ public class Query<In>
   /**
    * Why does sum() return double? see {@link #sum(Number[])}
    */
-  public static <Out extends Number> Double sum(Collection<Out> list)
+  public static <Out extends Number> Double sum(Iterable<Out> list)
   {
     return sum(list, a -> a);
   }
@@ -166,7 +165,7 @@ public class Query<In>
     return sum(list, a -> a);
   }
   @SuppressWarnings({"rawtypes", "unchecked"})
-  public static <T extends Number> T max(List<T> numbers)
+  public static <T extends Number> T max(Iterable<T> numbers)
   {
     return (T) max(numbers, (a) -> (Comparable) a);
   }
@@ -175,19 +174,19 @@ public class Query<In>
     return max(ArrayUtils.asList(numbers));
   }
   @SuppressWarnings({"rawtypes", "unchecked"})
-  public static <T extends Number> T min(List<T> numbers)
+  public static <T extends Number> T min(Iterable<T> numbers)
   {
-    return (T) min((List) numbers, (Comparable a) -> a);
+    return (T) min((Iterable)numbers, (Comparable a) -> a);
   }
   public static <In> boolean all(In[] array, Function1<In, Boolean> funct)
   {
     return array.length == where(array, funct).size();
   }
-  public static <In> boolean all(List<In> array, Function1<In, Boolean> funct)
+  public static <In> boolean all(Iterable<In> array, Function1<In, Boolean> funct)
   {
-    return array.size() == where(array, funct).size();
+    return ArrayUtils.size(array) == where(array, funct).size();
   }
-  public static <In> boolean any(List<In> array, Function1<In, Boolean> funct)
+  public static <In> boolean any(Iterable<In> array, Function1<In, Boolean> funct)
   {
     return first(array, funct) != null;
   }
@@ -195,7 +194,7 @@ public class Query<In>
   {
     return first(array, funct) != null;
   }
-  public static <In> Queryable<In> distinct(List<In> list)
+  public static <In> Queryable<In> distinct(Iterable<In> list)
   {
     Queryable<In> distinct = new Queryable<>();
     for (In in : list)
@@ -211,13 +210,11 @@ public class Query<In>
   {
     return last(Arrays.asList(list));
   }
-  static <In> In last(List<In> asList)
+  static <In> In last(Iterable<In> asList)
   {
-    if (asList.isEmpty())
-    { return null; }
-    return asList.get(asList.size() - 1);
+    return ArrayUtils.getLast(asList);
   }
-  public static <Out, In> Queryable<Out> selectMany(Queryable<In> list, Function1<In, Collection<Out>> selector)
+  public static <Out, In> Queryable<Out> selectMany(Iterable<In> list, Function1<In, Collection<Out>> selector)
   {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
@@ -226,7 +223,7 @@ public class Query<In>
     }
     return out;
   }
-  public static <Out, In> Queryable<Out> selectManyArray(Queryable<In> list, Function1<In, Out[]> selector)
+  public static <Out, In> Queryable<Out> selectManyArray(Iterable<In> list, Function1<In, Out[]> selector)
   {
     Queryable<Out> out = new Queryable<Out>();
     for (In i : list)
@@ -235,18 +232,18 @@ public class Query<In>
     }
     return out;
   }
-  public static <Key, In> Queryable<Map.Entry<Key, Queryable<In>>> groupBy(Queryable<In> list,
+  public static <Key, In> Queryable<Map.Entry<Key, Queryable<In>>> groupBy(Iterable<In> list,
       Function1<In, Key> keySelector)
   {
     return groupBy(list, keySelector, v -> v, r -> r);
   }
-  public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Queryable<In> list,
+  public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Iterable<In> list,
       Function1<In, Key> keySelector, Function1<In, Out1> valueSelector,
       Function1<Queryable<Out1>, Out2> resultSelector)
   {
     Queryable<Map.Entry<Key, Queryable<Out1>>> tuples = new Queryable<>();
-    Queryable<Map.Entry<Key, Out1>> objectsWithKey = list
-        .select(i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
+    Queryable<Map.Entry<Key, Out1>> objectsWithKey = Query.select(list,
+        i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
     for (Entry<Key, Out1> tuple : objectsWithKey)
     {
       Map.Entry<Key, Queryable<Out1>> first = tuples.first(o -> o.getKey().equals(tuple.getKey()));
