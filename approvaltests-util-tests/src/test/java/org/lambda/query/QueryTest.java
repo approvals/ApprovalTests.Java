@@ -1,12 +1,11 @@
 package org.lambda.query;
 
-import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import org.approvaltests.Approvals;
-import org.lambda.utils.Range;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.lambda.utils.Range;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QueryTest
 {
@@ -119,6 +117,8 @@ public class QueryTest
         .where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
     Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1
         && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
+    arrays = arrays.where(m -> !hasMatchingMethod(m, declaredMethods, true));
+    iterables = iterables.where(m -> !hasMatchingMethod(m, declaredMethods, false));
     // sort the ones that take an Iterable
     // for each array that doesn't have a corresponding iterable
     //    make a note
@@ -128,6 +128,16 @@ public class QueryTest
     arrays.addAll(iterables);
     Queryable<String> missingMethods = arrays.select(m -> printMethod(m)).orderBy(m -> m);
     Approvals.verifyAll("Methods without a corresponding array or list", missingMethods, m -> m);
+  }
+  private boolean hasMatchingMethod(Method method, Queryable<Method> declaredMethods, boolean findIterable)
+  {
+    Queryable<Method> where = declaredMethods.where(m -> m.getName().equals(method.getName()))
+        .where(m -> m.getParameterTypes().length == method.getParameterTypes().length);
+    if (findIterable) {
+      return where.any(m -> ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
+    } else {
+      return where.any(m -> m.getParameterTypes()[0].isArray());
+    }
   }
   private String printMethod(Method m)
   {
