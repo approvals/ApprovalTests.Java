@@ -1,12 +1,3 @@
 Methods without a corresponding array or list
 
 
-Query.average(Iterable,Function1)
-Query.distinct(Iterable)
-Query.groupBy(Iterable,Function1)
-Query.groupBy(Iterable,Function1,Function1,Function1)
-Query.lambda$groupBy$5(Queryable)
-Query.min(Iterable)
-Query.min(Iterable,Function1)
-Query.selectMany(Iterable,Function1)
-Query.selectManyArray(Iterable,Function1)
