@@ -209,4 +209,11 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.take(this, number);
   }
+  public Queryable<In> combine(Queryable<In> iterables)
+  {
+    Queryable<In> queryable = new Queryable<>(this.type);
+    queryable.addAll(this);
+    queryable.addAll(iterables);
+    return queryable;
+  }
 }

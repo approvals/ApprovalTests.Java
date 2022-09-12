@@ -110,32 +110,26 @@ public class QueryTest
   @Test
   void testArrayAndListParity()
   {
-    // get all methods for Query
     Queryable<Method> declaredMethods = Queryable.as(Query.class.getDeclaredMethods());
-    // sort the ones that take an array
     Queryable<Method> arrays = declaredMethods
         .where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
     Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1
         && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
     arrays = arrays.where(m -> !hasMatchingMethod(m, declaredMethods, true));
     iterables = iterables.where(m -> !hasMatchingMethod(m, declaredMethods, false));
-    // sort the ones that take an Iterable
-    // for each array that doesn't have a corresponding iterable
-    //    make a note
-    // for each iterable that doesn't have a corresponding array
-    //   make a note
-    // compare the notes
-    arrays.addAll(iterables);
-    Queryable<String> missingMethods = arrays.select(m -> printMethod(m)).orderBy(m -> m);
+    Queryable<String> missingMethods = arrays.combine(iterables).select(this::printMethod).orderBy(m -> m);
     Approvals.verifyAll("Methods without a corresponding array or list", missingMethods, m -> m);
   }
   private boolean hasMatchingMethod(Method method, Queryable<Method> declaredMethods, boolean findIterable)
   {
     Queryable<Method> where = declaredMethods.where(m -> m.getName().equals(method.getName()))
         .where(m -> m.getParameterTypes().length == method.getParameterTypes().length);
-    if (findIterable) {
+    if (findIterable)
+    {
       return where.any(m -> ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
-    } else {
+    }
+    else
+    {
       return where.any(m -> m.getParameterTypes()[0].isArray());
     }
   }
