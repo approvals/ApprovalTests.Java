@@ -31,7 +31,7 @@ Integer[] numbers = Range.get(1, 20);
 Integer[] evenQueryNumbers = Query.where(numbers, n -> n % 2 == 0).orderBy(OrderBy.Order.Descending, n -> n)
     .asArray();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L35-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L37-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Here is the exact same function but using Java Streams:
@@ -42,7 +42,7 @@ Here is the exact same function but using Java Streams:
 Integer[] evenStreamNumbers = Arrays.stream(numbers).filter(n -> n % 2 == 0)
     .sorted((o1, o2) -> o2.compareTo(o1)).toArray(Integer[]::new);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L40-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L42-L45' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Another example using sum() vs. reduce():
@@ -53,7 +53,7 @@ Another example using sum() vs. reduce():
 String[] names = {"Llewellyn", "Scott"};
 int lengthsFromQuery = Query.sum(names, n -> n.length()).intValue();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L47-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_sum_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L49-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-query_sum_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Here is the exact same function but using Java Streams:
@@ -63,7 +63,7 @@ Here is the exact same function but using Java Streams:
 ```java
 int lengthsFromStream = (int) Arrays.stream(names).map(n -> n.length()).reduce(0, (a, b) -> a + b);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L51-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_sum_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L53-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-stream_sum_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 #### Other benefits
@@ -82,7 +82,7 @@ Using Query:
 ```java
 List<String> strings = Query.select(numbers, n -> "" + n);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L58-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_is_queryable' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L60-L62' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_is_queryable' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Using Streams:
@@ -91,7 +91,7 @@ Using Streams:
 ```java
 List<String> strings2 = Arrays.stream(numbers).map(n -> "" + n).collect(Collectors.toList());
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L61-L63' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryTest.java#L63-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-list_from_stream' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### API
