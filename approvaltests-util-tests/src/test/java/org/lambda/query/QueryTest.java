@@ -110,7 +110,8 @@ public class QueryTest
   @Test
   void testArrayAndListParity()
   {
-    Queryable<Method> declaredMethods = Queryable.as(Query.class.getDeclaredMethods()).where(m -> !m.getName().startsWith("lambda$"));
+    Queryable<Method> declaredMethods = Queryable.as(Query.class.getDeclaredMethods())
+        .where(m -> !m.getName().startsWith("lambda$"));
     Queryable<Method> arrays = declaredMethods
         .where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
     Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1
