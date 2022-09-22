@@ -17,6 +17,12 @@
 * update readme, add line for gradle
 * publish release also on github: https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository
 
+* SimpleLogger
+* try with resources
+* entry/exit param values
+* variable with/without types
+* verify output from run all combinations
+
 # Documentation
 * Docs for Options
 * Docs for Options.forFile()

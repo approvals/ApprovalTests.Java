@@ -211,11 +211,16 @@ public class SimpleLoggerInstance
   /**
    * Prints to screen any variable information to be viewed.
    **/
-  public synchronized void variable(String name, Object value)
+  public synchronized void variable(String name, Object value, boolean showTypes)
   {
     if (!variable)
     { return; }
-    logLine(timeStamp() + Symbols.variable + name + " = '" + value + "'");
+    String typeInfo = "";
+    if (showTypes && value != null)
+    {
+      typeInfo = String.format(" <%s>", value.getClass().getSimpleName());
+    }
+    logLine(String.format("%s%s%s = '%s'%s", timeStamp(), Symbols.variable, name, value, typeInfo));
   }
   private void logLine(String text)
   {

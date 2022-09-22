@@ -1,6 +1,8 @@
 package com.spun.util.logger;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.utils.logger.SimpleLoggerApprovals;
+import org.approvaltests.utils.logger.VerifySimpleLogger;
 import org.junit.jupiter.api.Test;
 
 public class SimpleLoggerTest
@@ -45,6 +47,15 @@ public class SimpleLoggerTest
     SimpleLogger.get().variable = false;
     SimpleLogger.get().query = true;
     // end-snippet
+  }
+  @Test
+  void testVariable()
+  {
+    try (VerifySimpleLogger verify = SimpleLoggerApprovals.verify())
+    {
+      SimpleLogger.variable("name", "Scott");
+      SimpleLogger.variable("name", "Scott", true);
+    }
   }
   public void sample()
   {

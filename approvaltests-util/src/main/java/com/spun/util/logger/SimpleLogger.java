@@ -46,12 +46,16 @@ public class SimpleLogger
   {
     log.variable(statement);
   }
+  public static void variable(String name, Object value, boolean showTypes)
+  {
+    log.variable(name, value, showTypes);
+  }
   /**
    * Prints to screen any variable information to be viewed.
    **/
   public synchronized static void variable(String name, Object value)
   {
-    log.variable(name, value);
+    variable(name, value, false);
   }
   public synchronized static void variable(String name, Object[] array)
   {
