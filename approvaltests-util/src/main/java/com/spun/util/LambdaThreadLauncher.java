@@ -3,6 +3,8 @@ package com.spun.util;
 import com.spun.util.logger.SimpleLogger;
 import org.lambda.actions.Action0;
 
+import java.time.Duration;
+
 public class LambdaThreadLauncher implements Runnable
 {
   private final Action0 function;
@@ -11,6 +13,9 @@ public class LambdaThreadLauncher implements Runnable
   public LambdaThreadLauncher(Action0 function)
   {
     this(function, 0);
+  }
+  public LambdaThreadLauncher(Action0 function, Duration delay) {
+    this(function, delay.toMillis());
   }
   public LambdaThreadLauncher(Action0 function, long delay)
   {
