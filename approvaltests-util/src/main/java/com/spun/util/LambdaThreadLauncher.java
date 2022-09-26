@@ -14,7 +14,8 @@ public class LambdaThreadLauncher implements Runnable
   {
     this(function, 0);
   }
-  public LambdaThreadLauncher(Action0 function, Duration delay) {
+  public LambdaThreadLauncher(Action0 function, Duration delay)
+  {
     this(function, delay.toMillis());
   }
   public LambdaThreadLauncher(Action0 function, long delay)
