@@ -1,54 +1,58 @@
 package com.spun.util.logger;
 
+import com.spun.util.SingleWrapper;
+import com.spun.util.ThreadedWrapper;
+import com.spun.util.Wrapper;
+
 public class SimpleLogger
 {
-  private static final SimpleLoggerInstance log = new SimpleLoggerInstance(1);
+  private static Wrapper<SimpleLoggerInstance> wrapper = new SingleWrapper<>(new SimpleLoggerInstance(1));
   public static void toggleAll(boolean t)
   {
-    log.toggleAll(t);
+    wrapper.get().toggleAll(t);
   }
   public static void setHourGlassWrap(int numberOfDots)
   {
-    log.setHourGlassWrap(numberOfDots);
+    wrapper.get().setHourGlassWrap(numberOfDots);
   }
   public static void hourGlass()
   {
-    log.hourGlass();
+    wrapper.get().hourGlass();
   }
   @Deprecated
   //use useMarkers
   public static void markerIn(String statement)
   {
-    log.markerIn(statement);
+    wrapper.get().markerIn(statement);
   }
   @Deprecated
   //use useMarkers
   public synchronized static void markerOut(String text)
   {
-    log.markerOut(text);
+    wrapper.get().markerOut(text);
   }
   public synchronized static void query(String sqlQuery)
   {
-    log.query(sqlQuery);
+    wrapper.get().query(sqlQuery);
   }
   /**
    * Prints to screen any variable information to be viewed.
    **/
   public synchronized static void query(String queryName, Object sqlQuery)
   {
-    log.query(queryName, sqlQuery);
+    wrapper.get().query(queryName, sqlQuery);
   }
   public static void variableFormated(String string, Object... parameters)
   {
-    log.variableFormated(string, parameters);
+    wrapper.get().variableFormated(string, parameters);
   }
   public synchronized static void variable(String statement)
   {
-    log.variable(statement);
+    wrapper.get().variable(statement);
   }
   public static void variable(String name, Object value, boolean showTypes)
   {
-    log.variable(name, value, showTypes);
+    wrapper.get().variable(name, value, showTypes);
   }
   /**
    * Prints to screen any variable information to be viewed.
@@ -59,31 +63,31 @@ public class SimpleLogger
   }
   public synchronized static void variable(String name, Object[] array)
   {
-    log.variable(name, array);
+    wrapper.get().variable(name, array);
   }
   public synchronized static <T> void variable(T[] array)
   {
-    log.variable(array);
+    wrapper.get().variable(array);
   }
   public synchronized static void message(String Statement)
   {
-    log.message(Statement);
+    wrapper.get().message(Statement);
   }
   public static void event(String Statement)
   {
-    log.event(Statement);
+    wrapper.get().event(Statement);
   }
   public synchronized static void warning(String statement)
   {
-    log.warning(statement);
+    wrapper.get().warning(statement);
   }
   public synchronized static void warning(Throwable throwable)
   {
-    log.warning(throwable);
+    wrapper.get().warning(throwable);
   }
   public synchronized static void warning(String statement, Throwable throwable)
   {
-    log.warning(statement, throwable);
+    wrapper.get().warning(statement, throwable);
   }
   /**
    * Logs the current memory status [total, used, free].
@@ -91,7 +95,7 @@ public class SimpleLogger
    **/
   public static void logMemoryStatus()
   {
-    log.logMemoryStatus();
+    wrapper.get().logMemoryStatus();
   }
   /**
    * {@code
@@ -102,11 +106,22 @@ public class SimpleLogger
    */
   public static Markers useMarkers()
   {
-    return log.useMarkers();
+    return wrapper.get().useMarkers();
   }
   public static StringBuffer logToString()
   {
-    return log.logToString();
+    return logToString(true);
+  }
+  public static StringBuffer logToString(boolean threadSafe)
+  {
+    synchronized (SimpleLogger.wrapper)
+    {
+      if (threadSafe && !(wrapper instanceof ThreadedWrapper))
+      {
+        wrapper = new ThreadedWrapper<>(() -> new SimpleLoggerInstance(1));
+      }
+      return wrapper.get().logToString();
+    }
   }
   public static Appendable logToNothing()
   {
@@ -114,19 +129,19 @@ public class SimpleLogger
   }
   public static void useOutputFile(String file, boolean addDateStamp)
   {
-    log.useOutputFile(file, addDateStamp);
+    wrapper.get().useOutputFile(file, addDateStamp);
   }
   public static Appendable logTo(Appendable writer)
   {
-    log.logTo(writer);
+    wrapper.get().logTo(writer);
     return writer;
   }
   public static Appendable getLogTo()
   {
-    return log.getLogTo();
+    return wrapper.get().getLogTo();
   }
   public static SimpleLoggerInstance get()
   {
-    return log;
+    return wrapper.get();
   }
 }

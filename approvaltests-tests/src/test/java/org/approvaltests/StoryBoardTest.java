@@ -26,7 +26,8 @@ public class StoryBoardTest
   @Test
   void gameOfLifeWithDescription()
   {
-    try (VerifiableStoryBoard storyboard = StoryBoardApprovals.verifyStoryboard()) {
+    try (VerifiableStoryBoard storyboard = StoryBoardApprovals.verifyStoryboard())
+    {
       GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
       storyboard.addDescription("Game of Life");
       storyboard.add(gameOfLife);
