@@ -26,18 +26,18 @@ public class StoryBoardTest
   @Test
   void gameOfLifeWithDescription()
   {
-    GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
-    StoryBoard storyboard = new StoryBoard();
-    storyboard.addDescription("Game of Life");
-    storyboard.add(gameOfLife);
-    storyboard.addFrame("Start Game", gameOfLife.advance());
-    storyboard.addFrame(gameOfLife.advance());
-    storyboard.addDescriptionWithData("setting alive", gameOfLife.setAliveCell("*"));
-    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell("_"));
-    storyboard.addFrames(2, gameOfLife::advance);
-    storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell(" "));
-    storyboard.addFrames(1, gameOfLife::advance);
-    Approvals.verify(storyboard);
+    try (VerifiableStoryBoard storyboard = StoryBoardApprovals.verifyStoryboard()) {
+      GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
+      storyboard.addDescription("Game of Life");
+      storyboard.add(gameOfLife);
+      storyboard.addFrame("Start Game", gameOfLife.advance());
+      storyboard.addFrame(gameOfLife.advance());
+      storyboard.addDescriptionWithData("setting alive", gameOfLife.setAliveCell("*"));
+      storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell("_"));
+      storyboard.addFrames(2, gameOfLife::advance);
+      storyboard.addDescriptionWithData("setting dead", gameOfLife.setDeadCell(" "));
+      storyboard.addFrames(1, gameOfLife::advance);
+    }
   }
   @Test
   //  @UseReporter(QuietReporter.class)
