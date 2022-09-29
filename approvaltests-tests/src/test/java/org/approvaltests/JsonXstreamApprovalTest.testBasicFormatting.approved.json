@@ -1,0 +1,6 @@
+{"org.approvaltests.JsonXstreamApprovalTest$Circular": {
+  "parent": {
+    "@reference": ".."
+  },
+  "label": "Label"
+}}
