@@ -21,7 +21,7 @@ public class JsonXstreamApprovals
   }
   public static String asJson(Object o)
   {
-    XStream xstream = new XStream(new JsonHierarchicalStreamDriver()); 
+    XStream xstream = new XStream(new JsonHierarchicalStreamDriver());
     return xstream.toXML(o);
   }
 }

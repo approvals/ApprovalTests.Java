@@ -41,13 +41,18 @@ public class JsonUtils
   }
   public static <T> String asJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
   {
-    try {
+    try
+    {
       GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
       builder = addHandlingForDateObjects(builder);
       Gson gson = gsonBuilder.call(builder).create();
       return gson.toJson(o);
-    } catch (StackOverflowError e) {
-      throw new RuntimeException("Circular reference found.\nGson does not handle circular references.\nConsider:\n  1. Using XStream (JsonXstreamApprovals)\n  2. Remove the circular reference.", e);
+    }
+    catch (StackOverflowError e)
+    {
+      throw new RuntimeException(
+          "Circular reference found.\nGson does not handle circular references.\nConsider:\n  1. Using XStream (JsonXstreamApprovals)\n  2. Remove the circular reference.",
+          e);
     }
   }
   private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder)

@@ -17,5 +17,4 @@ public class JsonXstreamApprovalTest
     c.parent = c;
     JsonXstreamApprovals.verifyAsJson(c);
   }
-
 }

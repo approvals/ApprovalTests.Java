@@ -14,7 +14,6 @@ public class JsonFormattingTest
       JsonApprovals.verifyAsJson(Circular.getIndirectCircularReference());
     });
   }
-
   @Test
   public void testBasicFormatting()
   {
