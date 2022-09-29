@@ -20,7 +20,7 @@ public static void verifyAsJson(Object o, Options options)
   Approvals.verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
 }
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L33-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L34-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
