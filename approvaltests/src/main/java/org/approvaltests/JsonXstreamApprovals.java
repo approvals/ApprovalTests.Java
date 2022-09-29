@@ -1,16 +1,15 @@
 package org.approvaltests;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 import com.thoughtworks.xstream.io.json.JsonHierarchicalStreamDriver;
-import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import org.approvaltests.core.Options;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
-import java.io.StringWriter;
-
-public class JsonXtreamApprovals
+/**
+ * Requires (XStream)[https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream]
+ * Requires (Jettison)[https://mvnrepository.com/artifact/org.codehaus.jettison/jettison]
+ * Requires (Camel-XStream)[https://mvnrepository.com/artifact/org.apache.camel/camel-xstream]
+ */
+public class JsonXstreamApprovals
 {
   public static void verifyAsJson(Object o)
   {

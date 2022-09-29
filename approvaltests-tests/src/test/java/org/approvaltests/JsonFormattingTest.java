@@ -8,6 +8,14 @@ import java.time.Instant;
 public class JsonFormattingTest
 {
   @Test
+  public void testGsonCircular()
+  {
+    Approvals.verifyException(() -> {
+      JsonApprovals.verifyAsJson(Circular.getIndirectCircularReference());
+    });
+  }
+
+  @Test
   public void testBasicFormatting()
   {
     String json = "{\"infos\":{\"address\":\"my address\",\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";

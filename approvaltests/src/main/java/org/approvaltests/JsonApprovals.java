@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import com.google.gson.GsonBuilder;
+import com.spun.util.FormattedException;
 import com.spun.util.JsonUtils;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
@@ -28,7 +29,7 @@ public class JsonApprovals
   }
   public static void verifyAsJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder, Options options)
   {
-    Approvals.verify(JsonUtils.asJson(o, gsonBuilder), options.forFile().withExtension(".json"));
+      Approvals.verify(JsonUtils.asJson(o, gsonBuilder), options.forFile().withExtension(".json"));
   }
   // begin-snippet: verify_as_json
   public static void verifyAsJson(Object o, Options options)

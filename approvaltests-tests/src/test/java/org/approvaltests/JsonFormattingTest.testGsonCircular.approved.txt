@@ -1,0 +1,5 @@
+java.lang.RuntimeException: Circular reference found.
+Gson does not handle circular references.
+Consider:
+  1. Using XStream (JsonXstreamApprovals)
+  2. Remove the circular reference.

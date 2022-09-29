@@ -1,0 +1,9 @@
+{"org.approvaltests.Circular": {
+  "parent": {
+    "parent": {
+      "@reference": "../.."
+    },
+    "label": "child"
+  },
+  "label": "middle"
+}}

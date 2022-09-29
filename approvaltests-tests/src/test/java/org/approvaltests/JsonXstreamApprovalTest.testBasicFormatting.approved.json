@@ -1,4 +1,4 @@
-{"org.approvaltests.JsonXstreamApprovalTest$Circular": {
+{"org.approvaltests.Circular": {
   "parent": {
     "@reference": ".."
   },
