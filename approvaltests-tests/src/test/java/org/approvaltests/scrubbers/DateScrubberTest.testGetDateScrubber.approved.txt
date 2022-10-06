@@ -11,6 +11,11 @@ RegExScrubber[[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} [a-zA-Z]{3,4} \d{4
 Example: {'date':"[Date1]"}
 
 
+Scrubbing for Wed, 21 Oct 2015 07:28:00 GMT:
+RegExScrubber[(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} GMT]
+Example: {'date':"[Date1]"}
+
+
 Scrubbing for Tue May 13 2014 23:30:00.789:
 RegExScrubber[[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{4} \d{2}:\d{2}:\d{2}.\d{3}]
 Example: {'date':"[Date1]"}
