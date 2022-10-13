@@ -172,7 +172,7 @@ public class Approvals
   }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, Options options)
   {
-    verify(new FileApprover(writer, namer), options);
+    verify(new FileApprover(writer, namer, options.getComparator()), options);
   }
   public static void verify(ApprovalWriter writer)
   {

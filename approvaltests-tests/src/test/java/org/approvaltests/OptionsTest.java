@@ -6,6 +6,7 @@ import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
@@ -182,5 +183,10 @@ public class OptionsTest
     {
       return null;
     }
+  }
+  @Test
+  void verifyCustomComparator()
+  {
+    Approvals.verify("The approval file is empty", new Options().withComparator((a, b) -> VerifyResult.SUCCESS));
   }
 }

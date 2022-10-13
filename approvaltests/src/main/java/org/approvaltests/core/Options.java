@@ -3,20 +3,23 @@ package org.approvaltests.core;
 import com.spun.util.ArrayUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
+import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalWriterFactory;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
 import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Options
 {
   private enum Fields {
-                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER;
+                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
   private final Map<Fields, Object> fields = new HashMap<>();
   public Options()
@@ -46,6 +49,14 @@ public class Options
   public Options withReporter(ApprovalFailureReporter reporter)
   {
     return new Options(fields, Fields.REPORTER, reporter);
+  }
+  public Function2<File, File, VerifyResult> getComparator()
+  {
+    return ArrayUtils.getOrElse(fields, Fields.COMPARATOR, () -> FileApprover::approveTextFile);
+  }
+  public Options withComparator(Function2<File, File, VerifyResult> comparator)
+  {
+    return new Options(fields, Fields.COMPARATOR, comparator);
   }
   public Options withScrubber(Scrubber scrubber)
   {
