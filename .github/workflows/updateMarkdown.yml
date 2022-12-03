@@ -1,22 +1,22 @@
 name: Update markdown snippets
+
 on:
   push:
+  workflow_dispatch:
+
 jobs:
   update-markdown-snippets:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Run MarkdownSnippets
-      run: |
-        dotnet tool install --global MarkdownSnippets.Tool
-        mdsnippets ${GITHUB_WORKSPACE}
-      shell: bash
-    - name: Push changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "d updated markdown snippets" -a  || echo "nothing to commit"
-        remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
-        branch="${GITHUB_REF:11}"
-        git push "${remote}" ${branch} || echo "nothing to push"
-      shell: bash
+      - uses: actions/checkout@v3
+      - name: Run MarkdownSnippets
+        run: |
+          dotnet tool install --global MarkdownSnippets.Tool
+          mdsnippets ${GITHUB_WORKSPACE}
+        shell: bash
+      - name: Git Commit and Push
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: "${secrets.GITHUB_TOKEN}"
+          commit-message: "d updated markdown snippets"
+    
