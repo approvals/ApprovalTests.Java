@@ -19,4 +19,5 @@ jobs:
         with:
           github-token: "${secrets.GITHUB_TOKEN}"
           commit-message: "d updated markdown snippets"
+          rebase: 'true'
     
