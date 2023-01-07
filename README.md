@@ -48,7 +48,7 @@ Approval Tests can be used for verifying objects that require more than a simple
 - [ApprovalTests](/approvaltests/docs/README.md)  
 - [ApprovalTests-util](/approvaltests-util/docs/README.md)
 
-### Misssing Documentation?
+### Missing Documentation?
 If there is documentation you wish existed, please add a `page request` to [this issue](https://github.com/approvals/ApprovalTests.Java/issues/342).
 
 ## Getting started
