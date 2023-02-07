@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-xstream</artifactId>
-            <version>3.20.0</version>
+            <version>3.20.2</version>
             <optional>true</optional>
         </dependency>
         <dependency>
