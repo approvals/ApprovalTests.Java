@@ -1,3 +1,7 @@
+# Reporters documentation update
+* Reference page
+* Best practices
+* Link the two
 # next time with Lars
 * NamerFactoryForOptions needs everything NamerFactory has (documentation for how to use NFFO needs to exist)
 * retrofit the other places where we use the global NamerFactory to use NFFO

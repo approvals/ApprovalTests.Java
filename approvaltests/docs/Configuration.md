@@ -40,6 +40,8 @@ public class PackageSettings {
 
 The approved & received files will now be created in the subdirectory `/approvals/` for any test in the same package as this file, or any test in any subpackage under this.  
 
+You can find out more about [Package Level settings here](./reference/PackageSettings.md#top)
+
 ## Alternative Base Directory for Output Files  
 
 Approved and received files can be stored in a different branch of the code base (for example, under the `/resources/` folder).

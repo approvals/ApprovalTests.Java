@@ -127,6 +127,8 @@ public class PackageSettings
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
+You can find out more about [Package Level settings here](./reference/PackageSettings.md#top)
+
 ## Combining Reporters
 You can combine reporters in two ways:
 * `MultiReporter`
