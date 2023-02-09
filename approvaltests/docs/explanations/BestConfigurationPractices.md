@@ -13,6 +13,14 @@ ApprovalTests uses the following mechanisms to select a reporter. The first one 
 5. UseReporter at the package level
 
 ## How to build your configuration
+
+```mermaid
+flowchart
+ A[Package Level Defaults]-- If not enough ---B[Class Level UseReporter]-- then ---MethodLevel[Method Level]
+ MethodLevel-- Override for custom verify ---Options
+ MethodLevel-- Override for runtime environment---FrontLoadedReporter
+```
+
 ### 1. General Configuration
 At the package level set the default reporter that you like the most.
 See the [Reporters documentation](../Reporters.md#package-level).
