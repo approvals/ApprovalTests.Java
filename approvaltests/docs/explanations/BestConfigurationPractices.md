@@ -2,7 +2,10 @@
 
 # Best Configuration Practices
 
-toc
+<!-- toc -->
+## Contents
+
+* [See Also](#see-also)<!-- endToc -->
 
 ## How ApprovalTests selects a reporter
 ApprovalTests uses the following mechanisms to select a reporter. The first one that works is the reporter that is selected.
