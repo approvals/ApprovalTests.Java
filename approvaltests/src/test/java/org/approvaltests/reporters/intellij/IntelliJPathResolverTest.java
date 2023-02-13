@@ -8,10 +8,15 @@ import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Queryable;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 @UseReporter(IntelliJReporter.class)
 public class IntelliJPathResolverTest
@@ -34,24 +39,48 @@ public class IntelliJPathResolverTest
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
+  @Disabled("wip")
   @Test
   void testIntellijPaths()
   {
-    String[] paths = new String[]{"/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/223.8617.56/IntelliJ IDEA CE.app/Contents/MacOS/idea"};
+    String[] paths = new String[]{
+                                  // begin-snippet: SupportedIntelliJPaths
+                                  "/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/223.8617.56/IntelliJ IDEA CE.app/Contents/MacOS/idea",
+                                  "/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8617.56/IntelliJ IDEA 2022.2 EAP.app"
+        // end-snippet
+    };
     Approvals.verifyAll("IntelliJ", paths, this::findIntellijReporter);
   }
   private String findIntellijReporter(String path)
   {
     try
     {
-      IntelliJPathResolver.PATH_WALKER = s -> Queryable.as(Paths.get(path)).stream();
+      IntelliJPathResolver.PATH_WALKER = s -> {
+        if (path.startsWith(s))
+        { return getPaths(Paths.get(path)).stream(); }
+        return Stream.of();
+      };
       Edition foundReporter = Queryable.as(Edition.values())
-          .first(x -> new IntelliJPathResolver(x).findIt() != null);
-      return String.format("%s <- %s", foundReporter, path);
+          .first(x -> !new IntelliJPathResolver(x).findIt().equals("C:\\Intelli-not-present.exe"));
+
+      String absolutePath = new IntelliJPathResolver(foundReporter).findIt();
+
+      return String.format("%s [%s] <- %s", foundReporter, absolutePath.equals(path), path);
     }
     finally
     {
       IntelliJPathResolver.PATH_WALKER = IntelliJPathResolver::walkPath;
     }
+  }
+  private static List<Path> getPaths(Path path)
+  {
+    List<Path> paths = new ArrayList<>();
+    do
+    {
+      paths.add(path);
+      path = path.getParent();
+    }
+    while (path != null);
+    return paths;
   }
 }
