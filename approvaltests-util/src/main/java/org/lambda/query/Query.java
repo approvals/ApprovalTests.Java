@@ -39,6 +39,14 @@ public class Query<In>
     }
     return out;
   }
+  public static <In> In first(Iterable<In> iterable)
+  {
+    return first(iterable, __ -> true);
+  }
+  public static <In> In first(In[] list)
+  {
+    return first(list, __ -> true);
+  }
   public static <In> In first(In[] list, Function1<In, Boolean> filter)
   {
     return first(ArrayUtils.asList(list), filter);
