@@ -49,7 +49,16 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
   {
     return reporters;
   }
+  /**
+   * 
+   * @deprecated Use {@link #getWorkingReportersForEnvironment()} instead.}
+   */
+  @Deprecated
   public List<EnvironmentAwareReporter> getWorkingReportersForEnviroment()
+  {
+    return getWorkingReportersForEnvironment();
+  }
+  public List<EnvironmentAwareReporter> getWorkingReportersForEnvironment()
   {
     return Query.where(reporters, new Function1<EnvironmentAwareReporter, Boolean>()
     {

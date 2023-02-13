@@ -3,8 +3,6 @@ package org.approvaltests.machine_specific_tests.reporters;
 import com.spun.util.ClassUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.machine_specific_tests.MachineSpecificTest;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.QueryableDiffReporterHarness;
 import org.approvaltests.reporters.macosx.MacDiffReporter;
@@ -20,7 +18,7 @@ public class GenericDiffReporterTest extends MachineSpecificTest
   @Test
   public void testGetWorkingReportersForEnvironment()
   {
-    Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnviroment(),
+    Approvals.verifyAll("reporters", MacDiffReporter.INSTANCE.getWorkingReportersForEnvironment(),
         Approvals.NAMES.asMachineNameSpecificTest());
   }
   @Disabled("requires windows and TortoiseDiff installed")
