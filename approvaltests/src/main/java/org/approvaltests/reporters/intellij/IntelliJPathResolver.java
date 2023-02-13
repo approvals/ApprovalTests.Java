@@ -2,6 +2,7 @@ package org.approvaltests.reporters.intellij;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
+import org.lambda.functions.Function1;
 
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 
 public class IntelliJPathResolver
 {
+  public static Function1<String, Stream<Path>> PATH_WALKER = IntelliJPathResolver::walkPath;
   private final String channelsPath;
   public IntelliJPathResolver(Edition edition)
   {
@@ -47,14 +49,14 @@ public class IntelliJPathResolver
     {
       return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
     }
-    catch (IOException e)
+    catch (Error e)
     {
       return notPresentPath;
     }
   }
-  private Optional<Path> getIntelliJPath() throws IOException
+  private Optional<Path> getIntelliJPath()
   {
-    try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS))
+    try (Stream<Path> walk = PATH_WALKER.call(channelsPath))
     {
       return walk //
           .map(Path::getFileName) //
@@ -63,6 +65,14 @@ public class IntelliJPathResolver
           .map(Version::new) //
           .max(Comparator.naturalOrder()) //
           .map(this::getPath);
+    }
+  }
+  public static Stream<Path> walkPath(String channelsPath)
+  {
+    try {
+      return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS);
+    } catch (IOException e) {
+      throw ObjectUtils.throwAsError(e);
     }
   }
   private Path getPath(Version version)
