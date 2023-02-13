@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 
 public class IntelliJPathResolverTest
 {
-  @UseReporter(IntelliJMacSiliconReporter.class)
+  @UseReporter(IntelliJReporter.class)
   @Test
   void testDetectionOfIntellijOnDevMachines()
   {
     // begin-snippet: runOnlyOnSpecificMachines
     try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
     {
-      if (!namedEnvironment.isCurrentEnvironmentValidFor("Larss-Air.lan", "macbook13", "Larss-MacBook-Air.local"))
+      if (!namedEnvironment.isCurrentEnvironmentValidFor(".lars-mbp-14"))
       { return; }
       // the rest of your test...
       // end-snippet
