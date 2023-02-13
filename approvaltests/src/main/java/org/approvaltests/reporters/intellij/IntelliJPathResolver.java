@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class IntelliJPathResolver
 {
   public static Function1<String, Stream<Path>> PATH_WALKER = IntelliJPathResolver::walkPath;
-  private final String channelsPath;
+  private final String                          channelsPath;
   public IntelliJPathResolver(Edition edition)
   {
     String toolboxPath = appData() + "/JetBrains/Toolbox";
@@ -69,9 +69,12 @@ public class IntelliJPathResolver
   }
   public static Stream<Path> walkPath(String channelsPath)
   {
-    try {
+    try
+    {
       return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS);
-    } catch (IOException e) {
+    }
+    catch (IOException e)
+    {
       throw ObjectUtils.throwAsError(e);
     }
   }

@@ -62,9 +62,7 @@ public class IntelliJPathResolverTest
       };
       Edition foundReporter = Queryable.as(Edition.values())
           .first(x -> !new IntelliJPathResolver(x).findIt().equals("C:\\Intelli-not-present.exe"));
-
       String absolutePath = new IntelliJPathResolver(foundReporter).findIt();
-
       return String.format("%s [%s] <- %s", foundReporter, absolutePath.equals(path), path);
     }
     finally

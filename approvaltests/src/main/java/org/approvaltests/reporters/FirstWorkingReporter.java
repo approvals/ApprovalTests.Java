@@ -50,7 +50,7 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
     return reporters;
   }
   /**
-   * 
+   *
    * @deprecated Use {@link #getWorkingReportersForEnvironment()} instead.}
    */
   @Deprecated
