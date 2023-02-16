@@ -43,3 +43,5 @@ See the [Reporters documentation](../Reporters.md#via-options).
 ### 5. Environmental Level
 If you are in a situation where you need a different reporter based on the environment you are running in (for example, a CI machine, a continuous test runner, etc.) use a front-loaded reporter. This will override anything else that has been previously defined if the front-loaded reporter is valid for the environment.
 
+* Read more about [FrontLoadedReporters](../reference/FrontLoadedReporter.md)
+
