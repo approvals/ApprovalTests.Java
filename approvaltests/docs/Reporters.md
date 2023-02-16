@@ -161,6 +161,7 @@ public class CustomReporter extends GenericDiffReporter
 
 ## See Also
 * [How to capture .received. files from CI](how_to/CaptureFilesFromCI.md)
+* [Benefits of different reporters](explanations/BenefitsOfDifferentReporters.md)
 
 ---
 

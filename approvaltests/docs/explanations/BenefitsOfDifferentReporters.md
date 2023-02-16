@@ -16,7 +16,8 @@ A reporter allows you to do many things.
 The most common is to view the results in a diff tool.
 
 There are many different diff tools that ApprovalTests automatically supports.
-But there are other services reporters can perform, including: 
+The primary reason to change a reporter is to use the diff tool of your choice, 
+but there are other services reporters can perform, including: 
 * Scripting
 * Rendering
 * Executing
@@ -54,5 +55,6 @@ I have found executing reporters to be useful for:
 * SQL
 * REST API calls
 * Photos of rendered results (e.g.: this is what the page looks like on an iPhone 8, iPhone 13 Pro, and Android Galaxy)
+* [Capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 
 For more on this please see [ExecutableCommands](../how_to/PatternsForTestingDataAccessAndRendering.md#the-executablecommand-interface).
