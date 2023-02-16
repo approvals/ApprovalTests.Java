@@ -4,10 +4,11 @@
 ## Feedback and Granularity
 ```mermaid
 flowchart
-Run --> Passes
-Run --> Fails
-Fails --> reporter["Open Reporter (Diff Tool)"]
-style Run fill:#f00
+Run --> Pass
+Run --> Fail
+Fail --> reporter["Open Reporter (Diff Tool)"]
+style Fail fill:#f00
+style Pass fill:#0f0
 ```
 
 When your tests fail, ApprovalTests will open a reporter.
@@ -35,10 +36,10 @@ This is very helpful when you want to know what the page actually looks like.
 
 ```mermaid
 flowchart
-Run --> Fails
-Fails --> DiffReporter["DiffReporter (Open HTML in Diff Tool)"]
-Fails --> FileLauncherReporter["FileLauncherReporter (Open in Browser)"]
-style Run fill:#f00
+Run --> Fail
+Fail --> DiffReporter["DiffReporter\n(Open HTML in Diff Tool)"]
+Fail --> FileLauncherReporter["FileLauncherReporter\n(Open in Browser)"]
+style Fail fill:#f00
 ```
 
 ## Executing
