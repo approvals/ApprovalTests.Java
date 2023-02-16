@@ -13,11 +13,11 @@ test with
 ```java
 try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
 {
-  if (!namedEnvironment.isCurrentEnvironmentValidFor("Larss-Air.lan", "macbook13", "Larss-MacBook-Air.local"))
+  if (!namedEnvironment.isCurrentEnvironmentValidFor(".lars-mbp-14"))
   { return; }
   // the rest of your test...
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L19-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-runonlyonspecificmachines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L27-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-runonlyonspecificmachines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **please note:** this will also append the machine name to the ApprovalTest so that each specific

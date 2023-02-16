@@ -5,7 +5,13 @@
 <!-- toc -->
 ## Contents
 
-* [See Also](#see-also)<!-- endToc -->
+  * [How ApprovalTests selects a reporter](#how-approvaltests-selects-a-reporter)
+  * [How to build your configuration](#how-to-build-your-configuration)
+    * [1. General Configuration](#1-general-configuration)
+    * [2. Class level](#2-class-level)
+    * [3. Method Level](#3-method-level)
+    * [4. Process Level](#4-process-level)
+    * [5. Environmental Level](#5-environmental-level)<!-- endToc -->
 
 ## How ApprovalTests selects a reporter
 ApprovalTests uses the following mechanisms to select a reporter. The first one that works is the reporter that is selected.

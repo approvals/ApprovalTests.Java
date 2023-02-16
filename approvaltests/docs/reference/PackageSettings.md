@@ -2,7 +2,10 @@
 
 # Package Settings
 
-toc
+<!-- toc -->
+## Contents
+
+  * [Links](#links)<!-- endToc -->
 
 ## Links
 * [Configuring Reporters](../Reporters.md#package-level)

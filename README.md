@@ -7,6 +7,7 @@
 
   * [What can it be used for?](#what-can-it-be-used-for)
   * [Documentation](#documentation)
+    * [Missing Documentation?](#missing-documentation)
   * [Getting started](#getting-started)
     * [New Projects](#new-projects)
     * [Docs](#docs)
