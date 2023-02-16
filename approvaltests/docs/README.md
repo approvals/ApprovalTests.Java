@@ -33,7 +33,11 @@
 
 * [AWTApprovals](reference/AwtApprovals.md)
 * [Approval File Names](reference/Naming.md)
+* [CombinationApprovals](reference/CombinationApprovals.md)
+* [FrontLoadedReporters](reference/FrontLoadedReporter.md)
+* [Naming of `.approved.` files](reference/Naming.md)
 * [Options](reference/Options.md)
+* [PackageSettings](reference/PackageSettings.md)
 * [Story Boards](reference/StoryBoard.md)
 * [The Verify API](reference/Verify.md)
 
