@@ -5,7 +5,7 @@
 <!-- toc -->
 ## Contents
 
-    * [ExecutableCommand](#executable-query)
+    * [ExecutableCommand](#executablecommand)
   * [Loaders](#loaders)<!-- endToc -->
 ## What it is
 

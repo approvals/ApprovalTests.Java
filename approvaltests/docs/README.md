@@ -9,6 +9,7 @@
   * [How Tos](#how-tos)
   * [Reference](#reference)
   * [Configuration](#configuration)
+  * [Explanations](#explanations)
   * [Main concepts for ApprovalTests](#main-concepts-for-approvaltests)<!-- endToc -->
 
 ## Features
