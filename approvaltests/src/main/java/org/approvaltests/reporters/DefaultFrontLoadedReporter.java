@@ -6,9 +6,9 @@ public class DefaultFrontLoadedReporter extends FirstWorkingReporter
   public DefaultFrontLoadedReporter()
   {
     super(
-            // begin-snippet: default_front_loaded_reporter
-            PitReporter.INSTANCE
-            // end-snippet
+        // begin-snippet: default_front_loaded_reporter
+        PitReporter.INSTANCE
+    // end-snippet
     );
   }
 }
