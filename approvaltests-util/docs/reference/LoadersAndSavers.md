@@ -5,7 +5,7 @@
 <!-- toc -->
 ## Contents
 
-    * [Executable Query](#executable-query)
+    * [ExecutableCommand](#executable-query)
   * [Loaders](#loaders)<!-- endToc -->
 ## What it is
 
@@ -15,9 +15,9 @@ Loaders tend to work similarly in functionality to a stored procedure.
 
 Savers allow you to save changes 
 
-### Executable Query
+### ExecutableCommand
 
-Executable Queries extend Loaders to allow for easy testing.
+`ExecutableCommand`s extend Loaders to allow for easy testing.
 
 ## Loaders
 

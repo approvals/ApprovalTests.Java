@@ -48,6 +48,11 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 
 **Note:** We are following [Daniele Procida's theory of documentation](https://documentation.divio.com)
 
+## Explanations
+* [Why we don't use checked exceptions](explanations/NoCheckedExceptions.md)
+* [Best configuration practices](explanations/BestConfigurationPractices.md)
+* [Benefits of different reporters](explanations/BenefitsOfDifferentReporters.md)
+
 
 ## Main concepts for ApprovalTests  
 
