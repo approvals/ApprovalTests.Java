@@ -39,14 +39,13 @@ public class IntelliJPathResolverTest
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
-  @Disabled("wip")
   @Test
   void testIntellijPaths()
   {
     String[] paths = new String[]{
                                   // begin-snippet: SupportedIntelliJPaths
-                                  "/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/223.8617.56/IntelliJ IDEA CE.app/Contents/MacOS/idea",
-                                  "/Users/lars/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8617.56/IntelliJ IDEA 2022.2 EAP.app"
+                                  "/Users/fakeUser/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/223.8617.56/IntelliJ IDEA CE.app/Contents/MacOS/idea",
+                                  "/Users/fakeUser/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8617.56/IntelliJ IDEA 2022.2 EAP.app"
         // end-snippet
     };
     Approvals.verifyAll("IntelliJ", paths, this::findIntellijReporter);
@@ -63,7 +62,7 @@ public class IntelliJPathResolverTest
       Edition foundReporter = Queryable.as(Edition.values())
           .first(x -> !new IntelliJPathResolver(x).findIt().equals("C:\\Intelli-not-present.exe"));
       String absolutePath = new IntelliJPathResolver(foundReporter).findIt();
-      return String.format("%s [%s] <- %s", foundReporter, absolutePath.equals(path), path);
+      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.equals(path), absolutePath, path);
     }
     finally
     {
