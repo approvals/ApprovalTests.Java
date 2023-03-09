@@ -24,7 +24,7 @@ Currently, here are some of the paths that are supported:
 "/Users/fakeUser/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/223.8617.56/IntelliJ IDEA CE.app/Contents/MacOS/idea",
 "/Users/fakeUser/Library/Application Support/JetBrains/Toolbox/apps/IDEA-U/ch-0/223.8617.56/IntelliJ IDEA 2022.2 EAP.app"
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-supportedintellijpaths' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L47-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-supportedintellijpaths' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 If IntelliJ is not opening for you, 
