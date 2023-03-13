@@ -64,7 +64,8 @@ public class IntelliJPathResolverTest
           .first(x -> !new IntelliJPathResolver(x).findIt().equals("C:\\Intelli-not-present.exe"));
       // foundReporter is null because fakeUser cannot be resolved from my disk
       String absolutePath = new IntelliJPathResolver(foundReporter).findIt();
-      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.equals(path), absolutePath, path);
+      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.equals(path),
+          absolutePath, path);
     }
     finally
     {
