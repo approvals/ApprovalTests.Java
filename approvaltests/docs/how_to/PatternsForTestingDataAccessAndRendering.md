@@ -94,7 +94,7 @@ void testWithMockedData()
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L20-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L21-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Summary
@@ -127,7 +127,7 @@ void testWithDatabaseAccess()
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L38-L48' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L40-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Testing Executable Commands
