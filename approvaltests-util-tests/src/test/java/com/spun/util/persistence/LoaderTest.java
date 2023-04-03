@@ -6,6 +6,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
+import org.approvaltests.scrubbers.NormalizeSpacesScrubber;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +34,8 @@ class LoaderTest
   // end-snippet
   private void verifyMarkdown(String print)
   {
-    Approvals.verify(print, new Options().forFile().withExtension(".md"));
+    Approvals.verify(print,
+        new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
   }
   // begin-snippet: testing_executable_command
   @Test

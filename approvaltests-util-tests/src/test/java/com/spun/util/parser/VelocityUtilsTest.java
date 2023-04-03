@@ -2,6 +2,7 @@ package com.spun.util.parser;
 
 import com.spun.util.DateUtils;
 import org.approvaltests.core.Options;
+import org.approvaltests.scrubbers.NormalizeSpacesScrubber;
 import org.approvaltests.utils.WithTimeZone;
 import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,8 @@ public class VelocityUtilsTest
     try (WithTimeZone tz = new WithTimeZone())
     {
       Timestamp date = DateUtils.parse("2001/02/03");
-      VelocityApprovals.verify(c -> c.put("date", date), new Options().forFile().withExtension(".md"));
+      VelocityApprovals.verify(c -> c.put("date", date),
+          new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
     }
   }
   @Test
