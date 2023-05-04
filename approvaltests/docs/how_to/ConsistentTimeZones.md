@@ -9,12 +9,12 @@
   * [The solution](#the-solution)<!-- endToc -->
 
 
-## The problem
-When you are running tests on multiple machines and CI systems distributed around the globe
-the system's time zone can become an issue with having a consistent result.
+## Problem Description
+When running tests on multiple machines and CI systems distributed around the globe, the system's time zone can cause inconsistencies in test results.
 
-## The solution
-ApprovalTests has a convenience class, `WithTimeZone` to set a consistent time zone for a block of code
+## Solution: Using WithTimeZone
+ApprovalTests provides a convenience class, `WithTimeZone`, to set a consistent time zone for a block of code. This ensures that all code within the block uses the same time zone, avoiding inconsistencies caused by different system time zones.
+
 Here is an example:
 
 <!-- snippet: with_time_zone -->
