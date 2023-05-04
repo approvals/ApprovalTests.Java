@@ -4,11 +4,12 @@
 <!-- toc -->
 <!-- endToc -->
 
-By default, ApprovalTests generates 1 file per test.
-In case of `@ParameterizedTests` when using `Approvals.verify(object)`, this is not the desired behaviour.
+## Introduction
+By default, ApprovalTests generates one file per test. However, for `@ParameterizedTests`, this may not be the desired behavior when using `Approvals.verify(object)`. 
+The following section demonstrates how to generate multiple files for a single ParameterizedTest, where each file name includes the parameter name.
 
-Here is some sample code on how to make ApprovalTests create multiple files for one ParameterizedTest, 
-where each file name also includes the parameter name.
+
+## Sample Code
 
 <!-- snippet: parameterized_test -->
 <a id='snippet-parameterized_test'></a>
@@ -25,9 +26,9 @@ void sampleParameterizedTest(String parameter)
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/SamplesTest.java#L38-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-This will make it so that the approved file includes the parameters.  
+This code sample ensures that the approved file includes the parameters. For example:  
 For example: 
 1. SamplesTest.sampleParameterizedTest.`parameter1`.approved.txt 
 1. SamplesTest.sampleParameterizedTest.`parameter2`.approved.txt
 
-Note, you might also want to give Approvals.verifyAll() in combination with `@Test` a try.
+**Note:** As an alternative, consider using `Approvals.verifyAll()` in combination with `@Test`.
