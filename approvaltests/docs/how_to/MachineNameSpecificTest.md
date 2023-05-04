@@ -5,8 +5,18 @@
 <!-- toc -->
 <!-- endToc -->
 
-Sometimes you will want tests to only run on certain machines. You can do this by prefixing your
-test with
+## Introduction
+In some cases, you may want tests to run only on specific machines. 
+This can be achieved by using `NamedEnvironment` at the beginning of your tests.
+
+
+## Using NamedEnvironment
+You can use the `NamedEnvironment` class in combination with `isCurrentEnvironmentValidFor` to achieve this.
+
+
+Here is an example that uses the NamedEnvironment class to run tests only on a specific machine.
+It checks if the current machine's name matches the specified name (e.g., ".lars-mbp-14"), and if not, the test is skipped. 
+The actual test code should be placed after this condition.
 
 <!-- snippet: runOnlyOnSpecificMachines -->
 <a id='snippet-runonlyonspecificmachines'></a>
