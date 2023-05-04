@@ -8,9 +8,9 @@
 
 ## Create a Custom Verify Method
 
-One method is to create a custom `verify()` method for your particular situation.
+One method is to create a custom `verify()` method tailored to your specific needs.
 
-For example, as we use it to handle json:
+For example, here's how to create a custom method for handling JSON:
 
 <!-- snippet: verify_as_json -->
 <a id='snippet-verify_as_json'></a>
@@ -25,8 +25,8 @@ public static void verifyAsJson(Object o, Options options)
 
 ## Create a `Verifiable` Object
 
-Alternatively, you can create an object that knows how to verify itself.
-See the required interfaces:
+Another option is to create an object that knows how to verify itself. 
+To do this, you'll need to implement the required interfaces:
 * [Verifiable](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/core/Verifiable.java#L3-L5)
 * [VerifyParameters](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/core/VerifyParameters.java#L3)
 
