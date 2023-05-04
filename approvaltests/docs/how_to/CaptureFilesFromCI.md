@@ -5,8 +5,9 @@
 <!-- toc -->
 ## Contents
 
-  * [The problem](#the-problem)
-  * [The solution](#the-solution)
+  * [Introduction](#introduction)
+  * [Problem Description](#problem-description)
+  * [Solution: Using FileCaptureReporter](#solution-using-filecapturereporter)
   * [Compatibility](#compatibility)<!-- endToc -->
 
 ## Introduction
