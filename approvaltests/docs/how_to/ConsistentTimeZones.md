@@ -5,8 +5,8 @@
 <!-- toc -->
 ## Contents
 
-  * [The problem](#the-problem)
-  * [The solution](#the-solution)<!-- endToc -->
+  * [Problem Description](#problem-description)
+  * [Solution: Using WithTimeZone](#solution-using-withtimezone)<!-- endToc -->
 
 
 ## Problem Description

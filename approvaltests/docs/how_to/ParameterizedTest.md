@@ -2,7 +2,10 @@
 
 # How to use Approvals.verify in Parameterized Tests
 <!-- toc -->
-<!-- endToc -->
+## Contents
+
+  * [Introduction](#introduction)
+  * [Sample Code](#sample-code)<!-- endToc -->
 
 ## Introduction
 By default, ApprovalTests generates one file per test. However, for `@ParameterizedTests`, this may not be the desired behavior when using `Approvals.verify(object)`. 
