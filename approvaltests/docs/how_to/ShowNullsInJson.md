@@ -4,8 +4,9 @@
 <!-- toc -->
 <!-- endToc -->
 
-By default, `verifyAsJson` will not display `null` fields. If you wish to change that behaviour, 
-here is an example on how to do that.
+By default, `verifyAsJson`  method does not display fields with `null` values.
+To modify this behavior and display null fields, 
+follow the example provided below.
 
 <!-- snippet: CustomGsonBuilderShowingNull -->
 <a id='snippet-customgsonbuildershowingnull'></a>

@@ -1,6 +1,6 @@
 <a id="top"></a>
 
-# How to customize another objects `toString()` 
+# How to Customize Another Object's `toString()` 
 <!-- toc -->
 ## Contents
 
@@ -13,7 +13,7 @@
 
 ### Printable wrappers
 
-Sometimes an objects `toString()` are not what is desired for the give situation. This is particularly true with the parameter names used with `CombinationApprovals` 
+Sometimes an object's `toString()` is not suitable for a given situation. This is particularly true with the parameter names used with `CombinationApprovals` 
 Printable wrappers gives you a way to control this.
 
 ### Wrap a individual object

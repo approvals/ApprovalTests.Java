@@ -1,6 +1,8 @@
 <a id="top"></a>
 # Benefits of Different Reporters
 
+toc 
+
 ## Feedback and Granularity
 ```mermaid
 flowchart
@@ -24,15 +26,14 @@ but there are other services reporters can perform, including:
 
 ## Scripting
 The `ClipboardReporter` and `DelayedClipboardReporter` will automatically create a BASH script needed to approve the failing (or all of the failing) tests.
-Using this reporter can make it easy to update hundreds of failures if you do a single thing that affects many tests.
+This feature makes it easy to update multiple failures at once, especially when a single change affects numerous tests.
 
 ## Rendering
-Depending on what has changed you may want to look at your results in a different way.
-For example, let's say we were working on an HTML page.
-There are two ways you might want to view the results:
-1. HTML text in a diff reporter. 
+Different viewing options may be useful depending on the nature of the changes. 
+For instance, when working on an HTML page, you may want to examine the results in two ways:
+1. **HTML text in a diff reporter.** 
 This is very helpful to find very detailed changes
-2. Rendered in a browser.
+2. **Rendered in a browser.**
 This is very helpful when you want to know what the page actually looks like.
 
 ```mermaid
