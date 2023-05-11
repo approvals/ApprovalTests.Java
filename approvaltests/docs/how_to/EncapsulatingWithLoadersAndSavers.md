@@ -24,7 +24,8 @@ The sequence looks like this:
 sequenceDiagram
 Code->>Database:Request inventory
 Database->>Code:Return items and quantities
-Code->>Database:Put desired items on hold
+Note right of Code:for each item with quantity > 0 
+Code->>Database:Put item on hold
 Database->>Code:Confirmation
 ```
 
