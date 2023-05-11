@@ -29,5 +29,11 @@ Code->>Database:Put item on hold
 Database->>Code:Confirmation
 ```
 
+The code looks like:
+snippet:separating_loaders_1
+
 
 ## The solution
+
+Refactor it to include loaders and savers
+snippet:separating_loaders_2
