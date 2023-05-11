@@ -17,4 +17,16 @@ I want to restructure the function to make it easier to test.
 
 ## The scenario
 
+In this scenario we have a function that takes a list of items you want to be held at a store and sets them aside for when you show up.
+The sequence looks like this:
+
+```mermaid
+sequenceDiagram
+Code->>Database:Request inventory
+Database->>Code:Return items and quantities
+Code->>Database:Put desired items on hold
+Database->>Code:Confirmation
+```
+
+
 ## The solution
