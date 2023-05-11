@@ -5,7 +5,9 @@
 <!-- toc -->
 ## Contents
 
-* [Making an adapter for your Loader](#making-an-adapter-for-your-loader)<!-- endToc -->
+  * [The problem](#the-problem)
+  * [The scenario](#the-scenario)
+  * [The solution](#the-solution)<!-- endToc -->
 
 
 ## The problem
