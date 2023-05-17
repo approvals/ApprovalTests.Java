@@ -58,8 +58,8 @@ public class LoaderTest
       Item missing_item = new Item("W202", "Item not Found", 2);
       Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
       MockSaver<Item> saver = new MockSaver<>();
-      reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id),
-          () -> new Item[]{milk, sold_out_item}, saver);
+      List<String> reservedIds = Arrays.asList(milk.id, missing_item.id, sold_out_item.id);
+      reserveItems(reservedIds, () -> new Item[]{milk, sold_out_item}, saver);
       // Only reserved milk
       Assert.assertArrayEquals(saver.saved.toArray(), new Item[]{milk});
     }
