@@ -1,13 +1,16 @@
 <a id="top"></a>
 
-# How to encapsulate your database calls
+# How to Encapsulate Your Database Calls
 
 <!-- toc -->
 ## Contents
 
   * [The problem](#the-problem)
   * [The scenario](#the-scenario)
-  * [The solution](#the-solution)<!-- endToc -->
+    * [Starting Example](#starting-example)
+    * [The solution](#the-solution)
+    * [Why this is better](#why-this-is-better)
+  * [Example Test](#example-test)<!-- endToc -->
 
 
 ## The problem
@@ -29,11 +32,81 @@ Code->>Database:Put item on hold
 Database->>Code:Confirmation
 ```
 
+### Starting Example
 The code looks like:
-snippet:separating_loaders_1
+<!-- snippet: separating_loaders_1 -->
+<a id='snippet-separating_loaders_1'></a>
+```java
+public void reserveItems(List<String> ids) {
+    Item[] items = getInventory();
+    for (Item item : items) {
+        if (ids.contains(item.id) && item.inventoryCount > 0) {
+            registerHold(item);
+        }
+    }
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L16-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_1' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 
-## The solution
+### The solution
 
 Refactor it to include loaders and savers
-snippet:separating_loaders_2
+<!-- snippet: separating_loaders_2 -->
+<a id='snippet-separating_loaders_2'></a>
+```java
+public void reserveItems(List<String> ids) {
+    reserveItems(ids, new InventoryLoader(), new ItemReserver());
+}
+
+public void reserveItems(List<String> ids, Loader<Item[]> loader, Saver<Item> itemReserver) {
+    Item[] items = loader.load();
+    for (Item item : items) {
+        if (ids.contains(item.id) && item.inventoryCount > 0) {
+            itemReserver.save(item);
+        }
+    }
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L29-L42' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_2' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+### Why this is better
+
+The solution here uses Loaders and Savers to allow for Dependency Injection (DI). The goal of DI is to make code more flexible, modular, and testable by removing hard-coded dependencies.
+
+In the original code, the `reserveItems` method was directly tied to the database through the `getInventory` and `registerHold` methods. This means that any time you wanted to test this function, you would need a live database connection, which is not ideal for unit testing.
+
+The refactored code, however, separates the responsibilities of loading inventory items and reserving them into separate components (`Loader` and `Saver` interfaces respectively). This allows the actual method of loading and saving items to be abstracted away from the `reserveItems` method itself.
+
+The `reserveItems` method now takes in instances of Loader and Saver as parameters. In a live environment, these could be instances that interact with a live database. However, when unit testing, you can pass in fake instances of Loader and Saver (usually a lambda) removing the need for a live database connection during testing.
+
+The end state improves testability, flexibility, and code management by removing direct database dependencies.
+
+## Example Test
+
+The resulting separation allows it to be easily tested.   
+Here's how:
+
+<!-- snippet: seperating_loaders_test -->
+<a id='snippet-seperating_loaders_test'></a>
+```java
+@Test
+public void name() {
+
+    Item milk = new Item("M101", "Milk", 2);
+    Item missing_item = new Item("W202", "Item not Found", 2);
+    Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
+
+    List<Item> saved = new ArrayList<>();
+    reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id ),
+            () -> new Item[]{milk, sold_out_item},
+            i -> {saved.add(i); return i;});
+
+    // Only reserved milk
+    Assert.assertArrayEquals(saved.toArray(), new Item[]{milk});
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L43-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
