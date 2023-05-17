@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MockSaver<T> implements Saver<T>
 {
-  private ArrayList<T> saved = new ArrayList<T>();
+  public ArrayList<T> saved = new ArrayList<T>();
   public T save(T save)
   {
     saved.add(save);

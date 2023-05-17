@@ -2,6 +2,7 @@ package org.approvaltests.demos;
 
 import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.Saver;
+import com.spun.util.persistence.test.MockSaver;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.junit.Assert;
@@ -51,20 +52,22 @@ public class LoaderTest
     // end-snippet
     // begin-snippet: seperating_loaders_test
     @Test
-    public void name()
+    public void testOnlyAvailableItemsAreReserved()
     {
+
       Item milk = new Item("M101", "Milk", 2);
       Item missing_item = new Item("W202", "Item not Found", 2);
       Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
-      List<Item> saved = new ArrayList<>();
-      reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id),
-          () -> new Item[]{milk, sold_out_item}, i -> {
-            saved.add(i);
-            return i;
-          });
+
+      MockSaver<Item> saver = new MockSaver<>();
+      reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id ),
+              () -> new Item[]{milk, sold_out_item},
+              saver);
+
       // Only reserved milk
-      Assert.assertArrayEquals(saved.toArray(), new Item[]{milk});
+      Assert.assertArrayEquals(saver.saved.toArray(), new Item[]{milk});
     }
+
     // end-snippet
   }
   public static class InventoryLoader implements Loader<Item[]>
