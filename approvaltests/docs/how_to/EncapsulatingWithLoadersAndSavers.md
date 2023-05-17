@@ -37,16 +37,19 @@ The code looks like:
 <!-- snippet: separating_loaders_1 -->
 <a id='snippet-separating_loaders_1'></a>
 ```java
-public void reserveItems(List<String> ids) {
-    Item[] items = getInventory();
-    for (Item item : items) {
-        if (ids.contains(item.id) && item.inventoryCount > 0) {
-            registerHold(item);
-        }
+public void reserveItems(List<String> ids)
+{
+  Item[] items = getInventory();
+  for (Item item : items)
+  {
+    if (ids.contains(item.id) && item.inventoryCount > 0)
+    {
+      registerHold(item);
     }
+  }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L16-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L20-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -56,20 +59,23 @@ Refactor it to include loaders and savers
 <!-- snippet: separating_loaders_2 -->
 <a id='snippet-separating_loaders_2'></a>
 ```java
-public void reserveItems(List<String> ids) {
-    reserveItems(ids, new InventoryLoader(), new ItemReserver());
+public void reserveItems(List<String> ids)
+{
+  reserveItems(ids, new InventoryLoader(), new ItemReserver());
 }
-
-public void reserveItems(List<String> ids, Loader<Item[]> loader, Saver<Item> itemReserver) {
-    Item[] items = loader.load();
-    for (Item item : items) {
-        if (ids.contains(item.id) && item.inventoryCount > 0) {
-            itemReserver.save(item);
-        }
+public void reserveItems(List<String> ids, Loader<Item[]> loader, Saver<Item> itemReserver)
+{
+  Item[] items = loader.load();
+  for (Item item : items)
+  {
+    if (ids.contains(item.id) && item.inventoryCount > 0)
+    {
+      itemReserver.save(item);
     }
+  }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L29-L42' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L36-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Why this is better
@@ -93,20 +99,21 @@ Here's how:
 <a id='snippet-seperating_loaders_test'></a>
 ```java
 @Test
-public void name() {
+public void testOnlyAvailableItemsAreReserved()
+{
 
-    Item milk = new Item("M101", "Milk", 2);
-    Item missing_item = new Item("W202", "Item not Found", 2);
-    Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
+  Item milk = new Item("M101", "Milk", 2);
+  Item missing_item = new Item("W202", "Item not Found", 2);
+  Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
 
-    List<Item> saved = new ArrayList<>();
-    reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id ),
-            () -> new Item[]{milk, sold_out_item},
-            i -> {saved.add(i); return i;});
+  MockSaver<Item> saver = new MockSaver<>();
+  reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id ),
+          () -> new Item[]{milk, sold_out_item},
+          saver);
 
-    // Only reserved milk
-    Assert.assertArrayEquals(saved.toArray(), new Item[]{milk});
+  // Only reserved milk
+  Assert.assertArrayEquals(saver.saved.toArray(), new Item[]{milk});
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L43-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L53-L71' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
