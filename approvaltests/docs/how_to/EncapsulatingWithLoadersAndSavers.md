@@ -101,19 +101,15 @@ Here's how:
 @Test
 public void testOnlyAvailableItemsAreReserved()
 {
-
   Item milk = new Item("M101", "Milk", 2);
   Item missing_item = new Item("W202", "Item not Found", 2);
   Item sold_out_item = new Item("S303", "SuperPopularGame", 0);
-
   MockSaver<Item> saver = new MockSaver<>();
-  reserveItems(Arrays.asList(milk.id, missing_item.id, sold_out_item.id ),
-          () -> new Item[]{milk, sold_out_item},
-          saver);
-
+  List<String> reservedIds = Arrays.asList(milk.id, missing_item.id, sold_out_item.id);
+  reserveItems(reservedIds, () -> new Item[]{milk, sold_out_item}, saver);
   // Only reserved milk
   Assert.assertArrayEquals(saver.saved.toArray(), new Item[]{milk});
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L53-L71' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L53-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
