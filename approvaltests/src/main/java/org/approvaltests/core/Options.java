@@ -22,7 +22,7 @@ public class Options
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
-  private final EnumMap<Fields, Object> fields = new EnumMap<>(Fields.class);
+  private final Map<Fields, Object> fields = new EnumMap<>(Fields.class);
   public Options()
   {
   }
@@ -38,7 +38,7 @@ public class Options
   {
     fields.put(Fields.REPORTER, reporter);
   }
-  private Options(EnumMap<Fields, Object> fields, Fields key, Object value)
+  private Options(Map<Fields, Object> fields, Fields key, Object value)
   {
     this.fields.putAll(fields);
     this.fields.put(key, value);
@@ -87,8 +87,8 @@ public class Options
   }
   public static class FileOptions
   {
-    private final EnumMap<Fields, Object> fields;
-    public FileOptions(EnumMap<Fields, Object> fields)
+    private final Map<Fields, Object> fields;
+    public FileOptions(Map<Fields, Object> fields)
     {
       this.fields = fields;
     }
