@@ -13,6 +13,7 @@ import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 
 import java.io.File;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class Options
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
-  private final Map<Fields, Object> fields = new HashMap<>();
+  private final EnumMap<Fields, Object> fields = new EnumMap<>(Fields.class);
   public Options()
   {
   }
@@ -37,7 +38,7 @@ public class Options
   {
     fields.put(Fields.REPORTER, reporter);
   }
-  private Options(Map<Fields, Object> fields, Fields key, Object value)
+  private Options(EnumMap<Fields, Object> fields, Fields key, Object value)
   {
     this.fields.putAll(fields);
     this.fields.put(key, value);
@@ -86,8 +87,8 @@ public class Options
   }
   public static class FileOptions
   {
-    private final Map<Fields, Object> fields;
-    public FileOptions(Map<Fields, Object> fields)
+    private final EnumMap<Fields, Object> fields;
+    public FileOptions(EnumMap<Fields, Object> fields)
     {
       this.fields = fields;
     }
@@ -119,7 +120,7 @@ public class Options
     public Options withName(String fileBaseName, String extension)
     {
       NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      HashMap<Fields, Object> newFields = new HashMap<>(fields);
+      EnumMap<Fields, Object> newFields = new EnumMap<>(fields);
       newFields.put(Fields.FILE_OPTIONS_FILE_EXTENSION, extension);
       return new Options(newFields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
     }
