@@ -1,12 +1,9 @@
 package org.approvaltests.reporters.intellij;
 
-import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
-import org.lambda.functions.Function1;
+import com.spun.util.io.FileUtils;
+import org.lambda.functions.Function2;
 
-import java.io.IOException;
-import java.nio.file.FileVisitOption;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
@@ -16,8 +13,13 @@ import java.util.stream.Stream;
 
 public class IntelliJPathResolver
 {
-  public static Function1<String, Stream<Path>> PATH_WALKER = IntelliJPathResolver::walkPath;
-  private final String                          channelsPath;
+  public static Function2<String, Integer, Stream<Path>> PATH_WALKER = resetChannelPath();
+  public static Function2<String, Integer, Stream<Path>> resetChannelPath()
+  {
+    PATH_WALKER = FileUtils::walkPath;
+    return PATH_WALKER;
+  }
+  private final String channelsPath;
   public IntelliJPathResolver(Edition edition)
   {
     String toolboxPath = appData() + "/JetBrains/Toolbox";
@@ -56,7 +58,7 @@ public class IntelliJPathResolver
   }
   private Optional<Path> getIntelliJPath()
   {
-    try (Stream<Path> walk = PATH_WALKER.call(channelsPath))
+    try (Stream<Path> walk = PATH_WALKER.call(channelsPath, 1))
     {
       return walk //
           .map(Path::getFileName) //
@@ -65,17 +67,6 @@ public class IntelliJPathResolver
           .map(Version::new) //
           .max(Comparator.naturalOrder()) //
           .map(this::getPath);
-    }
-  }
-  public static Stream<Path> walkPath(String channelsPath)
-  {
-    try
-    {
-      return Files.walk(Paths.get(channelsPath), 1, FileVisitOption.FOLLOW_LINKS);
-    }
-    catch (IOException e)
-    {
-      throw ObjectUtils.throwAsError(e);
     }
   }
   private Path getPath(Version version)
@@ -91,14 +82,10 @@ public class IntelliJPathResolver
     }
     else if (SystemUtils.isMacEnvironment())
     {
-      try (Stream<Path> walk = Files.walk(Paths.get(channelsPath), 3, FileVisitOption.FOLLOW_LINKS))
+      try (Stream<Path> walk = PATH_WALKER.call(channelsPath, 3))
       {
         final String s = findEapOrRegular(walk).orElse("/IntelliJ IDEA.app");
         runtimeSuffix = "/" + s + "/Contents/MacOS/idea";
-      }
-      catch (IOException e)
-      {
-        throw ObjectUtils.throwAsError(e);
       }
     }
     else // Linux

@@ -23,9 +23,13 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileVisitOption;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * A static class of convenience functions for Files
@@ -418,6 +422,18 @@ public class FileUtils
     if (file.exists())
     {
       file.delete();
+    }
+  }
+
+  public static Stream<Path> walkPath(String channelsPath, int maxDepth)
+  {
+    try
+    {
+      return Files.walk(Paths.get(channelsPath), maxDepth, FileVisitOption.FOLLOW_LINKS);
+    }
+    catch (IOException e)
+    {
+      throw ObjectUtils.throwAsError(e);
     }
   }
 }
