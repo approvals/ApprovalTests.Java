@@ -1,6 +1,5 @@
 package org.approvaltests.reporters.intellij;
 
-import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Scrubber;
@@ -9,14 +8,12 @@ import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.GenericDiffReporter;
-import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.macosx.MacDiffReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Queryable;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -30,8 +27,21 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //@UseReporter(IntelliJReporter.class)
 public class IntelliJPathResolverTest
 {
+  @Disabled("wip")
   @Test
   void name()
+  {
+    IntelliJUltimateReporter ultimateReporter = IntelliJUltimateReporter.INSTANCE;
+    System.out.println("File exists:  " + ultimateReporter.checkFileExists());
+    System.out.println("Command line: " + Arrays.asList(ultimateReporter.getCommandLine("r.text", "a.txt")));
+    assertEquals(true, ultimateReporter.isWorkingInThisEnvironment("a.txt"));
+    FirstWorkingReporter firstWorkingReporter = new FirstWorkingReporter(IntelliJMacSiliconReporter.INSTANCE,
+        IntelliJCommunityReporter.INSTANCE, MacDiffReporter.INSTANCE);
+    Approvals.verify("applesauce", new Options().withReporter(firstWorkingReporter));
+  }
+  @Disabled("wip")
+  @Test
+  void nameFromLarsMachine()
   {
     IntelliJUltimateReporter ultimateReporter = IntelliJUltimateReporter.INSTANCE;
     System.out.println("File exists:  " + ultimateReporter.checkFileExists());
