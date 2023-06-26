@@ -49,7 +49,7 @@ public void reserveItems(List<String> ids)
   }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L20-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L19-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -75,7 +75,7 @@ public void reserveItems(List<String> ids, Loader<Item[]> loader, Saver<Item> it
   }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L36-L52' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L35-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-separating_loaders_2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Why this is better
@@ -111,5 +111,5 @@ public void testOnlyAvailableItemsAreReserved()
   Assert.assertArrayEquals(saver.saved.toArray(), new Item[]{milk});
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L53-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L52-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

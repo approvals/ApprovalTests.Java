@@ -29,7 +29,7 @@ Currently the search goes in this order:
 <a id='snippet-mac_diff_reporters'></a>
 ```java
 BeyondCompareMacReporter.INSTANCE,
-DiffMergeReporter.INSTANCE,
+DiffMergeMacOsReporter.INSTANCE,
 KaleidoscopeDiffReporter.INSTANCE,
 P4MergeReporter.INSTANCE,
 KDiff3Reporter.INSTANCE,
@@ -63,7 +63,7 @@ VisualStudioCodeReporter.INSTANCE
 <!-- snippet: linux_diff_reporters -->
 <a id='snippet-linux_diff_reporters'></a>
 ```java
-DiffMergeReporter.INSTANCE,
+DiffMergeLinuxReporter.INSTANCE,
 MeldMergeReporter.INSTANCE,
 IntelliJReporter.INSTANCE
 ```
