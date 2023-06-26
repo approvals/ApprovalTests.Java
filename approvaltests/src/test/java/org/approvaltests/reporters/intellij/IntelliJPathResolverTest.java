@@ -31,18 +31,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class IntelliJPathResolverTest
 {
   @Test
-  void name() {
+  void name()
+  {
     IntelliJUltimateReporter ultimateReporter = IntelliJUltimateReporter.INSTANCE;
     System.out.println("File exists:  " + ultimateReporter.checkFileExists());
     System.out.println("Command line: " + Arrays.asList(ultimateReporter.getCommandLine("r.text", "a.txt")));
-
-
     assertEquals(true, ultimateReporter.isWorkingInThisEnvironment("a.txt"));
-    FirstWorkingReporter firstWorkingReporter = new FirstWorkingReporter(new EnvironmentAwareReporter[]{IntelliJMacSiliconReporter.INSTANCE, IntelliJCommunityReporter.INSTANCE, MacDiffReporter.INSTANCE});
-
+    FirstWorkingReporter firstWorkingReporter = new FirstWorkingReporter(
+        new EnvironmentAwareReporter[]{IntelliJMacSiliconReporter.INSTANCE,
+                                       IntelliJCommunityReporter.INSTANCE,
+                                       MacDiffReporter.INSTANCE});
     Approvals.verify("applesauce", new Options().withReporter(firstWorkingReporter));
   }
-
   @Test
   void testDetectionOfIntellijOnDevMachines()
   {
@@ -77,7 +77,7 @@ public class IntelliJPathResolverTest
   {
     try
     {
-      IntelliJPathResolver.PATH_WALKER = (s,__) -> {
+      IntelliJPathResolver.PATH_WALKER = (s, __) -> {
         if (path.startsWith(s))
         { return getPaths(Paths.get(path)).stream(); }
         return Stream.of();

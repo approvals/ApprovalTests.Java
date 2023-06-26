@@ -424,7 +424,6 @@ public class FileUtils
       file.delete();
     }
   }
-
   public static Stream<Path> walkPath(String channelsPath, int maxDepth)
   {
     try
