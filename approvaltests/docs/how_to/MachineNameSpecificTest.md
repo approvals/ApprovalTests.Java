@@ -30,7 +30,7 @@ try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest(
   { return; }
   // the rest of your test...
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L49-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-runonlyonspecificmachines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L59-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-runonlyonspecificmachines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **please note:** this will also append the machine name to the ApprovalTest so that each specific
