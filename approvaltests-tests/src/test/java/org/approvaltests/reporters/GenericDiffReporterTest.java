@@ -4,7 +4,7 @@ import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
-import org.approvaltests.reporters.macosx.DiffMergeReporter;
+import org.approvaltests.reporters.macosx.DiffMergeMacOsReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;

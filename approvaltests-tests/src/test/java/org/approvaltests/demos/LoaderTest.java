@@ -3,12 +3,11 @@ package org.approvaltests.demos;
 import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.Saver;
 import com.spun.util.persistence.test.MockSaver;
+import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.macosx.DiffMergeReporter;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

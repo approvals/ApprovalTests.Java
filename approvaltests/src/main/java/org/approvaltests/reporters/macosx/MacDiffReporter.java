@@ -12,7 +12,7 @@ public class MacDiffReporter extends FirstWorkingReporter
     // @formatter:off
         // begin-snippet: mac_diff_reporters
         BeyondCompareMacReporter.INSTANCE,
-        DiffMergeReporter.INSTANCE,
+        DiffMergeMacOsReporter.INSTANCE,
         KaleidoscopeDiffReporter.INSTANCE,
         P4MergeReporter.INSTANCE,
         KDiff3Reporter.INSTANCE,

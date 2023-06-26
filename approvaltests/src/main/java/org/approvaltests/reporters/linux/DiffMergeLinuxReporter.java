@@ -3,10 +3,10 @@ package org.approvaltests.reporters.linux;
 import org.approvaltests.reporters.DiffPrograms.Linux;
 import org.approvaltests.reporters.GenericDiffReporter;
 
-public class DiffMergeReporter extends GenericDiffReporter
+public class DiffMergeLinuxReporter extends GenericDiffReporter
 {
-  public static final DiffMergeReporter INSTANCE = new DiffMergeReporter();
-  public DiffMergeReporter()
+  public static final DiffMergeLinuxReporter INSTANCE = new DiffMergeLinuxReporter();
+  public DiffMergeLinuxReporter()
   {
     super(Linux.DIFF_MERGE);
   }
