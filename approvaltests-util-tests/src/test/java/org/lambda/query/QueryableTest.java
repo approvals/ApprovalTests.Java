@@ -206,4 +206,10 @@ class QueryableTest
     empty = Queryable.createEmpty(new Integer[]{1});
     assertEquals(Integer.class, empty.getType());
   }
+  @Test
+  void testRecursive()
+  {
+    Queryable<Integer> integers = Queryable.as(48, 8);
+    Approvals.verifyAll("", integers.selectRecursiveUntil(i -> i / 2, i -> i <= 1));
+  }
 }

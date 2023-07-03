@@ -106,14 +106,7 @@ public class IntelliJPathResolverTest
   {
     if (!fakedPath.startsWith(requestedPath))
     { return Stream.empty(); }
-    Path part = Paths.get(fakedPath);
-    Queryable<Path> paths = new Queryable<>(Path.class);
-    do
-    {
-      paths.add(part);
-      part = part.getParent();
-    }
-    while (part != null);
-    return paths.where(Objects::nonNull).stream();
+    return Queryable.as(Paths.get(fakedPath)).selectRecursiveUntil(Path::getParent, Objects::isNull)
+        .where(Objects::nonNull).stream();
   }
 }

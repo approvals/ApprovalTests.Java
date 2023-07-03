@@ -222,4 +222,18 @@ public class Queryable<In> extends ArrayList<In>
     queryable.addAll(iterables);
     return queryable;
   }
+  public Queryable<In> selectRecursiveUntil(Function1<In, In> selector, Function1<In, Boolean> until)
+  {
+    Queryable<In> results = new Queryable<>(this.type);
+    for (In item : this)
+    {
+      do
+      {
+        results.add(item);
+        item = selector.call(item);
+      }
+      while (!until.call(item));
+    }
+    return results;
+  }
 }
