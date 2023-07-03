@@ -16,9 +16,7 @@ import org.lambda.query.Queryable;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -88,35 +86,34 @@ public class IntelliJPathResolverTest
     try
     {
       IntelliJPathResolver.PATH_WALKER = (s, __) -> {
-        if (path.startsWith(s)) {
-          return getPaths(Paths.get(path)).stream();
-        }
-        return Stream.empty();
+        return getPathStream(path, s);
       };
       Queryable<Edition> editions = Queryable.as(Edition.values());
-      String appDataLocation = "/Users/fakeUser/Library/Application Support";
-      Edition foundReporter = editions
-          .first(x -> !new IntelliJPathResolver(x, appDataLocation).findIt().equals("C:\\Intelli-not-present.exe"));
+      String appDataLocation = path.substring(0, path.indexOf("JetBrains") - 1);
+      Edition foundReporter = editions.first(
+          x -> !new IntelliJPathResolver(x, appDataLocation).findIt().equals(IntelliJPathResolver.PATH_NOT_FOUND));
       assertNotNull(foundReporter, "No reporter found for " + path);
-      // foundReporter is null because fakeUser cannot be resolved from my disk
       String absolutePath = new IntelliJPathResolver(foundReporter, appDataLocation).findIt();
-      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.startsWith(path),
-          absolutePath, path);
+      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter,
+          absolutePath.startsWith(path), absolutePath, path);
     }
     finally
     {
       IntelliJPathResolver.resetChannelPath();
     }
   }
-  private static Queryable<Path> getPaths(Path path)
+  private static Stream<Path> getPathStream(String fakedPath, String requestedPath)
   {
-    List<Path> paths = new ArrayList<>();
+    if (!fakedPath.startsWith(requestedPath))
+    { return Stream.empty(); }
+    Path part = Paths.get(fakedPath);
+    Queryable<Path> paths = new Queryable<>(Path.class);
     do
     {
-      paths.add(path);
-      path = path.getParent();
+      paths.add(part);
+      part = part.getParent();
     }
-    while (path != null);
-    return Queryable.as(paths).where(Objects::nonNull);
+    while (part != null);
+    return paths.where(Objects::nonNull).stream();
   }
 }

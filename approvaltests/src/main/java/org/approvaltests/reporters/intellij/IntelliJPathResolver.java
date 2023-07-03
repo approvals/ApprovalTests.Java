@@ -13,7 +13,8 @@ import java.util.stream.Stream;
 
 public class IntelliJPathResolver
 {
-  public static Function2<String, Integer, Stream<Path>> PATH_WALKER = resetChannelPath();
+  public static final String                             PATH_NOT_FOUND = "C:\\Intelli-not-present.exe";
+  public static Function2<String, Integer, Stream<Path>> PATH_WALKER    = resetChannelPath();
   public static Function2<String, Integer, Stream<Path>> resetChannelPath()
   {
     PATH_WALKER = FileUtils::walkPath;
@@ -50,27 +51,22 @@ public class IntelliJPathResolver
   }
   public String findIt()
   {
-    String notPresentPath = "C:\\Intelli-not-present.exe";
-    try
-    {
-      return getIntelliJPath().map(Objects::toString).orElse(notPresentPath);
-    }
-    catch (Error e)
-    {
-      return notPresentPath;
-    }
+    return getIntelliJPath().map(Objects::toString).orElse(PATH_NOT_FOUND);
   }
   private Optional<Path> getIntelliJPath()
   {
     try (Stream<Path> walk = PATH_WALKER.call(channelsPath, 1))
     {
       Queryable<Path> paths = Queryable.as(walk);
-      Queryable<Path> names = paths.select(Path::getFileName).where(Objects::nonNull);
-      Queryable<String> namesStrings = names.select(Object::toString);
+      Queryable<String> namesStrings = paths.select(path -> "" + path.getFileName());
       Queryable<String> versionsNames = namesStrings.where(Version::isVersionFile);
       Queryable<Version> versions = versionsNames.select(Version::new);
-      Version max = versions.max(f -> f);
-      return max == null ? Optional.empty() : Optional.of(getPath(max));
+      Version max = versions.max(v -> v);
+      return Optional.ofNullable(max).map(this::getPath);
+    }
+    catch (Error e)
+    {
+      return Optional.empty();
     }
   }
   private Path getPath(Version version)
