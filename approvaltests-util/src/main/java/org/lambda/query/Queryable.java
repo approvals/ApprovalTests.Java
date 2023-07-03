@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Queryable<In> extends ArrayList<In>
 {
@@ -136,6 +138,10 @@ public class Queryable<In> extends ArrayList<In>
   public static <T> Queryable<T> as(T... array)
   {
     return as(Arrays.asList(array), (Class<T>) array.getClass().getComponentType());
+  }
+  public static <T> Queryable<T> as(Stream<T> stream)
+  {
+    return Queryable.as(stream.collect(Collectors.toList()));
   }
   /**
    * Maintains order
