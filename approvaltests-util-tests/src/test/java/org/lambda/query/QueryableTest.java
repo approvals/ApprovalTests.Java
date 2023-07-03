@@ -210,6 +210,6 @@ class QueryableTest
   void testRecursive()
   {
     Queryable<Integer> integers = Queryable.as(48, 8);
-    Approvals.verifyAll("", integers.selectRecursiveUntil(i -> i / 2, i -> i <= 1));
+    Approvals.verifyAll("", integers.selectRecursivelyUntil(i -> i / 2, i -> i <= 1));
   }
 }

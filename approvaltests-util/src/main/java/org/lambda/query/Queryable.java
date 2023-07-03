@@ -222,8 +222,8 @@ public class Queryable<In> extends ArrayList<In>
     queryable.addAll(iterables);
     return queryable;
   }
-  public Queryable<In> selectRecursiveUntil(Function1<In, In> selector, Function1<In, Boolean> until)
+  public Queryable<In> selectRecursivelyUntil(Function1<In, In> selector, Function1<In, Boolean> until)
   {
-    return Query.selectRecursiveUntil(this, selector, until);
+    return Query.selectRecursivelyUntil(this, selector, until);
   }
 }
