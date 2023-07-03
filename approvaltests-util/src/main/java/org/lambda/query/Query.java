@@ -5,11 +5,7 @@ import org.lambda.functions.Function1;
 import org.lambda.query.OrderBy.Order;
 
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class Query<In>
@@ -351,5 +347,25 @@ public class Query<In>
     { return new Queryable<>(); }
     In[] ins = Arrays.copyOfRange(list, 0, Math.min(number, list.length));
     return Queryable.as(ins);
+  }
+  public static <In> Queryable<In> selectRecursiveUntil(In[] array, Function1<In, In> selector,
+      Function1<In, Boolean> until)
+  {
+    return selectRecursiveUntil(Queryable.as(array), selector, until);
+  }
+  public static <In> Queryable<In> selectRecursiveUntil(List<In> list, Function1<In, In> selector,
+      Function1<In, Boolean> until)
+  {
+    Queryable<In> results = new Queryable<>();
+    for (In item : list)
+    {
+      do
+      {
+        results.add(item);
+        item = selector.call(item);
+      }
+      while (!until.call(item));
+    }
+    return results;
   }
 }
