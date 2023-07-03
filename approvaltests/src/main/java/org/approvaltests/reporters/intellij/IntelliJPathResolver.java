@@ -3,10 +3,10 @@ package org.approvaltests.reporters.intellij;
 import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
 import org.lambda.functions.Function2;
+import org.lambda.query.Queryable;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -22,10 +22,14 @@ public class IntelliJPathResolver
   private final String channelsPath;
   public IntelliJPathResolver(Edition edition)
   {
-    String toolboxPath = appData() + "/JetBrains/Toolbox";
+    this(edition, appData());
+  }
+  public IntelliJPathResolver(Edition edition, String appDataLocation)
+  {
+    String toolboxPath = appDataLocation + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
-  private String appData()
+  private static String appData()
   {
     String appData = "";
     if (SystemUtils.isWindowsEnvironment())
@@ -60,13 +64,13 @@ public class IntelliJPathResolver
   {
     try (Stream<Path> walk = PATH_WALKER.call(channelsPath, 1))
     {
-      return walk //
-          .map(Path::getFileName) //
-          .map(Objects::toString) //
-          .filter(Version::isVersionFile) //
-          .map(Version::new) //
-          .max(Comparator.naturalOrder()) //
-          .map(this::getPath);
+      Queryable<Path> paths = Queryable.as(walk);
+      Queryable<Path> names = paths.select(Path::getFileName).where(Objects::nonNull);
+      Queryable<String> namesStrings = names.select(Object::toString);
+      Queryable<String> versionsNames = namesStrings.where(Version::isVersionFile);
+      Queryable<Version> versions = versionsNames.select(Version::new);
+      Version max = versions.max(f -> f);
+      return max == null ? Optional.empty() : Optional.of(getPath(max));
     }
   }
   private Path getPath(Version version)

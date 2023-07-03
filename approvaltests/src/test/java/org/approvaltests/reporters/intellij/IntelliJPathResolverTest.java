@@ -19,6 +19,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -71,7 +72,6 @@ public class IntelliJPathResolverTest
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
-  @Disabled("wip")
   @Test
   void testIntellijPaths()
   {
@@ -88,17 +88,19 @@ public class IntelliJPathResolverTest
     try
     {
       IntelliJPathResolver.PATH_WALKER = (s, __) -> {
-        if (path.startsWith(s))
-        { return getPaths(Paths.get(path)).stream(); }
-        return Stream.of();
+        if (path.startsWith(s)) {
+          return getPaths(Paths.get(path)).stream();
+        }
+        return Stream.empty();
       };
       Queryable<Edition> editions = Queryable.as(Edition.values());
+      String appDataLocation = "/Users/fakeUser/Library/Application Support";
       Edition foundReporter = editions
-          .first(x -> !new IntelliJPathResolver(x).findIt().equals("C:\\Intelli-not-present.exe"));
+          .first(x -> !new IntelliJPathResolver(x, appDataLocation).findIt().equals("C:\\Intelli-not-present.exe"));
       assertNotNull(foundReporter, "No reporter found for " + path);
       // foundReporter is null because fakeUser cannot be resolved from my disk
-      String absolutePath = new IntelliJPathResolver(foundReporter).findIt();
-      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.equals(path),
+      String absolutePath = new IntelliJPathResolver(foundReporter, appDataLocation).findIt();
+      return String.format("%s [%s] \n\t\t found = %s\n\t\t given = %s", foundReporter, absolutePath.startsWith(path),
           absolutePath, path);
     }
     finally
@@ -106,7 +108,7 @@ public class IntelliJPathResolverTest
       IntelliJPathResolver.resetChannelPath();
     }
   }
-  private static List<Path> getPaths(Path path)
+  private static Queryable<Path> getPaths(Path path)
   {
     List<Path> paths = new ArrayList<>();
     do
@@ -115,6 +117,6 @@ public class IntelliJPathResolverTest
       path = path.getParent();
     }
     while (path != null);
-    return paths;
+    return Queryable.as(paths).where(Objects::nonNull);
   }
 }
