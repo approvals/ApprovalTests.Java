@@ -12,6 +12,7 @@ import org.approvaltests.reporters.macosx.MacDiffReporter;
 import org.approvaltests.scrubbers.RegExScrubber;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.lambda.query.Queryable;
 
 import java.nio.file.Path;
@@ -22,6 +23,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.condition.OS.MAC;
 
 //@UseReporter(IntelliJReporter.class)
 public class IntelliJPathResolverTest
@@ -70,6 +72,7 @@ public class IntelliJPathResolverTest
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
+  @EnabledOnOs(MAC) // because runtimeSuffix on GitHub actions (linux) will resolve to bin/idea.sh
   @Test
   void testIntellijPaths()
   {
