@@ -209,8 +209,7 @@ public class ArrayUtils
     }
     else
     {
-      T[] newArray = null;
-      newArray = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+      T[] newArray = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
       System.arraycopy(a, 0, newArray, 0, a.length);
       System.arraycopy(b, 0, newArray, a.length, b.length);
       return newArray;
@@ -218,10 +217,18 @@ public class ArrayUtils
   }
   public static <T> T[] combine(T a, T... b)
   {
-    final Class<?> type = a != null ? a.getClass() : b.getClass().getComponentType();
+    if (b == null)
+    {
+      b = (T[]) Array.newInstance(getClassFor(a), 1);
+    }
+    final Class<?> type = b.getClass().getComponentType();
     final T[] toArray = (T[]) Array.newInstance(type, 1);
     toArray[0] = a;
     return combine(toArray, b);
+  }
+  private static <T> Class<?> getClassFor(T object)
+  {
+    return object != null ? object.getClass() : Object.class;
   }
   public static <T> boolean contains(T[] values, T value)
   {
