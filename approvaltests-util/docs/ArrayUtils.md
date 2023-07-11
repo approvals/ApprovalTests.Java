@@ -21,7 +21,7 @@ comparables.add(3.1415);
 comparables.add("Lars");
 Comparable[] comparableArray = ArrayUtils.toArray(comparables);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L53-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-toarray' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L101-L108' title='Snippet source file'>snippet source</a> | <a href='#snippet-toarray' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This works in almost all cases with the notable exceptions of empty arrays, some common interfaces 
@@ -32,7 +32,7 @@ In which case you can always use the overloaded method
 ```java
 Comparable[] array = ArrayUtils.toArray(comparables, Comparable.class);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L61-L63' title='Snippet source file'>snippet source</a> | <a href='#snippet-toarraywithclass' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ArrayUtilsTest.java#L109-L111' title='Snippet source file'>snippet source</a> | <a href='#snippet-toarraywithclass' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
