@@ -47,6 +47,54 @@ public class ArrayUtilsTest
     String empty = null;
     assertEquals("[null]", Arrays.toString(ArrayUtils.combine(empty)));
   }
+  public interface I
+  {
+  }
+  public static class BrotherA implements I
+  {
+    @Override
+    public String toString()
+    {
+      return "BrotherA";
+    }
+  }
+  public static class BrotherB implements I
+  {
+    @Override
+    public String toString()
+    {
+      return "BrotherB";
+    }
+  }
+  public static class ChildOfA extends BrotherA
+  {
+    @Override
+    public String toString()
+    {
+      return "ChildOfA";
+    }
+  }
+  @Test
+  void testCoAndContraVariance()
+  {
+    Integer nullObject = null;
+    Object[][] result = new Object[][]{ArrayUtils.combine(new BrotherA(), new ChildOfA()),
+                                       ArrayUtils.combine(new BrotherA(), new BrotherB()),
+                                       ArrayUtils.combine(new BrotherB(), new BrotherA()),
+                                       ArrayUtils.combine(new BrotherB(), new BrotherB()),
+                                       ArrayUtils.combine(new ChildOfA(), new BrotherA()),
+                                       ArrayUtils.combine(null, new BrotherA(), new ChildOfA()),
+                                       ArrayUtils.combine(null, new BrotherA(), new BrotherA()),
+                                       ArrayUtils.combine(null, new BrotherA(), new BrotherA(), new BrotherA()),
+                                       ArrayUtils.combine(new BrotherA(), null, null),
+                                       ArrayUtils.combine(new BrotherA(), new BrotherA[]{null}),
+                                       ArrayUtils.combine(new BrotherA()),
+                                       ArrayUtils.combine(null),
+                                       ArrayUtils.combine(new BrotherA(), null),
+                                       ArrayUtils.combine(nullObject, null),};
+    Approvals.verifyAll("", result,
+        a -> String.format("%s = %s", a.getClass().getSimpleName(), Arrays.toString(a)));
+  }
   @Test
   void testToArray()
   {
