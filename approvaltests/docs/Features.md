@@ -51,7 +51,7 @@ All you need to do in order to use this, is change `CombinationApprovals.verifyA
 
 Notice that for low numbers of parameters, very little is achieved, but at high numbers, the results are amazing.
 
- <!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
+<!-- include: PairWiseTest.forTable.approved. path: /approvaltests-tests/src/test/java/org/approvaltests/combinations/PairWiseTest.forTable.approved.include.md -->
 
 | Number of Parameters | Variations per Parameter | Total Combinations | Pairwise Combinations |
 |---------------------:|-------------------------:|-------------------:|----------------------:|
@@ -62,7 +62,7 @@ Notice that for low numbers of parameters, very little is achieved, but at high 
 |                    5 |                        6 |              7,776 |                    49 |
 |                    9 |                        9 |        387,420,489 |                   134 |
 
- <!-- endInclude -->
+<!-- endInclude -->
 
 
 

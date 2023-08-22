@@ -9,7 +9,7 @@
 ## API
 Approvals provides many convenience functions to verify different scenarios. Here is a list:
 
- * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L199-L202) (ApprovalApprover)   <!-- include: DocumentHelpersTest.listAllVerifyFunctions.approved.md -->
+ * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L199-L202) (ApprovalApprover)  <!-- include: DocumentHelpersTest.listAllVerifyFunctions.approved.md -->
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L182-L185) (ApprovalWriter)  
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L174-L177) (ApprovalWriter,ApprovalNamer)  
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L228-L231) (ExecutableCommand)  
@@ -65,7 +65,7 @@ Approvals provides many convenience functions to verify different scenarios. Her
  * JsonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L30-L33) (Object,Function1)  
  * JsonApprovals. [verifyJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L18-L21) (String)  
  * JsonJacksonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonJacksonApprovals.java#L10-L13) (Object)  
- * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L16-L19) (ContextAware)   <!-- endInclude -->
+ * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L16-L19) (ContextAware)  <!-- endInclude -->
 
 ---
 

@@ -36,7 +36,7 @@ Here is the basic architectural pattern:
 
 When you request the schedule for a given day, you might get something that looks like:
 
- <!-- include: LoaderTest.testWithMockedData.approved.md -->
+<!-- include: LoaderTest.testWithMockedData.approved.md -->
 ## Schedule for Kitchen
 ### 01/02/2020
 
