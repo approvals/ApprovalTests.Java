@@ -46,4 +46,10 @@ public class ApprovalsTest
     Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
     // end-snippet
   }
+  @Test
+  void testTwoVerify()
+  {
+    Approvals.verify("one");
+    assertThrows(ApprovalsDuplicateVerifyException.class, () -> Approvals.verify("two"));
+  }
 }

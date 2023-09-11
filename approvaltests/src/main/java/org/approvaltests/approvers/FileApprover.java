@@ -18,6 +18,7 @@ public class FileApprover implements ApprovalApprover
   private File                                approved;
   private final ApprovalWriter                writer;
   private Function2<File, File, VerifyResult> approver;
+  private static ApprovalTracker              tracker = new ApprovalTracker();
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
     this(writer, namer, FileApprover::approveTextFile);
@@ -31,6 +32,7 @@ public class FileApprover implements ApprovalApprover
   }
   public VerifyResult approve()
   {
+    tracker.assertUnique(approved.getAbsolutePath());
     received = writer.writeReceivedFile(received);
     return approver.call(received, approved);
   }
