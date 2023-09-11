@@ -84,7 +84,7 @@ All the [verify](./reference/Verify.md) functions have an overload that takes an
 Options options = new Options().withReporter(BeyondCompareReporter.INSTANCE);
 Approvals.verify(objectUnderTest, options);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L22-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_reporter_with_options' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L24-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_reporter_with_options' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Class and Method level
