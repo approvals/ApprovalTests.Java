@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 public class ApprovalsTest
 {

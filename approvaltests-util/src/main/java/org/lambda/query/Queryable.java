@@ -226,4 +226,8 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.selectRecursivelyUntil(this, selector, until);
   }
+  public In last()
+  {
+    return Query.last(this);
+  }
 }

@@ -388,4 +388,8 @@ public class Approvals
     { throw new FormattedException("No exception thrown when running %s", runnableBlock); }
     Approvals.verify(String.format("%s: %s", t.getClass().getName(), t.getMessage()), options);
   }
+  public static ApprovalSettings settings()
+  {
+    return new ApprovalSettings();
+  }
 }

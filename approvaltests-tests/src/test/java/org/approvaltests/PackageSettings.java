@@ -8,5 +8,6 @@ public class PackageSettings
   public static class ApprovalTestsPackageLevelReporter extends DiffReporter
   {
   }
-  public static ApprovalFailureReporter UseReporter = new ApprovalTestsPackageLevelReporter();
+  public static ApprovalFailureReporter UseReporter                     = new ApprovalTestsPackageLevelReporter();
+  public static boolean                 AllowMultipleVerifyCallsPerTest = true;
 }

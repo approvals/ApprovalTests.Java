@@ -10,6 +10,7 @@ public class AsErrorsTest
   @Test
   void testFunction1()
   {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
     Approvals.verifyException(() -> Functions.unchecked(m -> returnException(m)).call("a"));
     Approvals.verifyException(() -> Functions.unchecked((m, p2) -> returnException(m)).call("a", 2));
     Approvals.verifyException(() -> Functions.unchecked((m, p2, p3) -> returnException(m)).call("a", 2, 3));
