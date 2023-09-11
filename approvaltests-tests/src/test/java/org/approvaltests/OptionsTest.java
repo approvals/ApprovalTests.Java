@@ -1,6 +1,8 @@
 package org.approvaltests;
 
 import com.spun.util.ArrayUtils;
+import com.spun.util.introspection.Caller;
+import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -130,11 +132,13 @@ public class OptionsTest
   @Test
   void verifyFileName()
   {
+    String customFileName = "customApproval";
+    FileApprover.tracker.addAllowedDuplicates(f -> f.contains(customFileName));
     String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
     Approvals.verify(sampleText,
-        new Options().forFile().withBaseName("customApproval").forFile().withExtension(".html"));
-    Approvals.verify(sampleText, new Options().forFile().withName("customApproval", ".html"));
-    Approvals.verify(sampleText, new Options().forFile().withBaseName("customApproval"));
+        new Options().forFile().withBaseName(customFileName).forFile().withExtension(".html"));
+    Approvals.verify(sampleText, new Options().forFile().withName(customFileName, ".html"));
+    Approvals.verify(sampleText, new Options().forFile().withBaseName(customFileName));
   }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {

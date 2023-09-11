@@ -19,6 +19,7 @@ class ScrubberTest
   @Test
   void scrubGuid()
   {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
     String input = "normal text and 2fd78d4a-ad49-447d-96a8-deda585a9aa5 and normal text";
     String output = Scrubbers.scrubGuid(input);
     assertEquals("normal text and guid_1 and normal text", output);

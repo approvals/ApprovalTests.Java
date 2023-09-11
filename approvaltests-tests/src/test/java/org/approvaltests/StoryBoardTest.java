@@ -11,6 +11,7 @@ public class StoryBoardTest
   @Test
   void gameOfLife()
   {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
     GameOfLife gameOfLife = new GameOfLife((x, y) -> y == 2 && 1 <= x && x <= 3);
     StoryBoard storyboard = new StoryBoard();
     storyboard.add(gameOfLife);

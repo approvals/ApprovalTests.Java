@@ -1,10 +1,12 @@
 package org.approvaltests.awt;
 
 import com.spun.util.Tuple;
+import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.FileCaptureReporter;
 import org.approvaltests.reporters.ImageWebReporter;
 import org.approvaltests.reporters.UseReporter;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnJre;
@@ -19,6 +21,11 @@ import java.time.Duration;
 //@UseReporter({FileCaptureReporter.class})
 public class ApprovalsTest
 {
+  @BeforeAll
+  static void beforeAll()
+  {
+    Approvals.settings().allowMultipleVerifyCallsForThisClass();
+  }
   @Test
   void customPanel()
   {

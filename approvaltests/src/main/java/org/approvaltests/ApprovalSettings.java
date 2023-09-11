@@ -4,6 +4,8 @@ import com.spun.util.introspection.Caller;
 import org.approvaltests.approvers.FileApprover;
 import org.lambda.query.Queryable;
 
+import java.io.File;
+
 public class ApprovalSettings
 {
   public void allowMultipleVerifyCallsForThisMethod()
@@ -13,5 +15,11 @@ public class ApprovalSettings
     String methodName = caller.getMethodName();
     String name = className + "." + methodName;
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(name));
+  }
+  public void allowMultipleVerifyCallsForThisClass()
+  {
+    StackTraceElement caller = Caller.get(1);
+    String className = caller.getClassName().replace('.', File.separatorChar);
+    FileApprover.tracker.addAllowedDuplicates(f -> f.contains(className));
   }
 }
