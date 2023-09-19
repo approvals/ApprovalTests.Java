@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: ['8', '11', '16', '17', '18', '19', '20', '21-ea']
+        java: ['8', '11', '16', '17', '18', '19', '20', '21', '22-ea']
         os: [ ubuntu, windows ]
 
     steps:
