@@ -10,16 +10,18 @@ public class TestNgReporter implements EnvironmentAwareReporter
 {
   public static final TestNgReporter INSTANCE = new TestNgReporter();
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     if (!isWorkingInThisEnvironment(received))
     {
       QuietReporter.INSTANCE.report(received, approved);
-      return;
+      // TODO; not done here
+      return false;
     }
     String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
     String rText = FileUtils.readFile(received);
     Assert.assertEquals(aText, rText);
+    return true;
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

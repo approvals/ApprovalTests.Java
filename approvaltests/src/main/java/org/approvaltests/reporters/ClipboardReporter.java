@@ -14,9 +14,10 @@ import java.io.File;
 public class ClipboardReporter implements EnvironmentAwareReporter
 {
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     WindowUtils.copyToClipBoard(getCommandLine(received, approved), false);
+    return isWorkingInThisEnvironment(received);
   }
   public static String getCommandLine(String received, String approved)
   {

@@ -23,10 +23,10 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     ExecutableQueryFailure executableQueryFailure = new ExecutableQueryFailure(query, options.getReporter());
     return options.withReporter(executableQueryFailure);
   }
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     reporter.report(runQueryAndGetPath(received), runQueryAndGetPath(approved));
-    reporter.report(received, approved);
+    return reporter.report(received, approved);
   }
   private String runQueryAndGetPath(String filename)
   {

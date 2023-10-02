@@ -2,5 +2,5 @@ package org.approvaltests.core;
 
 public interface ApprovalFailureReporter
 {
-  public void report(String received, String approved);
+  public boolean report(String received, String approved);
 }

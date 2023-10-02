@@ -33,13 +33,14 @@ public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter
     }
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
     String rText = FileUtils.readFile(received);
     String approveCommand = "To approve run : " + ClipboardReporter.getAcceptApprovalText(received, approved);
     SimpleLogger.message(approveCommand);
     assertEquals(aText, rText);
+    return isWorkingInThisEnvironment(received);
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

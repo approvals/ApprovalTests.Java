@@ -8,7 +8,7 @@ import java.io.File;
 public class AutoApproveReporter implements ReporterWithApprovalPower
 {
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     File a = new File(approved);
     if (a.exists())
@@ -17,6 +17,7 @@ public class AutoApproveReporter implements ReporterWithApprovalPower
     }
     File r = new File(received);
     FileUtils.copyFile(r, a);
+    return true;
   }
   @Override
   public VerifyResult approveWhenReported()

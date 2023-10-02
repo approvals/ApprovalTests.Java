@@ -51,12 +51,13 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
         MessageFormat.format("Unable to find program at {0}", info.diffProgram), info.fileExtensions);
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     if (!isWorkingInThisEnvironment(received))
-    { throw new RuntimeException(diffProgramNotFoundMessage); }
+    { return false; }
     FileUtils.createIfNeeded(approved);
     launch(received, approved);
+    return true;
   }
   private void launch(String received, String approved)
   {

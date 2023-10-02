@@ -10,9 +10,10 @@ public class AlwaysWorkingReporter implements EnvironmentAwareReporter
     this.wrapped = wrapped;
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     getWrapped().report(received, approved);
+    return isWorkingInThisEnvironment(received);
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

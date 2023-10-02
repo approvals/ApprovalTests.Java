@@ -20,7 +20,7 @@ public class AutoApproveWhenEmptyReporter implements ReporterWithApprovalPower
     this.reporter = reporter;
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     File a = new File(approved);
     if (!a.exists())
@@ -34,6 +34,7 @@ public class AutoApproveWhenEmptyReporter implements ReporterWithApprovalPower
       reporter.report(received, approved);
       result = VerifyResult.FAILURE;
     }
+    return true;
   }
   @Override
   public VerifyResult approveWhenReported()

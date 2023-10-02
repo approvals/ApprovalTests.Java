@@ -24,16 +24,14 @@ public class FirstWorkingReporter implements EnvironmentAwareReporter
     return new AlwaysWorkingReporter(last);
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     for (EnvironmentAwareReporter reporter : reporters)
     {
-      if (reporter.isWorkingInThisEnvironment(received))
-      {
-        reporter.report(received, approved);
-        return;
-      }
+      if (reporter.report(received, approved))
+      { return true; }
     }
+    return false;
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)

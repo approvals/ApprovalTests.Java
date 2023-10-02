@@ -4,9 +4,10 @@ public class PitReporter implements EnvironmentAwareReporter
 {
   public static final PitReporter INSTANCE = new PitReporter();
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     // do nothing!
+    return isWorkingInThisEnvironment(received);
   }
   @Override
   public boolean isWorkingInThisEnvironment(String forFile)
