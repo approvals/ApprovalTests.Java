@@ -13,7 +13,7 @@ classDiagram
     interface ApprovalFailureReporter{
         +report(String received, String approved): void
     }
-    EnvironmentAwareReporter <|.. ApprovalFailureReporter
+    EnvironmentAwareReporter <|-- ApprovalFailureReporter
 ```
 
 
