@@ -8,7 +8,7 @@ public class ImageWebReporter implements EnvironmentAwareReporter
 {
   public static final ImageWebReporter INSTANCE = new ImageWebReporter();
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     //language=HTML
     String text = "<html>\n" + "<script>\n" + "    function copyToClipboard() {\n"
@@ -24,6 +24,7 @@ public class ImageWebReporter implements EnvironmentAwareReporter
     String moveText = ClipboardReporter.getAcceptApprovalText(received, approved);
     text = String.format(text, approved, received, received, moveText);
     TestUtils.displayHtml(text);
+    return isWorkingInThisEnvironment(received);
   }
   /**
    * We assume any environment that is not headless will have a web browser to display the image in a web page.

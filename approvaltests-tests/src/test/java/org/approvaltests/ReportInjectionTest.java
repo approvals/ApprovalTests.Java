@@ -13,9 +13,10 @@ public class ReportInjectionTest
   public static class MyReporter implements ApprovalFailureReporter
   {
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
       called = getClass();
+      return true;
     }
   }
   private static Class<? extends MyReporter> called = null;

@@ -15,8 +15,9 @@ public class ReporterWithApprovalPowerTest
   private static class TestCleanUpReporter implements ReporterWithApprovalPower
   {
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
+      return true;
     }
     @Override
     public VerifyResult approveWhenReported()

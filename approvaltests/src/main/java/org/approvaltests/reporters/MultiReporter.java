@@ -18,14 +18,15 @@ public class MultiReporter implements ApprovalFailureReporter
     this.reporters = Arrays.asList(reporters);
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
+    boolean didAnyReporterWork = false;
     ArrayList<Throwable> exceptions = new ArrayList<Throwable>();
     for (ApprovalFailureReporter reporter : reporters)
     {
       try
       {
-        reporter.report(received, approved);
+        didAnyReporterWork |= reporter.report(received, approved);
       }
       catch (Throwable t)
       {
@@ -33,6 +34,7 @@ public class MultiReporter implements ApprovalFailureReporter
       }
     }
     MultipleExceptions.rethrowExceptions(exceptions);
+    return didAnyReporterWork;
   }
   public ApprovalFailureReporter[] getReporters()
   {

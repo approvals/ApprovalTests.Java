@@ -13,7 +13,7 @@ public class ReporterChainingTest
   {
     public boolean run = false;
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
       run = true;
       throw new Error("Error");
@@ -27,8 +27,9 @@ public class ReporterChainingTest
   public static class NonWorkingReporter implements EnvironmentAwareReporter
   {
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
+      return isWorkingInThisEnvironment(received);
     }
     @Override
     public boolean isWorkingInThisEnvironment(String forFile)
@@ -40,9 +41,10 @@ public class ReporterChainingTest
   {
     public String received;
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
       this.received = received;
+      return isWorkingInThisEnvironment(received);
     }
     @Override
     public boolean isWorkingInThisEnvironment(String forFile)

@@ -148,9 +148,10 @@ public class OptionsTest
       this.hasBeenCalled = false;
     }
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
       hasBeenCalled = true;
+      return true;
     }
     public boolean hasBeenCalled()
     {

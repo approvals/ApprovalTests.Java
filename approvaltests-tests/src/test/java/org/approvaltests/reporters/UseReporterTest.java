@@ -46,9 +46,10 @@ public class UseReporterTest
       return last;
     }
     @Override
-    public void report(String received, String approved)
+    public boolean report(String received, String approved)
     {
       last = FileUtils.readFile(received);
+      return isWorkingInThisEnvironment(received);
     }
     @Override
     public boolean isWorkingInThisEnvironment(String forFile)

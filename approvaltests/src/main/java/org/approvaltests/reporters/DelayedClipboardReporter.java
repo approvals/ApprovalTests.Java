@@ -3,7 +3,7 @@ package org.approvaltests.reporters;
 import com.spun.util.StringUtils;
 import com.spun.util.WindowUtils;
 
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 
 /**
  * A getReporter which creates the command to accept the received
@@ -14,11 +14,12 @@ public class DelayedClipboardReporter implements EnvironmentAwareReporter
 {
   private static StringBuffer text = new StringBuffer();
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
     String commandLine = ClipboardReporter.getCommandLine(received, approved);
     text.append(commandLine + StringUtils.NEW_LINE);
     WindowUtils.copyToClipBoard(text.toString(), false);
+    return isWorkingInThisEnvironment(received);
   }
   /**
    * The clipboard will not be available in a headless environment.

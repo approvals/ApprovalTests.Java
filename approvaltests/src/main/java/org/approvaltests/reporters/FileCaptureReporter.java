@@ -25,16 +25,25 @@ public class FileCaptureReporter implements ApprovalFailureReporter
     this.isGitRegistrationNeeded = isGitRegistrationNeeded;
   }
   @Override
-  public void report(String received, String approved)
+  public boolean report(String received, String approved)
   {
-    if (isGitRegistrationNeeded.call())
+    try
     {
-      run("git", "config", "--local", "user.email", "action@github.com");
-      run("git", "config", "--local", "user.name", "githubAction");
+      if (isGitRegistrationNeeded.call())
+      {
+        run("git", "config", "--local", "user.email", "action@github.com");
+        run("git", "config", "--local", "user.name", "githubAction");
+      }
+      run("git", "add", "--force", received);
+      run("git", "commit", "-m", "'" + message + "'");
+      run("git", "push");
+      return true;
     }
-    run("git", "add", "--force", received);
-    run("git", "commit", "-m", "'" + message + "'");
-    run("git", "push");
+    catch (Exception e)
+    {
+      SimpleLogger.warning("Failed to commit to git", e);
+      return false;
+    }
   }
   public static void run(String... command)
   {
