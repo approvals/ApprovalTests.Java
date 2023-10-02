@@ -3,7 +3,7 @@
 
 toc 
 
-Before October 2023 "ApprovalTests 19.0.0" and before, 
+Before October 2023 "ApprovalTests 19.0.0" and older versions used the following architecture:
 
 ```mermaid
 classDiagram
