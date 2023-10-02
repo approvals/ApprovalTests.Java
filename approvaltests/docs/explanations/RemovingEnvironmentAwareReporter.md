@@ -33,6 +33,8 @@ classDiagram
 
 When you call report, the reporter now tells you if it worked.
 
+**This change now brings ApprovalTests.Java in line with the architecture of other implementations (Python, C++, Swift).**
+
 ## How to upgrade
 
 ### Upgrading an EnvironmentAwareReporter
