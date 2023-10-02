@@ -29,7 +29,7 @@ The following options will be read by ApprovalTests:
 ```txt
 public class PackageSettings {
 
-    public static EnvironmentAwareReporter FrontloadedReporter = new JunitReporter();
+    public static ApprovalFailureReporter FrontloadedReporter = new JunitReporter();
     public static ApprovalFailureReporter UseReporter = new ClipboardReporter();
     public static String UseApprovalSubdirectory = "approvals";
     public static String ApprovalBaseDirectory = "../resources";
