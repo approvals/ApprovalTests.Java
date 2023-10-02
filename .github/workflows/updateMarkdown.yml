@@ -4,6 +4,11 @@ on:
   push:
   workflow_dispatch:
 
+# Cancel existing executions when new commits are pushed onto the branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   update-markdown-snippets:
     runs-on: ubuntu-latest

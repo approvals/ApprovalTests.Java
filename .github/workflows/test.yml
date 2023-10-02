@@ -7,6 +7,11 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+# Cancel existing executions when new commits are pushed onto the branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}-latest
