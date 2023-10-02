@@ -5,6 +5,7 @@ import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
+import org.approvaltests.core.ApprovalFailureReporter;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -13,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GenericDiffReporter implements EnvironmentAwareReporter
+public class GenericDiffReporter implements ApprovalFailureReporter
 {
   public static final String STANDARD_ARGUMENTS    = "%s %s";
   public static boolean      REPORT_MISSING_FILES  = false;
@@ -96,7 +97,6 @@ public class GenericDiffReporter implements EnvironmentAwareReporter
     SimpleLogger.variable("commands", commands);
     return commands.toArray(new String[0]);
   }
-  @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
     return checkFileExists() && isFileExtensionHandled(forFile);

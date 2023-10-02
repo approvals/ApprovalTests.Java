@@ -2,8 +2,9 @@ package org.approvaltests.reporters;
 
 import com.spun.util.SystemUtils;
 import com.spun.util.WindowUtils;
+import org.approvaltests.core.ApprovalFailureReporter;
 
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.io.File;
 
 /**
@@ -11,28 +12,21 @@ import java.io.File;
  * file as the approve file and copies it to the clipboard:<br>
  * <code>move received.txt approved.txt</code>
  */
-public class ClipboardReporter implements EnvironmentAwareReporter
+public class ClipboardReporter implements ApprovalFailureReporter
 {
   @Override
   public boolean report(String received, String approved)
   {
+    if (GraphicsEnvironment.isHeadless())
+    { return false; }
     WindowUtils.copyToClipBoard(getCommandLine(received, approved), false);
-    return isWorkingInThisEnvironment(received);
+    return true;
   }
   public static String getCommandLine(String received, String approved)
   {
     File r = new File(received);
     File a = new File(approved);
-    String commandLine = ClipboardReporter.getAcceptApprovalText(r.getAbsolutePath(), a.getAbsolutePath());
-    return commandLine;
-  }
-  /**
-   * The clipboard will not be available in a headless environment.
-   */
-  @Override
-  public boolean isWorkingInThisEnvironment(String forFile)
-  {
-    return !GraphicsEnvironment.isHeadless();
+    return ClipboardReporter.getAcceptApprovalText(r.getAbsolutePath(), a.getAbsolutePath());
   }
   public static String getAcceptApprovalText(String received, String approved)
   {

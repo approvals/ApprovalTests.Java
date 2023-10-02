@@ -3,12 +3,13 @@ package org.approvaltests.reporters;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
+import org.approvaltests.core.ApprovalFailureReporter;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter
+public abstract class AbstractJUnitReporter implements ApprovalFailureReporter
 {
   private String className;
   public AbstractJUnitReporter(String className)
@@ -35,15 +36,16 @@ public abstract class AbstractJUnitReporter implements EnvironmentAwareReporter
   @Override
   public boolean report(String received, String approved)
   {
+    if (!isWorkingInThisEnvironment(received))
+    { return false; }
     String aText = new File(approved).exists() ? FileUtils.readFile(approved) : "";
     String rText = FileUtils.readFile(received);
     String approveCommand = "To approve run : " + ClipboardReporter.getAcceptApprovalText(received, approved);
     SimpleLogger.message(approveCommand);
     assertEquals(aText, rText);
-    return isWorkingInThisEnvironment(received);
+    return true;
   }
-  @Override
-  public boolean isWorkingInThisEnvironment(String forFile)
+  private boolean isWorkingInThisEnvironment(String forFile)
   {
     boolean present = ObjectUtils.isClassPresent(className);
     return present && GenericDiffReporter.isFileExtensionValid(forFile, GenericDiffReporter.TEXT_FILE_EXTENSIONS);

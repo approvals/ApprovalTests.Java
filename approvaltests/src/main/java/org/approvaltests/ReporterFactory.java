@@ -7,7 +7,6 @@ import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalTestPackageSettings;
 import org.approvaltests.reporters.DefaultFrontLoadedReporter;
 import org.approvaltests.reporters.DiffReporter;
-import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.UseReporter;
@@ -44,7 +43,7 @@ public class ReporterFactory
   /**
    * Loaded from PackageSettings.FrontloadedReporter
    */
-  public static EnvironmentAwareReporter getFrontLoadedReporter()
+  public static ApprovalFailureReporter getFrontLoadedReporter()
   {
     Map<String, Settings> settings = PackageLevelSettings.get();
     return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings,

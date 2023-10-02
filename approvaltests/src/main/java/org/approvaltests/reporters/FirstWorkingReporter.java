@@ -1,70 +1,31 @@
 package org.approvaltests.reporters;
 
 import org.approvaltests.core.ApprovalFailureReporter;
-import org.lambda.functions.Function1;
-import org.lambda.query.Query;
 
-import java.util.List;
-
-public class FirstWorkingReporter implements EnvironmentAwareReporter
+public class FirstWorkingReporter implements ApprovalFailureReporter
 {
-  private final EnvironmentAwareReporter[] reporters;
-  public FirstWorkingReporter(EnvironmentAwareReporter... reporters)
+  private final ApprovalFailureReporter[] reporters;
+  public FirstWorkingReporter(ApprovalFailureReporter... reporters)
   {
     this.reporters = reporters;
   }
-  public static FirstWorkingReporter combine(EnvironmentAwareReporter front, ApprovalFailureReporter last)
+  public static FirstWorkingReporter combine(ApprovalFailureReporter front, ApprovalFailureReporter last)
   {
-    return new FirstWorkingReporter(front, wrap(last));
-  }
-  private static EnvironmentAwareReporter wrap(ApprovalFailureReporter last)
-  {
-    if (last instanceof EnvironmentAwareReporter)
-    { return (EnvironmentAwareReporter) last; }
-    return new AlwaysWorkingReporter(last);
+    return new FirstWorkingReporter(front, last);
   }
   @Override
   public boolean report(String received, String approved)
   {
-    for (EnvironmentAwareReporter reporter : reporters)
+    for (ApprovalFailureReporter reporter : reporters)
     {
       if (reporter.report(received, approved))
       { return true; }
     }
     return false;
   }
-  @Override
-  public boolean isWorkingInThisEnvironment(String forFile)
-  {
-    for (EnvironmentAwareReporter reporter : reporters)
-    {
-      if (reporter.isWorkingInThisEnvironment(forFile))
-      { return true; }
-    }
-    return false;
-  }
-  public EnvironmentAwareReporter[] getReporters()
+  public ApprovalFailureReporter[] getReporters()
   {
     return reporters;
-  }
-  /**
-   *
-   * @deprecated Use {@link #getWorkingReportersForEnvironment()} instead.}
-   */
-  @Deprecated
-  public List<EnvironmentAwareReporter> getWorkingReportersForEnviroment()
-  {
-    return getWorkingReportersForEnvironment();
-  }
-  public List<EnvironmentAwareReporter> getWorkingReportersForEnvironment()
-  {
-    return Query.where(reporters, new Function1<EnvironmentAwareReporter, Boolean>()
-    {
-      public Boolean call(EnvironmentAwareReporter r)
-      {
-        return r.isWorkingInThisEnvironment("a.txt");
-      }
-    });
   }
   @Override
   public String toString()

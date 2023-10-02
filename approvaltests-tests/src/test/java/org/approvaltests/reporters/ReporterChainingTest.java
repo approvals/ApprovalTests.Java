@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReporterChainingTest
 {
-  public static class ExceptionThrowingReporter implements EnvironmentAwareReporter
+  public static class ExceptionThrowingReporter implements ApprovalFailureReporter
   {
     public boolean run = false;
     @Override
@@ -18,37 +19,22 @@ public class ReporterChainingTest
       run = true;
       throw new Error("Error");
     }
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile)
-    {
-      return true;
-    }
   }
-  public static class NonWorkingReporter implements EnvironmentAwareReporter
+  public static class NonWorkingReporter implements ApprovalFailureReporter
   {
     @Override
     public boolean report(String received, String approved)
     {
-      return isWorkingInThisEnvironment(received);
-    }
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile)
-    {
       return false;
     }
   }
-  public static class WorkingReporter implements EnvironmentAwareReporter
+  public static class WorkingReporter implements ApprovalFailureReporter
   {
     public String received;
     @Override
     public boolean report(String received, String approved)
     {
       this.received = received;
-      return isWorkingInThisEnvironment(received);
-    }
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile)
-    {
       return true;
     }
   }
@@ -62,7 +48,7 @@ public class ReporterChainingTest
     reporter.report("Hello", "world");
     assertEquals("Hello", workingReporter.received);
     assertNull(workingReporter2.received);
-    assertTrue(reporter.isWorkingInThisEnvironment(""));
+    assertTrue(reporter.report("", ""));
   }
   @Test
   public void testMultiReporter()

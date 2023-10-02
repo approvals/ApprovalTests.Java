@@ -1,11 +1,11 @@
 package org.approvaltests.reporters.intellij;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.Scrubber;
 import org.approvaltests.namer.NamedEnvironment;
 import org.approvaltests.namer.NamerFactory;
-import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.macosx.MacDiffReporter;
@@ -49,9 +49,9 @@ public class IntelliJPathResolverTest
     System.out.println("Command line: " + Arrays.asList(ultimateReporter.getCommandLine("r.text", "a.txt")));
     assertEquals(true, ultimateReporter.isWorkingInThisEnvironment("a.txt"));
     FirstWorkingReporter firstWorkingReporter = new FirstWorkingReporter(
-        new EnvironmentAwareReporter[]{IntelliJMacSiliconReporter.INSTANCE,
-                                       IntelliJCommunityReporter.INSTANCE,
-                                       MacDiffReporter.INSTANCE});
+        new ApprovalFailureReporter[]{IntelliJMacSiliconReporter.INSTANCE,
+                                      IntelliJCommunityReporter.INSTANCE,
+                                      MacDiffReporter.INSTANCE});
     Approvals.verify("applesauce", new Options().withReporter(firstWorkingReporter));
   }
   @Test
@@ -64,8 +64,7 @@ public class IntelliJPathResolverTest
       { return; }
       // the rest of your test...
       // end-snippet
-      final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJReporter()
-          .getWorkingReportersForEnvironment().get(0);
+      final GenericDiffReporter environmentAwareReporter = (GenericDiffReporter) new IntelliJUltimateReporter();
       final String[] commandLine = environmentAwareReporter.getCommandLine("r.txt", "a.txt");
       // the moment it breaks and we are annoyed, start scrubbing.
       final Scrubber scrubber = new RegExScrubber("/21\\d.\\d+.\\d+/", "/211.xxx.xxx/");

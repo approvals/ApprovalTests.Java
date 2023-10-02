@@ -1,6 +1,8 @@
 package org.approvaltests.reporters;
 
-public class PitReporter implements EnvironmentAwareReporter
+import org.approvaltests.core.ApprovalFailureReporter;
+
+public class PitReporter implements ApprovalFailureReporter
 {
   public static final PitReporter INSTANCE = new PitReporter();
   @Override
@@ -9,8 +11,7 @@ public class PitReporter implements EnvironmentAwareReporter
     // do nothing!
     return isWorkingInThisEnvironment(received);
   }
-  @Override
-  public boolean isWorkingInThisEnvironment(String forFile)
+  private boolean isWorkingInThisEnvironment(String forFile)
   {
     try
     {

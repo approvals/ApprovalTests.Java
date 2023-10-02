@@ -38,7 +38,7 @@ public class UseReporterTest
       assertEquals("hello\n", TestReporter.getLast());
     }
   }
-  public static class TestReporter implements ApprovalFailureReporter, EnvironmentAwareReporter
+  public static class TestReporter implements ApprovalFailureReporter
   {
     static String last;
     public static String getLast()
@@ -49,11 +49,6 @@ public class UseReporterTest
     public boolean report(String received, String approved)
     {
       last = FileUtils.readFile(received);
-      return isWorkingInThisEnvironment(received);
-    }
-    @Override
-    public boolean isWorkingInThisEnvironment(String forFile)
-    {
       return true;
     }
   }

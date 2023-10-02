@@ -1,8 +1,8 @@
 package org.approvaltests.packagesettings;
 
-import org.approvaltests.reporters.EnvironmentAwareReporter;
+import org.approvaltests.core.ApprovalFailureReporter;
 
-public class CountingReporter implements EnvironmentAwareReporter
+public class CountingReporter implements ApprovalFailureReporter
 {
   public int count;
   @Override
@@ -11,7 +11,6 @@ public class CountingReporter implements EnvironmentAwareReporter
     // do Nothing
     return isWorkingInThisEnvironment(received);
   }
-  @Override
   public boolean isWorkingInThisEnvironment(String forFile)
   {
     count++;

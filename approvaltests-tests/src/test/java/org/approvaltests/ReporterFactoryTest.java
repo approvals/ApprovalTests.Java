@@ -1,9 +1,9 @@
 package org.approvaltests;
 
 import com.spun.util.ThreadUtils;
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
-import org.approvaltests.reporters.EnvironmentAwareReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
@@ -47,10 +47,10 @@ public class ReporterFactoryTest
 
 class ReporterFactoryHelper
 {
-  public static Class<? extends EnvironmentAwareReporter> getClassFor()
+  public static Class<? extends ApprovalFailureReporter> getClassFor()
   {
     FirstWorkingReporter reporter = (FirstWorkingReporter) ReporterFactory.get();
-    EnvironmentAwareReporter[] working = reporter.getReporters();
+    ApprovalFailureReporter[] working = reporter.getReporters();
     return working[1].getClass();
   }
 }
