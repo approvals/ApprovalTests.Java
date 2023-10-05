@@ -15,7 +15,7 @@ public class MacDiffReporter extends FirstWorkingReporter
         DiffMergeMacOsReporter.INSTANCE,
         KaleidoscopeDiffReporter.INSTANCE,
         P4MergeReporter.INSTANCE,
-        KDiff3Reporter.INSTANCE,
+        KDiff3MacReporter.INSTANCE,
         TkDiffReporter.INSTANCE,
         IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE

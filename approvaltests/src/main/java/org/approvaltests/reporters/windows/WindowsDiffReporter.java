@@ -16,7 +16,7 @@ public class WindowsDiffReporter extends FirstWorkingReporter
         WinMergeReporter.INSTANCE,
         AraxisMergeReporter.INSTANCE,
         CodeCompareReporter.INSTANCE,
-        KDiff3Reporter.INSTANCE,
+        KDiff3WindowsReporter.INSTANCE,
         IntelliJReporter.INSTANCE,
         VisualStudioCodeReporter.INSTANCE
         // end-snippet

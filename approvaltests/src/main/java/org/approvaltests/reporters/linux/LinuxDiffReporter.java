@@ -13,7 +13,8 @@ public class LinuxDiffReporter extends FirstWorkingReporter
         // begin-snippet: linux_diff_reporters
         DiffMergeLinuxReporter.INSTANCE,
         MeldMergeReporter.INSTANCE,
-        IntelliJReporter.INSTANCE
+        IntelliJReporter.INSTANCE,
+        KDiff3LinuxReporter.INSTANCE
         // end-snippet
         // @formatter:on
     );
