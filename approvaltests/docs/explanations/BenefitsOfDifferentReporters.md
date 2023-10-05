@@ -1,7 +1,11 @@
 <a id="top"></a>
 # Benefits of Different Reporters
 
-toc 
+<!-- toc -->
+## Contents
+
+<!-- endToc -->
+
 
 ## Feedback and Granularity
 ```mermaid
