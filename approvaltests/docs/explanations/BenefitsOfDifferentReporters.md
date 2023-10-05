@@ -4,7 +4,10 @@
 <!-- toc -->
 ## Contents
 
-<!-- endToc -->
+  * [Feedback and Granularity](#feedback-and-granularity)
+  * [Scripting](#scripting)
+  * [Rendering](#rendering)
+  * [Executing](#executing)<!-- endToc -->
 
 
 ## Feedback and Granularity
