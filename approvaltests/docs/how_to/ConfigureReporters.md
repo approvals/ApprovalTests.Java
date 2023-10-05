@@ -5,10 +5,12 @@
 <!-- toc -->
 ## Contents
 
-  * [Introduction](#introduction)
-  * [Problem Description](#problem-description)
-  * [Solution: Using FileCaptureReporter](#solution-using-filecapturereporter)
-  * [Compatibility](#compatibility)<!-- endToc -->
+  * [Problem Statement](#problem-statement)
+  * [Principle of Least Surprise](#principle-of-least-surprise)
+    * [Method 1: Via Options](#method-1-via-options)
+    * [Method 2: Class and Method Level Annotations](#method-2-class-and-method-level-annotations)
+      * [Single Reporter](#single-reporter)
+    * [Method 3: Package Level](#method-3-package-level)<!-- endToc -->
 
 ## Problem Statement
 Reporters are the part of Approval Tests that launch diff tools when things do not match.

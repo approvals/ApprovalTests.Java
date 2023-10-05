@@ -5,10 +5,8 @@
 <!-- toc -->
 ## Contents
 
-  * [Introduction](#introduction)
-  * [Problem Description](#problem-description)
-  * [Solution: Using FileCaptureReporter](#solution-using-filecapturereporter)
-  * [Compatibility](#compatibility)<!-- endToc -->
+  * [Problem Statement](#problem-statement)
+    * [Example Code](#example-code)<!-- endToc -->
 
 ## Problem Statement
 If your favorite diff tool isn't supported out of the box, you can create your own custom extensions.

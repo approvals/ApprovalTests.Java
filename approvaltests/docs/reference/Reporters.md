@@ -9,13 +9,7 @@
     * [Mac](#mac)
     * [Windows](#windows)
     * [Linux](#linux)
-  * [Configuring a Reporter](#configuring-a-reporter)
-    * [Via Options](#via-options)
-    * [Class and Method level](#class-and-method-level)
-      * [Single Reporter](#single-reporter)
-    * [Package Level](#package-level)
   * [Combining Reporters](#combining-reporters)
-  * [Custom Reporters](#custom-reporters)
   * [See Also](#see-also)<!-- endToc -->
 
 ## Supported Diff Tools
