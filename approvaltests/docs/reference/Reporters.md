@@ -26,7 +26,7 @@ BeyondCompareMacReporter.INSTANCE,
 DiffMergeMacOsReporter.INSTANCE,
 KaleidoscopeDiffReporter.INSTANCE,
 P4MergeReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
+KDiff3MacReporter.INSTANCE,
 TkDiffReporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
@@ -45,7 +45,7 @@ BeyondCompareReporter.INSTANCE,
 WinMergeReporter.INSTANCE,
 AraxisMergeReporter.INSTANCE,
 CodeCompareReporter.INSTANCE,
-KDiff3Reporter.INSTANCE,
+KDiff3WindowsReporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
@@ -59,9 +59,10 @@ VisualStudioCodeReporter.INSTANCE
 ```java
 DiffMergeLinuxReporter.INSTANCE,
 MeldMergeReporter.INSTANCE,
-IntelliJReporter.INSTANCE
+IntelliJReporter.INSTANCE,
+KDiff3LinuxReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Combining Reporters
