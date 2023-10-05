@@ -59,7 +59,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 
 1. **Verify** [verify(object)](reference/Verify.md) is the main pattern to use in ApprovalTests.  
 1. **Options** allow you to [configure many aspects of Approvals](reference/Options.md)  
-1. **[Reporters](Reporters.md#top)** (often diff tools) are called on test failure to help you determine what went wrong.  
+1. **[Reporters](reference/Reporters.md#top)** (often diff tools) are called on test failure to help you determine what went wrong.  
 1. **Writers** write to a file  
 1. **Namers** figure out what the file should be called and where it is located  
 

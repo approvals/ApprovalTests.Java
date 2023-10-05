@@ -17,7 +17,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations and PackageSetting
 (the API is also extendible) 
 Currently you can configure:
 
- * [Reporters](Reporters.md#class-and-method-level) (package/class/method)
+ * [Reporters](reference/Reporters.md#class-and-method-level) (package/class/method)
  * [FrontLoadedReporters](reference/FrontLoadedReporter.md#top) (package/class/method)
  * ApprovalSubdirectories (package)
  * How Approvals discovers your source path

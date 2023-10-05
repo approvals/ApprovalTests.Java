@@ -294,7 +294,7 @@ QuietReporter        | Outputs the "move" command to the console (great for buil
 TextWebReporter      | Opens the text files in a Web browser
 
 ## Supported Diff Tools
-See [Supported Diff Tools](../Reporters.md#supported-diff-tools)
+See [Supported Diff Tools](../reference/Reporters.md#supported-diff-tools)
 
-If your diff tool of choice is not supported, or is in a non-standard install folder, you can always use a [Custom Reporter](../Reporters.md#custom-reporters)
+If your diff tool of choice is not supported, or is in a non-standard install folder, you can always use a [Custom Reporter](../reference/Reporters.md#custom-reporters)
 
