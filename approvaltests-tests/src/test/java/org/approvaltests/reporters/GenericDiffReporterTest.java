@@ -4,7 +4,6 @@ import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
-import org.approvaltests.reporters.macosx.DiffMergeMacOsReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
@@ -77,5 +76,17 @@ public class GenericDiffReporterTest
     String[] files = {"a.png", "a.viz.png", "a.bitmap", "a.txt"};
     Approvals.verifyAll(files, a -> String.format("Image: %s = %s", a,
         GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
+  }
+  @Test
+  void testRunningNonExistantFile()
+  {
+    GenericDiffReporter genericDiffReporter = new GenericDiffReporter("not-a-diff-program.exe");
+    assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
+  }
+  @Test
+  void testProgramDidNotWork()
+  {
+    GenericDiffReporter genericDiffReporter = new GenericDiffReporter("false");
+    assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
   }
 }

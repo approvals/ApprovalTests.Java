@@ -1,6 +1,5 @@
 package org.approvaltests.reporters;
 
-import com.spun.util.ObjectUtils;
 import com.spun.util.SystemUtils;
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
@@ -60,7 +59,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     launch(received, approved);
     return true;
   }
-  private void launch(String received, String approved)
+  public boolean launch(String received, String approved)
   {
     try
     {
@@ -69,10 +68,13 @@ public class GenericDiffReporter implements ApprovalFailureReporter
       Process process = builder.start();
       processOutput(received, process);
       ThreadUtils.sleep(800); //Give program time to start
+      boolean failed = !process.isAlive() && process.exitValue() != 0;
+      return !failed;
     }
     catch (Exception e)
     {
-      throw ObjectUtils.throwAsError(e);
+      SimpleLogger.warning(e);
+      return false;
     }
   }
   protected void processOutput(String received, Process process)
