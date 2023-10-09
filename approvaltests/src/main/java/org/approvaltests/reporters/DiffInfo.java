@@ -20,6 +20,7 @@ public class DiffInfo
   }
   private static String resolveWindowsPath(String diffProgram)
   {
+    diffProgram = diffProgram == null ? "" : diffProgram;
     String tag = "{ProgramFiles}";
     if (diffProgram.startsWith(tag))
     {

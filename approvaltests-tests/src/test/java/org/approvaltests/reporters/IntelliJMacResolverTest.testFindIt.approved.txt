@@ -1,0 +1,8 @@
+Files[0] = /Applications/IntelliJ IDEA Ultimate.app/Contents/MacOS/idea
+Files[1] = /Applications/IntelliJ IDEA.app/Contents/MacOS/idea
+Files[2] = /Applications/IntelliJ IDEA Community.app/Contents/MacOS/idea
+Files[3] = /Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea
+Files[4] = user/lars/Applications/IntelliJ IDEA Ultimate.app/Contents/MacOS/idea
+Files[5] = user/lars/Applications/IntelliJ IDEA.app/Contents/MacOS/idea
+Files[6] = user/lars/Applications/IntelliJ IDEA Community.app/Contents/MacOS/idea
+Files[7] = user/lars/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea
