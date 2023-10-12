@@ -81,7 +81,7 @@ If you're using Maven, add this to your pom file:
 <dependency>
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
-    <version>21.1.0</version>
+    <version>22.0.0</version>
 </dependency>
 ```
 
@@ -89,7 +89,7 @@ If you're using Maven, add this to your pom file:
 
 ```gradle
 dependencies {
-    testImplementation("com.approvaltests:approvaltests:21.1.0")
+    testImplementation("com.approvaltests:approvaltests:22.0.0")
 }
 ```
 
