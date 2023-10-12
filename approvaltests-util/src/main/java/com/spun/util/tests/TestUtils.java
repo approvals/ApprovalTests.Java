@@ -12,7 +12,6 @@ import com.spun.util.io.StackElementSelector;
 import org.lambda.functions.Function2;
 import org.lambda.query.Queryable;
 
-import javax.mail.Message;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import java.awt.image.BufferedImage;
@@ -126,24 +125,6 @@ public class TestUtils
   {
     displayHtml(null, ".csv", output, 3);
     //    Runtime.getRuntime().exec("notepad.exe " + outputFile);
-  }
-  public static void displayEmail(Message email)
-  {
-    if (email == null)
-    { return; }
-    try
-    {
-      File f = File.createTempFile("email", ".eml");
-      f.deleteOnExit();
-      FileOutputStream out = new FileOutputStream(f);
-      email.writeTo(out);
-      out.close();
-      displayFile(f.getAbsolutePath());
-    }
-    catch (Exception e)
-    {
-      throw ObjectUtils.throwAsError(e);
-    }
   }
   private static final List<Opener> openers = Queryable.as(new MacOpener(), new WindowsOpener(),
       new LinuxOpener());

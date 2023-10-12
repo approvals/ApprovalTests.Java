@@ -11,20 +11,6 @@ import org.lambda.actions.Action1;
 
 public class JupiterApprovals
 {
-  /**
-   * @deprecated Use {@link #dynamicTest(String, Action1<Options>) } instead.
-   */
-  @Experimental
-  @Deprecated
-  public static DynamicTest dynamicTest(String displayName, Action0 action0)
-  {
-    return DynamicTest.dynamicTest(displayName, () -> {
-      try (NamedEnvironment en = NamerFactory.withParameters(convertToLegalFileName(displayName)))
-      {
-        action0.call();
-      }
-    });
-  }
   @Experimental
   public static DynamicTest dynamicTest(String displayName, Action1<Options> action1)
   {

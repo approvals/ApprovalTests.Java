@@ -36,11 +36,6 @@
                  <version>2.3</version>
         </dependency>
         <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
             <groupId>quartz</groupId>
             <artifactId>quartz</artifactId>
             <version>1.5.2</version>
