@@ -1,0 +1,18 @@
+{
+  "infos": {
+    "address": "my address",
+    "phone": "my phone"
+  },
+  "insurance": {
+    "forks": [
+      14,
+      53,
+      123
+    ],
+    "prices": [
+      5,
+      8,
+      "3%"
+    ]
+  }
+}

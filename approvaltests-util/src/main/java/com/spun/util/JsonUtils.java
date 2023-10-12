@@ -6,8 +6,12 @@ import com.google.gson.stream.JsonWriter;
 import org.lambda.functions.Function1;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class JsonUtils
 {
@@ -61,6 +65,34 @@ public class JsonUtils
     builder = builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
     return builder;
   }
+
+  public static String reorderFields(String json) {
+    JsonObject sortedJsonObject = sortJsonObject(json);
+    return asJson(sortedJsonObject);
+  }
+
+  public static JsonObject sortJsonObject(String json) {
+    JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+    return sortJsonObjectFields(jsonObject);
+  }
+
+  public static JsonObject sortJsonObjectFields(JsonObject jsonObject) {
+    JsonObject sortedJsonObject = new JsonObject();
+    Map<String, JsonElement> sortedFirstLevelFields = jsonObject.entrySet().stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, TreeMap::new));
+
+    for (Map.Entry<String, JsonElement> entry : sortedFirstLevelFields.entrySet()) {
+      JsonElement element = entry.getValue();
+      if (element.isJsonObject()) {
+        sortedJsonObject.add(entry.getKey(), sortJsonObjectFields(element.getAsJsonObject()));
+      } else {
+        sortedJsonObject.add(entry.getKey(), element);
+      }
+    }
+
+    return sortedJsonObject;
+  }
+
   public static class InstantAdapter extends TypeAdapter<Instant>
   {
     @Override

@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import com.google.gson.GsonBuilder;
+import com.spun.util.JsonUtils;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
@@ -56,5 +57,23 @@ public class JsonFormattingTest
   private static class DateStuff
   {
     public Instant instant;
+  }
+  @Test
+  public void testJsonFieldOrdering()
+  {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+    String json1 = "{\"infos\":{\"address\":\"my address\",\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
+    String json2 = "{\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]},\"infos\":{\"phone\":\"my phone\",\"address\":\"my address\"}}";
+//    JsonApprovals.verifyJson(json1);
+//    JsonApprovals.verifyJson(json2);
+//
+//    JsonApprovals.verifyOrderedJson(json1);
+//    JsonApprovals.verifyOrderedJson(json2);
+//
+//    JsonApprovals.verifyJson(json1, true);
+//    JsonApprovals.verifyJson(json2, true);
+
+    JsonApprovals.verifyJson(JsonUtils.reorderFields(json1));
+    JsonApprovals.verifyJson(JsonUtils.reorderFields(json2));
   }
 }
