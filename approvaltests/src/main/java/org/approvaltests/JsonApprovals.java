@@ -17,7 +17,16 @@ public class JsonApprovals
   }
   public static void verifyJson(String json, Options options)
   {
-    Approvals.verify(JsonUtils.prettyPrint(json), options.forFile().withExtension(".json"));
+    verifyJson(json, false, options);
+  }
+  public static void verifyJson(String json, boolean reorderJson)
+  {
+    verifyJson(json, reorderJson, new Options());
+  }
+  public static void verifyJson(String json, boolean reorderJson, Options options)
+  {
+    String formattedJson = reorderJson ? JsonUtils.reorderFields(json) : JsonUtils.prettyPrint(json);
+    Approvals.verify(formattedJson, options.forFile().withExtension(".json"));
   }
   public static void verifyAsJson(Object o)
   {
