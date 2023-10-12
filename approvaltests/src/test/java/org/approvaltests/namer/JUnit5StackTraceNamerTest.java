@@ -94,16 +94,16 @@ public class JUnit5StackTraceNamerTest
   {
     return Arrays.asList(
         JupiterApprovals.dynamicTest("test 1",
-            () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_1")),
-        JupiterApprovals.dynamicTest("test 3",
-            () -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_3")),
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
+                "testFactory.test_1", o.forFile().getNamer())),
         JupiterApprovals.dynamicTest("test 3",
             (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_3", o.forFile().getNamer())),
-        JupiterApprovals.dynamicTest("test 2", () -> StackTraceNamerUtils
-            .assertNamerForFramework(this.getClass().getSimpleName(), "testFactory.test_2")));
+        JupiterApprovals.dynamicTest("test 3",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
+                "testFactory.test_3", o.forFile().getNamer())),
+        JupiterApprovals.dynamicTest("test 2", (o) -> StackTraceNamerUtils
+            .assertNamerForFramework(this.getClass().getSimpleName(), "testFactory.test_2", o.forFile().getNamer())));
   }
   @TestFactory
   Collection<DynamicTest> testFactory2()
