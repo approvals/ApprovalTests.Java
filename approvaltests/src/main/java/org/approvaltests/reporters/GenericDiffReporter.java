@@ -22,7 +22,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
   protected String           diffProgramNotFoundMessage;
   private List<String>       validExtensions;
   public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml", ".eml",
-      ".java", ".css", ".js", ".json", ".md");
+      ".java", ".css", ".js", ".json", ".md", ".jsonl", ".yaml", ".yml", ".adoc", ".asciidoc");
   public static List<String> IMAGE_FILE_EXTENSIONS = Arrays.asList(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
       ".tiff");
   public GenericDiffReporter(String diffProgram)
