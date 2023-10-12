@@ -14,5 +14,5 @@ follow the example provided below.
 Person person = new Person("Max", null, 1);
 JsonApprovals.verifyAsJson(person, GsonBuilder::serializeNulls);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/JsonFormattingTest.java#L32-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-customgsonbuildershowingnull' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/JsonFormattingTest.java#L33-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-customgsonbuildershowingnull' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
