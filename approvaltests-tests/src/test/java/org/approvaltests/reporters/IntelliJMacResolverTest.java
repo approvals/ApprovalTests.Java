@@ -11,8 +11,7 @@ class IntelliJMacResolverTest
   void testFindIt()
   {
     String userHome = "Users/lars";
-    Queryable<String> validPaths = Queryable.as(
-        "/Applications/IntelliJ IDEA.app/Contents/MacOS/idea",
+    Queryable<String> validPaths = Queryable.as("/Applications/IntelliJ IDEA.app/Contents/MacOS/idea",
         "Users/lars/Applications/IntelliJ IDEA Ultimate.app/Contents/MacOS/idea",
         "Users/lars/Applications/IntelliJ IDEA Community.app/Contents/MacOS/idea",
         "Users/lars/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea");
