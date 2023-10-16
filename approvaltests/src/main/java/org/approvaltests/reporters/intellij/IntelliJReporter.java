@@ -17,7 +17,7 @@ public class IntelliJReporter extends FirstWorkingReporter
     public static final IntelliJMacReporter INSTANCE = new IntelliJMacReporter();
     public IntelliJMacReporter()
     {
-      super(DiffPrograms.Mac.INTELLIJ);
+      super(DiffPrograms.All.INTELLIJ);
     }
   }
 }
