@@ -65,7 +65,7 @@ public class DiffPrograms
         "diff %s %s", TEXT);
     public static DiffInfo       INTELLIJ_U           = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(),
         "diff %s %s", TEXT);
-    public static DiffInfo INTELLIJ           = IntelliJToolboxResolver.findIt();
+    public static DiffInfo       INTELLIJ             = IntelliJToolboxResolver.findIt();
   }
   public static class Linux
   {

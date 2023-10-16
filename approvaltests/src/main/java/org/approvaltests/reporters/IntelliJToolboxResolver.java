@@ -34,7 +34,7 @@ public class IntelliJToolboxResolver
   }
   public static DiffInfo getDiffInfoLinux(String userHome, Function1<String, Boolean> fileExists)
   {
-    Queryable<String> locations = as("intellij-idea-ultimate"); // TODO community
+    Queryable<String> locations = as("intellij-idea-ultimate", "intellij-idea-community-edition");
     Queryable<String> applications = as(userHome + "/.local/share/JetBrains/Toolbox/apps");
     String postfix = "/bin/idea.sh";
     return getDiffInfo(fileExists, applications, locations, postfix);
