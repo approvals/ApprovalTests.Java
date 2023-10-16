@@ -17,7 +17,7 @@ class IntelliJResolverTest
             "Users/lars/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea");
     for (String path : validPaths)
     {
-      DiffInfo diffInfo = IntelliJMacResolver.getDiffInfo(userHome, f -> f.equals(path));
+      DiffInfo diffInfo = IntelliJToolboxResolver.getDiffInfoMac(userHome, f -> f.equals(path));
       assertNotEquals("", diffInfo.diffProgram, path);
     }
   }
@@ -30,7 +30,7 @@ class IntelliJResolverTest
             "/home/lars/.local/share/JetBrains/Toolbox/apps/intellij-idea-ultimate/bin/idea.sh");
     for (String path : validPaths)
     {
-      DiffInfo diffInfo = IntelliJMacResolver.getDiffInfoLinux(userHome, f -> f.equals(path));
+      DiffInfo diffInfo = IntelliJToolboxResolver.getDiffInfoLinux(userHome, f -> f.equals(path));
       assertNotEquals("", diffInfo.diffProgram, path);
     }
   }

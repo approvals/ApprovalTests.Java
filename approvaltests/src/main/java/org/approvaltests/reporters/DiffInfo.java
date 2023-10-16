@@ -18,6 +18,10 @@ public class DiffInfo
     this.parameters = parameters;
     this.fileExtensions = fileExtensions;
   }
+  public static DiffInfo getNull()
+  {
+    return new DiffInfo(null, null, null);
+  }
   private static String resolveWindowsPath(String diffProgram)
   {
     diffProgram = diffProgram == null ? "" : diffProgram;
@@ -49,6 +53,10 @@ public class DiffInfo
       }
     }
     return fullPath;
+  }
+  public boolean isEmpty()
+  {
+    return "".equals(diffProgram);
   }
   public static String[] getProgramFilesPaths()
   {
