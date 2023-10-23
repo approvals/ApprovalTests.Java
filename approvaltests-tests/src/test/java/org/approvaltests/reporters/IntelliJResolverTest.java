@@ -31,4 +31,16 @@ class IntelliJResolverTest {
                 "/home/lars/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/bin/idea.sh");
         verifyPaths(IntelliJToolboxResolver::getDiffInfoLinux, "/home/lars", validPaths);
     }
+
+    // "C:\Users\larse\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin\idea64.exe"
+    @Test
+    void testFindItOnWindows() {
+        Queryable<String> validPaths = Queryable.as(
+                "C:\\Users\\larse\\AppData\\Local\\Programs\\IntelliJ IDEA Ultimate\\bin\\idea64.exe");
+        String[] programFiles = {"C:\\Users\\larse\\AppData\\Local\\Programs"};
+        for (String path : validPaths) {
+            DiffInfo diffInfo =  IntelliJToolboxResolver.getDiffInfoWindows(programFiles, f -> f.equals(path));
+            assertNotEquals("", diffInfo.diffProgram, path);
+        }
+    }
 }

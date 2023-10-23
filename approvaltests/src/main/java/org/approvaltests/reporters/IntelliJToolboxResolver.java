@@ -12,6 +12,7 @@ public class IntelliJToolboxResolver
 {
   private interface Resolver extends Function2<String, Function1<String, Boolean>, DiffInfo>
   {
+
   }
   public static DiffInfo findIt()
   {
@@ -40,9 +41,18 @@ public class IntelliJToolboxResolver
     return getDiffInfo(fileExists, applications, locations, postfix);
   }
   private static DiffInfo getDiffInfo(Function1<String, Boolean> fileExists, Queryable<String> locations,
-      Queryable<String> list, String postfix)
+      Queryable<String> applications, String postfix)
   {
-    Queryable<String> paths = locations.selectMany(a -> list.select(l -> a + "/" + l + postfix));
+    Queryable<String> paths = locations.selectMany(a -> applications.select(l -> a + "/" + l + postfix));
+    String matching = paths.first(fileExists);
+    return new DiffInfo(matching, "diff %s %s", GenericDiffReporter.TEXT_FILE_EXTENSIONS);
+  }
+  public static DiffInfo getDiffInfoWindows(String[] programFiles, Function1<String, Boolean> fileExists) {
+    Queryable<String> applications = as("IntelliJ IDEA Ultimate", "IntelliJ IDEA", "IntelliJ IDEA Community",
+            "IntelliJ IDEA Community Edition");
+    Queryable<String> locations = Queryable.as(programFiles);
+    String postfix = "\\bin\\idea64.exe";
+    Queryable<String> paths = locations.selectMany(l -> applications.select(a -> l + "\\" + a + postfix));
     String matching = paths.first(fileExists);
     return new DiffInfo(matching, "diff %s %s", GenericDiffReporter.TEXT_FILE_EXTENSIONS);
   }
