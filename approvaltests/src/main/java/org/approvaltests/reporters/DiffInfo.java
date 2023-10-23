@@ -64,6 +64,7 @@ public class DiffInfo
     paths.add(System.getenv("ProgramFiles(x86)"));
     paths.add(System.getenv("ProgramFiles"));
     paths.add(System.getenv("ProgramW6432"));
+    paths.add(System.getenv("LOCALAPPDATA") + "\\Programs");
     return paths.stream().filter(Objects::nonNull).toArray(String[]::new);
   }
   public static class One
