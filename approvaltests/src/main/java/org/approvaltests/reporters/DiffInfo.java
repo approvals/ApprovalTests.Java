@@ -11,9 +11,9 @@ import java.util.Objects;
 public class DiffInfo
 {
   private static final String[] WINDOWS_PROGRAM_FILES = loadProgramFilesPaths();
-  public String       diffProgram;
-  public String       parameters;
-  public List<String> fileExtensions;
+  public String                 diffProgram;
+  public String                 parameters;
+  public List<String>           fileExtensions;
   public DiffInfo(String diffProgram, String parameters, List<String> fileExtensions)
   {
     this.diffProgram = resolveWindowsPath(diffProgram);
@@ -60,7 +60,8 @@ public class DiffInfo
   {
     return "".equals(diffProgram);
   }
-  public static String[] getProgramFilesPaths(){
+  public static String[] getProgramFilesPaths()
+  {
     return WINDOWS_PROGRAM_FILES;
   }
   public static String[] loadProgramFilesPaths()
