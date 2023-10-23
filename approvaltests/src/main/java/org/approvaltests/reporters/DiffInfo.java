@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class DiffInfo
 {
+  private static final String[] WINDOWS_PROGRAM_FILES = loadProgramFilesPaths();
   public String       diffProgram;
   public String       parameters;
   public List<String> fileExtensions;
@@ -59,7 +60,10 @@ public class DiffInfo
   {
     return "".equals(diffProgram);
   }
-  public static String[] getProgramFilesPaths()
+  public static String[] getProgramFilesPaths(){
+    return WINDOWS_PROGRAM_FILES;
+  }
+  public static String[] loadProgramFilesPaths()
   {
     List<String> paths = new ArrayList<>();
     addIfNotNull("ProgramFiles(x86)", paths);
