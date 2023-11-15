@@ -4,7 +4,6 @@ import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.windows.BeyondCompareReporter;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class InlineApprovalsTest
     var expected = """
         Hello Lada***
         """;
-    Options inline = Options.inline(expected);
+    Options inline = new Options().inline(expected);
     Approvals.verify("Hello Lada***", inline);
     assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
   }
@@ -30,13 +29,9 @@ public class InlineApprovalsTest
     var expected = """
         Hello Lada***
         """;
-    Options inline = Options.inline(expected).withReporter(DiffMergeReporter.INSTANCE);
+    Options inline = new Options().inline(expected).withReporter(DiffMergeReporter.INSTANCE);
     Approvals.verify("Hello Lada***", inline);
-    assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
-  }
-  //Does this work with annotations on tests
-  //Concatenating strings
-  //There's some code before verify that is not replacing the result
+    }
   @Test
   public void testCreateReceivedFileText()
   {

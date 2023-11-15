@@ -19,12 +19,7 @@ import java.util.Map;
 
 public class Options
 {
-  public static Options inline(String expected)
-  {
-    InlineComparator comparator = new InlineComparator(expected);
-    return new Options().withComparator(comparator).forFile().withNamer(comparator).withWriter(comparator)
-        .withReporter(comparator);
-  }
+
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
@@ -35,6 +30,14 @@ public class Options
   public Options and(Function1<Options, Options> optionsUpdate)
   {
     return optionsUpdate.call(this);
+  }
+  public Options inline(String expected)
+  {
+    InlineComparator comparator = new InlineComparator(expected);
+    return this.withComparator(comparator) //
+               .forFile().withNamer(comparator) //
+               .withWriter(comparator) //
+               .withReporter(comparator);
   }
   public Options(Scrubber scrubber)
   {
