@@ -14,6 +14,9 @@ import org.lambda.functions.Function2;
 import java.io.File;
 import java.io.IOException;
 
+import static org.approvaltests.writers.Writer.approved;
+import static org.approvaltests.writers.Writer.received;
+
 public class InlineComparator
     implements
       Function2<File, File, VerifyResult>,
@@ -63,7 +66,7 @@ public class InlineComparator
     {
       try
       {
-        this.approvedFile = File.createTempFile("temp", extensionWithDot);
+        this.approvedFile = File.createTempFile("temp", approved+extensionWithDot);
       }
       catch (IOException e)
       {
@@ -79,7 +82,7 @@ public class InlineComparator
     {
       try
       {
-        this.receivedFile = File.createTempFile("temp", extensionWithDot);
+        this.receivedFile = File.createTempFile("temp", received+extensionWithDot);
       }
       catch (IOException e)
       {

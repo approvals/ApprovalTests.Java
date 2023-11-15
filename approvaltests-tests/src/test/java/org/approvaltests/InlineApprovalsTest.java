@@ -2,6 +2,9 @@ package org.approvaltests;
 
 import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
+import org.approvaltests.reporters.DiffMergeReporter;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.windows.BeyondCompareReporter;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,14 +14,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class InlineApprovalsTest
 {
   @Test
-  public void test()
+  public void testWithBuiltinReporter()
   {
-		var expected = """
-		Hello Lada***
-		""";
-
+    var expected = """
+    Hello Lada***
+    """;
 
     Options inline = Options.inline(expected);
+    Approvals.verify("Hello Lada***", inline);
+    assertEquals(0, ((InlineComparator)inline.getComparator()).fileWrites);
+  }
+  @UseReporter(DiffMergeReporter.class)
+  @Test
+  public void testWithSpecificReporter()
+  {
+    var expected = """
+    Hello Lada***
+    """;
+
+    Options inline = Options.inline(expected).withReporter(DiffMergeReporter.INSTANCE);
     Approvals.verify("Hello Lada***", inline);
     assertEquals(0, ((InlineComparator)inline.getComparator()).fileWrites);
   }
