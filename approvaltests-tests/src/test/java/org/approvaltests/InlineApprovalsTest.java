@@ -1,7 +1,10 @@
 package org.approvaltests;
 
 import org.approvaltests.core.Options;
+import org.approvaltests.inline.InlineComparator;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class InlineApprovalsTest
 {
@@ -11,6 +14,33 @@ public class InlineApprovalsTest
     var expected = """
         Hello World***
         """;
-    Approvals.verify("Hello World***", Options.inline(expected));
+    Approvals.verify("Hello Llewellyn***", Options.inline(expected));
+  }
+  //Test received file
+  //test method can have arguments and they are not ignored
+  @Test
+  public void testCreateReceivedFileText()
+  {
+    var inputs = List.of( """
+                  @Test
+                  public void testyMctest() {
+                    var expected = ""\"
+                        Hello World***
+                        ""\";
+                    Approvals.verify("", Options.inline(expected));
+                  }
+            """,
+            """
+                 @Test
+                 public void testyMctest()
+                 {
+                   var expected = ""\"
+                       Hello World***
+                       ""\";
+                   Approvals.verify("", Options.inline(expected));
+                 }
+           """
+    );
+    Approvals.verifyAll("Substitution",inputs, i -> InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
 }

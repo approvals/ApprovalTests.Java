@@ -128,7 +128,14 @@ public class InlineComparator
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String received = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
     String text = FileUtils.readFile(file);
-    int start = text.indexOf("void " + stackTraceNamer.getInfo().getMethodName() + "(");
+    String fullText = createNewReceivedFileText(text, this.actual, this.stackTraceNamer.getInfo().getMethodName());
+    FileUtils.writeFile(new File(received), fullText);
+    return received;
+  }
+
+  public static String createNewReceivedFileText(String text, String actual, String methodName) {
+    int start = text.indexOf("void " + methodName + "(");
+    start = text.indexOf("{", start);
     int next = text.indexOf("\n", start);
     int end = text.indexOf("}", next);
     int endString = text.indexOf("\"\"\";", next);
@@ -144,10 +151,10 @@ public class InlineComparator
     }
     String fullText = String.format("%s\n\t\tvar expected = \"\"\"\n%s\t\t\"\"\";\n%s", part1, indent(actual),
         part2);
-    FileUtils.writeFile(new File(received), fullText);
-    return received;
+    return fullText;
   }
-  private String indent(String actual)
+
+  public static String indent(String actual)
   {
     String[] split = actual.split("\n");
     String output = "";
