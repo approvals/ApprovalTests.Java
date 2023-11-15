@@ -19,7 +19,6 @@ import java.util.Map;
 
 public class Options
 {
-
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
@@ -35,9 +34,9 @@ public class Options
   {
     InlineComparator comparator = new InlineComparator(expected);
     return this.withComparator(comparator) //
-               .forFile().withNamer(comparator) //
-               .withWriter(comparator) //
-               .withReporter(comparator);
+        .forFile().withNamer(comparator) //
+        .withWriter(comparator) //
+        .withReporter(comparator);
   }
   public Options(Scrubber scrubber)
   {

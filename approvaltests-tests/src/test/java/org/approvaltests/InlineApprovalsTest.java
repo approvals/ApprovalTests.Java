@@ -31,7 +31,7 @@ public class InlineApprovalsTest
         """;
     Options inline = new Options().inline(expected).withReporter(DiffMergeReporter.INSTANCE);
     Approvals.verify("Hello Lada***", inline);
-    }
+  }
   @Test
   public void testCreateReceivedFileText()
   {
