@@ -11,9 +11,19 @@ Substitution
         Approvals.verify("", Options.inline(expected));
       }
 
+     @Test
+     public void testyMctest()
+     {
+		var expected = """
+		1
+		2
+		""";
+
+       Approvals.verify("", Options.inline(expected));
+     }
+
       @Test
-      public void testyMctest()
-      {
+      public void testyMctest(int foo) {
 		var expected = """
 		1
 		2

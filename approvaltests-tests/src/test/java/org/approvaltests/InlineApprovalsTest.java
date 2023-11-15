@@ -18,6 +18,10 @@ public class InlineApprovalsTest
   }
   //Test received file
   //test method can have arguments and they are not ignored
+  //Does this work with annotations on tests
+  //Concatenating strings
+  //There's some code before verify that is not replacing the result
+
   @Test
   public void testCreateReceivedFileText()
   {
@@ -39,7 +43,16 @@ public class InlineApprovalsTest
                        ""\";
                    Approvals.verify("", Options.inline(expected));
                  }
-           """
+            """,
+            """
+                  @Test
+                  public void testyMctest(int foo) {
+                    var expected = ""\"
+                        Hello World***
+                        ""\";
+                    Approvals.verify("", Options.inline(expected));
+                  }
+            """
     );
     Approvals.verifyAll("Substitution",inputs, i -> InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
