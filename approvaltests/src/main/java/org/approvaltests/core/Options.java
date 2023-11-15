@@ -19,16 +19,13 @@ import java.util.Map;
 
 public class Options
 {
-    public static Options inline(String expected) {
-      InlineComparator comparator = new InlineComparator(expected);
-      return new Options()
-              .withComparator(comparator)
-              .forFile().withNamer(comparator)
-              .withWriter(comparator)
-              .withReporter(comparator);
-    }
-
-    private enum Fields {
+  public static Options inline(String expected)
+  {
+    InlineComparator comparator = new InlineComparator(expected);
+    return new Options().withComparator(comparator).forFile().withNamer(comparator).withWriter(comparator)
+        .withReporter(comparator);
+  }
+  private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
   private final Map<Fields, Object> fields = new EnumMap<>(Fields.class);
