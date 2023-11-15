@@ -33,7 +33,7 @@ public class Options
   }
   public Options inline(String expected)
   {
-    return inline(expected, false);
+    return inline(expected, true);
   }
   public Options inline(String expected, boolean showCode)
   {

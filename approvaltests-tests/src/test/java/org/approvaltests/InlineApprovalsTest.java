@@ -1,10 +1,8 @@
 package org.approvaltests;
 
-import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.reporters.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
