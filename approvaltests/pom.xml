@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-xstream</artifactId>
-            <version>3.21.0</version>
+            <version>3.21.2</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -100,26 +100,26 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0</version>
+            <version>5.10.1</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.0</version>
+            <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.0</version>
+            <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>5.10.0</version>
+            <version>5.10.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>

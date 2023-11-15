@@ -4,6 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+      groups:
+        junit:
+          patterns:
+            - "org.junit.vintage"
+            - "org.junit.jupiter"
+            - "junit"
     open-pull-requests-limit: 10
 
   - package-ecosystem: "github-actions"

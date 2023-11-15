@@ -3,20 +3,26 @@ package org.approvaltests.reporters;
 import com.spun.util.ArrayUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
 public class DiffInfo
 {
-  public String       diffProgram;
-  public String       parameters;
-  public List<String> fileExtensions;
+  private static final String[] WINDOWS_PROGRAM_FILES = loadProgramFilesPaths();
+  public String                 diffProgram;
+  public String                 parameters;
+  public List<String>           fileExtensions;
   public DiffInfo(String diffProgram, String parameters, List<String> fileExtensions)
   {
     this.diffProgram = resolveWindowsPath(diffProgram);
     this.parameters = parameters;
     this.fileExtensions = fileExtensions;
+  }
+  public static DiffInfo getNull()
+  {
+    return new DiffInfo(null, null, null);
   }
   private static String resolveWindowsPath(String diffProgram)
   {
@@ -50,13 +56,35 @@ public class DiffInfo
     }
     return fullPath;
   }
+  public boolean isEmpty()
+  {
+    return "".equals(diffProgram);
+  }
   public static String[] getProgramFilesPaths()
   {
-    HashSet<String> paths = new HashSet<>();
-    paths.add(System.getenv("ProgramFiles(x86)"));
-    paths.add(System.getenv("ProgramFiles"));
-    paths.add(System.getenv("ProgramW6432"));
-    return paths.stream().filter(Objects::nonNull).toArray(String[]::new);
+    return WINDOWS_PROGRAM_FILES;
+  }
+  public static String[] loadProgramFilesPaths()
+  {
+    List<String> paths = new ArrayList<>();
+    addIfNotNull("ProgramFiles(x86)", paths);
+    addIfNotNull("ProgramFiles(x86)", paths);
+    addIfNotNull("ProgramFiles", paths);
+    addIfNotNull("ProgramW6432", paths);
+    addIfNotNull("LOCALAPPDATA", paths, "\\Programs");
+    return paths.toArray(new String[0]);
+  }
+  private static void addIfNotNull(String envVarName, List<String> paths)
+  {
+    addIfNotNull(envVarName, paths, "");
+  }
+  private static void addIfNotNull(String envVarName, List<String> paths, String postfix)
+  {
+    String path = System.getenv(envVarName);
+    if (path != null)
+    {
+      paths.add(path + postfix);
+    }
   }
   public static class One
   {

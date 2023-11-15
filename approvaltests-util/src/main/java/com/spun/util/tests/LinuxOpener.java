@@ -23,8 +23,8 @@ public class LinuxOpener implements Opener
     {
       String command1 = "which " + command;
       Process p = Runtime.getRuntime().exec(command1);
-      String output = FileUtils.readStream(p.getInputStream()).trim();
       p.waitFor();
+      String output = FileUtils.readStream(p.getInputStream()).trim();
       int exitValue = p.exitValue();
       return exitValue == 0 ? output : null;
     }

@@ -9,15 +9,15 @@ public class IntelliJReporter extends FirstWorkingReporter
   public static final IntelliJReporter INSTANCE = new IntelliJReporter();
   public IntelliJReporter()
   {
-    super(IntelliJMacReporter.INSTANCE, IntelliJMacSiliconReporter.INSTANCE, IntelliJUltimateReporter.INSTANCE,
+    super(IntelliJToolboxReporter.INSTANCE, IntelliJMacSiliconReporter.INSTANCE, IntelliJUltimateReporter.INSTANCE,
         IntelliJCommunityReporter.INSTANCE);
   }
-  private static class IntelliJMacReporter extends GenericDiffReporter
+  private static class IntelliJToolboxReporter extends GenericDiffReporter
   {
-    public static final IntelliJMacReporter INSTANCE = new IntelliJMacReporter();
-    public IntelliJMacReporter()
+    public static final IntelliJToolboxReporter INSTANCE = new IntelliJToolboxReporter();
+    public IntelliJToolboxReporter()
     {
-      super(DiffPrograms.Mac.INTELLIJ);
+      super(DiffPrograms.All.INTELLIJ);
     }
   }
 }

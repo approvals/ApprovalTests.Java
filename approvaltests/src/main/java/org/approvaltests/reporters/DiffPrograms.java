@@ -30,7 +30,6 @@ public class DiffPrograms
         TEXT_AND_IMAGE);
     public static DiffInfo TK_DIFF            = new DiffInfo("/Applications/TkDiff.app/Contents/MacOS/tkdiff",
         TEXT);
-    public static DiffInfo INTELLIJ           = IntelliJMacResolver.findIt();
     public static DiffInfo VISUAL_STUDIO_CODE = new DiffInfo(
         "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code", "-d %s %s", TEXT);
   }
@@ -66,6 +65,7 @@ public class DiffPrograms
         "diff %s %s", TEXT);
     public static DiffInfo       INTELLIJ_U           = new DiffInfo(new IntelliJPathResolver(Ultimate).findIt(),
         "diff %s %s", TEXT);
+    public static DiffInfo       INTELLIJ             = IntelliJToolboxResolver.findIt();
   }
   public static class Linux
   {
