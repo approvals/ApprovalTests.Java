@@ -28,6 +28,7 @@ public class InlineComparator
   private String                actual;
   private File                  approvedFile;
   private File                  receivedFile;
+  public int fileWrites = 0;
   public InlineComparator(String expected)
   {
     this.expected = expected;
@@ -43,9 +44,18 @@ public class InlineComparator
     }
     else
     {
+      writeFiles();
       return VerifyResult.FAILURE;
     }
   }
+
+  private void writeFiles() {
+    FileUtils.writeFile(approvedFile, expected);
+    fileWrites++;
+    FileUtils.writeFile(receivedFile, actual);
+    fileWrites++;
+  }
+
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -54,7 +64,6 @@ public class InlineComparator
       try
       {
         this.approvedFile = File.createTempFile("temp", extensionWithDot);
-        FileUtils.writeFile(approvedFile, expected);
       }
       catch (IOException e)
       {
@@ -97,7 +106,6 @@ public class InlineComparator
   @Override
   public File writeReceivedFile(File received)
   {
-    FileUtils.writeFile(received, actual);
     return received;
   }
   @Override
@@ -118,11 +126,12 @@ public class InlineComparator
   @Override
   public boolean report(String received, String approved)
   {
-    DiffMergeReporter instance = DiffMergeReporter.INSTANCE;
-    String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
-    String received1 = createReceived();
-    return instance.report(received1, file);
+    ApprovalFailureReporter reporter = new Options().getReporter();
+    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
+    String newSource = createReceived();
+    return reporter.report(newSource, sourceFile);
   }
+
   private String createReceived()
   {
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";

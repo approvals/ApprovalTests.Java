@@ -6,18 +6,22 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class InlineApprovalsTest
 {
   @Test
   public void test()
   {
-    var expected = """
-        Hello World***
-        """;
-    Approvals.verify("Hello Llewellyn***", Options.inline(expected));
+		var expected = """
+		Hello Lada***
+		""";
+
+
+    Options inline = Options.inline(expected);
+    Approvals.verify("Hello Lada***", inline);
+    assertEquals(0, ((InlineComparator)inline.getComparator()).fileWrites);
   }
-  //Test received file
-  //test method can have arguments and they are not ignored
   //Does this work with annotations on tests
   //Concatenating strings
   //There's some code before verify that is not replacing the result
