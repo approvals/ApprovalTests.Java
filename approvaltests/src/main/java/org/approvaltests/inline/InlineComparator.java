@@ -31,7 +31,7 @@ public class InlineComparator
   private String                actual;
   private File                  approvedFile;
   private File                  receivedFile;
-  public int fileWrites = 0;
+  public int                    fileWrites = 0;
   public InlineComparator(String expected)
   {
     this.expected = expected;
@@ -51,14 +51,13 @@ public class InlineComparator
       return VerifyResult.FAILURE;
     }
   }
-
-  private void writeFiles() {
+  private void writeFiles()
+  {
     FileUtils.writeFile(approvedFile, expected);
     fileWrites++;
     FileUtils.writeFile(receivedFile, actual);
     fileWrites++;
   }
-
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -66,7 +65,7 @@ public class InlineComparator
     {
       try
       {
-        this.approvedFile = File.createTempFile("temp", approved+extensionWithDot);
+        this.approvedFile = File.createTempFile("temp", approved + extensionWithDot);
       }
       catch (IOException e)
       {
@@ -82,7 +81,7 @@ public class InlineComparator
     {
       try
       {
-        this.receivedFile = File.createTempFile("temp", received+extensionWithDot);
+        this.receivedFile = File.createTempFile("temp", received + extensionWithDot);
       }
       catch (IOException e)
       {
@@ -134,7 +133,6 @@ public class InlineComparator
     String newSource = createReceived();
     return reporter.report(newSource, sourceFile);
   }
-
   private String createReceived()
   {
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
@@ -144,8 +142,8 @@ public class InlineComparator
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
-
-  public static String createNewReceivedFileText(String text, String actual, String methodName) {
+  public static String createNewReceivedFileText(String text, String actual, String methodName)
+  {
     int start = text.indexOf("void " + methodName + "(");
     start = text.indexOf("{", start);
     int next = text.indexOf("\n", start);
@@ -165,7 +163,6 @@ public class InlineComparator
         part2);
     return fullText;
   }
-
   public static String indent(String actual)
   {
     String[] split = actual.split("\n");
