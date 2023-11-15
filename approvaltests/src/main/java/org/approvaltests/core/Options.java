@@ -4,6 +4,7 @@ import com.spun.util.ArrayUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.approvers.FileApprover;
+import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
@@ -14,12 +15,20 @@ import org.lambda.functions.Function2;
 
 import java.io.File;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Options
 {
-  private enum Fields {
+    public static Options inline(String expected) {
+      InlineComparator comparator = new InlineComparator(expected);
+      return new Options()
+              .withComparator(comparator)
+              .forFile().withNamer(comparator)
+              .withWriter(comparator)
+              .withReporter(comparator);
+    }
+
+    private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }
   private final Map<Fields, Object> fields = new EnumMap<>(Fields.class);
