@@ -1,9 +1,10 @@
 package org.approvaltests;
 
+import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
-import org.approvaltests.reporters.DiffMergeReporter;
-import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -63,5 +64,17 @@ public class InlineApprovalsTest
         """);
     Approvals.verifyAll("Substitution", inputs,
         i -> InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+  }
+
+  @Test
+  @UseReporter(QuietReporter.class)
+  public void testReportingCode()
+  {
+    Options inlineWithCode = new Options().inline("", true);
+    Options inlineNoCode = new Options().inline("", false);
+
+    var resultWithCode = inlineWithCode.getReporter();
+    assertEquals(InlineComparator.class, resultWithCode.getClass());
+    assertEquals(QuietReporter.class, ((FirstWorkingReporter)inlineNoCode.getReporter()).getReporters()[1].getClass());
   }
 }

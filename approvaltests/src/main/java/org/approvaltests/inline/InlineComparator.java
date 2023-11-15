@@ -7,7 +7,6 @@ import org.approvaltests.core.Options;
 import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.StackTraceNamer;
-import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.writers.ApprovalWriterFactory;
 import org.lambda.functions.Function2;
 
@@ -28,13 +27,15 @@ public class InlineComparator
   private final String          sourceFilePath;
   private final StackTraceNamer stackTraceNamer;
   private String                expected;
+  private final ApprovalFailureReporter reporter;
   private String                actual;
   private File                  approvedFile;
   private File                  receivedFile;
   public int                    fileWrites = 0;
-  public InlineComparator(String expected)
+  public InlineComparator(String expected, ApprovalFailureReporter reporter)
   {
     this.expected = expected;
+    this.reporter = reporter;
     stackTraceNamer = new StackTraceNamer();
     sourceFilePath = stackTraceNamer.getSourceFilePath();
   }
@@ -128,7 +129,6 @@ public class InlineComparator
   @Override
   public boolean report(String received, String approved)
   {
-    ApprovalFailureReporter reporter = new Options().getReporter();
     String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String newSource = createReceived();
     return reporter.report(newSource, sourceFile);
@@ -172,5 +172,14 @@ public class InlineComparator
       output += "\t\t" + line + "\n";
     }
     return output;
+  }
+
+  public Options setForOptions(Options options) {
+    if (reporter != null) {
+      options = options.withReporter(this);
+    }
+    return options.withComparator(this) //
+        .forFile().withNamer(this) //
+        .withWriter(this);
   }
 }
