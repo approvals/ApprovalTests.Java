@@ -63,16 +63,15 @@ public class InlineApprovalsTest
     Approvals.verifyAll("Substitution", inputs,
         i -> InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
-
   @Test
   @UseReporter(QuietReporter.class)
   public void testReportingCode()
   {
     Options inlineWithCode = new Options().inline("", true);
     Options inlineNoCode = new Options().inline("", false);
-
     var resultWithCode = inlineWithCode.getReporter();
     assertEquals(InlineComparator.class, resultWithCode.getClass());
-    assertEquals(QuietReporter.class, ((FirstWorkingReporter)inlineNoCode.getReporter()).getReporters()[1].getClass());
+    assertEquals(QuietReporter.class,
+        ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
   }
 }

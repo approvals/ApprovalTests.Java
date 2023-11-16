@@ -24,14 +24,14 @@ public class InlineComparator
       ApprovalWriterFactory,
       ApprovalFailureReporter
 {
-  private final String          sourceFilePath;
-  private final StackTraceNamer stackTraceNamer;
-  private String                expected;
+  private final String                  sourceFilePath;
+  private final StackTraceNamer         stackTraceNamer;
+  private String                        expected;
   private final ApprovalFailureReporter reporter;
-  private String                actual;
-  private File                  approvedFile;
-  private File                  receivedFile;
-  public int                    fileWrites = 0;
+  private String                        actual;
+  private File                          approvedFile;
+  private File                          receivedFile;
+  public int                            fileWrites = 0;
   public InlineComparator(String expected, ApprovalFailureReporter reporter)
   {
     this.expected = expected;
@@ -173,9 +173,10 @@ public class InlineComparator
     }
     return output;
   }
-
-  public Options setForOptions(Options options) {
-    if (reporter != null) {
+  public Options setForOptions(Options options)
+  {
+    if (reporter != null)
+    {
       options = options.withReporter(this);
     }
     return options.withComparator(this) //
