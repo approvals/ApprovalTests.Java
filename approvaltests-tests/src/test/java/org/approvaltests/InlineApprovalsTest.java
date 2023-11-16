@@ -19,7 +19,10 @@ public class InlineApprovalsTest
 		""";
 
 
-    Options inline = new Options().inline(expected, true);
+    Options inline =
+            // begin-snippet: inline_approvals
+            new Options().inline(expected);
+    // end-snippet
     Approvals.verify("Hello There***", inline);
     assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
   }

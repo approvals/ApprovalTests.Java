@@ -29,6 +29,7 @@
 * [test a variety of values](reference/CombinationApprovals.md)
 * [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 * Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
+* [Use Inline Approvals](how_to/InlineApprovals.md)
 
 ## Reference
 
@@ -53,6 +54,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 * [Why we don't use checked exceptions](explanations/NoCheckedExceptions.md)
 * [Best configuration practices](explanations/BestConfigurationPractices.md)
 * [Benefits of different reporters](explanations/BenefitsOfDifferentReporters.md)
+* [Inline Approvals Workflow](explanations/InlineApprovalsWorkflow.md)
 
 
 ## Main concepts for ApprovalTests  
