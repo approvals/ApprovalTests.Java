@@ -4,10 +4,11 @@
 <!-- toc -->
 ## Contents
 
-  * [Feedback and Granularity](#feedback-and-granularity)
-  * [Scripting](#scripting)
-  * [Rendering](#rendering)
-  * [Executing](#executing)<!-- endToc -->
+  * [General flow](#general-flow)
+  * [Step 1](#step-1)
+  * [Step 2 - Run and approve by diff](#step-2---run-and-approve-by-diff)
+  * [Step 3 - The resulting test file](#step-3---the-resulting-test-file)
+  * [See also:](#see-also)<!-- endToc -->
 
 
 ## General flow
@@ -25,7 +26,19 @@ Inline approvals feel a lot like regular approvals except for the expected resul
 
 ## Step 1
 Write the test with no expectation
-snippet: inline_approvals_before
+<!-- snippet: inline_approvals_before -->
+<a id='snippet-inline_approvals_before'></a>
+```java
+@Test
+public void testInlineApprovals()
+{
+    var expected = """
+		    """;
+    Approvals.verify(getGreeting(), new Options().inline(expected));
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L21-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_before' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Step 2 - Run and approve by diff
 When you run this, a diff program will pop up.
@@ -37,7 +50,21 @@ You can approve this the same as normal: by moving the received from the left to
 
 ## Step 3 - The resulting test file
 The resulting test will have the approved text at the top of the test.
-snippet: inline_approvals_after
+<!-- snippet: inline_approvals_after -->
+<a id='snippet-inline_approvals_after'></a>
+```java
+@Test
+public void testInlineApprovals()
+{
+		var expected = """
+		Hello world!
+		Welcome to inline approvals!
+		""";
+  Approvals.verify(getGreeting(), new Options().inline(expected));
+}
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L34-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_after' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## See also:
 * [How to use inline approvals](../how_to/InlineApprovals.md)

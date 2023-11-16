@@ -5,10 +5,13 @@
 <!-- toc -->
 ## Contents
 
-  * [Introduction](#introduction)
-  * [Problem Description](#problem-description)
-  * [Solution: Using FileCaptureReporter](#solution-using-filecapturereporter)
-  * [Compatibility](#compatibility)<!-- endToc -->
+  * [What it is](#what-it-is)
+  * [Why use inline](#why-use-inline)
+  * [Solution: Use Options.inline()](#solution-use-optionsinline)
+  * [Workflow](#workflow)
+  * [Options](#options)
+    * [Show Code](#show-code)
+    * [Reporters](#reporters)<!-- endToc -->
 
 ## What it is
 The expected result for most approvals in an a separate `.approved.` file
@@ -24,7 +27,13 @@ When your result is under ten lines inline approvals has the following benefits:
 Any `verify()` call can use inline approvals so long as the output is text.
 To do this simply add the option:
 
-snippet: inline_approvals
+<!-- snippet: inline_approvals -->
+<a id='snippet-inline_approvals'></a>
+```java
+new Options().inline(expected);
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Workflow
 On failure, approval tests will generate a temporary file of what your source code should look like if you were to approve this result and show it in the diff tool of your choice.
