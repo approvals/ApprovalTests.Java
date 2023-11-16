@@ -144,6 +144,7 @@ public class InlineComparator
   }
   public static String createNewReceivedFileText(String text, String actual, String methodName)
   {
+    text = text.replaceAll("\r\n", "\n");
     int start = text.indexOf("void " + methodName + "(");
     start = text.indexOf("{", start);
     int next = text.indexOf("\n", start);
@@ -153,11 +154,13 @@ public class InlineComparator
     String part2 = null;
     if (0 < endString && endString < end)
     {
-      part2 = text.substring(endString + 4);
+      // find next newline
+      endString = text.indexOf("\n", endString);
+      part2 = text.substring(endString + 1);
     }
     else
     {
-      part2 = text.substring(next);
+      part2 = text.substring(next + 1);
     }
     String fullText = String.format("%s\n\t\tvar expected = \"\"\"\n%s\t\t\"\"\";\n%s", part1, indent(actual),
         part2);

@@ -14,11 +14,13 @@ public class InlineApprovalsTest
   @Test
   public void testWithBuiltinReporter()
   {
-    var expected = """
-        Hello Lada***
-        """;
-    Options inline = new Options().inline(expected);
-    Approvals.verify("Hello Lada***", inline);
+		var expected = """
+		Hello There***
+		""";
+
+
+    Options inline = new Options().inline(expected, true);
+    Approvals.verify("Hello There***", inline);
     assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
   }
   @UseReporter(DiffMergeReporter.class)
@@ -46,6 +48,12 @@ public class InlineApprovalsTest
              @Test
              public void testyMctest()
              {
+               Approvals.verify("", Options.inline(expected));
+             }
+        """, """
+             @Test
+             public void testyMctest()
+             {
                var expected = ""\"
                    Hello World***
                    ""\";
@@ -61,7 +69,7 @@ public class InlineApprovalsTest
               }
         """);
     Approvals.verifyAll("Substitution", inputs,
-        i -> InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+        i -> "******\n" + i + "\nBecomes:\n" + InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
   @Test
   @UseReporter(QuietReporter.class)

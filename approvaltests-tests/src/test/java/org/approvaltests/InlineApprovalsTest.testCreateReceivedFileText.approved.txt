@@ -1,16 +1,33 @@
 Substitution
 
 
+******
+      @Test
+      public void testyMctest() {
+        var expected = """
+            Hello World***
+            """;
+        Approvals.verify("", Options.inline(expected));
+      }
+
+Becomes:
       @Test
       public void testyMctest() {
 		var expected = """
 		1
 		2
 		""";
-
         Approvals.verify("", Options.inline(expected));
       }
 
+******
+     @Test
+     public void testyMctest()
+     {
+       Approvals.verify("", Options.inline(expected));
+     }
+
+Becomes:
      @Test
      public void testyMctest()
      {
@@ -18,17 +35,46 @@ Substitution
 		1
 		2
 		""";
-
        Approvals.verify("", Options.inline(expected));
      }
 
+******
+     @Test
+     public void testyMctest()
+     {
+       var expected = """
+           Hello World***
+           """;
+       Approvals.verify("", Options.inline(expected));
+     }
+
+Becomes:
+     @Test
+     public void testyMctest()
+     {
+		var expected = """
+		1
+		2
+		""";
+       Approvals.verify("", Options.inline(expected));
+     }
+
+******
+      @Test
+      public void testyMctest(int foo) {
+        var expected = """
+            Hello World***
+            """;
+        Approvals.verify("", Options.inline(expected));
+      }
+
+Becomes:
       @Test
       public void testyMctest(int foo) {
 		var expected = """
 		1
 		2
 		""";
-
         Approvals.verify("", Options.inline(expected));
       }
 
