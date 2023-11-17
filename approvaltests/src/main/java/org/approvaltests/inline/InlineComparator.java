@@ -2,13 +2,9 @@ package org.approvaltests.inline;
 
 import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
-import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
-import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.StackTraceNamer;
-import org.approvaltests.writers.ApprovalWriterFactory;
-import org.lambda.functions.Function2;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,20 +14,15 @@ import static org.approvaltests.writers.Writer.received;
 
 public class InlineComparator
     implements
-      Function2<File, File, VerifyResult>,
       ApprovalNamer,
-      ApprovalWriter,
-      ApprovalWriterFactory,
       ApprovalFailureReporter
 {
   private final String                  sourceFilePath;
   private final StackTraceNamer         stackTraceNamer;
   private String                        expected;
   private final ApprovalFailureReporter reporter;
-  private String                        actual;
   private File                          approvedFile;
   private File                          receivedFile;
-  public int                            fileWrites = 0;
   public InlineComparator(String expected, ApprovalFailureReporter reporter)
   {
     this.expected = expected;
@@ -39,26 +30,8 @@ public class InlineComparator
     stackTraceNamer = new StackTraceNamer();
     sourceFilePath = stackTraceNamer.getSourceFilePath();
   }
-  @Override
-  public VerifyResult call(File received, File approved)
-  {
-    if (expected.equals(actual))
-    {
-      return VerifyResult.SUCCESS;
-    }
-    else
-    {
-      writeFiles();
-      return VerifyResult.FAILURE;
-    }
-  }
-  private void writeFiles()
-  {
-    FileUtils.writeFile(approvedFile, expected);
-    fileWrites++;
-    FileUtils.writeFile(receivedFile, actual);
-    fileWrites++;
-  }
+
+
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -67,6 +40,8 @@ public class InlineComparator
       try
       {
         this.approvedFile = File.createTempFile("temp", approved + extensionWithDot);
+
+        FileUtils.writeFile(approvedFile, expected);
       }
       catch (IOException e)
       {
@@ -106,39 +81,21 @@ public class InlineComparator
   {
     return sourceFilePath;
   }
-  @Override
-  public File writeReceivedFile(File received)
-  {
-    return received;
-  }
-  @Override
-  public String getFileExtensionWithDot()
-  {
-    return ".txt";
-  }
-  @Override
-  public ApprovalWriter create(Object content, Options options)
-  {
-    this.actual = options.scrub("" + content);
-    if (!actual.endsWith("\n"))
-    {
-      this.actual += "\n";
-    }
-    return this;
-  }
+
+
   @Override
   public boolean report(String received, String approved)
   {
     String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
-    String newSource = createReceived();
+    String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);
   }
-  private String createReceived()
+  private String createReceived(String actual)
   {
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String received = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
     String text = FileUtils.readFile(file);
-    String fullText = createNewReceivedFileText(text, this.actual, this.stackTraceNamer.getInfo().getMethodName());
+    String fullText = createNewReceivedFileText(text, actual, this.stackTraceNamer.getInfo().getMethodName());
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
@@ -182,8 +139,7 @@ public class InlineComparator
     {
       options = options.withReporter(this);
     }
-    return options.withComparator(this) //
-        .forFile().withNamer(this) //
-        .withWriter(this);
+    return options//
+        .forFile().withNamer(this);
   }
 }

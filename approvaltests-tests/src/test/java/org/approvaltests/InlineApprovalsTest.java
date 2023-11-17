@@ -12,17 +12,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class InlineApprovalsTest
 {
   @Test
+  @UseReporter(DiffMergeReporter.class)
   public void testWithBuiltinReporter()
   {
-    var expected = """
-        Hello There***
-        """;
+		var expected = """
+		Hello There***
+		""";
     Options inline =
         // begin-snippet: inline_approvals
         new Options().inline(expected);
     // end-snippet
     Approvals.verify("Hello There***", inline);
-    assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
   }
   @UseReporter(DiffMergeReporter.class)
   @Test
