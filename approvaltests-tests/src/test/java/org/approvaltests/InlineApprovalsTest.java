@@ -14,14 +14,12 @@ public class InlineApprovalsTest
   @Test
   public void testWithBuiltinReporter()
   {
-		var expected = """
-		Hello There***
-		""";
-
-
+    var expected = """
+        Hello There***
+        """;
     Options inline =
-            // begin-snippet: inline_approvals
-            new Options().inline(expected);
+        // begin-snippet: inline_approvals
+        new Options().inline(expected);
     // end-snippet
     Approvals.verify("Hello There***", inline);
     assertEquals(0, ((InlineComparator) inline.getComparator()).fileWrites);
@@ -71,8 +69,8 @@ public class InlineApprovalsTest
                 Approvals.verify("", Options.inline(expected));
               }
         """);
-    Approvals.verifyAll("Substitution", inputs,
-        i -> "******\n" + i + "\nBecomes:\n" + InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+    Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
+        + InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
   @Test
   @UseReporter(QuietReporter.class)
