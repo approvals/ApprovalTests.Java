@@ -32,12 +32,12 @@ Write the test with no expectation
 @Test
 public void testInlineApprovals()
 {
-    var expected = """
-		    """;
-    Approvals.verify(getGreeting(), new Options().inline(expected));
+  var expected = """
+      """;
+  Approvals.verify(getGreeting(), new Options().inline(expected));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L21-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_before' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L22-L30' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_before' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Step 2 - Run and approve by diff
@@ -56,14 +56,14 @@ The resulting test will have the approved text at the top of the test.
 @Test
 public void testInlineApprovals()
 {
-		var expected = """
-		Hello world!
-		Welcome to inline approvals!
-		""";
+  var expected = """
+      Hello world!
+      Welcome to inline approvals!
+      """;
   Approvals.verify(getGreeting(), new Options().inline(expected));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L34-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L36-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## See also:
