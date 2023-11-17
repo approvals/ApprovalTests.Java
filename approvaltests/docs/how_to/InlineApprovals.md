@@ -22,6 +22,7 @@ When your result is under ten lines inline approvals has the following benefits:
 * Reduced number of test files
 * Result and test are co-located
 * Having the result visible with the code clarifies the intent of the test
+* It resembles more traditional unit tests 
 
 ## Solution: Use Options.inline()
 Any `verify()` call can use inline approvals so long as the output is text.
