@@ -21,7 +21,7 @@ Inline approvals stores the result as a string within the test source.
 When your result is under ten lines inline approvals has the following benefits:
 * Reduced number of test files
 * Result and test are co-located
-* Is easier to have the result clarify the intent of the test
+* Having the result visible with the code clarifies the intent of the test
 
 ## Solution: Use Options.inline()
 Any `verify()` call can use inline approvals so long as the output is text.
