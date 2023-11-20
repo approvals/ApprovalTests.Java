@@ -5,6 +5,8 @@ import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.namer.StackTraceNamer;
 
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InlineJavaReporter implements ApprovalFailureReporter
 {
@@ -39,9 +41,12 @@ public class InlineJavaReporter implements ApprovalFailureReporter
   }
   public static String createNewReceivedFileText(String text, String actual, String methodName)
   {
-    String tab = "\t";
     text = text.replaceAll("\r\n", "\n");
     int start = text.indexOf("void " + methodName + "(");
+    int startOfLine = text.substring(0, start).lastIndexOf("\n") + 1;
+    String line = text.substring(startOfLine, start);
+    String tab = extractLeadingWhitespace(line);
+
     start = text.indexOf("{", start);
     int next = text.indexOf("\n", start);
     int end = text.indexOf("}", next);
@@ -71,5 +76,13 @@ public class InlineJavaReporter implements ApprovalFailureReporter
       output += tab + tab + line + "\n";
     }
     return output;
+  }
+  private static String extractLeadingWhitespace(String text)
+  {
+    Pattern pattern = Pattern.compile("^\\s+");
+    Matcher matcher = pattern.matcher(text);
+    if (matcher.find())
+    { return matcher.group(); }
+    return "\t";
   }
 }

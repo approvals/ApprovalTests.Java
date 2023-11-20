@@ -1,9 +1,11 @@
 package org.approvaltests;
 
 import org.approvaltests.core.Options;
-import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.inline.InlineJavaReporter;
-import org.approvaltests.reporters.*;
+import org.approvaltests.reporters.DiffMergeReporter;
+import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.QuietReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
@@ -42,39 +44,39 @@ public class InlineApprovalsTest
   public void testCreateReceivedFileText()
   {
     var inputs = List.of("""
-              @Test
-              public void testyMctest() {
-                var expected = ""\"
-                    Hello World***
-                    ""\";
-                Approvals.verify("", Options.inline(expected));
-              }
+          @Test
+          public void testyMctest() {
+            var expected = ""\"
+                Hello World***
+                ""\";
+            Approvals.verify("", Options.inline(expected));
+          }
         """, """
-             @Test
-             public void testyMctest()
-             {
-               Approvals.verify("", Options.inline(expected));
-             }
+        \t@Test
+        \tpublic void testyMctest()
+        \t{
+        \t\tApprovals.verify("", Options.inline(expected));
+        \t}
         """, """
-             @Test
-             public void testyMctest()
-             {
-               var expected = ""\"
-                   Hello World***
-                   ""\";
-               Approvals.verify("", Options.inline(expected));
-             }
+          @Test
+          public void testyMctest()
+          {
+            var expected = ""\"
+                Hello World***
+                ""\";
+            Approvals.verify("", Options.inline(expected));
+          }
         """, """
-              @Test
-              public void testyMctest(int foo) {
-                var expected = ""\"
-                    Hello World***
-                    ""\";
-                Approvals.verify("", Options.inline(expected));
-              }
+          @Test
+          public void testyMctest(int foo) {
+            var expected = ""\"
+                Hello World***
+                ""\";
+            Approvals.verify("", Options.inline(expected));
+          }
         """);
     Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
-                                                     + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+        + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
   @Test
   @UseReporter(QuietReporter.class)
