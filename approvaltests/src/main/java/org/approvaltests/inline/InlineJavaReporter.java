@@ -39,6 +39,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter
   }
   public static String createNewReceivedFileText(String text, String actual, String methodName)
   {
+    String tab = "\t";
     text = text.replaceAll("\r\n", "\n");
     int start = text.indexOf("void " + methodName + "(");
     start = text.indexOf("{", start);
@@ -57,17 +58,17 @@ public class InlineJavaReporter implements ApprovalFailureReporter
     {
       part2 = text.substring(next + 1);
     }
-    String fullText = String.format("%s\n\t\tvar expected = \"\"\"\n%s\t\t\"\"\";\n%s", part1, indent(actual),
-        part2);
+    String fullText = String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s\"\"\";\n%s", part1, tab, tab,
+        indent(actual, tab), tab, tab, part2);
     return fullText;
   }
-  public static String indent(String actual)
+  public static String indent(String actual, String tab)
   {
     String[] split = actual.split("\n");
     String output = "";
     for (String line : split)
     {
-      output += "\t\t" + line + "\n";
+      output += tab + tab + line + "\n";
     }
     return output;
   }
