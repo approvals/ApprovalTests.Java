@@ -2,6 +2,7 @@ package org.approvaltests;
 
 import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
+import org.approvaltests.inline.InlineJavaReporter;
 import org.approvaltests.reporters.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnJre;
@@ -73,7 +74,7 @@ public class InlineApprovalsTest
               }
         """);
     Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
-        + InlineComparator.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+                                                     + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
   @Test
   @UseReporter(QuietReporter.class)
