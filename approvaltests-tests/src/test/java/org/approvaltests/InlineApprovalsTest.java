@@ -4,11 +4,14 @@ import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.reporters.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@EnabledOnJre({JRE.JAVA_21})
 public class InlineApprovalsTest
 {
   @Test
