@@ -4,7 +4,6 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.StackTraceNamer;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,16 +11,19 @@ import java.io.IOException;
 import static org.approvaltests.writers.Writer.approved;
 import static org.approvaltests.writers.Writer.received;
 
-public class InlineComparator implements ApprovalNamer, ApprovalFailureReporter
+public class InlineComparator implements ApprovalNamer
 {
-  private final InlineJavaReporter inlineJavaReporter;
-  private String                        expected;
-  private File                          approvedFile;
-  private File                          receivedFile;
+  private ApprovalFailureReporter reporter = null;
+  private final String            expected;
+  private File                    approvedFile;
+  private File                    receivedFile;
   public InlineComparator(String expected, ApprovalFailureReporter reporter)
   {
     this.expected = expected;
-    inlineJavaReporter = new InlineJavaReporter(reporter);
+    if (reporter != null)
+    {
+      this.reporter = new InlineJavaReporter(reporter);
+    }
   }
   @Override
   public File getApprovedFile(String extensionWithDot)
@@ -69,25 +71,18 @@ public class InlineComparator implements ApprovalNamer, ApprovalFailureReporter
   @Override
   public String getSourceFilePath()
   {
-    return inlineJavaReporter.getSourceFilePath();
+    return "";
   }
-  @Override
   public boolean report(String received, String approved)
   {
-    return inlineJavaReporter.report(received, approved);
+    return reporter.report(received, approved);
   }
-  private String createReceived(String actual)
-  {
-    return inlineJavaReporter.createReceived(actual);
-  }
-
   public Options setForOptions(Options options)
   {
-    if (inlineJavaReporter.reporter != null)
+    if (reporter != null)
     {
-      options = options.withReporter(this);
+      options = options.withReporter(reporter);
     }
-    return options//
-        .forFile().withNamer(this);
+    return options.forFile().withNamer(this);
   }
 }

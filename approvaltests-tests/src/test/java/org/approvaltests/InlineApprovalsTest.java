@@ -83,7 +83,7 @@ public class InlineApprovalsTest
     Options inlineWithCode = new Options().inline("", true);
     Options inlineNoCode = new Options().inline("", false);
     var resultWithCode = inlineWithCode.getReporter();
-    assertEquals(InlineComparator.class, resultWithCode.getClass());
+    assertEquals(InlineJavaReporter.class, resultWithCode.getClass());
     assertEquals(QuietReporter.class,
         ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
   }

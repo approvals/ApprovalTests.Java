@@ -8,9 +8,9 @@ import java.io.File;
 
 public class InlineJavaReporter implements ApprovalFailureReporter
 {
-  public final String                  sourceFilePath;
-  public final StackTraceNamer         stackTraceNamer;
-  public final ApprovalFailureReporter reporter;
+  private final String                  sourceFilePath;
+  private final StackTraceNamer         stackTraceNamer;
+  private final ApprovalFailureReporter reporter;
   public InlineJavaReporter(ApprovalFailureReporter reporter)
   {
     this.reporter = reporter;
