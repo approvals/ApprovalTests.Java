@@ -14,7 +14,7 @@
     * [Reporters](#reporters)<!-- endToc -->
 
 ## What it is
-The expected result for most approvals in an a separate `.approved.` file
+The expected result for most approvals in an a separate `.approved.` file.
 Inline approvals stores the result as a string within the test source.
 
 ## Why use inline
