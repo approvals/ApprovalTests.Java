@@ -9,7 +9,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -58,14 +61,17 @@ public class DateUtilsTest
   @Test
   public void testNextAndLast()
   {
-    int day = (new GregorianCalendar().get(Calendar.DAY_OF_WEEK) != Calendar.THURSDAY)
-        ? Calendar.THURSDAY
-        : Calendar.TUESDAY;
-    Timestamp next = DateUtils.getNextOrCurrent(day);
-    Timestamp last = DateUtils.getLastOrCurrent(day);
-    assertEquals(day, DateUtils.asCalendar(next).get(Calendar.DAY_OF_WEEK), "next thrusday");
-    assertEquals(day, DateUtils.asCalendar(last).get(Calendar.DAY_OF_WEEK), "last thrusday");
-    assertTrue(next.after(last), "order for " + next + " after" + last);
+    try (WithTimeZone tz = new WithTimeZone())
+    {
+      int day = (new GregorianCalendar().get(Calendar.DAY_OF_WEEK) != Calendar.THURSDAY)
+          ? Calendar.THURSDAY
+          : Calendar.TUESDAY;
+      Timestamp next = DateUtils.getNextOrCurrent(day);
+      Timestamp last = DateUtils.getLastOrCurrent(day);
+      assertEquals(day, DateUtils.asCalendar(next).get(Calendar.DAY_OF_WEEK), "next thursday");
+      assertEquals(day, DateUtils.asCalendar(last).get(Calendar.DAY_OF_WEEK), "last thursday");
+      assertTrue(next.after(last), "order for " + next + " after" + last);
+    }
   }
   public static class StartAndEndUseCases
   {
