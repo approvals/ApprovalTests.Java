@@ -15,9 +15,9 @@ public class InlineApprovalsTest
   @UseReporter(DiffMergeReporter.class)
   public void testWithBuiltinReporter()
   {
-		var expected = """
-		Hello There***
-		""";
+    var expected = """
+        Hello There***
+        """;
     Options inline =
         // begin-snippet: inline_approvals
         new Options().inline(expected);

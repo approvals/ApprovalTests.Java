@@ -12,10 +12,7 @@ import java.io.IOException;
 import static org.approvaltests.writers.Writer.approved;
 import static org.approvaltests.writers.Writer.received;
 
-public class InlineComparator
-    implements
-      ApprovalNamer,
-      ApprovalFailureReporter
+public class InlineComparator implements ApprovalNamer, ApprovalFailureReporter
 {
   private final String                  sourceFilePath;
   private final StackTraceNamer         stackTraceNamer;
@@ -30,8 +27,6 @@ public class InlineComparator
     stackTraceNamer = new StackTraceNamer();
     sourceFilePath = stackTraceNamer.getSourceFilePath();
   }
-
-
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -40,7 +35,6 @@ public class InlineComparator
       try
       {
         this.approvedFile = File.createTempFile("temp", approved + extensionWithDot);
-
         FileUtils.writeFile(approvedFile, expected);
       }
       catch (IOException e)
@@ -81,8 +75,6 @@ public class InlineComparator
   {
     return sourceFilePath;
   }
-
-
   @Override
   public boolean report(String received, String approved)
   {
