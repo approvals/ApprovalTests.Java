@@ -1,5 +1,6 @@
-package org.approvaltests;
+package org.approvaltests.inline;
 
+import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.inline.InlineJavaReporter;
 import org.approvaltests.reporters.DiffMergeReporter;
@@ -14,7 +15,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@EnabledOnJre({JRE.JAVA_21})
 public class InlineApprovalsTest
 {
   @Test
