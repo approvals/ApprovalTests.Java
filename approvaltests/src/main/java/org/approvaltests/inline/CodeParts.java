@@ -37,6 +37,12 @@ public class CodeParts {
         return codeParts;
     }
 
+    public String getFullCode() {
+        return before + "\n" +
+            method + "\n" +
+            after;
+    }
+
     private static String extractLeadingWhitespace(String text)
     {
         Pattern pattern = Pattern.compile("^\\s+");

@@ -8,82 +8,85 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InlineJavaReporter implements ApprovalFailureReporter
-{
-  private final String                  sourceFilePath;
-  private final StackTraceNamer         stackTraceNamer;
-  private final ApprovalFailureReporter reporter;
-  public InlineJavaReporter(ApprovalFailureReporter reporter)
-  {
-    this.reporter = reporter;
-    this.stackTraceNamer = new StackTraceNamer();
-    this.sourceFilePath = stackTraceNamer.getSourceFilePath();
-  }
-  public String getSourceFilePath()
-  {
-    return sourceFilePath;
-  }
-  @Override
-  public boolean report(String received, String approved)
-  {
-    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
-    String newSource = createReceived(FileUtils.readFile(received));
-    return reporter.report(newSource, sourceFile);
-  }
-  public String createReceived(String actual)
-  {
-    String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
-    String received = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
-    String text = FileUtils.readFile(file);
-    String fullText = createNewReceivedFileText(text, actual, this.stackTraceNamer.getInfo().getMethodName());
-    FileUtils.writeFile(new File(received), fullText);
-    return received;
-  }
-  public static String createNewReceivedFileText(String text, String actual, String methodName)
-  {
-    text = text.replaceAll("\r\n", "\n");
-    CodeParts codeParts = CodeParts.splitCode(text, methodName);
-    int start = text.indexOf("void " + methodName + "(");
-    int startOfLine = text.substring(0, start).lastIndexOf("\n") + 1;
-    String line = text.substring(startOfLine, start);
-    String tab = extractLeadingWhitespace(line);
-    start = text.indexOf("{", start);
-    int codeBeforeExpected = text.indexOf("\n", start);
-    int end = text.indexOf("}", codeBeforeExpected);
-    // if there is an expected = then set the code before to the beginning of this line
-    int endString = text.indexOf("\"\"\";", codeBeforeExpected);
-    String part1 = text.substring(0, codeBeforeExpected);
-    String part2 = null;
-    if (0 < endString && endString < end)
-    {
-      // find next newline
-      endString = text.indexOf("\n", endString);
-      part2 = text.substring(endString + 1);
-    }
-    else
-    {
-      part2 = text.substring(codeBeforeExpected + 1);
-    }
-      return String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n%s", part1, tab, tab,
-        indent(actual, tab), tab, tab, tab, part2);
-  }
+public class InlineJavaReporter implements ApprovalFailureReporter {
+    private final String sourceFilePath;
+    private final StackTraceNamer stackTraceNamer;
+    private final ApprovalFailureReporter reporter;
 
-  public static String indent(String actual, String tab)
-  {
-    String[] split = actual.split("\n");
-    String output = "";
-    for (String line : split)
-    {
-      output += tab + tab + tab + line + "\n";
+    public InlineJavaReporter(ApprovalFailureReporter reporter) {
+        this.reporter = reporter;
+        this.stackTraceNamer = new StackTraceNamer();
+        this.sourceFilePath = stackTraceNamer.getSourceFilePath();
     }
-    return output;
-  }
-  private static String extractLeadingWhitespace(String text)
-  {
-    Pattern pattern = Pattern.compile("^\\s+");
-    Matcher matcher = pattern.matcher(text);
-    if (matcher.find())
-    { return matcher.group(); }
-    return "\t";
-  }
+
+    public String getSourceFilePath() {
+        return sourceFilePath;
+    }
+
+    @Override
+    public boolean report(String received, String approved) {
+        String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
+        String newSource = createReceived(FileUtils.readFile(received));
+        return reporter.report(newSource, sourceFile);
+    }
+
+    public String createReceived(String actual) {
+        String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
+        String received = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
+        String text = FileUtils.readFile(file);
+        String fullText = createNewReceivedFileText(text, actual, this.stackTraceNamer.getInfo().getMethodName());
+        FileUtils.writeFile(new File(received), fullText);
+        return received;
+    }
+
+    public static String createNewReceivedFileText(String text, String actual, String methodName) {
+        text = text.replaceAll("\r\n", "\n");
+        CodeParts codeParts = CodeParts.splitCode(text, methodName);
+        if (codeParts.method.contains("expected = \"\"\"")) {
+            replaceExpected(codeParts, actual);
+        } else {
+            addExpected(codeParts, actual);
+        }
+        return codeParts.getFullCode();
+    }
+
+    private static void addExpected(CodeParts codeParts, String actual) {
+        int start = codeParts.method.indexOf("{") + 2;
+        String before = codeParts.method.substring(0, start);
+        String after = codeParts.method.substring(start);
+        codeParts.method = before + getExpected(actual, codeParts.tab) + after;
+    }
+
+    private static String getExpected(String actual, String tab) {
+        return String.format("%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n",
+            tab, tab, indent(actual, tab), tab, tab, tab);
+    }
+
+    private static void replaceExpected(CodeParts codeParts, String actual) {
+        int start = codeParts.method.indexOf("expected = \"\"\"");
+        start = codeParts.method.substring(0, start).lastIndexOf("\n") + 1;
+        int end = codeParts.method.indexOf("\"\"\";");
+        end = codeParts.method.indexOf("\n", end) + 1;
+        String before = codeParts.method.substring(0, start);
+        String after = codeParts.method.substring(end);
+        codeParts.method = before + getExpected(actual, codeParts.tab) + after;
+    }
+
+    public static String indent(String actual, String tab) {
+        String[] split = actual.split("\n");
+        String output = "";
+        for (String line : split) {
+            output += tab + tab + tab + line + "\n";
+        }
+        return output;
+    }
+
+    private static String extractLeadingWhitespace(String text) {
+        Pattern pattern = Pattern.compile("^\\s+");
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return "\t";
+    }
 }
