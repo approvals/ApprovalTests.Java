@@ -2,13 +2,14 @@ package org.approvaltests.inline;
 
 import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.namer.StackTraceNamer;
 
 import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class InlineJavaReporter implements ApprovalFailureReporter {
+public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalReporterWithCleanUp {
     private final String sourceFilePath;
     private final StackTraceNamer stackTraceNamer;
     private final ApprovalFailureReporter reporter;
@@ -32,11 +33,15 @@ public class InlineJavaReporter implements ApprovalFailureReporter {
 
     public String createReceived(String actual) {
         String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
-        String received = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
+        String received = getReceivedFileName();
         String text = FileUtils.readFile(file);
         String fullText = createNewReceivedFileText(text, actual, this.stackTraceNamer.getInfo().getMethodName());
         FileUtils.writeFile(new File(received), fullText);
         return received;
+    }
+
+    private String getReceivedFileName() {
+        return sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
     }
 
     public static String createNewReceivedFileText(String text, String actual, String methodName) {
@@ -88,5 +93,10 @@ public class InlineJavaReporter implements ApprovalFailureReporter {
             return matcher.group();
         }
         return "\t";
+    }
+
+    @Override
+    public void cleanUp(String received, String approved) {
+        FileUtils.delete(getReceivedFileName());
     }
 }
