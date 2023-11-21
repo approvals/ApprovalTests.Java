@@ -1,0 +1,24 @@
+CodeParts{
+before:
+public class Test {
+    @Test
+method:
+    void testyMctest() {
+        Customer customer = Customer.create()
+            .existingCustomer()
+            .speakingEnglish()
+            .build();
+        stateService.save(TestUtils.userId().build(), customer);
+        var expected = """
+            [Customer]: account lookup
+            [     Bot]: Hi there!
+            [     Bot]: Let me try to help.
+            [     Bot]: routes to '12345'
+            """;
+        verifyConversation(expected, "account lookup");
+    }
+after:
+}
+tab:
+    
+}

@@ -42,15 +42,17 @@ public class InlineJavaReporter implements ApprovalFailureReporter
   public static String createNewReceivedFileText(String text, String actual, String methodName)
   {
     text = text.replaceAll("\r\n", "\n");
+    CodeParts codeParts = CodeParts.splitCode(text, methodName);
     int start = text.indexOf("void " + methodName + "(");
     int startOfLine = text.substring(0, start).lastIndexOf("\n") + 1;
     String line = text.substring(startOfLine, start);
     String tab = extractLeadingWhitespace(line);
     start = text.indexOf("{", start);
-    int next = text.indexOf("\n", start);
-    int end = text.indexOf("}", next);
-    int endString = text.indexOf("\"\"\";", next);
-    String part1 = text.substring(0, next);
+    int codeBeforeExpected = text.indexOf("\n", start);
+    int end = text.indexOf("}", codeBeforeExpected);
+    // if there is an expected = then set the code before to the beginning of this line
+    int endString = text.indexOf("\"\"\";", codeBeforeExpected);
+    String part1 = text.substring(0, codeBeforeExpected);
     String part2 = null;
     if (0 < endString && endString < end)
     {
@@ -60,12 +62,12 @@ public class InlineJavaReporter implements ApprovalFailureReporter
     }
     else
     {
-      part2 = text.substring(next + 1);
+      part2 = text.substring(codeBeforeExpected + 1);
     }
-    String fullText = String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n%s", part1, tab, tab,
+      return String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n%s", part1, tab, tab,
         indent(actual, tab), tab, tab, tab, part2);
-    return fullText;
   }
+
   public static String indent(String actual, String tab)
   {
     String[] split = actual.split("\n");

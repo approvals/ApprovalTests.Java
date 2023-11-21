@@ -74,6 +74,22 @@ public class InlineApprovalsTest
                 ""\";
             Approvals.verify("", Options.inline(expected));
           }
+        """, """
+          @Test
+          void testyMctest() {
+              Customer customer = Customer.create()
+                  .existingCustomer()
+                  .speakingEnglish()
+                  .build();
+              stateService.save(TestUtils.userId().build(), customer);
+              var expected = ""\"
+                  [Customer]: account lookup
+                  [     Bot]: Hi there!
+                  [     Bot]: Let me try to help.
+                  [     Bot]: routes to '12345'
+                  ""\";
+              verifyConversation(expected, "account lookup");
+          }
         """);
     Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
         + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
