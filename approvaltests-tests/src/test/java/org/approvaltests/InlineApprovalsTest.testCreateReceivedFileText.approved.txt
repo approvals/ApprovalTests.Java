@@ -14,9 +14,9 @@ Becomes:
   @Test
   public void testyMctest() {
     var expected = """
-    1
-    2
-    """;
+      1
+      2
+      """;
     Approvals.verify("", Options.inline(expected));
   }
 
@@ -32,9 +32,9 @@ Becomes:
 	public void testyMctest()
 	{
 		var expected = """
-		1
-		2
-		""";
+			1
+			2
+			""";
 		Approvals.verify("", Options.inline(expected));
 	}
 
@@ -53,9 +53,9 @@ Becomes:
   public void testyMctest()
   {
     var expected = """
-    1
-    2
-    """;
+      1
+      2
+      """;
     Approvals.verify("", Options.inline(expected));
   }
 
@@ -72,9 +72,9 @@ Becomes:
   @Test
   public void testyMctest(int foo) {
     var expected = """
-    1
-    2
-    """;
+      1
+      2
+      """;
     Approvals.verify("", Options.inline(expected));
   }
 

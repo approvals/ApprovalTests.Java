@@ -63,8 +63,8 @@ public class InlineJavaReporter implements ApprovalFailureReporter
     {
       part2 = text.substring(next + 1);
     }
-    String fullText = String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s\"\"\";\n%s", part1, tab, tab,
-        indent(actual, tab), tab, tab, part2);
+    String fullText = String.format("%s\n%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n%s", part1, tab, tab,
+        indent(actual, tab), tab, tab, tab, part2);
     return fullText;
   }
   public static String indent(String actual, String tab)
@@ -73,7 +73,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter
     String output = "";
     for (String line : split)
     {
-      output += tab + tab + line + "\n";
+      output += tab + tab + tab + line + "\n";
     }
     return output;
   }
