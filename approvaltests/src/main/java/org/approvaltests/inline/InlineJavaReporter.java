@@ -46,7 +46,6 @@ public class InlineJavaReporter implements ApprovalFailureReporter
     int startOfLine = text.substring(0, start).lastIndexOf("\n") + 1;
     String line = text.substring(startOfLine, start);
     String tab = extractLeadingWhitespace(line);
-
     start = text.indexOf("{", start);
     int next = text.indexOf("\n", start);
     int end = text.indexOf("}", next);
