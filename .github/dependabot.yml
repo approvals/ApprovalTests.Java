@@ -10,6 +10,7 @@ updates:
             - "org.junit.vintage"
             - "org.junit.jupiter"
             - "junit"
+            - "com.fasterxml.jackson.core"
     open-pull-requests-limit: 10
 
   - package-ecosystem: "github-actions"
