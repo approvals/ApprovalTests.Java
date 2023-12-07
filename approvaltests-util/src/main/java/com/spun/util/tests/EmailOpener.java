@@ -1,8 +1,8 @@
 package com.spun.util.tests;
 
 import com.spun.util.ObjectUtils;
+import jakarta.mail.Message;
 
-import javax.mail.Message;
 import java.io.File;
 import java.io.FileOutputStream;
 
