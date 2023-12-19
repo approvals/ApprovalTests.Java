@@ -111,7 +111,7 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-                <version>3.11.0</version>
+                <version>3.12.0</version>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
