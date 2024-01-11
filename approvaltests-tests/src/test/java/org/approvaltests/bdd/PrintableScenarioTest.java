@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class PrintableScenarioTest
@@ -17,7 +18,7 @@ public class PrintableScenarioTest
   {
     PrintableScenario story = new PrintableScenario("Buy Groceries", "Bob puts two items in the shopping cart");
     User currentUser = new User();
-    ShoppingCart shoppingCart = new ShoppingCart();
+    ShoppingCart shoppingCart = new ShoppingCart(currentUser);
     story.given(new Printable<>(currentUser, UserPrinter::print),
         new Printable<>(shoppingCart, ShoppingCartPrinter::print));
     story.when("Add oranges to the cart", () -> {
@@ -56,14 +57,21 @@ class Item
 
 class ShoppingCart
 {
-  public List<Item> articles = new ArrayList<>();
+  private final User user;
+  public List<Item>  articles = new ArrayList<>();
+  public ShoppingCart(User currentUser)
+  {
+    this.user = currentUser;
+  }
   public BigDecimal subtotal()
   {
     return articles.stream().map(Item::amount).reduce(BigDecimal.ZERO, BigDecimal::add);
   }
   public BigDecimal shipping()
   {
-    return BigDecimal.ONE;
+    if (Objects.equals(user.name, "Bob"))
+    { return BigDecimal.ONE; }
+    return BigDecimal.ZERO;
   }
   public BigDecimal total()
   {
