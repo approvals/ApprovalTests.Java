@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class PrintableScenarioTest
 {
+  // begin-snippet: bdd_test
   @Test
   public void printBDDScenario() throws Exception
   {
@@ -31,6 +32,7 @@ public class PrintableScenarioTest
     });
     Approvals.verify(story.then());
   }
+  // end-snippet
 }
 
 class User
