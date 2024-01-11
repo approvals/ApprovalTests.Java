@@ -1,6 +1,7 @@
 Methods with checked exceptions
 
 
+org.approvaltests.strings.PrintableScenario.when
 org.lambda.actions.Action0WithException.call
 org.lambda.actions.Action1WithException.call
 org.lambda.actions.Action2WithException.call
