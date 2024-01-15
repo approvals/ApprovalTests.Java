@@ -36,6 +36,7 @@ public class DocumentHelpersTest
     CtMethod m = getMethodX(method);
     Assertions.assertEquals(33.0, getLineNumber(m), 1.01);
   }
+  // why is this calculation of the modifier necessary?
   public static int getLineNumber(CtMethod m)
   {
     int modifier = 0;
@@ -63,6 +64,10 @@ public class DocumentHelpersTest
     else if (simpleName.equals("JsonJacksonApprovals"))
     {
       modifier = -2;
+    }
+    else if (simpleName.equals("JsonXstreamApprovals"))
+    {
+      modifier = -2; // blind guess / copy&paste from above
     }
     else if (simpleName.equals("VelocityApprovals"))
     {

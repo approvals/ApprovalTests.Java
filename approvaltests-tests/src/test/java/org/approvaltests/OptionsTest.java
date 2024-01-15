@@ -83,7 +83,8 @@ public class OptionsTest
   public static List<Class<?>> getApprovalClasses()
   {
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
-        VelocityApprovals.class, JsonJacksonApprovals.class);
+        VelocityApprovals.class, JsonJacksonApprovals.class, JsonXstreamApprovals.class);
+    // TODO: missing verification that JsonApprovals, JsonJacksonApprovals and JsonXStreamApprovals offer the same verify methods
   }
   public static void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass, String methodPrefix)
   {
