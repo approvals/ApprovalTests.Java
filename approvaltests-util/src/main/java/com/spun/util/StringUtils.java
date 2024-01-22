@@ -623,4 +623,12 @@ public class StringUtils
     }
     return contents;
   }
+  public static String removeFromEnd(String contents, String text)
+  {
+    return removeFromEnd(contents, text.length());
+  }
+  public static String removeFromEnd(String contents, int length)
+  {
+    return contents.substring(0, contents.length() - length);
+  }
 }
