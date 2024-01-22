@@ -22,13 +22,14 @@ public class ParsingFilesTest
   void testWithoutGenerics()
   {
     var expected = """
-      T[] -> Object[]
-      IN3[] -> Object[]
-      List<String> -> List
-      IN[][] -> Object[][]
-      """;
+        T[] -> Object[]
+        IN3[] -> Object[]
+        List<String> -> List
+        IN[][] -> Object[][]
+        """;
     String[] cases = {"T[]", "IN3[]", "List<String>", "IN[][]"};
-    Approvals.verifyAll("", cases, c -> String.format("%s -> %s", c, removeGenerics(c)), new Options().inline(expected));
+    Approvals.verifyAll("", cases, c -> String.format("%s -> %s", c, removeGenerics(c)),
+        new Options().inline(expected));
   }
   @Test
   public void getLineNumberOfThisMethod() throws Exception
@@ -82,7 +83,8 @@ public class ParsingFilesTest
     {
       String compileName = compiledMethodParameters.get(i).getSimpleName();
       String parseName = parsedMethodParameters.get(i).getTypeAsString();
-      if (parsedMethodParameters.get(i).isVarArgs()) {
+      if (parsedMethodParameters.get(i).isVarArgs())
+      {
         parseName += "[]";
       }
       String withoutGenerics = removeGenerics(parseName);
