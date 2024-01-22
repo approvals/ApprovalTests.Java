@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.github.javaparser.Range;
 import com.spun.util.FormattedException;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
@@ -85,7 +86,7 @@ public class DocumentHelpersTest
     getLink(Query.first(Approvals.class.getMethods(),
         m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
   }
-  private String showParameters(Method m)
+  public static String showParameters(Method m)
   {
     return StringUtils.join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())),
         ",");
@@ -94,9 +95,9 @@ public class DocumentHelpersTest
   {
     String baseUrl = "https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java";
     String file = m.getDeclaringClass().getName().replace('.', '/') + ".java";
-    CtMethod methodX = getMethodX(m);
-    int start = getLineNumber(methodX);
-    int end = start + 3;
+    Range methodLines = ParsingFilesTest.getMethodLines(m);
+    int start = methodLines.begin.line;
+    int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
   }
   private static CtMethod getMethodX(Method method)
