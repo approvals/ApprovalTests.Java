@@ -1,16 +1,9 @@
 package org.approvaltests;
 
 import com.github.javaparser.Range;
-import com.spun.util.FormattedException;
-import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
 import org.approvaltests.core.Options;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.lambda.functions.Functions;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
@@ -30,56 +23,7 @@ public class DocumentHelpersTest
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
-  @Test
-  public void testLineNumberOfThisMethod() throws NoSuchMethodException
-  {
-    Method method = DocumentHelpersTest.class.getMethod("testLineNumberOfThisMethod");
-    CtMethod m = getMethodX(method);
-    Assertions.assertEquals(33.0, getLineNumber(m), 1.01);
-  }
   // why is this calculation of the modifier necessary?
-  public static int getLineNumber(CtMethod m)
-  {
-    int modifier = 0;
-    String simpleName = m.getDeclaringClass().getSimpleName();
-    if (simpleName.equals("DocumentHelpersTest"))
-    {
-      modifier = -2;
-    }
-    else if (simpleName.equals("Approvals"))
-    {
-      modifier = 3;
-    }
-    else if (simpleName.equals("CombinationApprovals"))
-    {
-      modifier = 3;
-    }
-    else if (simpleName.equals("AwtApprovals"))
-    {
-      modifier = 12;
-    }
-    else if (simpleName.equals("JsonApprovals"))
-    {
-      modifier = 2;
-    }
-    else if (simpleName.equals("JsonJacksonApprovals"))
-    {
-      modifier = -2;
-    }
-    else if (simpleName.equals("JsonXstreamApprovals"))
-    {
-      modifier = -2; // blind guess / copy&paste from above
-    }
-    else if (simpleName.equals("VelocityApprovals"))
-    {
-      modifier = 2;
-    }
-    else
-    {
-      throw new FormattedException("Unknown modifier (%s) for class %s", modifier, simpleName);
-    }
-    return m.getMethodInfo().getLineNumber(0) + modifier;
-  }
   @Test
   void testLineNumbers()
   {
@@ -99,27 +43,6 @@ public class DocumentHelpersTest
     int start = methodLines.begin.line;
     int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
-  }
-  private static CtMethod getMethodX(Method method)
-  {
-    ClassPool pool = ClassPool.getDefault();
-    CtClass cc = ObjectUtils.throwAsError(() -> pool.get(method.getDeclaringClass().getName()));
-    Queryable<CtMethod> part1 = Query.where(cc.getDeclaredMethods(), m -> m.getName().equals(method.getName()));
-    Queryable<CtMethod> part2 = part1
-        .where(Functions.unchecked(m -> m.getParameterTypes().length == method.getParameterTypes().length));
-    Queryable<CtMethod> part3 = part2
-        .where(Functions.unchecked(m -> Query.all(m.getParameterTypes(), p -> Query.any(method.getParameterTypes(),
-            Functions.unchecked(mp -> mp.getSimpleName().equals(p.getSimpleName()))))));
-    CtMethod methodX = part3.first();
-    if (methodX == null)
-    {
-      Queryable<String> select = part2.select(Functions
-          .unchecked(m -> Query.select(m.getParameterTypes(), Functions.unchecked(p -> p.getName())).toString()));
-      String originalMethod = Query.select(method.getParameterTypes(), p -> p.getSimpleName()).toString();
-      String foo = "[Ljava.lang.Object;";
-      throw new FormattedException("Couldn't find method for %s", method.getName());
-    }
-    return methodX;
   }
   private static String getRegexForParameter(Method m)
   {
