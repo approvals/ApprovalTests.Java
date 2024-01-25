@@ -9,7 +9,6 @@ import org.lambda.query.Queryable;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class DocumentHelpersTest
@@ -23,12 +22,15 @@ public class DocumentHelpersTest
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
-  // why is this calculation of the modifier necessary?
   @Test
   void testLineNumbers()
   {
-    getLink(Query.first(Approvals.class.getMethods(),
-        m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
+    var expected = """
+      https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L98-L101
+      """;
+    String verifyAll = getLink(Query.first(Approvals.class.getMethods(),
+            m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
+    Approvals.verify(verifyAll, new Options().inline(expected));
   }
   public static String showParameters(Method m)
   {
@@ -44,23 +46,7 @@ public class DocumentHelpersTest
     int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
   }
-  private static String getRegexForParameter(Method m)
-  {
-    // https://github.com/jboss-javassist/javassist
-    //        Class<?> parameterType = m.getParameterTypes()[0];
-    Type typeParameters = m.getGenericParameterTypes()[0];
-    String name = Query.last(StringUtils.split(typeParameters.getTypeName(), "."));
-    return name.replaceAll("\\[\\]", "");
-  }
-  private static int countNewLines(String code, int untilIndex)
-  {
-    return code.substring(0, untilIndex).split("\n").length;
-  }
-  private boolean isStartOfMethod(Method m, String line)
-  {
-    String pattern = "void " + m.getName() + "(" + m.getParameterTypes()[0].getSimpleName();
-    return line.contains(pattern) && line.contains(", Options");
-  }
+
   private Queryable<Method> getAllVerifyFunctionsWithOptions(List<Class<?>> approvalClasses)
   {
     Queryable<Method> methods = new Queryable<>(Method.class);
