@@ -4,7 +4,8 @@
 <!-- toc -->
 ## Contents
 
-  * [API](#api)<!-- endToc -->
+  * [API](#api)
+  * [Optional Options](#optional-options)<!-- endToc -->
 
 ## API
 Approvals provides many convenience functions to verify different scenarios.  
