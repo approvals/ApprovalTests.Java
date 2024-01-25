@@ -12,28 +12,29 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
 import java.util.List;
 
-public class DocumentHelpersTest {
+public class DocumentHelpersTest
+{
   @Test
-  void listAllVerifyFunctions() {
-
+  void listAllVerifyFunctions()
+  {
     Queryable<Method> methods = getAllVerifyFunctionsWithOptions(OptionsTest.getApprovalClasses());
     Queryable<String> lines = methods.select(m -> String.format("%s. [%s ](%s) (%s)",
-                    m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersWithGrayedOutOptions(m)))
-            .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
+        m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersWithGrayedOutOptions(m)))
+        .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
-
   @Test
-  void testLineNumbers() {
+  void testLineNumbers()
+  {
     var expected = """
-      https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L102-L106
-      """;
+        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L102-L106
+        """;
     String verifyAll = getLink(Query.first(Approvals.class.getMethods(),
-            m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
+        m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
     Approvals.verify(verifyAll, new Options().inline(expected));
   }
-
-  public static String showParameters(Method m) {
+  public static String showParameters(Method m)
+  {
     Queryable<Parameter> withoutOptions = Query.where(m.getParameters(), p -> true);
     return StringUtils.join(withoutOptions.select(p1 -> String.format("%s", p1.getType().getSimpleName())), ",");
   }
@@ -42,12 +43,11 @@ public class DocumentHelpersTest {
     Queryable<Parameter> withoutOptions = Queryable.as(m.getParameters());
     return StringUtils.join(withoutOptions.select(DocumentHelpersTest::formatTypesWithGrayedOutOptions), ", ");
   }
-
-  private static String formatTypesWithGrayedOutOptions(Parameter p1) {
+  private static String formatTypesWithGrayedOutOptions(Parameter p1)
+  {
     String simpleName = p1.getType().getSimpleName();
     return simpleName.equals("Options") ? "$\\color{#AAA}{\\textsf{Options}}$" : simpleName;
   }
-
   public static String getLink(Method m)
   {
     String baseUrl = "https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java";
@@ -57,7 +57,6 @@ public class DocumentHelpersTest {
     int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
   }
-
   private Queryable<Method> getAllVerifyFunctionsWithOptions(List<Class<?>> approvalClasses)
   {
     Queryable<Method> methods = new Queryable<>(Method.class);
