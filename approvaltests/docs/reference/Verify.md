@@ -7,7 +7,11 @@
   * [API](#api)<!-- endToc -->
 
 ## API
-Approvals provides many convenience functions to verify different scenarios. Here is a list:
+Approvals provides many convenience functions to verify different scenarios.  
+Here is a list:
+
+*(Note: All verify functions have an optional "Options" parameter as the last parameter. For more info on this see Options)*
+
 
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L206-L222) (ApprovalApprover)  <!-- include: DocumentHelpersTest.listAllVerifyFunctions.approved.md -->
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L181-L184) (ApprovalWriter)  

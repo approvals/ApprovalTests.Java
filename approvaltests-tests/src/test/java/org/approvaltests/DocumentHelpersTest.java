@@ -16,9 +16,10 @@ import java.util.List;
 public class DocumentHelpersTest {
   @Test
   void listAllVerifyFunctions() {
+
     Queryable<Method> methods = getAllVerifyFunctionsWithOptions(OptionsTest.getApprovalClasses());
     Queryable<String> lines = methods.select(m -> String.format("%s. [%s ](%s) (%s)",
-                    m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersExceptOptions(m)))
+                    m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersWithGrayedOutOptions(m)))
             .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
@@ -26,19 +27,26 @@ public class DocumentHelpersTest {
   @Test
   void testLineNumbers() {
     var expected = """
-            https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L98-L101
-            """;
+      https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L102-L106
+      """;
     String verifyAll = getLink(Query.first(Approvals.class.getMethods(),
             m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
     Approvals.verify(verifyAll, new Options().inline(expected));
   }
 
   public static String showParameters(Method m) {
-    return showParametersExcept(m, p -> true);
+    Queryable<Parameter> withoutOptions = Query.where(m.getParameters(), p -> true);
+    return StringUtils.join(withoutOptions.select(p1 -> String.format("%s", p1.getType().getSimpleName())), ",");
   }
-  public static String showParametersExceptOptions(Method m)
+  public static String showParametersWithGrayedOutOptions(Method m)
   {
-      return showParametersExcept(m, p -> !p.getType().getSimpleName().equals("Options"));
+    Queryable<Parameter> withoutOptions = Queryable.as(m.getParameters());
+    return StringUtils.join(withoutOptions.select(p1 -> formatTypesWithGrayedOutOptions(p1)), ", ");
+  }
+
+  private static String formatTypesWithGrayedOutOptions(Parameter p1) {
+    String simpleName = p1.getType().getSimpleName();
+    return simpleName.equals("Options") ? "$\\color{#AAA}{\\textsf{Options}}$" : simpleName;
   }
 
   private static String showParametersExcept(Method m, Function1<Parameter, Boolean> filter) {
