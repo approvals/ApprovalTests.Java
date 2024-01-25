@@ -4,7 +4,6 @@ import com.github.javaparser.Range;
 import com.spun.util.StringUtils;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
-import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
@@ -41,17 +40,12 @@ public class DocumentHelpersTest {
   public static String showParametersWithGrayedOutOptions(Method m)
   {
     Queryable<Parameter> withoutOptions = Queryable.as(m.getParameters());
-    return StringUtils.join(withoutOptions.select(p1 -> formatTypesWithGrayedOutOptions(p1)), ", ");
+    return StringUtils.join(withoutOptions.select(DocumentHelpersTest::formatTypesWithGrayedOutOptions), ", ");
   }
 
   private static String formatTypesWithGrayedOutOptions(Parameter p1) {
     String simpleName = p1.getType().getSimpleName();
     return simpleName.equals("Options") ? "$\\color{#AAA}{\\textsf{Options}}$" : simpleName;
-  }
-
-  private static String showParametersExcept(Method m, Function1<Parameter, Boolean> filter) {
-    Queryable<Parameter> withoutOptions = Query.where(m.getParameters(), filter);
-    return StringUtils.join(withoutOptions.select(p -> String.format("%s", p.getType().getSimpleName())), ",");
   }
 
   public static String getLink(Method m)
@@ -67,12 +61,12 @@ public class DocumentHelpersTest {
   private Queryable<Method> getAllVerifyFunctionsWithOptions(List<Class<?>> approvalClasses)
   {
     Queryable<Method> methods = new Queryable<>(Method.class);
-    for (Class c : approvalClasses)
+    for (Class<?> c : approvalClasses)
     {
       Queryable<Method> declaredMethods = Queryable.as(c.getDeclaredMethods());
       Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith("verify")
           && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
-      List<Method> methodsWithOptions = methodList.where(m -> OptionsTest.isOptionsPresent(m));
+      List<Method> methodsWithOptions = methodList.where(OptionsTest::isOptionsPresent);
       methods.addAll(methodsWithOptions);
     }
     return methods;
