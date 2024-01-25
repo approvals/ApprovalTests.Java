@@ -10,7 +10,7 @@
 Approvals provides many convenience functions to verify different scenarios.  
 Here is a list:
 
-*(Note: All verify functions have an optional "Options" parameter as the last parameter. For more info on this see Options)*
+*(Note: All verify functions have an [optional "Options" parameter](#optional-options) as the last parameter.)*
 
 
  * Approvals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L206-L222) (ApprovalApprover, $\color{#AAA}{\textsf{Options}}$)  <!-- include: DocumentHelpersTest.listAllVerifyFunctions.approved.md -->
@@ -72,6 +72,18 @@ Here is a list:
  * JsonJacksonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonJacksonApprovals.java#L14-L17) (Object, $\color{#AAA}{\textsf{Options}}$)  
  * JsonXstreamApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonXstreamApprovals.java#L18-L21) (Object, $\color{#AAA}{\textsf{Options}}$)  
  * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L16-L24) (ContextAware, $\color{#AAA}{\textsf{Options}}$)  <!-- endInclude -->
+
+## Optional Options
+
+The Java language does not allow optional parameters (like many other languages do), however the same effect can be achieved with method overloading.  
+Therefore for every method that has an Options parameter, there is a corresponding method that does not.
+That method simply calls the other method with a `new Options()`.
+For example:
+```java
+public static void method(A a, B b) {
+  method(a, b, new Options());
+}
+```
 
 ---
 
