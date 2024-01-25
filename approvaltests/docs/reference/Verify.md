@@ -77,14 +77,11 @@ Here is a list:
 ## Optional Options
 
 The Java language does not allow optional parameters (like many other languages do), however the same effect can be achieved with method overloading.  
-Therefore for every method that has an Options parameter, there is a corresponding method that does not.
-That method simply calls the other method with a `new Options()`.
-For example:
-```java
-public static void method(A a, B b) {
-  method(a, b, new Options());
-}
-```
+Every method is actually two methods. One with an Options parameter, and one without.  
+
+The one without simply calls the other method with a `new Options()`.
+
+To find out more about the [Options parameter, click here](Options.md)  
 
 ---
 
