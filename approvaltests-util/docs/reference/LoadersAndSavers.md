@@ -4,8 +4,6 @@
 
 <!-- toc -->
 ## Contents
-
-    * [ExecutableCommand](#executablecommand)
   * [Loaders](#loaders)<!-- endToc -->
 ## What it is
 
@@ -15,11 +13,7 @@ Loaders tend to work similarly in functionality to a stored procedure.
 
 Savers allow you to save changes 
 
-### ExecutableCommand
-
-`ExecutableCommand`s extend Loaders to allow for easy testing.
-
-## Loaders
+## Interfaces
 
 The Loader interface looks like:
 <!-- snippet: loader_interface -->
@@ -30,15 +24,53 @@ public T load();
 <sup><a href='/approvaltests-util/src/main/java/com/spun/util/persistence/Loader.java#L5-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-loader_interface' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-The purpose for this is to allow you to split your method into two methods:
+And the Saver interface looks like:
+snippet: saver_interface
 
-1. Small method that gathers the loaders and calls the business logic
-1. Larger method that contains your business logic and calls the loaders
+## Loaders
+A `Loader` tends to wrap data access layers to a: database, file system, or Web service.
+By wrapping the data retrieval in a `Loader` interface it becomes easy to swap it out for testing and other polymorphism.
+This also helps to separate your business logic from the implementation of your service layer.
 
-For example:
+## Savers
 
+The `Saver` also tends to wrap data access layers to a: database, file system, or Web service.
+This is the "write" as opposed to the `Loader`'s "read".
 
+The `Saver` returns the saved object.
+This is needed because some savers do not mutate the object, but actually create a new instance.
+Often saving mutates or does not alter the saved object at all.
+In these instances the `Saver` simply returns what is passed in.
 
+## Common Usage Patterns
+Most current code hides the data access methods. For example:
+```java
+public JSON loadCustomer(QueryParameter p) {
+    // ... lots of logic
+}
+```
+Using the `Loader`s and `Saver`s you can convert this to two methods, the second of which is very easy to test and extend.
+```java
+public JSON loadCustomer(QueryParameter p) {
+    return loadCustomer(new CustomerQuery(p), new CustomerSaver());
+}
+public JSON loadCustomer(Loader<Customer> customerLoader, Saver<Customer> customerSaver) {
+    // ... lots of logic
+}
+```
+
+By adding this small seam the main business logic is much easier to test as it is isolated away from the database and service layer.
+
+## Testing
+The simplest way to mock a `Loader` or `Saver` is with a lambda.
+For example, if we wanted to test what happens when the query does not find a customer, we could do the following call:
+```java
+loadCustomer(c -> null, s -> s);
+```
+
+## ExecutableCommand
+
+`ExecutableCommand`s extend `Loader`s to allow for easy testing of the actual `Loader`.
 
 ---
 
