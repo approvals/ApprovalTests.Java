@@ -22,17 +22,23 @@ public class PrintableScenarioTest
     ShoppingCart shoppingCart = new ShoppingCart(currentUser);
     story.given(new Printable<>(currentUser, UserPrinter::print),
         new Printable<>(shoppingCart, ShoppingCartPrinter::print));
-    story.when("Add oranges to the cart", () -> {
-      shoppingCart.add("Oranges", 1, BigDecimal.valueOf(5));
-      return null;
-    });
-    story.when("Add apples to the cart", () -> {
-      shoppingCart.add("Apples", 3, BigDecimal.valueOf(4));
-      return null;
-    });
-    Approvals.verify(story.then());
+    story.when("Add oranges to the cart", () -> shoppingCart.add("Oranges", 1, BigDecimal.valueOf(5)));
+    story.when("Add apples to the cart",  () -> shoppingCart.add("Apples", 3, BigDecimal.valueOf(4)));
+    Approvals.verify(story);
   }
   // end-snippet
+
+  @Test
+  public void bddScenarioThatThrows() throws Exception
+  {
+    PrintableScenario story = new PrintableScenario("Shoplifting", "We expect an exception");
+    User currentUser = new User();
+    ShoppingCart shoppingCart = new ShoppingCart(currentUser);
+    story.given(new Printable<>(currentUser, UserPrinter::print),
+            new Printable<>(shoppingCart, ShoppingCartPrinter::print));
+    story.when("Something illegal", () -> {throw new RuntimeException("shoplifting");});
+    Approvals.verify(story);
+  }
 }
 
 class User

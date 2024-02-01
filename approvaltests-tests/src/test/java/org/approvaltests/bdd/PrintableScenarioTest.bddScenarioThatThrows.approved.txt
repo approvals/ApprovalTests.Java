@@ -1,0 +1,26 @@
+Shoplifting
+===========
+We expect an exception
+
+User: Bob
+
+ShoppingCart:
+Articles:
+
+Subtotal:0
+Shipping:1
+Total:1
+
+Something illegal
+-----------------
+This action threw an exception: java.lang.RuntimeException: shoplifting
+
+User: Bob
+
+ShoppingCart:
+Articles:
+
+Subtotal:0
+Shipping:1
+Total:1
+

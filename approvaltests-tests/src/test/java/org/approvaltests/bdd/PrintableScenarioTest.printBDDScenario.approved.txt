@@ -13,7 +13,6 @@ Total:1
 
 Add oranges to the cart
 -----------------------
-
 User: Bob
 
 ShoppingCart:
@@ -25,7 +24,6 @@ Total:6
 
 Add apples to the cart
 ----------------------
-
 User: Bob
 
 ShoppingCart:
