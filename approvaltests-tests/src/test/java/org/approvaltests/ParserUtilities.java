@@ -33,7 +33,7 @@ public class ParserUtilities
   public static MethodDeclaration getMethodDeclaration(Method method)
   {
     CompilationUnit cu = getCompilationUnit(method);
-    MethodDeclaration methodDeclaration = cu.findFirst(MethodDeclaration.class, md -> findMethod(method, md))
+    MethodDeclaration methodDeclaration = cu.findFirst(MethodDeclaration.class, md -> isParsedMethodEqualToCompiledMethod(method, md))
         .orElse(null);
     if (methodDeclaration == null)
     {
@@ -42,7 +42,7 @@ public class ParserUtilities
     }
     return methodDeclaration;
   }
-  private static boolean findMethod(Method compiledMethod, MethodDeclaration parsedMethod)
+  private static boolean isParsedMethodEqualToCompiledMethod(Method compiledMethod, MethodDeclaration parsedMethod)
   {
     if (!parsedMethod.getNameAsString().equals(compiledMethod.getName()))
     { return false; }
