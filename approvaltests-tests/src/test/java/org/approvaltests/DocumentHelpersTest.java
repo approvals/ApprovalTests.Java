@@ -17,6 +17,7 @@ public class DocumentHelpersTest
   @Test
   void listAllVerifyFunctions()
   {
+    ParsingFilesTest.addApprovalTestPath();
     Queryable<Method> methods = getAllVerifyFunctionsWithOptions(OptionsTest.getApprovalClasses());
     Queryable<String> lines = methods.select(m -> String.format("%s. [%s ](%s) (%s)",
         m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersWithGrayedOutOptions(m)))
@@ -26,11 +27,12 @@ public class DocumentHelpersTest
   @Test
   void testLineNumbers()
   {
+    ParsingFilesTest.addApprovalTestPath();
     var expected = """
-        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L102-L106
+        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L98-L101
         """;
-    String verifyAll = getLink(Query.first(Approvals.class.getMethods(),
-        m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
+    String verifyAll = getLink(Queryable.as(Approvals.class.getMethods()).orderBy(m -> m.getParameterCount())
+        .first(m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
     Approvals.verify(verifyAll, new Options().inline(expected));
   }
   public static String showParameters(Method m)
@@ -52,7 +54,7 @@ public class DocumentHelpersTest
   {
     String baseUrl = "https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java";
     String file = m.getDeclaringClass().getName().replace('.', '/') + ".java";
-    Range methodLines = ParsingFilesTest.getMethodLines(m);
+    Range methodLines = ParserUtilities.getLineNumbersForMethod(m);
     int start = methodLines.begin.line;
     int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
