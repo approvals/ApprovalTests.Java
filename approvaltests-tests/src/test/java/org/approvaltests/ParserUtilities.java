@@ -33,8 +33,8 @@ public class ParserUtilities
   public static MethodDeclaration getMethodDeclaration(Method method)
   {
     CompilationUnit cu = getCompilationUnit(method);
-    MethodDeclaration methodDeclaration = cu.findFirst(MethodDeclaration.class, md -> isParsedMethodEqualToCompiledMethod(method, md))
-        .orElse(null);
+    MethodDeclaration methodDeclaration = cu
+        .findFirst(MethodDeclaration.class, md -> isParsedMethodEqualToCompiledMethod(method, md)).orElse(null);
     if (methodDeclaration == null)
     {
       throw new FormattedException("Method Not Found:\n%s.%s(params...)",
