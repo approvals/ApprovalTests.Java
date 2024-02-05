@@ -63,12 +63,10 @@ public class ParserUtilities
   public static boolean isCompiledTypeSameAsParsedType(Parameter parsed, String compiledType,
       NodeList<TypeParameter> typeParameters)
   {
-    // Get the parsed parameter's type as a string
     return compiledType.equals(convertParsedParameterToCompiledTypeSimpleName(parsed, typeParameters));
   }
   public static CompilationUnit getCompilationUnit(Method method)
   {
-    // Parsing the source file
     CompilationUnit cu = null;
     ParseProblemException parseException = null;
     for (String sourceRootPath : SOURCE_PATHS)
@@ -87,7 +85,8 @@ public class ParserUtilities
     }
     if (cu == null && parseException != null)
     {
-      throw new RuntimeException("Error parsing the source file: " + parseException.getMessage(), parseException);
+      throw new RuntimeException(String.format("Error parsing the (method, source file): (%s, %s)",
+          method.getName(), parseException.getMessage()), parseException);
     }
     return cu;
   }
@@ -95,32 +94,41 @@ public class ParserUtilities
       List<TypeParameter> methodTypeParameters)
   {
     Type type = parameter.getType();
-    // Handle varargs, which are syntactically similar to arrays in the type system
     boolean isVarArg = parameter.isVarArgs();
-    // Check if the parameter type is a generic type parameter
-    if (methodTypeParameters.stream().anyMatch(tp -> type.toString().startsWith(tp.getNameAsString())) || isVarArg)
+    if (isParameterTypeGeneric(methodTypeParameters, type, isVarArg))
     {
-      // Adjust for varargs or regular arrays
-      long arrayCount = type.toString().chars().filter(ch -> ch == '[').count() + (isVarArg ? 1 : 0); // Add an extra array level for varargs
-      String baseType = "Object";
-      // Construct the array representation if needed
-      String arraySuffix = "";
-      for (int i = 0; i < arrayCount; i++)
-      {
-        arraySuffix += "[]";
-      }
-      return baseType + arraySuffix;
+      return handleGenericTypes(type, isVarArg);
     }
     else
     {
-      // For non-generic types, return the type name directly, removing generics information
-      String typeName = type.toString();
-      int genericMarkerIndex = typeName.indexOf('<');
-      if (genericMarkerIndex != -1)
-      {
-        typeName = typeName.substring(0, genericMarkerIndex);
-      }
-      return typeName;
+      return handleNonGenericTypes(type);
     }
+  }
+  private static boolean isParameterTypeGeneric(List<TypeParameter> methodTypeParameters, Type type,
+      boolean isVarArg)
+  {
+    return methodTypeParameters.stream().anyMatch(tp -> type.toString().startsWith(tp.getNameAsString()))
+        || isVarArg;
+  }
+  private static String handleGenericTypes(Type type, boolean isVarArg)
+  {
+    long arrayCount = type.toString().chars().filter(ch -> ch == '[').count() + (isVarArg ? 1 : 0); // Add an extra array level for varargs
+    String baseType = "Object";
+    String arraySuffix = "";
+    for (int i = 0; i < arrayCount; i++)
+    {
+      arraySuffix += "[]";
+    }
+    return baseType + arraySuffix;
+  }
+  private static String handleNonGenericTypes(Type type)
+  {
+    String typeName = type.toString();
+    int genericMarkerIndex = typeName.indexOf('<');
+    if (genericMarkerIndex != -1)
+    {
+      typeName = typeName.substring(0, genericMarkerIndex);
+    }
+    return typeName;
   }
 }
