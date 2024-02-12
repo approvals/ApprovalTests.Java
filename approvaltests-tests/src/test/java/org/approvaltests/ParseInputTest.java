@@ -1,11 +1,6 @@
 package org.approvaltests;
 
-import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
-import org.lambda.functions.Function1;
-import org.lambda.query.Queryable;
-
-import java.util.Objects;
 
 public class ParseInputTest {
 
@@ -43,62 +38,31 @@ public class ParseInputTest {
 
     }
 
-    public static final class Person {
-        private final String name;
-        private final int age;
+    @Test
+    void toHex() {
+        var expected = """
+            1 -> 1
+            10 -> a
+            16 -> 10
+            22 -> 16
+            """;
 
-        public Person(String name, int age) {
-            this.name = name;
-            this.age = age;
-        }
+        ParseInput.create(expected, Integer.class)
+                .verifyAll(s -> Integer.toHexString(s));
 
-        public String getAgeLabel() {
-                return age > 20 ? "adult" : "teenager";
-            }
-
-        public String name() {
-            return name;
-        }
-
-        public int age() {
-            return age;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this) return true;
-            if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (Person) obj;
-            return Objects.equals(this.name, that.name) &&
-                   this.age == that.age;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(name, age);
-        }
-
-        @Override
-        public String toString() {
-            return "Person[" +
-                   "name=" + name + ", " +
-                   "age=" + age + ']';
-        }
-
-
-        }
+    }
 
     @Test
     void testPeople() {
         var expected = """
                 Llewellyn, 25 -> adult
-                Oliver, 15 -> teenager
+                Oliver, 15 -> teenager    
                 """;
 
-        Creator<Person> createPerson = (a) -> new Person(a.first(), Integer.parseInt(a.last()));
+        Creator<Person> createPerson = (a) -> new Person(a.get(0), Integer.parseInt(a.get(1)));
         ParseInput.createFromParts(expected, createPerson)
-                        .verifyAll(s -> s.getAgeLabel());
+                .verifyAll(s -> s.getAgeLabel());
 
     }
 
-    }
+}
