@@ -62,7 +62,7 @@ public class ParseInputTest
         Llewellyn, 25 -> adult
         Oliver, 15 -> teenager
         """;
-    ParseInput.createFromParts(expected, (n,a) -> new Person(n,a), String.class, Integer.class)
-            .verifyAll(s -> s.getAgeLabel());
+    ParseInput.createFromParts(expected, (n, a) -> new Person(n, a), String.class, Integer.class)
+        .verifyAll(s -> s.getAgeLabel());
   }
 }
