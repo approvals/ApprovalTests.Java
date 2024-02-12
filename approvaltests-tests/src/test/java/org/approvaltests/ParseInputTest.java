@@ -55,4 +55,14 @@ public class ParseInputTest
     Creator<Person> createPerson = (a) -> new Person(a.get(0), Integer.parseInt(a.get(1)));
     ParseInput.createFromParts(expected, createPerson).verifyAll(s -> s.getAgeLabel());
   }
+  @Test
+  void testPeopleEasyLoad()
+  {
+    var expected = """
+        Llewellyn, 25 -> adult
+        Oliver, 15 -> teenager
+        """;
+    ParseInput.createFromParts(expected, (n,a) -> new Person(n,a), String.class, Integer.class)
+            .verifyAll(s -> s.getAgeLabel());
+  }
 }

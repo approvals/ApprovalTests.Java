@@ -3,6 +3,7 @@ package org.approvaltests;
 import com.spun.util.Tuple;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
 
@@ -32,8 +33,28 @@ public class ParseInput<T>
       return new Tuple<>(s, transformer.call(temp));
     });
   }
+
+  public static <IN1, IN2, T> ParseInput<T> createFromParts(String expected, Function2<IN1, IN2, T> transformer, Class<IN1> in1, Class<IN2> in2)
+  {
+      Function1<String, IN1> t1 = getTransformerForClass(in1);
+      Function1<String, IN2> t2 = getTransformerForClass(in2);
+
+    return new ParseInput<T>(expected, s -> {
+      var temp = Queryable.as(s.split(",")).select(String::trim);
+      IN1 v1 = t1.call(temp.get(0));
+      IN2 v2 = t2.call(temp.get(1));
+      T out = transformer.call(v1, v2);
+      return new Tuple<>(s, out);
+    });
+  }
+
   public static <T> ParseInput<T> create(String expected, Class<T> tranformTo)
   {
+    Function1<String, T> transformer1 = getTransformerForClass(tranformTo);
+    return ParseInput.create(expected, transformer1);
+  }
+
+  private static <T> Function1<String, T> getTransformerForClass(Class<T> tranformTo) {
     var transformers = new HashMap<Class<?>, Function1<String, Object>>()
     {
       {
@@ -46,8 +67,10 @@ public class ParseInput<T>
         put(Short.class, s -> Short.parseShort(s));
       }
     };
-    return ParseInput.create(expected, (Function1<String, T>) transformers.get(tranformTo));
+    Function1<String, T> transformer1 = (Function1<String, T>) transformers.get(tranformTo);
+    return transformer1;
   }
+
   public Queryable<Tuple<String, T>> parse(String expected)
   {
     return Queryable.as(expected.lines()).select(l -> l.split("->")[0].trim()).select(l -> transformer.call(l));
