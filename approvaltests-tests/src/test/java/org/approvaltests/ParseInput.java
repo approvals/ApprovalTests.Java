@@ -70,10 +70,8 @@ public class ParseInput<T>
   }
   public Queryable<Tuple<String, T>> parse(String expected)
   {
-    return Queryable.as(expected.lines())
-            .select(l -> l.split("->")[0].trim())
-            .where(l -> !l.isEmpty())
-            .select(l -> transformer.call(l));
+    return Queryable.as(expected.lines()).select(l -> l.split("->")[0].trim()).where(l -> !l.isEmpty())
+        .select(l -> transformer.call(l));
   }
   public String print(String input, Object output)
   {
