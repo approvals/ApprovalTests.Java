@@ -43,7 +43,7 @@ public class ParseInput<T>
       IN1 v1 = t1.call(temp.get(0));
       IN2 v2 = t2.call(temp.get(1));
       T out = transformer.call(v1, v2);
-      return new Tuple<>(s, out);
+      return new Tuple<>(temp.join(", "), out);
     });
   }
   public static <T> ParseInput<T> create(String expected, Class<T> tranformTo)
@@ -68,7 +68,7 @@ public class ParseInput<T>
     Function1<String, T> transformer1 = (Function1<String, T>) transformers.get(tranformTo);
     return transformer1;
   }
-  public Queryable<Tuple<String, T>> parse(String expected)
+  public Queryable<Tuple<String, T>> parse()
   {
     return Queryable.as(expected.lines())
             .select(l -> l.split("->")[0].trim())
@@ -81,7 +81,7 @@ public class ParseInput<T>
   }
   public void verifyAll(Function1<T, Object> transform)
   {
-    Approvals.verifyAll("", parse(expected), s -> print(s.getFirst(), transform.call(s.getSecond())),
+    Approvals.verifyAll("", parse(), s -> print(s.getFirst(), transform.call(s.getSecond())),
         new Options().inline(expected));
   }
 }
