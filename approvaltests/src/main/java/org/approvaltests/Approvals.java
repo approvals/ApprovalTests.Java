@@ -99,6 +99,14 @@ public class Approvals
   {
     verifyAll(values, f1, new Options());
   }
+  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> f1)
+  {
+    verifyAll(values, f1, new Options());
+  }
+  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> f1, Options options)
+  {
+    verifyAll("", values, f1, options);
+  }
   public static <T> void verifyAll(T[] values, Function1<T, String> f1, Options options)
   {
     String text = ArrayUtils.toString(values, f1);
