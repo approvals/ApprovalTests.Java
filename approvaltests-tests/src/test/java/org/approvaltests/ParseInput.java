@@ -51,7 +51,7 @@ public class ParseInput<OUT>
     Function1<String, OUT> transformer1 = getTransformerForClass(tranformTo);
     return ParseInput.from(expected, transformer1);
   }
-  public <OUT> ParseInputWith1Parameters<String, OUT> withTypes(Class<OUT> type1)
+  public <OUT> ParseInputWith1Parameters<OUT> withTypes(Class<OUT> type1)
   {
     return ParseInputWith1Parameters.create(expected, type1);
   }
@@ -103,7 +103,7 @@ public class ParseInput<OUT>
     this.multiline = true;
     return this;
   }
-  public <OUT> ParseInputWith1Parameters<String, OUT> transformTo(Function1<String, OUT> transformer)
+  public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function1<String, OUT> transformer)
   {
     return new ParseInputWith1Parameters<>(expected, transformer);
   }
