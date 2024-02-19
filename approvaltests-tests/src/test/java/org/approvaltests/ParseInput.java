@@ -94,9 +94,9 @@ public class ParseInput<OUT>
     Approvals.verifyAll("", parse(), s -> print(s.getFirst(), transform.call(s.getSecond())),
         new Options().inline(expected));
   }
-  public <T1, T2> ParseInputWith2Parameters<T1, T2> withTypes(Class<T1> type1, Class<T2> type2)
+  public <T1, T2> ParseInputWith2Parameters<T1, T2, Tuple<T1, T2>> withTypes(Class<T1> type1, Class<T2> type2)
   {
-    return new ParseInputWith2Parameters<T1, T2>(expected, type1, type2);
+    return ParseInputWith2Parameters.create(expected, type1, type2);
   }
   public ParseInput<OUT> multiline()
   {
@@ -106,21 +106,5 @@ public class ParseInput<OUT>
   public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function1<String, OUT> transformer)
   {
     return new ParseInputWith1Parameters<>(expected, transformer);
-  }
-  public class ParseInputWith2Parameters<T1, T2>
-  {
-    private final String    expected;
-    private final Class<T1> type1;
-    private final Class<T2> type2;
-    public ParseInputWith2Parameters(String expected, Class<T1> type1, Class<T2> type2)
-    {
-      this.expected = expected;
-      this.type1 = type1;
-      this.type2 = type2;
-    }
-    public <OUT> ParseInput<OUT> transformTo(Function2<T1, T2, OUT> transformer)
-    {
-      return ParseInput.create(expected, transformer, type1, type2);
-    }
   }
 }
