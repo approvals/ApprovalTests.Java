@@ -122,6 +122,22 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.any(this, funct);
   }
+  public static <T> Queryable<T> of(List<T> list)
+  {
+    return as(list);
+  }
+  public static <T> Queryable<T> of(List<T> list, Class<T> type)
+  {
+    return as(list, type);
+  }
+  public static <T> Queryable<T> of(T... array)
+  {
+    return as(array);
+  }
+  public static <T> Queryable<T> of(Stream<T> stream)
+  {
+    return as(stream);
+  }
   public static <T> Queryable<T> as(List<T> list)
   {
     Class<?> type = ClassUtils.getGreatestCommonBaseType(list);
