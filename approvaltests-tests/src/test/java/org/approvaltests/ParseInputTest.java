@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 public class ParseInputTest
 {
   @Test
-  void uppercasse()
+  void uppercase()
   {
     var expected = """
         a -> A
@@ -20,7 +20,7 @@ public class ParseInputTest
         eue -> EUE
         aza -> AZA
         """;
-    ParseInput.create(expected).verifyAll(s -> s.toUpperCase());
+    ParseInput.from(expected).verifyAll(s -> s.toUpperCase());
   }
   @Test
   void toBinary()
@@ -32,7 +32,8 @@ public class ParseInputTest
         8 -> 1000
         9 -> 1001
         """;
-    ParseInput.create(expected, Integer::parseInt).verifyAll(s -> Integer.toBinaryString(s));
+    ParseInput.from(expected).withTypes(Integer.class).verifyAll(s -> Integer.toBinaryString(s));
+    ParseInput.from(expected).transformTo(Integer::parseInt).verifyAll(s -> Integer.toBinaryString(s));
   }
   @Test
   void toHex()
@@ -43,7 +44,7 @@ public class ParseInputTest
         16 -> 10
         22 -> 16
         """;
-    ParseInput.create(expected, Integer.class).verifyAll(s -> Integer.toHexString(s));
+    ParseInput.from(expected, Integer.class).verifyAll(s -> Integer.toHexString(s));
   }
   @Test
   void testPeople()
@@ -53,7 +54,7 @@ public class ParseInputTest
         Oliver, 15 -> teenager
         """;
     Creator<Person> createPerson = (a) -> new Person(a.get(0), Integer.parseInt(a.get(1)));
-    ParseInput.createFromParts(expected, createPerson).verifyAll(s -> s.getAgeLabel());
+    ParseInput.create(expected, createPerson).verifyAll(s -> s.getAgeLabel());
   }
   @Test
   void testPeopleEasyLoad()
@@ -62,7 +63,7 @@ public class ParseInputTest
         Llewellyn, 25 -> adult
         Oliver, 15 -> teenager
         """;
-    ParseInput.createFromParts(expected, (n, a) -> new Person(n, a), String.class, Integer.class)
+    ParseInput.create(expected, (n, a) -> new Person(n, a), String.class, Integer.class)
         .verifyAll(s -> s.getAgeLabel());
   }
 }
