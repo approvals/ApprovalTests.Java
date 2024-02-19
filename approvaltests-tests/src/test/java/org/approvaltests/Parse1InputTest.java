@@ -20,10 +20,12 @@ public class Parse1InputTest
         1 -> 1
         9 -> 1001
         """;
-    var p1 = ParseInput.from(expected).withTypes(Integer.class);
+    ParseInputWith1Parameters<String, Integer> p1 = ParseInput.from(expected).withTypes(Integer.class);
     p1.verifyAll(Integer::toBinaryString);
-//    ParseInput.from(expected).transformTo(Integer::parseInt).verifyAll(Integer::toBinaryString);
-//    ParseInput.from(expected).withTypes(Integer.class).transformTo(s -> s)
-//        .verifyAll(s -> Integer.toBinaryString(s));
+    p1 = ParseInput.from(expected).transformTo(Integer::parseInt);
+    p1.verifyAll(Integer::toBinaryString);
+    p1 = ParseInput.from(expected).withTypes(Integer.class);
+    p1 = p1.transformTo(s -> s);
+    p1.verifyAll(Integer::toBinaryString);
   }
 }

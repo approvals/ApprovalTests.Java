@@ -55,10 +55,10 @@ public class ParseInput<OUT>
   {
     return ParseInputWith1Parameters.create(expected, type1);
   }
-//  public <OUT> ParseInput<OUT> transformTo(Function1<String, OUT> transformer)
-//  {
-//    return new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s)));
-//  }
+  //  public <OUT> ParseInput<OUT> transformTo(Function1<String, OUT> transformer)
+  //  {
+  //    return new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s)));
+  //  }
   public static <OUT> Function1<String, OUT> getTransformerForClass(Class<OUT> tranformTo)
   {
     var transformers = new HashMap<Class<?>, Function1<String, Object>>()
@@ -98,18 +98,15 @@ public class ParseInput<OUT>
   {
     return new ParseInputWith2Parameters<T1, T2>(expected, type1, type2);
   }
-
   public ParseInput<OUT> multiline()
   {
     this.multiline = true;
     return this;
   }
-
-  public <OUT> ParseInput<OUT> transformTo(Function1<String, OUT> function1)
+  public <OUT> ParseInputWith1Parameters<String, OUT> transformTo(Function1<String, OUT> transformer)
   {
-    return from(expected, function1);
+    return new ParseInputWith1Parameters<>(expected, transformer);
   }
-
   public class ParseInputWith2Parameters<T1, T2>
   {
     private final String    expected;

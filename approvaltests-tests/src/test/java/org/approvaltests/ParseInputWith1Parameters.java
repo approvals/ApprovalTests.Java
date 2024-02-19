@@ -19,8 +19,9 @@ public class ParseInputWith1Parameters<T1, OUT>
   {
     ParseInput.from(expected, transformer).verifyAll(transform);
   }
+  public <OUT2> ParseInputWith1Parameters<String, OUT2> transformTo(Function1<OUT, OUT2> transformer1)
+  {
+    Function1<String, OUT2> transformer2 = (String t) -> transformer1.call(transformer.call(t));
+    return new ParseInputWith1Parameters<>(expected, transformer2);
+  }
 }
-//  public ParseInputWith1Parameters<String, OUT> transformTo(Function1<T1, OUT> transformer)
-//  {
-//    return new ParseInputWith1Parameters<>(expected, t -> transformer.call(this.transformer.call(t)));
-//  }
