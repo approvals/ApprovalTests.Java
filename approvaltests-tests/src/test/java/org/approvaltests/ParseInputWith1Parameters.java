@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import org.lambda.functions.Function1;
+import org.lambda.query.Queryable;
 
 public class ParseInputWith1Parameters<OUT>
 {
@@ -24,4 +25,8 @@ public class ParseInputWith1Parameters<OUT>
   {
     ParseInput.from(expected, transformer).verifyAll(transform);
   }
+
+    public Queryable<OUT> getInputs() {
+        return ParseInput.from(expected, transformer).parse().select(t -> t.getSecond());
+    }
 }

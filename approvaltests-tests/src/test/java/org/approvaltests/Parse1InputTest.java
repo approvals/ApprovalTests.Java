@@ -1,6 +1,8 @@
 package org.approvaltests;
 
+import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
+import org.lambda.query.Queryable;
 
 public class Parse1InputTest
 {
@@ -23,5 +25,8 @@ public class Parse1InputTest
     ParseInput.from(expected).withTypes(Integer.class).verifyAll(Integer::toBinaryString);
     ParseInput.from(expected).transformTo(Integer::parseInt).verifyAll(Integer::toBinaryString);
     ParseInput.from(expected).withTypes(String.class).transformTo(Integer::parseInt).verifyAll(Integer::toBinaryString);
+    // the hard way
+    Queryable<Integer> inputs = ParseInput.from(expected).withTypes(Integer.class).getInputs();
+    Approvals.verifyAll(inputs, i -> i + " -> " + Integer.toBinaryString(i), new Options().inline(expected));
   }
 }
