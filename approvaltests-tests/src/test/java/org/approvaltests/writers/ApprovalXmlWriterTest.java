@@ -1,9 +1,15 @@
 package org.approvaltests.writers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.scrubbers.RegExScrubber;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator.Feature.WRITE_XML_DECLARATION;
 
 public class ApprovalXmlWriterTest
 {
@@ -35,5 +41,37 @@ public class ApprovalXmlWriterTest
   {
     Approvals.verifyXml("<xml><hello/><start>hi</xml>");
     System.err.println("Note: The previous xml error (</start>) is expected ");
+  }
+  @Test
+  void xmlOutputByJacksonIsHandledCorrectly() throws JsonProcessingException
+  {
+    ObjectWriter objectWriter = new XmlMapper().configure(WRITE_XML_DECLARATION, true).writer();
+    String jacksonXml = objectWriter.writeValueAsString(new JacksonTestPOJO());
+    String approvalsWriterXml = ApprovalXmlWriter.prettyPrint(jacksonXml, 2);
+    Assertions.assertEquals(jacksonXml, approvalsWriterXml);
+  }
+  @Test
+  void xmlOutputByJacksonIsHandledCorrectlyWhenPrettyPrintingIsEnabled() throws JsonProcessingException
+  {
+    ObjectWriter objectWriter = new XmlMapper().configure(WRITE_XML_DECLARATION, true)
+        .writerWithDefaultPrettyPrinter();
+    String jacksonXml = objectWriter.writeValueAsString(new JacksonTestPOJO());
+    String approvalsWriterXml = ApprovalXmlWriter.prettyPrint(jacksonXml, 2);
+    Assertions.assertEquals(jacksonXml, approvalsWriterXml);
+  }
+  private static class JacksonTestPOJO
+  {
+    public String getSomeText()
+    {
+      return "Some text";
+    }
+    public String getSomeTextWithAmpersand()
+    {
+      return "Some more text & some more";
+    }
+    public String getEmoji()
+    {
+      return "😸";
+    }
   }
 }
