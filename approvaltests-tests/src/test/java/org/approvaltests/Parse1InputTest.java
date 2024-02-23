@@ -22,6 +22,7 @@ public class Parse1InputTest
         """;
     ParseInput.from(expected).withTypes(Integer.class).verifyAll(Integer::toBinaryString);
     ParseInput.from(expected).transformTo(Integer::parseInt).verifyAll(Integer::toBinaryString);
-    ParseInput.from(expected).withTypes(String.class).transformTo(Integer::parseInt).verifyAll(Integer::toBinaryString);
+    ParseInput.from(expected).withTypes(String.class).transformTo(Integer::parseInt)
+        .verifyAll(Integer::toBinaryString);
   }
 }
