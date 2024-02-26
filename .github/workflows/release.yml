@@ -39,13 +39,13 @@ jobs:
       - name: set snapshot version
         run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
 
-      - name: renable formatting
+      - name: re-enable formatting
         run: ./set_formatting_on.sh
-        
       - name: Install Java for script
         uses: actions/setup-java@v4
         with:
-          java-version: 16
+          distribution: 'zulu'
+          java-version: '17'
 
       - name: Run documentation update
         run: java build/UpdateVersion.java ${{ steps.version.outputs.tag }}
