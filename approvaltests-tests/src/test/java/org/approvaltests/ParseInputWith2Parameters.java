@@ -2,19 +2,19 @@ package org.approvaltests;
 
 import com.spun.util.Tuple;
 import org.lambda.functions.Function1;
+import org.lambda.functions.Function2;
 import org.lambda.query.Queryable;
 
-public class ParseInputWith2Parameters<IN1, IN2, OUT>
+public class ParseInputWith2Parameters<IN1, IN2>
 {
   private final String                 expected;
-  private final Function1<String, OUT> transformer;
-  public ParseInputWith2Parameters(String expected, Function1<String, OUT> transformer)
+  private final Function1<String, Tuple<IN1, IN2>> transformer;
+  public ParseInputWith2Parameters(String expected, Function1<String, Tuple<IN1, IN2>> transformer)
   {
     this.expected = expected;
     this.transformer = transformer;
   }
-
-  public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2, Tuple<IN1, IN2>> create(String expected,
+  public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2> create(String expected,
       Function1<String, IN1> t1, Function1<String, IN2> t2)
   {
     Function1<String, Tuple<IN1, IN2>> f = s -> {
@@ -25,13 +25,16 @@ public class ParseInputWith2Parameters<IN1, IN2, OUT>
     };
     return new ParseInputWith2Parameters<>(expected, f);
   }
-  //    public <OUT2> ParseInputWith2Parameters<OUT2> transformTo(Function1<IN1, OUT2> transformer1)
-  //    {
-  //        Function1<String, OUT2> transformer2 = (String t) -> transformer1.call(transformer.call(t));
-  //        return new ParseInputWith2Parameters<>(expected, transformer2);
-  //    }
-  public void verifyAll(Function1<OUT, Object> transform)
+  public void verifyAll(Function1<Tuple<IN1, IN2>, Object> transform)
   {
-    new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s))).verifyAll(transform);
+    getParseInput().verifyAll(transform);
+  }
+  public void verifyAll(Function2<IN1, IN2, Object> transform)
+  {
+    getParseInput().verifyAll((t) -> transform.call(t.getFirst(), t.getSecond()));
+  }
+  private ParseInput<Tuple<IN1, IN2>> getParseInput()
+  {
+    return new ParseInput<>(expected, s -> new Tuple<>(s, transformer.call(s)));
   }
 }
