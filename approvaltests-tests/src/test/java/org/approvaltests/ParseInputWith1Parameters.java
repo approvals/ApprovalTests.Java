@@ -26,12 +26,15 @@ public class ParseInputWith1Parameters<OUT>
   }
   public void verifyAll(Function1<OUT, Object> transform)
   {
-    new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s)), multiline).verifyAll(transform);
+    getParseInput().verifyAll(transform);
   }
   public Queryable<OUT> getInputs()
   {
-    ParseInput<OUT> parseInput = new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s)),
-        multiline);
-    return parseInput.parse().select(t -> t.getSecond());
+      return getParseInput().parse().select(Tuple::getSecond);
+  }
+  private ParseInput<OUT> getParseInput()
+  {
+    Function1<String, Tuple<String, OUT>> transformer = s -> new Tuple<>(s, this.transformer.call(s));
+    return new ParseInput<OUT>(expected, transformer, multiline);
   }
 }
