@@ -20,6 +20,11 @@ public class ParseInputWith2Parameters<IN1, IN2, OUT>
   {
     Function1<String, IN1> t1 = getTransformerForClass(type1);
     Function1<String, IN2> t2 = getTransformerForClass(type2);
+    return create(expected, t1, t2);
+  }
+  public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2, Tuple<IN1, IN2>> create(String expected,
+      Function1<String, IN1> t1, Function1<String, IN2> t2)
+  {
     Function1<String, Tuple<IN1, IN2>> f = s -> {
       var temp = Queryable.as(s.split(",")).select(String::trim);
       IN1 v1 = t1.call(temp.get(0));

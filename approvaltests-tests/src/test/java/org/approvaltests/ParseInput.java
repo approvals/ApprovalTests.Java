@@ -98,6 +98,11 @@ public class ParseInput<OUT>
   {
     return ParseInputWith2Parameters.create(expected, type1, type2);
   }
+  public <T1, T2>  ParseInputWith2Parameters<T1, T2, Tuple<T1, T2>> transformTo(Function1<String, T1> transformer1, Function1<String, T2> transformer2)
+  {
+    return ParseInputWith2Parameters.create(expected, transformer1, transformer2);
+
+  }
   public ParseInput<OUT> multiline()
   {
     this.multiline = true;
@@ -106,5 +111,9 @@ public class ParseInput<OUT>
   public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function1<String, OUT> transformer)
   {
     return new ParseInputWith1Parameters<>(expected, transformer);
+  }
+  public Queryable<OUT> getInputs()
+  {
+    return parse().select(Tuple::getSecond);
   }
 }
