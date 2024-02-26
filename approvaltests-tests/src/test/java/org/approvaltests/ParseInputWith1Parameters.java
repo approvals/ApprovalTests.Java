@@ -25,8 +25,8 @@ public class ParseInputWith1Parameters<OUT>
   {
     ParseInput.from(expected, transformer).verifyAll(transform);
   }
-
-    public Queryable<OUT> getInputs() {
-        return ParseInput.from(expected, transformer).parse().select(t -> t.getSecond());
-    }
+  public Queryable<OUT> getInputs()
+  {
+    return ParseInput.from(expected, transformer).parse().select(t -> t.getSecond());
+  }
 }
