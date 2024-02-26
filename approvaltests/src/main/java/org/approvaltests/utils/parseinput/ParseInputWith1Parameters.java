@@ -1,4 +1,4 @@
-package org.approvaltests;
+package org.approvaltests.utils.parseinput;
 
 import com.spun.util.Tuple;
 import org.lambda.functions.Function1;
@@ -7,8 +7,8 @@ import org.lambda.query.Queryable;
 public class ParseInputWith1Parameters<OUT>
 {
   private final String                 expected;
-  private final Function1<String, OUT> transformer;
   private final boolean                multiline;
+  private final Function1<String, OUT> transformer;
   public ParseInputWith1Parameters(String expected, Function1<String, OUT> transformer, boolean multiline)
   {
     this.expected = expected;
@@ -24,17 +24,17 @@ public class ParseInputWith1Parameters<OUT>
     Function1<String, OUT2> transformer2 = (String t) -> transformer1.call(transformer.call(t));
     return new ParseInputWith1Parameters<>(expected, transformer2, multiline);
   }
-  public void verifyAll(Function1<OUT, Object> transform)
-  {
-    getParseInput().verifyAll(transform);
-  }
   public Queryable<OUT> getInputs()
   {
-      return getParseInput().parse().select(Tuple::getSecond);
+    return getParseInput().parse().select(Tuple::getSecond);
   }
   private ParseInput<OUT> getParseInput()
   {
     Function1<String, Tuple<String, OUT>> transformer = s -> new Tuple<>(s, this.transformer.call(s));
     return new ParseInput<OUT>(expected, transformer, multiline);
+  }
+  public void verifyAll(Function1<OUT, Object> transform)
+  {
+    getParseInput().verifyAll(transform);
   }
 }

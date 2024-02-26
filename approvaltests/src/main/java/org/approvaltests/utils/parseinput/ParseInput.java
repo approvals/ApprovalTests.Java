@@ -1,11 +1,13 @@
-package org.approvaltests;
+package org.approvaltests.utils.parseinput;
 
 import com.spun.util.Tuple;
+import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ParseInput<OUT>
 {
@@ -29,11 +31,11 @@ public class ParseInput<OUT>
   public Queryable<Tuple<String, OUT>> parse()
   {
     Function1<String, Boolean> f = multiline ? s -> s.contains("->") : s -> true;
-    return Queryable.as(expected.lines()) //
-            .where(f) //
-            .select(l -> l.split("->")[0].trim()) //
-            .where(l -> !l.isEmpty()) //
-            .select(l -> transformer.call(l));
+    return Queryable.as(expected.split("\n")) //
+        .where(f) //
+        .select(l -> l.split("->")[0].trim()) //
+        .where(l -> !l.isEmpty()) //
+        .select(l -> transformer.call(l));
   }
   public Queryable<OUT> getInputs()
   {
@@ -46,7 +48,7 @@ public class ParseInput<OUT>
   }
   public static <OUT> Function1<String, OUT> getTransformerForClass(Class<OUT> targetType)
   {
-    var transformers = new HashMap<Class<?>, Function1<String, Object>>()
+    Map<Class<?>, Function1<String, Object>> transformers = new HashMap<Class<?>, Function1<String, Object>>()
     {
       {
         put(Integer.class, s -> Integer.parseInt(s));

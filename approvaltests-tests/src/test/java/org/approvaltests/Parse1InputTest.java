@@ -2,6 +2,7 @@ package org.approvaltests;
 
 import com.spun.util.JsonUtils;
 import org.approvaltests.core.Options;
+import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Queryable;
 
@@ -39,16 +40,18 @@ public class Parse1InputTest
   void testMultiLineSupport()
   {
     var expected = """
-      1 -> {
-        "name": "name",
-        "age": 1
-      }
-      9 -> {
-        "name": "name",
-        "age": 9
-      }
-      """;
-    ParseInput.from(expected).multiline().verifyAll(s -> JsonUtils.asJson(new Person("name", Integer.parseInt(s))));
-    ParseInput.from(expected).multiline().withTypes(Integer.class).transformTo(i -> new Person("name", i)).verifyAll(s -> JsonUtils.asJson(s));
+        1 -> {
+          "name": "name",
+          "age": 1
+        }
+        9 -> {
+          "name": "name",
+          "age": 9
+        }
+        """;
+    ParseInput.from(expected).multiline()
+        .verifyAll(s -> JsonUtils.asJson(new Person("name", Integer.parseInt(s))));
+    ParseInput.from(expected).multiline().withTypes(Integer.class).transformTo(i -> new Person("name", i))
+        .verifyAll(s -> JsonUtils.asJson(s));
   }
 }

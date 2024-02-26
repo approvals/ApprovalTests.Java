@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 
 public class Parse2InputTest
@@ -22,15 +23,15 @@ public class Parse2InputTest
   void testPersonAge()
   {
     var expected = """
-      Llewellyn, 25 -> Person[
-          name=Llewellyn
-          label=adult
-      ]
-      Oliver, 15 -> Person[
-          name=Oliver
-          label=teenager
-      ]
-      """;
+        Llewellyn, 25 -> Person[
+            name=Llewellyn
+            label=adult
+        ]
+        Oliver, 15 -> Person[
+            name=Oliver
+            label=teenager
+        ]
+        """;
     ParseInput.from(expected).multiline().withTypes(String.class, Integer.class).transformTo(Person::new)
         .verifyAll(Person::toString);
   }

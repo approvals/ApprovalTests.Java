@@ -1,4 +1,4 @@
-package org.approvaltests;
+package org.approvaltests.utils.parseinput;
 
 import com.spun.util.Tuple;
 import org.lambda.functions.Function1;
@@ -9,32 +9,24 @@ public class ParseInputWith2Parameters<IN1, IN2>
 {
   private final String                             expected;
   private final Function1<String, Tuple<IN1, IN2>> transformer;
-  private final boolean multiline;
-
-  public ParseInputWith2Parameters(String expected, Function1<String, Tuple<IN1, IN2>> transformer, boolean multiline)
+  private final boolean                            multiline;
+  public ParseInputWith2Parameters(String expected, Function1<String, Tuple<IN1, IN2>> transformer,
+      boolean multiline)
   {
     this.expected = expected;
     this.transformer = transformer;
     this.multiline = multiline;
   }
   public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2> create(String expected, Function1<String, IN1> t1,
-                                                                      Function1<String, IN2> t2, boolean multiline)
+      Function1<String, IN2> t2, boolean multiline)
   {
     Function1<String, Tuple<IN1, IN2>> f = s -> {
-      var temp = Queryable.as(s.split(",")).select(String::trim);
+      Queryable<String> temp = Queryable.as(s.split(",")).select(String::trim);
       IN1 v1 = t1.call(temp.get(0));
       IN2 v2 = t2.call(temp.get(1));
       return new Tuple<>(v1, v2);
     };
     return new ParseInputWith2Parameters<>(expected, f, multiline);
-  }
-  public void verifyAll(Function1<Tuple<IN1, IN2>, Object> transform)
-  {
-    getParseInput().verifyAll(transform);
-  }
-  public void verifyAll(Function2<IN1, IN2, Object> transform)
-  {
-    getParseInput().verifyAll((t) -> transform.call(t.getFirst(), t.getSecond()));
   }
   private ParseInput<Tuple<IN1, IN2>> getParseInput()
   {
@@ -47,5 +39,13 @@ public class ParseInputWith2Parameters<IN1, IN2>
       return transform.call(transformed.getFirst(), transformed.getSecond());
     };
     return new ParseInputWith1Parameters<>(expected, f1, multiline);
+  }
+  public void verifyAll(Function2<IN1, IN2, Object> transform)
+  {
+    getParseInput().verifyAll((t) -> transform.call(t.getFirst(), t.getSecond()));
+  }
+  public void verifyAll(Function1<Tuple<IN1, IN2>, Object> transform)
+  {
+    getParseInput().verifyAll(transform);
   }
 }
