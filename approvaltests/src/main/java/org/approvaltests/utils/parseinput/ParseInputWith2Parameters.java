@@ -9,7 +9,7 @@ public class ParseInputWith2Parameters<IN1, IN2>
 {
   private final String                             expected;
   private final Function1<String, Tuple<IN1, IN2>> transformer;
-  private final ParseInput.ParseInputOptions options;
+  private final ParseInput.ParseInputOptions       options;
   public ParseInputWith2Parameters(String expected, Function1<String, Tuple<IN1, IN2>> transformer,
       ParseInput.ParseInputOptions options)
   {

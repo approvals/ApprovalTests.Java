@@ -6,16 +6,18 @@ import org.lambda.query.Queryable;
 
 public class ParseInputWith1Parameters<OUT>
 {
-  private final String                 expected;
+  private final String                       expected;
   private final ParseInput.ParseInputOptions options;
-  private final Function1<String, OUT> transformer;
-  public ParseInputWith1Parameters(String expected, Function1<String, OUT> transformer, ParseInput.ParseInputOptions options)
+  private final Function1<String, OUT>       transformer;
+  public ParseInputWith1Parameters(String expected, Function1<String, OUT> transformer,
+      ParseInput.ParseInputOptions options)
   {
     this.expected = expected;
     this.transformer = transformer;
     this.options = options;
   }
-  public static <OUT> ParseInputWith1Parameters<OUT> create(String expected, Class<OUT> type1, ParseInput.ParseInputOptions multiline)
+  public static <OUT> ParseInputWith1Parameters<OUT> create(String expected, Class<OUT> type1,
+      ParseInput.ParseInputOptions multiline)
   {
     return new ParseInputWith1Parameters<>(expected, ParseInput.getTransformerForClass(type1), multiline);
   }
