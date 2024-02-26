@@ -13,19 +13,21 @@ public class ParseInput<OUT>
   private final String                                expected;
   private final Function1<String, Tuple<String, OUT>> transformer;
   private boolean                                     multiline;
+  public ParseInput(String expected, Function1<String, Tuple<String, OUT>> transformer, boolean multiline)
+  {
+    this.expected = expected;
+    this.transformer = transformer;
+    this.multiline = multiline;
+  }
+  ParseInput(String expected, Function1<String, Tuple<String, OUT>> transformer)
+  {
+    this(expected, transformer, false);
+  }
   public static ParseInput<String> from(String expected)
   {
     return new ParseInput<String>(expected, s -> new Tuple<>(s, s));
   }
-  public static <OUT> ParseInput<OUT> from(String expected, Function1<String, OUT> transformer)
-  {
-    return new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s)));
-  }
-  private ParseInput(String expected, Function1<String, Tuple<String, OUT>> transformer)
-  {
-    this.expected = expected;
-    this.transformer = transformer;
-  }
+
   public static <OUT> ParseInput<OUT> create(String expected, Function1<Queryable<String>, OUT> transformer)
   {
     return new ParseInput<OUT>(expected, s -> {
@@ -49,11 +51,11 @@ public class ParseInput<OUT>
   public static <OUT> ParseInput<OUT> from(String expected, Class<OUT> tranformTo)
   {
     Function1<String, OUT> transformer1 = getTransformerForClass(tranformTo);
-    return ParseInput.from(expected, transformer1);
+    return new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer1.call(s)));
   }
   public <OUT> ParseInputWith1Parameters<OUT> withTypes(Class<OUT> type1)
   {
-    return ParseInputWith1Parameters.create(expected, type1);
+    return ParseInputWith1Parameters.create(expected, type1, multiline);
   }
   //  public <OUT> ParseInput<OUT> transformTo(Function1<String, OUT> transformer)
   //  {
@@ -96,21 +98,21 @@ public class ParseInput<OUT>
   }
   public <T1, T2> ParseInputWith2Parameters<T1, T2, Tuple<T1, T2>> withTypes(Class<T1> type1, Class<T2> type2)
   {
-    return ParseInputWith2Parameters.create(expected, type1, type2);
+    return ParseInputWith2Parameters.create(expected, getTransformerForClass(type1),
+        getTransformerForClass(type2));
   }
-  public <T1, T2>  ParseInputWith2Parameters<T1, T2, Tuple<T1, T2>> transformTo(Function1<String, T1> transformer1, Function1<String, T2> transformer2)
+  public <T1, T2> ParseInputWith2Parameters<T1, T2, Tuple<T1, T2>> transformTo(Function1<String, T1> transformer1,
+      Function1<String, T2> transformer2)
   {
     return ParseInputWith2Parameters.create(expected, transformer1, transformer2);
-
   }
   public ParseInput<OUT> multiline()
   {
-    this.multiline = true;
-    return this;
+    return new ParseInput<>(expected, transformer, true);
   }
   public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function1<String, OUT> transformer)
   {
-    return new ParseInputWith1Parameters<>(expected, transformer);
+    return new ParseInputWith1Parameters<>(expected, transformer, multiline);
   }
   public Queryable<OUT> getInputs()
   {

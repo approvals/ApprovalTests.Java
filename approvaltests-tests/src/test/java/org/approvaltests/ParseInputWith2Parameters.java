@@ -4,8 +4,6 @@ import com.spun.util.Tuple;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
-import static org.approvaltests.ParseInput.getTransformerForClass;
-
 public class ParseInputWith2Parameters<IN1, IN2, OUT>
 {
   private final String                 expected;
@@ -15,13 +13,7 @@ public class ParseInputWith2Parameters<IN1, IN2, OUT>
     this.expected = expected;
     this.transformer = transformer;
   }
-  public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2, Tuple<IN1, IN2>> create(String expected,
-      Class<IN1> type1, Class<IN2> type2)
-  {
-    Function1<String, IN1> t1 = getTransformerForClass(type1);
-    Function1<String, IN2> t2 = getTransformerForClass(type2);
-    return create(expected, t1, t2);
-  }
+
   public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2, Tuple<IN1, IN2>> create(String expected,
       Function1<String, IN1> t1, Function1<String, IN2> t2)
   {
@@ -40,6 +32,6 @@ public class ParseInputWith2Parameters<IN1, IN2, OUT>
   //    }
   public void verifyAll(Function1<OUT, Object> transform)
   {
-    ParseInput.from(expected, transformer).verifyAll(transform);
+    new ParseInput<OUT>(expected, s -> new Tuple<>(s, transformer.call(s))).verifyAll(transform);
   }
 }
