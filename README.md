@@ -82,6 +82,7 @@ If you're using Maven, add this to your pom file:
     <groupId>com.approvaltests</groupId>
     <artifactId>approvaltests</artifactId>
     <version>22.4.0</version>
+    <scope>test</scope>
 </dependency>
 ```
 
