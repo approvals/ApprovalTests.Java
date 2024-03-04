@@ -635,7 +635,8 @@ public class StringUtils
   {
     if (input.endsWith(pattern))
     {
-      input = input + " ";
+      String ending = "ś".equals(pattern) ? "š" : "ś";
+      input = input + ending;
       String[] splitted = input.split(pattern, -1);
       return ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
     }

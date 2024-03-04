@@ -7,7 +7,6 @@ import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -125,10 +124,14 @@ public class StringUtilsTest
   public void testSplitting()
   {
     var expected = """
-        1a2aa3aa -> [1, 2, , 3, ]
-        1a2aa3a -> [1, 2, , 3]
-        1a2aa3 -> [1, 2, , 3]
-        """;
-    ParseInput.from(expected).verifyAll(s -> Arrays.toString(StringUtils.splitt(s, "a")));
+      1a2aa3, a -> [1, 2, , 3]
+      1ś2śś3, ś -> [1, 2, , 3]
+      1a2aa3a, a -> [1, 2, , 3]
+      1ś2śś3ś, ś -> [1, 2, , 3]
+      1a2aa3aa, a -> [1, 2, , 3, ]
+      1ś2śś3śś, ś -> [1, 2, , 3, ]
+      """;
+    ParseInput.from(expected).withTypes(String.class, String.class)
+        .verifyAll((i, p) -> Arrays.toString(StringUtils.splitt(i, p)));
   }
 }
