@@ -69,7 +69,7 @@ public class ParseInput<OUT>
     }
     else
     {
-        return (Function1<String, OUT>) transformers.get(targetType);
+      return (Function1<String, OUT>) transformers.get(targetType);
     }
   }
   // ************* 1 parameter

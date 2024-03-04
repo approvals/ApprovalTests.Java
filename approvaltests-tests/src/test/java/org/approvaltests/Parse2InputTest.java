@@ -43,10 +43,10 @@ public class Parse2InputTest
   public void testArrays()
   {
     var expected = """
-      1, 1 -> 2.0
-      10 ,1, 1 -> 12.0
-      5,5,7,7 -> 24.0
-      """;
+        1, 1 -> 2.0
+        10 ,1, 1 -> 12.0
+        5,5,7,7 -> 24.0
+        """;
     ParseInput.from(expected).withTypes(Integer[].class).verifyAll(this::sum);
   }
   private Double sum(Integer[] integers)
