@@ -2,14 +2,11 @@ package org.approvaltests.inline;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.inline.InlineJavaReporter;
 import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnJre;
-import org.junit.jupiter.api.condition.JRE;
 
 import java.util.List;
 
@@ -104,5 +101,23 @@ public class InlineApprovalsTest
     assertEquals(InlineJavaReporter.class, resultWithCode.getClass());
     assertEquals(QuietReporter.class,
         ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
+  }
+  @Test
+  void testEmptyLineAtTheEnd()
+  {
+    var expected = """
+        Jeff Jeffty Jeff
+        born on Jeffteen of Jeff, Nineteen-eighty-Jeff
+
+        """;
+    Approvals.verify(greet("Jeff"), new Options().inline(expected));
+  }
+  private String greet(String name)
+  {
+    return """
+        %s %sty %s
+        born on %steen of %s, Nineteen-eighty-%s
+
+        """.formatted(name, name, name, name, name, name);
   }
 }

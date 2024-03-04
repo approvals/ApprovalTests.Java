@@ -1,6 +1,9 @@
 package com.spun.util;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.reporters.AutoApproveReporter;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -116,5 +119,16 @@ public class StringUtilsTest
       this.replace = replace;
       this.expectedString = expectedString;
     }
+  }
+  @Test
+  @UseReporter(AutoApproveReporter.class)
+  public void testSplitting()
+  {
+    var expected = """
+        1a2aa3aa -> [1, 2, , 3, ]
+        1a2aa3a -> [1, 2, , 3]
+        1a2aa3 -> [1, 2, , 3]
+        """;
+    ParseInput.from(expected).verifyAll(s -> Arrays.toString(StringUtils.splitt(s, "a")));
   }
 }

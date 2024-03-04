@@ -631,4 +631,14 @@ public class StringUtils
   {
     return contents.substring(0, contents.length() - length);
   }
+  public static String[] splitt(String input, String pattern)
+  {
+    if (input.endsWith(pattern))
+    {
+      input = input + " ";
+      String[] splitted = input.split(pattern, -1);
+      return ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
+    }
+    return input.split(pattern);
+  }
 }

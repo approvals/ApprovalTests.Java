@@ -1,5 +1,6 @@
 package org.approvaltests.inline;
 
+import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
@@ -82,7 +83,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   }
   public static String indent(String actual, String tab)
   {
-    String[] split = actual.split("\n");
+    String[] split = StringUtils.splitt(actual, "\n");
     String output = "";
     for (String line : split)
     {
