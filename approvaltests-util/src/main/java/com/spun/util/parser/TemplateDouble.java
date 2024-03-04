@@ -7,18 +7,11 @@ import java.util.Locale;
 
 public class TemplateDouble
 {
-  protected double            amount                  = 0;
-  private static NumberFormat decimalFormat           = null;
-  protected String            defaultPrefix           = null;
-  protected String            defaultPostfix          = null;
-  protected int               defaultMinimumPrecision = 2;
-  protected int               defaultMaximumPrecision = 2;
-  static
-  {
-    decimalFormat = NumberFormat.getNumberInstance(Locale.US);
-    decimalFormat.setMaximumFractionDigits(2);
-    decimalFormat.setMinimumFractionDigits(2);
-  }
+  protected double amount                  = 0;
+  protected String defaultPrefix           = null;
+  protected String defaultPostfix          = null;
+  protected int    defaultMinimumPrecision = 2;
+  protected int    defaultMaximumPrecision = 2;
   public TemplateDouble(double amount)
   {
     this.amount = amount;
@@ -56,7 +49,7 @@ public class TemplateDouble
       String postfix, boolean useGrouping)
   {
     String value = "";
-    NumberFormat dFormat = decimalFormat;
+    NumberFormat dFormat = getDecimalFormat();
     if ((maximumPrecision != 2) || (minimumPrecision != 2) || !useGrouping)
     {
       dFormat.setMaximumFractionDigits(maximumPrecision);
@@ -77,6 +70,13 @@ public class TemplateDouble
     }
     value += (postfix != null) ? postfix : "";
     return value;
+  }
+  private static NumberFormat getDecimalFormat()
+  {
+    NumberFormat decimalFormat = NumberFormat.getNumberInstance(Locale.US);
+    decimalFormat.setMaximumFractionDigits(2);
+    decimalFormat.setMinimumFractionDigits(2);
+    return decimalFormat;
   }
   protected int getDefaultMinimumPrecision(int maximumPrecision)
   {
