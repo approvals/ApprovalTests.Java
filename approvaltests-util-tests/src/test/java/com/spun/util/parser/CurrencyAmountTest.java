@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CurrencyAmountTest
 {
   @Test
-  public void testWithoutCents() {
+  public void testWithoutCents()
+  {
     assertEquals("$35", new CurrencyAmount(35.44).withoutCents());
   }
   @Test
