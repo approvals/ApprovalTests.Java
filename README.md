@@ -45,6 +45,8 @@ Approval Tests can be used for verifying objects that require more than a simple
 - Json
 - Getting *Legacy Code* under tests
 
+  Want to see more? Check out [Better Testing with Approvals](https://www.youtube.com/watch?v=QEdpE0chA-s)
+  
 ## Documentation
 - [ApprovalTests](/approvaltests/docs/README.md)  
 - [ApprovalTests-util](/approvaltests-util/docs/README.md)
