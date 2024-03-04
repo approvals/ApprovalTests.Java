@@ -58,10 +58,19 @@ public class ParseInput<OUT>
         put(Long.class, s -> Long.parseLong(s));
         put(Float.class, s -> Float.parseFloat(s));
         put(Short.class, s -> Short.parseShort(s));
+        put(Byte.class, s -> Byte.parseByte(s));
       }
     };
-    Function1<String, OUT> transformer1 = (Function1<String, OUT>) transformers.get(targetType);
-    return transformer1;
+    if (targetType.isArray())
+    {
+      Class<?> componentType = targetType.getComponentType();
+      Function1<String, Object> transformer = transformers.get(componentType);
+      return s -> (OUT) Queryable.as(s.split(",")).select(String::trim).select(transformer).asArray();
+    }
+    else
+    {
+        return (Function1<String, OUT>) transformers.get(targetType);
+    }
   }
   // ************* 1 parameter
   public <T1> ParseInputWith1Parameters<T1> withTypes(Class<T1> type1)

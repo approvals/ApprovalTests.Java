@@ -1,7 +1,10 @@
 package org.approvaltests;
 
+import org.approvaltests.reporters.AutoApproveReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
+import org.lambda.query.Queryable;
 
 public class Parse2InputTest
 {
@@ -34,5 +37,20 @@ public class Parse2InputTest
         """;
     ParseInput.from(expected).multiline().withTypes(String.class, Integer.class).transformTo(Person::new)
         .verifyAll(Person::toString);
+  }
+  @Test
+  @UseReporter(AutoApproveReporter.class)
+  public void testArrays()
+  {
+    var expected = """
+      1, 1 -> 2.0
+      10 ,1, 1 -> 12.0
+      5,5,7,7 -> 24.0
+      """;
+    ParseInput.from(expected).withTypes(Integer[].class).verifyAll(this::sum);
+  }
+  private Double sum(Integer[] integers)
+  {
+    return Queryable.of(integers).sum();
   }
 }
