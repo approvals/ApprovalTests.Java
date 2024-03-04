@@ -65,28 +65,23 @@ public class StringUtils
   }
   public static String[] split(String string, String splitOn, boolean trim)
   {
-    if ((string == null) || (splitOn == null) || (splitOn.length() < 1))
-    { return null; }
-    Vector<String> temp = new Vector<String>();
-    int length = splitOn.length();
-    int start = 0;
-    int next = 0;
-    while (next != -1)
+    String[] result = splitt(string, splitOn);
+    if (trim)
     {
-      String word = null;
-      next = string.indexOf(splitOn, start);
-      if (next == -1)
-      {
-        word = string.substring(start);
-      }
-      else
-      {
-        word = string.substring(start, next);
-        start = next + length;
-      }
-      temp.add(trim ? word.trim() : word);
+      result = Query.select(result, a -> a.trim()).asArray();
     }
-    return toArray(temp);
+    return result;
+  }
+  public static String[] splitt(String input, String pattern)
+  {
+    if (input.endsWith(pattern))
+    {
+      String ending = "ś".equals(pattern) ? "š" : "ś";
+      input = input + ending;
+      String[] splitted = input.split(pattern, -1);
+      return ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
+    }
+    return input.split(pattern);
   }
   public static String replace(String string, String find, String replace)
   {
@@ -630,16 +625,5 @@ public class StringUtils
   public static String removeFromEnd(String contents, int length)
   {
     return contents.substring(0, contents.length() - length);
-  }
-  public static String[] splitt(String input, String pattern)
-  {
-    if (input.endsWith(pattern))
-    {
-      String ending = "ś".equals(pattern) ? "š" : "ś";
-      input = input + ending;
-      String[] splitted = input.split(pattern, -1);
-      return ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
-    }
-    return input.split(pattern);
   }
 }
