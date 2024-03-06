@@ -4,12 +4,12 @@
 <!-- toc -->
 ## Contents
 
-    * [Printable wrappers](#printable-wrappers)
-    * [Wrap a individual object](#wrap-a-individual-object)
-      * [Label](#label)
-      * [Alternative `toString()` Function](#alternative-tostring-function)
-    * [Wrap an array of objects](#wrap-an-array-of-objects)
-    * [Named objects](#named-objects)<!-- endToc -->
+ * [Printable wrappers](#printable-wrappers)
+ * [Wrap a individual object](#wrap-a-individual-object)
+   * [Label](#label)
+   * [Alternative `toString()` Function](#alternative-tostring-function)
+ * [Wrap an array of objects](#wrap-an-array-of-objects)
+ * [Named objects](#named-objects)<!-- endToc -->
 
 ### Printable wrappers
 
