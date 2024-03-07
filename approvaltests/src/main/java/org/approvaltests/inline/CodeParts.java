@@ -22,7 +22,9 @@ public class CodeParts
       String line = lines[i];
       if (start == 0)
       {
-        if (line.contains("void " + methodName + "("))
+        // Do a regex search to check if a line contains the text "void"
+
+        if (line.matches(".*void\\s+" + methodName + "\\s*\\(.*"))
         {
           start = i;
           codeParts.tab = extractLeadingWhitespace(line);

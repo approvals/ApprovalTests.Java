@@ -48,6 +48,14 @@ public class InlineApprovalsTest
                 ""\";
             Approvals.verify("", Options.inline(expected));
           }
+        ""","""
+          @Test
+          public void testyMctest () {
+            var expected = ""\"
+                Hello World***
+                ""\";
+            Approvals.verify("", Options.inline(expected));
+          }
         """, """
         \t@Test
         \tpublic void testyMctest()
