@@ -83,7 +83,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   }
   public static String indent(String actual, String tab)
   {
-    String[] split = StringUtils.splitt(actual, "\n");
+    String[] split = StringUtils.split(actual, "\n");
     String output = "";
     for (String line : split)
     {

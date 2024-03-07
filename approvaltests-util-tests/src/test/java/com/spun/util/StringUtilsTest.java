@@ -1,13 +1,12 @@
 package com.spun.util;
 
 import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.approvaltests.reporters.AutoApproveReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.utils.parseinput.ParseInput;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -35,15 +34,20 @@ public class StringUtilsTest
   @Test
   public void testSplit()
   {
-    // TODO: continue here next week
-    Assumptions.assumeFalse(LocalDate.now().isBefore(LocalDate.of(2024, 3, 11)));
+    var expected = """
+      'quick brown fox'.split( ) => [quick, brown, fox]
+      'quick/brown/ fox'.split(/) => [quick, brown, fox]
+      'quick**brown**fox'.split(\\*\\*) => [quick, brown, fox]
+      ' quick   brown fox '.split( ) => [, quick, , , brown, fox]
+      'quick brown fox'.split(brown) => [quick, fox]
+      """;
     SplitUseCase[] split = {new SplitUseCase("quick brown fox", " "),
                             new SplitUseCase("quick/brown/ fox", "/"),
-                            new SplitUseCase("quick**brown**fox", "**"),
+                            new SplitUseCase("quick**brown**fox", "\\*\\*"),
                             new SplitUseCase(" quick   brown fox ", " "),
                             new SplitUseCase("quick brown fox", "brown"),};
     Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
-        Arrays.toString(StringUtils.split(a.start, a.splitOn))));
+        Arrays.toString(StringUtils.split(a.start, a.splitOn, true))),new Options().inline(expected));
   }
   @Test
   public void testJavaScript()
@@ -136,6 +140,6 @@ public class StringUtilsTest
         1ś2śś3śś, ś -> [1, 2, , 3, ]
         """;
     ParseInput.from(expected).withTypes(String.class, String.class)
-        .verifyAll((i, p) -> Arrays.toString(StringUtils.splitt(i, p)));
+        .verifyAll((i, p) -> Arrays.toString(StringUtils.split(i, p)));
   }
 }

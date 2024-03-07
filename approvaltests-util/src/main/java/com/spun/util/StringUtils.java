@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.SortedMap;
-import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,27 +60,21 @@ public class StringUtils
   }
   public static String[] split(String string, String splitOn)
   {
-    return split(string, splitOn, true);
+    return split(string, splitOn, false);
   }
   public static String[] split(String string, String splitOn, boolean trim)
   {
-    String[] result = splitt(string, splitOn);
-    if (trim)
+    String[] result;
+    if (string.endsWith(splitOn))
     {
-      result = Query.select(result, a -> a.trim()).asArray();
+      String ending = "ś".equals(splitOn) ? "š" : "ś";
+      string = string + ending;
+      String[] splitted = string.split(splitOn, -1);
+      result = ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
+    } else {
+      result = string.split(splitOn);
     }
-    return result;
-  }
-  public static String[] splitt(String input, String pattern)
-  {
-    if (input.endsWith(pattern))
-    {
-      String ending = "ś".equals(pattern) ? "š" : "ś";
-      input = input + ending;
-      String[] splitted = input.split(pattern, -1);
-      return ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
-    }
-    return input.split(pattern);
+    return trim ? Query.select(result, a -> a.trim()).asArray() : result;
   }
   public static String replace(String string, String find, String replace)
   {
