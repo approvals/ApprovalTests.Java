@@ -4,7 +4,13 @@
 
 <!-- toc -->
 ## Contents
-  * [Loaders](#loaders)<!-- endToc -->
+
+  * [Interfaces](#interfaces)
+  * [Loaders](#loaders)
+  * [Savers](#savers)
+  * [Common Usage Patterns](#common-usage-patterns)
+  * [Testing](#testing)
+  * [ExecutableCommand](#executablecommand)<!-- endToc -->
 ## What it is
 
 Loaders and Savers is a very simple abstraction to help separate business logic from a database / services layer.
@@ -25,7 +31,13 @@ public T load();
 <!-- endSnippet -->
 
 And the Saver interface looks like:
-snippet: saver_interface
+<!-- snippet: saver_interface -->
+<a id='snippet-saver_interface'></a>
+```java
+public T save(T save);
+```
+<sup><a href='/approvaltests-util/src/main/java/com/spun/util/persistence/Saver.java#L5-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-saver_interface' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Loaders
 A `Loader` tends to wrap data access layers to a: database, file system, or Web service.
