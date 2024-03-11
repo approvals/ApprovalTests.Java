@@ -35,19 +35,19 @@ public class StringUtilsTest
   public void testSplit()
   {
     var expected = """
-      'quick brown fox'.split( ) => [quick, brown, fox]
-      'quick/brown/ fox'.split(/) => [quick, brown, fox]
-      'quick**brown**fox'.split(\\*\\*) => [quick, brown, fox]
-      ' quick   brown fox '.split( ) => [, quick, , , brown, fox]
-      'quick brown fox'.split(brown) => [quick, fox]
-      """;
+        'quick brown fox'.split( ) => [quick, brown, fox]
+        'quick/brown/ fox'.split(/) => [quick, brown, fox]
+        'quick**brown**fox'.split(\\*\\*) => [quick, brown, fox]
+        ' quick   brown fox '.split( ) => [, quick, , , brown, fox]
+        'quick brown fox'.split(brown) => [quick, fox]
+        """;
     SplitUseCase[] split = {new SplitUseCase("quick brown fox", " "),
                             new SplitUseCase("quick/brown/ fox", "/"),
                             new SplitUseCase("quick**brown**fox", "\\*\\*"),
                             new SplitUseCase(" quick   brown fox ", " "),
                             new SplitUseCase("quick brown fox", "brown"),};
     Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
-        Arrays.toString(StringUtils.split(a.start, a.splitOn, true))),new Options().inline(expected));
+        Arrays.toString(StringUtils.split(a.start, a.splitOn, true))), new Options().inline(expected));
   }
   @Test
   public void testJavaScript()

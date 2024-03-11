@@ -48,7 +48,7 @@ public class InlineApprovalsTest
                 ""\";
             Approvals.verify("", Options.inline(expected));
           }
-        ""","""
+        """, """
           @Test
           public void testyMctest () {
             var expected = ""\"

@@ -23,7 +23,6 @@ public class CodeParts
       if (start == 0)
       {
         // Do a regex search to check if a line contains the text "void"
-
         if (line.matches(".*void\\s+" + methodName + "\\s*\\(.*"))
         {
           start = i;

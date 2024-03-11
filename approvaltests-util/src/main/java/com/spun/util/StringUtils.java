@@ -71,7 +71,9 @@ public class StringUtils
       string = string + ending;
       String[] splitted = string.split(splitOn, -1);
       result = ArrayUtils.getSubsection(splitted, 0, splitted.length - 1);
-    } else {
+    }
+    else
+    {
       result = string.split(splitOn);
     }
     return trim ? Query.select(result, a -> a.trim()).asArray() : result;
