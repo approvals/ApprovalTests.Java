@@ -20,12 +20,12 @@ If you have more than one parameter that you want to vary, check out [Testing Co
 1. Copy this starter text.
 
 <!-- snippet: VerifyAllStartingPoint -->
-<a id='snippet-verifyallstartingpoint'></a>
+<a id='snippet-VerifyAllStartingPoint'></a>
 ```java
 String[] inputs = {"input.value1", "input.value2"};
 Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifyallstartingpoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyAllStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify the input container for your chosen values.

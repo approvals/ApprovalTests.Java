@@ -22,7 +22,7 @@ It checks if the current machine's name matches the specified name (e.g., ".lars
 The actual test code should be placed after this condition.
 
 <!-- snippet: runOnlyOnSpecificMachines -->
-<a id='snippet-runonlyonspecificmachines'></a>
+<a id='snippet-runOnlyOnSpecificMachines'></a>
 ```java
 try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
 {
@@ -30,7 +30,7 @@ try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest(
   { return; }
   // the rest of your test...
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L60-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-runonlyonspecificmachines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L60-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-runOnlyOnSpecificMachines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **please note:** this will also append the machine name to the ApprovalTest so that each specific

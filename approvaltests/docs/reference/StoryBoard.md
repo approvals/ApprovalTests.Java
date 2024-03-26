@@ -13,11 +13,11 @@ StoryBoards can be very helpful to tell a story of steps that happen over time.
 Here is a simple example 
 
 <!-- snippet: StoryBoardExample -->
-<a id='snippet-storyboardexample'></a>
+<a id='snippet-StoryBoardExample'></a>
 ```java
 Approvals.verify(new StoryBoard().add(gameOfLife).addFrames(3, gameOfLife::advance));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/StoryBoardTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-storyboardexample' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/StoryBoardTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-StoryBoardExample' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which produces

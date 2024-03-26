@@ -19,7 +19,7 @@ Most solutions for this occur at runtime. Of course, it would be better if they 
 ### Runtime solution
 
 <!-- snippet: minimalVarargsRuntime -->
-<a id='snippet-minimalvarargsruntime'></a>
+<a id='snippet-minimalVarargsRuntime'></a>
 ```java
 public Integer findSmallest(Integer... numbers)
 {
@@ -27,7 +27,7 @@ public Integer findSmallest(Integer... numbers)
   { throw new IllegalArgumentException("you must have at least one number"); }
   // rest of the code
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L20-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsruntime' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L20-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalVarargsRuntime' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Compile time solution
@@ -37,14 +37,14 @@ If you do this, you will want to recombine this array almost immediately `ArrayU
 Please be aware that it will not work with primitives.
 
 <!-- snippet: minimalVarargsCompileTime -->
-<a id='snippet-minimalvarargscompiletime'></a>
+<a id='snippet-minimalVarargsCompileTime'></a>
 ```java
 public Integer findSmallest(Integer first, Integer... numbers)
 {
   Integer[] combined = ArrayUtils.combine(first, numbers);
   // rest of the code
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L29-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargscompiletime' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L29-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalVarargsCompileTime' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Advantages
@@ -53,11 +53,11 @@ If you use the runtime solution, the following will compile but throw an error w
 If you use the compile time solution, it will not compile.
 
 <!-- snippet: minimalVarargsException -->
-<a id='snippet-minimalvarargsexception'></a>
+<a id='snippet-minimalVarargsException'></a>
 ```java
 int smallest = findSmallest();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalvarargsexception' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/MinimumVarargSamples.java#L12-L14' title='Snippet source file'>snippet source</a> | <a href='#snippet-minimalVarargsException' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Where to use this

@@ -31,12 +31,12 @@ To create such a gif you pass the number of frames you want plus a function that
 for every frame. Here is an example for a simple expanding box:
 
 <!-- snippet: SequencePaintables -->
-<a id='snippet-sequencepaintables'></a>
+<a id='snippet-SequencePaintables'></a>
 ```java
 SquareDrawer squareDrawer = new SquareDrawer();
 AwtApprovals.verifySequence(5, f -> squareDrawer.setSquareSize(f * 10));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L48-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-sequencepaintables' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L48-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-SequencePaintables' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **Note**: Method overloads allow specifying the time between frames or the time for each frame.
