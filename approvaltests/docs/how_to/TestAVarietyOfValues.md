@@ -64,7 +64,7 @@ VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Ca
 table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
 Approvals.verify(table);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L20-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L28-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce:
