@@ -15,6 +15,14 @@ public class TableTest
     Approvals.verify(table);
   }
   @Test
+  void veryLongHeaders()
+  {
+    Integer[] inputs = Range.get(1, 2);
+    VerifiableMarkdownTable table = VerifiableMarkdownTable.create(inputs, a -> getModifier(a),
+        "The name is very long and it is a header", "Modifier");
+    Approvals.verify(table);
+  }
+  @Test
   void differentCases()
   {
     // begin-snippet: markdown_table_example

@@ -142,4 +142,14 @@ public class StringUtilsTest
     ParseInput.from(expected).withTypes(String.class, String.class)
         .verifyAll((i, p) -> Arrays.toString(StringUtils.split(i, p)));
   }
+  @Test
+  @UseReporter(AutoApproveReporter.class)
+  public void testRepeating()
+  {
+    var expected = """
+        Hello, 3 -> HelloHelloHello
+        -, 56 -> --------------------------------------------------------
+        """;
+    ParseInput.from(expected).withTypes(String.class, Integer.class).verifyAll((s, i) -> StringUtils.repeat(s, i));
+  }
 }

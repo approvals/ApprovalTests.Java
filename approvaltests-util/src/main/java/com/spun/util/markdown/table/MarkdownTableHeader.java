@@ -1,5 +1,7 @@
 package com.spun.util.markdown.table;
 
+import com.spun.util.StringUtils;
+
 public class MarkdownTableHeader implements MarkdownTableElement, Resizable
 {
   private int            padUntil = 1;
@@ -11,7 +13,7 @@ public class MarkdownTableHeader implements MarkdownTableElement, Resizable
   public String toString()
   {
     int dashCount = padUntil + 2; // Math.max(3, padUntil + 2);
-    String dashes = "----------------------------------".substring(0, dashCount);
+    String dashes = StringUtils.repeat("-", dashCount);
     if (columnProperties == MarkdownColumn.RIGHT_JUSTIFIED)
     {
       dashes = dashes.substring(0, dashCount - 1) + ":";

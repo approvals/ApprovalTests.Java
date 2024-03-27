@@ -621,4 +621,8 @@ public class StringUtils
   {
     return contents.substring(0, contents.length() - length);
   }
+  public static String repeat(String string, int times)
+  {
+    return new String(new char[times]).replace("\0", string);
+  }
 }
