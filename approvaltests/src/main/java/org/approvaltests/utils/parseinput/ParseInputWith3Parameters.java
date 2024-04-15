@@ -26,7 +26,8 @@ public class ParseInputWith3Parameters<IN1, IN2, IN3>
       Queryable<String> temp = Queryable.as(s.split(",")).select(String::trim);
       IN1 v1 = t1.call(temp.get(0));
       IN2 v2 = t2.call(temp.get(1));
-      IN3 v3 = t3.call(temp.get(2));
+      Queryable<String> skip = temp.skip(2);
+      IN3 v3 = t3.call(skip.size() == 1 ? skip.first() : skip.join(", "));
       return new Tuple3<>(v1, v2, v3);
     };
     return new ParseInputWith3Parameters<>(expected, f, options);
