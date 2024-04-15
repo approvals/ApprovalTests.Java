@@ -92,6 +92,16 @@ public class ParseInput<OUT>
   {
     return ParseInputWith2Parameters.create(expected, transformer1, transformer2, options);
   }
+  public <T1, T2, T3> ParseInputWith3Parameters<T1, T2, T3> withTypes(Class<T1> type1, Class<T2> type2, Class<T3> type3) {
+    return ParseInputWith3Parameters.create(
+            expected,
+            getTransformerForClass(type1),
+            getTransformerForClass(type2),
+            getTransformerForClass(type3),
+            options
+    );
+  }
+
   public static class ParseInputOptions
   {
     public final boolean multiline;
