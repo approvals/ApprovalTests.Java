@@ -35,14 +35,14 @@ public class ParseInputWith3Parameters<IN1, IN2, IN3>
   {
     return new ParseInput<>(expected, s -> new Tuple<>(s, transformer.call(s)), options);
   }
-  //    public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function3<Tuple3<IN1, IN2, IN3>, OUT> transform)
-  //    {
-  //        Function1<String, OUT> f1 = (t) -> {
-  //            Tuple3<IN1, IN2, IN3> transformed = transformer.call(t);
-  //            return transform.call(transformed);
-  //        };
-  //        return new ParseInputWith1Parameters<>(expected, f1, options);
-  //    }
+  public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function3<IN1, IN2, IN3, OUT> transform)
+  {
+    Function1<String, OUT> f1 = (t) -> {
+      Tuple3<IN1, IN2, IN3> transformed = transformer.call(t);
+      return transform.call(transformed.getFirst(), transformed.getSecond(), transformed.getThird());
+    };
+    return new ParseInputWith1Parameters<>(expected, f1, options);
+  }
   public void verifyAll(Function1<Tuple3<IN1, IN2, IN3>, Object> transform)
   {
     getParseInput().verifyAll(transform);

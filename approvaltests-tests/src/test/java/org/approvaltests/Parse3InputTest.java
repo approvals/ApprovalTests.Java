@@ -21,8 +21,8 @@ public class Parse3InputTest
         .verifyAll((i, d, b) -> i * d * (b ? 1 : 0));
     ParseInput.from(expected).transformTo(Integer::parseInt, Double::parseDouble, Boolean::parseBoolean)
         .verifyAll(t -> t.getFirst() * t.getSecond() * (t.getThird() ? 1 : 0));
-    //    ParseInput.from(expected).withTypes(Integer.class, Double.class).transformTo((i, d) -> i * d)
-    //        .verifyAll(t -> t);
+    ParseInput.from(expected).withTypes(Integer.class, Double.class, Boolean.class).transformTo((i, d, b) -> i * d * (b ? 1 : 0))
+        .verifyAll(t -> t);
   }
   @Test
   void testPersonAge()
