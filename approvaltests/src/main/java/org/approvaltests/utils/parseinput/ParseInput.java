@@ -98,6 +98,11 @@ public class ParseInput<OUT>
     return ParseInputWith3Parameters.create(expected, getTransformerForClass(type1), getTransformerForClass(type2),
         getTransformerForClass(type3), options);
   }
+  public <T1, T2, T3> ParseInputWith3Parameters<T1, T2, T3> transformTo(Function1<String, T1> transformer1,
+      Function1<String, T2> transformer2, Function1<String, T3> transformer3)
+  {
+    return ParseInputWith3Parameters.create(expected, transformer1, transformer2, transformer3, options);
+  }
   public static class ParseInputOptions
   {
     public final boolean multiline;

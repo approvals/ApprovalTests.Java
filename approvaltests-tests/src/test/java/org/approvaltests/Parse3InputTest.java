@@ -19,8 +19,8 @@ public class Parse3InputTest
         .verifyAll(t -> t.getFirst() * t.getSecond() * (t.getThird() ? 1 : 0));
     ParseInput.from(expected).withTypes(Integer.class, Double.class, Boolean.class)
         .verifyAll((i, d, b) -> i * d * (b ? 1 : 0));
-    //    ParseInput.from(expected).transformTo(Integer::parseInt, Double::parseDouble)
-    //        .verifyAll(t -> t.getFirst() * t.getSecond());
+    ParseInput.from(expected).transformTo(Integer::parseInt, Double::parseDouble, Boolean::parseBoolean)
+        .verifyAll(t -> t.getFirst() * t.getSecond() * (t.getThird() ? 1 : 0));
     //    ParseInput.from(expected).withTypes(Integer.class, Double.class).transformTo((i, d) -> i * d)
     //        .verifyAll(t -> t);
   }
