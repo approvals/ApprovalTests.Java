@@ -24,6 +24,11 @@ public class ParseInput<OUT>
   {
     return new ParseInput<String>(expected, s -> new Tuple<>(s, s), new ParseInputOptions());
   }
+  public static String getLast(Queryable<String> temp, int number)
+  {
+    Queryable<String> skip = temp.skip(number);
+    return skip.size() == 1 ? skip.first() : skip.join(", ");
+  }
   public ParseInput<OUT> multiline()
   {
     return new ParseInput<>(expected, transformer, new ParseInputOptions(true));

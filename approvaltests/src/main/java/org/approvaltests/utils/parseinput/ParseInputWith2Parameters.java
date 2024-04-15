@@ -23,7 +23,7 @@ public class ParseInputWith2Parameters<IN1, IN2>
     Function1<String, Tuple<IN1, IN2>> f = s -> {
       Queryable<String> temp = Queryable.as(s.split(",")).select(String::trim);
       IN1 v1 = t1.call(temp.get(0));
-      IN2 v2 = t2.call(temp.get(1));
+      IN2 v2 = t2.call(ParseInput.getLast(temp, 1));
       return new Tuple<>(v1, v2);
     };
     return new ParseInputWith2Parameters<>(expected, f, options);

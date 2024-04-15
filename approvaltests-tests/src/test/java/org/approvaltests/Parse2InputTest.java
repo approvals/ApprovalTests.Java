@@ -48,6 +48,7 @@ public class Parse2InputTest
         5,5,7,7 -> 24.0
         """;
     ParseInput.from(expected).withTypes(Integer[].class).verifyAll(this::sum);
+    ParseInput.from(expected).withTypes(Integer.class, Integer[].class).verifyAll((i, a) -> i + sum(a));
   }
   private Double sum(Integer[] integers)
   {
