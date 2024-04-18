@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: ['16', '17', '18', '19', '20', '21']
+        java: ['16', '17', '18', '19', '20', '21', '22', 'EA']
         os: [ ubuntu, windows ]
 
     steps:
@@ -30,10 +30,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Set up JDK
-      uses: actions/setup-java@v4
+      uses: oracle-actions/setup-java@v1
       with:
-        distribution: 'zulu'
-        java-version: ${{ matrix.java }}
+        website: jdk.java.net
+        release: ${{ matrix.java }}
     - name: Build with Maven
       run: |
         sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
