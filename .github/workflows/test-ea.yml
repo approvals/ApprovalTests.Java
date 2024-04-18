@@ -1,0 +1,40 @@
+---
+name: Run tests against early access versions of JDK
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+# Cancel existing executions when new commits are pushed onto the branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['EA', 'loom', 'valhalla']
+        os: [ubuntu, windows, macos]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4.0.2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: 'Set up latest JDK N from jdk.java.net'
+        uses: oracle-actions/setup-java@v1
+        with:
+          website: jdk.java.net
+          release: ${{ matrix.java }}
+      - name: Build with Maven
+        run: |
+          sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
+          sed -i 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
+          mvn -B verify --file pom.xml
