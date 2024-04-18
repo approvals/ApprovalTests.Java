@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         java: ['EA', 'loom', 'valhalla']
-        os: [ubuntu, windows, macos]
+        os: [ubuntu, windows]
 
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +35,6 @@ jobs:
           release: ${{ matrix.java }}
       - name: Build with Maven
         run: |
-          sed -i '' 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
-          sed -i '' 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
+          sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
+          sed -i 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
           mvn -B verify --file pom.xml
