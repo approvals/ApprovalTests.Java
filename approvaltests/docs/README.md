@@ -57,6 +57,8 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 * [Inline Approvals Workflow](explanations/InlineApprovalsWorkflow.md)
 * [Approval Testing Concepts](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/approval_testing.md)
 * [Place to modify output](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/creating_output.md)
+* [What are Approvals](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/what_are_approvals.md)
+
 
 
 
