@@ -11,16 +11,18 @@ We want to test the following method:
 <!-- snippet: step1 -->
 <a id='snippet-step1'></a>
 ```java
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
-    List<Customer> seniorCustomers = database.getSeniorCustomers();
-    for (Customer customer : seniorCustomers) {
-        Discount seniorDiscount = getSeniorDiscount();
-        String message = generateDiscountMessage(customer, seniorDiscount);
-        mailServer.sendMessage(customer, message);
-    }
+public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+{
+  List<Customer> seniorCustomers = database.getSeniorCustomers();
+  for (Customer customer : seniorCustomers)
+  {
+    Discount seniorDiscount = getSeniorDiscount();
+    String message = generateDiscountMessage(customer, seniorDiscount);
+    mailServer.sendMessage(customer, message);
+  }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L7-L16' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L9-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 In this case, we want to replace the functions that use the DataBase object with Loaders :
