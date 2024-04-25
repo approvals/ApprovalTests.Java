@@ -1,0 +1,5 @@
+'quick brown fox'.split( ) => [quick, brown, fox]
+'quick/brown/ fox'.split(/) => [quick, brown, fox]
+'quick**brown**fox'.split(**) => [quick, brown, fox]
+' quick   brown fox '.split( ) => [, quick, , , brown, fox, ]
+'quick brown fox'.split(brown) => [quick, fox]
