@@ -17,7 +17,7 @@ Loaders and Savers is a very simple abstraction to help separate business logic 
 
 Loaders tend to work similarly in functionality to a stored procedure.
 
-Savers allow you to save changes 
+Savers allow you to save changes.
 
 ## Interfaces
 
@@ -40,7 +40,7 @@ public T save(T save);
 <!-- endSnippet -->
 
 ## Loaders
-A `Loader` tends to wrap data access layers to a: database, file system, or Web service.
+A `Loader` tends to wrap data access layers to a database, file system, or Web service.
 By wrapping the data retrieval in a `Loader` interface it becomes easy to swap it out for testing and other polymorphism.
 This also helps to separate your business logic from the implementation of your service layer.
 
