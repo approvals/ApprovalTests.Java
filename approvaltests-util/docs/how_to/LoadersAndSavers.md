@@ -50,12 +50,14 @@ public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
     }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L34-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L53-L62' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 In this case, we want to replace the functions that use the DataBase object with Loaders :
 
-Step 1: Determine what the function in question returns in the case we want to test. We start with the test:
+## Step 1: Determine what we want to test
+The first thing we need to do is to determine what the function in question returns in the case we want to test.
+We start with the test:
 <!-- snippet: step0 -->
 <a id='snippet-step0'></a>
 ```java
@@ -73,33 +75,35 @@ public void senior_customer_list_includes_only_those_over_age_65() {
 This test works against a live database with a live mail server.
 We need to create full mocks for both (which is hard to do).
 
-Instead we will rearchitect to use `Loader`s and `Saver`s.
+Instead, we will re-architect the code to use `Loaders` and `Savers`.
 Also notice the method signature does not tell us what it wants out of the database,
 only that it wants something from the database.
 
 In this case we will want to replace the function that returns a list of senior customers. (FIX THIS)
 
-Step 2: Dump the data resulting from a successful query so that we can create a fake object with its contents. (You may need to create a toString() method to make a readable data set)
+## Step 2: Capture actual data
+Now we dump the data resulting from a successful query so that we can create a fake object with its contents.
+(Note: You may need to create a `toString()` method to make a readable data set)
+
+<!-- snippet: step_capture_data -->
+<a id='snippet-step_capture_data'></a>
 ```java
-
-...
-
-List&lt;Customer&gt; seniorCustomers = database.getSeniorCustomers();
-
-senorCustomers.stream().forEach(System.out::println);
-
-...
+List<Customer> seniorCustomers = database.getSeniorCustomers();
+seniorCustomers.stream().forEach(System.out::println);
 ```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L37-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-step_capture_data' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 generates
 
-```
+<!-- snippet: LoadersAndSaversExamplesTest.Step0_5.test_dump_data.approved.txt -->
+<a id='snippet-LoadersAndSaversExamplesTest.Step0_5.test_dump_data.approved.txt'></a>
+```txt
 Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958
-
 Mary, Smith, 345 Oak St., Mason, VA, 04-MAY-1944
-
-...
 ```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.Step0_5.test_dump_data.approved.txt#L1-L2' title='Snippet source file'>snippet source</a> | <a href='#snippet-LoadersAndSaversExamplesTest.Step0_5.test_dump_data.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 Step 3: Create a result object populated with these values (or at least enough of them to ensure the function using the data will be properly exercised).
 

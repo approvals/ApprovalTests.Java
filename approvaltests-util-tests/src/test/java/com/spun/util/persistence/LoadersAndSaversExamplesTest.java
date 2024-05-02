@@ -30,6 +30,25 @@ public class LoadersAndSaversExamplesTest {
         }
     }
 
+    public static class Step0_5 {
+        @Test
+        void test_dump_data() {
+            MyDatabase database = new MyDatabase();
+            // begin-snippet: step_capture_data
+            List<Customer> seniorCustomers = database.getSeniorCustomers();
+            seniorCustomers.stream().forEach(System.out::println);
+            // end-snippet
+            Approvals.verifyAll("", seniorCustomers, c -> c.toString());
+        }
+        public static class MyDatabase {
+            public List<Customer> getSeniorCustomers() {
+                return List.of(
+                        new Customer( "Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
+                        new Customer("Mary, Smith, 345 Oak St., Mason, VA, 04-MAY-1944"));
+            }
+        }
+    }
+
     class Step1 {
         // begin-snippet: step1
         public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
@@ -98,7 +117,17 @@ public class LoadersAndSaversExamplesTest {
         }
     }
 
-    private class Customer {
+    private static class Customer {
+        private final String s;
+
+        public Customer(String s) {
+            this.s = s;
+        }
+
+        @Override
+        public String toString() {
+            return s;
+        }
     }
 
     private class Discount {
