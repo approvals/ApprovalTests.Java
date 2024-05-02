@@ -1,9 +1,39 @@
-Loaders and Savers
+# Loaders and Savers
 
-Approval Tests has the concept of a "loader". Whereas Mocks simulate an object and its functionality in a specific situation, a Loader is intended to permit tests to insert a testable seam into an otherwise untestable method. You can pass in a loader for that heavyweight operation that the method depends on.
+Approval Tests has the concept of a `Loader`. Whereas Mocks simulate an object and its functionality in a specific situation, a Loader is intended to permit tests to insert a testable seam into an otherwise untestable method. You can pass in a loader for that heavyweight operation that the method depends on.
 
-For example: If you need to access some data from a database, you can mock out the data connection, and then mock out the query operation, and then mock out the result set (along with whatever intermediate dependencies need to be considered). Alternatively, with a loader you would simply pass a loader function as a parameter into the method, replacing the specific call with a loader that would return the expected results for the test, or the loader that calls the original function to get the live results. (Remember: we're not testing the database functionality. We can assume it works as expected. We're only testing the method of interest.)
+**For example**: Let's say you have some code that access some data from a database. That code can be architected such that 
 
+```mermaid
+flowchart
+        function --> connection["connection + query"] --> database --> resultSet --> function
+        style database fill:#f00
+```
+
+If you want to mock out the database, you have to mock out the:
+1. database connection
+1. query operator
+1. resultSet
+
+Alternatively, you could architect this with a `Loader` pattern.
+
+```mermaid
+flowchart
+    function --> f["function(Loader)"]
+    Loader --> f
+    Loader --> connection["connection + query"] --> database --> resultSet --> Loader
+    style Loader fill:#f00
+```
+
+With this architecture, you simply pass a `Loader` function as a parameter to the method
+ replacing the specific call with a loader that would return the expected results for the test, 
+ or the `Loader` that calls the original function to get the live results.
+
+(Keep in mind, we're not testing the database functionality.
+We can assume it works as expected.
+We're only testing the method of interest.)
+
+## Example
 Let's see the workflow for adding a loader for testing purposes:
 
 We want to test the following method:
@@ -11,36 +41,42 @@ We want to test the following method:
 <!-- snippet: step1 -->
 <a id='snippet-step1'></a>
 ```java
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
-{
-  List<Customer> seniorCustomers = database.getSeniorCustomers();
-  for (Customer customer : seniorCustomers)
-  {
-    Discount seniorDiscount = getSeniorDiscount();
-    String message = generateDiscountMessage(customer, seniorDiscount);
-    mailServer.sendMessage(customer, message);
-  }
+public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+    List<Customer> seniorCustomers = database.getSeniorCustomers();
+    for (Customer customer : seniorCustomers) {
+        Discount seniorDiscount = getSeniorDiscount();
+        String message = generateDiscountMessage(customer, seniorDiscount);
+        mailServer.sendMessage(customer, message);
+    }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L9-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L34-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 In this case, we want to replace the functions that use the DataBase object with Loaders :
 
 Step 1: Determine what the function in question returns in the case we want to test. We start with the test:
-```
+<!-- snippet: step0 -->
+<a id='snippet-step0'></a>
+```java
+@Test
 public void senior_customer_list_includes_only_those_over_age_65() {
-
-&nbsp;   DataBase database = // initialize database object
-
-&nbsp;   MailServer mailServer = // initialize server
-
-&nbsp;   sendOutSeniorDiscounts(database, mailServer);
-
-&nbsp;   Approvals.verifyAll(mailServer.getRecipients();
-
+    DataBase database = initializeDatabase();
+    MailServer mailServer = initializeMailServer();
+    sendOutSeniorDiscounts(database, mailServer);
+    Approvals.verifyAll("", mailServer.getRecipients());
 }
 ```
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L10-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-step0' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+This test works against a live database with a live mail server.
+We need to create full mocks for both (which is hard to do).
+
+Instead we will rearchitect to use `Loader`s and `Saver`s.
+Also notice the method signature does not tell us what it wants out of the database,
+only that it wants something from the database.
+
 In this case we will want to replace the function that returns a list of senior customers. (FIX THIS)
 
 Step 2: Dump the data resulting from a successful query so that we can create a fake object with its contents. (You may need to create a toString() method to make a readable data set)
