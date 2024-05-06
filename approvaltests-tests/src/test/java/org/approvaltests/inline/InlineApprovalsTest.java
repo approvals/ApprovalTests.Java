@@ -114,11 +114,11 @@ public class InlineApprovalsTest
   void testEmptyLineAtTheEnd()
   {
     var expected = """
-        Jeff Jeffty Jeff
-        born on Jeffteen of Jeff, Nineteen-eighty-Jeff
-        
-        """;
-    Approvals.verify(greet("Jeff"), new Options().inline(expected));
+      Jeff Jeffty Jeff
+      born on Jeffteen of Jeff, Nineteen-eighty-Jeff
+      
+      """;
+    Approvals.verify(greet("Jeff"), new Options().inline(expected, InlineOptions.automatic()));
   }
   private String greet(String name)
   {

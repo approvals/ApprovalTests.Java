@@ -1,6 +1,7 @@
 package org.approvaltests.inline;
 
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.AutoApproveReporter;
 
 public interface InlineOptions
 {
@@ -9,25 +10,15 @@ public interface InlineOptions
   {
     if (doShowCode)
     {
-      return new ShowCodeInlineOptions();
+      return options -> options.withReporter(new InlineJavaReporter(options.getReporter()));
     }
     else
     {
-      return new DoNotShowCodeInlineOptions();
+      return options -> options;
     }
   }
-  public static class ShowCodeInlineOptions implements InlineOptions
+  public static InlineOptions automatic()
   {
-    public Options apply(Options options)
-    {
-      return options.withReporter(new InlineJavaReporter(options.getReporter()));
-    }
-  }
-  public static class DoNotShowCodeInlineOptions implements InlineOptions
-  {
-    public Options apply(Options options)
-    {
-      return options;
-    }
+    return options -> options.withReporter(new InlineJavaReporter(new AutoApproveReporter()));
   }
 }
