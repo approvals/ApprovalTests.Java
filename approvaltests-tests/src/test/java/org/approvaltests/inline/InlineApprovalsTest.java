@@ -148,12 +148,11 @@ public class InlineApprovalsTest
   void testAutomatic()
   {
     var expected = """
-      hello Oskar
-      """;
+        hello Oskar
+        """;
     Options options = new Options().inline("", InlineOptions.automatic());
     Mutable<String> result = hijackInlineReporter(options);
-    assertApprovalFailure("hello Oskar", options,
-        e -> assertEquals(expected, result.get()));
+    assertApprovalFailure("hello Oskar", options, e -> assertEquals(expected, result.get()));
   }
   private static void assertApprovalFailure(String actual, Options options, Action1<Throwable> azzert)
   {
