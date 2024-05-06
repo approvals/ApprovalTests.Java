@@ -15,8 +15,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   private final String                  sourceFilePath;
   private final StackTraceNamer         stackTraceNamer;
   private final ApprovalFailureReporter reporter;
-  private final String additionalLines;
-
+  private final String                  additionalLines;
   public InlineJavaReporter(ApprovalFailureReporter reporter, boolean addApprovalLine)
   {
     this.reporter = reporter;
@@ -40,7 +39,8 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
-    String fullText = createNewReceivedFileText(text, actual + additionalLines, this.stackTraceNamer.getInfo().getMethodName());
+    String fullText = createNewReceivedFileText(text, actual + additionalLines,
+        this.stackTraceNamer.getInfo().getMethodName());
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
