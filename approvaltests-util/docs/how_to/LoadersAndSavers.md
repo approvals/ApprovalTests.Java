@@ -41,16 +41,18 @@ We want to test the following method:
 <!-- snippet: step1 -->
 <a id='snippet-step1'></a>
 ```java
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
-    List<Customer> seniorCustomers = database.getSeniorCustomers();
-    for (Customer customer : seniorCustomers) {
-        Discount seniorDiscount = getSeniorDiscount();
-        String message = generateDiscountMessage(customer, seniorDiscount);
-        mailServer.sendMessage(customer, message);
-    }
+public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+{
+  List<Customer> seniorCustomers = database.getSeniorCustomers();
+  for (Customer customer : seniorCustomers)
+  {
+    Discount seniorDiscount = getSeniorDiscount();
+    String message = generateDiscountMessage(customer, seniorDiscount);
+    mailServer.sendMessage(customer, message);
+  }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L53-L62' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L57-L68' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 In this case, we want to replace the functions that use the DataBase object with Loaders :
@@ -62,14 +64,15 @@ We start with the test:
 <a id='snippet-step0'></a>
 ```java
 @Test
-public void senior_customer_list_includes_only_those_over_age_65() {
-    DataBase database = initializeDatabase();
-    MailServer mailServer = initializeMailServer();
-    sendOutSeniorDiscounts(database, mailServer);
-    Approvals.verifyAll("", mailServer.getRecipients());
+public void senior_customer_list_includes_only_those_over_age_65()
+{
+  DataBase database = initializeDatabase();
+  MailServer mailServer = initializeMailServer();
+  sendOutSeniorDiscounts(database, mailServer);
+  Approvals.verifyAll("", mailServer.getRecipients());
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L10-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-step0' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L12-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-step0' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This test works against a live database with a live mail server.
@@ -91,7 +94,7 @@ Now we dump the data resulting from a successful query so that we can create a f
 List<Customer> seniorCustomers = database.getSeniorCustomers();
 seniorCustomers.stream().forEach(System.out::println);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L37-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-step_capture_data' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L40-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-step_capture_data' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 generates

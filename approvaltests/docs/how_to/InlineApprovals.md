@@ -33,7 +33,7 @@ To do this simply add the option:
 ```java
 new Options().inline(expected);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/inline/InlineApprovalsTest.java#L25-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/inline/InlineApprovalsTest.java#L29-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Workflow
