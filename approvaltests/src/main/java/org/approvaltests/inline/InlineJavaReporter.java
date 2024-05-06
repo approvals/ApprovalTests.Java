@@ -2,9 +2,11 @@ package org.approvaltests.inline;
 
 import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
+import org.apache.commons.lang3.function.TriFunction;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.namer.StackTraceNamer;
+import org.lambda.functions.Function3;
 
 import java.io.File;
 import java.util.regex.Matcher;
@@ -12,16 +14,18 @@ import java.util.regex.Pattern;
 
 public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {
-  private final String                  sourceFilePath;
-  private final StackTraceNamer         stackTraceNamer;
-  private final ApprovalFailureReporter reporter;
-  private final String                  additionalLines;
+  private final String                             sourceFilePath;
+  private final StackTraceNamer                    stackTraceNamer;
+  public ApprovalFailureReporter                   reporter;
+  private final String                             additionalLines;
+  public Function3<String, String, String, String> createNewReceivedFileText;
   public InlineJavaReporter(ApprovalFailureReporter reporter, boolean addApprovalLine)
   {
     this.reporter = reporter;
     this.stackTraceNamer = new StackTraceNamer();
     this.sourceFilePath = stackTraceNamer.getSourceFilePath();
-    this.additionalLines = addApprovalLine ? "***** DELETE ME TO APPROVE *****" : "";
+    this.additionalLines = addApprovalLine ? "***** DELETE ME TO APPROVE *****\n" : "";
+    this.createNewReceivedFileText = InlineJavaReporter::createNewReceivedFileText;
   }
   public String getSourceFilePath()
   {
@@ -39,7 +43,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
-    String fullText = createNewReceivedFileText(text, actual + additionalLines,
+    String fullText = this.createNewReceivedFileText.call(text, actual + additionalLines,
         this.stackTraceNamer.getInfo().getMethodName());
     FileUtils.writeFile(new File(received), fullText);
     return received;
@@ -48,10 +52,10 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   {
     return sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
   }
-  public static String createNewReceivedFileText(String text, String actual, String methodName)
+  public static String createNewReceivedFileText(String javaSourceCode, String actual, String methodName)
   {
-    text = text.replaceAll("\r\n", "\n");
-    CodeParts codeParts = CodeParts.splitCode(text, methodName);
+    javaSourceCode = javaSourceCode.replaceAll("\r\n", "\n");
+    CodeParts codeParts = CodeParts.splitCode(javaSourceCode, methodName);
     if (codeParts.method.contains("expected = \"\"\""))
     {
       replaceExpected(codeParts, actual);

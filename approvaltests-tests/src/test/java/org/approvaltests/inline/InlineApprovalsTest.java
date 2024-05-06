@@ -2,15 +2,19 @@ package org.approvaltests.inline;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.AutoApproveReporter;
 import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.QuietReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
+import org.lambda.actions.Action1;
+import org.lambda.utils.Mutable;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InlineApprovalsTest
 {
@@ -127,5 +131,51 @@ public class InlineApprovalsTest
         born on %steen of %s, Nineteen-eighty-%s
 
         """.formatted(name, name, name, name, name, name);
+  }
+  @Test
+  void testSemiAutomatic()
+  {
+    var expected = """
+        hello Lars
+        ***** DELETE ME TO APPROVE *****
+        """;
+    Options options = new Options().inline("", InlineOptions.semiAutomatic());
+    Mutable<String> result = hijackInlineReporter(options, AutoApproveReporter.class);
+    Action1<Throwable> assertion = e -> assertEquals(expected, result.get());
+    assertApprovalFailure("hello Lars", options, assertion);
+  }
+  @Test
+  void testAutomatic()
+  {
+    var expected = """
+        hello Oskar
+        """;
+    Options options = new Options().inline("", InlineOptions.automatic());
+    Mutable<String> result = hijackInlineReporter(options, AutoApproveReporter.class);
+    Action1<Throwable> assertion = e -> assertEquals(expected, result.get());
+    assertApprovalFailure("hello Oskar", options, assertion);
+  }
+  private static void assertApprovalFailure(String actual, Options options, Action1<Throwable> azzert)
+  {
+    boolean failed = true;
+    try
+    {
+      Approvals.verify(actual, options);
+      failed = false;
+    }
+    catch (Throwable t)
+    {
+      azzert.call(t);
+    }
+    assertTrue(failed, "Approval should have failed");
+  }
+  private static Mutable<String> hijackInlineReporter(Options options, Class<AutoApproveReporter> reporterClass)
+  {
+    InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
+    assertEquals(reporter.reporter.getClass(), reporterClass);
+    reporter.reporter = new QuietReporter();
+    Mutable<String> result = new Mutable<>("");
+    reporter.createNewReceivedFileText = (s, a, m) -> result.set(a);
+    return result;
   }
 }
