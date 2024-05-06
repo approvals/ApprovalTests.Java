@@ -140,7 +140,7 @@ public class InlineApprovalsTest
         ***** DELETE ME TO APPROVE *****
         """;
     Options options = new Options().inline("", InlineOptions.semiAutomatic());
-    Mutable<String> result = hijackInlineReporter(options, AutoApproveReporter.class);
+    Mutable<String> result = hijackInlineReporter(options);
     Action1<Throwable> assertion = e -> assertEquals(expected, result.get());
     assertApprovalFailure("hello Lars", options, assertion);
   }
@@ -151,9 +151,8 @@ public class InlineApprovalsTest
         hello Oskar
         """;
     Options options = new Options().inline("", InlineOptions.automatic());
-    Mutable<String> result = hijackInlineReporter(options, AutoApproveReporter.class);
-    Action1<Throwable> assertion = e -> assertEquals(expected, result.get());
-    assertApprovalFailure("hello Oskar", options, assertion);
+    assertApprovalFailure("hello Oskar", options,
+        e -> assertEquals(expected, hijackInlineReporter(options).get()));
   }
   private static void assertApprovalFailure(String actual, Options options, Action1<Throwable> azzert)
   {
@@ -169,10 +168,10 @@ public class InlineApprovalsTest
     }
     assertTrue(failed, "Approval should have failed");
   }
-  private static Mutable<String> hijackInlineReporter(Options options, Class<AutoApproveReporter> reporterClass)
+  private static Mutable<String> hijackInlineReporter(Options options)
   {
     InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
-    assertEquals(reporter.reporter.getClass(), reporterClass);
+    assertEquals(reporter.reporter.getClass(), AutoApproveReporter.class);
     reporter.reporter = new QuietReporter();
     Mutable<String> result = new Mutable<>("");
     reporter.createNewReceivedFileText = (s, a, m) -> result.set(a);
