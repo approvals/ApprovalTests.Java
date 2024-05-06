@@ -5,6 +5,7 @@ import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.inline.InlineComparator;
+import org.approvaltests.inline.InlineOptions;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
 import org.approvaltests.scrubbers.NoOpScrubber;
@@ -32,11 +33,11 @@ public class Options
   }
   public Options inline(String expected)
   {
-    return inline(expected, true);
+    return inline(expected, InlineOptions.showCode(true));
   }
-  public Options inline(String expected, boolean showCode)
+  public Options inline(String expected, InlineOptions inlineOptions)
   {
-    InlineComparator inline = new InlineComparator(expected, showCode ? this.getReporter() : null);
+    InlineComparator inline = new InlineComparator(expected, inlineOptions);
     return inline.setForOptions(this);
   }
   public Options(Scrubber scrubber)

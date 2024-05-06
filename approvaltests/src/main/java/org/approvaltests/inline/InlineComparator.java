@@ -1,7 +1,6 @@
 package org.approvaltests.inline;
 
 import com.spun.util.io.FileUtils;
-import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
 
@@ -13,17 +12,14 @@ import static org.approvaltests.writers.Writer.received;
 
 public class InlineComparator implements ApprovalNamer
 {
-  private ApprovalFailureReporter reporter = null;
-  private final String            expected;
-  private File                    approvedFile;
-  private File                    receivedFile;
-  public InlineComparator(String expected, ApprovalFailureReporter reporter)
+  private final InlineOptions inlineOptions;
+  private final String        expected;
+  private File                approvedFile;
+  private File                receivedFile;
+  public InlineComparator(String expected, InlineOptions inlineOptions)
   {
     this.expected = expected;
-    if (reporter != null)
-    {
-      this.reporter = new InlineJavaReporter(reporter);
-    }
+    this.inlineOptions = inlineOptions;
   }
   @Override
   public File getApprovedFile(String extensionWithDot)
@@ -73,16 +69,9 @@ public class InlineComparator implements ApprovalNamer
   {
     return "";
   }
-  public boolean report(String received, String approved)
-  {
-    return reporter.report(received, approved);
-  }
   public Options setForOptions(Options options)
   {
-    if (reporter != null)
-    {
-      options = options.withReporter(reporter);
-    }
+    options = inlineOptions.apply(options);
     return options.forFile().withNamer(this);
   }
 }

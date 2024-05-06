@@ -103,8 +103,8 @@ public class InlineApprovalsTest
   @UseReporter(QuietReporter.class)
   public void testReportingCode()
   {
-    Options inlineWithCode = new Options().inline("", true);
-    Options inlineNoCode = new Options().inline("", false);
+    Options inlineWithCode = new Options().inline("", InlineOptions.showCode(true));
+    Options inlineNoCode = new Options().inline("", InlineOptions.showCode(false));
     var resultWithCode = inlineWithCode.getReporter();
     assertEquals(InlineJavaReporter.class, resultWithCode.getClass());
     assertEquals(QuietReporter.class,
@@ -116,7 +116,7 @@ public class InlineApprovalsTest
     var expected = """
         Jeff Jeffty Jeff
         born on Jeffteen of Jeff, Nineteen-eighty-Jeff
-
+        
         """;
     Approvals.verify(greet("Jeff"), new Options().inline(expected));
   }
