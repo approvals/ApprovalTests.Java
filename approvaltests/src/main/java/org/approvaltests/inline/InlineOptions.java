@@ -10,7 +10,7 @@ public interface InlineOptions
   {
     if (doShowCode)
     {
-      return options -> options.withReporter(new InlineJavaReporter(options.getReporter()));
+      return options -> options.withReporter(new InlineJavaReporter(options.getReporter(), false));
     }
     else
     {
@@ -19,6 +19,10 @@ public interface InlineOptions
   }
   public static InlineOptions automatic()
   {
-    return options -> options.withReporter(new InlineJavaReporter(new AutoApproveReporter()));
+    return options -> options.withReporter(new InlineJavaReporter(new AutoApproveReporter(), false));
+  }
+  public static InlineOptions semiAutomatic()
+  {
+    return options -> options.withReporter(new InlineJavaReporter(new AutoApproveReporter(), true));
   }
 }
