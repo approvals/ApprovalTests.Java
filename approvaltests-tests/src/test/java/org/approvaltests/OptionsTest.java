@@ -206,7 +206,7 @@ public class OptionsTest
     Options options2 = new Options().withReporter(new MultiReporter(new Junit5Reporter(), new Junit4Reporter()));
     ApprovalFailureReporter reporter2 = options2.getReporter();
     assertEquals(reporter2.toString(), "Junit5Reporter, Junit4Reporter");
-    Options options3 = new Options().withReporter(new Junit5Reporter()).andReporter(new Junit4Reporter());
+    Options options3 = new Options().withReporter(new Junit5Reporter()).addReporter(new Junit4Reporter());
     ApprovalFailureReporter reporter3 = options3.getReporter();
     assertEquals(reporter3.toString(), "Junit5Reporter, Junit4Reporter");
   }

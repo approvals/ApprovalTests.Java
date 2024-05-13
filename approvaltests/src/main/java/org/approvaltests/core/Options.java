@@ -62,7 +62,7 @@ public class Options
   {
     return new Options(fields, Fields.REPORTER, reporter);
   }
-  public Options andReporter(ApprovalFailureReporter reporter)
+  public Options addReporter(ApprovalFailureReporter reporter)
   {
     return this.withReporter(new MultiReporter(this.getReporter(), reporter));
   }
