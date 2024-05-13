@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.lambda.query.Queryable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,5 +40,10 @@ public class MultiReporter implements ApprovalFailureReporter
   public ApprovalFailureReporter[] getReporters()
   {
     return reporters.toArray(new ApprovalFailureReporter[0]);
+  }
+  @Override
+  public String toString()
+  {
+    return Queryable.as(reporters.stream()).join(", ", r -> r.getClass().getSimpleName());
   }
 }

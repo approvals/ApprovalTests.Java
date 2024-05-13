@@ -8,6 +8,7 @@ import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.inline.InlineOptions;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.NamerWrapper;
+import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalWriterFactory;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
@@ -60,6 +61,10 @@ public class Options
   public Options withReporter(ApprovalFailureReporter reporter)
   {
     return new Options(fields, Fields.REPORTER, reporter);
+  }
+  public Options andReporter(ApprovalFailureReporter reporter)
+  {
+    return this.withReporter(new MultiReporter(this.getReporter(), reporter));
   }
   public Function2<File, File, VerifyResult> getComparator()
   {

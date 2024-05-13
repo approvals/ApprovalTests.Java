@@ -1,7 +1,6 @@
 package org.approvaltests;
 
 import com.spun.util.ArrayUtils;
-import com.spun.util.introspection.Caller;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
@@ -10,6 +9,9 @@ import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.VerifyResult;
 import org.approvaltests.reporters.FirstWorkingReporter;
+import org.approvaltests.reporters.Junit4Reporter;
+import org.approvaltests.reporters.Junit5Reporter;
+import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.approvaltests.reporters.UseReporterTest;
 import org.approvaltests.velocity.VelocityApprovals;
@@ -194,5 +196,18 @@ public class OptionsTest
   void verifyCustomComparator()
   {
     Approvals.verify("The approval file is empty", new Options().withComparator((a, b) -> VerifyResult.SUCCESS));
+  }
+  @Test
+  void testAddReporter()
+  {
+    Options options = new Options().withReporter(new Junit5Reporter()).withReporter(new Junit4Reporter());
+    ApprovalFailureReporter reporter = options.getReporter();
+    assertTrue(reporter instanceof Junit4Reporter);
+    Options options2 = new Options().withReporter(new MultiReporter(new Junit5Reporter(), new Junit4Reporter()));
+    ApprovalFailureReporter reporter2 = options2.getReporter();
+    assertEquals(reporter2.toString(), "Junit5Reporter, Junit4Reporter");
+    Options options3 = new Options().withReporter(new Junit5Reporter()).andReporter(new Junit4Reporter());
+    ApprovalFailureReporter reporter3 = options3.getReporter();
+    assertEquals(reporter3.toString(), "Junit5Reporter, Junit4Reporter");
   }
 }
