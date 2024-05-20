@@ -2,10 +2,10 @@ package org.approvaltests.inline;
 
 import com.spun.util.StringUtils;
 import com.spun.util.io.FileUtils;
-import org.apache.commons.lang3.function.TriFunction;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.namer.StackTraceNamer;
+import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
 
 import java.io.File;
@@ -16,16 +16,21 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
 {
   private final String                             sourceFilePath;
   private final StackTraceNamer                    stackTraceNamer;
+  private Function2<String, String, String>        footerCreator;
   public ApprovalFailureReporter                   reporter;
-  private final String                             additionalLines;
+  private String                                   additionalLines;
   public Function3<String, String, String, String> createNewReceivedFileText;
-  public InlineJavaReporter(ApprovalFailureReporter reporter, boolean addApprovalLine)
+  public InlineJavaReporter(ApprovalFailureReporter reporter, Function2<String, String, String> footerCreator)
   {
     this.reporter = reporter;
     this.stackTraceNamer = new StackTraceNamer();
     this.sourceFilePath = stackTraceNamer.getSourceFilePath();
-    this.additionalLines = addApprovalLine ? "***** DELETE ME TO APPROVE *****\n" : "";
     this.createNewReceivedFileText = InlineJavaReporter::createNewReceivedFileText;
+    if (footerCreator == null)
+    {
+      footerCreator = (source, actual) -> "";
+    }
+    this.footerCreator = footerCreator;
   }
   public String getSourceFilePath()
   {
@@ -34,6 +39,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   @Override
   public boolean report(String received, String approved)
   {
+    additionalLines = footerCreator.call(received, approved);
     String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
     String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);

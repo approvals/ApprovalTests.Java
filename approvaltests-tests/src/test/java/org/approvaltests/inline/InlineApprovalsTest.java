@@ -177,4 +177,40 @@ public class InlineApprovalsTest
     reporter.createNewReceivedFileText = (s, a, m) -> result.set(a);
     return result;
   }
+  @Test
+  void testSemiAutomaticMessage()
+  {
+    var expected = """
+      41
+      ***** DELETE ME TO APPROVE *****
+      """;
+    var options = new Options().inline(expected, InlineOptions.semiAutomatic());
+    try
+    {
+      Approvals.verify("41", options);
+    }
+    catch (Throwable e)
+    {
+    }
+    Approvals.verify(expected);
+  }
+  @Test
+  void testSemiAutomaticWithPreviousApproved()
+  {
+    var expected = """
+      42
+      ***** DELETE ME TO APPROVE *****
+      vvvvv PREVIOUS RESULT      vvvvv
+      41
+      """;
+    var options = new Options().inline(expected, InlineOptions.semiAutomaticWithPreviousApproved());
+    try
+    {
+      Approvals.verify("42", options);
+    }
+    catch (Throwable e)
+    {
+    }
+    Approvals.verify(expected);
+  }
 }
