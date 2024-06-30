@@ -141,6 +141,11 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.0</version>
+                <configuration>
+                    <environmentVariables>
+                        <APPROVAL_TESTS_USE_REPORTER>DiffReporter,QuietReporter</APPROVAL_TESTS_USE_REPORTER>
+                    </environmentVariables>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
