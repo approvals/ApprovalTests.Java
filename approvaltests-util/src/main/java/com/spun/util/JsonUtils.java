@@ -67,8 +67,12 @@ public class JsonUtils
   }
   public static String reorderFields(String json)
   {
+    return reorderFields(json, g -> g);
+  }
+  public static String reorderFields(String json, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  {
     JsonObject sortedJsonObject = sortJsonObject(json);
-    return asJson(sortedJsonObject);
+    return asJson(sortedJsonObject, gsonBuilder);
   }
   public static JsonObject sortJsonObject(String json)
   {

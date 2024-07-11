@@ -1,7 +1,6 @@
 package org.approvaltests;
 
 import com.google.gson.GsonBuilder;
-import com.spun.util.FormattedException;
 import com.spun.util.JsonUtils;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
@@ -22,6 +21,16 @@ public class JsonApprovals
   public static void verifyJson(String json, boolean reorderJson)
   {
     verifyJson(json, reorderJson, new Options());
+  }
+  public static void verifyJson(String json, boolean reorderJson, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  {
+    verifyJson(json, reorderJson, gsonBuilder, new Options());
+  }
+  public static void verifyJson(String json, boolean reorderJson, Function1<GsonBuilder, GsonBuilder> gsonBuilder,
+      Options options)
+  {
+    String formattedJson = reorderJson ? JsonUtils.reorderFields(json, gsonBuilder) : JsonUtils.prettyPrint(json);
+    Approvals.verify(formattedJson, options.forFile().withExtension(".json"));
   }
   public static void verifyJson(String json, boolean reorderJson, Options options)
   {
