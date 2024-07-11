@@ -112,7 +112,11 @@ public class JsonUtils
     @Override
     public void write(JsonWriter jsonWriter, LocalDateTime instant) throws IOException
     {
-      jsonWriter.value(instant.toString());
+      if (instant == null) {
+        jsonWriter.nullValue();
+      } else {
+        jsonWriter.value("" + instant);
+      }
     }
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException
