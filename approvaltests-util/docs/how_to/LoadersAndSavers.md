@@ -120,6 +120,7 @@ List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
 <!-- endSnippet -->
 
 ### Step 4: In the original method, replace the function call with a Loader
+<!-- Snippet Compare: step1, step2 -->
 <pre style="color: gray">
  public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
     List&lt;Customer> seniorCustomers = <b style="color: red">database.getSeniorCustomers(); </b>
@@ -145,27 +146,27 @@ List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
 
 Step 5: Now we introduce the new loader function as a parameter to the original function. (If you use the IDE's refactoring tools to do this it will save a lot of effort).
 
-```
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+<!-- Snippet Compare: step2_b, step3_a, "extract method" -->
 
-&nbsp;   List&lt;Customer&gt; seniorCustomers = ((Loader&lt;List<Customer&gt;>) () -> database.getSeniorCustomers()).load();
-
-&nbsp;       // ...
-
-}
-```
-
-becomes
-
-```
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
-
-&nbsp;   List&lt;Customer&gt; seniorCustomers = seniorCustomerLoader.load();
-
-&nbsp;   // ...
-
-}
-```
+<pre style="color: gray">
+        public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+            Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+            List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+            // ...
+        }
+</pre>
+# ⇓ extract method
+<pre style="color: gray">
+        public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+            Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+<b style="color: green">            sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); </b>
+<b style="color: green">        } </b>
+<b style="color: green">          </b>
+<b style="color: green">        public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List&lt;Customer>> seniorCustomerLoader) { </b>
+            List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+            // ...
+        }
+</pre>
 
 Step 6: Update the calls to this function (including tests) to use the new Loader parameter.
 
