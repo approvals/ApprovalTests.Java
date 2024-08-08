@@ -128,7 +128,8 @@ public class LoadersAndSaversExamplesTest
     @Test
     public void senior_customer_list_includes_only_those_over_age_65()
     {
-      Loader<List<Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"), new Customer("Tom"));
+      Loader<List<Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"),
+          new Customer("Tom"));
       MailServer mailServer = initializeMailServer();
       sendOutSeniorDiscounts(mailServer, mailingList);
       Approvals.verifyAll("", mailServer.getRecipients());
@@ -142,7 +143,6 @@ public class LoadersAndSaversExamplesTest
     {
       return null;
     }
-
   }
   private String generateDiscountMessage(Customer customer, Discount seniorDiscount)
   {
