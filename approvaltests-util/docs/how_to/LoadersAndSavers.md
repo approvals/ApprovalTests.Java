@@ -168,19 +168,35 @@ Step 5: Now we introduce the new loader function as a parameter to the original 
         }
 </pre>
 
-Step 6: Update the calls to this function (including tests) to use the new Loader parameter.
+Step 6: Update the unit tests to use the new Loader parameter.
+We have now removed the reliance on the database to retrieve the data.
+We still rely on a mail server to send the results.
 
-public void senior_customer_list_includes_only_those_over_age_65() {
+<!-- Snippet Compare: step0, step0_b -->
 
-&nbsp;   MailServer mailServer = // initialize server
+<pre style="color: gray">
+    @Test
+    public void senior_customer_list_includes_only_those_over_age_65()
+    {
+<b style="color: red">      DataBase database = initializeDatabase(); </b>
+      MailServer mailServer = initializeMailServer();
+      sendOutSeniorDiscounts( mailServer, <b style="color: red">database </b>); 
+      Approvals.verifyAll("", mailServer.getRecipients());
+    }
+</pre>
+# ⇓
+<pre style="color: gray">
+    @Test
+    public void senior_customer_list_includes_only_those_over_age_65()
+    {
+<s style="color: red">      DataBase database = initializeDatabase(); </s> 
+<b style="color: green">      Loader&lt;List&lt;Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"), new Customer("Tom")); </b>
+      MailServer mailServer = initializeMailServer();
+      sendOutSeniorDiscounts( mailServer, <s style="color: red">database </s> <b style="color: green">mailingList </b>); 
+      Approvals.verifyAll("", mailServer.getRecipients());
+    }
+</pre>
 
-&nbsp;   List&lt;Customer&gt; seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
-
-&nbsp;   sendOutSeniorDiscounts(null, mailServer, () -> seniorCustomers));
-
-&nbsp;   Approvals.verifyAll(mailServer.getRecipients());
-
-}
 
 Step 7: Now we can remove the DataBase as a parameter altogether.
 
