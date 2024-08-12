@@ -23,10 +23,9 @@ Currently, the DefaultFrontLoadedReporter that comes with ApprovalTests is set u
 <!-- snippet: default_front_loaded_reporter -->
 <a id='snippet-default_front_loaded_reporter'></a>
 ```java
-PitReporter.INSTANCE,
-EnvironmentVariableReporter.INSTANCE
+PitReporter.INSTANCE, EnvironmentVariableReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/DefaultFrontLoadedReporter.java#L9-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_front_loaded_reporter' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/DefaultFrontLoadedReporter.java#L9-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-default_front_loaded_reporter' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Links
