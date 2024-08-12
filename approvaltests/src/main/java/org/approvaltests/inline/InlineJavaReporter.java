@@ -9,8 +9,6 @@ import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
 
 import java.io.File;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {
@@ -104,14 +102,7 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
     }
     return output;
   }
-  private static String extractLeadingWhitespace(String text)
-  {
-    Pattern pattern = Pattern.compile("^\\s+");
-    Matcher matcher = pattern.matcher(text);
-    if (matcher.find())
-    { return matcher.group(); }
-    return "\t";
-  }
+
   @Override
   public void cleanUp(String received, String approved)
   {
