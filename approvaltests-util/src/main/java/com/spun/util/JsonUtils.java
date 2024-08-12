@@ -67,8 +67,12 @@ public class JsonUtils
   }
   public static String reorderFields(String json)
   {
+    return reorderFields(json, g -> g);
+  }
+  public static String reorderFields(String json, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  {
     JsonObject sortedJsonObject = sortJsonObject(json);
-    return asJson(sortedJsonObject);
+    return asJson(sortedJsonObject, gsonBuilder);
   }
   public static JsonObject sortJsonObject(String json)
   {
@@ -112,7 +116,14 @@ public class JsonUtils
     @Override
     public void write(JsonWriter jsonWriter, LocalDateTime instant) throws IOException
     {
-      jsonWriter.value(instant.toString());
+      if (instant == null)
+      {
+        jsonWriter.nullValue();
+      }
+      else
+      {
+        jsonWriter.value("" + instant);
+      }
     }
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException

@@ -86,17 +86,15 @@ public class LoadersAndSaversExamplesTest
     }
     // end-snippet
   }
-  class Step3
+  class Step2b
   {
-    // begin-snippet: step3
+    // begin-snippet: step2_b
     public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
     {
-      sendOutSeniorDiscounts(mailServer, database::getSeniorCustomers); // +
-    } // +
-    // +
-    public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader)
-    { // +
+      Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
+      // ...
+      // end-snippet
       for (Customer customer : seniorCustomers)
       {
         Discount seniorDiscount = getSeniorDiscount();
@@ -104,7 +102,47 @@ public class LoadersAndSaversExamplesTest
         mailServer.sendMessage(customer, message);
       }
     }
+  }
+  class Step3a
+  {
+    // begin-snippet: step3_a
+    public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+    {
+      Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+      sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); // +
+    } // +
+    // +
+    public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader) // +
+    { // +
+      List<Customer> seniorCustomers = seniorCustomerLoader.load();
+      // ...
+      // end-snippet
+      for (Customer customer : seniorCustomers)
+      {
+        Discount seniorDiscount = getSeniorDiscount();
+        String message = generateDiscountMessage(customer, seniorDiscount);
+        mailServer.sendMessage(customer, message);
+      }
+    }
+    // begin-snippet: step0_b
+    @Test
+    public void senior_customer_list_includes_only_those_over_age_65()
+    {
+      Loader<List<Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"),
+          new Customer("Tom"));
+      MailServer mailServer = initializeMailServer();
+      sendOutSeniorDiscounts(mailServer, mailingList);
+      Approvals.verifyAll("", mailServer.getRecipients());
+    }
     // end-snippet
+    private MailServer initializeMailServer()
+    {
+      return new MailServer();
+    }
+    private DataBase initializeDatabase()
+    {
+      return null;
+    }
   }
   private String generateDiscountMessage(Customer customer, Discount seniorDiscount)
   {

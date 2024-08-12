@@ -120,6 +120,7 @@ List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
 <!-- endSnippet -->
 
 ### Step 4: In the original method, replace the function call with a Loader
+<!-- Snippet Compare: step1, step2 -->
 <pre style="color: gray">
  public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
     List&lt;Customer> seniorCustomers = <b style="color: red">database.getSeniorCustomers(); </b>
@@ -145,41 +146,57 @@ List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
 
 Step 5: Now we introduce the new loader function as a parameter to the original function. (If you use the IDE's refactoring tools to do this it will save a lot of effort).
 
-```
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+<!-- Snippet Compare: step2_b, step3_a, "extract method" -->
 
-&nbsp;   List&lt;Customer&gt; seniorCustomers = ((Loader&lt;List<Customer&gt;>) () -> database.getSeniorCustomers()).load();
+<pre style="color: gray">
+        public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+            Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+            List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+            // ...
+        }
+</pre>
+# ⇓ extract method
+<pre style="color: gray">
+        public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer) {
+            Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+<b style="color: green">            sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); </b>
+<b style="color: green">        } </b>
+<b style="color: green">          </b>
+<b style="color: green">        public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List&lt;Customer>> seniorCustomerLoader) { </b>
+            List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+            // ...
+        }
+</pre>
 
-&nbsp;       // ...
+Step 6: Update the unit tests to use the new Loader parameter.
+We have now removed the reliance on the database to retrieve the data.
+We still rely on a mail server to send the results.
 
-}
-```
+<!-- Snippet Compare: step0, step0_b -->
 
-becomes
+<pre style="color: gray">
+    @Test
+    public void senior_customer_list_includes_only_those_over_age_65()
+    {
+<b style="color: red">      DataBase database = initializeDatabase(); </b>
+      MailServer mailServer = initializeMailServer();
+      sendOutSeniorDiscounts( mailServer, <b style="color: red">database </b>); 
+      Approvals.verifyAll("", mailServer.getRecipients());
+    }
+</pre>
+# ⇓
+<pre style="color: gray">
+    @Test
+    public void senior_customer_list_includes_only_those_over_age_65()
+    {
+<s style="color: red">      DataBase database = initializeDatabase(); </s> 
+<b style="color: green">      Loader&lt;List&lt;Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"), new Customer("Tom")); </b>
+      MailServer mailServer = initializeMailServer();
+      sendOutSeniorDiscounts( mailServer, <s style="color: red">database </s> <b style="color: green">mailingList </b>); 
+      Approvals.verifyAll("", mailServer.getRecipients());
+    }
+</pre>
 
-```
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
-
-&nbsp;   List&lt;Customer&gt; seniorCustomers = seniorCustomerLoader.load();
-
-&nbsp;   // ...
-
-}
-```
-
-Step 6: Update the calls to this function (including tests) to use the new Loader parameter.
-
-public void senior_customer_list_includes_only_those_over_age_65() {
-
-&nbsp;   MailServer mailServer = // initialize server
-
-&nbsp;   List&lt;Customer&gt; seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
-
-&nbsp;   sendOutSeniorDiscounts(null, mailServer, () -> seniorCustomers));
-
-&nbsp;   Approvals.verifyAll(mailServer.getRecipients());
-
-}
 
 Step 7: Now we can remove the DataBase as a parameter altogether.
 
