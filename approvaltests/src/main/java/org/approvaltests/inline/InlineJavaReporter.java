@@ -102,7 +102,6 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
     }
     return output;
   }
-
   @Override
   public void cleanUp(String received, String approved)
   {

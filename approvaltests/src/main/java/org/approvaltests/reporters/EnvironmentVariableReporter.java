@@ -48,9 +48,9 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
       reporter = null;
       return;
     }
-    var reporters = Arrays.stream(environmentValue.split(",")).distinct().map(REPORTER_MAP::get)
-        .filter(Objects::nonNull).map(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType))
-        .toList();
+    List<ApprovalFailureReporter> reporters = Arrays.stream(environmentValue.split(",")).distinct()
+        .map(REPORTER_MAP::get).filter(Objects::nonNull)
+        .map(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType)).toList();
     switch (reporters.size())
     {
       case 0 : {
