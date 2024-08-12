@@ -1,19 +1,29 @@
 package org.approvaltests.reporters;
 
+import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class EnvironmentVariableReporterTest {
-    @Test
-    public void testEnvironmentVariable() {
-        var reporter = EnvironmentVariableReporter.INSTANCE.getReporter();
+import static org.junit.jupiter.api.Assertions.*;
 
-        Assertions.assertInstanceOf(MultiReporter.class, reporter);
-        var multiReporter = (MultiReporter) reporter;
-        var reporters = multiReporter.getReporters();
-
-        Assertions.assertEquals(2, reporters.length);
-        Assertions.assertInstanceOf(DiffReporter.class, reporters[0]);
-        Assertions.assertInstanceOf(QuietReporter.class, reporters[1]);
+public class EnvironmentVariableReporterTest
+{
+  @Test
+  public void testEnvironmentVariable()
+  {
+    var expected = """
+        DiffReporter, QuietReporter
+        """;
+    try
+    {
+      EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = (s) -> "DiffReporter,QuietReporter";
+      var reporter = new EnvironmentVariableReporter().getReporter();
+      Approvals.verify(reporter, new Options().inline(expected));
     }
+    finally
+    {
+      EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = System::getenv;
+    }
+  }
 }

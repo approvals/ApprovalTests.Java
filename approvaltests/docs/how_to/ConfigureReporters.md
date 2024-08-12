@@ -121,6 +121,9 @@ The environment variable can take any combination of the following values. Multi
 "WindowsDiffReporter",
 ```
 
-For example, setting `APPROVAL_TESTS_USE_REPORTER=AutoApproveReporter` allows you to approve all pending changes at once without modifying the source code and rebuilding the code to temporarily choose a different reporter. Similarly, setting `APPROVAL_TESTS_USE_REPORTER=MeldMergeReporter` allows you to explicitly choose a reporter you want to use locally, without influencing the default reporter priorities and setup for fellow developers.
+For example, setting `APPROVAL_TESTS_USE_REPORTER=AutoApproveReporter` allows you to approve all pending changes at once
+without modifying the source code and rebuilding the code to temporarily choose a different reporter. Similarly, setting
+`APPROVAL_TESTS_USE_REPORTER=MeldMergeReporter` allows you to explicitly choose a reporter you want to use locally,
+without influencing the default reporter priorities and setup for fellow developers.
 
 See Also: [Reporters](../reference/Reporters.md)
