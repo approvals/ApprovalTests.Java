@@ -78,4 +78,8 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
     { return false; }
     return reporter.report(received, approved);
   }
+  public Map<String, Class> getReporterMapping()
+  {
+    return new HashMap<>(REPORTER_MAP);
+  }
 }

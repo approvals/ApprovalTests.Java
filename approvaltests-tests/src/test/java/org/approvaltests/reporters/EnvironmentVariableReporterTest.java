@@ -2,10 +2,11 @@ package org.approvaltests.reporters;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class EnvironmentVariableReporterTest
 {
@@ -25,5 +26,12 @@ public class EnvironmentVariableReporterTest
     {
       EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = System::getenv;
     }
+  }
+  @Test
+  void testValidEnvironmentalValues()
+  {
+    Set<String> reporters = new EnvironmentVariableReporter().getReporterMapping().keySet();
+    List<String> sortedReporters = reporters.stream().sorted().collect(Collectors.toList());
+    Approvals.verifyAll("", sortedReporters, x -> x);
   }
 }
