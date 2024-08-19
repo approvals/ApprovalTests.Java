@@ -1,3 +1,4 @@
 Error:com.google.gson.stream.MalformedJsonException: Unterminated object at line 1 column 23 path $.infos.address
+See https://github.com/google/gson/blob/main/Troubleshooting.md#malformed-json
 Json:
 {"infos":{address:my address,"phone":"my phone"},"insurance":{"forks":[14,53,123],"prices":[5,8,"3%"]}}
