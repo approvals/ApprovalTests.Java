@@ -11,6 +11,7 @@ import org.approvaltests.reporters.windows.*;
 import org.lambda.functions.Function1;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class EnvironmentVariableReporter implements ApprovalFailureReporter
 {
@@ -50,7 +51,8 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
     }
     List<ApprovalFailureReporter> reporters = Arrays.stream(environmentValue.split(",")).distinct()
         .map(REPORTER_MAP::get).filter(Objects::nonNull)
-        .map(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType)).toList();
+        .map(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType))
+        .collect(Collectors.toList());
     switch (reporters.size())
     {
       case 0 : {
