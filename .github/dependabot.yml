@@ -7,10 +7,9 @@ updates:
       groups:
         junit:
           patterns:
-            - "org.junit.vintage"
-            - "org.junit.jupiter"
-            - "junit"
-            - "com.fasterxml.jackson.core"
+            - "org.junit.*"
+    commit-message:
+      prefix: ". e "
     open-pull-requests-limit: 10
 
   - package-ecosystem: "github-actions"
