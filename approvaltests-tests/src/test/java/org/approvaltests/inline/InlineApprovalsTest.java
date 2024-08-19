@@ -184,9 +184,11 @@ public class InlineApprovalsTest
         41
         ***** DELETE ME TO APPROVE *****
         """;
-    var options = new Options().inline(expected, InlineOptions.semiAutomatic());
     try
     {
+      var options = new Options().inline(expected, InlineOptions.semiAutomatic());
+      InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
+      reporter.reporter = new QuietReporter();
       Approvals.verify("41", options);
     }
     catch (Throwable e)
@@ -198,11 +200,11 @@ public class InlineApprovalsTest
   void testSemiAutomaticWithPreviousApproved()
   {
     var expected = """
-        42
-        ***** DELETE ME TO APPROVE *****
-        vvvvv PREVIOUS RESULT      vvvvv
-        41
-        """;
+      42
+      ***** DELETE ME TO APPROVE *****
+      vvvvv PREVIOUS RESULT      vvvvv
+      41
+      """;
     var options = new Options().inline(expected, InlineOptions.semiAutomaticWithPreviousApproved());
     try
     {

@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.MapBuilder;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.intellij.IntelliJReporter;
 import org.approvaltests.reporters.linux.MeldMergeReporter;
@@ -16,28 +17,23 @@ import java.util.stream.Collectors;
 public class EnvironmentVariableReporter implements ApprovalFailureReporter
 {
   private final ApprovalFailureReporter                                      reporter;
-  private static final Map<String, Class<? extends ApprovalFailureReporter>> REPORTER_MAP              = Map
-      .ofEntries(Map.entry("AraxisMergeReporter", AraxisMergeReporter.class),
-          Map.entry("AutoApproveReporter", AutoApproveReporter.class),
-          Map.entry("AutoApproveWhenEmptyReporter", AutoApproveWhenEmptyReporter.class),
-          Map.entry("BeyondCompareReporter", BeyondCompareReporter.class),
-          Map.entry("ClipboardReporter", ClipboardReporter.class),
-          Map.entry("CodeCompareReporter", CodeCompareReporter.class),
-          Map.entry("DelayedClipboardReporter", DelayedClipboardReporter.class),
-          Map.entry("DiffMergeReporter", DiffMergeReporter.class), Map.entry("DiffReporter", DiffReporter.class),
-          Map.entry("FileCaptureReporter", FileCaptureReporter.class),
-          Map.entry("ImageReporter", ImageReporter.class), Map.entry("ImageWebReporter", ImageWebReporter.class),
-          Map.entry("IntelliJReporter", IntelliJReporter.class), Map.entry("JunitReporter", JunitReporter.class),
-          Map.entry("KDiff3Reporter", KDiff3Reporter.class),
-          Map.entry("KaleidoscopeDiffReporter", KaleidoscopeDiffReporter.class),
-          Map.entry("MeldMergeReporter", MeldMergeReporter.class),
-          Map.entry("P4MergeReporter", P4MergeReporter.class), Map.entry("PitReporter", PitReporter.class),
-          Map.entry("QuietReporter", QuietReporter.class), Map.entry("TestNgReporter", TestNgReporter.class),
-          Map.entry("TextWebReporter", TextWebReporter.class), Map.entry("TkDiffReporter", TkDiffReporter.class),
-          Map.entry("TortoiseDiffReporter", TortoiseDiffReporter.class),
-          Map.entry("VisualStudioCodeReporter", VisualStudioCodeReporter.class),
-          Map.entry("WinMergeReporter", WinMergeReporter.class),
-          Map.entry("WindowsDiffReporter", WindowsDiffReporter.class));
+  private static final Map<String, Class<? extends ApprovalFailureReporter>> REPORTER_MAP              = new MapBuilder(
+      "AraxisMergeReporter", AraxisMergeReporter.class).and("AutoApproveReporter", AutoApproveReporter.class)
+      .and("AutoApproveWhenEmptyReporter", AutoApproveWhenEmptyReporter.class)
+      .and("BeyondCompareReporter", BeyondCompareReporter.class).and("ClipboardReporter", ClipboardReporter.class)
+      .and("CodeCompareReporter", CodeCompareReporter.class)
+      .and("DelayedClipboardReporter", DelayedClipboardReporter.class)
+      .and("DiffMergeReporter", DiffMergeReporter.class).and("DiffReporter", DiffReporter.class)
+      .and("FileCaptureReporter", FileCaptureReporter.class).and("ImageReporter", ImageReporter.class)
+      .and("ImageWebReporter", ImageWebReporter.class).and("IntelliJReporter", IntelliJReporter.class)
+      .and("JunitReporter", JunitReporter.class).and("KDiff3Reporter", KDiff3Reporter.class)
+      .and("KaleidoscopeDiffReporter", KaleidoscopeDiffReporter.class)
+      .and("MeldMergeReporter", MeldMergeReporter.class).and("P4MergeReporter", P4MergeReporter.class)
+      .and("PitReporter", PitReporter.class).and("QuietReporter", QuietReporter.class)
+      .and("TestNgReporter", TestNgReporter.class).and("TextWebReporter", TextWebReporter.class)
+      .and("TkDiffReporter", TkDiffReporter.class).and("TortoiseDiffReporter", TortoiseDiffReporter.class)
+      .and("VisualStudioCodeReporter", VisualStudioCodeReporter.class)
+      .and("WinMergeReporter", WinMergeReporter.class).and("WindowsDiffReporter", WindowsDiffReporter.class);
   public static final String                                                 ENVIRONMENT_VARIABLE_NAME = "APPROVAL_TESTS_USE_REPORTER";
   public static Function1<String, String>                                    ENVIRONMENT_VARIABLES     = System::getenv;
   public static final EnvironmentVariableReporter                            INSTANCE                  = new EnvironmentVariableReporter();
