@@ -170,7 +170,7 @@ Step 5: Now we introduce the new loader function as a parameter to the original 
 
 Step 6: Update the unit tests to use the new Loader parameter.
 We have now removed the reliance on the database to retrieve the data.
-We still rely on a mail server to send the results.
+Note that we still rely on a mail server to send the results.
 
 <!-- Snippet Compare: step0, step0_b -->
 
@@ -197,72 +197,61 @@ We still rely on a mail server to send the results.
     }
 </pre>
 
-
-Step 7: Now we can remove the DataBase as a parameter altogether.
-
-public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
-
-&nbsp;   List seniorCustomers = seniorCustomerLoader.load();
-
-&nbsp;   // ...
-
-}
-
-becomes
-
-public void sendOutSeniorDiscounts(MailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) { ... }
-
-and we can now remove that parameter from any function that calls this one - including our test.
+And we can now remove that parameter from any function that calls this one - including our test.
 
 This removes the dependency on the database for testing purposes.
 
 Why not just use a mock object to do this?
 
-Because mocking the object in question may require much more than what we are doing here. In this case we are simply replacing a call to a method with the result of that method - as if it were called. Defining a mock object would require more overhead and initialization.
+Because mocking the object in question may require much more than what we are doing here. 
+In this case we are simply replacing a call to a method with the result of that method - as if it were called. 
+Defining a mock object would require much more overhead and initialization.
 
 But we still have a dependency on the MailServer in the example above.
 
 Thanks for pointing that out! We'll now show how to solve that problem using a Saver.
 
-Savers
+## Savers
 
 Let's continue with the above example:
-
-public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
-
-&nbsp;   List seniorCustomers = seniorCustomerLoader.load();
-
-&nbsp;   for (Customer customer : seniorCustomers) {
-
-&nbsp;       Discount seniorDiscount = getSeniorDiscount();
-
-&nbsp;       String message = generateDiscountMessage(customer, seniorDiscount);
-
-&nbsp;       mailServer.sendMessage(customer, message);
-
-&nbsp;   }
-
+<!-- Snippet: step4 -->
+```java
+public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+{
+ Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+ sendOutSeniorDiscounts(mailServer, seniorCustomerLoader);
 }
 
+public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader)
+{
+ List<Customer> seniorCustomers = seniorCustomerLoader.load();
+ for (Customer customer : seniorCustomers)
+ {
+  Discount seniorDiscount = getSeniorDiscount();
+  String message = generateDiscountMessage(customer, seniorDiscount);
+  mailServer.sendMessage(customer, message);
+ }
+}
+```
 Here we're sending out an email message. But we don't really care if it gets sent, we just want to make sure it contains the information we expect. Replacing the MailServer object with a Saver is very similar to the process of introducing a Loader.
 
 Step 1: Determine the function that we call to save (or in this case, send) the data.
 
 public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
 
-&nbsp;   List seniorCustomers = seniorCustomerLoader.load();
+   List seniorCustomers = seniorCustomerLoader.load();
 
-&nbsp;   for (Customer customer : seniorCustomers) {
+   for (Customer customer : seniorCustomers) {
 
-&nbsp;       Discount seniorDiscount = getSeniorDiscount();
+       Discount seniorDiscount = getSeniorDiscount();
 
-&nbsp;       String message = generateDiscountMessage(customer, seniorDiscount);
+       String message = generateDiscountMessage(customer, seniorDiscount);
 
-&nbsp;       **mailServer.sendMessage(new Email(customer, message));**
+       **mailServer.sendMessage(new Email(customer, message));**
 
 **mailSaver.save(new Email(customer, message));**
 
-&nbsp;   }
+   }
 
 Record Email(Customer customer, String message) {}
 
@@ -274,11 +263,11 @@ public void senior_customer_message_indicates_benefits_for_those_over_age_65() {
 
 Stack&lt;Email&gt; sent = new Stack<>();
 
-&nbsp;   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
+   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
 
-&nbsp;   sendOutSeniorDiscounts(null, m -> sent.push(m), () -> seniorCustomers));
+   sendOutSeniorDiscounts(null, m -> sent.push(m), () -> seniorCustomers));
 
-&nbsp;   Approvals.verifyAll(“Email”, sent);
+   Approvals.verifyAll(“Email”, sent);
 
 }
 
@@ -286,27 +275,27 @@ Step 3: In the test, replace the object that does the saving with a Saver.
 
 public void senior_customer_message_indicates_benefits_for_those_over_age_65() {
 
-&nbsp;   TestMailServer mailServer = new TestMailServer();
+   TestMailServer mailServer = new TestMailServer();
 
-&nbsp;   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
+   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
 
-&nbsp;   sendOutSeniorDiscounts(null, () -> mailServer, () -> seniorCustomers));
+   sendOutSeniorDiscounts(null, () -> mailServer, () -> seniorCustomers));
 
-&nbsp;   Approvals.verifyAll(mailServer.getMessage());
+   Approvals.verifyAll(mailServer.getMessage());
 
 }
 
 Class TestMailServer() {
 
-&nbsp;     private String message;
+     private String message;
 
-&nbsp;     void sendMessage(Customer customer, String message) {
+     void sendMessage(Customer customer, String message) {
 
-&nbsp;           this.message = message;
+           this.message = message;
 
-&nbsp;     }
+     }
 
-&nbsp;     String getMessage() { return message; }
+     String getMessage() { return message; }
 
 }
 
@@ -324,11 +313,11 @@ Step 5: Now we introduce the new saver function as a parameter to the original f
 
 public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List&gt; seniorCustomerLoader) {
 
-&nbsp;       // ...
+       // ...
 
-&nbsp;   ((Saver&lt;MailServer&gt;)() -> mailServer.sendMessage(customer, message)).save();
+   ((Saver&lt;MailServer&gt;)() -> mailServer.sendMessage(customer, message)).save();
 
-&nbsp;       // ...
+       // ...
 
 }
 
@@ -336,11 +325,11 @@ becomes
 
 public void sendOutSeniorDiscounts(MailServer mailServer, Saver&lt;MailServer&gt; mailServerSaver, Loader&lt;List&gt; seniorCustomerLoader) {
 
-&nbsp;   // ...
+   // ...
 
-&nbsp;   mailServerSaver.save();
+   mailServerSaver.save();
 
-&nbsp;   // ...
+   // ...
 
 }
 
@@ -348,13 +337,13 @@ Step 6: Update the calls to this function to use the new Saver parameter.
 
 public void senior_customer_list_includes_only_those_over_age_65() {
 
-&nbsp;   TestMailServer mailServer = new TestMailServer();
+   TestMailServer mailServer = new TestMailServer();
 
-&nbsp;   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
+   List seniorCustomers = List.of(new Customer("Bob", "Jones", /\* ... /), / ... \*/);
 
-&nbsp;   sendOutSeniorDiscounts(null, () -> mailServer, () -> seniorCustomers));
+   sendOutSeniorDiscounts(null, () -> mailServer, () -> seniorCustomers));
 
-&nbsp;   Approvals.verifyAll(mailServer.getRecipients());
+   Approvals.verifyAll(mailServer.getRecipients());
 
 }
 
@@ -362,11 +351,11 @@ Step 7: Now we can remove the MailServer as a parameter altogether.
 
 public void sendOutSeniorDiscounts(MailServer mailServer, Saver&lt;MailServer&gt; mailServerSaver, Loader&lt;List&gt; seniorCustomerLoader) {
 
-&nbsp;   // ...
+   // ...
 
-&nbsp;   mailServerSaver.save();
+   mailServerSaver.save();
 
-&nbsp;   // ...
+   // ...
 
 }
 
@@ -378,6 +367,6 @@ and we can now remove that parameter from any function that calls this one - inc
 
 This removes the dependency on the MailServer for testing purposes.
 
-&nbsp;
 
-&nbsp;
+
+
