@@ -233,29 +233,52 @@ public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>>
  }
 }
 ```
-Here we're sending out an email message. But we don't really care if it gets sent, we just want to make sure it contains the information we expect. Replacing the MailServer object with a Saver is very similar to the process of introducing a Loader.
+Here we're sending out an email message.
+But we don't really care if it gets sent, we just want to make sure it contains the information we expect.
+Replacing the MailServer object with a Saver is very similar to the process of introducing a Loader.
 
 Step 1: Determine the function that we call to save (or in this case, send) the data.
+<!-- Snippet Compare: step4_a, step4_b -->
+<pre style="color: gray">
+    public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+    {
+      Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+      sendOutSeniorDiscounts(<b style="color: red">mailServer,</b> seniorCustomerLoader); 
+    }
 
-public void sendOutSeniorDiscounts(MailServer mailServer, Loader&lt;List<Customer&gt;> seniorCustomerLoader) {
+    public void sendOutSeniorDiscounts(<b style="color: red">MailServer</b> <b style="color: red">mailServer,</b> Loader&lt;List&lt;Customer>> seniorCustomerLoader) 
+    {
+      List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+      for (Customer customer : seniorCustomers)
+      {
+        Discount seniorDiscount = getSeniorDiscount();
+        String message = generateDiscountMessage(customer, seniorDiscount);
+<b style="color: red">        mailServer.sendMessage(customer, message); </b>
+      }
+    }
+</pre>
+# ⇓
+<pre style="color: gray">
+    public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+    {
+      Loader&lt;List&lt;Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+<b style="color: green">      Saver&lt;Tuple&lt;Customer, String>> mailSaver = Saver2.create(mailServer::sendMessage); </b>
+      sendOutSeniorDiscounts(<s style="color: red">mailServer,</s> <b style="color: green">mailSaver,</b> seniorCustomerLoader); 
+    }
 
-   List seniorCustomers = seniorCustomerLoader.load();
+    public void sendOutSeniorDiscounts(<s style="color: red">MailServer</s> <s style="color: red">mailServer,</s> <b style="color: green">Saver&lt;Tuple&lt;Customer, </b><b style="color: green">String>></b> <b style="color: green">mailSaver,</b> Loader&lt;List&lt;Customer>> seniorCustomerLoader) 
+    {
+      List&lt;Customer> seniorCustomers = seniorCustomerLoader.load();
+      for (Customer customer : seniorCustomers)
+      {
+        Discount seniorDiscount = getSeniorDiscount();
+        String message = generateDiscountMessage(customer, seniorDiscount);
+<s style="color: red">        mailServer.sendMessage(customer, message); </s> 
+<b style="color: green">        mailSaver.save(new Tuple(customer, message)); </b>
+      }
+    }
+</pre>
 
-   for (Customer customer : seniorCustomers) {
-
-       Discount seniorDiscount = getSeniorDiscount();
-
-       String message = generateDiscountMessage(customer, seniorDiscount);
-
-       **mailServer.sendMessage(new Email(customer, message));**
-
-**mailSaver.save(new Email(customer, message));**
-
-   }
-
-Record Email(Customer customer, String message) {}
-
-}
 
 Step 2: Determine the data we want to test for its saved state. We start with a test. Unfortunately, since the MailServer is a “write-only” object, it’s hard to determine what’s being sent to it. The Saver gives us the ability to easily test for this state now.:
 

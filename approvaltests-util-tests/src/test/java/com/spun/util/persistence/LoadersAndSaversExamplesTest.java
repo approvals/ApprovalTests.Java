@@ -145,14 +145,15 @@ public class LoadersAndSaversExamplesTest
       return null;
     }
   }
-  class Step4
-  {
+
+  class Step4 {
     // begin-snippet: step4
     public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
     {
       Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
       sendOutSeniorDiscounts(mailServer, seniorCustomerLoader);
     }
+
     public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader)
     {
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
@@ -165,24 +166,44 @@ public class LoadersAndSaversExamplesTest
     }
     // end-snippet
   }
-  class Step4_b
-  {
-    // begin-snippet: step4_b
+
+  class Step4_a {
+    // begin-snippet: step4
     public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
     {
       Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
-      Saver<Tuple<Customer, String>> mailSaver = Saver2.create(mailServer::sendMessage);
-      sendOutSeniorDiscounts(mailSaver, seniorCustomerLoader);
+      sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); // *
     }
-    public void sendOutSeniorDiscounts(Saver<Tuple<Customer, String>> mailSaver,
-        Loader<List<Customer>> seniorCustomerLoader)
+
+    public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader) // *
     {
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
       for (Customer customer : seniorCustomers)
       {
         Discount seniorDiscount = getSeniorDiscount();
         String message = generateDiscountMessage(customer, seniorDiscount);
-        mailSaver.save(new Tuple(customer, message));
+        mailServer.sendMessage(customer, message); // -
+      }
+    }
+    // end-snippet
+  }
+  class Step4_b {
+    // begin-snippet: step4_b
+    public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
+    {
+      Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
+      Saver<Tuple<Customer, String>> mailSaver = Saver2.create(mailServer::sendMessage); // +
+      sendOutSeniorDiscounts(mailSaver, seniorCustomerLoader); // *
+    }
+
+    public void sendOutSeniorDiscounts(Saver<Tuple<Customer, String>> mailSaver, Loader<List<Customer>> seniorCustomerLoader) // *
+    {
+      List<Customer> seniorCustomers = seniorCustomerLoader.load();
+      for (Customer customer : seniorCustomers)
+      {
+        Discount seniorDiscount = getSeniorDiscount();
+        String message = generateDiscountMessage(customer, seniorDiscount);
+        mailSaver.save(new Tuple(customer, message)); // +
       }
     }
     // end-snippet
@@ -228,4 +249,5 @@ public class LoadersAndSaversExamplesTest
   private class Discount
   {
   }
+
 }
