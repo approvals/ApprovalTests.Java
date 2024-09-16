@@ -200,11 +200,11 @@ public class InlineApprovalsTest
   void testSemiAutomaticWithPreviousApproved()
   {
     var expected = """
-        42
-        ***** DELETE ME TO APPROVE *****
-        vvvvv PREVIOUS RESULT      vvvvv
-        41
-        """;
+      42
+      ***** DELETE ME TO APPROVE *****
+      vvvvv PREVIOUS RESULT      vvvvv
+      41
+      """;
     var options = new Options().inline(expected, InlineOptions.semiAutomaticWithPreviousApproved());
     try
     {
