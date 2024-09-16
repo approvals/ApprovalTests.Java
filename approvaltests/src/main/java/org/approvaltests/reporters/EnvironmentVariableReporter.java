@@ -14,17 +14,14 @@ import org.approvaltests.reporters.windows.TortoiseDiffReporter;
 import org.approvaltests.reporters.windows.WinMergeReporter;
 import org.approvaltests.reporters.windows.WindowsDiffReporter;
 import org.lambda.functions.Function1;
+import org.lambda.query.Queryable;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class EnvironmentVariableReporter implements ApprovalFailureReporter
 {
-  private final ApprovalFailureReporter                                      reporter;
   // @formatter:off
   private static final Map<String, Class<? extends ApprovalFailureReporter>> REPORTER_MAP =
           new MapBuilder("AraxisMergeReporter", AraxisMergeReporter.class)
@@ -58,33 +55,16 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
   public static final String                                                 ENVIRONMENT_VARIABLE_NAME = "APPROVAL_TESTS_USE_REPORTER";
   public static Function1<String, String>                                    ENVIRONMENT_VARIABLES     = System::getenv;
   public static final EnvironmentVariableReporter                            INSTANCE                  = new EnvironmentVariableReporter();
+  private ApprovalFailureReporter                                            reporter                  = null;
   public EnvironmentVariableReporter()
   {
     String environmentValue = ENVIRONMENT_VARIABLES.call(ENVIRONMENT_VARIABLE_NAME);
     if (environmentValue == null)
-    {
-      reporter = null;
-      return;
-    }
-    List<ApprovalFailureReporter> reporters = Arrays.stream(environmentValue.split(",")).distinct()
-        .map(REPORTER_MAP::get).filter(Objects::nonNull)
-        .map(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType))
-        .collect(Collectors.toList());
-    switch (reporters.size())
-    {
-      case 0 : {
-        reporter = null;
-        break;
-      }
-      case 1 : {
-        reporter = reporters.get(0);
-        break;
-      }
-      default : {
-        reporter = new MultiReporter(reporters);
-        break;
-      }
-    }
+    { return; }
+    Queryable<String> split = Queryable.of(environmentValue.split(","));
+    Queryable<ApprovalFailureReporter> reporters = split.distinct().select(REPORTER_MAP::get)
+        .where(Objects::nonNull).select(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType));
+    reporter = reporters.size() == 1 ? reporters.first() : new MultiReporter(reporters);
   }
   public ApprovalFailureReporter getReporter()
   {
