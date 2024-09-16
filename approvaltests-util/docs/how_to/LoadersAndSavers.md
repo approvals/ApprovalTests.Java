@@ -214,7 +214,7 @@ Thanks for pointing that out! We'll now show how to solve that problem using a S
 ## Savers
 
 Let's continue with the above example:
-<!-- Snippet: step4 -->
+<!-- Snip__pet: step4 -->
 ```java
 public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
 {
