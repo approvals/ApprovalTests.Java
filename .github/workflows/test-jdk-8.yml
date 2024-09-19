@@ -50,6 +50,6 @@ jobs:
         sed -i '/<artifactId>approvaltests<\/artifactId>/{N;s/<version>.*<\/version>/<version>100.0.0-SNAPSHOT<\/version>/}' pom.xml
     - name: Run in JDK8
       run: |
-        java --version
+        java -version
         mvn verify
 
