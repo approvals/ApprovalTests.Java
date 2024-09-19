@@ -5,37 +5,28 @@ on:
   pull_request:
   workflow_dispatch:
 
-# Cancel existing executions when new commits are pushed onto the branch
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        java: ['21']
-        os: [ ubuntu ]
+  build-21-run-8:
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
     - uses: actions/cache@v4.0.2
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        key: ubuntu-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Set up JDK${{ matrix.java }}
+          ubuntu-maven-
+    - name: Set up JDK21
       uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
-        java-version: ${{ matrix.java }}
+        java-version: 21
+    - name: Turn off formatting
+      run: |
+        ./set_formatting_off.sh
     - name: Build with Maven
       run: |
-        sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
-        sed -i 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
         mvn -B install --file pom.xml
     - name: Set up JDK8
       uses: actions/setup-java@v4

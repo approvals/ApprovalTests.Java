@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: ['16', '17', '18', '19', '20', '21']
+        java: ['16', '17', '18', '19', '20', '21', '23']
         os: [ ubuntu, windows ]
 
     steps:
@@ -36,9 +36,9 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Build with Maven
       run: |
-        sed -i 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
-        sed -i 's/<!-- formatter_plugin_end -->/ formatter_plugin_end -->/g' pom.xml
+        ./set_formatting_off.sh
         mvn -B verify --file pom.xml
+      shell: bash
   auto-merge:
     needs: build
     runs-on: ubuntu-latest
