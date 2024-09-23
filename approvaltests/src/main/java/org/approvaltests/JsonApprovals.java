@@ -36,8 +36,7 @@ public class JsonApprovals
   }
   public static void verifyJson(String json, boolean reorderJson, Options options)
   {
-    String formattedJson = reorderJson ? JsonUtils.reorderFields(json) : JsonUtils.prettyPrint(json);
-    Approvals.verify(formattedJson, options.forFile().withExtension(".json"));
+    verifyJson(json, reorderJson, g -> g, options);
   }
   public static void verifyAsJson(Object o)
   {
