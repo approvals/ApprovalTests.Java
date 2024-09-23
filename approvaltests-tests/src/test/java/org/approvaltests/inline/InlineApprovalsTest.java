@@ -196,6 +196,7 @@ public class InlineApprovalsTest
     }
     Approvals.verify(expected);
   }
+  // @formatter:off
   @Test
   void testSemiAutomaticWithPreviousApproved()
   {
@@ -215,4 +216,5 @@ public class InlineApprovalsTest
     }
     Approvals.verify(expected);
   }
+  // @formatter:on
 }
