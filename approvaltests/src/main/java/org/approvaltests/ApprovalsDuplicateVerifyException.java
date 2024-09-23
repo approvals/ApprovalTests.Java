@@ -2,13 +2,22 @@ package org.approvaltests;
 
 public class ApprovalsDuplicateVerifyException extends RuntimeException
 {
+  // @formatter:off
   public ApprovalsDuplicateVerifyException(String file)
   {
-    super("Already approved: " + file + "\n"
-        + "By default, ApprovalTests only allows one verify() call per test.\n" + "To find out more, visit: \n"
-        + "https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/reference/Naming.md\n\n"
-        + "# Fixes\n" + "1. separate your test into two tests\n" + "2. add NamedParameters with the NamerFactory\n"
-        + "3. Override Approvals.settings() with either \n" + "\ta. allowMultipleVerifyCallsForThisClass\n"
-        + "\tb. allowMultipleVerifyCallsForThisMethod");
+    super(
+        "By default, ApprovalTests only allows one verify() call per test.\n"
+        + "This file has already been approved: " + file + "\n"
+        + "\n"
+        + "You can do one of the following:\n"
+        + "\n"
+        + "* Separate your test into two tests\n"
+        + "* Allow multiple verify calls inside one test class or method via:\n"
+        + "\t- Approvals.settings().allowMultipleVerifyCallsForThisClass();\n"
+        + "\t- Approvals.settings().allowMultipleVerifyCallsForThisMethod();\n"
+        + "* Add NamedParameters with the NamerFactory\n"
+        + "\t- visit https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/reference/Naming.md\n"
+    );
   }
+  // @formatter:on
 }

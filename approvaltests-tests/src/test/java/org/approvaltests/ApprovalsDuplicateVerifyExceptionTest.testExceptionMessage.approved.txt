@@ -1,11 +1,11 @@
-org.approvaltests.ApprovalsDuplicateVerifyException: Already approved: file.txt
-By default, ApprovalTests only allows one verify() call per test.
-To find out more, visit: 
-https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/reference/Naming.md
+org.approvaltests.ApprovalsDuplicateVerifyException: By default, ApprovalTests only allows one verify() call per test.
+This file has already been approved: file.txt
 
-# Fixes
-1. separate your test into two tests
-2. add NamedParameters with the NamerFactory
-3. Override Approvals.settings() with either 
-	a. allowMultipleVerifyCallsForThisClass
-	b. allowMultipleVerifyCallsForThisMethod
+You can do one of the following:
+
+* Separate your test into two tests
+* Allow multiple verify calls inside one test class or method via:
+	- Approvals.settings().allowMultipleVerifyCallsForThisClass();
+	- Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+* Add NamedParameters with the NamerFactory
+	- visit https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/reference/Naming.md
