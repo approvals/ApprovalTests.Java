@@ -5,6 +5,8 @@ import org.approvaltests.core.Options;
 import org.approvaltests.core.Scrubber;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScrubberTest
@@ -52,5 +54,8 @@ class ScrubberTest
     Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
         new Options(scrubber));
     // end-snippet
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+    Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
+        new Options(new MultiScrubber(List.of(portScrubber, dateScrubber, signatureScrubber))));
   }
 }
