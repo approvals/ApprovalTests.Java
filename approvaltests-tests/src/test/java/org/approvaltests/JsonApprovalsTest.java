@@ -15,7 +15,7 @@ public class JsonApprovalsTest
     JsonApprovals.verifyAsJson(localDateWrapper, g -> g.serializeNulls());
   }
   @Test
-  void applesauce()
+  void testUsingGsonBuilderWithPrettyPrint()
   {
     String jsonString = """
         {
