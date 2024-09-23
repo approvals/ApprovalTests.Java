@@ -1,12 +1,17 @@
 package com.spun.util;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import org.lambda.functions.Function1;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -17,6 +22,10 @@ public class JsonUtils
 {
   public static String prettyPrint(String json)
   {
+    return prettyPrint(json, g -> g);
+  }
+  public static String prettyPrint(String json, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  {
     if (!ObjectUtils.isClassPresent("com.google.gson.Gson"))
     {
       throw new RuntimeException(
@@ -24,7 +33,7 @@ public class JsonUtils
     }
     try
     {
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      Gson gson = gsonBuilder.call(new GsonBuilder()).setPrettyPrinting().create();
       JsonElement je = JsonParser.parseString(json);
       return gson.toJson(je);
     }

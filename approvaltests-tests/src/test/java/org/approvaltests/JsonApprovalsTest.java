@@ -1,7 +1,8 @@
 package org.approvaltests;
 
-import com.spun.util.Wrapper;
+import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
+import org.lambda.functions.Function1;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,17 @@ public class JsonApprovalsTest
   {
     LocalDateWrapper localDateWrapper = new LocalDateWrapper();
     JsonApprovals.verifyAsJson(localDateWrapper, g -> g.serializeNulls());
+  }
+  @Test
+  void applesauce()
+  {
+    String jsonString = """
+        {
+          "name": "value",
+          "localDate": null
+        }
+        """;
+    JsonApprovals.verifyJson(jsonString, false, GsonBuilder::serializeNulls);
   }
   private class LocalDateWrapper
   {

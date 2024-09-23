@@ -29,7 +29,9 @@ public class JsonApprovals
   public static void verifyJson(String json, boolean reorderJson, Function1<GsonBuilder, GsonBuilder> gsonBuilder,
       Options options)
   {
-    String formattedJson = reorderJson ? JsonUtils.reorderFields(json, gsonBuilder) : JsonUtils.prettyPrint(json);
+    String formattedJson = reorderJson
+        ? JsonUtils.reorderFields(json, gsonBuilder)
+        : JsonUtils.prettyPrint(json, gsonBuilder);
     Approvals.verify(formattedJson, options.forFile().withExtension(".json"));
   }
   public static void verifyJson(String json, boolean reorderJson, Options options)
