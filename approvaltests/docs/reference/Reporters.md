@@ -26,12 +26,13 @@ BeyondCompareMacReporter.INSTANCE,
 DiffMergeMacOsReporter.INSTANCE,
 KaleidoscopeDiffReporter.INSTANCE,
 P4MergeReporter.INSTANCE,
+AraxisMergeReporter.INSTANCE,
 KDiff3MacReporter.INSTANCE,
 TkDiffReporter.INSTANCE,
 IntelliJReporter.INSTANCE,
 VisualStudioCodeReporter.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L13-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L13-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 

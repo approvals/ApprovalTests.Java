@@ -72,7 +72,8 @@ Here is a list:
  * JsonApprovals. [verifyJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L17-L20) (String, $\color{#AAA}{\textsf{Options}}$)  
  * JsonApprovals. [verifyJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L37-L40) (String, boolean, $\color{#AAA}{\textsf{Options}}$)  
  * JsonApprovals. [verifyJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L29-L36) (String, boolean, Function1, $\color{#AAA}{\textsf{Options}}$)  
- * JsonJacksonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonJacksonApprovals.java#L14-L17) (Object, $\color{#AAA}{\textsf{Options}}$)  
+ * JsonJacksonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonJacksonApprovals.java#L17-L20) (Object, $\color{#AAA}{\textsf{Options}}$)  
+ * JsonJacksonApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonJacksonApprovals.java#L25-L28) (Object, Function1, $\color{#AAA}{\textsf{Options}}$)  
  * JsonXstreamApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonXstreamApprovals.java#L18-L21) (Object, $\color{#AAA}{\textsf{Options}}$)  
  * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L16-L24) (ContextAware, $\color{#AAA}{\textsf{Options}}$)  <!-- endInclude -->
 
