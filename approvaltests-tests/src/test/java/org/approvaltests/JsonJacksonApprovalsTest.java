@@ -1,10 +1,21 @@
 package org.approvaltests;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
 
 public class JsonJacksonApprovalsTest
 {
+  @Test
+  void testObjectMapperOverride()
+  {
+    MyClass o = new MyClass();
+
+    JsonJacksonApprovals.verifyAsJson(o, (om)-> om
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL));
+  }
   @Test
   void testDuplicateFields()
   {
@@ -15,6 +26,7 @@ public class JsonJacksonApprovalsTest
     @JsonIgnore
     private String name     = "MyClass";
     public String  lastName = "MyClass";
+    public String  middleName = null;
     public String getName()
     {
       return name;
