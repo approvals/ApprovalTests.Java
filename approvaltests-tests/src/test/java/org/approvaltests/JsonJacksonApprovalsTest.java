@@ -12,9 +12,7 @@ public class JsonJacksonApprovalsTest
   void testObjectMapperOverride()
   {
     MyClass o = new MyClass();
-
-    JsonJacksonApprovals.verifyAsJson(o, (om)-> om
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL));
+    JsonJacksonApprovals.verifyAsJson(o, (om) -> om.setSerializationInclusion(JsonInclude.Include.NON_NULL));
   }
   @Test
   void testDuplicateFields()
@@ -24,8 +22,8 @@ public class JsonJacksonApprovalsTest
   private static class MyClass
   {
     @JsonIgnore
-    private String name     = "MyClass";
-    public String  lastName = "MyClass";
+    private String name       = "MyClass";
+    public String  lastName   = "MyClass";
     public String  middleName = null;
     public String getName()
     {
