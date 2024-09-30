@@ -32,6 +32,8 @@ public class DiffPrograms
         TEXT);
     public static DiffInfo VISUAL_STUDIO_CODE = new DiffInfo(
         "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code", "-d %s %s", TEXT);
+    public static DiffInfo ARAXIS_MERGE       = new DiffInfo(
+        "/Applications/Araxis Merge.app/Contents/Utilities/compare", TEXT_AND_IMAGE);
   }
   public static class Windows
   {
