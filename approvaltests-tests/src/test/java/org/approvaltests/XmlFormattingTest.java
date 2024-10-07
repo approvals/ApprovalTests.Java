@@ -32,14 +32,14 @@ class XmlFormattingTest
     String minimizedXml = expected.replaceAll("\n", "").replace("  ", "");
     verifyXml(minimizedXml, expected);
   }
-
-  private static void verifyXml(String minimizedXml, String expected) {
+  private static void verifyXml(String minimizedXml, String expected)
+  {
     Options options = new Options().inline(expected);
     final String formattedXml = prettyPrintXml(minimizedXml);
     Approvals.verify(formattedXml, options.forFile().withExtension(".xml"));
   }
-
-  private static String prettyPrintXml(String minimizedXml) {
+  private static String prettyPrintXml(String minimizedXml)
+  {
     try
     {
       Source xmlInput = new StreamSource(new StringReader(minimizedXml));
