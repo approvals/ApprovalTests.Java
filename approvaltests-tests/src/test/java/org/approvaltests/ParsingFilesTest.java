@@ -19,7 +19,7 @@ public class ParsingFilesTest
     var expected = """
         (line 5,col 3)-(line 7,col 3)
         """;
-    Method method = XmlApprovals.class.getMethod("verify", String.class);
+    Method method = XmlXomApprovals.class.getMethod("verify", String.class);
     Range r = ParserUtilities.getLineNumbersForMethod(method);
     Approvals.verify(r, new Options().inline(expected));
   }
