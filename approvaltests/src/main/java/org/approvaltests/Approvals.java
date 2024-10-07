@@ -10,7 +10,12 @@ import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
-import org.approvaltests.core.*;
+import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.core.Options;
+import org.approvaltests.core.Verifiable;
+import org.approvaltests.core.VerifyParameters;
+import org.approvaltests.core.VerifyResult;
 import org.approvaltests.namer.ApprovalNamer;
 import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.NamerFactoryForOptions;
@@ -196,7 +201,15 @@ public class Approvals
   }
   public static void verifyXml(String xml, Options options)
   {
-    final String formattedXml = ApprovalXmlWriter.prettyPrint(xml, 2);
+    verifyXml(xml, x -> ApprovalXmlWriter.prettyPrint(x, 2), options);
+  }
+  public static void verifyXml(String xml, Function1<String, String> prettyPrinter)
+  {
+    verifyXml(xml, prettyPrinter, new Options());
+  }
+  public static void verifyXml(String xml, Function1<String, String> prettyPrinter, Options options)
+  {
+    String formattedXml = prettyPrinter.call(xml);
     verify(formattedXml, options.forFile().withExtension(".xml"));
   }
   public static void verify(ApprovalApprover approver)

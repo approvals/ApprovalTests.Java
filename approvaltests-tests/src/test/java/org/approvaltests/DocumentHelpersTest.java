@@ -29,7 +29,7 @@ public class DocumentHelpersTest
   {
     ParsingFilesTest.addApprovalTestPath();
     var expected = """
-        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L98-L101
+        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L103-L106
         """;
     String verifyAll = getLink(Queryable.as(Approvals.class.getMethods()).orderBy(m -> m.getParameterCount())
         .first(m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
