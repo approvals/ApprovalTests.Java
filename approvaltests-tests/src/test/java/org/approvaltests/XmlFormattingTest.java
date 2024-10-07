@@ -1,63 +1,51 @@
 package org.approvaltests;
 
+import nu.xom.*;
 import org.approvaltests.core.Options;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import java.io.IOException;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.io.Writer;
+import java.io.*;
 
-class XmlFormattingTest
-{
-  @Disabled("SPIKE for #466 - continue next time")
-  @Test
-  void xmlWithEmojiesAndAmpersands()
-  {
-    var expected = """
-        <?xml version='1.0' encoding='UTF-8'?>
-        <a>
-          <b>Tom &amp; Jerry</b>
-          <emoji>😸</emoji>
-        </a>
-        """;
-    String minimizedXml = expected.replaceAll("\n", "").replace("  ", "");
-    verifyXml(minimizedXml, expected);
-  }
-
-  private static void verifyXml(String minimizedXml, String expected) {
-    Options options = new Options().inline(expected);
-    final String formattedXml = prettyPrintXml(minimizedXml);
-    Approvals.verify(formattedXml, options.forFile().withExtension(".xml"));
-  }
-
-  private static String prettyPrintXml(String minimizedXml) {
-    try
-    {
-      Source xmlInput = new StreamSource(new StringReader(minimizedXml));
-      StringWriter stringWriter = new StringWriter();
-      StreamResult xmlOutput = new StreamResult(stringWriter);
-      TransformerFactory transformerFactory = TransformerFactory.newInstance();
-      transformerFactory.setAttribute("indent-number", 2);
-      Transformer transformer = transformerFactory.newTransformer();
-      transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-      transformer.transform(xmlInput, xmlOutput);
-      try (Writer writer = xmlOutput.getWriter())
-      {
-        return writer.toString();
-      }
+class XmlFormattingTest {
+   // @Disabled("SPIKE for #466 - continue next time")
+    @Test
+    void xmlWithEmojiesAndAmpersands() {
+        var expected = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <a>
+              <b>😸 &amp; 🐶</b>
+            </a>
+            """;
+        String minimizedXml = expected.replaceAll("\n", " ").replace("  ", "");
+        verifyXml(minimizedXml, expected);
     }
-    catch (TransformerException | IOException e)
-    {
-      return minimizedXml;
+
+    private static void verifyXml(String minimizedXml, String expected) {
+        Options options = new Options().inline(expected);
+        final String formattedXml = prettyPrintXml(minimizedXml, 2);
+        Approvals.verify(formattedXml, options.forFile().withExtension(".xml"));
     }
-  }
+
+
+    private static String prettyPrintXml(String minimizedXml, int indent) {
+        try {
+            Builder builder = new Builder();
+            Document doc = builder.build(new StringReader(minimizedXml));
+
+            // create a string output stream
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            Serializer serializer = new Serializer(byteArrayOutputStream, "UTF-8");
+            serializer.setIndent(indent); // Increase indentation to make XML more readable
+            serializer.setLineSeparator("\n"); // Ensure new lines are added
+            serializer.setMaxLength(0); // Prevent line wrapping
+
+            serializer.write(doc);
+
+            return byteArrayOutputStream.toString("UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return minimizedXml + "\n\nXML Parsing Error:\n" + e.getMessage();
+        }
+    }
+
 }
