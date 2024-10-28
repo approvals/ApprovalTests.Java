@@ -100,7 +100,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.1</version>
+            <version>5.11.3</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
@@ -120,13 +120,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.11.2</version>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>5.11.2</version>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
