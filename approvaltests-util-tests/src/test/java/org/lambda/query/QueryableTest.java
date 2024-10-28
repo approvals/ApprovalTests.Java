@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -211,5 +212,19 @@ class QueryableTest
   {
     Queryable<Integer> integers = Queryable.as(48, 8);
     Approvals.verifyAll("", integers.selectRecursivelyUntil(i -> i / 2, i -> i <= 1));
+  }
+  @Test
+  void testOf()
+  {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+    verifyQueryable(Queryable.of(1, 2, 3));
+    verifyQueryable(Queryable.of(Set.of(1, 2, 3)));
+    verifyQueryable(Queryable.as(Set.of(1, 2, 3)));
+    verifyQueryable(Queryable.of(Set.of(1, 2, 3), Integer.class));
+    verifyQueryable(Queryable.as(Set.of(1, 2, 3), Integer.class));
+  }
+  private static void verifyQueryable(Queryable<Integer> queryable)
+  {
+    Approvals.verifyAll("", queryable.orderBy(i -> i));
   }
 }

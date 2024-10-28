@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -130,6 +131,14 @@ public class Queryable<In> extends ArrayList<In>
   {
     return as(list, type);
   }
+  public static <T> Queryable<T> of(Set<T> set)
+  {
+    return as(set);
+  }
+  public static <T> Queryable<T> of(Set<T> set, Class<T> type)
+  {
+    return as(set, type);
+  }
   public static <T> Queryable<T> of(T... array)
   {
     return as(array);
@@ -150,6 +159,14 @@ public class Queryable<In> extends ArrayList<In>
     Queryable<T> q = new Queryable<T>(type);
     q.addAll(list);
     return q;
+  }
+  public static <T> Queryable<T> as(Set<T> set)
+  {
+    return as(new ArrayList<>(set));
+  }
+  public static <T> Queryable<T> as(Set<T> set, Class<T> type)
+  {
+    return as(new ArrayList<>(set), type);
   }
   public static <T> Queryable<T> as(T... array)
   {
