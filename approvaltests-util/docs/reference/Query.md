@@ -119,7 +119,7 @@ Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven y
     "When in the course of human events");
 Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L141-L145' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L142-L146' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 resulting in
@@ -157,7 +157,7 @@ Here is a simple example of grouping words by their first letter.
 Queryable<String> words = Queryable.as("Jack", "and", "Jill", "jumped", "up", "the", "hill");
 Queryable<Entry<Character, Queryable<String>>> result = words.groupBy(w -> w.toLowerCase().charAt(0));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L151-L154' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_key' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L152-L155' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_key' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 producing:
 <!-- snippet: QueryableTest.testGroupBy.approved.txt -->
@@ -185,7 +185,7 @@ Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".sp
 Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
     r -> r.join("_"));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L174-L178' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L175-L179' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 resulting in
 <!-- snippet: QueryableTest.testGroupByCombineWordsOfSimilarLengths.approved.txt -->
