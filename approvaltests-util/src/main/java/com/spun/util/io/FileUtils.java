@@ -23,10 +23,7 @@ import java.nio.channels.FileChannel;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileVisitOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -151,6 +148,23 @@ public class FileUtils
       File in = new File(file);
       File out = new File(tempDir, in.getName());
       copyFile(in, out);
+    }
+    catch (Throwable t)
+    {
+      throw ObjectUtils.throwAsError(t);
+    }
+  }
+
+  public static void appendToFile(File file, String text) 
+  {
+    try
+    {
+      Asserts.assertNotNull("Writing to file: " + file, text);
+      file.getCanonicalFile().getParentFile().mkdirs();
+      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8, StandardOpenOption.APPEND))
+      {
+        out.write(text);
+      }
     }
     catch (Throwable t)
     {

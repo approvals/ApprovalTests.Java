@@ -2,6 +2,7 @@ package org.approvaltests.approvers;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
+import org.approvaltests.ApprovedFileLog;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
@@ -33,6 +34,7 @@ public class FileApprover implements ApprovalApprover
   public VerifyResult approve()
   {
     tracker.assertUnique(approved.getAbsolutePath());
+    ApprovedFileLog.log(approved);
     received = writer.writeReceivedFile(received);
     return approver.call(received, approved);
   }
