@@ -154,14 +154,14 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
-
-  public static void appendToFile(File file, String text) 
+  public static void appendToFile(File file, String text)
   {
     try
     {
       Asserts.assertNotNull("Writing to file: " + file, text);
       file.getCanonicalFile().getParentFile().mkdirs();
-      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8, StandardOpenOption.APPEND))
+      try (BufferedWriter out = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8,
+          StandardOpenOption.APPEND))
       {
         out.write(text);
       }
