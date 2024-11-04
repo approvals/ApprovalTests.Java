@@ -44,6 +44,7 @@ jobs:
       if: success() || failure() # always run even if the previous step fails
       with:
         report_paths: '**/target/surefire-reports/*.xml'
+        detailed_summary: true
   auto-merge:
     needs: build
     runs-on: ubuntu-latest
