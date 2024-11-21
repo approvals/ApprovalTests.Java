@@ -3,6 +3,8 @@ package org.lambda.query;
 import com.spun.util.ClassUtils;
 import com.spun.util.ObjectUtils;
 import org.lambda.Extendable;
+import org.lambda.actions.Action0;
+import org.lambda.functions.Function0;
 import org.lambda.functions.Function1;
 import org.lambda.query.OrderBy.Order;
 
@@ -69,9 +71,15 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.first(this, filter);
   }
+  public <E extends Throwable> In firstOrThrow(Function1<In, Boolean> filter, Function0<E> exception) throws E {
+    return Query.firstOrThrow(this, filter, exception);
+  }
   public In firstOrDefault(In defaultValue)
   {
     return this.isEmpty() ? defaultValue : this.get(0);
+  }
+  public Action0 firstOrThrow(In i, Object o) {
+    return null;
   }
   public boolean all(Function1<In, Boolean> filter)
   {

@@ -1,6 +1,7 @@
 package org.lambda.query;
 
 import com.spun.util.ArrayUtils;
+import org.lambda.functions.Function0;
 import org.lambda.functions.Function1;
 import org.lambda.query.OrderBy.Order;
 
@@ -55,6 +56,13 @@ public class Query<In>
       { return i; }
     }
     return null;
+  }
+  public static <In, E extends Throwable> In firstOrThrow(Iterable<In> list, Function1<In, Boolean> filter, Function0<E> exception) throws E {
+    In i = first(list, filter);
+    if (i == null) {
+      throw exception.call();
+    }
+    return i;
   }
   public static <In> Queryable<In> where(In[] list, Function1<In, Boolean> filter)
   {
