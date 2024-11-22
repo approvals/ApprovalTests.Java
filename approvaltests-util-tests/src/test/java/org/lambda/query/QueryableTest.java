@@ -235,7 +235,7 @@ class QueryableTest
         java.lang.RuntimeException: 4 not found
         """;
     Queryable<Integer> queryable = Queryable.as(1, 2, 3);
-    assertEquals(3, queryable.first(i -> 2 < i));
+    assertEquals(3, queryable.firstOrThrow(i -> 2 < i, () -> new RuntimeException("Nothing bigger than 2")));
     Approvals.verifyException(() -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")),
         new Options().inline(expected));
   }
