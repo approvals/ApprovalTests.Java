@@ -57,16 +57,19 @@ public class Query<In>
     }
     return null;
   }
-  public static <In, E extends Throwable> In firstOrThrow(In[] list, Function1<In, Boolean> filter, Function0<E> exception) throws E {
+  public static <In, E extends Throwable> In firstOrThrow(In[] list, Function1<In, Boolean> filter,
+      Function0<E> exception) throws E
+  {
     return firstOrThrow(Arrays.asList(list), filter, exception);
   }
-  public static <In, E extends Throwable> In firstOrThrow(Iterable<In> list, Function1<In, Boolean> filter, Function0<E> exception) throws E {
-  In i = first(list, filter);
-  if (i == null) {
-    throw exception.call();
+  public static <In, E extends Throwable> In firstOrThrow(Iterable<In> list, Function1<In, Boolean> filter,
+      Function0<E> exception) throws E
+  {
+    In i = first(list, filter);
+    if (i == null)
+    { throw exception.call(); }
+    return i;
   }
-  return i;
-}
   public static <In> Queryable<In> where(In[] list, Function1<In, Boolean> filter)
   {
     Queryable<In> out = new Queryable<In>();

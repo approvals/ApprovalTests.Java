@@ -71,14 +71,16 @@ public class Queryable<In> extends ArrayList<In>
   {
     return Query.first(this, filter);
   }
-  public <E extends Throwable> In firstOrThrow(Function1<In, Boolean> filter, Function0<E> exception) throws E {
+  public <E extends Throwable> In firstOrThrow(Function1<In, Boolean> filter, Function0<E> exception) throws E
+  {
     return Query.firstOrThrow(this, filter, exception);
   }
   public In firstOrDefault(In defaultValue)
   {
     return this.isEmpty() ? defaultValue : this.get(0);
   }
-  public Action0 firstOrThrow(In i, Object o) {
+  public Action0 firstOrThrow(In i, Object o)
+  {
     return null;
   }
   public boolean all(Function1<In, Boolean> filter)
