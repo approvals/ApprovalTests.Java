@@ -229,12 +229,14 @@ class QueryableTest
     Approvals.verifyAll("", queryable.orderBy(i -> i));
   }
   @Test
-  void testFirstOrThrow() {
+  void testFirstOrThrow()
+  {
     var expected = """
-      java.lang.RuntimeException: 4 not found
-      """;
+        java.lang.RuntimeException: 4 not found
+        """;
     Queryable<Integer> queryable = Queryable.as(1, 2, 3);
     assertEquals(3, queryable.first(i -> 2 < i));
-    Approvals.verifyException(() -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")), new Options().inline(expected));
+    Approvals.verifyException(() -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")),
+        new Options().inline(expected));
   }
 }

@@ -21,3 +21,6 @@ org.lambda.functions.Function6WithException.call
 org.lambda.functions.Function7WithException.call
 org.lambda.functions.Function8WithException.call
 org.lambda.functions.Function9WithException.call
+org.lambda.query.Query.firstOrThrow
+org.lambda.query.Query.firstOrThrow
+org.lambda.query.Queryable.firstOrThrow
