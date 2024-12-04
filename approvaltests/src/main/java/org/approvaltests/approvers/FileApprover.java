@@ -58,7 +58,7 @@ public class FileApprover implements ApprovalApprover
   }
   public void fail()
   {
-    throw new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
+    throw new AssertionError(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
         received.getAbsolutePath()));
   }
   public static VerifyResult approveTextFile(File received, File approved)
