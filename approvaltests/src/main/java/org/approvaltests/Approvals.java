@@ -321,7 +321,7 @@ public class Approvals
     if (!mismatched.isEmpty())
     {
       String message = "The Following Files did not match up: " + getFileNameList(mismatched);
-      throw new Error(message);
+      throw new AssertionError(message);
     }
   }
   private static String getFileNameList(List<File> mismatched)
