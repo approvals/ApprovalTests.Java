@@ -4,6 +4,7 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
+import org.approvaltests.ApprovalSettings;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.core.VerifyResult;
@@ -68,5 +69,18 @@ public class FileApproverTest
     Function2<File, File, VerifyResult> approveEverything = (r, a) -> VerifyResult.SUCCESS;
     Approvals.verify(new FileApprover(writer, namer, approveEverything));
     // end-snippet
+  }
+  @Test
+  void testCustomError() throws Exception
+  {
+    var expected = """
+        java.lang.AssertionError: Custom message
+        """;
+    try (AutoCloseable old = Approvals.settings()
+        .registerErrorGenerator((received, approved) -> new AssertionError("Custom message")))
+    {
+      FileApprover fileApprover = new FileApprover(new File("a.txt"), new File("b.txt"), null, null);
+      Approvals.verifyException(fileApprover::fail, new Options().inline(expected));
+    }
   }
 }

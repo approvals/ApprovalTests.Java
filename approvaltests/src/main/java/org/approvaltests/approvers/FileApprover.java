@@ -15,21 +15,34 @@ import java.io.File;
 
 public class FileApprover implements ApprovalApprover
 {
-  private File                                received;
-  private File                                approved;
-  private final ApprovalWriter                writer;
-  private Function2<File, File, VerifyResult> approver;
-  public static final ApprovalTracker         tracker = new ApprovalTracker();
+  public static final ApprovalTracker             tracker        = new ApprovalTracker();
+  private static Function2<String, String, Error> errorGenerator = FileApprover::createError;
+  private File                                    received;
+  private File                                    approved;
+  private final ApprovalWriter                    writer;
+  private Function2<File, File, VerifyResult>     approver;
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer)
   {
     this(writer, namer, FileApprover::approveTextFile);
   }
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver)
   {
+    this(namer.getReceivedFile(writer.getFileExtensionWithDot()),
+        namer.getApprovedFile(writer.getFileExtensionWithDot()), writer, approver);
+  }
+  public FileApprover(File received, File approved, ApprovalWriter writer,
+      Function2<File, File, VerifyResult> approver)
+  {
+    this.received = received;
+    this.approved = approved;
     this.writer = writer;
-    received = namer.getReceivedFile(writer.getFileExtensionWithDot());
-    approved = namer.getApprovedFile(writer.getFileExtensionWithDot());
     this.approver = approver;
+  }
+  public static AutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
+  {
+    Function2<String, String, Error> old = FileApprover.errorGenerator;
+    FileApprover.errorGenerator = errorGenerator;
+    return () -> FileApprover.errorGenerator = old;
   }
   public VerifyResult approve()
   {
@@ -58,8 +71,11 @@ public class FileApprover implements ApprovalApprover
   }
   public void fail()
   {
-    throw new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
-        received.getAbsolutePath()));
+    throw errorGenerator.call(received.getAbsolutePath(), approved.getAbsolutePath());
+  }
+  private static Error createError(String received, String approved)
+  {
+    return new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved, received));
   }
   public static VerifyResult approveTextFile(File received, File approved)
   {
