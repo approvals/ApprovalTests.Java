@@ -58,8 +58,11 @@ public class FileApprover implements ApprovalApprover
   }
   public void fail()
   {
-    throw new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved.getAbsolutePath(),
-        received.getAbsolutePath()));
+    throw createError(received.getAbsolutePath(), approved.getAbsolutePath());
+  }
+  private static Error createError(String received, String approved)
+  {
+    return new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved, received));
   }
   public static VerifyResult approveTextFile(File received, File approved)
   {
