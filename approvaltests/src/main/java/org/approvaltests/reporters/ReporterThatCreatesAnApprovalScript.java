@@ -27,7 +27,10 @@ public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureRepor
     }
 
     private static void initializeLinux() {
-
+        scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
+        FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
+        FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
+        scriptFile.setExecutable(true);
     }
 
     private static void initializeWindows() {
@@ -39,7 +42,7 @@ public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureRepor
     @Override
     public boolean report(String received, String approved) {
         String commandLine = ClipboardReporter.getCommandLine(received, approved);
-        FileUtils.appendToFile(scriptFile, commandLine + "\r\n");
+        FileUtils.appendToFile(scriptFile, commandLine + "\n");
         return true;
     }
 }
