@@ -8,41 +8,46 @@ import org.approvaltests.core.ApprovalFailureReporter;
 
 import java.io.File;
 
-public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureReporter {
-    private static String fileName = "approval_script";
-    private static File scriptFile = null;
-    static {
-        initializeFile();
-
+public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureReporter
+{
+  private static String fileName   = "approval_script";
+  private static File   scriptFile = null;
+  static
+  {
+    initializeFile();
+  }
+  private static void initializeFile()
+  {
+    if (scriptFile != null)
+    { return; }
+    if (SystemUtils.isWindowsEnvironment())
+    {
+      initializeWindows();
     }
-
-    private static void initializeFile() {
-        if (scriptFile != null) {return;}
-        if (SystemUtils.isWindowsEnvironment()) {
-            initializeWindows();
-        } else {
-            initializeLinux();
-        }
-        SimpleLogger.event("Created approval script:\n" + scriptFile.getAbsolutePath());
+    else
+    {
+      initializeLinux();
     }
-
-    private static void initializeLinux() {
-        scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
-        FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
-        FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
-        scriptFile.setExecutable(true);
-    }
-
-    private static void initializeWindows() {
-        scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "\\" + fileName + ".bat");
-        FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
-        FileUtils.writeFile(scriptFile, "");
-    }
-
-    @Override
-    public boolean report(String received, String approved) {
-        String commandLine = ClipboardReporter.getCommandLine(received, approved);
-        FileUtils.appendToFile(scriptFile, commandLine + "\n");
-        return true;
-    }
+    SimpleLogger.event("Created approval script:\n" + scriptFile.getAbsolutePath());
+  }
+  private static void initializeLinux()
+  {
+    scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
+    FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
+    FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
+    scriptFile.setExecutable(true);
+  }
+  private static void initializeWindows()
+  {
+    scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "\\" + fileName + ".bat");
+    FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
+    FileUtils.writeFile(scriptFile, "");
+  }
+  @Override
+  public boolean report(String received, String approved)
+  {
+    String commandLine = ClipboardReporter.getCommandLine(received, approved);
+    FileUtils.appendToFile(scriptFile, commandLine + "\n");
+    return true;
+  }
 }
