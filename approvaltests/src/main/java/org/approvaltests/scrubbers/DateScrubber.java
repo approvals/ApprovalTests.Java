@@ -39,7 +39,8 @@ public class DateScrubber extends RegExScrubber
                                  __("\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}:\\d{2}Z", "2020-09-10T08:07:89Z"),
                                  __("\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}\\:\\d{2}\\.\\d{3}Z",
                                      "2020-09-10T01:23:45.678Z"),
-                                 __("\\d{8}T\\d{6}Z", "20210505T091112Z")};
+                                 __("\\d{8}T\\d{6}Z", "20210505T091112Z"),
+                                 __("\\d{4}-\\d{2}-\\d{2}", "2024-12-17")};
   }
   private static SupportedFormat __(String regex, String... examples)
   {
