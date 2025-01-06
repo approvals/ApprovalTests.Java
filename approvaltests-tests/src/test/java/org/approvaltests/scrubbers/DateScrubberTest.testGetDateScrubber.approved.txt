@@ -91,3 +91,8 @@ RegExScrubber[\d{4}-\d{2}-\d{2}]
 Example: {'date':"[Date1]"}
 
 
+Scrubbing for 2024-12-18T14:04:46.746130Z:
+RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}.\d{1,6}Z]
+Example: {'date':"[Date1]"}
+
+
