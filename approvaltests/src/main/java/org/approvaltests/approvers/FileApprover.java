@@ -3,6 +3,7 @@ package org.approvaltests.approvers;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
 import org.approvaltests.ApprovedFileLog;
+import org.approvaltests.FailedFileLog;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;
@@ -48,6 +49,7 @@ public class FileApprover implements ApprovalApprover
   {
     tracker.assertUnique(approved.getAbsolutePath());
     ApprovedFileLog.log(approved);
+    FailedFileLog.touch();
     received = writer.writeReceivedFile(received);
     return approver.call(received, approved);
   }
@@ -61,6 +63,7 @@ public class FileApprover implements ApprovalApprover
   }
   public VerifyResult reportFailure(ApprovalFailureReporter reporter)
   {
+    FailedFileLog.log(received, approved);
     reporter.report(received.getAbsolutePath(), approved.getAbsolutePath());
     if (reporter instanceof ReporterWithApprovalPower)
     {
