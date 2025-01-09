@@ -21,10 +21,11 @@ public class FailedFileLog
   public static void log(File received, File approved)
   {
     File log = get();
-    FileUtils.appendToFile(log, String.format("%s -> %s\n", received.getAbsolutePath(), approved.getAbsolutePath()));
+    FileUtils.appendToFile(log,
+        String.format("%s -> %s\n", received.getAbsolutePath(), approved.getAbsolutePath()));
   }
-
-  public static void touch() {
+  public static void touch()
+  {
     // Allows static initializer to be called
   }
 }
