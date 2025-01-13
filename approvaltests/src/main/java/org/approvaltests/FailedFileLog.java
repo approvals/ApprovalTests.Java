@@ -1,6 +1,8 @@
 package org.approvaltests;
 
+import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
+import com.spun.util.io.NetUtils;
 
 import java.io.File;
 
@@ -11,6 +13,36 @@ public class FailedFileLog
   static
   {
     FileUtils.writeFile(get(), "");
+    downloadApproveAllScriptIfMissing();
+  }
+  private static void downloadApproveAllScriptIfMissing()
+  {
+    try
+    {
+      if (SystemUtils.isWindowsEnvironment())
+      {
+        String url = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/resources/approve_all.bat";
+        File batScript = new File(APPROVAL_TEMP_DIRECTORY + "/approve_all.bat");
+        if (!batScript.exists())
+        {
+          FileUtils.writeFile(batScript, NetUtils.loadWebPage(url, null));
+        }
+      }
+      else
+      {
+        String url = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/resources/approve_all.sh";
+        File bashScript = new File(APPROVAL_TEMP_DIRECTORY + "/approve_all.sh");
+        if (!bashScript.exists())
+        {
+          FileUtils.writeFile(bashScript, NetUtils.loadWebPage(url, null));
+          bashScript.setExecutable(true);
+        }
+      }
+    }
+    catch (Exception e)
+    {
+      // do nothing
+    }
   }
   public static File get()
   {

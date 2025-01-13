@@ -1,6 +1,6 @@
 @echo off
 
-FOR /F "usebackq delims=" %%L IN ("..\approvaltests-tests\.approval_tests_temp\.failed_comparison.log") DO (
+FOR /F "usebackq delims=" %%L IN ("..\.approval_tests_temp\.failed_comparison.log") DO (
     REM Store the entire line in an environment variable named LINE
     SET "LINE=%%L"
     REM Call a subroutine to parse and handle the line

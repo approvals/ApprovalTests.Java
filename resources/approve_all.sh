@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-LOGFILE="../approvaltests-tests/.approval_tests_temp/.failed_comparison.log"
+LOGFILE="../.approval_tests_temp/.failed_comparison.log"
 
 while IFS= read -r line; do
   # 1) Parse the line to get source (before '->') and destination (after '->')
