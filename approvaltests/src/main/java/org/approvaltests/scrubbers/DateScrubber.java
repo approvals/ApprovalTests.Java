@@ -17,8 +17,7 @@ public class DateScrubber extends RegExScrubber
   }
   public static SupportedFormat[] getSupportedFormats()
   {
-    return new SupportedFormat[]{__("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}",
-            "Tue May 13 16:30:00"),
+    return new SupportedFormat[]{__("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}", "Tue May 13 16:30:00"),
                                  __("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [a-zA-Z]{3,4} \\d{4}",
                                      "Wed Nov 17 22:28:33 EET 2021"),
                                  __("(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} GMT",
@@ -45,14 +44,9 @@ public class DateScrubber extends RegExScrubber
                                  __("\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{2}:\\d{2}(\\.\\d{1,9})?Z",
                                      "2024-12-18T14:04:46.746130Z", "2024-12-18T14:04:46Z",
                                      "2024-12-18T14:04:46.746130834Z"),
-            __("\\d{2}[-/.]\\d{2}[-/.]\\d{4}\\s\\d{2}:\\d{2}(:\\d{2})?( (?:pm|am|PM|AM))?" ,
-                    "13/05/2014 23:50:49",
-                    "13.05.2014 23:50:49",
-                    "13-05-2014 23:50:49",
-                    "13.05.2014 23:50",
-                    "05/13/2014 11:50:49 PM"
-                    ),
-    };
+                                 __("\\d{2}[-/.]\\d{2}[-/.]\\d{4}\\s\\d{2}:\\d{2}(:\\d{2})?( (?:pm|am|PM|AM))?",
+                                     "13/05/2014 23:50:49", "13.05.2014 23:50:49", "13-05-2014 23:50:49",
+                                     "13.05.2014 23:50", "05/13/2014 11:50:49 PM"),};
   }
   private static SupportedFormat __(String regex, String... examples)
   {
