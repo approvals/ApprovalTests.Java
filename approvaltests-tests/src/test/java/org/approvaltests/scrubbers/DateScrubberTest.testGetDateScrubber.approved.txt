@@ -47,7 +47,12 @@ Example: {'date':"[Date1]"}
 
 
 Scrubbing for 2014/05/13 16:30:59.786:
-RegExScrubber[\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}.\d{2}\d]
+RegExScrubber[\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}(\.\d{3})?]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2014/05/13 16:30:59:
+RegExScrubber[\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}(\.\d{3})?]
 Example: {'date':"[Date1]"}
 
 
@@ -103,6 +108,31 @@ Example: {'date':"[Date1]"}
 
 Scrubbing for 2024-12-18T14:04:46.746130834Z:
 RegExScrubber[\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}(\.\d{1,9})?Z]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 13/05/2014 23:50:49:
+RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 13.05.2014 23:50:49:
+RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 13-05-2014 23:50:49:
+RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 13.05.2014 23:50:
+RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 05/13/2014 11:50:49 PM:
+RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?]
 Example: {'date':"[Date1]"}
 
 

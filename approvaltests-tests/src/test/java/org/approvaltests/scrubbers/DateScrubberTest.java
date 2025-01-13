@@ -3,6 +3,7 @@ package org.approvaltests.scrubbers;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.velocity.VelocityApprovals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,5 +53,16 @@ public class DateScrubberTest
   {
     VelocityApprovals.verify(c -> c.put("formats", DateScrubber.getSupportedFormats()),
         new Options().forFile().withExtension(".md"));
+  }
+
+  @Disabled("use when new examples are shared at https://github.com/approvals/ApprovalTests.Java/issues/112")
+  @Test
+  void textExamples() {
+    String[] examples = """
+            05/13/2014 11:50:49 PM
+            2024-12-18T14:04:46-0500
+            2025-07-17 14:58:02,123456
+            """.split("\n");
+    Approvals.verifyAll("Date scrubbing", examples, this::verifyScrubbing);
   }
 }
