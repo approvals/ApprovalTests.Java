@@ -1,6 +1,10 @@
 package com.spun.util.io;
 
 import com.spun.util.NumberUtils;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import okhttp3.mockwebserver.RecordedRequest;
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -8,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NetUtilsTest
@@ -44,5 +49,33 @@ public class NetUtilsTest
     File file = File.createTempFile("Test", ".txt");
     file.deleteOnExit();
     return file;
+  }
+  @Test
+  void testReadWebPageReturnsPageContent()
+  {
+    MockWebServer server = new MockWebServer();
+    server.enqueue(new MockResponse().setBody("hello, world!"));
+    String s = NetUtils.readWebpage(server.url("/").toString());
+    Approvals.verify(s);
+  }
+  @Test
+  void testLoadWebPageWithQueryParams() throws InterruptedException {
+    MockWebServer server = new MockWebServer();
+    server.enqueue(new MockResponse().setBody("hello, world!"));
+
+    NetUtils.loadWebPage(server.url("/api").toString(), "query=param");
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("/api?query=param", recordedRequest.getPath());
+  }
+  @Test
+  void testReadWebPageWithoutQueryParams() throws InterruptedException {
+    MockWebServer server = new MockWebServer();
+    server.enqueue(new MockResponse().setBody("hello, world!"));
+
+    NetUtils.readWebpage(server.url("/api").toString());
+
+    RecordedRequest recordedRequest = server.takeRequest();
+    assertEquals("/api", recordedRequest.getPath());
   }
 }
