@@ -46,29 +46,6 @@ public class NetUtils
   }
   public static String readWebpage(String query)
   {
-    HttpURLConnection connection = null;
-    try
-    {
-      URL url = new URL(query);
-      connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestMethod("GET");
-      connection.connect();
-      int responseCode = connection.getResponseCode();
-      if (responseCode != HttpURLConnection.HTTP_OK)
-      { throw new RuntimeException("Failed to read web page, response code: " + responseCode); }
-      InputStream inputStream = connection.getInputStream();
-      return FileUtils.readStream(inputStream);
-    }
-    catch (Exception e)
-    {
-      throw ObjectUtils.throwAsError(e);
-    }
-    finally
-    {
-      if (connection != null)
-      {
-        connection.disconnect();
-      }
-    }
+    return loadWebPage(query, null);
   }
 }
