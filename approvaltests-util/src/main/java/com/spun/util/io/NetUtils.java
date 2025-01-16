@@ -30,15 +30,7 @@ public class NetUtils
       if (responseCode != HttpURLConnection.HTTP_OK)
       { throw new RuntimeException("Failed to load web page, response code: " + responseCode); }
       InputStream inputStream = connection.getInputStream();
-      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-      StringBuilder html = new StringBuilder();
-      String line;
-      while ((line = reader.readLine()) != null)
-      {
-        html.append(line);
-      }
-      reader.close();
-      return html.toString();
+      return FileUtils.readStream(inputStream);
     }
     catch (Exception e)
     {

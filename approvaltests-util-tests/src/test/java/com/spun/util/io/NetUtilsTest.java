@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NetUtilsTest
@@ -54,7 +54,7 @@ public class NetUtilsTest
   void testReadWebPageReturnsPageContent()
   {
     MockWebServer server = new MockWebServer();
-    server.enqueue(new MockResponse().setBody("hello, world!"));
+    server.enqueue(new MockResponse().setBody("hello, world!\nsecond line"));
     String s = NetUtils.readWebpage(server.url("/").toString());
     Approvals.verify(s);
   }
@@ -62,10 +62,11 @@ public class NetUtilsTest
   void testLoadWebPageWithQueryParams() throws InterruptedException
   {
     MockWebServer server = new MockWebServer();
-    server.enqueue(new MockResponse().setBody("hello, world!"));
-    NetUtils.loadWebPage(server.url("/api").toString(), "query=param");
+    server.enqueue(new MockResponse().setBody("hello, world!\nsecond line"));
+    String page = NetUtils.loadWebPage(server.url("/api").toString(), "query=param");
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api?query=param", recordedRequest.getPath());
+    Approvals.verify(page);
   }
   @Test
   void testReadWebPageWithoutQueryParams() throws InterruptedException
@@ -75,5 +76,13 @@ public class NetUtilsTest
     NetUtils.readWebpage(server.url("/api").toString());
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api", recordedRequest.getPath());
+  }
+  @Disabled("Run if you want a real-world test")
+  @Test
+  void testWebPageFromGitHub()
+  {
+    String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
+    String file = "resources/approve_all" + ".bat";
+    Approvals.verify(NetUtils.loadWebPage(github + file, null));
   }
 }

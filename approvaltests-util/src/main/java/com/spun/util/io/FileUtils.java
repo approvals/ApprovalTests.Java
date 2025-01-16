@@ -249,9 +249,10 @@ public class FileUtils
     try
     {
       StringBuffer string = new StringBuffer();
-      while (in.ready())
+      String line;
+      while ((line = in.readLine()) != null)
       {
-        string.append(in.readLine());
+        string.append(line);
         string.append("\n");
       }
       in.close();
