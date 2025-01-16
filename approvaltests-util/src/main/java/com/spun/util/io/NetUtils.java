@@ -14,6 +14,9 @@ import java.net.URL;
  **/
 public class NetUtils
 {
+  public static String loadWebPage(String url) {
+    return loadWebPage(url, null);
+  }
   public static String loadWebPage(String url, String parameters)
   {
     HttpURLConnection connection = null;
@@ -45,6 +48,10 @@ public class NetUtils
       }
     }
   }
+  /**
+   * @deprecated Use {@link #loadWebPage(String)} instead.
+   */
+  @Deprecated
   public static String readWebpage(String query)
   {
     return loadWebPage(query, null);
