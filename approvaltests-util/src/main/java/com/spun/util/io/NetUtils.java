@@ -14,7 +14,8 @@ import java.net.URL;
  **/
 public class NetUtils
 {
-  public static String loadWebPage(String url) {
+  public static String loadWebPage(String url)
+  {
     return loadWebPage(url, null);
   }
   public static String loadWebPage(String url, String parameters)
