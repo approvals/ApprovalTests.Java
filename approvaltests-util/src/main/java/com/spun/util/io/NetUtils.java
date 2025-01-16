@@ -26,13 +26,9 @@ public class NetUtils
       connection = (HttpURLConnection) urlObj.openConnection();
       connection.setRequestMethod("GET");
       connection.connect();
-
       int responseCode = connection.getResponseCode();
       if (responseCode != HttpURLConnection.HTTP_OK)
-      {
-        throw new RuntimeException("Failed to load web page, response code: " + responseCode);
-      }
-
+      { throw new RuntimeException("Failed to load web page, response code: " + responseCode); }
       InputStream inputStream = connection.getInputStream();
       BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
       StringBuilder html = new StringBuilder();
@@ -56,7 +52,6 @@ public class NetUtils
       }
     }
   }
-
   public static String readWebpage(String query)
   {
     HttpURLConnection connection = null;
@@ -66,13 +61,9 @@ public class NetUtils
       connection = (HttpURLConnection) url.openConnection();
       connection.setRequestMethod("GET");
       connection.connect();
-
       int responseCode = connection.getResponseCode();
       if (responseCode != HttpURLConnection.HTTP_OK)
-      {
-        throw new RuntimeException("Failed to read web page, response code: " + responseCode);
-      }
-
+      { throw new RuntimeException("Failed to read web page, response code: " + responseCode); }
       InputStream inputStream = connection.getInputStream();
       return FileUtils.readStream(inputStream);
     }

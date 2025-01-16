@@ -59,22 +59,20 @@ public class NetUtilsTest
     Approvals.verify(s);
   }
   @Test
-  void testLoadWebPageWithQueryParams() throws InterruptedException {
+  void testLoadWebPageWithQueryParams() throws InterruptedException
+  {
     MockWebServer server = new MockWebServer();
     server.enqueue(new MockResponse().setBody("hello, world!"));
-
     NetUtils.loadWebPage(server.url("/api").toString(), "query=param");
-
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api?query=param", recordedRequest.getPath());
   }
   @Test
-  void testReadWebPageWithoutQueryParams() throws InterruptedException {
+  void testReadWebPageWithoutQueryParams() throws InterruptedException
+  {
     MockWebServer server = new MockWebServer();
     server.enqueue(new MockResponse().setBody("hello, world!"));
-
     NetUtils.readWebpage(server.url("/api").toString());
-
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api", recordedRequest.getPath());
   }
