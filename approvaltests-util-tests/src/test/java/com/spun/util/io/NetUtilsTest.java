@@ -55,7 +55,7 @@ public class NetUtilsTest
   {
     MockWebServer server = new MockWebServer();
     server.enqueue(new MockResponse().setBody("hello, world!\nsecond line"));
-    String s = NetUtils.readWebpage(server.url("/").toString());
+    String s = NetUtils.loadWebPage(server.url("/").toString());
     Approvals.verify(s);
   }
   @Test
@@ -73,7 +73,7 @@ public class NetUtilsTest
   {
     MockWebServer server = new MockWebServer();
     server.enqueue(new MockResponse().setBody("hello, world!"));
-    NetUtils.readWebpage(server.url("/api").toString());
+    NetUtils.loadWebPage(server.url("/api").toString());
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api", recordedRequest.getPath());
   }
