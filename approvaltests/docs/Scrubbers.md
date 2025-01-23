@@ -128,7 +128,7 @@ created at [Date1]
 | :-------------------- | :----------------------- | 
 | Tue May 13 16:30:00 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} |
 | Wed Nov 17 22:28:33 EET 2021 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} [a-zA-Z]{3,4} \d{4} |
-| Wed, 21 Oct 2015 07:28:00 GMT | (Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} GMT |
+| Wed, 21 Oct 2015 07:28:00 GMT | (Mon\|Tue\|Wed\|Thu\|Fri\|Sat\|Sun), \d{2} (Jan\|Feb\|Mar\|Apr\|May\|Jun\|Jul\|Aug\|Sep\|Oct\|Nov\|Dec) \d{4} \d{2}:\d{2}:\d{2} GMT |
 | Tue May 13 2014 23:30:00.789 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{4} \d{2}:\d{2}:\d{2}.\d{3} |
 | Tue May 13 16:30:00 -0800 2014 | [a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} -\d{4} \d{4} |
 | 13 May 2014 23:50:49,999 | \d{2} [a-zA-Z]{3} \d{4} \d{2}:\d{2}:\d{2},\d{3} |
@@ -142,7 +142,7 @@ created at [Date1]
 | 20210505T091112Z | \d{8}T\d{6}Z |
 | 2024-12-17 | \d{4}-\d{2}-\d{2} |
 | 2024-12-18T14:04:46.746130Z | \d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}(\.\d{1,9})?Z |
-| 13/05/2014 23:50:49 | \d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))? |
+| 13/05/2014 23:50:49 | \d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm\|am\|PM\|AM))? |
 <!-- endInclude -->
 
 ## Scrubbing multiple parts of a string
