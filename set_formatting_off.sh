@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  backup = '.back'
+  backup='.bak'
 fi
 
 sed -i $backup 's/<!-- formatter_plugin_begin -->/<!-- formatter_plugin_begin/g' pom.xml
