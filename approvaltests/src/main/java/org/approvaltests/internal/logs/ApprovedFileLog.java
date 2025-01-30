@@ -1,6 +1,7 @@
 package org.approvaltests.internal.logs;
 
 import com.spun.util.io.FileUtils;
+import org.lambda.utils.Once;
 
 import java.io.File;
 
@@ -9,6 +10,7 @@ public class ApprovedFileLog
   static
   {
     FileUtils.writeFile(get(), "");
+    Once.run(() -> LoggingUtils.downloadScriptIfMissing("detect_and_remove_abandoned"));
   }
   public static File get()
   {

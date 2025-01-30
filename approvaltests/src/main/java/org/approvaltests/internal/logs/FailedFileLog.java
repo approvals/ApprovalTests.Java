@@ -1,6 +1,7 @@
 package org.approvaltests.internal.logs;
 
 import com.spun.util.io.FileUtils;
+import org.lambda.utils.Once;
 
 import java.io.File;
 
@@ -8,18 +9,13 @@ import static org.approvaltests.internal.logs.LoggingUtils.APPROVAL_TEMP_DIRECTO
 
 public class FailedFileLog
 {
-  private static boolean downloadedScriptCheck = false;
   static
   {
     FileUtils.writeFile(get(), "");
   }
   private static void downloadApproveAllScriptIfMissing()
   {
-    if (downloadedScriptCheck)
-    { return; }
-    downloadedScriptCheck = true;
-    String scriptName = "approve_all";
-    LoggingUtils.downloadScriptIfMissing(scriptName);
+    Once.run(() -> LoggingUtils.downloadScriptIfMissing("approve_all"));
   }
   public static File get()
   {
