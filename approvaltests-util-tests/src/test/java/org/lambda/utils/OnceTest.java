@@ -1,5 +1,6 @@
 package org.lambda.utils;
 
+import com.spun.util.NumberUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +19,13 @@ public class OnceTest {
     }
 
     private void increment() {
-        Once.run(() -> OnceTest.count++);
+        var fieldThatForcesLambdaToHaveMultipleInstances = NumberUtils.doRandomPercentage(50);
+        Once.run(() -> {
+            if (fieldThatForcesLambdaToHaveMultipleInstances)
+                OnceTest.count++;
+            else
+                OnceTest.count++;
+        });
     }
 
     @Test
