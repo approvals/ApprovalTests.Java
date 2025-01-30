@@ -2,8 +2,8 @@ package org.approvaltests.approvers;
 
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.FileUtils;
-import org.approvaltests.ApprovedFileLog;
-import org.approvaltests.FailedFileLog;
+import org.approvaltests.internal.logs.ApprovedFileLog;
+import org.approvaltests.internal.logs.FailedFileLog;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.core.ApprovalWriter;

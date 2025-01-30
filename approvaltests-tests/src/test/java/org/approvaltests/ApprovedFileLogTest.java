@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import com.spun.util.io.FileUtils;
+import org.approvaltests.internal.logs.ApprovedFileLog;
 import org.approvaltests.namer.ApprovalNamer;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

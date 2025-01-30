@@ -3,8 +3,8 @@ package org.approvaltests.reporters;
 import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
-import org.approvaltests.ApprovedFileLog;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.internal.logs.LoggingUtils;
 
 import java.io.File;
 
@@ -32,14 +32,14 @@ public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureRepor
   }
   private static void initializeLinux()
   {
-    scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
+    scriptFile = new File(LoggingUtils.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
     FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
     FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
     scriptFile.setExecutable(true);
   }
   private static void initializeWindows()
   {
-    scriptFile = new File(ApprovedFileLog.APPROVAL_TEMP_DIRECTORY + "\\" + fileName + ".bat");
+    scriptFile = new File(LoggingUtils.APPROVAL_TEMP_DIRECTORY + "\\" + fileName + ".bat");
     FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
     FileUtils.writeFile(scriptFile, "");
   }

@@ -1,12 +1,10 @@
-package org.approvaltests;
+package org.approvaltests.internal.logs;
 
-import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
-import com.spun.util.io.NetUtils;
 
 import java.io.File;
 
-import static org.approvaltests.ApprovedFileLog.APPROVAL_TEMP_DIRECTORY;
+import static org.approvaltests.internal.logs.LoggingUtils.APPROVAL_TEMP_DIRECTORY;
 
 public class FailedFileLog
 {
@@ -20,22 +18,8 @@ public class FailedFileLog
     if (downloadedScriptCheck)
     { return; }
     downloadedScriptCheck = true;
-    try
-    {
-      String extension = SystemUtils.isWindowsEnvironment() ? ".bat" : ".sh";
-      File script = new File(APPROVAL_TEMP_DIRECTORY + "/approve_all" + extension);
-      if (!script.exists())
-      {
-        String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
-        String file = "resources/approve_all" + extension;
-        FileUtils.writeFile(script, NetUtils.loadWebPage(github + file, null));
-        script.setExecutable(true);
-      }
-    }
-    catch (Exception e)
-    {
-      // do nothing
-    }
+    String scriptName = "approve_all";
+    LoggingUtils.downloadScriptIfMissing(scriptName);
   }
   public static File get()
   {
