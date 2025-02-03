@@ -9,6 +9,7 @@ import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.type.TypeParameter;
 import com.github.javaparser.utils.SourceRoot;
+import com.spun.util.ClassUtils;
 import com.spun.util.FormattedException;
 import org.lambda.query.Query;
 
@@ -22,8 +23,8 @@ public class ParserUtilities
   public static final List<String> SOURCE_PATHS = new ArrayList<>();
   static
   {
-    SOURCE_PATHS.add("src/main/java");
-    SOURCE_PATHS.add("src/test/java");
+    SOURCE_PATHS.add(ClassUtils.getProjectRootPath() + "/src/main/java");
+    SOURCE_PATHS.add(ClassUtils.getProjectRootPath() + "/src/test/java");
   }
   public static Range getLineNumbersForMethod(Method method)
   {
@@ -71,6 +72,7 @@ public class ParserUtilities
     ParseProblemException parseException = null;
     for (String sourceRootPath : SOURCE_PATHS)
     {
+      System.out.println("Trying to parse from: " + sourceRootPath);
       SourceRoot sourceRoot = new SourceRoot(Paths.get(sourceRootPath));
       try
       {

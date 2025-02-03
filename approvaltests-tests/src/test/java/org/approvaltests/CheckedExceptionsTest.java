@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.ClassUtils;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -27,7 +28,7 @@ public class CheckedExceptionsTest
   }
   private Queryable<Class<?>> getAllClasses()
   {
-    return getClasses("..", p -> p.contains("main"),
+    return getClasses(ClassUtils.getProjectRootPath() + "/..", p -> p.contains("main"),
         p1 -> p1.contains(".approvaltests.src.") || p1.contains(".approvaltests-util."));
   }
 }

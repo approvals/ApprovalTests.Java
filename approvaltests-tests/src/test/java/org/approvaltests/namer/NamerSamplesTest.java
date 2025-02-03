@@ -1,5 +1,6 @@
 package org.approvaltests.namer;
 
+import com.spun.util.ClassUtils;
 import com.spun.util.tests.TestUtils;
 import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 import org.approvaltests.Approvals;
@@ -19,7 +20,8 @@ public class NamerSamplesTest
       @Override
       public File call(Class clazz, String fileName)
       {
-        return new File("src/test/java/" + clazz.getPackage().getName().replaceAll("\\.", "/"));
+        return new File(ClassUtils.getProjectRootPath() + "/src/test/java/"
+            + clazz.getPackage().getName().replaceAll("\\.", "/"));
       }
     };
     // end-snippet

@@ -17,6 +17,7 @@ import java.util.Objects;
 
 public class ClassUtils
 {
+  public static final String APPROVALTESTS_PROJECT_DIRECTORY = "APPROVALTESTS_PROJECT_DIRECTORY";
   public static String getClassName(Class<?> clazz)
   {
     String name = clazz.getName();
@@ -98,10 +99,22 @@ public class ClassUtils
     final String name = clazz.getName();
     String[] split = name.split("\\.");
     split[split.length - 1] = createLastFileName.call(split[split.length - 1]);
-    File found = find(new File("."), Arrays.asList(split));
+    String baseSourcePath = getProjectRootPath();
+    File found = find(new File(baseSourcePath), Arrays.asList(split));
     if (found == null)
     { throw new FormattedException("Didn't find %s under %s", name, FileUtils.getCurrentDirectory()); }
     return found.getParentFile();
+  }
+  /**
+   * This returns the {@link com.spun.util.ClassUtils#APPROVALTESTS_PROJECT_DIRECTORY APPROVALTESTS_PROJECT_DIRECTORY} system property if it is set, otherwise it returns the working directory.
+   */
+  public static String getProjectRootPath()
+  {
+    if (System.getProperties().containsKey(APPROVALTESTS_PROJECT_DIRECTORY))
+    { return System.getProperty(APPROVALTESTS_PROJECT_DIRECTORY); }
+    if (System.getenv().containsKey(APPROVALTESTS_PROJECT_DIRECTORY))
+    { return System.getenv(APPROVALTESTS_PROJECT_DIRECTORY); }
+    return ".";
   }
   public static File getSourceDirectory(Class<?> clazz, final String fileName)
   {

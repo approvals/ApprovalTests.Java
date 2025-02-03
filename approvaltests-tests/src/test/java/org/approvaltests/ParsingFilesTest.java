@@ -1,6 +1,7 @@
 package org.approvaltests;
 
 import com.github.javaparser.Range;
+import com.spun.util.ClassUtils;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ public class ParsingFilesTest
 {
   public static void addApprovalTestPath()
   {
-    ParserUtilities.SOURCE_PATHS.add("../approvaltests/src/main/java");
+    ParserUtilities.SOURCE_PATHS.add(ClassUtils.getProjectRootPath() + "/../approvaltests/src/main/java");
   }
   @Test
   public void getLineNumberOfThisMethod() throws Exception

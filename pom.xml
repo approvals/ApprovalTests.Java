@@ -103,6 +103,11 @@
                 <version>3.5.2</version>
                 <configuration>
                     <argLine>-Duser.language=en -Duser.region=US</argLine>
+                    <parallel>methods</parallel>
+                    <workingDirectory>target/fork_dir_${surefire.forkNumber}</workingDirectory>
+                    <systemPropertyVariables>
+                        <APPROVALTESTS_PROJECT_DIRECTORY>${project.basedir}</APPROVALTESTS_PROJECT_DIRECTORY>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
