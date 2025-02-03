@@ -23,7 +23,7 @@ public class LoggingUtils
         script.setExecutable(true);
       }
     }
-    catch (Exception e)
+    catch (Throwable e)
     {
       // do nothing
     }
