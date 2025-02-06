@@ -10,10 +10,13 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.Duration;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Disabled;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NetUtilsTest
 {
@@ -84,5 +87,10 @@ public class NetUtilsTest
     String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
     String file = "resources/approve_all" + ".bat";
     Approvals.verify(NetUtils.loadWebPage(github + file, null));
+  }
+  @Test
+  void testTimeout() {
+    assertThrows(Error.class, () ->
+    NetUtils.loadWebPage("https://httpbin.org/delay/5", null, Duration.ofMillis(50)));
   }
 }
