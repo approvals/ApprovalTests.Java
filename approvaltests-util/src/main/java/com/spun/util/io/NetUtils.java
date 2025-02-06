@@ -35,7 +35,8 @@ public class NetUtils
       URL urlObj = URI.create(url).toURL();
       connection = (HttpURLConnection) urlObj.openConnection();
       connection.setRequestMethod("GET");
-      if (timeout != null) {
+      if (timeout != null)
+      {
         connection.setConnectTimeout((int) timeout.toMillis());
       }
       connection.connect();

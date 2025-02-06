@@ -89,8 +89,9 @@ public class NetUtilsTest
     Approvals.verify(NetUtils.loadWebPage(github + file, null));
   }
   @Test
-  void testTimeout() {
-    assertThrows(Error.class, () ->
-    NetUtils.loadWebPage("https://httpbin.org/delay/5", null, Duration.ofMillis(50)));
+  void testTimeout()
+  {
+    assertThrows(Error.class,
+        () -> NetUtils.loadWebPage("https://httpbin.org/delay/5", null, Duration.ofMillis(50)));
   }
 }
