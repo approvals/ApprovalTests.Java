@@ -1,13 +1,14 @@
 package com.spun.util.io;
 
 import com.spun.util.ObjectUtils;
+import com.spun.util.logger.Markers;
+import com.spun.util.logger.SimpleLogger;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.time.Duration;
 
 /**
  * A static class of convenience functions for Files
@@ -20,6 +21,10 @@ public class NetUtils
   }
   public static String loadWebPage(String url, String parameters)
   {
+    return loadWebPage(url, parameters, null);
+  }
+  public static String loadWebPage(String url, String parameters, Duration timeout)
+  {
     HttpURLConnection connection = null;
     try
     {
@@ -30,6 +35,9 @@ public class NetUtils
       URL urlObj = URI.create(url).toURL();
       connection = (HttpURLConnection) urlObj.openConnection();
       connection.setRequestMethod("GET");
+      if (timeout != null) {
+        connection.setConnectTimeout((int) timeout.toMillis());
+      }
       connection.connect();
       int responseCode = connection.getResponseCode();
       if (responseCode != HttpURLConnection.HTTP_OK)
