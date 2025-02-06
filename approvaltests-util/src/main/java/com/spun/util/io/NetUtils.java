@@ -38,6 +38,7 @@ public class NetUtils
       if (timeout != null)
       {
         connection.setConnectTimeout((int) timeout.toMillis());
+        connection.setReadTimeout((int) timeout.toMillis());
       }
       connection.connect();
       int responseCode = connection.getResponseCode();
