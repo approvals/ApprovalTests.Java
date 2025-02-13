@@ -6,8 +6,7 @@ import org.approvaltests.core.VerifyResult;
 public class FirstWorkingReporter implements ReporterWithApprovalPower
 {
   private final ApprovalFailureReporter[] reporters;
-  private VerifyResult approvalOutcome = VerifyResult.FAILURE;
-
+  private VerifyResult                    approvalOutcome = VerifyResult.FAILURE;
   public FirstWorkingReporter(ApprovalFailureReporter... reporters)
   {
     this.reporters = reporters;
@@ -29,13 +28,13 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
     }
     return false;
   }
-
-  private void checkApprovalPower(ApprovalFailureReporter reporter) {
-    if (reporter instanceof ReporterWithApprovalPower) {
+  private void checkApprovalPower(ApprovalFailureReporter reporter)
+  {
+    if (reporter instanceof ReporterWithApprovalPower)
+    {
       approvalOutcome = ((ReporterWithApprovalPower) reporter).approveWhenReported();
     }
   }
-
   public ApprovalFailureReporter[] getReporters()
   {
     return reporters;
@@ -45,9 +44,9 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
   {
     return getClass().getName();
   }
-
   @Override
-  public VerifyResult approveWhenReported() {
+  public VerifyResult approveWhenReported()
+  {
     return approvalOutcome;
   }
 }
