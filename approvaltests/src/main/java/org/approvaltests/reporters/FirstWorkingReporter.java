@@ -1,10 +1,13 @@
 package org.approvaltests.reporters;
 
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.VerifyResult;
 
-public class FirstWorkingReporter implements ApprovalFailureReporter
+public class FirstWorkingReporter implements ReporterWithApprovalPower
 {
   private final ApprovalFailureReporter[] reporters;
+  private VerifyResult approvalOutcome = VerifyResult.FAILURE;
+
   public FirstWorkingReporter(ApprovalFailureReporter... reporters)
   {
     this.reporters = reporters;
@@ -19,10 +22,20 @@ public class FirstWorkingReporter implements ApprovalFailureReporter
     for (ApprovalFailureReporter reporter : reporters)
     {
       if (reporter.report(received, approved))
-      { return true; }
+      {
+        checkApprovalPower(reporter);
+        return true;
+      }
     }
     return false;
   }
+
+  private void checkApprovalPower(ApprovalFailureReporter reporter) {
+    if (reporter instanceof ReporterWithApprovalPower) {
+      approvalOutcome = ((ReporterWithApprovalPower) reporter).approveWhenReported();
+    }
+  }
+
   public ApprovalFailureReporter[] getReporters()
   {
     return reporters;
@@ -31,5 +44,10 @@ public class FirstWorkingReporter implements ApprovalFailureReporter
   public String toString()
   {
     return getClass().getName();
+  }
+
+  @Override
+  public VerifyResult approveWhenReported() {
+    return approvalOutcome;
   }
 }
