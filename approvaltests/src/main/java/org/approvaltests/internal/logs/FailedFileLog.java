@@ -15,7 +15,7 @@ public class FailedFileLog
   }
   private static void downloadApproveAllScriptIfMissing()
   {
-    Once.run(() -> LoggingUtils.downloadScriptIfMissing("approve_all"));
+    Once.runAsync(() -> LoggingUtils.downloadScriptIfMissing("approve_all"));
   }
   public static File get()
   {

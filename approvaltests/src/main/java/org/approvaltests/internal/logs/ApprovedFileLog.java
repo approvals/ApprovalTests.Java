@@ -10,7 +10,7 @@ public class ApprovedFileLog
   static
   {
     FileUtils.writeFile(get(), "");
-    Once.run(() -> LoggingUtils.downloadScriptIfMissing("detect_and_remove_abandoned"));
+    Once.runAsync(() -> LoggingUtils.downloadScriptIfMissing("detect_and_remove_abandoned"));
   }
   public static File get()
   {
