@@ -1,5 +1,6 @@
 package org.lambda.utils;
 
+import com.spun.util.ThreadUtils;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function0;
 
@@ -15,22 +16,22 @@ public class Once
   private static final Map<Class, Object> functions = Collections.synchronizedMap(new HashMap<>());
   public static void run(Action0 runnable)
   {
-    if (!actions.contains(runnable.getClass()))
+    run(runnable, runnable.getClass());
+  }
+  public static void runAsync(Action0 runnable)
+  {
+    run(() -> ThreadUtils.launch(runnable), runnable.getClass());
+  }
+  private static void run(Action0 runnable, Class<? extends Action0> identifier)
+  {
+    if (!actions.contains(identifier))
     {
-      actions.add(runnable.getClass());
+      actions.add(identifier);
       runnable.call();
     }
   }
   public static <T> T run(Function0<T> runnable)
   {
     return (T) functions.computeIfAbsent(runnable.getClass(), k -> runnable.call());
-  }
-  public static void runAsync(Action0 runnable)
-  {
-    if (!actions.contains(runnable.getClass()))
-    {
-      actions.add(runnable.getClass());
-      new Thread(runnable::call).start();
-    }
   }
 }
