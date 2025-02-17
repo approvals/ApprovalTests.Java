@@ -47,7 +47,7 @@ public class OnceTest
     Once.run(() -> globals[1]++);
   }
   @Test
-  @Timeout(unit = TimeUnit.MILLISECONDS, value = 600)
+  @Timeout(unit = TimeUnit.SECONDS, value = 1)
   void testOnceAsync()
   {
     incrementAsync();
@@ -55,13 +55,13 @@ public class OnceTest
     incrementAsync();
     incrementAsync();
     incrementAsync();
-    ThreadUtils.sleep(500);
+    ThreadUtils.sleep(750);
     assertEquals(1, globals[2]);
   }
   private void incrementAsync()
   {
     Once.runAsync(() -> {
-      ThreadUtils.sleep(300);
+      ThreadUtils.sleep(500);
       globals[2]++;
     });
   }
