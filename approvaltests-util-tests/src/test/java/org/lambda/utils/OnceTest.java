@@ -1,13 +1,17 @@
 package org.lambda.utils;
 
 import com.spun.util.NumberUtils;
+import com.spun.util.ThreadUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OnceTest
 {
-  public static int count = 0;
+  public static int[] globals = {0, 0, 0};
   @Test
   public void testOnce()
   {
@@ -16,16 +20,49 @@ public class OnceTest
     increment();
     increment();
     increment();
-    assertEquals(1, count);
+    assertEquals(1, globals[0]);
   }
   private void increment()
   {
     var fieldThatForcesLambdaToHaveMultipleInstances = NumberUtils.doRandomPercentage(50);
     Once.run(() -> {
       if (fieldThatForcesLambdaToHaveMultipleInstances)
-        OnceTest.count++;
+        globals[0]++;
       else
-        OnceTest.count++;
+        globals[0]++;
+    });
+  }
+  @Test
+  void testOnceNormalLambda()
+  {
+    incrementNormal();
+    incrementNormal();
+    incrementNormal();
+    incrementNormal();
+    incrementNormal();
+    assertEquals(1, globals[1]);
+  }
+  private void incrementNormal()
+  {
+    Once.run(() -> globals[1]++);
+  }
+  @Test
+  @Timeout(unit = TimeUnit.MILLISECONDS, value = 600)
+  void testOnceAsync()
+  {
+    incrementAsync();
+    incrementAsync();
+    incrementAsync();
+    incrementAsync();
+    incrementAsync();
+    ThreadUtils.sleep(500);
+    assertEquals(1, globals[2]);
+  }
+  private void incrementAsync()
+  {
+    Once.runAsync(() -> {
+      ThreadUtils.sleep(300);
+      globals[2]++;
     });
   }
   @Test
