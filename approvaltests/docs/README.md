@@ -30,6 +30,7 @@
 * [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
 * Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
 * [Use Inline Approvals](how_to/InlineApprovals.md)
+* Use [@TestFactory](how_to/UseTestFactory.md)
 
 ## Reference
 
