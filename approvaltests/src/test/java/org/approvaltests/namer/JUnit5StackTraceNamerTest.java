@@ -125,12 +125,12 @@ public class JUnit5StackTraceNamerTest
       }
     }));
   }
-  // begin_snippet: java_dynamic_test
+  // begin-snippet: java_dynamic_test
   @TestFactory
   Collection<DynamicTest> testFactory3()
   {
     return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
         o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
   }
-  // end_snippet
+  // end-snippet
 }
