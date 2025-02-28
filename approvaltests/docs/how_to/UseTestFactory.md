@@ -17,10 +17,12 @@ Because of this, you will always have to use the Options when calling `verify()`
 
 ## Java
 Here is an example of how to do this in Java:
+
 snippet: java_dynamic_test
 
 ## Kotlin
 Here is an example of how to do this in Kotlin:
+
 snippet: kotlin_dynamic_test
 
 ---
