@@ -9,8 +9,13 @@ public class MarkdownTableContents implements MarkdownTableElement, Resizable
   private MarkdownColumn columnProperties = MarkdownColumn.DEFAULT;
   public MarkdownTableContents(String contents)
   {
-    this.contents = contents;
+    this.contents = escapeMarkdown(contents);
   }
+
+  private String escapeMarkdown(String contents) {
+    return contents.replaceAll("\\|", "\\\\|");
+  }
+
   @Override
   public String toString()
   {

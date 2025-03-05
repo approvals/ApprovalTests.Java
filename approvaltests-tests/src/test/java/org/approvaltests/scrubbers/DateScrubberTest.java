@@ -58,7 +58,7 @@ public class DateScrubberTest
     MarkdownTable table = MarkdownTable.withHeaders(headers);
     table.setColumnProperties(MarkdownColumn.LEFT_JUSTIFIED);
     for (DateScrubber.SupportedFormat format : DateScrubber.getSupportedFormats()) {
-        table.addRow(format.getExamples()[0], format.getRegex().replaceAll("\\|", "\\\\|"));
+        table.addRow(format.getExamples()[0], format.getRegex());
     }
     Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
             new Options().forFile().withExtension(".md"));
