@@ -613,6 +613,14 @@ public class StringUtils
     }
     return contents;
   }
+  public static String padRight(String contents, int targetLength)
+  {
+    while (contents.length() < targetLength)
+    {
+      contents = contents + " ";
+    }
+    return contents;
+  }
   public static String removeFromEnd(String contents, String text)
   {
     return removeFromEnd(contents, text.length());

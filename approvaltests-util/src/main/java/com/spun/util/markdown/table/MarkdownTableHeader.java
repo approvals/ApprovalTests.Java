@@ -18,6 +18,10 @@ public class MarkdownTableHeader implements MarkdownTableElement, Resizable
     {
       dashes = dashes.substring(0, dashCount - 1) + ":";
     }
+    if (columnProperties == MarkdownColumn.LEFT_JUSTIFIED)
+    {
+      dashes = ":" + dashes.substring(0, dashCount - 1);
+    }
     return dashes;
   }
   public int getLength()

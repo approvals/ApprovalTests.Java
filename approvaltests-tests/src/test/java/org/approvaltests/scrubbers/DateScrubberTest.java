@@ -1,5 +1,7 @@
 package org.approvaltests.scrubbers;
 
+import com.spun.util.markdown.table.MarkdownColumn;
+import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.velocity.VelocityApprovals;
@@ -51,8 +53,16 @@ public class DateScrubberTest
   @Test
   void supportedFormats()
   {
-    VelocityApprovals.verify(c -> c.put("formats", DateScrubber.getSupportedFormats()),
-        new Options().forFile().withExtension(".md"));
+
+  String[] headers = {"Example Date", "RegEx Pattern"};
+    MarkdownTable table = MarkdownTable.withHeaders(headers);
+    table.setColumnProperties(MarkdownColumn.LEFT_JUSTIFIED);
+    for (DateScrubber.SupportedFormat format : DateScrubber.getSupportedFormats()) {
+        table.addRow(format.getExamples()[0], format.getRegex().replaceAll("\\|", "\\\\|"));
+    }
+    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
+            new Options().forFile().withExtension(".md"));
+
   }
   @Disabled("use when new examples are shared at https://github.com/approvals/ApprovalTests.Java/issues/112")
   @Test

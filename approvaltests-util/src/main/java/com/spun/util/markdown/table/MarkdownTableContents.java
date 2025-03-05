@@ -19,6 +19,10 @@ public class MarkdownTableContents implements MarkdownTableElement, Resizable
     {
       c = StringUtils.padLeft(contents, padUntil);
     }
+    if (columnProperties == MarkdownColumn.LEFT_JUSTIFIED)
+    {
+      c = StringUtils.padRight(contents, padUntil);
+    }
     else
     {
       c = StringUtils.pad(contents, padUntil);
