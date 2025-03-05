@@ -119,9 +119,9 @@ public class JUnit5StackTraceNamerTest
       }
       catch (RuntimeException e)
       {
-        String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n" +
-                             "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n" +
-                             " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
+        String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n"
+            + "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n"
+            + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
         assertEquals(helpMessage, e.getMessage());
       }
     }));

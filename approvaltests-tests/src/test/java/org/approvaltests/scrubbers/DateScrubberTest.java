@@ -53,16 +53,15 @@ public class DateScrubberTest
   @Test
   void supportedFormats()
   {
-
-  String[] headers = {"Example Date", "RegEx Pattern"};
+    String[] headers = {"Example Date", "RegEx Pattern"};
     MarkdownTable table = MarkdownTable.withHeaders(headers);
     table.setColumnProperties(MarkdownColumn.LEFT_JUSTIFIED);
-    for (DateScrubber.SupportedFormat format : DateScrubber.getSupportedFormats()) {
-        table.addRow(format.getExamples()[0], format.getRegex());
+    for (DateScrubber.SupportedFormat format : DateScrubber.getSupportedFormats())
+    {
+      table.addRow(format.getExamples()[0], format.getRegex());
     }
     Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
-            new Options().forFile().withExtension(".md"));
-
+        new Options().forFile().withExtension(".md"));
   }
   @Disabled("use when new examples are shared at https://github.com/approvals/ApprovalTests.Java/issues/112")
   @Test

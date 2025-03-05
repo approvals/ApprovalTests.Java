@@ -12,17 +12,27 @@ public class MarkdownTableHeader implements MarkdownTableElement, Resizable
   @Override
   public String toString()
   {
-    int dashCount = padUntil + 2; // Math.max(3, padUntil + 2);
-    String dashes = StringUtils.repeat("-", dashCount);
+    int dashCount = Math.max(3, padUntil + 2);
+    String front = "";
+    String back = "";
+    if (5 <= dashCount)
+    {
+      front = " ";
+      back = " ";
+      dashCount -= 2;
+    }
     if (columnProperties == MarkdownColumn.RIGHT_JUSTIFIED)
     {
-      dashes = dashes.substring(0, dashCount - 1) + ":";
+      dashCount--;
+      back = ":" + back;
     }
     if (columnProperties == MarkdownColumn.LEFT_JUSTIFIED)
     {
-      dashes = ":" + dashes.substring(0, dashCount - 1);
+      dashCount--;
+      front = front + ":";
     }
-    return dashes;
+    String dashes = StringUtils.repeat("-", dashCount);
+    return front + dashes + back;
   }
   public int getLength()
   {

@@ -132,10 +132,9 @@ public class AttributeStackSelector implements StackElementSelector
     {
       if (!isDynamicWrapperPresent())
       {
-        String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n" +
-                             "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n" +
-                             " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
-
+        String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n"
+            + "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n"
+            + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
         throw new FormattedException(helpMessage);
       }
     }
