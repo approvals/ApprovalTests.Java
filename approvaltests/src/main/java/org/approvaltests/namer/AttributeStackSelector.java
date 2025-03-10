@@ -144,7 +144,8 @@ public class AttributeStackSelector implements StackElementSelector
   {
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
     return Queryable.as(stackTrace)
-        .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals".equals(stackTraceElement.getClassName()));
+        .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals"
+            .equals(stackTraceElement.getClassName()));
   }
   public static List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
