@@ -110,9 +110,7 @@ public class AttributeStackSelector implements StackElementSelector
   }
   private boolean isTestAttribute(Class<?> clazz, String methodName)
   {
-    List<Method> methods = getMethodsByName(clazz, methodName);
-    if (methods.isEmpty())
-    { return false; }
+    Queryable<Method> methods = getMethodsByName(clazz, methodName);
     for (Method method : methods)
     {
       for (Class<? extends Annotation> attribute : attributes)
@@ -147,16 +145,16 @@ public class AttributeStackSelector implements StackElementSelector
         .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals"
             .equals(stackTraceElement.getClassName()));
   }
-  public static List<Method> getMethodsByName(Class<?> clazz, String methodName)
+  public static Queryable<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
     try
     {
-      return Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals(methodName))
-          .collect(Collectors.toList());
+      return Queryable.of(clazz.getDeclaredMethods()) //
+          .where(m -> m.getName().equals(methodName));
     }
     catch (Throwable e)
     {
-      return new ArrayList<>();
+      return new Queryable<>();
     }
   }
   @Override
