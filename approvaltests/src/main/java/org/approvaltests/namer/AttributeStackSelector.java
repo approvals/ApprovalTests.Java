@@ -111,22 +111,16 @@ public class AttributeStackSelector implements StackElementSelector
   private boolean isTestAttribute(Class<?> clazz, String methodName)
   {
     Queryable<Method> methods = getMethodsByName(clazz, methodName);
-    for (Method method : methods)
-    {
-      for (Class<? extends Annotation> attribute : attributes)
-      {
-        if (method.isAnnotationPresent(attribute))
-        {
-          checkConditionsForAttribute(attribute);
-          return true;
-        }
-      }
-    }
-    return false;
+    Class<? extends Annotation> attribute = Queryable.as(attributes) //
+        .first(a -> methods.any(m -> m.isAnnotationPresent(a)));
+    checkConditionsForAttribute(attribute);
+    return attribute != null;
   }
   // TODO: clean this up, should be pluggable
   private static void checkConditionsForAttribute(Class<? extends Annotation> attribute)
   {
+    if (attribute == null)
+    { return; }
     if ("org.junit.jupiter.api.TestFactory".equals(attribute.getName()))
     {
       if (!isDynamicWrapperPresent())
