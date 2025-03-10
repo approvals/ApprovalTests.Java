@@ -6,6 +6,7 @@ import com.spun.util.ThreadUtils;
 import com.spun.util.io.StackElementSelector;
 import com.spun.util.tests.TestUtils;
 import org.approvaltests.integrations.junit5.JUnitUtils;
+import org.lambda.query.Queryable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -142,12 +143,8 @@ public class AttributeStackSelector implements StackElementSelector
   private static boolean isDynamicWrapperPresent()
   {
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
-    for (StackTraceElement stackTraceElement : stackTrace)
-    {
-      if ("org.approvaltests.integrations.junit5.JupiterApprovals".equals(stackTraceElement.getClassName()))
-      { return true; }
-    }
-    return false;
+    return Queryable.as(stackTrace)
+        .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals".equals(stackTraceElement.getClassName()));
   }
   public static List<Method> getMethodsByName(Class<?> clazz, String methodName)
   {

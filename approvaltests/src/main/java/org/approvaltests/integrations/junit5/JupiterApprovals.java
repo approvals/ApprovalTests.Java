@@ -3,10 +3,7 @@ package org.approvaltests.integrations.junit5;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Experimental;
 import org.approvaltests.core.Options;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
 import org.junit.jupiter.api.DynamicTest;
-import org.lambda.actions.Action0;
 import org.lambda.actions.Action1;
 
 public class JupiterApprovals
