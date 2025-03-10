@@ -199,7 +199,6 @@ public class Approvals
         }
       }
     }
-
     verify(new FileApprover(writer, namer, options.getComparator()), options);
   }
   public static void verify(ApprovalWriter writer)

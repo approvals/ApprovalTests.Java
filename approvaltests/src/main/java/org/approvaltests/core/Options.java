@@ -22,15 +22,14 @@ import java.util.Map;
 public class Options
 {
   private boolean hasAdditionalDynamicNamingInformation = false;
-
-  public boolean hasAdditionalDynamicNamingInformation() {
+  public boolean hasAdditionalDynamicNamingInformation()
+  {
     return hasAdditionalDynamicNamingInformation;
   }
-
-  public void setHasAdditionalDynamicNamingInformation(boolean hasAdditionalDynamicNamingInformation) {
+  public void setHasAdditionalDynamicNamingInformation(boolean hasAdditionalDynamicNamingInformation)
+  {
     this.hasAdditionalDynamicNamingInformation = hasAdditionalDynamicNamingInformation;
   }
-
   private enum Fields {
                        SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
   }

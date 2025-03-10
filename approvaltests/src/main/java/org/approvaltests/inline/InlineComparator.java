@@ -59,12 +59,11 @@ public class InlineComparator implements ApprovalNamer
   {
     return this;
   }
-
   @Override
-  public boolean isDynamic() {
+  public boolean isDynamic()
+  {
     return false;
   }
-
   @Override
   public String getApprovalName()
   {
