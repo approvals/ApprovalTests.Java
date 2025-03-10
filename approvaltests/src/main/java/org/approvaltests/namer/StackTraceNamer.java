@@ -12,9 +12,12 @@ public class StackTraceNamer implements ApprovalNamer
 {
   private StackTraceReflectionResult info;
   private String                     additionalInformation;
+  public boolean isDynamicWrapperPresent;
   public StackTraceNamer()
   {
-    info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
+    AttributeStackSelector stackElementSelector = new AttributeStackSelector();
+    isDynamicWrapperPresent = stackElementSelector.isDynamicWrapperPresent();
+    info = TestUtils.getCurrentFileForMethod(stackElementSelector);
     additionalInformation = NamerFactory.getAndClearAdditionalInformation();
   }
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
@@ -62,6 +65,13 @@ public class StackTraceNamer implements ApprovalNamer
   {
     return new StackTraceNamer(this.info, this.additionalInformation + "." + additionalInformation);
   }
+
+  @Override
+  public boolean isDynamic() {
+    return isDynamicWrapperPresent;
+
+  }
+
   public StackTraceReflectionResult getInfo()
   {
     return info;

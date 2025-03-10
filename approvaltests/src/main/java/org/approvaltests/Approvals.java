@@ -185,6 +185,21 @@ public class Approvals
   }
   public static void verify(ApprovalWriter writer, ApprovalNamer namer, Options options)
   {
+    // if the namer is saw a dynamic attribute, check if the options has the additional information
+    if (namer instanceof StackTraceNamer)
+    {
+      StackTraceNamer stackTraceNamer = (StackTraceNamer) namer;
+      if (stackTraceNamer.isDynamic())
+      {
+        if (!options.hasAdditionalDynamicNamingInformation())
+        {
+          throw new FormattedException(
+              "The Namer %s is dynamic, but no additional information was provided in the options",
+              stackTraceNamer.getClass().getName());
+        }
+      }
+    }
+
     verify(new FileApprover(writer, namer, options.getComparator()), options);
   }
   public static void verify(ApprovalWriter writer)

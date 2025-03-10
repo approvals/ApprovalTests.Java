@@ -44,4 +44,9 @@ public class MasterDirectoryNamer implements ApprovalNamer
   {
     return new MasterDirectoryNamer(this.approvedFile, this.namer.addAdditionalInformation(info));
   }
+
+  @Override
+  public boolean isDynamic() {
+    return false;
+  }
 }

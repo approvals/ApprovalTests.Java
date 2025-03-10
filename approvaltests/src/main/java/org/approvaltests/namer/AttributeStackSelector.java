@@ -132,7 +132,7 @@ public class AttributeStackSelector implements StackElementSelector
       }
     }
   }
-  private static boolean isDynamicWrapperPresent()
+  public static boolean isDynamicWrapperPresent()
   {
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
     return Queryable.as(stackTrace)

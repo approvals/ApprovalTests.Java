@@ -12,9 +12,7 @@ public class JupiterApprovals
   public static DynamicTest dynamicTest(String displayName, Action1<Options> action1)
   {
     Options options = Approvals.NAMES.withParameters(convertToLegalFileName(displayName));
-    return DynamicTest.dynamicTest(displayName, () -> {
-      action1.call(options);
-    });
+    return DynamicTest.dynamicTest(displayName, () -> action1.call(options));
   }
   public static String convertToLegalFileName(String uri)
   {

@@ -7,4 +7,6 @@ public interface ApprovalNamer extends GetApprovalName, GetSourceFilePath
   public File getApprovedFile(String extensionWithDot);
   public File getReceivedFile(String extensionWithDot);
   public ApprovalNamer addAdditionalInformation(String info);
+
+    public boolean isDynamic();
 }

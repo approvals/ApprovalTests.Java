@@ -131,7 +131,7 @@ public class JUnit5StackTraceNamerTest
   Collection<DynamicTest> testFactory3()
   {
     return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
-        o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
+        o -> Approvals.verify("content for " + number))).collect(Collectors.toList());
   }
   // end-snippet
 }
