@@ -62,6 +62,12 @@ public class StackTraceNamer implements ApprovalNamer
   {
     return new StackTraceNamer(this.info, this.additionalInformation + "." + additionalInformation);
   }
+
+  @Override
+  public String getAdditionalInformation() {
+    return additionalInformation;
+  }
+
   public StackTraceReflectionResult getInfo()
   {
     return info;

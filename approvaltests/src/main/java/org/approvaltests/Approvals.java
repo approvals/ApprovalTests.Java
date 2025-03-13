@@ -226,6 +226,7 @@ public class Approvals
   }
   public static void verify(ApprovalApprover approver, Options options)
   {
+    ApprovalSafetyCheck.checkGuardRails(options);
     ApprovalFailureReporter reporter = options.getReporter();
     VerifyResult result = approver.approve();
     if (result.isFailure())
