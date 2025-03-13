@@ -137,11 +137,13 @@ public class JUnit5StackTraceNamerTest
   @TestFactory
   Collection<DynamicTest> testMissingOptions()
   {
-    return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
-            o -> {
-      if (number == 1) {
+    return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number, o -> {
+      if (number == 1)
+      {
         Approvals.verifyAsJson("This should work: " + number, o);
-      } else if (number == 2) {
+      }
+      else if (number == 2)
+      {
         try
         {
           Approvals.verify("calling this must throw an exception");
@@ -150,12 +152,11 @@ public class JUnit5StackTraceNamerTest
         catch (RuntimeException e)
         {
           String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"
-                  + "   wrong: o -> Approvals.verify(result);  \n"
-                  + "   right: o -> Approvals.verify(result, o);  \n"
-                  + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
+              + "   wrong: o -> Approvals.verify(result);  \n" + "   right: o -> Approvals.verify(result, o);  \n"
+              + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
           assertEquals(helpMessage, e.getMessage());
         }
       }
-            })).collect(Collectors.toList());
+    })).collect(Collectors.toList());
   }
 }

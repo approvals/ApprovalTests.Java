@@ -60,7 +60,10 @@ public class InlineComparator implements ApprovalNamer
     return this;
   }
   @Override
-  public String getAdditionalInformation() { return ""; }
+  public String getAdditionalInformation()
+  {
+    return "";
+  }
   @Override
   public String getApprovalName()
   {

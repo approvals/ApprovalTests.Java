@@ -74,7 +74,8 @@ public class NamerWrapper implements ApprovalNamer
         ((ApprovalNamer) sourceFilePath).addAdditionalInformation(info));
   }
   @Override
-  public String getAdditionalInformation() {
-    return ((ApprovalNamer)this.approvalBaseName).getAdditionalInformation();
+  public String getAdditionalInformation()
+  {
+    return ((ApprovalNamer) this.approvalBaseName).getAdditionalInformation();
   }
 }
