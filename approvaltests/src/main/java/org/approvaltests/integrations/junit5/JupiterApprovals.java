@@ -24,8 +24,7 @@ public class JupiterApprovals
   {
     String actualAdditionalInformation = actual.forFile().getNamer().getAdditionalInformation();
     String expectedAdditionalInformation = expected.forFile().getNamer().getAdditionalInformation();
-    if (!actualAdditionalInformation
-        .startsWith(expectedAdditionalInformation))
+    if (!actualAdditionalInformation.startsWith(expectedAdditionalInformation))
     {
       SimpleLogger.variable("Actual additional information", actualAdditionalInformation);
       SimpleLogger.variable("Expected additional information", expectedAdditionalInformation);
