@@ -27,6 +27,7 @@ jobs:
             - '20'
             - '21'
             - '23'
+            - '24'
         os: 
             - ubuntu
             - windows
