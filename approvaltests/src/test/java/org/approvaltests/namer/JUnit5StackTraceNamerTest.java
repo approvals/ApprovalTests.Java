@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.lambda.query.Queryable;
 
 import java.io.File;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 public class JUnit5StackTraceNamerTest
@@ -112,18 +114,12 @@ public class JUnit5StackTraceNamerTest
   Collection<DynamicTest> testFactory2()
   {
     return Collections.singletonList(dynamicTest("test 4", () -> {
-      try
-      {
-        Approvals.verify("calling this must throw an exception");
-        Assertions.fail();
-      }
-      catch (RuntimeException e)
-      {
-        String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n"
-            + "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n"
-            + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
-        assertEquals(helpMessage, e.getMessage());
-      }
+      RuntimeException result = assertThrows(RuntimeException.class,
+          () -> Approvals.verify("calling this must throw an exception"));
+      String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n"
+          + "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n"
+          + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
+      assertEquals(helpMessage, result.getMessage());
     }));
   }
   // begin-snippet: java_dynamic_test
@@ -137,23 +133,21 @@ public class JUnit5StackTraceNamerTest
   @TestFactory
   Collection<DynamicTest> testMissingOptions()
   {
-    return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number, o -> {
-        switch (number) {
-            case 1:
-                Approvals.verifyAsJson("This should work: " + number, o);
-                break;
-            case 2:
-                try {
-                    Approvals.verify("calling this must throw an exception");
-                    Assertions.fail();
-                } catch (RuntimeException e) {
-                    String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"
-                            + "   wrong: o -> Approvals.verify(result);  \n" + "   right: o -> Approvals.verify(result, o);  \n"
-                            + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
-                    assertEquals(helpMessage, e.getMessage());
-                }
-                break;
-        }
-    })).collect(Collectors.toList());
+    return Queryable.of(1, 2).select(number -> JupiterApprovals.dynamicTest("test " + number, o -> {
+      switch (number)
+      {
+        case 1 :
+          Approvals.verifyAsJson("This should work: " + number, o);
+          break;
+        case 2 :
+          RuntimeException result = assertThrows(RuntimeException.class,
+              () -> Approvals.verify("calling this must throw an exception"));
+          String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"
+              + "   wrong: o -> Approvals.verify(result);  \n" + "   right: o -> Approvals.verify(result, o);  \n"
+              + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
+          assertEquals(helpMessage, result.getMessage());
+          break;
+      }
+    }));
   }
 }
