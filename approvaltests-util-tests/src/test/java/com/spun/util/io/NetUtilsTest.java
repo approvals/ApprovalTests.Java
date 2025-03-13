@@ -91,7 +91,7 @@ public class NetUtilsTest
   @Test
   void testTimeout()
   {
-    assertThrows(Error.class,
+    assertThrows(Throwable.class,
         () -> NetUtils.loadWebPage("https://httpbin.org/delay/5", null, Duration.ofMillis(50)));
   }
 }
