@@ -11,15 +11,12 @@ public class SafetyCheckBeforeVerify
   public static void run(ApprovalApprover approver, Options options)
   {
     Action2<ApprovalApprover, Options> check = guardRailCheck.get();
-    guardRailCheck.set(Action2.doNothing());
+    guardRailCheck.remove();
     check.call(approver, options);
   }
   public static void add(Action2<ApprovalApprover, Options> newCheck)
   {
     Action2<ApprovalApprover, Options> oldCheck = guardRailCheck.get();
-    guardRailCheck.set((a, o) -> {
-      newCheck.call(a, o);
-      oldCheck.call(a, o);
-    });
+    guardRailCheck.set(newCheck);
   }
 }
