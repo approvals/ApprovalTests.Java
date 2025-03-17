@@ -32,14 +32,14 @@ public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureRepor
   }
   private static void initializeLinux()
   {
-    scriptFile = new File(LoggingUtils.APPROVAL_TEMP_DIRECTORY + "/" + fileName + ".sh");
+    scriptFile = new File(LoggingUtils.getTempDirectory() + "/" + fileName + ".sh");
     FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
     FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
     scriptFile.setExecutable(true);
   }
   private static void initializeWindows()
   {
-    scriptFile = new File(LoggingUtils.APPROVAL_TEMP_DIRECTORY + "\\" + fileName + ".bat");
+    scriptFile = new File(LoggingUtils.getTempDirectory() + "\\" + fileName + ".bat");
     FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
     FileUtils.writeFile(scriptFile, "");
   }

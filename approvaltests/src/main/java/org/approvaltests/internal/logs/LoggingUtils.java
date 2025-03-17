@@ -9,13 +9,12 @@ import java.time.Duration;
 
 public class LoggingUtils
 {
-  public static final String APPROVAL_TEMP_DIRECTORY = ".approval_tests_temp";
   public static void downloadScriptIfMissing(String scriptName)
   {
     try
     {
       String extension = SystemUtils.isWindowsEnvironment() ? ".bat" : ".sh";
-      File script = new File(APPROVAL_TEMP_DIRECTORY + "/" + scriptName + extension);
+      File script = new File(getTempDirectory() + "/" + scriptName + extension);
       if (!script.exists())
       {
         String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
@@ -28,5 +27,11 @@ public class LoggingUtils
     {
       // do nothing
     }
+  }
+  public static File getTempDirectory()
+  {
+    File approvalTestsTempDir = new File(".approval_tests_temp");
+    FileUtils.writeFile(new File(approvalTestsTempDir + "/.gitignore"), "*");
+    return approvalTestsTempDir;
   }
 }

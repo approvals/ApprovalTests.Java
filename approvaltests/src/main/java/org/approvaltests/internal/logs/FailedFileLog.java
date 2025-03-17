@@ -5,8 +5,6 @@ import org.lambda.utils.Once;
 
 import java.io.File;
 
-import static org.approvaltests.internal.logs.LoggingUtils.APPROVAL_TEMP_DIRECTORY;
-
 public class FailedFileLog
 {
   static
@@ -19,7 +17,7 @@ public class FailedFileLog
   }
   public static File get()
   {
-    File file = new File(APPROVAL_TEMP_DIRECTORY + "/.failed_comparison.log");
+    File file = new File(LoggingUtils.getTempDirectory() + "/.failed_comparison.log");
     FileUtils.createIfNeeded(file.getAbsolutePath());
     return file;
   }

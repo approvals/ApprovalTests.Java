@@ -14,7 +14,7 @@ public class ApprovedFileLog
   }
   public static File get()
   {
-    File file = new File(LoggingUtils.APPROVAL_TEMP_DIRECTORY + "/.approved_files.log");
+    File file = new File(LoggingUtils.getTempDirectory() + "/.approved_files.log");
     FileUtils.createIfNeeded(file.getAbsolutePath());
     return file;
   }
