@@ -4,10 +4,13 @@ updates:
     directory: "/"
     schedule:
       interval: daily
-      groups:
-        junit:
-          patterns:
-            - "org.junit.*"
+    groups:
+      junit:
+        patterns:
+          - "org.junit.*"
+      jackson:
+        patterns:
+          - "com.fasterxml.*"
     commit-message:
       prefix: ". e "
     open-pull-requests-limit: 10
