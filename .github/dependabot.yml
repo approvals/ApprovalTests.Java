@@ -12,10 +12,12 @@ updates:
         patterns:
           - "com.fasterxml.*"
     commit-message:
-      prefix: ". e "
+      prefix: "- r "
     open-pull-requests-limit: 10
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: ". e "
