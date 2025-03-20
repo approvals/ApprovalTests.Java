@@ -633,4 +633,16 @@ public class StringUtils
   {
     return new String(new char[times]).replace("\0", string);
   }
+  public static String ensureEnding(String contents, String desiredEnding)
+  {
+    if (contents == null)
+    {
+      contents = "";
+    }
+    if (!contents.endsWith(desiredEnding))
+    {
+      contents += desiredEnding;
+    }
+    return contents;
+  }
 }

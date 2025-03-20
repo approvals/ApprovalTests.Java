@@ -152,4 +152,12 @@ public class StringUtilsTest
         """;
     ParseInput.from(expected).withTypes(String.class, Integer.class).verifyAll((s, i) -> StringUtils.repeat(s, i));
   }
+  @Test
+  public void testEnsureEnding()
+  {
+    String first = "hello";
+    String second = "hello\n";
+    assertEquals(StringUtils.ensureEnding(first, "\n"), second);
+    assertEquals(StringUtils.ensureEnding(second, "\n"), second);
+  }
 }

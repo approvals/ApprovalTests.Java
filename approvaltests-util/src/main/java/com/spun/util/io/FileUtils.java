@@ -1,9 +1,6 @@
 package com.spun.util.io;
 
-import com.spun.util.ArrayUtils;
-import com.spun.util.Asserts;
-import com.spun.util.FormattedException;
-import com.spun.util.ObjectUtils;
+import com.spun.util.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -26,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -225,9 +223,17 @@ public class FileUtils
   }
   public static String readFile(String absolutePath)
   {
-    return readFile(new File(absolutePath));
+    return readFile(absolutePath, true);
+  }
+  public static String readFile(String absolutePath, boolean ensureTrailingNewline)
+  {
+    return readFile(new File(absolutePath), ensureTrailingNewline);
   }
   public static String readFile(File file)
+  {
+    return readFile(file, true);
+  }
+  public static String readFile(File file, boolean ensureTrailingNewline)
   {
     try
     {
@@ -237,7 +243,13 @@ public class FileUtils
       decoder.onMalformedInput(CodingErrorAction.IGNORE);
       Reader reader = new InputStreamReader(Files.newInputStream(file.toPath()), decoder);
       BufferedReader in = new BufferedReader(reader);
-      return readBuffer(in);
+      String output = readBuffer(in);
+      output = output.replaceAll("\r\n", "\n");
+      if (ensureTrailingNewline)
+      {
+        output = StringUtils.ensureEnding(output, "\n");
+      }
+      return output;
     }
     catch (Throwable t)
     {
@@ -248,15 +260,13 @@ public class FileUtils
   {
     try
     {
-      StringBuffer string = new StringBuffer();
-      String line;
-      while ((line = in.readLine()) != null)
+      StringBuilder sb = new StringBuilder();
+      int ch;
+      while ((ch = in.read()) != -1)
       {
-        string.append(line);
-        string.append("\n");
+        sb.append((char) ch);
       }
-      in.close();
-      return string.toString();
+      return sb.toString();
     }
     catch (Throwable t)
     {

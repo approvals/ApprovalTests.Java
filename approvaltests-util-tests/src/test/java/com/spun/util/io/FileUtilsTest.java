@@ -6,10 +6,7 @@ import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
@@ -77,5 +74,31 @@ public class FileUtilsTest
     Reader input = new StringReader("hello Approvals");
     File file = FileUtils.saveToFile("pre_", input);
     Approvals.verify(file);
+  }
+  @Test
+  public void testReadBuffer()
+  {
+    String input = """
+        This is line 1
+        This is line 2
+        """;
+    assertReadBuffer(input);
+    assertReadBuffer(input.trim());
+    input = """
+        This is line 1
+
+        This is line 2
+
+
+        """;
+    assertReadBuffer(input);
+    assertReadBuffer(input.trim());
+  }
+  private static void assertReadBuffer(String input)
+  {
+    StringReader reader = new StringReader(input);
+    BufferedReader bufferedReader = new BufferedReader(reader);
+    String result = FileUtils.readBuffer(bufferedReader);
+    assertEquals(input, result);
   }
 }
