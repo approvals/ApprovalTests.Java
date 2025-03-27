@@ -24,4 +24,3 @@ __pycache__/
 *.bak
 
 .gitmessage
-.approval_tests_temp/
