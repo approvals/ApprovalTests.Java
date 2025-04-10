@@ -1,5 +1,0 @@
-reporters[0] = org.approvaltests.reporters.macosx.DiffMergeMacOsReporter
-reporters[1] = org.approvaltests.reporters.macosx.P4MergeReporter
-reporters[2] = org.approvaltests.reporters.macosx.KDiff3Reporter
-reporters[3] = org.approvaltests.reporters.macosx.TkDiffReporter
-reporters[4] = org.approvaltests.reporters.macosx.VisualStudioCodeReporter

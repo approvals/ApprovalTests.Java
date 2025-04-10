@@ -1,5 +1,0 @@
-Lengths of Strings
-one => 3
-two => 3
-three => 5
-four => 4

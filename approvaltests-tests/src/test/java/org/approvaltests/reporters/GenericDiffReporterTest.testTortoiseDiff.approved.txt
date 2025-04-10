@@ -1,1 +1,0 @@
-C:\Program Files (x86)\TortoiseSVN\bin\TortoiseMerge.exe %s %s
