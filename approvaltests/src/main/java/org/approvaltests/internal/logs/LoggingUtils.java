@@ -1,6 +1,6 @@
 package org.approvaltests.internal.logs;
 
-import com.spun.util.SystemUtils;
+import com.spun.util.ClassUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.io.NetUtils;
 
@@ -30,7 +30,7 @@ public class LoggingUtils
   }
   public static File getTempDirectory()
   {
-    File approvalTestsTempDir = new File(".approval_tests_temp");
+    File approvalTestsTempDir = new File(ClassUtils.getProjectRootPath() + "/.approval_tests_temp");
     FileUtils.writeFile(new File(approvalTestsTempDir + "/.gitignore"), "*");
     return approvalTestsTempDir;
   }
