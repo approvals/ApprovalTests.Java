@@ -91,11 +91,11 @@ Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
 <!-- endSnippet -->
 producing
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.replaceRandomNumber.approved.txt -->
-<a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'></a>
+<a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.replaceRandomNumber.approved.txt'></a>
 ```txt
 Hello [number] World!
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.replaceRandomNumber.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.replaceRandomNumber.approved.txt' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Date Scrubbing
