@@ -90,7 +90,7 @@ Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.java#L14-L17' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-regex-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 producing
-<!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt -->
+<!-- snippet: /src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.replaceRandomNumber.approved.txt -->
 <a id='snippet-/src/test/java/org/approvaltests/scrubbers/RegExScrubberTest.name.approved.txt'></a>
 ```txt
 Hello [number] World!
