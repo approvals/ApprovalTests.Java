@@ -10,6 +10,7 @@ public class FailedFileLog
   static
   {
     FileUtils.writeFile(get(), "");
+    downloadApproveAllScriptIfMissing();
   }
   private static void downloadApproveAllScriptIfMissing()
   {
@@ -23,7 +24,6 @@ public class FailedFileLog
   }
   public static void log(File received, File approved)
   {
-    downloadApproveAllScriptIfMissing();
     File log = get();
     FileUtils.appendToFile(log,
         String.format("%s -> %s\n", received.getAbsolutePath(), approved.getAbsolutePath()));

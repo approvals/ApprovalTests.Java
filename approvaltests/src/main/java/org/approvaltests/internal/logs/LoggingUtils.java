@@ -13,12 +13,12 @@ public class LoggingUtils
   {
     try
     {
-      String extension = SystemUtils.isWindowsEnvironment() ? ".bat" : ".sh";
+      String extension = ".py";
+      String file = scriptName + extension;
       File script = new File(getTempDirectory() + "/" + scriptName + extension);
       if (!script.exists())
       {
-        String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.Java/refs/heads/master/";
-        String file = "resources/" + scriptName + extension;
+        String github = "https://raw.githubusercontent.com/approvals/ApprovalTests.CommonScripts/refs/heads/main/";
         FileUtils.writeFile(script, NetUtils.loadWebPage(github + file, null, Duration.ofSeconds(3)));
         script.setExecutable(true);
       }
