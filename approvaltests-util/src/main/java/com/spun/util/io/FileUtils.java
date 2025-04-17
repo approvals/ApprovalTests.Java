@@ -460,4 +460,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
+    public static String getResolvedPath(File file) {
+      try {
+        return file.getCanonicalFile().getAbsolutePath();
+      } catch (IOException e) {
+        throw ObjectUtils.throwAsError(e);
+      }
+    }
 }
