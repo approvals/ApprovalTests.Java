@@ -1,5 +1,6 @@
 package com.spun.util;
 
+import com.spun.util.io.FileUtils;
 import java.io.File;
 
 public class Asserts
@@ -19,13 +20,13 @@ public class Asserts
   {
     File file = new File(fileName);
     if (file.exists())
-    { throw new IllegalStateException(label + " file " + file.getAbsolutePath() + " already exists"); }
+    { throw new IllegalStateException(label + " file " + FileUtils.getResolvedPath(file) + " already exists"); }
   }
   public static void assertFileExists(String label, String fileName)
   {
     File file = new File(fileName);
     if (!file.exists())
-    { throw new IllegalStateException(label + " file " + file.getAbsolutePath() + " does not exist"); }
+    { throw new IllegalStateException(label + " file " + FileUtils.getResolvedPath(file) + " does not exist"); }
   }
   public static void equals(String label, double expected, double actual, double percission)
   {

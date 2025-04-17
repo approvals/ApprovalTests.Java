@@ -15,12 +15,12 @@ public class ApprovedFileLog
   public static File get()
   {
     File file = new File(LoggingUtils.getTempDirectory() + "/.approved_files.log");
-    FileUtils.createIfNeeded(file.getAbsolutePath());
+    FileUtils.createIfNeeded(FileUtils.getResolvedPath(file));
     return file;
   }
   public static void log(File file)
   {
     File log = get();
-    FileUtils.appendToFile(log, file.getAbsolutePath() + "\n");
+    FileUtils.appendToFile(log, FileUtils.getResolvedPath(file) + "\n");
   }
 }

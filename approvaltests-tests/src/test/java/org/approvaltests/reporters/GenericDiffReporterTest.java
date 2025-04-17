@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import com.spun.util.ClassUtils;
 import com.spun.util.SystemUtils;
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
@@ -66,8 +67,8 @@ public class GenericDiffReporterTest
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter)
   {
     File directory = ClassUtils.getSourceDirectory(getClass());
-    String aPath = directory.getAbsolutePath() + File.separator + a;
-    String bPath = directory.getAbsolutePath() + File.separator + b;
+    String aPath = FileUtils.getResolvedPath(new File(directory, a));
+    String bPath = FileUtils.getResolvedPath(new File(directory, b));
     Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath));
   }
   @Test

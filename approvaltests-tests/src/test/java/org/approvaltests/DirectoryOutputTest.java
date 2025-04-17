@@ -21,8 +21,7 @@ public class DirectoryOutputTest
   {
     for (int i = 1; i < numberOfFiles + 1; i++)
     {
-      String fileName = directory.getAbsolutePath() + File.separator + "File" + i + ".txt";
-      File file = new File(fileName);
+      File file = new File(directory, "File" + i + ".txt");
       FileUtils.writeFile(file, "Text" + i);
     }
   }

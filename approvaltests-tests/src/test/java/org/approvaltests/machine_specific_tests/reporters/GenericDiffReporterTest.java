@@ -1,6 +1,7 @@
 package org.approvaltests.machine_specific_tests.reporters;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.machine_specific_tests.MachineSpecificTest;
 import org.approvaltests.reporters.GenericDiffReporter;
@@ -30,8 +31,8 @@ public class GenericDiffReporterTest extends MachineSpecificTest
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter)
   {
     File directory = ClassUtils.getSourceDirectory(getClass());
-    String aPath = directory.getAbsolutePath() + File.separator + a;
-    String bPath = directory.getAbsolutePath() + File.separator + b;
+    String aPath = FileUtils.getResolvedPath(new File(directory, a));
+    String bPath = FileUtils.getResolvedPath(new File(directory, b));
     Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath));
   }
 }

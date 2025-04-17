@@ -47,7 +47,7 @@ public class FileApprover implements ApprovalApprover
   }
   public VerifyResult approve()
   {
-    tracker.assertUnique(approved.getAbsolutePath());
+    tracker.assertUnique(FileUtils.getResolvedPath(approved));
     ApprovedFileLog.log(approved);
     FailedFileLog.touch();
     received = writer.writeReceivedFile(received);
@@ -58,13 +58,14 @@ public class FileApprover implements ApprovalApprover
     received.delete();
     if (reporter instanceof ApprovalReporterWithCleanUp)
     {
-      ((ApprovalReporterWithCleanUp) reporter).cleanUp(received.getAbsolutePath(), approved.getAbsolutePath());
+      ((ApprovalReporterWithCleanUp) reporter).cleanUp(FileUtils.getResolvedPath(received),
+          FileUtils.getResolvedPath(approved));
     }
   }
   public VerifyResult reportFailure(ApprovalFailureReporter reporter)
   {
     FailedFileLog.log(received, approved);
-    reporter.report(received.getAbsolutePath(), approved.getAbsolutePath());
+    reporter.report(FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved));
     if (reporter instanceof ReporterWithApprovalPower)
     {
       ReporterWithApprovalPower reporterWithApprovalPower = (ReporterWithApprovalPower) reporter;
@@ -74,7 +75,7 @@ public class FileApprover implements ApprovalApprover
   }
   public void fail()
   {
-    throw errorGenerator.call(received.getAbsolutePath(), approved.getAbsolutePath());
+    throw errorGenerator.call(FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved));
   }
   private static Error createError(String received, String approved)
   {

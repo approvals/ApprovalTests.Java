@@ -238,7 +238,7 @@ public class FileUtils
     try
     {
       if (!file.exists())
-      { throw new RuntimeException("Invalid file '" + file.getAbsolutePath() + "'"); }
+      { throw new RuntimeException("Invalid file '" + getResolvedPath(file) + "'"); }
       CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
       decoder.onMalformedInput(CodingErrorAction.IGNORE);
       Reader reader = new InputStreamReader(Files.newInputStream(file.toPath()), decoder);
@@ -460,12 +460,15 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
-
-    public static String getResolvedPath(File file) {
-      try {
-        return file.getCanonicalFile().getAbsolutePath();
-      } catch (IOException e) {
-        throw ObjectUtils.throwAsError(e);
-      }
+  public static String getResolvedPath(File file)
+  {
+    try
+    {
+      return file.getCanonicalFile().getAbsolutePath();
     }
+    catch (IOException e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
+  }
 }

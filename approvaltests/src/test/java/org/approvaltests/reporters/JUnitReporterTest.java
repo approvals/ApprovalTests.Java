@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.junit.jupiter.api.Test;
@@ -24,8 +25,8 @@ public class JUnitReporterTest
   }
   private void verifyReporter(ApprovalFailureReporter reporter)
   {
-    String a = ClassUtils.getAdjacentFile(this.getClass(), "a.txt").getAbsolutePath();
-    String b = ClassUtils.getAdjacentFile(this.getClass(), "b.txt").getAbsolutePath();
+    String a = FileUtils.getResolvedPath(ClassUtils.getAdjacentFile(this.getClass(), "a.txt"));
+    String b = FileUtils.getResolvedPath(ClassUtils.getAdjacentFile(this.getClass(), "b.txt"));
     Approvals.verifyException(() -> {
       reporter.report(b, a);
     });

@@ -19,14 +19,14 @@ public class FailedFileLog
   public static File get()
   {
     File file = new File(LoggingUtils.getTempDirectory() + "/.failed_comparison.log");
-    FileUtils.createIfNeeded(file.getAbsolutePath());
+    FileUtils.createIfNeeded(FileUtils.getResolvedPath(file));
     return file;
   }
   public static void log(File received, File approved)
   {
     File log = get();
     FileUtils.appendToFile(log,
-        String.format("%s -> %s\n", received.getAbsolutePath(), approved.getAbsolutePath()));
+        String.format("%s -> %s\n", FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved)));
   }
   public static void touch()
   {

@@ -28,19 +28,19 @@ public class ReporterThatCreatesAnApprovalScript implements ApprovalFailureRepor
     {
       initializeLinux();
     }
-    SimpleLogger.event("Created approval script:\n" + scriptFile.getAbsolutePath());
+    SimpleLogger.event("Created approval script:\n" + FileUtils.getResolvedPath(scriptFile));
   }
   private static void initializeLinux()
   {
     scriptFile = new File(LoggingUtils.getTempDirectory() + "/" + fileName + ".sh");
-    FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
+    FileUtils.createIfNeeded(FileUtils.getResolvedPath(scriptFile));
     FileUtils.writeFile(scriptFile, "#!/bin/bash\n");
     scriptFile.setExecutable(true);
   }
   private static void initializeWindows()
   {
     scriptFile = new File(LoggingUtils.getTempDirectory() + "\\" + fileName + ".bat");
-    FileUtils.createIfNeeded(scriptFile.getAbsolutePath());
+    FileUtils.createIfNeeded(FileUtils.getResolvedPath(scriptFile));
     FileUtils.writeFile(scriptFile, "");
   }
   @Override

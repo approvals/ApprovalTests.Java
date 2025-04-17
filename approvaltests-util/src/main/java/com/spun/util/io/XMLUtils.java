@@ -30,10 +30,10 @@ public class XMLUtils
       String tfileLocation = backupPaths[i] + File.separator + fileLocation;
       File file = new File(tfileLocation);
       if (file.exists())
-      { return file.getAbsolutePath(); }
+      { return FileUtils.getResolvedPath(file); }
     }
     throw new Error(String.format("Couldn't find '%s' from locations %s with current directory '%s'", fileLocation,
-        Arrays.asList(backupPaths), new File(".").getAbsolutePath()));
+        Arrays.asList(backupPaths), FileUtils.getResolvedPath(new File("."))));
   }
   public static HashMap<String, Object> parseProperties(String absoluteFileLocation, XMLNodeExtractor extractor)
   {

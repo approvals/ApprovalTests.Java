@@ -22,10 +22,10 @@ public class ApprovedFileLogTest
     ApprovalNamer approvalNamer = Approvals.createApprovalNamer();
     File approvedFile = approvalNamer.getApprovedFile(".txt");
     String prelog = FileUtils.readFile(file);
-    assertFalse(prelog.contains(approvedFile.getAbsolutePath()));
+    assertFalse(prelog.contains(FileUtils.getResolvedPath(approvedFile)));
     Approvals.verify("anything");
     String postlog = FileUtils.readFile(file);
-    assertTrue(postlog.contains(approvedFile.getAbsolutePath()));
+    assertTrue(postlog.contains(FileUtils.getResolvedPath(approvedFile)));
   }
   @Test
   void testTempDirectoryGetsGitIgnore()
