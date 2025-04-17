@@ -18,12 +18,12 @@ jobs:
           java-version: '17'
       - name: Format Code
         run: mvn package -DskipTests=true
-      - name: Push changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "a   reformat code" -a  || echo "nothing to commit"
-          remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
-          branch="${GITHUB_REF:11}"
-          git push "${remote}" ${branch} || echo "nothing to push"
-        shell: bash
+      - name: Git Commit and Push
+        uses: github-actions-x/commit@v2.9
+        with:
+          commit-message: ". a reformat code"
+          rebase: 'true'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'master'
+          name: github actions
+          email: actions@github.com
