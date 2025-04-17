@@ -20,13 +20,8 @@ jobs:
       matrix:
         java: 
             # https://www.oracle.com/java/technologies/java-se-support-roadmap.html#:~:text=Oracle%20Java%20SE%20Product%20Releases
-            - '16'
             - '17'
-            - '18'
-            - '19'
-            - '20'
             - '21'
-            - '23'
             - '24'
         os: 
             - ubuntu
