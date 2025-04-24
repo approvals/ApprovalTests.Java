@@ -1,3 +1,3 @@
 @echo off
 
-mvn -B verify --file pom.xml
+call mvn -B verify --file pom.xml
