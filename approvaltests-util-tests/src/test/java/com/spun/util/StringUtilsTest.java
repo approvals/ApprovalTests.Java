@@ -8,10 +8,13 @@ import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringUtilsTest
@@ -100,6 +103,48 @@ public class StringUtilsTest
     sortedMap.put("aaa", "1");
     sortedMap.put("zz", "1");
     Approvals.verify(sortedMap);
+  }
+  @Test
+  void testNonComparableKeysMap()
+  {
+    Map<Key, String> unsortableMap = new LinkedHashMap<>();
+    unsortableMap.put(new Key("d"), "4");
+    unsortableMap.put(new Key("a"), "1");
+    unsortableMap.put(new Key("c"), "3");
+    unsortableMap.put(new Key("b"), "2");
+    Approvals.verify(unsortableMap);
+  }
+  @Test
+  void testNonComparableKeysEmptyMap()
+  {
+    Map<Key, String> unsortableMap = Map.of();
+    assertDoesNotThrow(() -> StringUtils.toString(unsortableMap));
+  }
+  public class Key
+  {
+    String id;
+    public Key(String id)
+    {
+      this.id = id;
+    }
+    @Override
+    public String toString()
+    {
+      return id;
+    }
+    @Override
+    public boolean equals(Object o)
+    {
+      if (!(o instanceof Key))
+        return false;
+      Key key = (Key) o;
+      return Objects.equals(id, key.id);
+    }
+    @Override
+    public int hashCode()
+    {
+      return Objects.hashCode(id);
+    }
   }
   public class SplitUseCase
   {

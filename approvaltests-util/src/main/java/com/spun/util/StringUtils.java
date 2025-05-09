@@ -550,7 +550,7 @@ public class StringUtils
   {
     StringBuffer b = new StringBuffer();
     Object[] keySet = map.keySet().toArray();
-    if (!(map instanceof SortedMap))
+    if (!(map instanceof SortedMap) && isComparable(keySet))
     {
       Arrays.sort(keySet);
     }
@@ -559,6 +559,10 @@ public class StringUtils
       b.append(String.format("%s : %s \n", key, map.get(key)));
     }
     return b.toString();
+  }
+  private static boolean isComparable(Object[] keySet)
+  {
+    return Comparable.class.isAssignableFrom(keySet.getClass().getComponentType());
   }
   public static <T> String join(T[] list, String delimiter, Function1<T, String> convertor)
   {
