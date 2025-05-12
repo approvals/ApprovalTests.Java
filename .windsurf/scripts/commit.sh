@@ -16,4 +16,5 @@ git add .
 # Commit the changes
 git commit -m "$COMMIT_MESSAGE"
 
-echo "Changes committed with message: $COMMIT_MESSAGE"
+echo "Commited"
+exit 0
