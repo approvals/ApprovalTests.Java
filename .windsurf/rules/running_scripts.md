@@ -42,9 +42,10 @@ Sample:
 | Lars | LarsEckart | 
 
 Co-authors go 1 per line at the bottom of the message, 
-in the format 
-<name> <<github_id>@users.noreply.github.com>
-
+in the format:
+``` 
+Co-authored-by: <name> <<github_id>@users.noreply.github.com>
+```
 ### script
 
 Commit code: `.windsurf/scripts/commit.sh <message>`
