@@ -2,6 +2,7 @@ package com.spun.util;
 
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
+import org.lambda.query.Queryable;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -10,6 +11,7 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -550,9 +552,17 @@ public class StringUtils
   {
     StringBuffer b = new StringBuffer();
     Object[] keySet = map.keySet().toArray();
+    boolean isKeyComparable = ArrayUtils.isEmpty(keySet) || keySet[0] instanceof Comparable;
     if (!(map instanceof SortedMap))
     {
-      Arrays.sort(keySet);
+      if (isKeyComparable)
+      {
+        Arrays.sort(keySet);
+      }
+      else
+      {
+        Arrays.sort(keySet, Comparator.comparing(Object::toString));
+      }
     }
     for (Object key : keySet)
     {

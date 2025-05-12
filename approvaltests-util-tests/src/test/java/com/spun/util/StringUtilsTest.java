@@ -8,6 +8,7 @@ import org.approvaltests.utils.parseinput.ParseInput;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -101,6 +102,22 @@ public class StringUtilsTest
     sortedMap.put("zz", "1");
     Approvals.verify(sortedMap);
   }
+  @Test
+  void testMapWithNonComparableKeys()
+  {
+    var expected = """
+        a : first
+        m : middle
+        z : last
+        """;
+    Map<NonComparableKey, String> map = new HashMap<>();
+    // Add keys in a specific order to see if it's preserved or sorted later
+    map.put(new NonComparableKey("z"), "last");
+    map.put(new NonComparableKey("a"), "first");
+    map.put(new NonComparableKey("m"), "middle");
+    // Use inline approval with the expected sorted-by-toString output
+    Approvals.verify(map, new Options().inline(expected).withReporter(new AutoApproveReporter()));
+  }
   public class SplitUseCase
   {
     String   start;
@@ -159,5 +176,18 @@ public class StringUtilsTest
     String second = "hello\n";
     assertEquals(StringUtils.ensureEnding(first, "\n"), second);
     assertEquals(StringUtils.ensureEnding(second, "\n"), second);
+  }
+  private static class NonComparableKey
+  {
+    private final String value;
+    public NonComparableKey(String value)
+    {
+      this.value = value;
+    }
+    @Override
+    public String toString()
+    {
+      return value;
+    }
   }
 }
