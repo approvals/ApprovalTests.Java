@@ -1,5 +1,5 @@
 ### Arlo Commit Notation
-ALWAYS add the 2 charactor prefix to commit messages.
+ALWAYS add the 2 character prefix to commit messages.
 
 ## Overview
 
@@ -23,8 +23,7 @@ Each commit message starts with a symbol indicating its risk level:
 | `!`    | Single Action      | Not fully tested, but only 1 thing has changed      |
 | `@`    | Risky     | Catch all for everything above single action |
 
-
-**Note:* if the changes only involve e,d, or t. The risk is always a `.` as those are not shipped to the end user.
+**Note:** If the changes only involve intentions `e` (Environment), `d` (Documentation), or `r` (Refactoring), the risk is typically `.` as these are often not shipped directly to the end user or change production behavior.
 
 ---
 
@@ -37,7 +36,8 @@ Following the risk symbol, a letter denotes the intention of the commit:
 | `F` | Feature       | Add or modify a feature.                          |
 | `B` | Bugfix        | Fix a bug or error.                               |
 | `r` | Refactoring   | Improve code structure without changing behavior. |
-| `d` | Documentation | Update or add documentation.                      | `e` | Enviroment | changes for the dev to produce code. CI, scripts, etc... |  
+| `d` | Documentation | Update or add documentation.                      |
+| `e` | Environment    | Changes for the dev environment (e.g., CI, scripts, setup). |
 
 **Note on Casing**:
 
@@ -51,13 +51,46 @@ Following the risk symbol, a letter denotes the intention of the commit:
 The general format for commit messages is:
 
 ```
-<Risk Symbol> <Intention Letter> <Commit Description>
+<Risk Symbol> <Intention Letter> <Title>
+
+[Optional Body: Explain the 'why' and 'what' in more detail.]
+
+[Optional Co-authors section, see below]
 ```
+
+*   **Title**: A concise summary of the change, starting with the ACN prefix.
+*   **Body**: Optional. Provides more context, reasoning, or details about the change. Separate from the title with a blank line.
+*   **Co-authors**: Optional. List contributors as described in the Co-authorship section. Separate from the body (or title, if no body) with a blank line.
 
 **Examples**:
 
-* `. F Add user login feature`
-* `- B Fix null pointer exception in payment module`
-* `! r Refactor authentication logic`
-* `. d Update README with setup instructions`
+*   `. F Add user login feature`
+*   `- B Fix null pointer exception in payment module`
+*   `! r Refactor authentication logic`
+*   `. d Update README with setup instructions`
+*   `. e Add commit script
 
+    Added a script to streamline the commit process.`
+
+---
+
+## Co-authorship
+
+
+If you are not sure who to credit, ask for a list of the co-authors.
+Credit co-authors.
+
+**Format**:
+```
+Co-authored-by: Name <github_id@users.noreply.github.com>
+```
+
+**Example**:
+```
+- B Fix null pointer exception in payment module
+
+The fix addresses the case where the user profile is not fully loaded
+before accessing payment details. Added null checks.
+
+Co-authored-by: Lars <LarsEckart@users.noreply.github.com>
+```
