@@ -2,6 +2,8 @@
 trigger: always_on
 ---
 
+Always add 🧩 followed by space at the start of your reply
+
 ## ApprovalTests
 
 **NEVER** approve a test for us, the user will allways do that. If you believe the `.approved.` file needs to be changed, prompt the user.
@@ -49,6 +51,3 @@ Co-authored-by: <name> <<github_id>@users.noreply.github.com>
 ### script
 
 Commit code: `.windsurf/scripts/commit.sh <message>`
-
-
-
