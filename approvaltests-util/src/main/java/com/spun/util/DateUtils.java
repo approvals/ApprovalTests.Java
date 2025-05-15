@@ -294,4 +294,27 @@ public class DateUtils
     return new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH),
         hour, minute);
   }
+  public static boolean isEndOfTime(Date time)
+  {
+    return time.getTime() == Long.MAX_VALUE;
+  }
+  public static String toString(Date date)
+  {
+    if (date == null)
+    {
+      return "null";
+    }
+    else if (isEndOfTime(date))
+    {
+      return "<EndOfTime>";
+    }
+    else if (date.getTime() == 0)
+    {
+      return "<Epoch>";
+    }
+    else
+    {
+      return asTimestamp(date).toString();
+    }
+  }
 }

@@ -68,9 +68,7 @@ public class DateScrubberTest
   void textExamples()
   {
     String[] examples = """
-        05/13/2014 11:50:49 PM
-        2024-12-18T14:04:46-0500
-        2025-07-17 14:58:02,123456
+        2025-05-15 16:57:04.599
         """.split("\n");
     Approvals.verifyAll("Date scrubbing", examples, this::verifyScrubbing);
   }

@@ -136,3 +136,8 @@ RegExScrubber[\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?
 Example: {'date':"[Date1]"}
 
 
+Scrubbing for 2025-05-15 16:57:04.599:
+RegExScrubber[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}]
+Example: {'date':"[Date1]"}
+
+

@@ -14,9 +14,11 @@
 ### Dates, GUIDS and other non-deterministic values
 
 If you are printing dates, guids, or any other non-deterministic values to an `.approved.` file. 
+Always use the scrubbers provided by ApprovalTests.
 Please read [Scrubbers](../approvaltests/docs/Scrubbers.md) and add on Options to the Approvals.verify call.
 
-Example:
+Either use Scrubbers or DateScrubber.
+#### Scrubbers Example:
 
 ```java
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
