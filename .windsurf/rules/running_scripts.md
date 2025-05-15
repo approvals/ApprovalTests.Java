@@ -42,6 +42,7 @@ Sample:
 |---- | ---- |
 | Llewellyn | isidore |
 | Lars | LarsEckart | 
+| Jay | JayBazuzi |
 
 Co-authors go 1 per line at the bottom of the message, 
 in the format:
