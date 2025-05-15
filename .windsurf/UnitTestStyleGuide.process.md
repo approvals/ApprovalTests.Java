@@ -15,3 +15,13 @@
 
 If you are printing dates, guids, or any other non-deterministic values to an `.approved.` file. 
 Please read [Scrubbers](../approvaltests/docs/Scrubbers.md) and add on Options to the Approvals.verify call.
+
+Example:
+
+```java
+Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
+```
+ or 
+```java
+Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
+```
