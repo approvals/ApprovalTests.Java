@@ -1,5 +1,11 @@
 # Unit Test Style Guide
 
+## Refactoring
+
+**NEVER** add new test cases while refactoring existing tests.
+
+**ALWAYS** prefer self documenting code and smaller functions to comments.
+
 ## Approvals vs Asserts
 
 * Preferable tests over multiple asserts.
@@ -7,4 +13,5 @@
 
 ### Dates, GUIDS and other non-deterministic values
 
-Use [Scrubbers](../approvaltests/docs/Scrubbers.md) to remove non-deterministic values from the output.
+If you are printing dates, guids, or any other non-deterministic values to an `.approved.` file. 
+Please read [Scrubbers](../approvaltests/docs/Scrubbers.md) and add on Options to the Approvals.verify call.
