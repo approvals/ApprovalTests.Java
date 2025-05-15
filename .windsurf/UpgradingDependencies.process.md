@@ -8,7 +8,7 @@ Failures can either be because of a build failure or a test failure.
 
 ## Process
 1. Ask for the github pullrequest number.
-2. Read URL:`https://github.com/approvals/ApprovalTests.Java/pull/<number>`
+2. Read the pull request via the github cli: `gh pr view <number> --json body`
 3. Run the tests to confirm a clean state, Also check the git status.
 4. Upgrade the dependency to that version.
 5. Run the tests again to see the failure.
