@@ -76,13 +76,38 @@ The general format for commit messages is:
 
 ## Co-authorship
 
+* ALWAYS run tests before commiting
+* NEVER commit code if tests are failing
+* ALWAYS suggest a commit message and confirm with the user before commiting.
 
-If you are not sure who to credit, ask for a list of the co-authors.
+
+### Message
+Choose the most important piece and use it as the title.
+If extra details are need add them after a line break.
+Add the Co-authors. 
+Ask if you haven't confirmed for this session, save the confirmation in `.windsurf/coauthors.txt`.
+
+Sample:
+
+> **Commit Message:** . e added rules
+ 
+
+### Co-Authors
+
+| name | github_id |
+|---- | ---- |
+| Llewellyn | isidore |
+| Lars | LarsEckart | 
+| Jay | JayBazuzi |
+| Scott | ScottBob |
+| Lada | lexler |
+
+Co-authors go 1 per line at the bottom of the message, 
 Credit co-authors.
 
 **Format**:
 ```
-Co-authored-by: Name <github_id@users.noreply.github.com>
+Co-authored-by: <name> <<github_id>@users.noreply.github.com>
 ```
 
 **Example**:
