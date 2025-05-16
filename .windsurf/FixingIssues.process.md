@@ -5,8 +5,7 @@ When fixing a bug reported in an issue or pull request:
 If you don't have the URL of the issue or pull request, ask for it.
 
 1.  **Understand the Bug**:
-    *   Thoroughly read the issue/PR description and any related comments to understand the problem, expected behavior, and actual behavior.
-    *   If necessary, use tools like `read_url_content` to fetch details directly from GitHub.
+    *   Read the pull request via the github cli: `gh issue view <number> --json body` to understand the problem, expected behavior, and actual behavior.
 
 2.  **Write a Failing Test**:
     *   Create a new test case or modify an existing one in the relevant test suite (e.g., `approvaltests-tests` or `approvaltests-util-tests`).
