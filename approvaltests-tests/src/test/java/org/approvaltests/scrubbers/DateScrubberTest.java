@@ -4,7 +4,6 @@ import com.spun.util.markdown.table.MarkdownColumn;
 import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.velocity.VelocityApprovals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -71,5 +70,10 @@ public class DateScrubberTest
         2025-05-15 16:57:04.599
         """.split("\n");
     Approvals.verifyAll("Date scrubbing", examples, this::verifyScrubbing);
+  }
+  @Test
+  void testBlank()
+  {
+    DateScrubber.getScrubberFor("");
   }
 }

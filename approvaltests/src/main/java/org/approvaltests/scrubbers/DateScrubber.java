@@ -2,6 +2,7 @@ package org.approvaltests.scrubbers;
 
 import com.spun.util.ArrayUtils;
 import com.spun.util.FormattedException;
+import com.spun.util.StringUtils;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
@@ -56,6 +57,8 @@ public class DateScrubber extends RegExScrubber
   }
   public static DateScrubber getScrubberFor(String formattedExample)
   {
+    if (StringUtils.isEmpty(formattedExample))
+    { return DateScrubber.getNull(); }
     for (SupportedFormat pattern : getSupportedFormats())
     {
       DateScrubber scrubber = new DateScrubber(pattern.getRegex());
@@ -65,6 +68,17 @@ public class DateScrubber extends RegExScrubber
     throw new FormattedException(
         "No match found for %s.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 \n Current supported formats are: %s",
         formattedExample, Query.select(getSupportedFormats(), SupportedFormat::getRegex));
+  }
+  public static DateScrubber getNull()
+  {
+    return new DateScrubber("")
+    {
+      @Override
+      public String scrub(String input)
+      {
+        return input;
+      }
+    };
   }
   public static class SupportedFormat
   {
