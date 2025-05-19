@@ -4,9 +4,22 @@ set -euo pipefail
 TMP_OUTPUT=$(mktemp)
 if mvn -B verify --file pom.xml > "$TMP_OUTPUT" 2>&1; then
   # Extract the number of tests run from Maven output
-  TESTS_LINE=$(awk '/Results:/ {found=1; next} found' "$TMP_OUTPUT" | grep -Eo 'Tests run: [0-9]+' | head -n 1)
-  TESTS_PASSED=$(echo "$TESTS_LINE" | grep -Eo '[0-9]+')
-  echo "✅ Built: $TESTS_PASSED tests passed."
+  TESTS_TOTAL=$(awk '
+    /Results:/ {
+      for(i=0;i<3;i++) {
+        if(getline>0) {
+          if($0 ~ /Tests run: [0-9]+/) {
+            line = $0
+            sub(/.*Tests run: /, "", line)
+            sub(/[^0-9].*$/, "", line)
+            sum += line
+            break
+          }
+        }
+      }
+    }
+    END {print sum}' "$TMP_OUTPUT")
+  echo "✅ Built: $TESTS_TOTAL tests passed."
   EXIT_CODE=0
 else
   cat "$TMP_OUTPUT"
