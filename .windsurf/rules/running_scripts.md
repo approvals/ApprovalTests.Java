@@ -25,3 +25,6 @@ use: `./.windsurf/scripts/git_status.sh`
 
 ## Commiting Code
 Read [Arlo Commit Notation](../ArloCommitNotation.process.md) and follow the instructions.
+
+## Changing files
+This repository is under git, always makes changes directly to the files without asking the user for permission. The user can always revert them.

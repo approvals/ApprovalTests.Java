@@ -2,6 +2,7 @@
 STARTER_CHARACTER = 🔒
 
 ALWAYS add the 2 character prefix to commit messages.
+This is the process to commit changes to git.
 
 ## Overview
 
@@ -85,41 +86,40 @@ The general format for commit messages is:
 
 ## Co-authorship
 
-* ALWAYS run tests before commiting
-* NEVER commit code if tests are failing
-* ALWAYS suggest a commit message and confirm with the user before commiting.
+* ALWAYS run tests before committing.
+* NEVER commit code if tests are failing.
+* ALWAYS suggest a commit message and confirm with the user before committing.
 
+### Commit Confirmation Checklist
+1. Suggest a commit message (with risk, intention, and title).
+2. Read @coauthors.txt and add them to the commit message.
+3. Ask the user to confirm or edit the message.
+4. Only proceed to commit after explicit user confirmation.
 
-### Message
-Choose the most important piece and use it as the title.
-If extra details are need add them after a line break.
-Add the Co-authors. 
-Ask if you haven't confirmed for this session, save the confirmation in `.windsurf/coauthors.txt`.
+### Co-Author Handling
+- The `.windsurf/coauthors.txt` file should list only co-authors other than yourself (the committer).
+- **Do not add yourself as a co-author**; only list collaborators who are not the committer.
+- Co-authors are credited at the bottom of the commit message, one per line.
 
-Sample:
+#### Example Workflow
+1. Suggest a commit message and list the current co-authors from `.windsurf/coauthors.txt`.
+2. Format the co-authors section as shown below.
 
-> **Commit Message:** . e added rules
- 
+### Co-Authors Table
+| name       | github_id |
+|------------|-----------|
+| Llewellyn  | isidore   |
+| Lars       | LarsEckart|
+| Jay        | JayBazuzi |
+| Scott      | ScottBob  |
+| Lada       | lexler    |
 
-### Co-Authors
-
-| name | github_id |
-|---- | ---- |
-| Llewellyn | isidore |
-| Lars | LarsEckart | 
-| Jay | JayBazuzi |
-| Scott | ScottBob |
-| Lada | lexler |
-
-Co-authors go 1 per line at the bottom of the message, 
-Credit co-authors.
-
-**Format**:
+**Format:**
 ```
 Co-authored-by: <name> <<github_id>@users.noreply.github.com>
 ```
 
-**Example**:
+**Single Co-Author Example:**
 ```
 - B Fix null pointer exception in payment module
 
@@ -128,3 +128,23 @@ before accessing payment details. Added null checks.
 
 Co-authored-by: Lars <LarsEckart@users.noreply.github.com>
 ```
+
+**Multiple Co-Authors Example:**
+```
+. e Update script: `commit.sh`
+
+Improved commit scripts to check status.
+
+Co-authored-by: Llewellyn <isidore@users.noreply.github.com>
+Co-authored-by: Jay <JayBazuzi@users.noreply.github.com>
+```
+
+---
+
+## Troubleshooting & FAQ
+
+**Q: How should `.windsurf/coauthors.txt` be managed?**
+A: Only list co-authors who are not yourself.
+
+**Q: What if a co-author is not in the table?**
+A: Ask the user for their GitHub username/email and add them using the standard format.
