@@ -1,5 +1,6 @@
 package org.approvaltests.scrubbers;
 
+import com.spun.util.DateUtils;
 import com.spun.util.markdown.table.MarkdownColumn;
 import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.Approvals;
@@ -7,6 +8,7 @@ import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -75,5 +77,12 @@ public class DateScrubberTest
   void testBlank()
   {
     DateScrubber.getScrubberFor("");
+  }
+  @Test
+  void testTimestamp()
+  {
+    String input = DateUtils.asTimestamp(new Date()).toString();
+    String scrubbed = DateScrubber.getScrubberForTimestamp().scrub(input);
+    assertEquals("[Date1]", scrubbed);
   }
 }

@@ -3,8 +3,11 @@ package org.approvaltests.scrubbers;
 import com.spun.util.ArrayUtils;
 import com.spun.util.FormattedException;
 import com.spun.util.StringUtils;
+import org.approvaltests.core.Scrubber;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
+
+import java.sql.Timestamp;
 
 public class DateScrubber extends RegExScrubber
 {
@@ -79,6 +82,10 @@ public class DateScrubber extends RegExScrubber
         return input;
       }
     };
+  }
+  public static Scrubber getScrubberForTimestamp()
+  {
+    return DateScrubber.getScrubberFor(new Timestamp(0).toString());
   }
   public static class SupportedFormat
   {
