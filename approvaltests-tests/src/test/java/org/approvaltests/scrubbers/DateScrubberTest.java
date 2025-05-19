@@ -85,4 +85,20 @@ public class DateScrubberTest
     String scrubbed = DateScrubber.getScrubberForTimestamp().scrub(input);
     assertEquals("[Date1]", scrubbed);
   }
+  @Test
+  void testSqlDate()
+  {
+    java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
+    String input = sqlDate.toString();
+    String scrubbed = DateScrubber.getScrubberForSqlDate().scrub(input);
+    assertEquals("[Date1]", scrubbed);
+  }
+  @Test
+  void testUtilDate()
+  {
+    java.util.Date utilDate = new java.util.Date();
+    String input = utilDate.toString();
+    String scrubbed = DateScrubber.getScrubberForDate().scrub(input);
+    assertEquals("[Date1]", scrubbed);
+  }
 }

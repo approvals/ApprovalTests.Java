@@ -87,6 +87,14 @@ public class DateScrubber extends RegExScrubber
   {
     return DateScrubber.getScrubberFor(new Timestamp(0).toString());
   }
+  public static Scrubber getScrubberForSqlDate()
+  {
+    return DateScrubber.getScrubberFor(new java.sql.Date(0).toString());
+  }
+  public static Scrubber getScrubberForDate()
+  {
+    return DateScrubber.getScrubberFor(new java.util.Date(0).toString());
+  }
   public static class SupportedFormat
   {
     private final String[] examples;
