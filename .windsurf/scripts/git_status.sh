@@ -1,4 +1,5 @@
 #!/bin/bash -euo pipefail
-# Get detailed git status
+# Get detailed git status and diff
 
-git status -v
+git status --short
+git diff
