@@ -2,6 +2,7 @@
 STARTER_CHARACTER = 🔒
 
 ALWAYS add the 2 character prefix to commit messages.
+
 This is the process to commit changes to git.
 
 ## Overview
