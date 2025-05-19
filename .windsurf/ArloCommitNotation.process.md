@@ -1,7 +1,11 @@
-### Arlo Commit Notation
+# Arlo Commit Notation
+STARTER_CHARACTER = 🔒
+
 ALWAYS add the 2 character prefix to commit messages.
 
 ## Overview
+
+Before committing, run git_status.sh to understand what's changed.
 
 Arlo's Commit Notation (ACN) is a system that prefixes commit messages with concise codes to convey:
 
@@ -45,6 +49,11 @@ Following the risk symbol, a letter denotes the intention of the commit:
 * **Lowercase** (`r`, `d`): Internal changes not visible to end-users.
 
 ---
+
+## Commit cli
+
+Commit code using: `.windsurf/scripts/commit.sh "<message>"`
+This will stage everything and commit.
 
 ## Commit Message Format
 

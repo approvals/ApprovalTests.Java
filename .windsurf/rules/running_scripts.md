@@ -2,7 +2,11 @@
 trigger: always_on
 ---
 
-Always add 🧩 followed by space at the start of your reply
+**ALWAYS** add the STARTER_CHARACTER followed by space at the start of your reply. 
+The STARTER_CHARACTER will change for each process file that is in progress.
+
+Default STARTER_CHARACTER = 🧩
+
 
 ## ApprovalTests
 
@@ -20,5 +24,4 @@ use: `./.windsurf/scripts/git_status.sh`
 
 
 ## Commiting Code
-Use [Arlo Commit Notation](../ArloCommitNotation.process.md)
-Commit code using: `.windsurf/scripts/commit.sh <message>`
+Read [Arlo Commit Notation](../ArloCommitNotation.process.md) and follow the instructions.
