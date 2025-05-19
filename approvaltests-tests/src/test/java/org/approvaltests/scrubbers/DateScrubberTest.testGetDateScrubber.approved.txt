@@ -137,7 +137,12 @@ Example: {'date':"[Date1]"}
 
 
 Scrubbing for 2025-05-15 16:57:04.599:
-RegExScrubber[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}]
+RegExScrubber[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+]
+Example: {'date':"[Date1]"}
+
+
+Scrubbing for 2025-05-19 19:45:04.99:
+RegExScrubber[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+]
 Example: {'date':"[Date1]"}
 
 
