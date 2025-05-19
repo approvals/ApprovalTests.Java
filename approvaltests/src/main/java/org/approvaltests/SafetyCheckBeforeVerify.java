@@ -19,4 +19,8 @@ public class SafetyCheckBeforeVerify
     Action2<ApprovalApprover, Options> oldCheck = guardRailCheck.get();
     guardRailCheck.set(newCheck);
   }
+  public static void clear()
+  {
+    guardRailCheck.remove();
+  }
 }

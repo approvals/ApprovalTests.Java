@@ -16,8 +16,15 @@ public class JupiterApprovals
   {
     Options options = Approvals.NAMES.withParameters(convertToLegalFileName(displayName));
     return DynamicTest.dynamicTest(displayName, () -> {
-      SafetyCheckBeforeVerify.add((__, o) -> checkOptionsWasUsed(o, options));
-      action1.call(options);
+      try
+      {
+        SafetyCheckBeforeVerify.add((__, o) -> checkOptionsWasUsed(o, options));
+        action1.call(options);
+      }
+      finally
+      {
+        SafetyCheckBeforeVerify.clear();
+      }
     });
   }
   private static void checkOptionsWasUsed(Options actual, Options expected)
