@@ -1,6 +1,9 @@
-name: FormatJava
+name: Format and Update markdown snippets
+
 on:
   push:
+    branches: ['master']
+  workflow_dispatch:
 
 # Cancel existing executions when new commits are pushed onto the branch
 concurrency:
@@ -8,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  update-markdown-snippets:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,12 +21,18 @@ jobs:
           java-version: '17'
       - name: Format Code
         run: mvn package -DskipTests=true
+      - name: Run MarkdownSnippets
+        run: |
+          dotnet tool install --global MarkdownSnippets.Tool
+          mdsnippets ${GITHUB_WORKSPACE}
+        shell: bash
       - name: Git Commit and Push
         uses: github-actions-x/commit@v2.9
         with:
-          commit-message: ". a reformat code"
+          commit-message: ". d reformatted code and updated markdown snippets"
           rebase: 'true'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: 'master'
           name: github actions
           email: actions@github.com
+    
