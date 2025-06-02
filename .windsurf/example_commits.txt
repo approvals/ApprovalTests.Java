@@ -1,0 +1,200 @@
+414d1722 . e Creating process files
+0e401d9b . e Edited process files and rules for windsurf
+d28f3132 . e add Bash script style guide and simplify github_issue.sh
+1b7a777c . d updated markdown snippets
+4b359cb8 - F DateUtils.toString, EndOfTime, QuartzUtils.toString, Timestamp date format scrubber
+2bc7ee06 . e scrubbers
+18a0e7db . e Refactoring tests
+70251725 . e scrubbers
+904e5dd6 *** better tests
+d4f6f595 *** moving to quartz
+86d7dc84 ! r upgrade quartz
+00cc8e59 . t upgrade to org.junit.support.testng.engine
+82b31364 . r upgrade junit5\nUpgraded junit-jupiter-api and junit-jupiter-engine to 5.12.2 as per PR #647. Also removed the unused and problematic testng-junit5 dependency.\n\nCo-authored-by: Jay <JayBazuzi@users.noreply.github.com>\nCo-authored-by: Scott <ScottBob@users.noreply.github.com>
+61e2ae97 . e gh cli
+c0e5ffdd Update running_scripts.md
+a2e8e7f6 . e Upgrading Depedencies process
+8e7ab2ed Merge branch 'master' of https://github.com/approvals/ApprovalTests.Java
+e4544d1c . e Populate FixingIssues.process.md
+bb46cf90 . e Add FixingIssues.process.md
+faf8e887 . e Update Arlo Commit Notation documentation
+b74c5740 . C Release v24.21.1
+3c5a9e42 . d updated markdown snippets
+ee8873e2 - B Sort map keys by toString if not Comparable
+5c50f273 . e Updated commit script
+ddfd4769 . e Added Windsurf configuration and scripts
+28d52011 . e Added Windsurf configuration and scripts
+6ee1416e - r Bump the jackson group with 3 updates
+1fdb8922 - r Bump com.google.code.gson:gson from 2.13.0 to 2.13.1
+35d5a7b9 . e add all-important `call` to ensure errors are propagated correctly
+d6232c42 Merge branch 'temp'
+b49393ab . C Release v24.21.0
+f1d8218b . e use commit action
+8f4212bf - r update junit-jupiter to 5.12.2
+e4818ad9 . d updated markdown snippets
+2ae7a5bb - r Replaced all calls to getAbsolutePath() with FileUtils.getResolvedPath(file)
+eac96aa3 - F Added FileUtils.getResolvedPath
+160a1d47 . e Remove unsupported Java versions
+34d78d21 - r Bump com.google.code.gson:gson from 2.12.1 to 2.13.0
+8642c3d4 . e build_and_test.cmd
+2f38f605 . C Release v24.20.0
+f41b4a63 - B Fix how path is created for temp folder
+de6167b8 . d updated markdown snippets
+f5bc266a . d Fix scrubber snippet
+4f3384fb . t Remove abandoned files
+c445dc4e . t Remove abandoned files
+f473dd99 ! F Use remove_abandoned_files.py and approve_all.py
+3dc55118 . r Removed unused library reference from Maven pom files
+c4a1cdbb . e Removed unnecessary line from gitignore
+18eef2f8 - r Bump com.github.javaparser:javaparser-core from 3.26.3 to 3.26.4
+eda5bd3c - r Bump org.apache.maven.plugins:maven-surefire-plugin
+06f7048c . e always use unix-style line endings
+22f8eb50 . e update install to use openjdk and maven
+841fb808 . e apply ACN to version updates
+18d6592a v 24.19.0
+a8f9f01a - B ReadBuffer input no longer modifies newlines or adds them at the end Added StringUtils.ensureEnding Added FileUtils.readFile(file, ensureTrailingNewline = true)
+de2dd215 - r Bump net.revelc.code.formatter:formatter-maven-plugin
+e9e02f91 . e fix dependabot commit notations
+f1fbde34 Bump actions/cache from 4.2.2 to 4.2.3
+368c63f5 . e add Java 24 to CI
+7c5f79e2 . e Bump the jackson group with 2 updates
+f63a55b3 . e Fix yaml so that dependabot makes 1 PR when updating junit or jackson
+76f73207 v 24.18.0
+f951d26f . t use junit5 assertions and use them with static import for consistency
+e084ec15 - F Automatically git-ignore our temp folder
+e634f04e Bump org.junit.jupiter:junit-jupiter from 5.12.0 to 5.12.1
+c9d081ba ! B removing the stacking of checks
+00389ef0 a   reformat code
+9cc8bcd4 . t Add logging to test
+f24b2687 . d updated markdown snippets
+10fcce58 . t Cleaner tests
+e285b2fa . r Change if to switch
+613b1afc - r Cleaned up naming and parameters
+52ceebf5 - F Added safety check capability plus check for dynamic tests
+646bc2a8 . t Change to remove flakey test if httpbin is down
+a780cac0 . d Add Discord badge to Readme
+6c739809 Bump org.apache.camel:camel-xstream from 3.22.3 to 3.22.4
+db3dd86a - r use querable
+9f8b9b67 - r moving to querable
+21eecfbb a   reformat code
+e8eaaaac . r refactor loop to Queryable
+382d5e18 . d updated markdown snippets
+25605be0 - F improvements to header of MarkdownTables
+21e9f3d9 - F auto-escape content in tabledown tables
+1438acf3 - F MarkdownColumn.RIGHT_JUSTIFIED
+91b4f720 . d updated markdown snippets
+879c939b - F better help messages
+805c273f . r extract variable
+ea515934 Bump com.fasterxml.jackson.core:jackson-databind from 2.18.2 to 2.18.3
+1e0d9d3d . d updated markdown snippets
+b0cde6eb . d Correct snippet tag
+b721f2dc . dt Adding documentation for DynamicTest
+ea1fcf4a . dt Adding documentation for DynamicTest
+5ecb9b4e a   reformat code
+0253dcd9 . dt Adding documentation for DynamicTest
+7676a2bd Bump actions/cache from 4.2.1 to 4.2.2
+76808c1e Bump org.apache.maven.plugins:maven-project-info-reports-plugin
+42b319aa Bump org.junit.jupiter:junit-jupiter from 5.11.3 to 5.12.0
+01a79b10 Bump org.apache.maven.plugins:maven-compiler-plugin
+6700f05e Bump actions/cache from 4.2.0 to 4.2.1
+07f519ae Bump net.revelc.code.formatter:formatter-maven-plugin
+923a53f6 v 24.17.0
+0333c12d - t reduce likelihood of flaky test
+7266c0b8 - F downloading scripts is now fire and forget
+0765812f - r remove duplication
+d6f917e9 - F Once.runAsync
+c2374764 v 24.16.1
+624f90f2 a   reformat code
+8c0ab212 - B FirstWorkingReporter does not swallow reporters with approval power
+88a0295c Bump commons-logging:commons-logging from 1.3.4 to 1.3.5
+9ecdffdb - B Set timeout for both connection and read timer
+dff34d3c a   reformat code
+d2e20be0 - B Set DownloadScripts timer to three seconds
+21e66238 - r Add a timeout parameter to the loadWebPage method.
+9dcab999 . e reformat arrays
+f999e9ee v 24.16.0
+35fe4a13 . d updated markdown snippets
+8ad16525 ! F allow configuration of project base directory
+870a0f28 ! B catch exception on DNS error, closes #612
+dc488f49 Bump com.google.code.gson:gson from 2.12.0 to 2.12.1
+4302db12 v 24.15.0
+404823a9 - r Refactor to use Once
+06870d1f . B Remove bug where Once would fire multiple times if the lambda had fields
+5a4a01c3 . F Create Once like in Golang
+159cd2aa . r Moving internal .logging
+2ee60771 Bump com.google.code.gson:gson from 2.11.0 to 2.12.0
+e1e2ddb1 . e abandoned file scripts
+2b209577 . e Testing Mac: no spaces around =
+f435eec8 . e Testing Mac more
+6c959506 . e Testing Mac
+09b81bbd . d updated markdown snippets
+9b5375ee . t Escape `|` in markdown approved file
+5479ff1e v 24.14.2
+3e33e2e0 a   reformat code
+808f4cee - r Replaced deprecated method calls
+a3f9a280 - r Deprecated unfortunately named function
+5e242fec - r Replaced URL with URI.create(url)
+b38d2d50 - r Removed duplicate functionality
+6c831f66 - B Fixed bug with the way we were processing BufferedStreams
+80fd2c1d v 24.14.1
+92592fdc a   reformat code
+3e5db394 ! r Use java's built in UrlConnection instead of apache http client
+d8e742be . t Tests for NetUtils
+68233fa1 v 24.14.0
+8f673b33 @ r remove duplication. Lazy download the approve-all script
+e21060cf @ F add approval-all script to temp directory
+bc2c99ba . d updated markdown snippets
+955d5ffd - F added even more dates that ChatGPT gave us examples for
+ccf3c9db - F support for Date format reported by helgewessels, Jan 2025
+f7c5699d - F Created approve_all.sh
+0ecf28d7 - F Created approve_all.bat
+6b446dde a   reformat code
+cb76ba6d - F Added FailedFileLog
+8bfb04ca v 24.13.0
+ad8091af . d updated markdown snippets
+3205e149 - F support for Date format reported by helgewessels, Dec 2024
+f8ea8927 - F support for Date format reported by mkurtz, Dec 2024
+c49aa380 Bump org.apache.camel:camel-xstream from 3.22.2 to 3.22.3
+c3bd405b Bump com.github.javaparser:javaparser-core from 3.26.2 to 3.26.3
+0b74b827 Bump org.junit.jupiter:junit-jupiter-engine from 5.11.3 to 5.11.4
+02467d79 Bump org.junit.jupiter:junit-jupiter-api from 5.11.3 to 5.11.4
+718d713c v 24.12.0
+299d82a2 a   reformat code
+59493782 - F ReporterThatCreatesAnApprovalScript for Linux
+a65f3520 - F ReporterThatCreatesAnApprovalScript for Windows
+a53cea91 Bump org.apache.maven.plugins:maven-javadoc-plugin from 3.11.1 to 3.11.2
+eb4b0322 v 24.11.0
+5fd3802f . d updated markdown snippets
+64ac582c Merge branch 'applesauce'
+547c0eb8 - F Seam for what error is thrown from Approvals
+90e25395 . r extract method
+d7f717e5 Bump actions/cache from 4.1.2 to 4.2.0
+8dcd1dd3 Bump net.jqwik:jqwik from 1.9.1 to 1.9.2
+15b5c345 Bump com.fasterxml.jackson.core:jackson-databind from 2.18.1 to 2.18.2
+5aa9049a Bump com.fasterxml.jackson.core:jackson-annotations
+24037c2f . t better tests
+3b26f5e0 Merge branch 'master' of https://github.com/approvals/ApprovalTests.Java
+f22a3375 . t fixed test docs
+711baa28 a   reformat code
+4aa3a529 - B parity of Lists an Arrays
+948311f6 . d updated markdown snippets
+c07a3431 - F Queryable.firstOrThrow
+50153dbe Bump org.easymock:easymock from 5.4.0 to 5.5.0
+40730500 Bump com.thoughtworks.xstream:xstream from 1.4.20 to 1.4.21
+8866e933 Bump org.apache.maven.plugins:maven-surefire-plugin from 3.5.1 to 3.5.2
+b31d6f6e Bump org.apache.maven.plugins:maven-javadoc-plugin from 3.10.1 to 3.11.1
+e42a0d51 Bump mikepenz/action-junit-report from 4 to 5
+6654cda7 . t cleanup tests we dont need anymore
+f257fdc3 . e configure test reporting for gh action
+045686f8 a   reformat code
+554e5a37 *** failing on purpose
+53d47888 . e junit test report to other builds
+f29932ae . e added test report to github action
+a2b1bf3a v 24.9.0
+1a9f7339 a   reformat code
+b23c767a - F Add logger of approved files
+cc292a17 Bump com.fasterxml.jackson.core:jackson-databind from 2.18.0 to 2.18.1
+969aef33 Bump com.fasterxml.jackson.core:jackson-annotations
+53f776c0 . d updated markdown snippets
+402c45d6 . F Queryable.as accepting a Set, fixes #372
+4ac45c97 Merge pull request #577 from approvals/dependabot/maven/org.apache.maven.plugins-maven-project-info-reports-plugin-3.8.0
