@@ -24,3 +24,6 @@ __pycache__/
 *.bak
 
 .gitmessage
+
+# Claude Code local settings
+.claude/settings.local.json
