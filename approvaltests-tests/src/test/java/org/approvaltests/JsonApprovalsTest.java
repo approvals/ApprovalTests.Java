@@ -2,7 +2,6 @@ package org.approvaltests;
 
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
-import org.lambda.functions.Function1;
 
 import java.time.LocalDateTime;
 
@@ -36,5 +35,53 @@ public class JsonApprovalsTest
       this.localDate = localDate;
     }
     private LocalDateTime localDate;
+  }
+  @Test
+  void verifyJsonReorderWithoutArray()
+  {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+    String variant1 = """
+        	{
+        		"a" = 1,
+        		"b" = 2
+        	}
+        """;
+    String variant2 = """
+        	{
+        		"b" = 2,
+        		"a" = 1
+        	}
+        """;
+    // It does not matter on which we call the verifyJson
+    JsonApprovals.verifyJson(variant1, true);
+    JsonApprovals.verifyJson(variant2, true);
+  }
+  @Test
+  void verifyJsonReorderWithArray()
+  {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
+    String variant1 = """
+        	{
+        		"array" = [
+        			{
+        				"a" = 1,
+        				"b" = 2
+        			}
+        		]
+        	}
+        """;
+    String variant2 = """
+        	{
+        		"array" = [
+        			{
+        				"b" = 2,
+        				"a" = 1
+        			}
+        		]
+        	}
+        """;
+    // Now both variants should work since objects within arrays get reordered
+    JsonApprovals.verifyJson(variant1, true);
+    JsonApprovals.verifyJson(variant2, true);
   }
 }
