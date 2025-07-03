@@ -2,6 +2,7 @@ package com.spun.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -100,12 +101,36 @@ public class JsonUtils
       {
         sortedJsonObject.add(entry.getKey(), sortJsonObjectFields(element.getAsJsonObject()));
       }
+      else if (element.isJsonArray())
+      {
+        sortedJsonObject.add(entry.getKey(), sortJsonArrayFields(element.getAsJsonArray()));
+      }
       else
       {
         sortedJsonObject.add(entry.getKey(), element);
       }
     }
     return sortedJsonObject;
+  }
+  public static JsonArray sortJsonArrayFields(JsonArray jsonArray)
+  {
+    JsonArray sortedJsonArray = new JsonArray();
+    for (JsonElement element : jsonArray)
+    {
+      if (element.isJsonObject())
+      {
+        sortedJsonArray.add(sortJsonObjectFields(element.getAsJsonObject()));
+      }
+      else if (element.isJsonArray())
+      {
+        sortedJsonArray.add(sortJsonArrayFields(element.getAsJsonArray()));
+      }
+      else
+      {
+        sortedJsonArray.add(element);
+      }
+    }
+    return sortedJsonArray;
   }
   public static class InstantAdapter extends TypeAdapter<Instant>
   {
