@@ -1,1 +1,1 @@
-Supported Java versions: 8, 17, 21, 24
+Works on JDK 1.8+ (tested on 1.8, 17, 21, 24).

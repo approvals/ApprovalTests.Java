@@ -22,6 +22,6 @@ public class JavaVersionTest
     Object yaml = new ObjectMapper(new YAMLFactory()).readValue(testYmlPath, Object.class);
     List<String> javaVersions = JsonPath.read(yaml, "$.jobs.build.strategy.matrix.java");
     // Java 8 GitHub Action is separate from the normal matrixed CI, so hard-code it here.
-    Approvals.verify("Supported Java versions: 8, " + String.join(", ", javaVersions));
+    Approvals.verify("Works on JDK 1.8+ (tested on 1.8, " + String.join(", ", javaVersions) + ").");
   }
 }
