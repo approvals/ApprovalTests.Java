@@ -29,13 +29,7 @@ Capturing Human Intelligence - ApprovalTests is an open source assertion/verific
 
 It is compatible with JUnit 3, 4 & 5 and TestNG.
 
-<!-- snippet: approvaltests-tests/src/test/java/org/approvaltests/ci/JavaVersionTest.testSupportedJavaVersions.approved.txt -->
-<a id='snippet-approvaltests-tests/src/test/java/org/approvaltests/ci/JavaVersionTest.testSupportedJavaVersions.approved.txt'></a>
-```txt
-Works on JDK 1.8+ (tested on 1.8, 17, 21, 24).
-```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ci/JavaVersionTest.testSupportedJavaVersions.approved.txt#L1-L1' title='Snippet source file'>snippet source</a> | <a href='#snippet-approvaltests-tests/src/test/java/org/approvaltests/ci/JavaVersionTest.testSupportedJavaVersions.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
+include: JavaVersionTest.testSupportedJavaVersions.approved.txt
 
 ## What can it be used for?
 
