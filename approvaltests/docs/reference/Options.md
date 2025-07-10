@@ -11,6 +11,7 @@
   * [Scrubbers](#scrubbers)
   * [File Options](#file-options)
     * [File Extensions](#file-extensions)
+  * [Custom Comparators](#custom-comparators)
   * [Defaults](#defaults)
   * [Adding to Existing Options object](#adding-to-existing-options-object)<!-- endToc -->
 
