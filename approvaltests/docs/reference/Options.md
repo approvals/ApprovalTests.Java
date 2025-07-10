@@ -59,6 +59,12 @@ Approvals.verify("text to be verified", new Options().forFile().withExtension(".
 
 **Note:** `withExtension()` returns an `Options` object, so it's possible to keep appending more `with...()` calls.
 
+## Custom Comparators
+By default Approval Tests will only check if the `.approved` and `.received` files are _exactly_ matching.
+The only accomodations it makes is for differences in line endings.
+
+If you would like to create a more flexible comparison, you can do it by using the `Options.withComparator()` function.
+
 ## Defaults
 
 The default constructor for Options does:
