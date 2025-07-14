@@ -42,7 +42,6 @@
         <url>https://github.com/approvals/ApprovalTests.Java/tree/master</url>
     </scm>
 
-    <properties>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
