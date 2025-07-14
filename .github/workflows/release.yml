@@ -36,6 +36,7 @@ jobs:
           maven-args: "-P release"
           nexus-username: ${{ secrets.nexus_user_name }}
           nexus-password: ${{ secrets.nexus_password }}
+          # mvn deploy -P release --settings settings.xml
         env:
           JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
 
