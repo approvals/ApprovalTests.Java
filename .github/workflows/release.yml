@@ -28,13 +28,16 @@ jobs:
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
       - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
+        uses: qcastel/github-actions-maven-release@v1.12.31
         with:
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
-          nexus_username: ${{ secrets.nexus_user_name }}
-          nexus_password: ${{ secrets.nexus_password }}
-          maven_profiles: release
+          gpg-enabled: "true"
+          gpg-key: ${{ secrets.gpg_private_key }}
+          gpg-key-passphrase: ${{ secrets.gpg_passphrase }}
+          maven-args: "-P release"
+          nexus-username: ${{ secrets.nexus_user_name }}
+          nexus-password: ${{ secrets.nexus_password }}
+        env:
+          JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
 
       - name: set snapshot version
         run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
