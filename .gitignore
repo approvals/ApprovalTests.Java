@@ -28,3 +28,4 @@ __pycache__/
 # Claude Code local settings
 .claude/settings.local.json
 settings.xml
+set_envoirement_for_maven.sh
