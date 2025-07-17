@@ -28,7 +28,7 @@ jobs:
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
       - name: Release Maven package
-        uses: qcastel/github-actions-maven-release@v1.12.31
+        uses: qcastel/github-actions-maven-release@v1.12.43
         with:
           gpg-enabled: "true"
           gpg-key: ${{ secrets.gpg_private_key }}
