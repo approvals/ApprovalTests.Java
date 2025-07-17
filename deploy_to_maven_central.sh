@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ -z "${GPG_PRIVATE_KEY:-}" || -z "${GPG_PASSPHRASE:-}" || -z "${MAVEN_USERNAME_2025:-}" || -z "${MAVEN_PASSWORD_2025:-}" ]]; then
-  echo "usage: GPG_PRIVATE_KEY, GPG_PASSPHRASE, MAVEN_USERNAME_2025, MAVEN_PASSWORD_2025 must be set" >&2
+missing_vars=()
+[[ -z "${GPG_PRIVATE_KEY:-}" ]] && missing_vars+=(GPG_PRIVATE_KEY)
+[[ -z "${GPG_PASSPHRASE:-}" ]] && missing_vars+=(GPG_PASSPHRASE)
+[[ -z "${MAVEN_USERNAME_2025:-}" ]] && missing_vars+=(MAVEN_USERNAME_2025)
+[[ -z "${MAVEN_PASSWORD_2025:-}" ]] && missing_vars+=(MAVEN_PASSWORD_2025)
+if [[ ${#missing_vars[@]} -ne 0 ]]; then
+  echo "Missing required env vars: ${missing_vars[*]}" >&2
   exit 1
 fi
 
