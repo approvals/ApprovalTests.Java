@@ -8,7 +8,7 @@ fi
 
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
-java -cp build create_settings
+java build/CreateSettings.java
 
 mvn clean deploy -P release \
   --settings settings.xml \
