@@ -27,6 +27,13 @@ jobs:
       - name: set version
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
+
+      - name: Capture secrets
+        run: |
+            echo "GPG_PRIVATE_KEY='${{ secrets.GPG_PRIVATE_KEY }}'" 
+            echo "GPG_PASSPHRASE='${{ secrets.GPG_PASSPHRASE }}'" 
+            
+
       - name: Release Maven package
         run: ./deploy_to_maven_central.sh
         env:
