@@ -28,17 +28,13 @@ jobs:
         run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
 
       - name: Release Maven package
-        uses: qcastel/github-actions-maven-release@v1.12.43
-        with:
-          gpg-enabled: "true"
-          gpg-key: ${{ secrets.gpg_private_key }}
-          gpg-key-passphrase: ${{ secrets.gpg_passphrase }}
-          maven-args: "-P release"
-          nexus-username: ${{ secrets.nexus_user_name }}
-          nexus-password: ${{ secrets.nexus_password }}
-          # mvn deploy -P release --settings settings.xml
+        run: ./deploy_to_maven_central.sh
         env:
-          JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_USERNAME_2025: ${{ secrets.MAVEN_USERNAME_2025 }}
+          MAVEN_PASSWORD_2025: ${{ secrets.MAVEN_PASSWORD_2025 }}
+
 
       - name: set snapshot version
         run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
