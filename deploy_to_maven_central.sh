@@ -8,9 +8,10 @@ fi
 
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
+java -cp build create_settings
+
 mvn clean deploy -P release \
+  --settings settings.xml \
   -DskipTests \
   -Dgpg.passphrase="$GPG_PASSPHRASE" \
-  -Dgpg.pinentry-mode=loopback \
-  -DossrhUsername="$MAVEN_USERNAME_2025" \
-  -DossrhPassword="$MAVEN_PASSWORD_2025"
+  -Dgpg.pinentry-mode=loopback
