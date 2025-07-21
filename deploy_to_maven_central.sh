@@ -11,12 +11,12 @@ if [[ ${#missing_vars[@]} -ne 0 ]]; then
   exit 1
 fi
 
+echo "********** Setting up gpg"
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import
-
+echo "********** Create settings.xml"
 java build/CreateSettings.java
 
-mvn clean deploy -P release \
+mvn clean verify deploy -P release \
   --settings settings.xml \
-  -DskipTests \
-  -Dgpg.passphrase="$GPG_PASSPHRASE" \
-  -Dgpg.pinentry-mode=loopback
+  -DperformRelease=true \
+  -Dgpg.passphrase="$GPG_PASSPHRASE"
