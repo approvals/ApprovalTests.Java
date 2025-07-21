@@ -9,7 +9,59 @@
     </parent>
 
     <artifactId>approvaltests-util</artifactId>
+    <name>ApprovalTests Utilities</name>
+    <description>Utility classes for ApprovalTests.Java - a snapshot-based testing library that simplifies assertions by comparing expected output to approved files.</description>
+    <url>http://approvaltests.com/</url>
     <packaging>jar</packaging>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Llewellyn Falco</name>
+            <email>llewellyn.falco@gmail.com</email>
+            <organization>Independent</organization>
+            <organizationUrl>https://github.com/isidore</organizationUrl>
+        </developer>
+        <developer>
+            <name>Emily Bache</name>
+            <email>emily@bacheconsulting.com</email>
+            <organization>Praqma</organization>
+            <organizationUrl>https://www.praqma.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/approvals/ApprovalTests.Java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:approvals/ApprovalTests.Java.git</developerConnection>
+        <url>https://github.com/approvals/ApprovalTests.Java/tree/master</url>
+    </scm>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.8.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <deploymentName>ApprovalTests.Java ${project.version}</deploymentName>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>

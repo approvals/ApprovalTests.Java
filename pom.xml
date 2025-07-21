@@ -225,6 +225,14 @@
                         <configuration>
                             <publishingServerId>central</publishingServerId>
                             <autoPublish>true</autoPublish>
+                            <deploymentName>ApprovalTests.Java ${project.version}</deploymentName>
+                            <excludeArtifacts>
+                                <artifactId>approvaltests-parent</artifactId>
+                                <artifactId>approvaltests-util-tests</artifactId>
+                                <artifactId>approvaltests-tests</artifactId>
+                                <artifactId>counter_display</artifactId>
+                                <artifactId>html_locker</artifactId>
+                            </excludeArtifacts>
                         </configuration>
                     </plugin>
                 </plugins>
