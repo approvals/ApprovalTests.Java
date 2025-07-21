@@ -211,7 +211,7 @@
                         <inherited>false</inherited>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
+                            <autoPublish>false</autoPublish>
                             <deploymentName>ApprovalTests.Java ${project.version}</deploymentName>
                             <excludeArtifacts>
                                 <artifactId>approvaltests-parent</artifactId>
