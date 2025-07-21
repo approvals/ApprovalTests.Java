@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-ApprovalTests.Java is a snapshot-based testing library that simplifies assertions by comparing expected output to approved files. The library supports JUnit 3/4/5 and TestNG, and works with JDK 1.8-25.
+
 
 ## Architecture
 
@@ -23,6 +23,10 @@ The core API is in `org.approvaltests.Approvals` class, which provides static me
 
 ### Build and Test
 ```bash
+# Set next release version
+mvn versions:set -DnewVersion=
+
+
 # Full build with all tests
 mvn install
 
@@ -44,6 +48,11 @@ mvn formatter:format
 # Run just the main tests
 ./run_tests_without_compile_dependencies.sh
 ```
+# Release
+
+Releases are triggered when a new release is created on GitHub. 
+See `.github/workflows/release.yml` for details.
+
 
 ## Key Files and Concepts
 
@@ -52,13 +61,6 @@ mvn formatter:format
 - **Reporters**: Tools that show diffs when tests fail (IntelliJ, Beyond Compare, etc.)
 - **Namers**: Determine approval file naming based on test method/class
 - **Writers**: Generate the actual content to be approved
-
-## Running Single Tests
-
-Individual test methods can be run using standard Maven/IDE approaches:
-```bash
-mvn test -Dtest=ClassName#methodName
-```
 
 ## Code Style
 
