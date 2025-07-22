@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.larseckart</groupId>
             <artifactId>junit-tcr-extensions</artifactId>
-            <version>0.0.3</version>
+            <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
 
