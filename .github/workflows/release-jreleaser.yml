@@ -1,0 +1,64 @@
+name: Publish to Maven Central with JReleaser
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
+      - name: Install Java and Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Determine version from git tag
+        id: version
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      - name: disable formatting
+        run: ./set_formatting_off.sh
+
+      - name: set version
+        run: mvn versions:set -DnewVersion=${{ steps.version.outputs.tag }}
+
+      - name: Release Maven package with JReleaser
+        run: ./deploy_with_jreleaser.sh
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          MAVEN_USERNAME_2025: ${{ secrets.MAVEN_USERNAME_2025 }}
+          MAVEN_PASSWORD_2025: ${{ secrets.MAVEN_PASSWORD_2025 }}
+
+      - name: set snapshot version
+        run: mvn versions:set -DnewVersion=100.0.0-SNAPSHOT
+
+      - name: re-enable formatting
+        run: ./set_formatting_on.sh
+
+      - name: Install Java for script
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Run documentation update
+        run: java build/UpdateVersion.java ${{ steps.version.outputs.tag }}
+
+      - name: Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m ". C Release v${{ steps.version.outputs.tag }}" -a  || echo "nothing to commit"
+          git checkout -b temp
+          git fetch
+          git checkout master
+          git merge temp
+          remote="https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git"
+          git push "${remote}" master || echo "nothing to push"
+        shell: bash

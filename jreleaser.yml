@@ -1,0 +1,35 @@
+project:
+  name: ApprovalTests.Java
+  description: Unit testing asserts can be difficult to use. Approval tests simplify this by taking a snapshot of the results, and confirming that they have not changed.
+  website: http://approvaltests.com/
+  authors:
+    - Llewellyn Falco
+    - Lars Eckart
+    - Jay Bazuzi
+  license: Apache-2.0
+  java:
+    groupId: com.approvaltests
+    version: 8
+
+release:
+  github:
+    overwrite: false
+
+signing:
+  active: ALWAYS
+  armored: true
+
+deploy:
+  maven:
+    mavenCentral:
+      sonatype:
+        active: ALWAYS
+        url: https://central.sonatype.com/api/v1/publisher
+        stagingRepositories:
+          - target/staging-deploy
+        excludedArtifacts:
+          - "approvaltests-parent*.pom"
+          - "approvaltests-util-tests*"
+          - "approvaltests-tests*"
+          - "counter_display*"
+          - "html_locker*"
