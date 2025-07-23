@@ -51,7 +51,8 @@ mvn formatter:format
 # Release
 
 Releases are triggered when a new release is created on GitHub. 
-See `.github/workflows/release.yml` for details.
+See `.github/workflows/release-jreleaser.yml` for the active workflow.
+The old workflow (`.github/workflows/release.yml`) is disabled but kept for reference.
 
 
 ## Key Files and Concepts
