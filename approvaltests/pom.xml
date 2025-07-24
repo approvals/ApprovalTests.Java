@@ -11,7 +11,31 @@
 
     <artifactId>approvaltests</artifactId>
     <packaging>jar</packaging>
+    <name>ApprovalTests</name>
+    <description>Unit testing asserts made easy</description>
+    <url>http://approvaltests.com/</url>
 
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Llewellyn Falco</name>
+        </developer>
+        <developer>
+            <name>Lars Eckart</name>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/approvals/ApprovalTests.Java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:approvals/ApprovalTests.Java.git</developerConnection>
+        <url>https://github.com/approvals/ApprovalTests.Java</url>
+    </scm>
 
     <dependencies>
         <dependency>

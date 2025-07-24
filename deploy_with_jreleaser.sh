@@ -19,7 +19,7 @@ echo "********** Staging artifacts with Maven"
 # Get the key ID from the imported key
 KEY_ID=$(echo "$GPG_PRIVATE_KEY" | gpg --list-packets 2>/dev/null | grep -E "keyid:" | head -1 | awk '{print $2}')
 echo "Using GPG key: $KEY_ID"
-mvn clean deploy -Ppublication -DskipTests -Dgpg.keyname="$KEY_ID" -Dgpg.passphrase="$GPG_PASSPHRASE"
+mvn clean deploy -Ppublication -DskipTests -Dmaven.javadoc.failOnError=false -Dgpg.keyname="$KEY_ID" -Dgpg.passphrase="$GPG_PASSPHRASE"
 
 echo "********** Setting JReleaser environment variables"
 export JRELEASER_MAVENCENTRAL_USERNAME="$MAVEN_USERNAME_2025"
@@ -28,5 +28,12 @@ export JRELEASER_GPG_PASSPHRASE="$GPG_PASSPHRASE"
 export JRELEASER_GPG_PUBLIC_KEY=$(gpg --armor --export)
 export JRELEASER_GPG_SECRET_KEY="$GPG_PRIVATE_KEY"
 
+echo "********** Removing artifacts we don't want to deploy"
+rm -rf target/staging-deploy/com/approvaltests/approvaltests-parent
+rm -rf target/staging-deploy/com/approvaltests/approvaltests-util-tests
+rm -rf target/staging-deploy/com/approvaltests/approvaltests-tests
+rm -rf target/staging-deploy/com/approvaltests/CounterDisplay
+rm -rf target/staging-deploy/com/approvaltests/HtmlLocker
+
 echo "********** Running JReleaser deploy"
-mvn jreleaser:deploy
+mvn -N jreleaser:deploy

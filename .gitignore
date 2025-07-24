@@ -28,3 +28,6 @@ __pycache__/
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Maven Flatten Plugin generated files
+.flattened-pom.xml
