@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Source the environment
-source ./set_enviroment_for_maven.sh
-
 # Import the key and get its ID
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import 2>&1 | grep -E "key|imported" || true
 
