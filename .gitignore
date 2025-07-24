@@ -27,3 +27,4 @@ __pycache__/
 
 # Claude Code local settings
 .claude/settings.local.json
+/set_enviroment_for_maven.sh
