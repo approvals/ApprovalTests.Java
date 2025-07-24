@@ -16,7 +16,10 @@ echo "********** Setting up gpg"
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
 echo "********** Staging artifacts with Maven"
-mvn clean deploy -Ppublication -DskipTests
+# Get the key ID from the imported key
+KEY_ID=$(echo "$GPG_PRIVATE_KEY" | gpg --list-packets 2>/dev/null | grep -E "keyid:" | head -1 | awk '{print $2}')
+echo "Using GPG key: $KEY_ID"
+mvn clean deploy -Ppublication -DskipTests -Dgpg.keyname="$KEY_ID" -Dgpg.passphrase="$GPG_PASSPHRASE"
 
 echo "********** Setting JReleaser environment variables"
 export JRELEASER_MAVENCENTRAL_USERNAME="$MAVEN_USERNAME_2025"
