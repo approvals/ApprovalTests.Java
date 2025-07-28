@@ -20,6 +20,8 @@ GitHub workflows will do the rest.
 ### Configuration
 
 - Need a username and password from sonatype account (token)
+  - https://central.sonatype.com/account
+  - Generate a User Token. This token encapsulates a username and password.
   - Environment variables `MAVEN_USERNAME_2025` and `MAVEN_PASSWORD_2025`
 - Need a GPG key to sign the artifacts
   - Environmental variables `GPG_PRIVATE_KEY` and `GPG_PASSPHRASE`
