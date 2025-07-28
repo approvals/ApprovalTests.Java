@@ -24,7 +24,7 @@ jobs:
       - name: Run MarkdownSnippets
         run: |
           dotnet tool install --global MarkdownSnippets.Tool
-          mdsnippets ${GITHUB_WORKSPACE}
+          mdsnippets .
         shell: bash
       - name: Git Commit and Push
         uses: github-actions-x/commit@v2.9
