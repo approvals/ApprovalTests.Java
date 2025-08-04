@@ -39,13 +39,15 @@ jobs:
     - name: Use local build
       run: |
         sed -i '/<artifactId>approvaltests<\/artifactId>/{N;s/<version>.*<\/version>/<version>100.0.0-SNAPSHOT<\/version>/}' pom.xml
+    - name: Setup Maven Wrapper for Java 8 compatibility
+      run: |
+        mvn wrapper:wrapper -Dmaven=3.8.8
     - name: Run in JDK8
       run: |
         java -version
-        mvn verify
+        ./mvnw verify
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v5
       if: always()
       with:
         report_paths: '**/target/surefire-reports/*.xml'
-
