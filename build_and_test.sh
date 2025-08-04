@@ -19,7 +19,11 @@ if mvn -B verify --file pom.xml > "$TMP_OUTPUT" 2>&1; then
       }
     }
     END {print sum}' "$TMP_OUTPUT")
-  echo "✅ Built: $TESTS_TOTAL tests passed."
+  
+  # Count unique Maven warnings
+  WARNING_COUNT=$(grep -E "^\[WARNING\]" "$TMP_OUTPUT" | sort -u | wc -l | tr -d ' ')
+  
+  echo "✅ Built: $TESTS_TOTAL tests passed, $WARNING_COUNT unique Maven warnings."
   EXIT_CODE=0
 else
   cat "$TMP_OUTPUT"

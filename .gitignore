@@ -31,3 +31,7 @@ __pycache__/
 
 # Maven Flatten Plugin generated files
 .flattened-pom.xml
+
+# Temporary build analysis files
+mvn_output.txt
+warnings_raw.txt
