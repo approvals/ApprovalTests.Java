@@ -8,9 +8,14 @@ import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 public class DateScrubber extends RegExScrubber
 {
+  private static final List<SupportedFormat> customScrubbers = new ArrayList<>();
   public DateScrubber(String pattern)
   {
     this(pattern, n -> "[Date" + n + "]");
@@ -62,6 +67,14 @@ public class DateScrubber extends RegExScrubber
   {
     if (StringUtils.isEmpty(formattedExample))
     { return DateScrubber.getNull(); }
+    // Check custom scrubbers first
+    for (SupportedFormat pattern : customScrubbers)
+    {
+      DateScrubber scrubber = new DateScrubber(pattern.getRegex());
+      if ("[Date1]".equals(scrubber.scrub(formattedExample)))
+      { return scrubber; }
+    }
+    // Check built-in supported formats
     for (SupportedFormat pattern : getSupportedFormats())
     {
       DateScrubber scrubber = new DateScrubber(pattern.getRegex());
@@ -94,6 +107,41 @@ public class DateScrubber extends RegExScrubber
   public static Scrubber getScrubberForDate()
   {
     return DateScrubber.getScrubberFor(new java.util.Date(0).toString());
+  }
+  public static void addScrubber(String example, String regex)
+  {
+    addScrubber(example, regex, true);
+  }
+  public static void addScrubber(String example, String regex, boolean displayMessage)
+  {
+    // Validate the regex pattern
+    try
+    {
+      Pattern.compile(regex);
+    }
+    catch (PatternSyntaxException e)
+    {
+      throw new IllegalArgumentException("Invalid regex pattern: " + regex, e);
+    }
+    // Validate that the regex matches the example
+    DateScrubber testScrubber = new DateScrubber(regex);
+    if (!"[Date1]".equals(testScrubber.scrub(example)))
+    {
+      throw new IllegalArgumentException(
+          "Regex pattern '" + regex + "' does not match the provided example '" + example + "'");
+    }
+    // Add the custom scrubber
+    customScrubbers.add(new SupportedFormat(regex, example));
+    // Display message if requested
+    if (displayMessage)
+    {
+      System.out.println(
+          "You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Java/issues/112.\n\nTo suppress this message, use \nDateScrubber.addScrubber(\"<date format>\", \"<regex>\", false)");
+    }
+  }
+  public static void clearCustomScrubbers()
+  {
+    customScrubbers.clear();
   }
   public static class SupportedFormat
   {

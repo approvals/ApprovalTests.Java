@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DateScrubberTest
 {
@@ -100,5 +102,121 @@ public class DateScrubberTest
     String input = utilDate.toString();
     String scrubbed = DateScrubber.getScrubberForDate().scrub(input);
     assertEquals("[Date1]", scrubbed);
+  }
+  @Test
+  void testAddScrubberWithValidRegexAndExample()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Add a custom scrubber with valid regex and example
+    DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
+    // Test that the custom scrubber works
+    DateScrubber scrubber = DateScrubber.getScrubberFor("2024-Jan-15");
+    assertEquals("[Date1]", scrubber.scrub("2024-Jan-15"));
+  }
+  @Test
+  void testAddScrubberWithInvalidRegex()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Test that invalid regex throws an exception
+    assertThrows(IllegalArgumentException.class, () -> {
+      DateScrubber.addScrubber("2023-Dec-25", "[invalid regex");
+    });
+  }
+  @Test
+  void testAddScrubberWithRegexThatDoesntMatchExample()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Test that regex that doesn't match example throws an exception
+    assertThrows(IllegalArgumentException.class, () -> {
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{2}-\\d{2}-\\d{4}");
+    });
+  }
+  @Test
+  void testAddScrubberDisplaysMessage()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Capture system output to verify message is displayed
+    java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
+    java.io.PrintStream originalOut = System.out;
+    System.setOut(new java.io.PrintStream(outContent));
+    try
+    {
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
+      String output = outContent.toString();
+      assertTrue(output.contains("You are using a custom date scrubber"));
+      assertTrue(output.contains("https://github.com/approvals/ApprovalTests.Java/issues/112"));
+    }
+    finally
+    {
+      System.setOut(originalOut);
+    }
+  }
+  @Test
+  void testAddScrubberSuppressMessage()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Capture system output to verify message is NOT displayed
+    java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
+    java.io.PrintStream originalOut = System.out;
+    System.setOut(new java.io.PrintStream(outContent));
+    try
+    {
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
+      String output = outContent.toString();
+      assertTrue(!output.contains("You are using a custom date scrubber"));
+    }
+    finally
+    {
+      System.setOut(originalOut);
+    }
+  }
+  @Test
+  void testCustomScrubberIntegrationWithGetScrubberFor()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Add a custom scrubber - use a unique pattern that doesn't conflict with built-ins
+    DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
+    // Test that getScrubberFor finds the custom scrubber
+    DateScrubber scrubber = DateScrubber.getScrubberFor("2024-Jan-15");
+    assertEquals("[Date1]", scrubber.scrub("2024-Jan-15"));
+    // Test that it works with different examples matching the pattern
+    assertEquals("[Date1]", scrubber.scrub("2025-Mar-30"));
+    assertEquals("Meeting on [Date1] at noon", scrubber.scrub("Meeting on 2024-Jan-15 at noon"));
+    assertEquals("Due date: [Date1]", scrubber.scrub("Due date: 2025-Mar-30"));
+  }
+  @Test
+  void testClearCustomScrubbers()
+  {
+    // Add a custom scrubber
+    DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
+    // Verify it works
+    DateScrubber scrubber = DateScrubber.getScrubberFor("2024-Jan-15");
+    assertEquals("[Date1]", scrubber.scrub("2024-Jan-15"));
+    // Clear custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Verify the custom scrubber no longer works
+    assertThrows(Exception.class, () -> {
+      DateScrubber.getScrubberFor("2024-Jan-15");
+    });
+  }
+  @Test
+  void testMultipleCustomScrubbers()
+  {
+    // Clear any existing custom scrubbers
+    DateScrubber.clearCustomScrubbers();
+    // Add multiple custom scrubbers
+    DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
+    DateScrubber.addScrubber("25/Dec/2023", "\\d{2}/[A-Za-z]{3}/\\d{4}", false);
+    // Test both custom scrubbers work
+    DateScrubber scrubber1 = DateScrubber.getScrubberFor("2024-Jan-15");
+    assertEquals("[Date1]", scrubber1.scrub("2024-Jan-15"));
+    DateScrubber scrubber2 = DateScrubber.getScrubberFor("15/Jan/2024");
+    assertEquals("[Date1]", scrubber2.scrub("15/Jan/2024"));
   }
 }
