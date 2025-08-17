@@ -18,6 +18,9 @@ Allows users to capture and verify console output (both System.out and System.er
 3. **getError()**: Returns captured standard error as a string
 4. **verifyOutput()**: Convenience method that calls Approvals.verify() on captured output
 5. **verifyError()**: Convenience method that calls Approvals.verify() on captured error
+5. **verifyAll()**: Convenience method that calls Approvals.verify() on both the output and error
+
+
 6. **close()**: Restores original System.out and System.err streams
 
 ## Usage Example
@@ -31,3 +34,8 @@ try (ConsoleOutput console = new ConsoleOutput()) {
 ## Integration
 - Works seamlessly with ApprovalTests
 - Automatically handles stream restoration even if exceptions occur
+
+## Tests
+1. Test verifyOutput
+2. Test verifyError
+3. Test verifyAll

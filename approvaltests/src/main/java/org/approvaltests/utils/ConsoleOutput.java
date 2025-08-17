@@ -84,6 +84,24 @@ public class ConsoleOutput implements AutoCloseable
     Approvals.verify(getError(), options);
   }
   /**
+   * Verifies both captured standard output and error using ApprovalTests.
+   * This is a convenience method that calls Approvals.verify() on both the output and error combined.
+   */
+  public void verifyAll()
+  {
+    verifyAll(new Options());
+  }
+  /**
+   * Verifies both captured standard output and error using ApprovalTests with options.
+   * This is a convenience method that calls Approvals.verify() on both the output and error combined.
+   * @param options The options to use for verification
+   */
+  public void verifyAll(Options options)
+  {
+    String combined = "Output:\n" + getOutput() + "\nError:\n" + getError();
+    Approvals.verify(combined, options);
+  }
+  /**
    * Restores the original System.out and System.err streams.
    * This method is automatically called when used in a try-with-resources block.
    */
