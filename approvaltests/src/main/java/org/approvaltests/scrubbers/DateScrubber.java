@@ -135,8 +135,10 @@ public class DateScrubber extends RegExScrubber
     // Display message if requested
     if (displayMessage)
     {
-      System.out.println(
-          "You are using a custom date scrubber. If you think the format you want to scrub would be useful for others, please add it to https://github.com/approvals/ApprovalTests.Java/issues/112.\n\nTo suppress this message, use \nDateScrubber.addScrubber(\"<date format>\", \"<regex>\", false)");
+      System.out.println("You are using a custom date scrubber.\n"
+          + "If you think the format you want to scrub would be useful for others,\n" + "please add it to\n"
+          + "https://github.com/approvals/ApprovalTests.Java/issues/112.\n\n" + "To suppress this message, use:\n"
+          + "    DateScrubber.addScrubber(\"<date format>\", \"<regex>\", false)");
     }
   }
   public static void clearCustomScrubbers()

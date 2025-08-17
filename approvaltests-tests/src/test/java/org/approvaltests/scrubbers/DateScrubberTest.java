@@ -5,6 +5,7 @@ import com.spun.util.markdown.table.MarkdownColumn;
 import com.spun.util.markdown.table.MarkdownTable;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.utils.ConsoleOutput;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.AutoApproveReporter;
+import org.approvaltests.reporters.BeyondCompareReporter;
 
 public class DateScrubberTest
 {
@@ -135,24 +138,25 @@ public class DateScrubberTest
     });
   }
   @Test
+  @UseReporter(AutoApproveReporter.class)
   void testAddScrubberDisplaysMessage()
   {
+    var expected = """
+        You are using a custom date scrubber.
+        If you think the format you want to scrub would be useful for others,
+        please add it to
+        https://github.com/approvals/ApprovalTests.Java/issues/112.
+
+        To suppress this message, use:
+            DateScrubber.addScrubber("<date format>", "<regex>", false)
+        """;
     // Clear any existing custom scrubbers
     DateScrubber.clearCustomScrubbers();
     // Capture system output to verify message is displayed
-    java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-    java.io.PrintStream originalOut = System.out;
-    System.setOut(new java.io.PrintStream(outContent));
-    try
+    try (ConsoleOutput console = new ConsoleOutput())
     {
       DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
-      String output = outContent.toString();
-      assertTrue(output.contains("You are using a custom date scrubber"));
-      assertTrue(output.contains("https://github.com/approvals/ApprovalTests.Java/issues/112"));
-    }
-    finally
-    {
-      System.setOut(originalOut);
+      console.verifyOutput(new Options().inline(expected));
     }
   }
   @Test
@@ -161,18 +165,11 @@ public class DateScrubberTest
     // Clear any existing custom scrubbers
     DateScrubber.clearCustomScrubbers();
     // Capture system output to verify message is NOT displayed
-    java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-    java.io.PrintStream originalOut = System.out;
-    System.setOut(new java.io.PrintStream(outContent));
-    try
+    try (ConsoleOutput console = new ConsoleOutput())
     {
       DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
-      String output = outContent.toString();
-      assertTrue(!output.contains("You are using a custom date scrubber"));
-    }
-    finally
-    {
-      System.setOut(originalOut);
+      String output = console.getOutput();
+      assertEquals("", output);
     }
   }
   @Test
