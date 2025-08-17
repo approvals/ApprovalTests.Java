@@ -5,6 +5,7 @@
 Remove all comments from the code.
 If the comment is explaining a block of code, extract the block as a reusable method and give it a name
 If the comment is explaining a variable, extract one with a name or give an existing variable a better name
+Keep comments related to .md snippets (these comments will start with // begin-snippet and end with // end-snippet)
 
 ## Testing Console output
 
