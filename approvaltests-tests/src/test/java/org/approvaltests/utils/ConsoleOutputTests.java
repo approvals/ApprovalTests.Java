@@ -5,12 +5,10 @@ import org.approvaltests.reporters.AutoApproveReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+@UseReporter(AutoApproveReporter.class)
 public class ConsoleOutputTests
 {
   @Test
-  @UseReporter(AutoApproveReporter.class)
   void testVerifyOutput()
   {
     var expected = """
@@ -26,7 +24,6 @@ public class ConsoleOutputTests
     }
   }
   @Test
-  @UseReporter(AutoApproveReporter.class)
   void testVerifyError()
   {
     var expected = """
@@ -42,7 +39,6 @@ public class ConsoleOutputTests
     }
   }
   @Test
-  @UseReporter(AutoApproveReporter.class)
   void testVerifyAll()
   {
     var expected = """
