@@ -146,13 +146,10 @@ public class DateScrubberTest
         To suppress this message, use:
             DateScrubber.addScrubber("<date format>", "<regex>", false)
         """;
-    try
+    try (ConsoleOutput console = new ConsoleOutput())
     {
-      try (ConsoleOutput console = new ConsoleOutput())
-      {
-        DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
-        console.verifyOutput(new Options().inline(expected));
-      }
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
+      console.verifyOutput(new Options().inline(expected));
     }
     finally
     {
@@ -162,14 +159,11 @@ public class DateScrubberTest
   @Test
   void testAddScrubberSuppressMessage()
   {
-    try
+    try (ConsoleOutput console = new ConsoleOutput())
     {
-      try (ConsoleOutput console = new ConsoleOutput())
-      {
-        DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
-        String output = console.getOutput();
-        assertEquals("", output);
-      }
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
+      String output = console.getOutput();
+      assertEquals("", output);
     }
     finally
     {
