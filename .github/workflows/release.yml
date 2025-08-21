@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Install Java and Maven
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -42,7 +42,7 @@ jobs:
         run: ./set_formatting_on.sh
 
       - name: Install Java for script
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
