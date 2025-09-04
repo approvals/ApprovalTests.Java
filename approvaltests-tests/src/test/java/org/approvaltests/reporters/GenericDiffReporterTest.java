@@ -9,6 +9,7 @@ import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
 import org.junit.jupiter.api.Test;
+import com.spun.util.logger.SimpleLogger;
 
 import java.io.File;
 
@@ -79,10 +80,13 @@ public class GenericDiffReporterTest
         GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
   }
   @Test
-  void testRunningNonExistantFile()
+  void testRunningNonExistantFile() throws Exception
   {
-    GenericDiffReporter genericDiffReporter = new GenericDiffReporter("not-a-diff-program.exe");
-    assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
+    try (var l = SimpleLogger.quiet())
+    {
+      GenericDiffReporter genericDiffReporter = new GenericDiffReporter("not-a-diff-program.exe");
+      assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
+    }
   }
   @Test
   void testProgramDidNotWork()

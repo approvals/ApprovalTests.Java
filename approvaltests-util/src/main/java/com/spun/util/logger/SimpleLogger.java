@@ -144,4 +144,10 @@ public class SimpleLogger
   {
     return wrapper.get();
   }
+  public static AutoCloseable quiet()
+  {
+    Appendable originalLogTo = getLogTo();
+    logToNothing();
+    return () -> logTo(originalLogTo);
+  }
 }
