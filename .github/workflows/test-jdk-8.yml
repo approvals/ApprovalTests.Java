@@ -18,9 +18,7 @@ jobs:
     - name: Turn off formatting
       run: ./set_formatting_off.sh
       shell: bash
-    - name: Build with Mise
-      run: ./build_and_test.sh
-      shell: bash
+    - run: mise exec -- mvn -B install --file pom.xml
     - name: Set up JDK8 for runtime testing
       uses: actions/setup-java@v5
       with:
