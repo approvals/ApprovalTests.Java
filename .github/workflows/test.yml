@@ -30,18 +30,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-    - uses: actions/cache@v4.2.4
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-    - name: Set up JDK
-      uses: actions/setup-java@v5
-      with:
-        distribution: 'zulu'
-        java-version: ${{ matrix.java }}
-    - name: Build with Maven
+    - uses: jdx/mise-action@v2
+    - name: Set Java version for matrix testing
+      run: echo "${{ matrix.java }}" > .java-version
+      shell: bash
+    - name: Build and Test
       run: |
         ./set_formatting_off.sh
         ./build_and_test.sh

@@ -1,3 +1,2 @@
 @echo off
-
-call mvn -B verify --file pom.xml
+"C:\Program Files\Git\bin\bash.exe" build_and_test.sh
