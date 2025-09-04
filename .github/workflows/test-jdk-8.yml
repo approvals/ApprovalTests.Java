@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-    - uses: jdx/mise-action@v2
     - name: Set Java version for building (JDK 21)
       run: echo "21" > .java-version
       shell: bash
+    - uses: jdx/mise-action@v2
     - name: Turn off formatting
       run: ./set_formatting_off.sh
       shell: bash
