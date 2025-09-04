@@ -1,6 +1,5 @@
 [tools]
 maven = "latest"
-dotnet = "latest"
 
 [tasks]
 build_and_test = "mvn --quiet -B verify --file pom.xml"
