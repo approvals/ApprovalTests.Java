@@ -110,7 +110,7 @@ public class DateScrubberTest
   {
     try
     {
-      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}");
+      DateScrubber.addScrubber("2023-Dec-25", "\\d{4}-[A-Za-z]{3}-\\d{2}", false);
       DateScrubber scrubber = DateScrubber.getScrubberFor("2024-Jan-15");
       assertEquals("[Date1]", scrubber.scrub("2024-Jan-15"));
     }
