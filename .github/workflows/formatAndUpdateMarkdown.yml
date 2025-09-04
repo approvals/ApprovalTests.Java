@@ -15,17 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-java@v5
-        with:
-          distribution: 'zulu'
-          java-version: '17'
-      - name: Format Code
-        run: mvn package -DskipTests=true
-      - name: Run MarkdownSnippets
-        run: |
-          dotnet tool install --global MarkdownSnippets.Tool
-          mdsnippets .
-        shell: bash
+      - uses: jdx/mise-action@v2
+      - run: ./format_code.sh
+      - run: ./run_markdown_templates.sh
       - name: Git Commit and Push
         uses: github-actions-x/commit@v2.9
         with:
