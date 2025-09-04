@@ -1,6 +1,8 @@
 package org.approvaltests;
 
 import com.spun.util.ClassUtils;
+import com.spun.util.logger.SimpleLogger;
+
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -15,10 +17,13 @@ import static org.approvaltests.MethodVerification.verifyMethodSignatures;
 public class CheckedExceptionsTest
 {
   @Test
-  void testTheVerifyApi()
+  void testTheVerifyApi() throws Exception
   {
-    verifyMethodSignatures("Methods with checked exceptions", getAllClasses(),
-        this::getMethodsWithCheckedExceptions);
+    try (var l = SimpleLogger.quiet())
+    {
+      verifyMethodSignatures("Methods with checked exceptions", getAllClasses(),
+          this::getMethodsWithCheckedExceptions);
+    }
   }
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {
