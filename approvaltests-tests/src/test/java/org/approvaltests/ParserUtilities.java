@@ -72,7 +72,6 @@ public class ParserUtilities
     ParseProblemException parseException = null;
     for (String sourceRootPath : SOURCE_PATHS)
     {
-      System.out.println("Trying to parse from: " + sourceRootPath);
       SourceRoot sourceRoot = new SourceRoot(Paths.get(sourceRootPath));
       try
       {
