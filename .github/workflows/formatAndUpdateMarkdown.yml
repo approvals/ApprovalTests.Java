@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
       - run: ./format_code.sh
       - run: ./run_markdown_templates.sh
       - name: Git Commit and Push
