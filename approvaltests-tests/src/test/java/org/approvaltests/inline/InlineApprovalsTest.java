@@ -7,6 +7,7 @@ import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.ReportNothing;
 import org.approvaltests.reporters.UseReporter;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.lambda.actions.Action1;
 import org.lambda.utils.Mutable;
@@ -217,4 +218,18 @@ public class InlineApprovalsTest
     Approvals.verify(expected);
   }
   // @formatter:on
+  @Nested
+  class NestedTest
+  {
+    @Test
+    void testInlineFromInnerClass()
+    {
+      var expected = """
+          hello Oskar
+          """;
+      Options options = new Options().inline("", InlineOptions.automatic());
+      Mutable<String> result = hijackInlineReporter(options);
+      assertApprovalFailure("hello Oskar", options, e -> assertEquals(expected, result.get()));
+    }
+  }
 }
