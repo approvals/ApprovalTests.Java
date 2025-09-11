@@ -77,7 +77,6 @@ public class LapTimer
   {
     long newTime = getCurrentTime();
     long difference = newTime - lapTime;
-    SimpleLogger.variable("difference", difference);
     lapTimes.add(new LapTime(difference, label));
     lapTime = newTime;
     endTime = end ? newTime : 0;
