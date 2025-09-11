@@ -5,7 +5,7 @@ import org.approvaltests.core.Options;
 import org.approvaltests.reporters.AutoApproveReporter;
 import org.approvaltests.reporters.DiffMergeReporter;
 import org.approvaltests.reporters.FirstWorkingReporter;
-import org.approvaltests.reporters.QuietReporter;
+import org.approvaltests.reporters.ReportNothing;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.actions.Action1;
@@ -104,14 +104,14 @@ public class InlineApprovalsTest
         + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
   @Test
-  @UseReporter(QuietReporter.class)
+  @UseReporter(ReportNothing.class)
   public void testReportingCode()
   {
     Options inlineWithCode = new Options().inline("", InlineOptions.showCode(true));
     Options inlineNoCode = new Options().inline("", InlineOptions.showCode(false));
     var resultWithCode = inlineWithCode.getReporter();
     assertEquals(InlineJavaReporter.class, resultWithCode.getClass());
-    assertEquals(QuietReporter.class,
+    assertEquals(ReportNothing.class,
         ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
   }
   @Test
@@ -172,7 +172,7 @@ public class InlineApprovalsTest
   {
     InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
     assertEquals(reporter.reporter.getClass(), AutoApproveReporter.class);
-    reporter.reporter = new QuietReporter();
+    reporter.reporter = new ReportNothing();
     Mutable<String> result = new Mutable<>("");
     reporter.createNewReceivedFileText = (s, a, m) -> result.set(a);
     return result;
@@ -188,7 +188,7 @@ public class InlineApprovalsTest
     {
       var options = new Options().inline(expected, InlineOptions.semiAutomatic());
       InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
-      reporter.reporter = new QuietReporter();
+      reporter.reporter = new ReportNothing();
       Approvals.verify("41", options);
     }
     catch (Throwable e)
