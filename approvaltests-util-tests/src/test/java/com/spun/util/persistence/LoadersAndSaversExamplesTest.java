@@ -2,13 +2,15 @@ package com.spun.util.persistence;
 
 import com.spun.util.Tuple;
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class LoadersAndSaversExamplesTest
 {
-  public static class Step0
+  @Nested
+  class Step0
   {
     // begin-snippet: step0
     @Test
@@ -32,7 +34,8 @@ public class LoadersAndSaversExamplesTest
     {
     }
   }
-  public static class Step0_5
+  @Nested
+  class Step0_5
   {
     @Test
     void test_dump_data()
@@ -44,7 +47,7 @@ public class LoadersAndSaversExamplesTest
       // end-snippet
       Approvals.verifyAll("", seniorCustomers, c -> c.toString());
     }
-    public static class MyDatabase
+    public class MyDatabase
     {
       public List<Customer> getSeniorCustomers()
       {
@@ -104,6 +107,7 @@ public class LoadersAndSaversExamplesTest
       }
     }
   }
+  @Nested
   class Step3a
   {
     // begin-snippet: step3_a
@@ -207,11 +211,11 @@ public class LoadersAndSaversExamplesTest
     }
     // end-snippet
   }
-  private String generateDiscountMessage(Customer customer, Discount seniorDiscount)
+  private static String generateDiscountMessage(Customer customer, Discount seniorDiscount)
   {
     return null;
   }
-  private Discount getSeniorDiscount()
+  public static Discount getSeniorDiscount()
   {
     return null;
   }
