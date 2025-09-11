@@ -33,8 +33,6 @@ public class JupiterApprovals
     String expectedAdditionalInformation = expected.forFile().getNamer().getAdditionalInformation();
     if (!actualAdditionalInformation.startsWith(expectedAdditionalInformation))
     {
-      SimpleLogger.variable("Actual additional information", actualAdditionalInformation);
-      SimpleLogger.variable("Expected additional information", expectedAdditionalInformation);
       String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"
           + "   wrong: o -> Approvals.verify(result);  \n" + "   right: o -> Approvals.verify(result, o);  \n"
           + " More at: https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UseTestFactory.md";
