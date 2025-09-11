@@ -16,7 +16,6 @@ public class ApprovalDirectoryConfigTest
   public void testApprovalBaseDirectory()
   {
     String path = Approvals.createApprovalNamer().getSourceFilePath();
-    SimpleLogger.variable("path", path);
     assertTrue(path.contains(MessageFormat.format("{0}test{0}resources{0}org{0}", File.separator)));
   }
 }

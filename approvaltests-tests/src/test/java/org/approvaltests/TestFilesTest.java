@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.logger.SimpleLogger;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 import org.lambda.query.Queryable;
@@ -13,11 +14,14 @@ import static org.approvaltests.MethodVerification.verifyMethodSignatures;
 public class TestFilesTest
 {
   @Test
-  void testTestFileNamesEndInTest()
+  void testTestFileNamesEndInTest() throws Exception
   {
-    verifyMethodSignatures(
-        "Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)",
-        getAllClasses(), this::getTestMethods);
+    try (var __ = SimpleLogger.quiet())
+    {
+      verifyMethodSignatures(
+          "Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)",
+          getAllClasses(), this::getTestMethods);
+    }
   }
   private List<Method> getTestMethods(Class<?> aClass)
   {
