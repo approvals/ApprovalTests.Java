@@ -14,7 +14,7 @@ import static org.approvaltests.MethodVerification.verifyMethodSignatures;
 public class TestFilesTest
 {
   @Test
-  void testTestFileNamesEndInTest() throws Exception
+  void testTestFileNamesEndInTest()
   {
     try (var __ = SimpleLogger.quiet())
     {

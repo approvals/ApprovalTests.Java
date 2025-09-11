@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DatabaseUtilsTest
 {
   @Test
-  public void testTransaction() throws Exception
+  public void testTransaction()
   {
-    try (AutoCloseable quiet = SimpleLogger.quiet())
+    try (var __ = SimpleLogger.quiet())
     {
       MockConnection connection1 = new MockConnection();
       MockConnection connection2 = new MockConnection();

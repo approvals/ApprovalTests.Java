@@ -1,5 +1,6 @@
 package com.spun.util.logger;
 
+import com.spun.util.QuietAutoCloseable;
 import com.spun.util.SingleWrapper;
 import com.spun.util.ThreadedWrapper;
 import com.spun.util.Wrapper;
@@ -144,7 +145,7 @@ public class SimpleLogger
   {
     return wrapper.get();
   }
-  public static AutoCloseable quiet()
+  public static QuietAutoCloseable quiet()
   {
     Appendable originalLogTo = getLogTo();
     logToNothing();

@@ -80,7 +80,7 @@ public class GenericDiffReporterTest
         GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
   }
   @Test
-  void testRunningNonExistantFile() throws Exception
+  void testRunningNonExistantFile()
   {
     try (var l = SimpleLogger.quiet())
     {

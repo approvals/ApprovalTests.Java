@@ -17,7 +17,7 @@ import static org.approvaltests.MethodVerification.verifyMethodSignatures;
 public class CheckedExceptionsTest
 {
   @Test
-  void testTheVerifyApi() throws Exception
+  void testTheVerifyApi()
   {
     try (var l = SimpleLogger.quiet())
     {
