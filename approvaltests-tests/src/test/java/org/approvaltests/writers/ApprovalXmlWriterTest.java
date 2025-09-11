@@ -3,6 +3,7 @@ package org.approvaltests.writers;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.scrubbers.RegExScrubber;
+import org.approvaltests.utils.ConsoleOutput;
 import org.junit.jupiter.api.Test;
 
 public class ApprovalXmlWriterTest
@@ -33,7 +34,23 @@ public class ApprovalXmlWriterTest
   @Test
   public void invalidXml()
   {
-    Approvals.verifyXml("<xml><hello/><start>hi</xml>");
-    System.err.println("Note: The previous xml error (</start>) is expected ");
+    var expected = """
+        <xml><hello/><start>hi</xml>
+        """;
+    try (var __ = new ConsoleOutput())
+    {
+      Approvals.verifyXml("<xml><hello/><start>hi</xml>", new Options().inline(expected));
+    }
+  }
+  @Test
+  public void validXml()
+  {
+    var expected = """
+        <?xml version="1.0" encoding="UTF-8"?><xml>
+          <hello/>
+          <start>hi</start>
+        </xml>
+        """;
+    Approvals.verifyXml("<xml><hello/><start>hi</start></xml>", new Options().inline(expected));
   }
 }
