@@ -1,10 +1,7 @@
 package org.approvaltests;
 
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.DiffReporter;
-import org.approvaltests.reporters.QuietReporter;
-import org.approvaltests.reporters.UseReporter;
+import org.approvaltests.reporters.*;
 import org.approvaltests.reporters.windows.BeyondCompareReporter;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +34,7 @@ public class ApprovalsTest
     Approvals.verifyException(() -> {
       JButton b = new JButton("Approval Tests Rule");
       b.setPreferredSize(new Dimension(150, 20));
-      Approvals.verify(b, new Options(new QuietReporter()));
+      Approvals.verify(b, new Options(new ReportNothing()));
     });
   }
   @Test

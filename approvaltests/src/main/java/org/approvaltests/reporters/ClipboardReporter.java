@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import com.spun.util.SystemUtils;
 import com.spun.util.WindowUtils;
+import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.ApprovalFailureReporter;
 
 import java.awt.*;

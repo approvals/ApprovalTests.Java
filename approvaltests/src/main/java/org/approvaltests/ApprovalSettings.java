@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.QuietAutoCloseable;
 import com.spun.util.introspection.Caller;
 import org.approvaltests.approvers.FileApprover;
 import org.lambda.functions.Function2;
@@ -23,7 +24,7 @@ public class ApprovalSettings
     String className = caller.getClassName().replace('.', File.separatorChar);
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(className));
   }
-  public static AutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
+  public static QuietAutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
   {
     return FileApprover.registerErrorGenerator(errorGenerator);
   }

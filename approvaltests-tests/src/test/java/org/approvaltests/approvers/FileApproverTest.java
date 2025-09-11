@@ -1,6 +1,7 @@
 package org.approvaltests.approvers;
 
 import com.spun.util.ObjectUtils;
+import com.spun.util.QuietAutoCloseable;
 import com.spun.util.io.FileUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
@@ -71,13 +72,12 @@ public class FileApproverTest
     // end-snippet
   }
   @Test
-  void testCustomError() throws Exception
+  void testCustomError()
   {
     var expected = """
         java.lang.AssertionError: Custom message
         """;
-    try (AutoCloseable old = Approvals.settings()
-        .registerErrorGenerator((received, approved) -> new AssertionError("Custom message")))
+    try (var old = ApprovalSettings.registerErrorGenerator((r, a) -> new AssertionError("Custom message")))
     {
       FileApprover fileApprover = new FileApprover(new File("a.txt"), new File("b.txt"), null, null);
       Approvals.verifyException(fileApprover::fail, new Options().inline(expected));

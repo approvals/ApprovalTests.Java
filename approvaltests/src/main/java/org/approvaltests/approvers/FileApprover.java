@@ -1,6 +1,7 @@
 package org.approvaltests.approvers;
 
 import com.spun.util.ObjectUtils;
+import com.spun.util.QuietAutoCloseable;
 import com.spun.util.io.FileUtils;
 import org.approvaltests.internal.logs.ApprovedFileLog;
 import org.approvaltests.internal.logs.FailedFileLog;
@@ -39,7 +40,7 @@ public class FileApprover implements ApprovalApprover
     this.writer = writer;
     this.approver = approver;
   }
-  public static AutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
+  public static QuietAutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
   {
     Function2<String, String, Error> old = FileApprover.errorGenerator;
     FileApprover.errorGenerator = errorGenerator;

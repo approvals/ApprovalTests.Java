@@ -2,6 +2,7 @@ package com.spun.util.persistence;
 
 import com.spun.util.Tuple;
 import org.approvaltests.Approvals;
+import org.approvaltests.utils.ConsoleOutput;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -40,12 +41,15 @@ public class LoadersAndSaversExamplesTest
     @Test
     void test_dump_data()
     {
-      MyDatabase database = new MyDatabase();
-      // begin-snippet: step_capture_data
-      List<Customer> seniorCustomers = database.getSeniorCustomers();
-      seniorCustomers.stream().forEach(System.out::println);
-      // end-snippet
-      Approvals.verifyAll("", seniorCustomers, c -> c.toString());
+      try (var __ = new ConsoleOutput())
+      {
+        MyDatabase database = new MyDatabase();
+        // begin-snippet: step_capture_data
+        List<Customer> seniorCustomers = database.getSeniorCustomers();
+        seniorCustomers.stream().forEach(System.out::println);
+        // end-snippet
+        Approvals.verifyAll("", seniorCustomers, c -> c.toString());
+      }
     }
     public class MyDatabase
     {
