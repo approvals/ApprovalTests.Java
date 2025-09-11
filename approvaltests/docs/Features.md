@@ -95,7 +95,7 @@ ApprovalNamer namer = Approvals.createApprovalNamer();
 Function2<File, File, VerifyResult> approveEverything = (r, a) -> VerifyResult.SUCCESS;
 Approvals.verify(new FileApprover(writer, namer, approveEverything));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L66-L71' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_approver' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/approvers/FileApproverTest.java#L67-L72' title='Snippet source file'>snippet source</a> | <a href='#snippet-custom_approver' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
