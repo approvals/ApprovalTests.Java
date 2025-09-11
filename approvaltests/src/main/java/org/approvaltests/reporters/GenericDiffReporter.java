@@ -96,7 +96,6 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     ArrayList<String> commands = new ArrayList<String>();
     commands.add(diffProgram);
     commands.addAll(argsSplitOnSpace);
-    SimpleLogger.variable("commands", commands);
     return commands.toArray(new String[0]);
   }
   public boolean isWorkingInThisEnvironment(String forFile)

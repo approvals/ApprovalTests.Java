@@ -9,7 +9,6 @@ import org.apache.velocity.util.ArrayIterator;
 import org.apache.velocity.util.EnumerationIterator;
 import org.apache.velocity.util.introspection.Info;
 import org.apache.velocity.util.introspection.Introspector;
-import org.apache.velocity.util.introspection.IntrospectorBase;
 import org.apache.velocity.util.introspection.Uberspect;
 import org.apache.velocity.util.introspection.VelMethod;
 import org.apache.velocity.util.introspection.VelPropertyGet;
