@@ -194,7 +194,7 @@ public class TestUtils
     String fileName = element.getFileName();
     File dir = getSourceDirectory.get().call(ObjectUtils.loadClass(fullClassName), fileName);
     String methodName = unrollLambda(element.getMethodName());
-    return new StackTraceReflectionResult(dir, className, fullClassName, methodName);
+    return new StackTraceReflectionResult(dir, fileName, className, fullClassName, methodName);
   }
   private static String handleInnerClasses(String className)
   {

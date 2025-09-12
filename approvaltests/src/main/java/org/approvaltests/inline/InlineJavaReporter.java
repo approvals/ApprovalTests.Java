@@ -38,13 +38,13 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   public boolean report(String received, String approved)
   {
     additionalLines = footerCreator.call(received, approved);
-    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
+    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getFileName();
     String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);
   }
   public String createReceived(String actual)
   {
-    String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".java";
+    String file = sourceFilePath + stackTraceNamer.getInfo().getFileName();
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
     String fullText = this.createNewReceivedFileText.call(text, actual + additionalLines,
