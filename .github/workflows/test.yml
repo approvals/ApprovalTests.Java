@@ -32,13 +32,13 @@ jobs:
       run: echo "${{ matrix.java }}" > .java-version
       shell: bash
     - uses: jdx/mise-action@v3
+    - run: ./set_formatting_off.sh
+      shell: bash
     - name: Build and Test
       run: |
         java -version
         mvn --version
-        ./set_formatting_off.sh
-        ./build_and_test.sh
-      shell: bash
+        ./build_and_test
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v5
       if: always()
