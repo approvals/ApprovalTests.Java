@@ -27,7 +27,7 @@ The core API is in `org.approvaltests.Approvals` class, which provides static me
 mvn install
 
 # Build and test (recommended)
-./build_and_test.sh
+./build_and_test
 
 # Skip tests if some are machine/locale dependent
 mvn install -DskipTests
