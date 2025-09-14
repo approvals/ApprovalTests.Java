@@ -36,6 +36,7 @@ jobs:
     - name: Run in JDK8
       run: |
         java -version
+        mvn -version
         ./mvnw verify
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v5
