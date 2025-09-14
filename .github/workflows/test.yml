@@ -2,9 +2,7 @@ name:  Run tests
 
 on:
   push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 # Cancel existing executions when new commits are pushed onto the branch
