@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Set Java version for building (JDK 21)
-      run: echo "21" > .java-version
+      run: echo "zulu-21" > .java-version
       shell: bash
     - uses: jdx/mise-action@v3
     - name: Turn off formatting

@@ -64,7 +64,7 @@ Configure `idiomatic_version_file_enable_tools` in `.mise.toml` to allow this. R
 
 **CRITICAL**: CI implementations should be trivial, often just calling a single script, such that it's easy to reproduce CI results on a local machine.
 
-- CI workflows can override tool versions by writing to the version files before running tasks (e.g., `echo "11" > .java-version`)
+- CI workflows can override tool versions by writing to the version files before running tasks (e.g., `echo "zulu-11" > .java-version`)
 - Use matrix builds to test multiple versions: each matrix job writes its target version to the appropriate idiomatic version file
 
 Outside of CI, a separate GitHub workflow runs `tidy_code` and `update_docs` whenever the main branch changes, to bring things back in to compliance.

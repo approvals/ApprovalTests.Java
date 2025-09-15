@@ -29,7 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - name: Set Java version for matrix testing
-      run: echo "${{ matrix.java }}" > .java-version
+      run: echo "zulu-${{ matrix.java }}" > .java-version
       shell: bash
     - uses: jdx/mise-action@v3
     - run: ./set_formatting_off.sh
