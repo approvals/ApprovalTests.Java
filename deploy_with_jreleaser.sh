@@ -12,6 +12,11 @@ if [[ ${#missing_vars[@]} -ne 0 ]]; then
   exit 1
 fi
 
+echo "********** versions"
+mvn --version
+java -version
+mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+
 echo "********** Setting up gpg"
 echo "$GPG_PRIVATE_KEY" | gpg --batch --import
 
