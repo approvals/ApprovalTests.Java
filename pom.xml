@@ -120,7 +120,7 @@
             <!-- formatter_plugin_end -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
                 <configuration>
                     <argLine>-Duser.language=en -Duser.region=US</argLine>
                     <parallel>methods</parallel>
@@ -209,7 +209,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.5.3</version>
+                        <version>3.5.4</version>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
