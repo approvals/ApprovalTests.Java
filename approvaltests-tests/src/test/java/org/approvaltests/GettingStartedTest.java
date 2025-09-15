@@ -75,7 +75,7 @@ public class GettingStartedTest
   {
     try (NamedEnvironment namedEnvironment = NamerFactory.asOsSpecificTest())
     {
-      if (!namedEnvironment.isCurrentEnvironmentValidFor("Windows_10"))
+      if (!namedEnvironment.isCurrentEnvironmentValidFor(false, "Windows_10"))
       { return; }
     }
     // begin-snippet: verifying_gui

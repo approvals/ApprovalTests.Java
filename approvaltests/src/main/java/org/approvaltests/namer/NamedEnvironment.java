@@ -17,14 +17,21 @@ public class NamedEnvironment implements AutoCloseable
   }
   public boolean isCurrentEnvironmentValidFor(String... environment)
   {
+    return isCurrentEnvironmentValidFor(true, environment);
+  }
+  public boolean isCurrentEnvironmentValidFor(boolean displayMessage, String... environment)
+  {
     if (Arrays.asList(environment).contains(NamerFactory.getAdditionalInformation()))
     {
       return true;
     }
     else
     {
-      SimpleLogger.message(
-          String.format("Not valid for current environment: \"%s\"", NamerFactory.getAdditionalInformation()));
+      if (displayMessage)
+      {
+        SimpleLogger.message(
+            String.format("Not valid for current environment: \"%s\"", NamerFactory.getAdditionalInformation()));
+      }
       return false;
     }
   }
