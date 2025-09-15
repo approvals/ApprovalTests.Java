@@ -30,9 +30,9 @@ public class JUnitReporterTest
     try (QuietAutoCloseable l = SimpleLogger.quiet())
     {
       String a = FileUtils.getResolvedPath(ClassUtils.getAdjacentFile(this.getClass(), "a.txt"));
-      String b = FileUtils.getResolvedPath(ClassUtils.getAdjacentFile(this.getClass(), "b.txt"));
+      String r = FileUtils.getResolvedPath(ClassUtils.getAdjacentFile(this.getClass(), "r.txt"));
       Approvals.verifyException(() -> {
-        reporter.report(b, a);
+        reporter.report(r, a);
       });
     }
   }

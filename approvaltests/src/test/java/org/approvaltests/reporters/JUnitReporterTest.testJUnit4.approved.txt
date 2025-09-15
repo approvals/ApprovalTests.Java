@@ -2,6 +2,6 @@ org.junit.ComparisonFailure: expected:<1
 [a]
 I
 > but was:<1
-[b]
+[r]
 I
 >

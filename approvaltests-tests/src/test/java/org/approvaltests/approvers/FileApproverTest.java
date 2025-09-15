@@ -79,7 +79,7 @@ public class FileApproverTest
         """;
     try (var old = ApprovalSettings.registerErrorGenerator((r, a) -> new AssertionError("Custom message")))
     {
-      FileApprover fileApprover = new FileApprover(new File("a.txt"), new File("b.txt"), null, null);
+      FileApprover fileApprover = new FileApprover(new File("a20.txt"), new File("b20.txt"), null, null);
       Approvals.verifyException(fileApprover::fail, new Options().inline(expected));
     }
   }

@@ -5,6 +5,7 @@ import com.spun.util.SystemUtils;
 import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
+import org.approvaltests.core.Options;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
@@ -30,22 +31,28 @@ public class GenericDiffReporterTest
   @Test
   public void testFileExtensions()
   {
-    assertTrue(new GenericDiffReporter("", "").isFileExtensionHandled("a.txt"));
+    assertTrue(new GenericDiffReporter("", "").isFileExtensionHandled("a5.txt"));
   }
   @Test
   public void testProgramsExist()
   {
-    assertFalse(new GenericDiffReporter("this_should_never_exist", "").isWorkingInThisEnvironment("a.txt"));
+    assertFalse(new GenericDiffReporter("this_should_never_exist", "").isWorkingInThisEnvironment("a6.txt"));
   }
   @Test
   public void testTkDiff()
   {
-    approveGenericReporter("a.txt", "b.txt", new TkDiffReporter());
+    var expected = """
+        /Applications/TkDiff.app/Contents/MacOS/tkdiff %s %s
+        """;
+    approveGenericReporter("a1.txt", "b1.txt", new TkDiffReporter(), expected);
   }
   @Test
   public void testP4Merge()
   {
-    approveGenericReporter("a.png", "b.png", new P4MergeReporter());
+    var expected = """
+        /Applications/p4merge.app/Contents/MacOS/p4merge %s %s
+        """;
+    approveGenericReporter("a1.png", "b1.png", new P4MergeReporter(), expected);
   }
   @Test
   public void testSpacesInFileNames()
@@ -65,12 +72,12 @@ public class GenericDiffReporterTest
   {
     return SystemUtils.convertFileForCommandLine(name, isWindows);
   }
-  private void approveGenericReporter(String a, String b, GenericDiffReporter reporter)
+  private void approveGenericReporter(String a, String b, GenericDiffReporter reporter, String expected)
   {
     File directory = ClassUtils.getSourceDirectory(getClass());
     String aPath = FileUtils.getResolvedPath(new File(directory, a));
     String bPath = FileUtils.getResolvedPath(new File(directory, b));
-    Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath));
+    Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath), new Options().inline(expected));
   }
   @Test
   public void testIsImage()
