@@ -19,7 +19,7 @@ jobs:
 
       - name: Determine version from git tag
         id: version
-        run: echo "name=tag::${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> "$GITHUB_OUTPUT"
 
       - name: disable formatting
         run: ./set_formatting_off.sh
