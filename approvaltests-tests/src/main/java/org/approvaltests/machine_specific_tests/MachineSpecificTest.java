@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class MachineSpecificTest
 {
-  private static boolean DISPLAYED = false;
+  public static boolean DISPLAYED = false;
   @BeforeEach
   public void beforeMethod(TestInfo testInfo)
   {

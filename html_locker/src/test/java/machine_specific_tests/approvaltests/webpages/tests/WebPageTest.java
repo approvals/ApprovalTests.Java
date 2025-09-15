@@ -15,6 +15,10 @@ import java.net.URI;
 @UseReporter({DiffReporter.class, ClipboardReporter.class})
 public class WebPageTest extends MachineSpecificTest
 {
+  static
+  {
+    DISPLAYED = true;
+  }
   @Disabled("run manually, todo: create snippet")
   @Test
   public void testWikipedia() throws Exception
