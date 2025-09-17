@@ -29,7 +29,7 @@ Capturing Human Intelligence - ApprovalTests is an open source assertion/verific
 
 It is compatible with JUnit 3, 4 & 5 and TestNG.
 
-Works on JDK 1.8+ (tested on 1.8, 17, 21, 24).<!-- singleLineInclude: JavaVersionTest.testSupportedJavaVersions.approved.txt -->
+Works on JDK 1.8+ (tested on 1.8, 17, 21, 24, 25).<!-- singleLineInclude: JavaVersionTest.testSupportedJavaVersions.approved.txt -->
 
 ## What can it be used for?
 
