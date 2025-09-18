@@ -1,6 +1,7 @@
 [![FormatJava](https://github.com/approvals/ApprovalTests.Java/actions/workflows/formatJava.yml/badge.svg)](https://github.com/approvals/ApprovalTests.Java/actions/workflows/formatJava.yml)
 [![Run tests](https://github.com/approvals/ApprovalTests.Java/actions/workflows/test.yml/badge.svg)](https://github.com/approvals/ApprovalTests.Java/actions/workflows/test.yml)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.approvaltests/approvaltests/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.approvaltests/approvaltests)
+[![Maven Central](https://img.shields.io/maven-central/v/com.approvaltests/approvaltests
+)](https://central.sonatype.com/artifact/com.approvaltests/approvaltests)
 [![Discord](https://img.shields.io/discord/1349240939406819409?logo=discord)](https://discord.gg/XDrgy6x6Se)
 <!-- toc -->
 ## Contents
