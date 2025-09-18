@@ -1,4 +1,4 @@
-name:  Run tests on JDK8
+name:  Run tests on JDK 8 and 11
 
 on:
   push:
@@ -38,7 +38,22 @@ jobs:
         java -version
         mvn -version
         ./mvnw verify
-    - name: Publish Test Report
+    - name: Publish Test Report for JDK 8
+      uses: mikepenz/action-junit-report@v5
+      if: always()
+      with:
+        report_paths: '**/target/surefire-reports/*.xml'
+    - name: Set up JDK11 for runtime testing
+      uses: actions/setup-java@v5
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - name: Run in JDK11
+      run: |
+        java -version
+        mvn -version
+        ./mvnw verify
+    - name: Publish Test Report for JDK 11
       uses: mikepenz/action-junit-report@v5
       if: always()
       with:
