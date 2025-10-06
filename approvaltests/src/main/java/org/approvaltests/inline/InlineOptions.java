@@ -1,8 +1,9 @@
 package org.approvaltests.inline;
 
-import com.spun.util.io.FileUtils;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.AutoApproveReporter;
+
+import com.spun.util.io.FileUtils;
 
 public interface InlineOptions
 {
@@ -13,12 +14,23 @@ public interface InlineOptions
   {
     if (doShowCode)
     {
-      return options -> options.withReporter(new InlineJavaReporter(options.getReporter(), null));
+      if (InlineKotlinReporter.getResult().isKotlin())
+      {
+        return options -> options.withReporter(new InlineKotlinReporter(options.getReporter(), null));
+      }
+      else
+      {
+        return options -> options.withReporter(new InlineJavaReporter(options.getReporter(), null));
+      }
     }
     else
     {
       return options -> options;
     }
+  }
+  static boolean isKotlin()
+  {
+    return false;
   }
   public static InlineOptions automatic()
   {

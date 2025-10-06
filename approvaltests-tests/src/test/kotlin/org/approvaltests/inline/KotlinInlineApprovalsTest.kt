@@ -13,7 +13,6 @@ class KotlinInlineApprovalsTest {
         val expected = """
             hello world
             """.trimIndent()
-        Approvals.verify("hello world", Options().inline(expected)
-            .withReporter(InlineKotlinReporter(BeyondCompareReporter(), null)))
+        Approvals.verify("hello world", Options().inline(expected))
     }
 }
