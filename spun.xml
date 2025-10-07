@@ -87,7 +87,7 @@
 <setting id="org.eclipse.jdt.core.formatter.insert_space_after_comma_in_constructor_declaration_parameters" value="insert"/>
 <setting id="org.eclipse.jdt.core.formatter.insert_space_before_prefix_operator" value="do not insert"/>
 <setting id="org.eclipse.jdt.core.formatter.indent_statements_compare_to_body" value="true"/>
-<setting id="org.eclipse.jdt.core.formatter.blank_lines_before_method" value="0"/>
+<setting id="org.eclipse.jdt.core.formatter.blank_lines_before_method" value="1"/>
 <setting id="org.eclipse.jdt.core.formatter.format_guardian_clause_on_one_line" value="true"/>
 <setting id="org.eclipse.jdt.core.formatter.insert_space_before_colon_in_for" value="insert"/>
 <setting id="org.eclipse.jdt.core.formatter.insert_space_before_closing_paren_in_cast" value="do not insert"/>
