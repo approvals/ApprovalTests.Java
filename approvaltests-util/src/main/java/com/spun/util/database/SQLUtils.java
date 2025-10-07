@@ -18,10 +18,12 @@ public class SQLUtils
     }
     return createInSQLStatement((Object[]) array);
   }
+
   public static String createInSQLStatement(String[] values)
   {
     return createInSQLStatement((Object[]) values);
   }
+
   public static String createInSQLStatement(Object[] values)
   {
     if (values == null || values.length == 0)
@@ -36,6 +38,7 @@ public class SQLUtils
     sql.append(") ");
     return sql.toString();
   }
+
   public static String loadInSQLStatement(ResultSet rs)
   {
     StringBuffer sql = new StringBuffer("(");
@@ -57,11 +60,13 @@ public class SQLUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static String createSQLBetween(String lowerValue, String betweenVariable, String upperValue)
   {
     return "(" + DatabaseUtils.formatNullableObject(lowerValue) + " <= " + betweenVariable + " AND "
         + betweenVariable + " < " + DatabaseUtils.formatNullableObject(upperValue) + ")";
   }
+
   public static String compareBy(ColumnMetadata metadata, String alias, String compareBy, Object value)
   {
     String sql = null;
@@ -79,18 +84,22 @@ public class SQLUtils
     }
     return sql;
   }
+
   public static String compareBy(ColumnMetadata metadata, String alias, String compareBy, boolean value)
   {
     return metadata.getNameWithPrefix(alias) + " " + compareBy + " " + DatabaseUtils.formatBoolean(value);
   }
+
   public static String compareByEquals(ColumnMetadata metadata, String alias, Object value)
   {
     return compareBy(metadata, alias, "=", value);
   }
+
   public static String createInSQLStatement(ColumnMetadata metadata, String alias, Object[] values)
   {
     return createInSQLStatement(metadata, alias, false, values);
   }
+
   public static String createInSQLStatement(ColumnMetadata metadata, String alias, boolean not, Object[] values)
   {
     String sql = null;

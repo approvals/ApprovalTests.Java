@@ -22,6 +22,7 @@ public class NumberUtils
   {
     return value1 > value2 ? value1 : value2;
   }
+
   /**
    * Loads an int from a String.
    **/
@@ -29,6 +30,7 @@ public class NumberUtils
   {
     return load(i, defaultValue, true);
   }
+
   /**
    * Loads an int from a String.
    **/
@@ -44,6 +46,7 @@ public class NumberUtils
     }
     return defaultValue;
   }
+
   /**
    * Loads an int from a String.
    **/
@@ -58,6 +61,7 @@ public class NumberUtils
     }
     return defaultValue;
   }
+
   public static double load(String i, double defaultValue)
   {
     try
@@ -70,10 +74,12 @@ public class NumberUtils
     }
     return defaultValue;
   }
+
   public static boolean load(String i, boolean d)
   {
     return (i == null) ? d : "true".equalsIgnoreCase(i);
   }
+
   public static int[] loadArray(String summaryString, String seperator, int defaultWhenLoading)
   {
     String[] parts = StringUtils.split(summaryString, seperator);
@@ -84,6 +90,7 @@ public class NumberUtils
     }
     return integers;
   }
+
   public static double setSignificantDigit(double onNumber, int digit)
   {
     double power = Math.pow(10, digit);
@@ -92,6 +99,7 @@ public class NumberUtils
     onNumber = onNumber / power;
     return onNumber;
   }
+
   /**
    * a unit test of sorts
    **/
@@ -105,15 +113,18 @@ public class NumberUtils
       SimpleLogger.event(d + " , " + s + " -> " + setSignificantDigit(d, s));
     }
   }
+
   public static boolean doRandomPercentage(int i)
   {
     return RANDOM.nextInt(100) < i;
   }
+
   public static boolean equals(double one, double two, double delta)
   {
     double actualDelta = one - two;
     return (-delta < actualDelta) && (actualDelta < delta);
   }
+
   public static Integer[] wrapIntegers(int[] ints)
   {
     Integer[] integers = new Integer[ints.length];
@@ -123,6 +134,7 @@ public class NumberUtils
     }
     return integers;
   }
+
   public static String createRandomStringOfNumbers(int digits)
   {
     StringBuffer buffer = new StringBuffer(digits);
@@ -132,6 +144,7 @@ public class NumberUtils
     }
     return buffer.toString();
   }
+
   public static boolean isIn(int check, int[] available)
   {
     for (int i = 0; i < available.length; i++)
@@ -141,10 +154,12 @@ public class NumberUtils
     }
     return false;
   }
+
   public static boolean isEven(int number)
   {
     return ((number % 2) == 0);
   }
+
   public static <T> T[] getShuffled(T[] objects, int numberToReturn)
   {
     Shuffler[] shuffles = new Shuffler[objects.length];
@@ -170,6 +185,7 @@ public class NumberUtils
     }
     return (T[]) list.toArray(objects2);
   }
+
   /**
    * randomly chooses a number between the minimum and maximum
    * <div><b>Example:</b> {@code int grade =  NumberUtils.getRandomInt(1,100);} </div>
@@ -192,22 +208,27 @@ public class NumberUtils
       return RANDOM.nextInt(diff) + minimum;
     }
   }
+
   public static int floor(double i)
   {
     return (int) Math.floor(i);
   }
+
   public static int getNumberOfDigits(int number)
   {
     return ("" + number).length();
   }
+
   public static double convertDoubleToPercentage(double doub)
   {
     return doub * 100;
   }
+
   public static double convertPercentageToDouble(double percent)
   {
     return percent / 100;
   }
+
   public static String stripNonNumeric(String input)
   {
     if (input == null)
@@ -254,6 +275,7 @@ public class NumberUtils
       this.oldPosition = oldPosition;
       this.newPosition = RANDOM.nextInt();
     }
+
     public int compare(Shuffler s1, Shuffler s2)
     {
       return Double.compare(s1.newPosition, (s2).newPosition);
@@ -263,34 +285,42 @@ public class NumberUtils
   {
     return IntStream.of(numbers);
   }
+
   public static IntStream toIntStream(Integer[] numbers)
   {
     return Arrays.stream(numbers).mapToInt(Integer::intValue);
   }
+
   public static IntStream toIntStream(List<Integer> numbers)
   {
     return numbers.stream().mapToInt(Integer::intValue);
   }
+
   public static LongStream toLongStream(long[] numbers)
   {
     return LongStream.of(numbers);
   }
+
   public static LongStream toLongStream(Long[] numbers)
   {
     return Arrays.stream(numbers).mapToLong(Long::longValue);
   }
+
   public static LongStream toLongStream(List<Long> numbers)
   {
     return numbers.stream().mapToLong(Long::longValue);
   }
+
   public static DoubleStream toDoubleStream(double[] numbers)
   {
     return DoubleStream.of(numbers);
   }
+
   public static DoubleStream toDoubleStream(Double[] numbers)
   {
     return Arrays.stream(numbers).mapToDouble(Double::doubleValue);
   }
+
   public static DoubleStream toDoubleStream(List<Double> numbers)
   {
     return numbers.stream().mapToDouble(Double::doubleValue);

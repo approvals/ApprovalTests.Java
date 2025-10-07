@@ -25,6 +25,7 @@ class ApprovalTestPackageSettingsTest
       c.put("defaults", defaults);
     });
   }
+
   private Queryable<Object> getFieldTypes()
   {
     Field[] fields = ApprovalTestPackageSettings.class.getFields();

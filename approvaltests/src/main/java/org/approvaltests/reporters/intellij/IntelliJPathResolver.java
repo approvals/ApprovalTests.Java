@@ -25,11 +25,13 @@ public class IntelliJPathResolver
   {
     this(edition, appData());
   }
+
   public IntelliJPathResolver(Edition edition, String appDataLocation)
   {
     String toolboxPath = appDataLocation + "/JetBrains/Toolbox";
     this.channelsPath = toolboxPath + "/apps/" + edition.getDirectory() + "/ch-0/";
   }
+
   private static String appData()
   {
     String appData = "";
@@ -49,10 +51,12 @@ public class IntelliJPathResolver
     }
     return appData;
   }
+
   public String findIt()
   {
     return getIntelliJPath().map(Objects::toString).orElse(PATH_NOT_FOUND);
   }
+
   private Optional<Path> getIntelliJPath()
   {
     try (Stream<Path> walk = PATH_WALKER.call(channelsPath, 1))
@@ -69,10 +73,12 @@ public class IntelliJPathResolver
       return Optional.empty();
     }
   }
+
   private Path getPath(Version version)
   {
     return Paths.get(channelsPath + version.version + runtimeSuffix()).toAbsolutePath();
   }
+
   private String runtimeSuffix()
   {
     String runtimeSuffix;
@@ -94,6 +100,7 @@ public class IntelliJPathResolver
     }
     return runtimeSuffix;
   }
+
   private Optional<String> findEapOrRegular(Stream<Path> walk)
   {
     return walk.map(Path::getFileName).map(Objects::toString).filter(s -> s.endsWith(".app")).findAny();

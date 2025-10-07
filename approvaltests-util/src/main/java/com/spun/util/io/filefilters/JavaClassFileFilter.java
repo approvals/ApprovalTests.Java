@@ -12,6 +12,7 @@ public class JavaClassFileFilter implements FileFilter
     this.classSuffix = classSuffix;
     this.startsWith = startsWith.replace('.', File.separatorChar);
   }
+
   public boolean accept(File pathname)
   {
     String name = pathname.getName();

@@ -27,6 +27,7 @@ public class IntelliJToolboxResolver
     { return diffInfo; }
     return DiffInfo.getNull();
   }
+
   public static DiffInfo getDiffInfoMac(String userHome, Function1<String, Boolean> fileExists)
   {
     Queryable<String> locations = as("IntelliJ IDEA Ultimate", "IntelliJ IDEA", "IntelliJ IDEA Community",
@@ -35,6 +36,7 @@ public class IntelliJToolboxResolver
     String postfix = ".app/Contents/MacOS/idea";
     return getDiffInfo(fileExists, applications, locations, postfix, "/");
   }
+
   public static DiffInfo getDiffInfoLinux(String userHome, Function1<String, Boolean> fileExists)
   {
     Queryable<String> locations = as("intellij-idea-ultimate", "intellij-idea-community-edition");
@@ -42,6 +44,7 @@ public class IntelliJToolboxResolver
     String postfix = "/bin/idea.sh";
     return getDiffInfo(fileExists, applications, locations, postfix, "/");
   }
+
   public static DiffInfo getDiffInfoWindows(String[] programFiles, Function1<String, Boolean> fileExists)
   {
     Queryable<String> applications = as("IntelliJ IDEA Ultimate", "IntelliJ IDEA", "IntelliJ IDEA Community",
@@ -50,6 +53,7 @@ public class IntelliJToolboxResolver
     String postfix = "\\bin\\idea64.exe";
     return getDiffInfo(fileExists, locations, applications, postfix, "\\");
   }
+
   private static DiffInfo getDiffInfo(Function1<String, Boolean> fileExists, Queryable<String> locations,
       Queryable<String> applications, String postfix, String pathSeparator)
   {

@@ -53,14 +53,17 @@ public enum Country {
   private Country()
   {
   }
+
   private Country(String altText)
   {
     this.altText = altText;
   }
+
   public String toString()
   {
     return altText == null ? super.toString() : altText;
   }
+
   public synchronized static String[] getStringValues()
   {
     return Query.select(Country.values(), m -> m.toString()).toArray(new String[0]);

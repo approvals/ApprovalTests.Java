@@ -33,6 +33,7 @@ public class CommaDelimitedFileParserTest
     assertEquals("epsilon", row1[3], "Non-quoted record contents");
     assertEquals("Yes, I'am", row2[1], "spaces");
   }
+
   @Test
   public void testParseToMap() throws Exception
   {

@@ -15,12 +15,14 @@ public class ReportByCreatingDiffFile extends GenericDiffReporter
   {
     super(info);
   }
+
   protected void processOutput(String received, Process process)
   {
     String extensionWithDot = FileUtils.getExtensionWithDot(received);
     String diffFile = received.replace(".received" + extensionWithDot, ".diff");
     FileUtils.writeFile(new File(diffFile), process.getInputStream());
   }
+
   @Override
   protected void preventProcessFromClosing(ProcessBuilder builder)
   {

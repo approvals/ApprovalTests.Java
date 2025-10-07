@@ -14,11 +14,13 @@ public class FileLocator implements ResourceLocator
   {
     this(basePaths, true);
   }
+
   public FileLocator(String[] basePaths, boolean failOnNotFound)
   {
     this.basePaths = basePaths;
     this.failOnNotFound = failOnNotFound;
   }
+
   public String getLocation(String fileName)
   {
     String absolutePath = paths.get(fileName);
@@ -49,6 +51,7 @@ public class FileLocator implements ResourceLocator
     }
     return absolutePath;
   }
+
   private String registerFile(String fileName, File file)
   {
     String absolutePath = file.getAbsolutePath();

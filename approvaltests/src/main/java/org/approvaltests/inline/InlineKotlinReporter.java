@@ -27,6 +27,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
   {
     this(reporter, null);
   }
+
   public InlineKotlinReporter(ApprovalFailureReporter reporter, Function2<String, String, String> footerCreator)
   {
     this.reporter = reporter;
@@ -36,6 +37,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     this.sourceFilePath = result.sourceFilePath;
     this.createNewReceivedFileText = result.createNewReceivedFileText;
   }
+
   public static Result getResult()
   {
     StackTraceNamer stackTraceNamer = new StackTraceNamer();
@@ -56,6 +58,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
       this.sourceFilePath = sourceFilePath;
       this.createNewReceivedFileText = createNewReceivedFileText;
     }
+
     public boolean isKotlin()
     {
       String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".kt";
@@ -70,6 +73,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);
   }
+
   public String createReceived(String actual)
   {
     String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".kt";
@@ -80,15 +84,18 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
+
   private String getReceivedFileName()
   {
     return sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
   }
+
   @Override
   public void cleanUp(String received, String approved)
   {
     FileUtils.delete(getReceivedFileName());
   }
+
   public static String createNewReceivedFileText(String kotlinSourceCode, String actual, String methodName)
   {
     String normalizedSourceCode = kotlinSourceCode.replaceAll("\r\n", "\n");
@@ -103,6 +110,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     }
     return codeParts.getFullCode();
   }
+
   private static CodeParts splitCode(String text, String methodName)
   {
     CodeParts codeParts = new CodeParts();
@@ -144,6 +152,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     codeParts.after = String.join("\n", ArrayUtils.getSubsection(lines, end, lines.length));
     return codeParts;
   }
+
   private static String extractLeadingWhitespace(String text)
   {
     Pattern pattern = Pattern.compile("^\\s+");
@@ -152,6 +161,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     { return matcher.group(); }
     return "\t";
   }
+
   private static void addExpected(CodeParts codeParts, String actual)
   {
     int start = codeParts.method.indexOf("{") + 2;
@@ -159,11 +169,13 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     String after = codeParts.method.substring(start);
     codeParts.method = before + getExpected(actual, codeParts.tab) + after;
   }
+
   private static String getExpected(String actual, String tab)
   {
     return String.format("%s%sval expected = \"\"\"\n%s%s%s%s\"\"\".trimIndent()\n", tab, tab, indent(actual, tab),
         tab, tab, tab);
   }
+
   private static void replaceExpected(CodeParts codeParts, String actual)
   {
     int start = codeParts.method.indexOf("expected = \"\"\"");
@@ -203,6 +215,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     String after = codeParts.method.substring(end);
     codeParts.method = before + getExpected(actual, codeParts.tab) + after;
   }
+
   private static String indent(String actual, String tab)
   {
     String[] split = StringUtils.split(actual, "\n");

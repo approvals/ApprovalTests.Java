@@ -26,6 +26,7 @@ public class WebPageChangeDetector implements ActionListener
   {
     gui = new WebPageChangeDetectorGui(this);
   }
+
   @Override
   public void actionPerformed(ActionEvent e)
   {
@@ -48,6 +49,7 @@ public class WebPageChangeDetector implements ActionListener
       keyPressed = false;
     }
   }
+
   private void doCheck()
   {
     updateModel();
@@ -66,24 +68,29 @@ public class WebPageChangeDetector implements ActionListener
     }
     updateScreen();
   }
+
   private VerifyResult verifyFiles(String approvedFile, String recievedFile)
   {
     return FileApprover.approveTextFile(new File(recievedFile), new File(approvedFile));
   }
+
   private String getRecievedFile()
   {
     return "webPageImages/" + WebPageApproval.convertToLegalFileName(url, "recieved.png");
   }
+
   private void doLock()
   {
     updateModel();
     WebPageApproval.captureWebPage(url, getApprovedFile());
     updateScreen();
   }
+
   private String getApprovedFile()
   {
     return "webPageImages/" + WebPageApproval.convertToLegalFileName(url, "png");
   }
+
   private void updateModel()
   {
     try
@@ -96,6 +103,7 @@ public class WebPageChangeDetector implements ActionListener
       url = null;
     }
   }
+
   private void updateScreen()
   {
     gui.urlTextField.setText(url.toString());
@@ -114,6 +122,7 @@ public class WebPageChangeDetector implements ActionListener
     }
     gui.check.setBackground(color);
   }
+
   public static void main(String[] args) throws URISyntaxException
   {
     WebPageChangeDetector panel = new WebPageChangeDetector();
@@ -122,6 +131,7 @@ public class WebPageChangeDetector implements ActionListener
     panel.updateScreen();
     panel.showFrame();
   }
+
   private void showFrame()
   {
     JFrame test = new JFrame("CSS/HTML Refactor Locker");

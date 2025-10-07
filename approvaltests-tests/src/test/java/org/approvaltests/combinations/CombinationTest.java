@@ -10,6 +10,7 @@ public class CombinationTest
     CombinationApprovals.verifyAllCombinations((i, s) -> String.format("[%s, %s]", i, s),
         new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
+
   @Test
   public void testCombinations()
   {
@@ -17,17 +18,20 @@ public class CombinationTest
     String[] words = new String[]{"Bookkeeper", "applesauce"};
     CombinationApprovals.verifyAllCombinations((i, s) -> s.substring(0, i), points, words);
   }
+
   @Test
   public void test1Parameter()
   {
     CombinationApprovals.verifyAllCombinations(i -> i * i, new Integer[]{1, 2, 3, 4, 5});
   }
+
   @Test
   public void testPassMethod()
   {
     CombinationApprovals.verifyAllCombinations(this::processCall, new Integer[]{1, 2, 3, 4, 5},
         new String[]{"a", "b", "c", "d"});
   }
+
   public Object processCall(Integer i, String s)
   {
     if (i == 5)
@@ -36,6 +40,7 @@ public class CombinationTest
     { throw new SkipCombination(); }
     return String.format("[%s, %s]", i, s);
   }
+
   @Test
   void templateCode()
   {
@@ -45,6 +50,7 @@ public class CombinationTest
     CombinationApprovals.verifyAllCombinations((a, b) -> "placeholder", inputs1, inputs2);
     // end-snippet
   }
+
   @Test
   void testCombinationsOfTwo()
   {

@@ -16,6 +16,7 @@ class RegExScrubberTest
     Approvals.verify(input, new Options(new RegExScrubber("(\\d+)", "[number]")));
     // end-snippet
   }
+
   @Test
   void blankDoesNothing()
   {

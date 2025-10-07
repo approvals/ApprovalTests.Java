@@ -9,11 +9,13 @@ public interface XMLSerializable
    * @return the xml
    **/
   public String serializeXML();
+
   /**
    * Serializes this object , plus dependencies to xml via the writer.
    * @return writer that was used
    **/
   public java.io.Writer serializeXML(java.io.Writer writer);
+
   /**
    * Serializes this object , plus dependencies to xml via the writer.
    **/

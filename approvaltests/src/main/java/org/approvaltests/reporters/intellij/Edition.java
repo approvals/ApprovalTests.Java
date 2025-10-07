@@ -7,6 +7,7 @@ public enum Edition {
   {
     this.directory = directory;
   }
+
   public String getDirectory()
   {
     return directory;

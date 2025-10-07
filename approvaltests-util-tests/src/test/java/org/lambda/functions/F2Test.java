@@ -22,6 +22,7 @@ public class F2Test
     String out = Grid.print(6, 5, (a, b) -> (map.get(new Point(a, b))));
     Approvals.verify(out);
   }
+
   @Test
   public void testDiagonal() throws Exception
   {

@@ -9,35 +9,43 @@ public final class DatabaseLoader<T extends DatabaseObject> implements DatabaseC
   private DatabaseLoader()
   {
   }
+
   public static <T extends DatabaseObject> boolean isDatabaseLoader(DatabaseCache<T> cache)
   {
     return (cache instanceof DatabaseLoader);
   }
+
   public static <T extends DatabaseObject> boolean isNormalCache(DatabaseCache<T> cache)
   {
     return !((cache == null) || (cache instanceof DatabaseLoader));
   }
+
   public boolean equals(Object object)
   {
     return (object instanceof DatabaseLoader);
   }
+
   /*                     UNSUPPORTED METHODS                                */
   public Class<T> getObjectType()
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
+
   public boolean isLinkBackOn()
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
+
   public void load(Statement stmt)
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
+
   public void reset(Statement stmt)
   {
     throw new UnsupportedOperationException(ERROR_TEXT);
   }
+
   public T get(int pkey)
   {
     throw new UnsupportedOperationException(ERROR_TEXT);

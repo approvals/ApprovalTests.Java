@@ -15,10 +15,12 @@ public class AutoApproveWhenEmptyReporter implements ReporterWithApprovalPower
   {
     this(Approvals.getReporter());
   }
+
   public AutoApproveWhenEmptyReporter(ApprovalFailureReporter reporter)
   {
     this.reporter = reporter;
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -36,6 +38,7 @@ public class AutoApproveWhenEmptyReporter implements ReporterWithApprovalPower
     }
     return true;
   }
+
   @Override
   public VerifyResult approveWhenReported()
   {

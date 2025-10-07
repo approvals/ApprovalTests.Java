@@ -15,14 +15,17 @@ public interface ContextAware
     public ContextAwareMap()
     {
     }
+
     public ContextAwareMap(String key, Object object)
     {
       put(key, object);
     }
+
     public void put(String key, Object object)
     {
       add.put(key, object);
     }
+
     public void setupContext(Context context)
     {
       for (Entry<String, Object> entry : add.entrySet())

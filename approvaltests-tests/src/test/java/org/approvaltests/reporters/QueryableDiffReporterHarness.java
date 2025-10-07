@@ -13,12 +13,14 @@ public class QueryableDiffReporterHarness implements ExecutableCommand
     this.file1 = file1;
     this.file2 = file2;
   }
+
   @Override
   public String getCommand()
   {
     String[] commandLine = reporter.getCommandLine("%s", "%s");
     return String.join(" ", commandLine);
   }
+
   @Override
   public String executeCommand(String command)
   {

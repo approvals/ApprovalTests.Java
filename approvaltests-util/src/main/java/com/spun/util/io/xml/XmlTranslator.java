@@ -20,6 +20,7 @@ public class XmlTranslator
       setters.put(nodeName, maps[i].getSettingMethod());
     }
   }
+
   public Object extractAndTranslateForNode(Node node, Object addToObject)
   {
     String name = node.getNodeName();
@@ -31,6 +32,7 @@ public class XmlTranslator
     this.setObject(o, addToObject, method);
     return o;
   }
+
   private static String getNamePath(Node node)
   {
     StringBuffer buffer = new StringBuffer(node.getNodeName());
@@ -41,6 +43,7 @@ public class XmlTranslator
     }
     return buffer.toString();
   }
+
   private void setObject(Object o, Object addToObject, Method settingMethod)
   {
     try
@@ -52,6 +55,7 @@ public class XmlTranslator
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public String toString()
   {
     StringBuffer out = new StringBuffer();

@@ -66,10 +66,12 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
         .where(Objects::nonNull).select(reporterType -> (ApprovalFailureReporter) ClassUtils.create(reporterType));
     reporter = reporters.size() == 1 ? reporters.first() : new MultiReporter(reporters);
   }
+
   public ApprovalFailureReporter getReporter()
   {
     return reporter;
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -77,6 +79,7 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
     { return false; }
     return reporter.report(received, approved);
   }
+
   public Map<String, Class> getReporterMapping()
   {
     return new HashMap<>(REPORTER_MAP);

@@ -14,6 +14,7 @@ public class VelocityNullArgumentTest implements ContextAware
   {
     assertEquals("you got null", VelocityParser.parseString("$object.getClass($nullValue)", this));
   }
+
   @Override
   public void setupContext(Context context)
   {

@@ -40,6 +40,7 @@ public class IntelliJPathResolverTest
         IntelliJCommunityReporter.INSTANCE, MacDiffReporter.INSTANCE);
     Approvals.verify("applesauce", new Options().withReporter(firstWorkingReporter));
   }
+
   @Disabled("wip")
   @Test
   void nameFromLarsMachine()
@@ -54,6 +55,7 @@ public class IntelliJPathResolverTest
                                       MacDiffReporter.INSTANCE});
     Approvals.verify("applesauce", new Options().withReporter(firstWorkingReporter));
   }
+
   @Test
   void testDetectionOfIntellijOnDevMachines()
   {
@@ -71,6 +73,7 @@ public class IntelliJPathResolverTest
       Approvals.verify(commandLine[0], new Options(scrubber));
     }
   }
+
   @EnabledOnOs(MAC) // because runtimeSuffix on GitHub actions (linux) will resolve to bin/idea.sh
   @Test
   void testIntellijPaths()
@@ -83,6 +86,7 @@ public class IntelliJPathResolverTest
     };
     Approvals.verifyAll("IntelliJ", paths, this::findIntellijReporter);
   }
+
   private String findIntellijReporter(String path)
   {
     try
@@ -104,6 +108,7 @@ public class IntelliJPathResolverTest
       IntelliJPathResolver.resetChannelPath();
     }
   }
+
   private static Stream<Path> getPathStream(String fakedPath, String requestedPath)
   {
     if (!fakedPath.startsWith(requestedPath))

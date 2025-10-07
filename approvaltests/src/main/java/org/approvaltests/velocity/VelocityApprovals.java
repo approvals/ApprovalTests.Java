@@ -13,6 +13,7 @@ public class VelocityApprovals
   {
     verify(context, new Options());
   }
+
   public static void verify(ContextAware context, Options options)
   {
     ApprovalNamer namer = Approvals.createApprovalNamer();
@@ -22,6 +23,7 @@ public class VelocityApprovals
     String text = VelocityParser.parseFile(file, context);
     Approvals.verify(text, options);
   }
+
   /**
    * @deprecated use {@code Options.forFile().withExtension(fileExtensionWithDot) }
    */
@@ -30,6 +32,7 @@ public class VelocityApprovals
   {
     verify(context, fileExtensionWithDot, new Options());
   }
+
   /**
    * @deprecated use {@code Options.forFile().withExtension(fileExtensionWithDot) }
    */

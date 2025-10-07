@@ -28,6 +28,7 @@ public class LoggingUtils
       // do nothing
     }
   }
+
   public static File getTempDirectory()
   {
     File approvalTestsTempDir = new File(ClassUtils.getProjectRootPath() + "/.approval_tests_temp");

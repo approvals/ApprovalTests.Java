@@ -9,6 +9,7 @@ public class Circular
     this.parent = parent;
     this.label = label;
   }
+
   public static Circular getIndirectCircularReference()
   {
     Circular level1 = new Circular(null, "middle");

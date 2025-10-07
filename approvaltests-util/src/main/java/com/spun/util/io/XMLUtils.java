@@ -35,6 +35,7 @@ public class XMLUtils
     throw new Error(String.format("Couldn't find '%s' from locations %s with current directory '%s'", fileLocation,
         Arrays.asList(backupPaths), FileUtils.getResolvedPath(new File("."))));
   }
+
   public static HashMap<String, Object> parseProperties(String absoluteFileLocation, XMLNodeExtractor extractor)
   {
     try
@@ -49,6 +50,7 @@ public class XMLUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static HashMap<String, Object> extractProperties(Document document, XMLNodeExtractor extractor)
   {
     HashMap<String, Object> properties = new HashMap<String, Object>();
@@ -59,6 +61,7 @@ public class XMLUtils
     }
     return properties;
   }
+
   public static Document parseXML(String xml)
   {
     try
@@ -71,15 +74,18 @@ public class XMLUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static Document parseXML(File xml)
   {
     return ObjectUtils.throwAsError(
         () -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new FileInputStream(xml)));
   }
+
   public static Document parseXML(InputStream stream)
   {
     return ObjectUtils.throwAsError(() -> DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(stream));
   }
+
   public static String extractStringValue(Node node)
   {
     NodeList childNodes = node.getChildNodes();

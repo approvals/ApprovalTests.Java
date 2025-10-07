@@ -16,6 +16,7 @@ public class PaintableApprovalWriter implements ApprovalWriter
     BufferedImage image = drawComponent(paintable);
     this.image = new ImageApprovalWriter(image);
   }
+
   public static BufferedImage drawComponent(Paintable paintable)
   {
     final Dimension size = paintable.getSize();
@@ -25,11 +26,13 @@ public class PaintableApprovalWriter implements ApprovalWriter
     g.dispose();
     return image;
   }
+
   @Override
   public File writeReceivedFile(File filename)
   {
     return image.writeReceivedFile(filename);
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

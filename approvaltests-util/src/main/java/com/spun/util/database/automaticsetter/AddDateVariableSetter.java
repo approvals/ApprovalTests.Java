@@ -12,6 +12,7 @@ public class AddDateVariableSetter implements AutomaticVariableSetter
   private AddDateVariableSetter()
   {
   }
+
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     AddDateAware addDate = (AddDateAware) forObject;

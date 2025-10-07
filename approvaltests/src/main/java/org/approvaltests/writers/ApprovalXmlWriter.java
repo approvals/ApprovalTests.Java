@@ -25,6 +25,7 @@ public class ApprovalXmlWriter extends ApprovalTextWriter
   {
     super(prettyPrint(text, 2), options.forFile().withExtension(".xml"));
   }
+
   public static String prettyPrint(String input, int indent)
   {
     try

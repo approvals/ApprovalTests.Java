@@ -18,14 +18,17 @@ public class SystemUtils
   {
     return isWindowsEnvironment();
   }
+
   public static boolean isWindowsEnvironment()
   {
     return "\\".equals(File.separator);
   }
+
   public static String convertFileForCommandLine(String fileName)
   {
     return convertFileForCommandLine(fileName, SystemUtils.isWindowsEnvironment());
   }
+
   public static String getComputerName()
   {
     Map<String, String> env = System.getenv();
@@ -53,6 +56,7 @@ public class SystemUtils
       return hostname;
     }
   }
+
   public static String convertFileForCommandLine(String fileName, boolean windowsOs)
   {
     if (!fileName.contains(" "))
@@ -68,6 +72,7 @@ public class SystemUtils
       return fileName.replace(" ", "\\ ");
     }
   }
+
   /**
    * @deprecated Use {@link #isMacEnvironment()} instead.
    * For example inline your usage of this method.
@@ -77,6 +82,7 @@ public class SystemUtils
   {
     return isMacEnvironment();
   }
+
   public static boolean isMacEnvironment()
   {
     String osName = System.getProperty("os.name").toLowerCase();

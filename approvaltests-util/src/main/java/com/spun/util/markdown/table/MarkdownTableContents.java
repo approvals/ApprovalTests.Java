@@ -11,10 +11,12 @@ public class MarkdownTableContents implements MarkdownTableElement, Resizable
   {
     this.contents = escapeMarkdown(contents);
   }
+
   private String escapeMarkdown(String contents)
   {
     return contents.replaceAll("\\|", "\\\\|");
   }
+
   @Override
   public String toString()
   {
@@ -33,14 +35,17 @@ public class MarkdownTableContents implements MarkdownTableElement, Resizable
     }
     return " " + c + " ";
   }
+
   public int getLength()
   {
     return contents.length();
   }
+
   public void setPadding(int length)
   {
     padUntil = length;
   }
+
   @Override
   public void setJustification(MarkdownColumn columnProperties)
   {

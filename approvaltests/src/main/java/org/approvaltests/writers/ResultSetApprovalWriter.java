@@ -17,6 +17,7 @@ public class ResultSetApprovalWriter implements ApprovalWriter
   {
     this.resultSet = resultSet;
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
@@ -30,6 +31,7 @@ public class ResultSetApprovalWriter implements ApprovalWriter
     FileUtils.writeFile(received, output);
     return received;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

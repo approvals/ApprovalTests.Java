@@ -22,6 +22,7 @@ public class OnceTest
     increment();
     assertEquals(1, globals[0]);
   }
+
   private void increment()
   {
     var fieldThatForcesLambdaToHaveMultipleInstances = NumberUtils.doRandomPercentage(50);
@@ -32,6 +33,7 @@ public class OnceTest
         globals[0]++;
     });
   }
+
   @Test
   void testOnceNormalLambda()
   {
@@ -42,10 +44,12 @@ public class OnceTest
     incrementNormal();
     assertEquals(1, globals[1]);
   }
+
   private void incrementNormal()
   {
     Once.run(() -> globals[1]++);
   }
+
   @Test
   @Timeout(unit = TimeUnit.SECONDS, value = 1)
   void testOnceAsync()
@@ -58,6 +62,7 @@ public class OnceTest
     ThreadUtils.sleep(750);
     assertEquals(1, globals[2]);
   }
+
   private void incrementAsync()
   {
     Once.runAsync(() -> {
@@ -65,6 +70,7 @@ public class OnceTest
       globals[2]++;
     });
   }
+
   @Test
   public void testFunctionCallOnce()
   {
@@ -76,6 +82,7 @@ public class OnceTest
     count = increment(count);
     assertEquals(1, count);
   }
+
   private int increment(int count)
   {
     return Once.run(() -> count + 1);

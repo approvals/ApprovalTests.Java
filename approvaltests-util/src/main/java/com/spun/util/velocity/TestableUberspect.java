@@ -46,14 +46,17 @@ public class TestableUberspect implements Uberspect
   public void init()
   {
   }
+
   public void setBeKindToNulls(boolean behavior)
   {
     beKindToNulls = behavior;
   }
+
   public Iterator<?> getIterator(Object obj, Info i)
   {
     return getStandardIterator(obj, i);
   }
+
   public static Iterator<?> getStandardIterator(Object obj, Info i)
   {
     if (obj.getClass().isArray())
@@ -76,6 +79,7 @@ public class TestableUberspect implements Uberspect
     { return new EnumerationIterator((Enumeration<?>) obj); }
     throw new VelocityParsingError("Could not determine type of iterator in " + "#foreach loop ", i);
   }
+
   public VelMethod getMethod(Object obj, String methodName, Object[] args, Info i)
   {
     if (obj == null)
@@ -97,6 +101,7 @@ public class TestableUberspect implements Uberspect
     }
     return new VelMethodImpl(m);
   }
+
   public static String getMethodText(String className, String methodName, Object[] args)
   {
     StringBuffer methodSignature = new StringBuffer();
@@ -107,6 +112,7 @@ public class TestableUberspect implements Uberspect
     }
     return className + "." + methodName + "(" + methodSignature + ") ";
   }
+
   public VelPropertyGet getPropertyGet(Object obj, String identifier, Info i)
   {
     AbstractExecutor executor;
@@ -129,10 +135,12 @@ public class TestableUberspect implements Uberspect
     { throw new VelocityParsingError("Did not find " + getPropertyText(obj.getClass().getName(), identifier), i); }
     return new VelGetterImpl(executor);
   }
+
   private String getPropertyText(String className, String identifier)
   {
     return className + "." + identifier + " ";
   }
+
   public VelPropertySet getPropertySet(Object obj, String identifier, Object arg, Info i)
   {
     Class<? extends Object> claz = obj.getClass();
@@ -189,23 +197,28 @@ public class TestableUberspect implements Uberspect
     {
       method = m;
     }
+
     public Object invoke(Object o, Object[] params)
     {
       return ObjectUtils.throwAsError(() -> method.invoke(o, params));
     }
+
     public boolean isCacheable()
     {
       return true;
     }
+
     public String getMethodName()
     {
       return method.getName();
     }
+
     @Override
     public Method getMethod()
     {
       return method;
     }
+
     public Class<?> getReturnType()
     {
       return method.getReturnType();
@@ -218,14 +231,17 @@ public class TestableUberspect implements Uberspect
     {
       ae = exec;
     }
+
     public Object invoke(Object o)
     {
       return ObjectUtils.throwAsError(() -> ae.execute(o));
     }
+
     public boolean isCacheable()
     {
       return true;
     }
+
     public String getMethodName()
     {
       return ae.getMethod().getName();
@@ -239,11 +255,13 @@ public class TestableUberspect implements Uberspect
     {
       this.vm = velmethod;
     }
+
     public VelSetterImpl(VelMethod velmethod, String key)
     {
       this.vm = velmethod;
       putKey = key;
     }
+
     public Object invoke(Object o, Object value)
     {
       ArrayList<Object> al = new ArrayList<Object>();
@@ -258,10 +276,12 @@ public class TestableUberspect implements Uberspect
       }
       return ObjectUtils.throwAsError(() -> vm.invoke(o, al.toArray()));
     }
+
     public boolean isCacheable()
     {
       return true;
     }
+
     public String getMethodName()
     {
       return vm.getMethodName();

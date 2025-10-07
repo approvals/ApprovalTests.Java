@@ -34,6 +34,7 @@ public class DateScrubberTest
       }
     }
   }
+
   @Test
   void testGetDateScrubber()
   {
@@ -41,6 +42,7 @@ public class DateScrubberTest
         .collect(Collectors.toList());
     Approvals.verifyAll("Date scrubbing", formats, this::verifyScrubbing);
   }
+
   private String verifyScrubbing(String formattedExample)
   {
     DateScrubber scrubber = DateScrubber.getScrubberFor(formattedExample);
@@ -48,6 +50,7 @@ public class DateScrubberTest
     return String.format("Scrubbing for %s:\n" + "%s\n" + "Example: %s\n\n", formattedExample, scrubber,
         scrubber.scrub(exampleText));
   }
+
   @Test
   void exampleForDocumentation()
   {
@@ -55,6 +58,7 @@ public class DateScrubberTest
     Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
     // end-snippet
   }
+
   @Test
   void supportedFormats()
   {
@@ -68,6 +72,7 @@ public class DateScrubberTest
     Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
         new Options().forFile().withExtension(".md"));
   }
+
   @Disabled("use when new examples are shared at https://github.com/approvals/ApprovalTests.Java/issues/112")
   @Test
   void textExamples()
@@ -77,11 +82,13 @@ public class DateScrubberTest
         """.split("\n");
     Approvals.verifyAll("Date scrubbing", examples, this::verifyScrubbing);
   }
+
   @Test
   void testBlank()
   {
     DateScrubber.getScrubberFor("");
   }
+
   @Test
   void testTimestamp()
   {
@@ -89,6 +96,7 @@ public class DateScrubberTest
     String scrubbed = DateScrubber.getScrubberForTimestamp().scrub(input);
     assertEquals("[Date1]", scrubbed);
   }
+
   @Test
   void testSqlDate()
   {
@@ -97,6 +105,7 @@ public class DateScrubberTest
     String scrubbed = DateScrubber.getScrubberForSqlDate().scrub(input);
     assertEquals("[Date1]", scrubbed);
   }
+
   @Test
   void testUtilDate()
   {
@@ -105,6 +114,7 @@ public class DateScrubberTest
     String scrubbed = DateScrubber.getScrubberForDate().scrub(input);
     assertEquals("[Date1]", scrubbed);
   }
+
   @Test
   void testAddScrubberWithValidRegexAndExample()
   {
@@ -119,6 +129,7 @@ public class DateScrubberTest
       DateScrubber.clearCustomScrubbers();
     }
   }
+
   @Test
   void testAddScrubberWithInvalidRegex()
   {
@@ -126,6 +137,7 @@ public class DateScrubberTest
       DateScrubber.addScrubber("2023-Dec-25", "[invalid regex");
     });
   }
+
   @Test
   void testAddScrubberWithRegexThatDoesntMatchExample()
   {
@@ -133,6 +145,7 @@ public class DateScrubberTest
       DateScrubber.addScrubber("2023-Dec-25", "\\d{2}-\\d{2}-\\d{4}");
     });
   }
+
   @Test
   @UseReporter(AutoApproveReporter.class)
   void testAddScrubberDisplaysMessage()
@@ -156,6 +169,7 @@ public class DateScrubberTest
       DateScrubber.clearCustomScrubbers();
     }
   }
+
   @Test
   void testAddScrubberSuppressMessage()
   {
@@ -170,6 +184,7 @@ public class DateScrubberTest
       DateScrubber.clearCustomScrubbers();
     }
   }
+
   @Test
   void testCustomScrubberIntegrationWithGetScrubberFor()
   {
@@ -187,6 +202,7 @@ public class DateScrubberTest
       DateScrubber.clearCustomScrubbers();
     }
   }
+
   @Test
   void testClearCustomScrubbers()
   {
@@ -205,6 +221,7 @@ public class DateScrubberTest
       DateScrubber.clearCustomScrubbers();
     }
   }
+
   @Test
   void testMultipleCustomScrubbers()
   {

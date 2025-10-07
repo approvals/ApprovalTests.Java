@@ -17,6 +17,7 @@ public class TemplateNumberUtilsTest
   {
     assertEquals(result, TemplateNumberUtils.doArithmetic(params), 0.005);
   }
+
   private static Stream<Arguments> useCases()
   {
     return Stream.of(Arguments.of(new String[]{"3", "+", "5"}, 8), Arguments.of(new String[]{"3", "-", "5"}, -2),
@@ -24,6 +25,7 @@ public class TemplateNumberUtilsTest
         Arguments.of(new String[]{"9", "+", "3"}, 12),
         Arguments.of(new String[]{"1", "+", "2", "*", "3", "-", "4", "/", "5"}, 1));
   }
+
   @Test
   public void testMax() throws Exception
   {

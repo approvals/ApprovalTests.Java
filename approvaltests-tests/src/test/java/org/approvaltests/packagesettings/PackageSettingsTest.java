@@ -14,6 +14,7 @@ public class PackageSettingsTest
     failApproval();
     assertEquals(11, PackageSettings.FrontloadedReporter.count);
   }
+
   private void failApproval()
   {
     try

@@ -12,6 +12,7 @@ public class Threads
     }
     threadCount = place.activeCount();
   }
+
   public int getThreadCount()
   {
     return threadCount;

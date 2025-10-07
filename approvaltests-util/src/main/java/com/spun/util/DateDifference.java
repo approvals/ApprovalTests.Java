@@ -61,6 +61,7 @@ public class DateDifference
   {
     this.milli = timeDifference;
   }
+
   public DateDifference(Date date1, Date date2)
   {
     milli = date1.getTime() - date2.getTime();
@@ -70,6 +71,7 @@ public class DateDifference
     }
     //    My_System.variable("dateDifference = " + milli);
   }
+
   /**
    * Debugging tool.
    **/
@@ -81,6 +83,7 @@ public class DateDifference
       SimpleLogger.variable("" + DIVIDERS[i]);
     }
   }
+
   /**
    * Gets the amount of [Units]. <BR>
    * i.e. <BR>
@@ -92,27 +95,33 @@ public class DateDifference
   {
     return getAbsoluteDifference(unit, this.milli);
   }
+
   public long getAbsoluteDifference(String unit)
   {
     return getAbsoluteDifference(convertUnitString(unit));
   }
+
   public long getRoundedDifference(String unit)
   {
     return getRoundedDifference(convertUnitString(unit), this.milli);
   }
+
   public long getRoundedDifference(int unit)
   {
     return getRoundedDifference(unit, this.milli);
   }
+
   public static long getAbsoluteDifference(int unit, long time)
   {
     //    My_System.variable("divider = " + DIVIDERS[getIndex(unit)]);
     return time / DIVIDERS[getTimeScaleIndex(unit)];
   }
+
   public static long getRoundedDifference(int unit, long time)
   {
     return Math.round(((double) time) / DIVIDERS[getTimeScaleIndex(unit)]);
   }
+
   /**
    * Gets the remaining amount of [Units]. <BR>
    * i.e. <BR>
@@ -124,6 +133,7 @@ public class DateDifference
   {
     return getRemainingDifference(wantedUnit, roundTo, this.milli);
   }
+
   public static long getRemainingDifference(int wantedUnit, int roundTo, long time)
   {
     int wantedIndex = getTimeScaleIndex(wantedUnit);
@@ -136,6 +146,7 @@ public class DateDifference
     //roundedDifference = (millis % (roundTo in millis)) / (unit in millis)
     return (time % DIVIDERS[roundToIndex]) / DIVIDERS[wantedIndex];
   }
+
   /**
    * @return the index in TIME_SCALE[] of the largest Unit to be > 0
    **/
@@ -148,6 +159,7 @@ public class DateDifference
     }
     return i;
   }
+
   /**
    * Finds the index for a Calendar.DATE ect.
    * @return the index in TIME_SCALE[]
@@ -161,6 +173,7 @@ public class DateDifference
     }
     return i;
   }
+
   public static int convertUnitString(String unit)
   {
     int result = 0;
@@ -198,23 +211,28 @@ public class DateDifference
     }
     return result;
   }
+
   public static long convertUnitStringToMilli(String unit)
   {
     int cal = convertUnitString(unit);
     return DIVIDERS[getTimeScaleIndex(cal)];
   }
+
   public boolean isMoreThan(int amount, int unit)
   {
     return (getAbsoluteDifference(unit) >= amount);
   }
+
   public boolean isMoreThan(int amount, String unitString)
   {
     return (getAbsoluteDifference(convertUnitString(unitString)) >= amount);
   }
+
   public long getStandardRoundedTime(int unitIndex, boolean forceAbsolute)
   {
     return getStandardRoundedTime(unitIndex, forceAbsolute, this.milli);
   }
+
   private static long getStandardRoundedTime(int unitIndex, boolean forceAbsolute, long time)
   {
     if (unitIndex == 0 || forceAbsolute)
@@ -226,11 +244,13 @@ public class DateDifference
       return getRemainingDifference(TIME_SCALE[unitIndex], TIME_SCALE[unitIndex - 1], time);
     }
   }
+
   public String getStandardTimeText(int amount, String maxUnit, String minUnit, String nowText, String agoText)
   {
     return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText,
         STANDARD_TIME_TEXT);
   }
+
   public String getTimeText(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units)
   {
     //		My_System.variable("amount = " + amount + ", maxUnit = " + maxUnit +  ", minUnit = " + minUnit + ", nowText = " + nowText);
@@ -263,6 +283,7 @@ public class DateDifference
     }
     return timeText;
   }
+
   public String getClockTimeText()
   {
     int maxUnit = getTimeScaleIndex(Calendar.HOUR);
@@ -289,6 +310,7 @@ public class DateDifference
     }
     return timeText;
   }
+
   public String getStandardTimeText(int amountShown)
   {
     return getTimeText(amountShown, Calendar.YEAR, Calendar.MILLISECOND, "now", "", STANDARD_TIME_TEXT);

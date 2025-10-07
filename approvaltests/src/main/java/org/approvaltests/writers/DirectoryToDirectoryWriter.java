@@ -14,11 +14,13 @@ public class DirectoryToDirectoryWriter implements ApprovalWriter
     this.recieved = received;
     this.goldMasterDirectory = goldMasterDirectory;
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
     return this.recieved;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

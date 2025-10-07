@@ -13,6 +13,7 @@ public class OrFilter<T> implements Filter<T>
   {
     throw new DeprecatedException("a -> filter1 || filter2");
   }
+
   public boolean isExtracted(Object object)
   {
     throw new DeprecatedException("a -> filter1 || filter2");

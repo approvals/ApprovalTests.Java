@@ -20,11 +20,13 @@ public class PaintableMultiframeWriter implements ApprovalWriter
     this.numberOfFrames = paintableMultiFrame.getNumberOfFrames();
     this.frameGetter = paintableMultiFrame.getFrameGetter();
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
     return GifSequenceWriter.writeAnimatedGif(received, getBufferedImages());
   }
+
   private ArrayList<Tuple<BufferedImage, Duration>> getBufferedImages()
   {
     ArrayList<Tuple<BufferedImage, Duration>> images = new ArrayList<>();
@@ -36,6 +38,7 @@ public class PaintableMultiframeWriter implements ApprovalWriter
     }
     return images;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

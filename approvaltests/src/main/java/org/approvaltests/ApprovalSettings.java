@@ -18,12 +18,14 @@ public class ApprovalSettings
     String name = className + "." + methodName;
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(name));
   }
+
   public void allowMultipleVerifyCallsForThisClass()
   {
     StackTraceElement caller = Caller.get(1);
     String className = caller.getClassName().replace('.', File.separatorChar);
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(className));
   }
+
   public static QuietAutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
   {
     return FileApprover.registerErrorGenerator(errorGenerator);

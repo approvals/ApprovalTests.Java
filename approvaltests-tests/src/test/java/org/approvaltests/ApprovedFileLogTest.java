@@ -27,12 +27,14 @@ public class ApprovedFileLogTest
     String postlog = FileUtils.readFile(file);
     assertTrue(postlog.contains(FileUtils.getResolvedPath(approvedFile)));
   }
+
   @Test
   void testTempDirectoryGetsGitIgnore()
   {
     String result = FileUtils.readFile(LoggingUtils.getTempDirectory() + "/.gitignore");
     assertEquals("*\n", result);
   }
+
   @Test
   void testAbsoluteDirectory()
   {

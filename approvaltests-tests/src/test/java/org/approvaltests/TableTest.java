@@ -14,6 +14,7 @@ public class TableTest
         "Modifier");
     Approvals.verify(table);
   }
+
   @Test
   void veryLongHeaders()
   {
@@ -22,6 +23,7 @@ public class TableTest
         "The name is very long and it is a header", "Modifier");
     Approvals.verify(table);
   }
+
   @Test
   void differentCases()
   {
@@ -33,16 +35,19 @@ public class TableTest
     Approvals.verify(table);
     // end-snippet
   }
+
   private String toKebabCase(String input)
   {
     String[] parts = input.split(" ");
     return String.join("-", parts);
   }
+
   private String toSnakeCase(String input)
   {
     String[] parts = input.split(" ");
     return String.join("_", parts);
   }
+
   private String toCamelCase(String input)
   {
     String[] parts = input.split(" ");
@@ -53,6 +58,7 @@ public class TableTest
     }
     return out;
   }
+
   private Integer getModifier(Integer ability)
   {
     return ability / 2 - 5;

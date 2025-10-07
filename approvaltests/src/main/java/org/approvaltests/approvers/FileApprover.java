@@ -27,11 +27,13 @@ public class FileApprover implements ApprovalApprover
   {
     this(writer, namer, FileApprover::approveTextFile);
   }
+
   public FileApprover(ApprovalWriter writer, ApprovalNamer namer, Function2<File, File, VerifyResult> approver)
   {
     this(namer.getReceivedFile(writer.getFileExtensionWithDot()),
         namer.getApprovedFile(writer.getFileExtensionWithDot()), writer, approver);
   }
+
   public FileApprover(File received, File approved, ApprovalWriter writer,
       Function2<File, File, VerifyResult> approver)
   {
@@ -40,12 +42,14 @@ public class FileApprover implements ApprovalApprover
     this.writer = writer;
     this.approver = approver;
   }
+
   public static QuietAutoCloseable registerErrorGenerator(Function2<String, String, Error> errorGenerator)
   {
     Function2<String, String, Error> old = FileApprover.errorGenerator;
     FileApprover.errorGenerator = errorGenerator;
     return () -> FileApprover.errorGenerator = old;
   }
+
   public VerifyResult approve()
   {
     tracker.assertUnique(FileUtils.getResolvedPath(approved));
@@ -54,6 +58,7 @@ public class FileApprover implements ApprovalApprover
     received = writer.writeReceivedFile(received);
     return approver.call(received, approved);
   }
+
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter)
   {
     received.delete();
@@ -63,6 +68,7 @@ public class FileApprover implements ApprovalApprover
           FileUtils.getResolvedPath(approved));
     }
   }
+
   public VerifyResult reportFailure(ApprovalFailureReporter reporter)
   {
     FailedFileLog.log(received, approved);
@@ -74,14 +80,17 @@ public class FileApprover implements ApprovalApprover
     }
     return VerifyResult.FAILURE;
   }
+
   public void fail()
   {
     throw errorGenerator.call(FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved));
   }
+
   private static Error createError(String received, String approved)
   {
     return new Error(String.format("Failed Approval\n  Approved:%s\n  Received:%s", approved, received));
   }
+
   public static VerifyResult approveTextFile(File received, File approved)
   {
     if (!approved.exists() || !received.exists())

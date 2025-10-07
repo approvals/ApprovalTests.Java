@@ -19,14 +19,17 @@ public class PrintUtils implements Printable
   {
     printComponent(c, true);
   }
+
   public static void printComponent(Component c, boolean prompt)
   {
     new PrintUtils(c).print(prompt);
   }
+
   public PrintUtils(Component componentToBePrinted)
   {
     this.componentToBePrinted = componentToBePrinted;
   }
+
   public void print(boolean prompt)
   {
     PrinterJob printJob = PrinterJob.getPrinterJob();
@@ -47,6 +50,7 @@ public class PrintUtils implements Printable
       }
     }
   }
+
   public int print(Graphics g, PageFormat pageFormat, int pageIndex)
   {
     if (pageIndex > 0)
@@ -66,11 +70,13 @@ public class PrintUtils implements Printable
       return PAGE_EXISTS;
     }
   }
+
   public static void disableDoubleBuffering(Component c)
   {
     RepaintManager currentManager = RepaintManager.currentManager(c);
     currentManager.setDoubleBufferingEnabled(false);
   }
+
   public static void enableDoubleBuffering(Component c)
   {
     RepaintManager currentManager = RepaintManager.currentManager(c);

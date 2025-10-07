@@ -47,6 +47,7 @@ public class ServletContextLoader extends ResourceLoader
     }
     //My_System.variable("paths", paths);
   }
+
   /**
    * Get an InputStream so that the Runtime can build a
    * template with it.
@@ -78,6 +79,7 @@ public class ServletContextLoader extends ResourceLoader
     throw new ResourceNotFoundException(
         String.format("Template '%s' not found from %s", source, Arrays.asList(paths)));
   }
+
   /**
    * Defaults to return false.
    */
@@ -85,6 +87,7 @@ public class ServletContextLoader extends ResourceLoader
   {
     return false;
   }
+
   /**
    * Defaults to return 0
    */
@@ -92,6 +95,7 @@ public class ServletContextLoader extends ResourceLoader
   {
     return 0;
   }
+
   public static void registerServletContext(ServletContext servletContext)
   {
     ServletContextLoader.servletContext = servletContext;

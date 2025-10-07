@@ -28,6 +28,7 @@ public class AttributeStackSelector implements StackElementSelector
   {
     attributes = getAvailableAttributes();
   }
+
   private List<Class<? extends Annotation>> getAvailableAttributes()
   {
     ArrayList<Class<? extends Annotation>> attributes = new ArrayList<Class<? extends Annotation>>();
@@ -41,6 +42,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return attributes;
   }
+
   public static Class<? extends Annotation> loadClass(String className)
   {
     Class<? extends Annotation> clazz = null;
@@ -54,6 +56,7 @@ public class AttributeStackSelector implements StackElementSelector
     }
     return clazz;
   }
+
   @Override
   public StackTraceElement selectElement(StackTraceElement[] trace)
   {
@@ -70,6 +73,7 @@ public class AttributeStackSelector implements StackElementSelector
     throw new RuntimeException(
         "Could not find Junit/TestNg TestCase you are running, supported frameworks: Junit3, Junit4, Junit5, TestNg");
   }
+
   private boolean isTestCase(StackTraceElement element)
   {
     String fullClassName = element.getClassName();
@@ -103,11 +107,13 @@ public class AttributeStackSelector implements StackElementSelector
     { return false; }
     return JUnitUtils.isTestableMethodForJunit(element);
   }
+
   private boolean isJunit3Test(Class<?> clazz)
   {
     Class<?> testcase = loadClass("junit.framework.TestCase");
     return testcase != null && ObjectUtils.isThisInstanceOfThat(clazz, testcase);
   }
+
   private boolean isTestAttribute(Class<?> clazz, String methodName)
   {
     Queryable<Method> methods = getMethodsByName(clazz, methodName);
@@ -116,6 +122,7 @@ public class AttributeStackSelector implements StackElementSelector
     checkConditionsForAttribute(attribute);
     return attribute != null;
   }
+
   // TODO: clean this up, should be pluggable
   private static void checkConditionsForAttribute(Class<? extends Annotation> attribute)
   {
@@ -132,6 +139,7 @@ public class AttributeStackSelector implements StackElementSelector
       }
     }
   }
+
   private static boolean isDynamicWrapperPresent()
   {
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
@@ -139,6 +147,7 @@ public class AttributeStackSelector implements StackElementSelector
         .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals"
             .equals(stackTraceElement.getClassName()));
   }
+
   public static Queryable<Method> getMethodsByName(Class<?> clazz, String methodName)
   {
     try
@@ -151,6 +160,7 @@ public class AttributeStackSelector implements StackElementSelector
       return new Queryable<>();
     }
   }
+
   @Override
   public void increment()
   {

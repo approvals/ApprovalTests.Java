@@ -13,10 +13,12 @@ public class XmlMapExtractor implements XmlExtractor
     this.clazz = clazz;
     this.translator = XmlMapTranslator.get(clazz, xmlMaps);
   }
+
   public XmlMapExtractor(Class<? extends XmlExtractable> clazz)
   {
     this(ClassUtils.create(clazz).getXmlMap(), clazz);
   }
+
   public Object extractObjectForNode(Node node)
   {
     try
@@ -30,6 +32,7 @@ public class XmlMapExtractor implements XmlExtractor
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public String toString()
   {
     return ClassUtils.getClassName(clazz) + ".extractor";

@@ -27,11 +27,13 @@ public class StringUtilsTest
     assertEquals("Falco", StringUtils.join("Falco", ",", null));
     assertEquals("Falco", StringUtils.join("Falco", ",", ""));
   }
+
   @Test
   public void testToNameCase()
   {
     assertEquals("Mr. Frank M Peter", StringUtils.toNameUpperCase("mr. frank m peter"), "Name changed");
   }
+
   @Test
   public void testSplit()
   {
@@ -50,16 +52,19 @@ public class StringUtilsTest
     Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
         Arrays.toString(StringUtils.split(a.start, a.splitOn, true))), new Options().inline(expected));
   }
+
   @Test
   public void testJavaScript()
   {
     String[] strings = {"\"\n", "this is a note \"\'\nanother liner"};
     Approvals.verifyAll(strings, a -> multiline(a, StringUtils.toJavaScriptEncode(a)));
   }
+
   public static String multiline(String from, String to)
   {
     return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
+
   @Test
   public void testJoinCollection()
   {
@@ -69,6 +74,7 @@ public class StringUtilsTest
     // end-snippet
     Approvals.verify(text);
   }
+
   @Test
   public void testJoinCollectionWithFunction()
   {
@@ -78,6 +84,7 @@ public class StringUtilsTest
     // end-snippet
     Approvals.verify(text);
   }
+
   @Test
   public void testReplace()
   {
@@ -87,11 +94,13 @@ public class StringUtilsTest
           replaceUseCases[i].replace), replaceUseCases[i].expectedString, "Replace failed");
     }
   }
+
   @Test
   public void testWriteToString()
   {
     Approvals.verify(StringUtils.toString("things", new Object[]{1, null, "hi"}));
   }
+
   @Test
   void testSortedMap()
   {
@@ -102,6 +111,7 @@ public class StringUtilsTest
     sortedMap.put("zz", "1");
     Approvals.verify(sortedMap);
   }
+
   @Test
   void testMapWithNonComparableKeys()
   {
@@ -159,6 +169,7 @@ public class StringUtilsTest
     ParseInput.from(expected).withTypes(String.class, String.class)
         .verifyAll((i, p) -> Arrays.toString(StringUtils.split(i, p)));
   }
+
   @Test
   @UseReporter(AutoApproveReporter.class)
   public void testRepeating()
@@ -169,6 +180,7 @@ public class StringUtilsTest
         """;
     ParseInput.from(expected).withTypes(String.class, Integer.class).verifyAll((s, i) -> StringUtils.repeat(s, i));
   }
+
   @Test
   public void testEnsureEnding()
   {
@@ -184,6 +196,7 @@ public class StringUtilsTest
     {
       this.value = value;
     }
+
     @Override
     public String toString()
     {

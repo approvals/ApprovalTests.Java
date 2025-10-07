@@ -21,6 +21,7 @@ public class NumberUtilsTest
     assertEquals(1, (Object) NumberUtils.floor(1.5), "rounded Down");
     assertEquals(1, (Object) NumberUtils.floor(1.999), "rounded Down");
   }
+
   @Test
   public void testSignificantDigits()
   {
@@ -30,6 +31,7 @@ public class NumberUtilsTest
       assertEquals(i + 1, NumberUtils.setSignificantDigit(digit, 0), 0.005, "significant digits");
     }
   }
+
   @Test
   public void testIntStream()
   {
@@ -37,10 +39,12 @@ public class NumberUtilsTest
     assertIntStream(NumberUtils.toIntStream(new Integer[]{1, 2, 3}));
     assertIntStream(NumberUtils.toIntStream(Arrays.asList(1, 2, 3)));
   }
+
   private void assertIntStream(IntStream stream)
   {
     assertTrue(stream instanceof IntStream);
   }
+
   @Test
   public void testLongStream()
   {
@@ -48,10 +52,12 @@ public class NumberUtilsTest
     assertLongStream(NumberUtils.toLongStream(new Long[]{1L, 2L, 3L}));
     assertLongStream(NumberUtils.toLongStream(Arrays.asList(1L, 2L, 3L)));
   }
+
   private void assertLongStream(LongStream stream)
   {
     assertTrue(stream instanceof LongStream);
   }
+
   @Test
   public void testDoubleStream()
   {
@@ -59,10 +65,12 @@ public class NumberUtilsTest
     assertDoubleStream(NumberUtils.toDoubleStream(new Double[]{1.0, 2.0, 3.0}));
     assertDoubleStream(NumberUtils.toDoubleStream(Arrays.asList(1.0, 2.0, 3.0)));
   }
+
   private void assertDoubleStream(DoubleStream stream)
   {
     assertTrue(stream instanceof DoubleStream);
   }
+
   @Test
   void testStripNonNumeric()
   {

@@ -14,11 +14,13 @@ public class SafetyCheckBeforeVerify
     guardRailCheck.remove();
     check.call(approver, options);
   }
+
   public static void add(Action2<ApprovalApprover, Options> newCheck)
   {
     Action2<ApprovalApprover, Options> oldCheck = guardRailCheck.get();
     guardRailCheck.set(newCheck);
   }
+
   public static void clear()
   {
     guardRailCheck.remove();

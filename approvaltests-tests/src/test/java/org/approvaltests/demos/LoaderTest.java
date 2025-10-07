@@ -37,6 +37,7 @@ public class LoaderTest
     {
       reserveItems(ids, new InventoryLoader(), new ItemReserver());
     }
+
     public void reserveItems(List<String> ids, Loader<Item[]> loader, Saver<Item> itemReserver)
     {
       Item[] items = loader.load();
@@ -48,6 +49,7 @@ public class LoaderTest
         }
       }
     }
+
     // end-snippet
     // begin-snippet: seperating_loaders_test
     @Test
@@ -84,6 +86,7 @@ public class LoaderTest
   private static void registerHold(Item item)
   {
   }
+
   private static Item[] getInventory()
   {
     Item[] items = new Item[0];

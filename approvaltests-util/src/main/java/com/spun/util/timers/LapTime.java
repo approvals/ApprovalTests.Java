@@ -14,18 +14,22 @@ public class LapTime
     this.label = label;
     this.lapTime = lapTime;
   }
+
   public long getLapTime()
   {
     return lapTime;
   }
+
   public String getLabel()
   {
     return label;
   }
+
   public DateDifference getLapTimeAsDateDifference()
   {
     return new DateDifference(lapTime);
   }
+
   /**
    * A convenience function to turn a ArrayList of LapTime objects into an Array
    * of the LapTime objects.
@@ -55,6 +59,7 @@ public class LapTime
     }
     return array;
   }
+
   public String toString()
   {
     String value = "com.spun.util.timers.LapTime[";

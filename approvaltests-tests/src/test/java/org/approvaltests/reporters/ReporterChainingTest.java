@@ -50,6 +50,7 @@ public class ReporterChainingTest
     assertNull(workingReporter2.received);
     assertTrue(reporter.report("", ""));
   }
+
   @Test
   public void testMultiReporter()
   {
@@ -60,6 +61,7 @@ public class ReporterChainingTest
     assertEquals("Hello", workingReporter.received);
     assertEquals("Hello", workingReporter2.received);
   }
+
   @Test
   public void testMultiReporterWithExceptions()
   {

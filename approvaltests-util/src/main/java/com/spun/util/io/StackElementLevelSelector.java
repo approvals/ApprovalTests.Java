@@ -10,10 +10,12 @@ public class StackElementLevelSelector implements StackElementSelector
   {
     this.ignoreLevels = ignoreLevels;
   }
+
   public StackTraceElement selectElement(StackTraceElement[] trace)
   {
     return trace[ignoreLevels + 1];
   }
+
   @Override
   public void increment()
   {

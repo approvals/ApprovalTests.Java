@@ -13,6 +13,7 @@ public class VerifySimpleLogger implements AutoCloseable
     this.options = options;
     log = SimpleLogger.logToString();
   }
+
   @Override
   public void close()
   {

@@ -20,10 +20,12 @@ public class DateScrubber extends RegExScrubber
   {
     this(pattern, n -> "[Date" + n + "]");
   }
+
   public DateScrubber(String pattern, Function1<Integer, String> replacement)
   {
     super(pattern, replacement);
   }
+
   public static SupportedFormat[] getSupportedFormats()
   {
     return new SupportedFormat[]{__("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}", "Tue May 13 16:30:00"),
@@ -59,10 +61,12 @@ public class DateScrubber extends RegExScrubber
                                  __("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d+", "2025-05-15 16:57:04.599",
                                      "2025-05-19 19:45:04.99")};
   }
+
   private static SupportedFormat __(String regex, String... examples)
   {
     return new SupportedFormat(regex, examples);
   }
+
   public static DateScrubber getScrubberFor(String formattedExample)
   {
     if (StringUtils.isEmpty(formattedExample))
@@ -85,6 +89,7 @@ public class DateScrubber extends RegExScrubber
         "No match found for %s.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 \n Current supported formats are: %s",
         formattedExample, Query.select(getSupportedFormats(), SupportedFormat::getRegex));
   }
+
   public static DateScrubber getNull()
   {
     return new DateScrubber("")
@@ -96,22 +101,27 @@ public class DateScrubber extends RegExScrubber
       }
     };
   }
+
   public static Scrubber getScrubberForTimestamp()
   {
     return DateScrubber.getScrubberFor(new Timestamp(0).toString());
   }
+
   public static Scrubber getScrubberForSqlDate()
   {
     return DateScrubber.getScrubberFor(new java.sql.Date(0).toString());
   }
+
   public static Scrubber getScrubberForDate()
   {
     return DateScrubber.getScrubberFor(new java.util.Date(0).toString());
   }
+
   public static void addScrubber(String example, String regex)
   {
     addScrubber(example, regex, true);
   }
+
   public static void addScrubber(String example, String regex, boolean displayMessage)
   {
     // Validate the regex pattern
@@ -141,6 +151,7 @@ public class DateScrubber extends RegExScrubber
           + "    DateScrubber.addScrubber(\"<date format>\", \"<regex>\", false)");
     }
   }
+
   public static void clearCustomScrubbers()
   {
     customScrubbers.clear();
@@ -156,10 +167,12 @@ public class DateScrubber extends RegExScrubber
       this.examples = examples;
       this.regex = regex;
     }
+
     public String[] getExamples()
     {
       return examples;
     }
+
     public String getRegex()
     {
       return regex;

@@ -20,10 +20,12 @@ public class FileMonitor
     timer = new Timer(true);
     timer.schedule(new FileMonitorNotifier(), 0, pollingInterval);
   }
+
   public void stop()
   {
     timer.cancel();
   }
+
   public void addFile(File file)
   {
     if (!files.containsKey(file))
@@ -31,14 +33,17 @@ public class FileMonitor
       files.put(file, (file.exists() ? file.lastModified() : -1L));
     }
   }
+
   public void removeFile(File file)
   {
     files.remove(file);
   }
+
   public void addListener(FileListener fileListener)
   {
     listeners.add(fileListener);
   }
+
   public void removeListener(FileListener fileListener)
   {
     listeners.remove(fileListener);
