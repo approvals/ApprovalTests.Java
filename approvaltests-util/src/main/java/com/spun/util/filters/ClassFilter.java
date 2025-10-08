@@ -13,6 +13,7 @@ public class ClassFilter implements Filter<Object>
   {
     throw new DeprecatedException(" a -> a instanceof %s", clazz.getName());
   }
+
   public boolean isExtracted(Object object)
   {
     return false;

@@ -14,6 +14,7 @@ public class SaverTest
     count(10, s -> strings.push(s));
     Approvals.verifyAll("", strings);
   }
+
   private void count(int num, Saver<String> saver)
   {
     for (int i = 0; i < num; i++)

@@ -11,6 +11,7 @@ public class CurrencyAmountTest
   {
     assertEquals("$35", new CurrencyAmount(35.44).withoutCents());
   }
+
   @Test
   void testCurrencyWithCents()
   {

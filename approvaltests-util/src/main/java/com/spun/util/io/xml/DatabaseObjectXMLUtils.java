@@ -33,6 +33,7 @@ public class DatabaseObjectXMLUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   private static DatabaseObject[] extract(Node node, XmlMap[] xmlMaps) throws Exception
   {
     ArrayList<DatabaseObject> list = new ArrayList<DatabaseObject>();
@@ -40,16 +41,19 @@ public class DatabaseObjectXMLUtils
         XmlMapTranslator.get(ArrayList.class, xmlMaps));
     return list.toArray(new DatabaseObject[list.size()]);
   }
+
   public static XmlMap map(Class<?> clazz)
   {
     return new XmlMap(ClassUtils.getClassName(clazz), "add", new XmlDatabaseMapExtractor(clazz));
   }
+
   @SuppressWarnings("unchecked")
   public static <T extends DatabaseObject> T[] extractClass(Class<T> clazz, DatabaseObject[] databaseObjects)
   {
     List<DatabaseObject> list = Query.where(databaseObjects, d -> clazz.isInstance(d));
     return list.toArray((T[]) Array.newInstance(clazz, list.size()));
   }
+
   public static void mockOld(DatabaseObject[] objects)
   {
     for (DatabaseObject object : objects)

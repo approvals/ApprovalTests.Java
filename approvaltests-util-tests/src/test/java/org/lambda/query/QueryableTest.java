@@ -26,12 +26,14 @@ class QueryableTest
     {
       this.caller = caller;
     }
+
     // end-snippet
     // begin-snippet: extendable-query
     public Queryable<String> findFirstWordsOnly()
     {
       return findFirstWordsOnly(caller);
     }
+
     // end-snippet
     // begin-snippet: custom-query
     public static Queryable<String> findFirstWordsOnly(List<String> words)
@@ -65,18 +67,21 @@ class QueryableTest
     assertArrayEquals(firstWordsOnlyStatic.toArray(), firstWordsOnlyWithExtension.toArray());
     Approvals.verifyAll("firstWordsOnly", firstWordsOnlyWithExtension);
   }
+
   @Test
   void testDistinct()
   {
     Queryable<Integer> distinct = Queryable.as(3, 2, 1, 1, 3).distinct();
     Approvals.verifyAll("", distinct);
   }
+
   @Test
   void testToArray()
   {
     Character[] letters = Queryable.as('L', 'a', 'r', 's').asArray();
     Approvals.verifyAll("", letters);
   }
+
   @Test
   void testEmptyArrays()
   {
@@ -86,6 +91,7 @@ class QueryableTest
     String[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
+
   @Test
   void testEmptyList()
   {
@@ -95,6 +101,7 @@ class QueryableTest
     String[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
+
   @Test
   void testSuperClassCommonality()
   {
@@ -106,6 +113,7 @@ class QueryableTest
     Number[] asArray = as.asArray();
     Approvals.verifyAll("", asArray);
   }
+
   @Test
   void testInterfaceCommonality()
   {
@@ -137,6 +145,7 @@ class QueryableTest
     Queryable<String> allNames = names.selectMany(n -> n);
     Approvals.verifyAll("", allNames);
   }
+
   @Test
   void testSelectManyCharacters()
   {
@@ -147,6 +156,7 @@ class QueryableTest
     // end-snippet
     Approvals.verifyAll("", allNames);
   }
+
   @Test
   void testGroupBy()
   {
@@ -156,6 +166,7 @@ class QueryableTest
     // end-snippet
     Approvals.verifyAll("", result);
   }
+
   @Test
   void testGroupByWordLength()
   {
@@ -163,6 +174,7 @@ class QueryableTest
     Queryable<Entry<Object, Queryable<String>>> result = words.groupBy(w -> w.length());
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
+
   @Test
   void testGroupByWordCount()
   {
@@ -170,6 +182,7 @@ class QueryableTest
     Queryable<Entry<String, Integer>> result = words.groupBy(w -> w, w -> w, r -> r.size());
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
+
   @Test
   void testGroupByCombineWordsOfSimilarLengths()
   {
@@ -180,24 +193,28 @@ class QueryableTest
     // end-snippet
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
+
   @Test
   void testJoin()
   {
     String result = Queryable.as("hello", null, "world").join("_");
     assertEquals("hello_null_world", result);
   }
+
   @Test
   void testJoinWithTransformation()
   {
     String result = Queryable.as("Hello", "World").join("_", String::toUpperCase);
     assertEquals("HELLO_WORLD", result);
   }
+
   @Test
   void testTakeAndSkip()
   {
     Integer[] integers = Range.get(1, 10);
     Approvals.verify(Queryable.as(integers).skip(3).take(4));
   }
+
   @Test
   void testCreateEmpty()
   {
@@ -208,12 +225,14 @@ class QueryableTest
     empty = Queryable.createEmpty(new Integer[]{1});
     assertEquals(Integer.class, empty.getType());
   }
+
   @Test
   void testRecursive()
   {
     Queryable<Integer> integers = Queryable.as(48, 8);
     Approvals.verifyAll("", integers.selectRecursivelyUntil(i -> i / 2, i -> i <= 1));
   }
+
   @Test
   void testOf()
   {
@@ -224,10 +243,12 @@ class QueryableTest
     verifyQueryable(Queryable.of(Set.of(1, 2, 3), Integer.class));
     verifyQueryable(Queryable.as(Set.of(1, 2, 3), Integer.class));
   }
+
   private static void verifyQueryable(Queryable<Integer> queryable)
   {
     Approvals.verifyAll("", queryable.orderBy(i -> i));
   }
+
   @Test
   void testFirstOrThrow()
   {

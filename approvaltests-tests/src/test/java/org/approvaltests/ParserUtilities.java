@@ -31,6 +31,7 @@ public class ParserUtilities
     MethodDeclaration methodDeclaration = getMethodDeclaration(method);
     return methodDeclaration.getRange().get();
   }
+
   public static MethodDeclaration getMethodDeclaration(Method method)
   {
     CompilationUnit cu = getCompilationUnit(method);
@@ -43,6 +44,7 @@ public class ParserUtilities
     }
     return methodDeclaration;
   }
+
   private static boolean isParsedMethodEqualToCompiledMethod(Method compiledMethod, MethodDeclaration parsedMethod)
   {
     if (!parsedMethod.getNameAsString().equals(compiledMethod.getName()))
@@ -61,11 +63,13 @@ public class ParserUtilities
     }
     return true;
   }
+
   public static boolean isCompiledTypeSameAsParsedType(Parameter parsed, String compiledType,
       NodeList<TypeParameter> typeParameters)
   {
     return compiledType.equals(convertParsedParameterToCompiledTypeSimpleName(parsed, typeParameters));
   }
+
   public static CompilationUnit getCompilationUnit(Method method)
   {
     CompilationUnit cu = null;
@@ -91,6 +95,7 @@ public class ParserUtilities
     }
     return cu;
   }
+
   public static String convertParsedParameterToCompiledTypeSimpleName(Parameter parameter,
       List<TypeParameter> methodTypeParameters)
   {
@@ -105,12 +110,14 @@ public class ParserUtilities
       return handleNonGenericTypes(type);
     }
   }
+
   private static boolean isParameterTypeGeneric(List<TypeParameter> methodTypeParameters, Type type,
       boolean isVarArg)
   {
     return methodTypeParameters.stream().anyMatch(tp -> type.toString().startsWith(tp.getNameAsString()))
         || isVarArg;
   }
+
   private static String handleGenericTypes(Type type, boolean isVarArg)
   {
     long arrayCount = type.toString().chars().filter(ch -> ch == '[').count() + (isVarArg ? 1 : 0); // Add an extra array level for varargs
@@ -122,6 +129,7 @@ public class ParserUtilities
     }
     return baseType + arraySuffix;
   }
+
   private static String handleNonGenericTypes(Type type)
   {
     String typeName = type.toString();

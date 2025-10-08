@@ -9,6 +9,7 @@ public class MockDeletor<T> implements Deletor<T>
   {
     this.deleted = delete;
   }
+
   public T getDeleted()
   {
     return deleted;

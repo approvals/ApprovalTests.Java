@@ -11,6 +11,7 @@ public class PitReporter implements ApprovalFailureReporter
     // do nothing!
     return isWorkingInThisEnvironment(received);
   }
+
   private boolean isWorkingInThisEnvironment(String forFile)
   {
     try

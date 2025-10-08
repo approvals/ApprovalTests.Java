@@ -14,11 +14,13 @@ public class StateTest
     String[] inputs = {"CALIFORNIA", "California", "ca", "Ca", null, "toronto", "rhode island"};
     Approvals.verifyAll("states", inputs, s -> String.format("%s -> %s", s, State.toStandardText(s)));
   }
+
   @Test
   public void testAll()
   {
     Approvals.verifyAll("states", State.getStringValues());
   }
+
   @Test
   public void testIsState()
   {

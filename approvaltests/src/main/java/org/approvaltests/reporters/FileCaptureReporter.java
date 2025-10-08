@@ -19,11 +19,13 @@ public class FileCaptureReporter implements ApprovalFailureReporter
     this("*** adding received file via FileCaptureReporter for further inspection",
         () -> StringUtils.isNonZero(System.getenv("GITHUB_ACTIONS")));
   }
+
   public FileCaptureReporter(String message, Function0<Boolean> isGitRegistrationNeeded)
   {
     this.message = message;
     this.isGitRegistrationNeeded = isGitRegistrationNeeded;
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -45,6 +47,7 @@ public class FileCaptureReporter implements ApprovalFailureReporter
       return false;
     }
   }
+
   public static void run(String... command)
   {
     SimpleLogger.event(Arrays.toString(command));

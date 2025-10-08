@@ -13,17 +13,20 @@ public class Counter<T>
   {
     Query.select(collection, extractor).forEach(this::count);
   }
+
   public void count(T value)
   {
     Integer count = counts.computeIfAbsent(value, x -> 0) + 1;
     counts.put(value, count);
   }
+
   public T getMaxValue()
   {
     if (counts.isEmpty())
     { return null; }
     return Query.max(counts.entrySet(), Map.Entry::getValue).getKey();
   }
+
   public static <In, Out> Out getMaxValue(Collection<In> collection, Function1<In, Out> extractor)
   {
     Counter<Out> counter = new Counter<>();

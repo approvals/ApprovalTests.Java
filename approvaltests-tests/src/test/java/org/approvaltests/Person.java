@@ -11,18 +11,22 @@ public final class Person
     this.name = name;
     this.age = age;
   }
+
   public String getAgeLabel()
   {
     return age > 20 ? "adult" : "teenager";
   }
+
   public String name()
   {
     return name;
   }
+
   public int age()
   {
     return age;
   }
+
   @Override
   public boolean equals(Object obj)
   {
@@ -33,11 +37,13 @@ public final class Person
     var that = (Person) obj;
     return Objects.equals(this.name, that.name) && this.age == that.age;
   }
+
   @Override
   public int hashCode()
   {
     return Objects.hash(name, age);
   }
+
   @Override
   public String toString()
   {

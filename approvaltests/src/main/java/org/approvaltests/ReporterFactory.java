@@ -35,11 +35,13 @@ public class ReporterFactory
     }
     return FirstWorkingReporter.combine(getFrontLoadedReporter(), returned);
   }
+
   private static ApprovalFailureReporter getFromPackageSettings(StackTraceElement[] trace)
   {
     Map<String, Settings> settings = PackageLevelSettings.getForStackTrace(trace);
     return ApprovalTestPackageSettings.USE_REPORTER.getValue(settings, () -> null);
   }
+
   /**
    * Loaded from PackageSettings.FrontloadedReporter
    */
@@ -49,11 +51,13 @@ public class ReporterFactory
     return ApprovalTestPackageSettings.FRONTLOADED_REPORTER.getValue(settings,
         () -> DefaultFrontLoadedReporter.INSTANCE);
   }
+
   public static ApprovalFailureReporter getFromAnnotation(StackTraceElement[] trace)
   {
     UseReporter reporter = getAnnotationsFromStackTrace(UseReporter.class, trace).getFirst();
     return reporter == null ? null : getReporter(reporter);
   }
+
   private static ApprovalFailureReporter getReporter(UseReporter reporter)
   {
     Class<? extends ApprovalFailureReporter>[] classes = reporter.value();
@@ -65,6 +69,7 @@ public class ReporterFactory
     }
     return reporters.size() == 1 ? reporters.get(0) : new MultiReporter(reporters);
   }
+
   public static <T extends Annotation> StackListings<T> getAnnotationsFromStackTrace(Class<T> annotationClass,
       StackTraceElement[] trace)
   {

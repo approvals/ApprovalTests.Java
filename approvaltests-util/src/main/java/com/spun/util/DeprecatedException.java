@@ -12,6 +12,7 @@ public class DeprecatedException extends FormattedException
         String.format(useNewMethod, formattingParams));
     SimpleLogger.message(getMessage());
   }
+
   private static Object methodName(StackTraceElement trace)
   {
     if (trace.getMethodName().equals("<init>"))

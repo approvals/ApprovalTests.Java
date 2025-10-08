@@ -21,6 +21,7 @@ public class InlineComparator implements ApprovalNamer
     this.expected = expected;
     this.inlineOptions = inlineOptions;
   }
+
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
@@ -38,6 +39,7 @@ public class InlineComparator implements ApprovalNamer
     }
     return approvedFile;
   }
+
   @Override
   public File getReceivedFile(String extensionWithDot)
   {
@@ -54,26 +56,31 @@ public class InlineComparator implements ApprovalNamer
     }
     return receivedFile;
   }
+
   @Override
   public ApprovalNamer addAdditionalInformation(String info)
   {
     return this;
   }
+
   @Override
   public String getAdditionalInformation()
   {
     return "";
   }
+
   @Override
   public String getApprovalName()
   {
     return "";
   }
+
   @Override
   public String getSourceFilePath()
   {
     return "";
   }
+
   public Options setForOptions(Options options)
   {
     options = inlineOptions.apply(options);

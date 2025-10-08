@@ -14,6 +14,7 @@ public class JsonJacksonApprovalsTest
     MyClass o = new MyClass();
     JsonJacksonApprovals.verifyAsJson(o, (om) -> om.setSerializationInclusion(JsonInclude.Include.NON_NULL));
   }
+
   @Test
   void testDuplicateFields()
   {
@@ -29,6 +30,7 @@ public class JsonJacksonApprovalsTest
     {
       return name;
     }
+
     public void setName(String name)
     {
       this.name = name;
@@ -42,6 +44,7 @@ public class JsonJacksonApprovalsTest
     {
       return name;
     }
+
     public void setName(String name)
     {
       this.name = name;

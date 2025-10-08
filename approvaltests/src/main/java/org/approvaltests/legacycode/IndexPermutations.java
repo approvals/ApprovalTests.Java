@@ -16,16 +16,19 @@ public class IndexPermutations implements Iterable<Integer[]>, Iterator<Integer[
       index[i] = 0;
     }
   }
+
   @Override
   public Iterator<Integer[]> iterator()
   {
     return this;
   }
+
   @Override
   public boolean hasNext()
   {
     return !finished;
   }
+
   @Override
   public Integer[] next()
   {
@@ -33,6 +36,7 @@ public class IndexPermutations implements Iterable<Integer[]>, Iterator<Integer[
     incermentIndex(0);
     return r;
   }
+
   private void incermentIndex(int index)
   {
     this.index[index]++;
@@ -47,6 +51,7 @@ public class IndexPermutations implements Iterable<Integer[]>, Iterator<Integer[
       incermentIndex(index + 1);
     }
   }
+
   @Override
   public void remove()
   {

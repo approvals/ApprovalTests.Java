@@ -33,14 +33,17 @@ public class ArrayUtils
     }
     return v;
   }
+
   public static <T> String toString(T[] values, Function1<T, String> formatter)
   {
     return toString(asList(values), formatter);
   }
+
   public static <T> List<T> asList(T[] values)
   {
     return values == null ? Collections.emptyList() : Arrays.asList(values);
   }
+
   public static <T> String toString(Iterable<T> values, Function1<T, String> formatter)
   {
     StringBuffer b = new StringBuffer();
@@ -50,6 +53,7 @@ public class ArrayUtils
     }
     return b.toString();
   }
+
   /**
    * @deprecated for removal in 16.0.0
    */
@@ -63,6 +67,7 @@ public class ArrayUtils
     }
     return reverse;
   }
+
   public static <T> T[] toReverseArray(T[] array)
   {
     for (int i = 0; i < array.length / 2; i++)
@@ -75,10 +80,12 @@ public class ArrayUtils
     }
     return array;
   }
+
   public static <T> T[] addToArray(T[] array, T... objects)
   {
     return combine(array, objects);
   }
+
   public static <T> T[] getSubsection(T[] array, int startInclusive, int endExclusive)
   {
     int length = endExclusive - startInclusive;
@@ -87,14 +94,17 @@ public class ArrayUtils
     System.arraycopy(array, startInclusive, newArray, 0, length);
     return newArray;
   }
+
   public static boolean isEmpty(Object[] array)
   {
     return ((array == null) || (array.length == 0));
   }
+
   public static boolean isEmpty(Iterable<?> collection)
   {
     return ((collection == null) || (!collection.iterator().hasNext()));
   }
+
   public static <T> T getSingleton(T[] parts)
   {
     if (parts == null)
@@ -109,32 +119,39 @@ public class ArrayUtils
         throw new Error("Called with more than one object in the array " + Arrays.asList(parts));
     }
   }
+
   public static <T> T getFirst(T[] array)
   {
     return array == null || array.length == 0 ? null : array[0];
   }
+
   public static <H, T extends H> T getFirst(T[] array, Comparator<H> compartor)
   {
     return get(array, compartor, true);
   }
+
   public static <H, T extends H> T getFirst(Collection<T> array, Comparator<H> sorter)
   {
     return get((T[]) array.toArray(), sorter, true);
   }
+
   public static <T> T getLast(T[] array)
   {
     if (array == null || array.length < 1)
     { return null; }
     return array[array.length - 1];
   }
+
   public static <T> T getLast(T[] array, Comparator<T> sorter)
   {
     return get(array, sorter, false);
   }
+
   public static <T> T getLast(Collection<T> array, Comparator<T> sorter)
   {
     return get((T[]) array.toArray(), sorter, false);
   }
+
   private static <H, T extends H> T get(T[] array, Comparator<H> sorter, boolean wantFirst)
   {
     if (isEmpty(array))
@@ -150,6 +167,7 @@ public class ArrayUtils
     }
     return last;
   }
+
   public static List<?> combineResults(Object[] array, String invokeMethod)
   {
     if (ArrayUtils.isEmpty(array))
@@ -163,6 +181,7 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   @SuppressWarnings("rawtypes")
   public static List combineResults(Object[] array, Method method)
   {
@@ -182,6 +201,7 @@ public class ArrayUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static <T> T[] combine(T[] a, T[] b)
   {
     if (isEmpty(a) && isEmpty(b))
@@ -215,6 +235,7 @@ public class ArrayUtils
       return newArray;
     }
   }
+
   public static <T> T[] combine(T a, T... b)
   {
     if (b == null)
@@ -226,10 +247,12 @@ public class ArrayUtils
     toArray[0] = a;
     return combine(toArray, b);
   }
+
   private static <T> Class<?> getClassFor(T object)
   {
     return object != null ? object.getClass() : Object.class;
   }
+
   public static <T> boolean contains(T[] values, T value)
   {
     for (int i = 0; i < values.length; i++)
@@ -239,6 +262,7 @@ public class ArrayUtils
     }
     return false;
   }
+
   public static boolean contains(int[] values, int value)
   {
     for (int i = 0; i < values.length; i++)
@@ -248,10 +272,12 @@ public class ArrayUtils
     }
     return false;
   }
+
   public static <T> T getLast(List<T> list)
   {
     return list.get(list.size() - 1);
   }
+
   public static <K, T> T getDefault(HashMap<K, T> map, K key, T defaultValue)
   {
     T value = map.get(key);
@@ -262,10 +288,12 @@ public class ArrayUtils
     }
     return value;
   }
+
   public static <K, V> int countValues(HashMap<K, V> out, V matching)
   {
     return count(matching, out.values());
   }
+
   public static <V> int count(V matching, Collection<V> values)
   {
     int count = 0;
@@ -278,6 +306,7 @@ public class ArrayUtils
     }
     return count;
   }
+
   public static <T> List<T> combine(List<T> list1, List<T> list2)
   {
     List<T> all = new ArrayList<T>();
@@ -285,18 +314,22 @@ public class ArrayUtils
     all.addAll(list2);
     return all;
   }
+
   public static <T> Iterable<T> asIterable(Iterator<T> iterator)
   {
     return new IterableWrapper<T>(iterator);
   }
+
   public static <T> T[] toArray(List<T> list)
   {
     return Queryable.as(list).asArray();
   }
+
   public static <T> T[] toArray(List<T> list, Class<T> type)
   {
     return Queryable.as(list, type).asArray();
   }
+
   public static <KEY, VALUES, SPECIFIC_VALUE extends VALUES> SPECIFIC_VALUE getOrElse(Map<KEY, VALUES> fields,
       KEY key, Function0<SPECIFIC_VALUE> defaultIfNotFound)
   {
@@ -309,6 +342,7 @@ public class ArrayUtils
       return defaultIfNotFound.call();
     }
   }
+
   public static Collection<Character> asList(char[] toCharArray)
   {
     ArrayList<Character> allChars = new ArrayList<>();
@@ -318,6 +352,7 @@ public class ArrayUtils
     }
     return allChars;
   }
+
   public static <T> T[] of(T valueOfEachElement, int sizeOfArray)
   {
     Queryable<T> queryable = new Queryable(valueOfEachElement.getClass());
@@ -327,12 +362,14 @@ public class ArrayUtils
     }
     return queryable.asArray();
   }
+
   public static <In> int size(Iterable<In> array)
   {
     if (array instanceof Collection)
     { return ((Collection) array).size(); }
     return (int) StreamSupport.stream(array.spliterator(), false).count();
   }
+
   public static <In> In getLast(Iterable<In> array)
   {
     if (array == null)
@@ -358,6 +395,7 @@ public class ArrayUtils
     {
       this.iterator = iterator;
     }
+
     @Override
     public Iterator<T> iterator()
     {

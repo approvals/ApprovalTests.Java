@@ -9,6 +9,7 @@ public class MockLoader<T> implements Loader<T>
   {
     this.item = item;
   }
+
   public T load()
   {
     return item;

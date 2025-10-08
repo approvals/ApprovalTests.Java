@@ -23,6 +23,7 @@ public class QueryTest
     assertEquals(true, Query.all(numbers, n -> 3 <= n));
     assertEquals(false, Query.all(numbers, n -> 4 <= n));
   }
+
   @Test
   public void testQueryAllOfNothing() throws Exception
   {
@@ -30,6 +31,7 @@ public class QueryTest
     List<Integer> numbers = Arrays.asList();
     assertEquals(true, Query.all(numbers, n -> 3 <= n));
   }
+
   @Test
   void queryVsStreamExample()
   {
@@ -65,6 +67,7 @@ public class QueryTest
       // end-snippet
     }
   }
+
   @Test
   void testTakeAndSkip()
   {
@@ -72,6 +75,7 @@ public class QueryTest
     Integer[] skip = Query.skip(integers, 3).asArray();
     Approvals.verify(Query.take(skip, 4));
   }
+
   @Test
   void testSkipTooMany()
   {
@@ -86,6 +90,7 @@ public class QueryTest
     list = null;
     assertEquals(Query.skip(list, 3).size(), 0);
   }
+
   @Test
   void testTakeTooMany()
   {
@@ -98,6 +103,7 @@ public class QueryTest
     list = null;
     assertEquals(Query.take(list, 3).size(), 0);
   }
+
   @Test
   void testMax()
   {
@@ -107,6 +113,7 @@ public class QueryTest
     max = Query.max(integers, (i) -> i % 3 * 10);
     assertEquals(2, max);
   }
+
   @Test
   void testArrayAndListParity()
   {
@@ -121,6 +128,7 @@ public class QueryTest
     Queryable<String> missingMethods = arrays.combine(iterables).select(this::printMethod).orderBy(m -> m);
     Approvals.verifyAll("Methods without a corresponding array or list", missingMethods, m -> m);
   }
+
   private boolean hasMatchingMethod(Method method, Queryable<Method> declaredMethods, boolean findIterable)
   {
     Queryable<Method> where = declaredMethods.where(m -> m.getName().equals(method.getName()))
@@ -134,10 +142,12 @@ public class QueryTest
       return where.any(m -> m.getParameterTypes()[0].isArray());
     }
   }
+
   private String printMethod(Method m)
   {
     return String.format("%s.%s(%s)", m.getDeclaringClass().getSimpleName(), m.getName(), showParameters(m));
   }
+
   private String showParameters(Method m)
   {
     return StringUtils.join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())),

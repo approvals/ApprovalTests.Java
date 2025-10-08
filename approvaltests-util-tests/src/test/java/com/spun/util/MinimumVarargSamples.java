@@ -17,6 +17,7 @@ public class MinimumVarargSamples
     {
     }
   }
+
   // begin-snippet: minimalVarargsRuntime
   public Integer findSmallest(Integer... numbers)
   {
@@ -26,6 +27,7 @@ public class MinimumVarargSamples
     // end-snippet
     return 42;
   }
+
   // begin-snippet: minimalVarargsCompileTime
   public Integer findSmallest(Integer first, Integer... numbers)
   {

@@ -18,6 +18,7 @@ public class ObjectUtils
   {
     return throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
   }
+
   public static int generateHashCode(Object... relevantMembers)
   {
     final int PRIME = 31;
@@ -28,6 +29,7 @@ public class ObjectUtils
     }
     return result;
   }
+
   /**
    * tests if two objects are equal for all functions passed.
    **/
@@ -51,6 +53,7 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
+
   public static Method[] getMethodsForObject(Object o2, String[] passedMethods)
   {
     Method[] methods = new Method[passedMethods.length];
@@ -63,6 +66,7 @@ public class ObjectUtils
     }
     return methods;
   }
+
   /**
    * A convenience function to check if 2 strings are equal.
    **/
@@ -81,6 +85,7 @@ public class ObjectUtils
       return false;
     }
   }
+
   public static boolean isIn(Object target, Object[] objects)
   {
     for (int i = 0; i < objects.length; i++)
@@ -90,10 +95,12 @@ public class ObjectUtils
     }
     return false;
   }
+
   public static boolean isThisInstanceOfThat(Class<?> thiz, Class<?> that)
   {
     return that.isAssignableFrom(thiz);
   }
+
   public static Error throwAsError(Throwable t)
   {
     if (t instanceof RuntimeException)
@@ -109,12 +116,14 @@ public class ObjectUtils
       throw new Error(t);
     }
   }
+
   public static <T> T getRandomIndex(T[] array)
   {
     if ((array == null) || (array.length == 0))
     { return null; }
     return array[NumberUtils.RANDOM.nextInt(array.length)];
   }
+
   public static Method getGreatestCommonDenominator(Object[] from, String methodName)
   {
     List<Class<?>> classes = new ArrayList<>();
@@ -134,6 +143,7 @@ public class ObjectUtils
         ? null
         : throwAsError(() -> ArrayUtils.getLast(classes).getMethod(methodName, (Class[]) null));
   }
+
   private static Class<?>[] getAllCastableClasses(Object object)
   {
     Class<? extends Object> clazz = object.getClass();
@@ -148,6 +158,7 @@ public class ObjectUtils
     ArrayUtils.toReverseArray(found);
     return found;
   }
+
   public static Object executeMethod(Object object, String method, Class<?>[] methodSignature, Object[] parameters)
   {
     try
@@ -159,10 +170,12 @@ public class ObjectUtils
       throw throwAsError(t);
     }
   }
+
   public static void assertInstance(Class<?> clazz, Object object)
   {
     assertInstance(new Class[]{clazz}, object);
   }
+
   public static void assertInstance(Class<?>[] classes, Object object)
   {
     if (object == null)
@@ -178,10 +191,12 @@ public class ObjectUtils
     throw new IllegalArgumentException("Expected Object of Type " + Query.select(classes, Class::getName)
         + " but got " + object.getClass().getName());
   }
+
   public static String getClassName(Object o)
   {
     return o == null ? "null" : o.getClass().getName();
   }
+
   public static void assertInstanceOrNull(Class<?> type, Object value)
   {
     if (value != null)
@@ -189,6 +204,7 @@ public class ObjectUtils
       assertInstance(type, value);
     }
   }
+
   public static void move(Object from, Object to, String[] getters)
   {
     try
@@ -207,10 +223,12 @@ public class ObjectUtils
       throw throwAsError(e);
     }
   }
+
   private static Class<?> getBestClass(Object value, Method method)
   {
     return value == null ? method.getReturnType() : value.getClass();
   }
+
   public static boolean isClassPresent(String className)
   {
     try
@@ -223,6 +241,7 @@ public class ObjectUtils
       return false;
     }
   }
+
   public static Throwable captureException(Action0 runnableBlock)
   {
     try
@@ -235,6 +254,7 @@ public class ObjectUtils
     }
     return null;
   }
+
   public static <T> T throwAsError(Function0WithException<T> code)
   {
     try
@@ -246,6 +266,7 @@ public class ObjectUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void throwAsError(Action0WithException code)
   {
     try

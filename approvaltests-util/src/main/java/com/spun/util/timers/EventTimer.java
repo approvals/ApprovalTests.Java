@@ -14,18 +14,22 @@ public class EventTimer
   {
     time = new EventTime();
   }
+
   public EventTimer(String label, long timeLimit)
   {
     time = new EventTime(label, timeLimit);
   }
+
   public EventTime getEventTime()
   {
     return time;
   }
+
   public void start()
   {
     startTimes.put("" + Thread.currentThread().hashCode(), new Date());
   }
+
   public void end()
   {
     Date startTime = (Date) startTimes.remove("" + Thread.currentThread().hashCode());

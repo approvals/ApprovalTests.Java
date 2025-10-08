@@ -14,6 +14,7 @@ public class MarkdownTable implements MarkdownCompatible
   {
     fixedWidth = setting;
   }
+
   public static <I, O> MarkdownTable create(I[] inputs, Function1<I, O> o, String column1, String column2)
   {
     MarkdownTable table = new MarkdownTable().withColumnHeaders(column1, column2);
@@ -23,11 +24,13 @@ public class MarkdownTable implements MarkdownCompatible
     }
     return table;
   }
+
   public static MarkdownTable withHeaders(String... columnNames)
   {
     MarkdownTable table = new MarkdownTable();
     return table.withColumnHeaders(columnNames);
   }
+
   public <I> MarkdownTable addRowsForInputs(I[] inputs, Function1<I, Object>... transfers)
   {
     for (I input : inputs)
@@ -38,27 +41,32 @@ public class MarkdownTable implements MarkdownCompatible
     }
     return this;
   }
+
   public MarkdownTable addRow(Object... columns)
   {
     markdown.addAll(constructRow(columns));
     return this;
   }
+
   public MarkdownTable withColumnHeaders(String... headers)
   {
     markdown.addAll(constructColumnHeaders(headers));
     return this;
   }
+
   @Override
   public String toString()
   {
     return toMarkdown();
   }
+
   @Override
   public String toMarkdown()
   {
     handleFixedWidth();
     return render(markdown);
   }
+
   private void handleFixedWidth()
   {
     if (!fixedWidth)
@@ -77,10 +85,12 @@ public class MarkdownTable implements MarkdownCompatible
       }
     }
   }
+
   public static String printColumnHeaders(String... headers)
   {
     return render(constructColumnHeaders(headers));
   }
+
   public static Queryable<MarkdownTableElement> constructColumnHeaders(String... headers)
   {
     Queryable<MarkdownTableElement> row = constructRow(headers);
@@ -93,14 +103,17 @@ public class MarkdownTable implements MarkdownCompatible
     row.add(MarkdownTableElement.NEWLINE);
     return row;
   }
+
   public static String printRow(Object... columns)
   {
     return render(constructRow(columns));
   }
+
   private static String render(Queryable<MarkdownTableElement> table)
   {
     return table.join("");
   }
+
   public static Queryable<MarkdownTableElement> constructRow(Object... columns)
   {
     Queryable row = new Queryable(MarkdownTableElement.class);
@@ -113,6 +126,7 @@ public class MarkdownTable implements MarkdownCompatible
     row.add(MarkdownTableElement.NEWLINE);
     return row;
   }
+
   public void setColumnProperties(MarkdownColumn columnProperties)
   {
     this.columnProperties = columnProperties;

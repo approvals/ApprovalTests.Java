@@ -11,6 +11,7 @@ public class InlineWriter implements ApprovalWriter
   {
     return null;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

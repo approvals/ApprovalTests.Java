@@ -15,6 +15,7 @@ class AutoApproveReporterTest
     FileUtils.delete(namer.getApprovalFile(".txt"));
     Approvals.verify("applesauce", new Options().withReporter(new AutoApproveReporter()));
   }
+
   @Test
   void testWhenNotEmpty()
   {

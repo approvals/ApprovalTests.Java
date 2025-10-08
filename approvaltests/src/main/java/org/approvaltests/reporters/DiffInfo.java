@@ -20,10 +20,12 @@ public class DiffInfo
     this.parameters = parameters;
     this.fileExtensions = fileExtensions;
   }
+
   public static DiffInfo getNull()
   {
     return new DiffInfo(null, null, null);
   }
+
   private static String resolveWindowsPath(String diffProgram)
   {
     diffProgram = diffProgram == null ? "" : diffProgram;
@@ -34,15 +36,18 @@ public class DiffInfo
     }
     return diffProgram;
   }
+
   private static String getPathInProgramFilesX86(String path)
   {
     String[] paths = getProgramFilesPaths();
     return getFirstWorking(path, paths, "C:\\Program Files\\");
   }
+
   public DiffInfo(String diffProgram, List<String> fileExtensions)
   {
     this(diffProgram, GenericDiffReporter.STANDARD_ARGUMENTS, fileExtensions);
   }
+
   public static String getFirstWorking(String path, String[] paths, String ifNotFoundDefault)
   {
     String fullPath = ifNotFoundDefault + path;
@@ -56,14 +61,17 @@ public class DiffInfo
     }
     return fullPath;
   }
+
   public boolean isEmpty()
   {
     return "".equals(diffProgram);
   }
+
   public static String[] getProgramFilesPaths()
   {
     return WINDOWS_PROGRAM_FILES;
   }
+
   public static String[] loadProgramFilesPaths()
   {
     List<String> paths = new ArrayList<>();
@@ -74,10 +82,12 @@ public class DiffInfo
     addIfNotNull("LOCALAPPDATA", paths, "\\Programs");
     return paths.toArray(new String[0]);
   }
+
   private static void addIfNotNull(String envVarName, List<String> paths)
   {
     addIfNotNull(envVarName, paths, "");
   }
+
   private static void addIfNotNull(String envVarName, List<String> paths, String postfix)
   {
     String path = System.getenv(envVarName);

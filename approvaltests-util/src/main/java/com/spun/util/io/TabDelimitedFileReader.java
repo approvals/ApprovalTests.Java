@@ -23,10 +23,12 @@ public class TabDelimitedFileReader
         .throwAsError(() -> Files.newBufferedReader(Paths.get(absoluteFileName), StandardCharsets.UTF_8));
     this.trim = trim;
   }
+
   public boolean next()
   {
     return prepNext() != null;
   }
+
   public String prepNext()
   {
     try
@@ -46,6 +48,7 @@ public class TabDelimitedFileReader
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public String[] readLine(int minimumIndexReturned)
   {
     if (lastRead == null)
@@ -64,6 +67,7 @@ public class TabDelimitedFileReader
     lastRead = null;
     return found;
   }
+
   private void clean(String[] found)
   {
     for (int i = 0; i < found.length; i++)

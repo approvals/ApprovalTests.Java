@@ -21,4 +21,4 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-*.approved.* binary
+*.approved.* binary diff

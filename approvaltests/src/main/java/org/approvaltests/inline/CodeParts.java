@@ -43,10 +43,12 @@ public class CodeParts
     codeParts.after = String.join("\n", ArrayUtils.getSubsection(lines, end, lines.length));
     return codeParts;
   }
+
   public String getFullCode()
   {
     return before + "\n" + method + "\n" + after;
   }
+
   private static String extractLeadingWhitespace(String text)
   {
     Pattern pattern = Pattern.compile("^\\s+");
@@ -55,6 +57,7 @@ public class CodeParts
     { return matcher.group(); }
     return "\t";
   }
+
   @Override
   public String toString()
   {

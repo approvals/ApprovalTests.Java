@@ -29,6 +29,7 @@ public class DateRangeTest
       assertFalse(range.contains(date(10)));
     }
   }
+
   @Test
   public void testFilter()
   {
@@ -39,6 +40,7 @@ public class DateRangeTest
       Approvals.verifyAll("Dates", Query.where(dates, d -> range.contains(d)));
     }
   }
+
   public static Timestamp quickDate(int daysPastNewYears)
   {
     Timestamp start = DateUtils.parse("2001/01/01");
@@ -46,10 +48,12 @@ public class DateRangeTest
     calendar.add(GregorianCalendar.DAY_OF_YEAR, daysPastNewYears);
     return DateUtils.asTimestamp(calendar.getTime());
   }
+
   public static Timestamp date(int daysAgo)
   {
     return DateUtils.getStartOfXDaysAgo(daysAgo);
   }
+
   @Test
   public void testGetWeeks()
   {
@@ -59,6 +63,7 @@ public class DateRangeTest
       Approvals.verifyAll("week", d.getWeeks());
     }
   }
+
   @Test
   public void testContainsDayOfWeek()
   {
@@ -69,6 +74,7 @@ public class DateRangeTest
       assertFalse(d.containsDayOfWeek(Calendar.MONDAY));
     }
   }
+
   @Test
   public void testGetFirstDayOfWeek()
   {
@@ -79,6 +85,7 @@ public class DateRangeTest
       assertEquals(expected, d.getFirst(Calendar.THURSDAY));
     }
   }
+
   @Test
   public void testGetMonths()
   {
@@ -88,6 +95,7 @@ public class DateRangeTest
       Approvals.verifyAll("months", d.getMonths());
     }
   }
+
   @Test
   public void testGetQuarters()
   {
@@ -97,6 +105,7 @@ public class DateRangeTest
       Approvals.verifyAll("months", d.getQuarters());
     }
   }
+
   @Test
   public void testGetRangeContaining()
   {

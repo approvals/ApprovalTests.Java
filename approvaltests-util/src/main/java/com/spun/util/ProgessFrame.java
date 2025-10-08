@@ -20,6 +20,7 @@ public class ProgessFrame extends JDialog
   {
     this(frame, title, initLabel, maxSteps, true);
   }
+
   public ProgessFrame(Frame frame, String title, String initLabel, int maxSteps, boolean forcePainting)
   {
     super(frame, title, false);
@@ -27,6 +28,7 @@ public class ProgessFrame extends JDialog
     this.forcePainting = forcePainting;
     init(initLabel);
   }
+
   private void init(String initLabel)
   {
     panel = new JPanel();
@@ -52,6 +54,7 @@ public class ProgessFrame extends JDialog
     WindowUtils.centerWindow(this);
     setState(initLabel, 0);
   }
+
   public void setState(String label, int progress)
   {
     progressLabel.setText(label);
@@ -69,10 +72,12 @@ public class ProgessFrame extends JDialog
       this.dispose();
     }
   }
+
   public void start()
   {
     this.startTime = System.currentTimeMillis();
   }
+
   public void setStateWithTime(int progress)
   {
     long time = System.currentTimeMillis() - startTime;
@@ -83,6 +88,7 @@ public class ProgessFrame extends JDialog
         new DateDifference(remainingTime).getStandardTimeText(2));
     setState(label, progress);
   }
+
   public void setFinished()
   {
     setState("done", maxSteps);

@@ -17,14 +17,17 @@ public class ThreadUtils
       // ignore
     }
   }
+
   public static void launch(Action0 action)
   {
     launch(action, Duration.ZERO);
   }
+
   public static void launch(Action0 action, Duration delay)
   {
     new LambdaThreadLauncher(action, delay);
   }
+
   public static StackTraceElement[] getStackTrace()
   {
     return Thread.currentThread().getStackTrace();

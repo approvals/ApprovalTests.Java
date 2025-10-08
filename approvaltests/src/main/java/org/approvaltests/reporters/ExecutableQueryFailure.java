@@ -18,16 +18,19 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     this.query = query;
     this.reporter = reporter;
   }
+
   public static Options create(ExecutableCommand query, Options options)
   {
     ExecutableQueryFailure executableQueryFailure = new ExecutableQueryFailure(query, options.getReporter());
     return options.withReporter(executableQueryFailure);
   }
+
   public boolean report(String received, String approved)
   {
     reporter.report(runQueryAndGetPath(received), runQueryAndGetPath(approved));
     return reporter.report(received, approved);
   }
+
   private String runQueryAndGetPath(String filename)
   {
     if (!new File(filename).exists())
@@ -39,6 +42,7 @@ public class ExecutableQueryFailure implements ApprovalFailureReporter, Approval
     FileUtils.writeFile(newFile, String.format("%squery:\n%s\n\nresult:\n%s", header, newQuery, newResult));
     return newFile.getAbsolutePath();
   }
+
   @Override
   public void cleanUp(String received, String approved)
   {

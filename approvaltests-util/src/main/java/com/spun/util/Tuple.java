@@ -9,14 +9,17 @@ public class Tuple<H, K>
     this.first = first;
     this.second = second;
   }
+
   public H getFirst()
   {
     return first;
   }
+
   public K getSecond()
   {
     return second;
   }
+
   @Override
   public String toString()
   {

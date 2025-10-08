@@ -13,17 +13,20 @@ public class ApprovalXmlWriterTest
   {
     Approvals.verifyXml("<xml><hello/><start>hi</start></xml>");
   }
+
   @Test
   public void xmlWithAttributes()
   {
     Approvals.verifyXml("<xml b=\"123\" a=\"456\"><hello x=\"y\"/><start>hi</start></xml>");
   }
+
   @Test
   public void xmlWithDeepAttributes()
   {
     Approvals
         .verifyXml("<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>");
   }
+
   @Test
   public void xmlWithDeepAttributesWithScrubber()
   {
@@ -31,6 +34,7 @@ public class ApprovalXmlWriterTest
         "<xml b=\"1\" a=\"1\"><branch1 b=\"1\" a=\"1\"/><branch2 b=\"1\" a=\"1\">hi</branch2></xml>",
         new Options(new RegExScrubber("hi", "hello")));
   }
+
   @Test
   public void invalidXml()
   {
@@ -42,6 +46,7 @@ public class ApprovalXmlWriterTest
       Approvals.verifyXml("<xml><hello/><start>hi</xml>", new Options().inline(expected));
     }
   }
+
   @Test
   public void validXml()
   {

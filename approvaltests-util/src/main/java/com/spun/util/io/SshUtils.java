@@ -38,10 +38,12 @@ public class SshUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void ftpUpload(FTPConfig config, String directory, File file)
   {
     ftpUpload(config, directory, file, file.getName());
   }
+
   public static void sftpUpload(FTPConfig config, File file, String remoteFileName)
   {
     try
@@ -58,6 +60,7 @@ public class SshUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static SftpClient sshLogin(FTPConfig config, SshClient ssh)
   {
     try
@@ -76,6 +79,7 @@ public class SshUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static File sftpDownload(FTPConfig config, File file, String remoteFileName)
   {
     try
@@ -92,6 +96,7 @@ public class SshUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void assertValidReplyCode(int code, FTPClient ftp)
   {
     if (FTPReply.isPositiveCompletion(code))

@@ -18,6 +18,7 @@ public class PackageLevelSettings
   {
     return getForStackTrace(ThreadUtils.getStackTrace());
   }
+
   public static Map<String, Settings> getForStackTrace(StackTraceElement[] trace)
   {
     Map<String, Settings> settings = new HashMap<String, Settings>();
@@ -36,6 +37,7 @@ public class PackageLevelSettings
     }
     return settings;
   }
+
   private static Map<String, Settings> getSettingsFor(String packageName, HashSet<String> done)
   {
     if (packageName == null || done.contains(packageName))
@@ -66,6 +68,7 @@ public class PackageLevelSettings
     done.add(packageName);
     return settings;
   }
+
   private static Settings getFieldValue(Field field, Object from)
   {
     try
@@ -79,25 +82,30 @@ public class PackageLevelSettings
     }
     return null;
   }
+
   public static String getNextLevel(String className)
   {
     int last = className.lastIndexOf(".");
     return (last < 0) ? null : className.substring(0, last);
   }
+
   public static Class<?> loadClass(String className)
   {
     return ObjectUtils
         .throwAsError(() -> Class.forName(className, true, Thread.currentThread().getContextClassLoader()));
   }
+
   public static Object getValueFor(String key)
   {
     Settings settings = get().get(key);
     return settings == null ? null : settings.getValue();
   }
+
   public static <T> T getValueFor(org.packagesettings.Field<T> field)
   {
     return getValueFor(field, () -> null);
   }
+
   public static <T> T getValueFor(org.packagesettings.Field<T> field, Function0<T> defaultSupplier)
   {
     return field.getValue(get(), defaultSupplier);

@@ -25,6 +25,7 @@ public class JsonUtils
   {
     return prettyPrint(json, g -> g);
   }
+
   public static String prettyPrint(String json, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
   {
     if (!ObjectUtils.isClassPresent("com.google.gson.Gson"))
@@ -43,16 +44,19 @@ public class JsonUtils
       return String.format("Error:%s\nJson:\n%s", e.getMessage(), json);
     }
   }
+
   public static String asJson(Object o)
   {
     return asJson(o, (b) -> b);
   }
+
   public static <T> String asJsonWithBuilder(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass)
   {
     if (!ObjectUtils.isThisInstanceOfThat(gsonBuilderClass, com.google.gson.GsonBuilder.class))
     { throw new FormattedException("Class must be of type %s", GsonBuilder.class.getName()); }
     return asJson(o, (Function1<GsonBuilder, GsonBuilder>) gsonBuilder);
   }
+
   public static <T> String asJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
   {
     try
@@ -69,26 +73,31 @@ public class JsonUtils
           e);
     }
   }
+
   private static GsonBuilder addHandlingForDateObjects(GsonBuilder builder)
   {
     builder = builder.registerTypeAdapter(Instant.class, new InstantAdapter());
     builder = builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
     return builder;
   }
+
   public static String reorderFields(String json)
   {
     return reorderFields(json, g -> g);
   }
+
   public static String reorderFields(String json, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
   {
     JsonObject sortedJsonObject = sortJsonObject(json);
     return asJson(sortedJsonObject, gsonBuilder);
   }
+
   public static JsonObject sortJsonObject(String json)
   {
     JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
     return sortJsonObjectFields(jsonObject);
   }
+
   public static JsonObject sortJsonObjectFields(JsonObject jsonObject)
   {
     JsonObject sortedJsonObject = new JsonObject();
@@ -112,6 +121,7 @@ public class JsonUtils
     }
     return sortedJsonObject;
   }
+
   public static JsonArray sortJsonArrayFields(JsonArray jsonArray)
   {
     JsonArray sortedJsonArray = new JsonArray();
@@ -139,6 +149,7 @@ public class JsonUtils
     {
       jsonWriter.value(instant.toString());
     }
+
     @Override
     public Instant read(JsonReader jsonReader) throws IOException
     {
@@ -159,6 +170,7 @@ public class JsonUtils
         jsonWriter.value("" + instant);
       }
     }
+
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException
     {

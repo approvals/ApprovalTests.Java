@@ -12,11 +12,13 @@ public class PaintablePanel<P extends Paintable> extends JPanel
     setPreferredSize(paintable.getSize());
     paintable.registerRepaint(() -> this.repaint());
   }
+
   @Override
   public void paint(Graphics g)
   {
     paintable.paint(g);
   }
+
   public P get()
   {
     return paintable;

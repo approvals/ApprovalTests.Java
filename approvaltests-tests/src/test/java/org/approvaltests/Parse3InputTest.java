@@ -27,6 +27,7 @@ public class Parse3InputTest
     ParseInput.from(expected).withTypes(Integer.class, Double.class, Boolean.class)
         .transformTo((i, d, b) -> i * d * (b ? 1 : 0)).verifyAll(t -> t);
   }
+
   @Test
   @UseReporter(AutoApproveReporter.class)
   public void testArrays()
@@ -41,6 +42,7 @@ public class Parse3InputTest
         .transformTo((s, i, r) -> new Tuple<>(new Person(s, i), r))
         .verifyAll(t -> t.getFirst() + " = " + sum(t.getSecond()));
   }
+
   private Double sum(Integer[] integers)
   {
     return Queryable.of(integers).sum();

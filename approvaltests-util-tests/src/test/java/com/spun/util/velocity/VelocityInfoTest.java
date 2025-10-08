@@ -18,6 +18,7 @@ public class VelocityInfoTest implements ContextAware
         t.getMessage());
     assertInfoEqual(t.getInfo(), "$main.unknownField", 1, 7);
   }
+
   @Test
   public void testInfoForMethod()
   {
@@ -25,12 +26,14 @@ public class VelocityInfoTest implements ContextAware
     VelocityParsingError t = getParsingErrorFor(template);
     Approvals.verify(String.format("Template: %s \n generated error:\n %s", template, t.getMessage().trim()));
   }
+
   private void assertInfoEqual(Info i, String name, int line, int column)
   {
     assertEquals(name, i.getTemplateName(), "Template Name");
     assertEquals(line, i.getLine(), "Template Line");
     assertEquals(column, i.getColumn(), "Template Column");
   }
+
   public VelocityParsingError getParsingErrorFor(String velocity)
   {
     try
@@ -43,6 +46,7 @@ public class VelocityInfoTest implements ContextAware
       return t;
     }
   }
+
   @Override
   public void setupContext(Context context)
   {

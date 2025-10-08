@@ -21,6 +21,7 @@ class NamerFactoryForOptionsTest
     String name = namer.getApprovedFile(".txt").getName();
     assertEquals("NamerFactoryForOptionsTest.testOsSpecificTest.Mac_OS_X.approved.txt", name);
   }
+
   @Test
   void oldExampleForDocs()
   {
@@ -31,6 +32,7 @@ class NamerFactoryForOptionsTest
     }
     // end-snippet
   }
+
   @Test
   void exampleForDocs()
   {
@@ -38,6 +40,7 @@ class NamerFactoryForOptionsTest
     Approvals.verify("data", Approvals.NAMES.withParameters("title", "chapter"));
     // end-snippet
   }
+
   @Disabled("TODO: only on Lars' laptop")
   //  @EnabledOnOs(OS.MAC)
   @Test
@@ -50,6 +53,7 @@ class NamerFactoryForOptionsTest
     assertEquals("NamerFactoryForOptionsTest.testMachineSpecificTest.Mac_OS_X.lars-mbp-14.approved.txt", name);
     // end-snippet
   }
+
   @Test
   void allHaveOptions()
   {

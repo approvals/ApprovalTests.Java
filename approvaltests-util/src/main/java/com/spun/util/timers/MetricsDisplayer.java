@@ -15,14 +15,17 @@ public class MetricsDisplayer implements ContextAware
   {
     this.stats = stats;
   }
+
   public String saveToFile(String outputFileName)
   {
     return VelocityParser.parseFile(TEMPLATE, outputFileName, this);
   }
+
   public LapTimeStatistics getStatistics()
   {
     return stats;
   }
+
   public void setupContext(Context context)
   {
     context.put("stats", stats);

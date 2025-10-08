@@ -11,6 +11,7 @@ public class Outputable implements Output
   {
     this.out = out;
   }
+
   @Override
   public Output append(CharSequence text)
   {

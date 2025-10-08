@@ -38,6 +38,7 @@ public class FileUtils
     tempFile.mkdirs();
     return tempFile;
   }
+
   public static void deleteDirectory(File directory)
   {
     // delete all directory
@@ -55,6 +56,7 @@ public class FileUtils
     // delete self.
     directory.delete();
   }
+
   public static String readFromClassPath(Class<?> clazz, String string)
   {
     final InputStream resourceAsStream = clazz.getResourceAsStream(string);
@@ -66,10 +68,12 @@ public class FileUtils
     String resource = FileUtils.readStream(resourceAsStream);
     return resource;
   }
+
   public static File[] getRecursiveFileList(File directory)
   {
     return getRecursiveFileList(directory, new SimpleFileFilter());
   }
+
   public static File[] getRecursiveFileList(File directory, FileFilter filter)
   {
     ArrayList<File> list = new ArrayList<File>();
@@ -85,6 +89,7 @@ public class FileUtils
     ArrayUtils.addArray(list, files);
     return list.toArray(new File[list.size()]);
   }
+
   public static void copyFile(File in, File out)
   {
     try
@@ -109,6 +114,7 @@ public class FileUtils
       ObjectUtils.throwAsError(e);
     }
   }
+
   public static void copyStream(InputStream in, OutputStream out)
   {
     try
@@ -127,6 +133,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void redirectInputToFile(String fileName, InputStream in)
   {
     try
@@ -139,6 +146,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void copyFileToDirectory(String file, File tempDir)
   {
     try
@@ -152,6 +160,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void appendToFile(File file, String text)
   {
     try
@@ -169,6 +178,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void writeFile(File file, String text)
   {
     try
@@ -185,10 +195,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void writeFileQuietly(File file, String text)
   {
     writeFile(file, text);
   }
+
   public static void writeFile(File file, CharSequence data)
   {
     try
@@ -208,6 +220,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static void writeFile(File file, InputStream data)
   {
     try
@@ -221,18 +234,22 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static String readFile(String absolutePath)
   {
     return readFile(absolutePath, true);
   }
+
   public static String readFile(String absolutePath, boolean ensureTrailingNewline)
   {
     return readFile(new File(absolutePath), ensureTrailingNewline);
   }
+
   public static String readFile(File file)
   {
     return readFile(file, true);
   }
+
   public static String readFile(File file, boolean ensureTrailingNewline)
   {
     try
@@ -256,6 +273,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static String readBuffer(BufferedReader in)
   {
     try
@@ -273,10 +291,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static String readFileWithSuppressedExceptions(File databaseFile)
   {
     return FileUtils.readFile(databaseFile);
   }
+
   public static File saveToFile(String prefix, Reader input)
   {
     try
@@ -301,6 +321,7 @@ public class FileUtils
       throw new FormattedException("Failed to save file (prefix, message): %s, %s", prefix, e.getMessage());
     }
   }
+
   public static String getDirectoryFriendlyName(String name)
   {
     if (name == null)
@@ -320,15 +341,18 @@ public class FileUtils
     }
     return result.toString();
   }
+
   public static String getExtensionWithDot(String filename)
   {
     int p = filename.lastIndexOf('.');
     return filename.substring(p);
   }
+
   public static String getExtensionWithoutDot(String filename)
   {
     return getExtensionWithDot(filename).substring(1);
   }
+
   public static void createIfNeeded(String file)
   {
     try
@@ -351,6 +375,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void createEmptyImage(File file)
   {
     try
@@ -363,19 +388,23 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static boolean isImage(String file)
   {
     return file.endsWith(".png");
   }
+
   public static String readStream(InputStream resourceAsStream)
   {
     BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8));
     return FileUtils.readBuffer(reader);
   }
+
   public static char[] loadResourceFromClasspathAsBytes(Class<?> clazz, String name)
   {
     return extractBytes(clazz.getResourceAsStream(name));
   }
+
   public static char[] extractBytes(final InputStream resourceAsStream)
   {
     try
@@ -394,6 +423,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   public static char[] toChars(List<Character> data)
   {
     char[] out = new char[data.size()];
@@ -403,11 +433,13 @@ public class FileUtils
     }
     return out;
   }
+
   public static boolean isNonEmptyFile(String approved)
   {
     File file = new File(approved);
     return file.exists() && file.length() > 0;
   }
+
   public static void ensureParentDirectoriesExist(File file)
   {
     File dir = file.getParentFile();
@@ -416,6 +448,7 @@ public class FileUtils
       dir.mkdirs();
     }
   }
+
   public static String readFile(File file, String defaultText)
   {
     try
@@ -427,6 +460,7 @@ public class FileUtils
       return defaultText;
     }
   }
+
   public static String getCurrentDirectory()
   {
     try
@@ -438,10 +472,12 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void delete(String filePath)
   {
     delete(new File(filePath));
   }
+
   public static void delete(File file)
   {
     if (file.exists())
@@ -449,6 +485,7 @@ public class FileUtils
       file.delete();
     }
   }
+
   public static Stream<Path> walkPath(String channelsPath, int maxDepth)
   {
     try
@@ -460,6 +497,7 @@ public class FileUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static String getResolvedPath(File file)
   {
     try

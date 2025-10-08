@@ -22,6 +22,7 @@ public class ValidationError extends RuntimeException
       this.assertions.add(e.toString());
     }
   }
+
   public ValidationError(String[] assertions)
   {
     this.assertions = new HashSet<String>();
@@ -30,18 +31,22 @@ public class ValidationError extends RuntimeException
       this.assertions.addAll(Arrays.asList(assertions));
     }
   }
+
   public ValidationError()
   {
     this.assertions = new HashSet<String>();
   }
+
   public String getMessage()
   {
     return toString();
   }
+
   public String toString()
   {
     return "Validation(s) failed " + errors.keySet().toString() + " - " + errors.values().toString();
   }
+
   public ValidationTracker getTracker()
   {
     if (iterator == null)
@@ -50,10 +55,12 @@ public class ValidationError extends RuntimeException
     }
     return iterator;
   }
+
   public void set(Enum<?> assertion, boolean isOk, String errorDescription)
   {
     setError(assertion.toString(), !isOk, errorDescription);
   }
+
   public void setError(String assertion, boolean isError, String errorDescription)
   {
     if (isError && !StringUtils.isNonZero(errorDescription))
@@ -68,16 +75,19 @@ public class ValidationError extends RuntimeException
       errors.remove(assertion);
     }
   }
+
   public void setIfValid(String assertion, boolean isError, String errorDescription)
   {
     if (!isOk())
     { return; }
     setError(assertion, isError, errorDescription);
   }
+
   public ValidationError add(String prefix, int index, ValidationError error)
   {
     return add(getPrefixForIndex(prefix, index), error);
   }
+
   public ValidationError addForRange(String prefix, int startInclusive, int endExclusive, ValidationError error)
   {
     for (int i = startInclusive; i < endExclusive; i++)
@@ -86,10 +96,12 @@ public class ValidationError extends RuntimeException
     }
     return this;
   }
+
   public static String getPrefixForIndex(String prefix, int index)
   {
     return prefix + "[" + index + "]";
   }
+
   public ValidationError add(String prefix, ValidationError error)
   {
     prefix = StringUtils.isEmpty(prefix) ? "" : (prefix + ".");
@@ -106,10 +118,12 @@ public class ValidationError extends RuntimeException
     }
     return this;
   }
+
   public boolean isOk()
   {
     return (errors.size() == 0);
   }
+
   private void assertValidAssertion(String assertion)
   {
     if (!this.assertions.contains(assertion))
@@ -118,23 +132,28 @@ public class ValidationError extends RuntimeException
       throw new Error("Assertion '" + assertion + "' not found from " + assertions.toString());
     }
   }
+
   public boolean isValid(Enum<?> e)
   {
     return isValid(e.toString());
   }
+
   public boolean isValid(String assertion)
   {
     assertValidAssertion(assertion);
     return (errors.get(assertion) == null);
   }
+
   public int size()
   {
     return errors.size();
   }
+
   public String getErrorDescription(Enum<?> assertion)
   {
     return getErrorDescription(assertion.toString());
   }
+
   /**
    * This get the description of the error
    * @return The text description of the error or "" if the assertion was valid
@@ -145,15 +164,18 @@ public class ValidationError extends RuntimeException
     String errorDescription = (String) errors.get(assertion);
     return (errorDescription == null) ? "" : errorDescription;
   }
+
   public String[] getAllErrorTitles()
   {
     return StringUtils.toArray(errors.keySet());
   }
+
   public void assertValid()
   {
     if (!isOk())
     { throw this; }
   }
+
   public boolean isOnlyProblem(Enum<?> e)
   {
     String assertion = e.toString();

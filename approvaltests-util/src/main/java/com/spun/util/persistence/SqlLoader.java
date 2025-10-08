@@ -17,6 +17,7 @@ public interface SqlLoader<T> extends Loader<T>
     {
       this.loader = loader;
     }
+
     @Override
     public String executeCommand(String command)
     {
@@ -31,6 +32,7 @@ public interface SqlLoader<T> extends Loader<T>
         throw ObjectUtils.throwAsError(e);
       }
     }
+
     @Override
     public String getCommand()
     {
@@ -38,5 +40,6 @@ public interface SqlLoader<T> extends Loader<T>
     }
   }
   public SQLQuery getQuery();
+
   public Statement getStatement();
 }

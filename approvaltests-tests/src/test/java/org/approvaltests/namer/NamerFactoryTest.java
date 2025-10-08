@@ -17,6 +17,7 @@ public class NamerFactoryTest
       Approvals.verify("two");
     }
   }
+
   @Test
   public void testMultipleFilesViaOptions()
   {
@@ -24,6 +25,7 @@ public class NamerFactoryTest
     Approvals.verify("one", labeller.next());
     Approvals.verify("two", labeller.next());
   }
+
   @ParameterizedTest
   @CsvSource({"Oskar,4", "Birgit,1"})
   void testNamingWithMultipleParameters(String name, int age)

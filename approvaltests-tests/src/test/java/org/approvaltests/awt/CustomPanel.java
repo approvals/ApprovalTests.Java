@@ -21,16 +21,19 @@ public class CustomPanel implements Paintable
   public CustomPanel()
   {
   }
+
   public CustomPanel(boolean showCoordinated, int length)
   {
     this.showCoordinated = showCoordinated;
     this.length = length;
   }
+
   @Override
   public Dimension getSize()
   {
     return new Dimension(100, 100);
   }
+
   @Override
   public void paint(Graphics g)
   {
@@ -52,6 +55,7 @@ public class CustomPanel implements Paintable
       square++;
     }
   }
+
   @Override
   public void registerRepaint(Action0 repaint)
   {

@@ -32,6 +32,7 @@ public class InlineApprovalsTest
     // end-snippet
     Approvals.verify("Hello There***", inline);
   }
+
   @UseReporter(DiffMergeReporter.class)
   @Test
   public void testWithSpecificReporter()
@@ -42,6 +43,7 @@ public class InlineApprovalsTest
     Options inline = new Options().inline(expected).withReporter(DiffMergeReporter.INSTANCE);
     Approvals.verify("Hello Lada***", inline);
   }
+
   @Test
   public void testCreateReceivedFileText()
   {
@@ -104,6 +106,7 @@ public class InlineApprovalsTest
     Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
         + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
+
   @Test
   @UseReporter(ReportNothing.class)
   public void testReportingCode()
@@ -115,6 +118,7 @@ public class InlineApprovalsTest
     assertEquals(ReportNothing.class,
         ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
   }
+
   @Test
   void testEmptyLineAtTheEnd()
   {
@@ -125,6 +129,7 @@ public class InlineApprovalsTest
         """;
     Approvals.verify(greet("Jeff"), new Options().inline(expected, InlineOptions.automatic()));
   }
+
   private String greet(String name)
   {
     return """
@@ -133,6 +138,7 @@ public class InlineApprovalsTest
 
         """.formatted(name, name, name, name, name, name);
   }
+
   @Test
   void testSemiAutomatic()
   {
@@ -145,6 +151,7 @@ public class InlineApprovalsTest
     Action1<Throwable> assertion = e -> assertEquals(expected, result.get());
     assertApprovalFailure("hello Lars", options, assertion);
   }
+
   @Test
   void testAutomatic()
   {
@@ -155,6 +162,7 @@ public class InlineApprovalsTest
     Mutable<String> result = hijackInlineReporter(options);
     assertApprovalFailure("hello Oskar", options, e -> assertEquals(expected, result.get()));
   }
+
   private static void assertApprovalFailure(String actual, Options options, Action1<Throwable> azzert)
   {
     boolean failed = true;
@@ -169,6 +177,7 @@ public class InlineApprovalsTest
     }
     assertTrue(failed, "Approval should have failed");
   }
+
   private static Mutable<String> hijackInlineReporter(Options options)
   {
     InlineJavaReporter reporter = (InlineJavaReporter) options.getReporter();
@@ -178,6 +187,7 @@ public class InlineApprovalsTest
     reporter.createNewReceivedFileText = (s, a, m) -> result.set(a);
     return result;
   }
+
   @Test
   void testSemiAutomaticMessage()
   {
@@ -197,6 +207,7 @@ public class InlineApprovalsTest
     }
     Approvals.verify(expected);
   }
+
   // @formatter:off
   @Test
   void testSemiAutomaticWithPreviousApproved()

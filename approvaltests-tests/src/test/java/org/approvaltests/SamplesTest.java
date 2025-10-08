@@ -19,6 +19,7 @@ public class SamplesTest
     s += "Tests";
     Approvals.verify(s);
   }
+
   @Test
   public void testObject()
   {
@@ -27,6 +28,7 @@ public class SamplesTest
     s.append("Tests");
     Approvals.verify(s.toString());
   }
+
   @Test
   public void testArray()
   {
@@ -35,6 +37,7 @@ public class SamplesTest
     s[1] = "Tests";
     Approvals.verifyAll("Text", s);
   }
+
   // begin-snippet: parameterized_test
   @ParameterizedTest
   @ValueSource(strings = {"parameter1", "parameter2"})

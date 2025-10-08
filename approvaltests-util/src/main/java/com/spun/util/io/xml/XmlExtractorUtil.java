@@ -10,6 +10,7 @@ public class XmlExtractorUtil
   private XmlExtractorUtil()
   {
   } // Static class should not be instantiated
+
   public static Object[] extract(Node node, String xmlName, Class<? extends XmlExtractable> clazz)
   {
     ArrayList<Object> list = new ArrayList<>();
@@ -17,6 +18,7 @@ public class XmlExtractorUtil
         new XmlMap[]{new XmlMap(xmlName, "add", new XmlMapExtractor(clazz))}));
     return list.toArray();
   }
+
   public static Node traverseToTag(String tag, Node node)
   {
     Node n = traverseToInnerTag(tag, node);
@@ -24,6 +26,7 @@ public class XmlExtractorUtil
     { throw new NullPointerException(String.format("The Tag '%s' could not be found from '%s'", tag, node)); }
     return n;
   }
+
   private static Node traverseToInnerTag(String tag, Node node)
   {
     String name = node.getNodeName();
@@ -43,6 +46,7 @@ public class XmlExtractorUtil
     }
     return null;
   }
+
   public static Object extractAndTranslateForNode(Node node, Object addToObject, XmlTranslator translator)
   {
     NodeList childNodes = node.getChildNodes();

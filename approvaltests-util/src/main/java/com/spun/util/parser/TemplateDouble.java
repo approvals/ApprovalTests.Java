@@ -16,6 +16,7 @@ public class TemplateDouble
   {
     this.amount = amount;
   }
+
   public TemplateDouble(double amount, String defaultPrefix, String defaultPostfix, int defaultMinimumPrecision,
       int defaultMaximumPrecision)
   {
@@ -25,26 +26,32 @@ public class TemplateDouble
     this.defaultMinimumPrecision = defaultMinimumPrecision;
     this.defaultMaximumPrecision = defaultMaximumPrecision;
   }
+
   public TemplateDouble(Number amount)
   {
     this(amount.doubleValue());
   }
+
   public String inDollarFormat()
   {
     return inFormat(amount, "$", 2, 2, "", true);
   }
+
   public CurrencyAmount asCurrency()
   {
     return new CurrencyAmount(amount);
   }
+
   public String asInteger()
   {
     return inFormat(amount, null, 0, 0, null, true);
   }
+
   public String inFormat(String prefix, int precision, int minimumPrecision, String postfix, boolean useGrouping)
   {
     return inFormat(amount, prefix, precision, minimumPrecision, postfix, useGrouping);
   }
+
   public static String inFormat(double amount, String prefix, int maximumPrecision, int minimumPrecision,
       String postfix, boolean useGrouping)
   {
@@ -71,6 +78,7 @@ public class TemplateDouble
     value += (postfix != null) ? postfix : "";
     return value;
   }
+
   private static NumberFormat getDecimalFormat()
   {
     NumberFormat decimalFormat = NumberFormat.getNumberInstance(Locale.US);
@@ -78,40 +86,49 @@ public class TemplateDouble
     decimalFormat.setMinimumFractionDigits(2);
     return decimalFormat;
   }
+
   protected int getDefaultMinimumPrecision(int maximumPrecision)
   {
     return maximumPrecision < defaultMinimumPrecision ? maximumPrecision : defaultMinimumPrecision;
   }
+
   public String asInt()
   {
     return inFormat(null, 0, 0, null, false);
   }
+
   public String asDouble()
   {
     return inFormat(null, 2, 2, null, false);
   }
+
   public String asNegative()
   {
     return inFormat(-amount, defaultPrefix, 2, 2, defaultPostfix, false);
   }
+
   public TemplateDouble getAbsoluteValue()
   {
     return new TemplateDouble(-amount, defaultPrefix, defaultPostfix, defaultMinimumPrecision,
         defaultMaximumPrecision);
   }
+
   public boolean isZero()
   {
     return NumberUtils.equals(0, this.amount, 0.0005);
   }
+
   public TemplateDouble divide(int by)
   {
     return new TemplateDouble(amount / by);
   }
+
   public String toString()
   {
     return inFormat(defaultPrefix, defaultMaximumPrecision, getDefaultMinimumPrecision(defaultMaximumPrecision),
         defaultPostfix, true);
   }
+
   public double getAmount()
   {
     return amount;

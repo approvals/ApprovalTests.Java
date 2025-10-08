@@ -123,6 +123,7 @@ public class DateDifferenceTest
                                         new GregorianCalendar(2004, 3, 4, 11, 0),
                                         "1 Day, 0 Hours, 0 Mins, 0 Secs, 0 Millis")};
   }
+
   @Test
   public void testGetRoundedDifference()
   {
@@ -137,6 +138,7 @@ public class DateDifferenceTest
           "getRoundedDifference(" + wanted + ", " + round + ") on " + milli);
     }
   }
+
   @Test
   public void testFebruaryAndDaylightSavingsTime()
   {
@@ -155,6 +157,7 @@ public class DateDifferenceTest
       Approvals.verify(buffer.toString());
     }
   }
+
   @Test
   public void testGetTimeText()
   {
@@ -180,6 +183,7 @@ public class DateDifferenceTest
     {
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, milli, expected);
     }
+
     public GetTimeTextUseCase(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         Calendar date1, Calendar date2, String expected)
     {
@@ -190,6 +194,7 @@ public class DateDifferenceTest
       }
       this.init(amount, maxUnit, minUnit, nowText, agoText, units, time, expected);
     }
+
     private void init(int amount, int maxUnit, int minUnit, String nowText, String agoText, String[] units,
         long milli, String expected)
     {
@@ -202,6 +207,7 @@ public class DateDifferenceTest
       this.milli = milli;
       this.expected = expected;
     }
+
     @Override
     public String toString()
     {

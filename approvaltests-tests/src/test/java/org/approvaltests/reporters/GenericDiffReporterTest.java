@@ -28,16 +28,19 @@ public class GenericDiffReporterTest
     Approvals.verifyAll("CommandLine",
         VisualStudioCodeReporter.INSTANCE.getCommandLine("received.txt", "approved.txt"));
   }
+
   @Test
   public void testFileExtensions()
   {
     assertTrue(new GenericDiffReporter("", "").isFileExtensionHandled("a5.txt"));
   }
+
   @Test
   public void testProgramsExist()
   {
     assertFalse(new GenericDiffReporter("this_should_never_exist", "").isWorkingInThisEnvironment("a6.txt"));
   }
+
   @Test
   public void testTkDiff()
   {
@@ -46,6 +49,7 @@ public class GenericDiffReporterTest
         """;
     approveGenericReporter("a1.txt", "b1.txt", new TkDiffReporter(), expected);
   }
+
   @Test
   public void testP4Merge()
   {
@@ -54,6 +58,7 @@ public class GenericDiffReporterTest
         """;
     approveGenericReporter("a1.png", "b1.png", new P4MergeReporter(), expected);
   }
+
   @Test
   public void testSpacesInFileNames()
   {
@@ -61,6 +66,7 @@ public class GenericDiffReporterTest
     String[] commandLine = reporter.getCommandLine("file with spaces", "file with spaces.approved");
     Approvals.verifyAll("arguments", commandLine);
   }
+
   @Test
   public void testCommandLineFileNames()
   {
@@ -68,10 +74,12 @@ public class GenericDiffReporterTest
     Boolean[] isWindows = {true, false};
     CombinationApprovals.verifyAllCombinations(this::getFileName, names, isWindows);
   }
+
   public String getFileName(String name, Boolean isWindows)
   {
     return SystemUtils.convertFileForCommandLine(name, isWindows);
   }
+
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter, String expected)
   {
     File directory = ClassUtils.getSourceDirectory(getClass());
@@ -79,6 +87,7 @@ public class GenericDiffReporterTest
     String bPath = FileUtils.getResolvedPath(new File(directory, b));
     Approvals.verify(new QueryableDiffReporterHarness(reporter, aPath, bPath), new Options().inline(expected));
   }
+
   @Test
   public void testIsImage()
   {
@@ -86,6 +95,7 @@ public class GenericDiffReporterTest
     Approvals.verifyAll(files, a -> String.format("Image: %s = %s", a,
         GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
   }
+
   @Test
   void testRunningNonExistantFile()
   {
@@ -95,6 +105,7 @@ public class GenericDiffReporterTest
       assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
     }
   }
+
   @Test
   void testProgramDidNotWork()
   {

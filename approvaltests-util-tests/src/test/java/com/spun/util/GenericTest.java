@@ -36,14 +36,17 @@ public class GenericTest
     // big question why would I EVER want the method sumNumber over sumGeneric
     // ????
   }
+
   private double sumInteger(ArrayList<Integer> nums)
   {
     return sumGeneric(nums);
   }
+
   private double sumNumber(ArrayList<Number> nums)
   {
     return sumGeneric(nums);
   }
+
   private double sumGeneric(ArrayList<? extends Number> nums)
   {
     double total = 0;

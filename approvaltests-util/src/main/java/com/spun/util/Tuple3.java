@@ -11,18 +11,22 @@ public class Tuple3<H, K, L>
     this.second = second;
     this.third = third;
   }
+
   public H getFirst()
   {
     return first;
   }
+
   public K getSecond()
   {
     return second;
   }
+
   public L getThird()
   {
     return third;
   }
+
   @Override
   public String toString()
   {

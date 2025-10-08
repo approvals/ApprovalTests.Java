@@ -24,6 +24,7 @@ public class ParserDateUtils
                        new Month("11", "Nov (11)"),
                        new Month("12", "Dec (12)")};
   }
+
   public static Day[] getDaysOfMonth()
   {
     Day[] days = new Day[32];
@@ -34,10 +35,12 @@ public class ParserDateUtils
     }
     return days;
   }
+
   public static Year[] getNextXYears(int x)
   {
     return getNextXYears(x, 0);
   }
+
   public static Year[] getNextXYears(int x, int backDateXDays)
   {
     Year[] years = new Year[x + 1];
@@ -55,10 +58,12 @@ public class ParserDateUtils
     {
       return getNumber().substring(2);
     }
+
     public Year(String number, String displayText)
     {
       super(number, displayText);
     }
+
     public Year(int i)
     {
       super("" + i, "" + i);
@@ -70,6 +75,7 @@ public class ParserDateUtils
     {
       super(StringUtils.padNumber(i, 2), "" + i);
     }
+
     public Day(String number, String displayText)
     {
       super(number, displayText);
@@ -90,15 +96,18 @@ public class ParserDateUtils
     {
       return displayText.startsWith("--");
     }
+
     public DateValue(String number, String displayText)
     {
       this.number = number;
       this.displayText = displayText;
     }
+
     public String getNumber()
     {
       return number;
     }
+
     public String getDisplayText()
     {
       return displayText;

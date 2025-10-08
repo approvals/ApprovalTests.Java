@@ -9,10 +9,12 @@ public class Version implements Comparable<Version>
   {
     this.version = version;
   }
+
   static boolean isVersionFile(String version)
   {
     return version.matches("[0-9]+(\\.[0-9]+)*");
   }
+
   @Override
   public int compareTo(Version other)
   {

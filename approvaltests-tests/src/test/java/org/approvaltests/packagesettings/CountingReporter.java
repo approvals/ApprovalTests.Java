@@ -11,6 +11,7 @@ public class CountingReporter implements ApprovalFailureReporter
     // do Nothing
     return isWorkingInThisEnvironment(received);
   }
+
   public boolean isWorkingInThisEnvironment(String forFile)
   {
     count++;

@@ -23,24 +23,29 @@ public class WindowUtils
     SimpleLogger.variable(" size (" + x + "," + y + "," + dx + "," + dy + ")");
     window.setBounds(x, y, dx, dy + 1);
   }
+
   public static void testPanel(JPanel panel)
   {
     JFrame test = new JFrame("Testing Frame");
     test.getContentPane().add(panel);
     testFrame(test, true);
   }
+
   public static void testPaintable(Paintable paintable)
   {
     testPanel(Paintables.asPanel(paintable));
   }
+
   public static void testFrame(JFrame frame)
   {
     testFrame(frame, true);
   }
+
   public static void copyToClipBoard(String code)
   {
     copyToClipBoard(code, true);
   }
+
   public static void copyToClipBoard(String code, boolean displayMessage)
   {
     java.awt.datatransfer.StringSelection selection = new java.awt.datatransfer.StringSelection(code);
@@ -52,6 +57,7 @@ public class WindowUtils
     }
     frame.dispose();
   }
+
   public static void testFrame(JFrame frame, boolean closeOnExit)
   {
     if (closeOnExit)
@@ -63,6 +69,7 @@ public class WindowUtils
       testFrame(frame);
     }
   }
+
   public static void testFrame(JFrame frame, WindowAdapter... array)
   {
     frame.pack();

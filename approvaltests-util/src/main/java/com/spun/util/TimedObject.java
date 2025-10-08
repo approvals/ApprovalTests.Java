@@ -14,16 +14,19 @@ public class TimedObject
   {
     this(timeOutInMillis, System::currentTimeMillis);
   }
+
   public TimedObject(long timeOutInMillis, Function0<Long> currentTime)
   {
     this.timeOutInMillis = timeOutInMillis;
     this.currentTime = currentTime;
   }
+
   public Object get()
   {
     touched();
     return object;
   }
+
   private synchronized void touched()
   {
     try
@@ -40,6 +43,7 @@ public class TimedObject
       SimpleLogger.warning(t);
     }
   }
+
   public void clean()
   {
     try
@@ -61,6 +65,7 @@ public class TimedObject
       this.lastTimeAccessed = 0;
     }
   }
+
   public void set(Object object)
   {
     touched();

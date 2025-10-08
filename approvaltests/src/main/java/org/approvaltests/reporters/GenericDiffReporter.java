@@ -29,14 +29,17 @@ public class GenericDiffReporter implements ApprovalFailureReporter
   {
     this(diffProgram, STANDARD_ARGUMENTS, "Couldn't find: " + diffProgram);
   }
+
   public GenericDiffReporter(String diffProgram, String diffProgramNotFoundMessage)
   {
     this(diffProgram, STANDARD_ARGUMENTS, diffProgramNotFoundMessage);
   }
+
   public GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage)
   {
     this(diffProgram, argumentsFormat, diffProgramNotFoundMessage, TEXT_FILE_EXTENSIONS);
   }
+
   public GenericDiffReporter(String diffProgram, String argumentsFormat, String diffProgramNotFoundMessage,
       List<String> validFileExtensions)
   {
@@ -45,11 +48,13 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     this.diffProgramNotFoundMessage = diffProgramNotFoundMessage;
     validExtensions = validFileExtensions;
   }
+
   public GenericDiffReporter(DiffInfo info)
   {
     this(info.diffProgram, info.parameters,
         MessageFormat.format("Unable to find program at {0}", info.diffProgram), info.fileExtensions);
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -59,6 +64,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     launch(received, approved);
     return true;
   }
+
   public boolean launch(String received, String approved)
   {
     try
@@ -77,9 +83,11 @@ public class GenericDiffReporter implements ApprovalFailureReporter
       return false;
     }
   }
+
   protected void processOutput(String received, Process process)
   {
   }
+
   protected void preventProcessFromClosing(ProcessBuilder builder)
   {
     if (!SystemUtils.isWindowsEnvironment())
@@ -88,6 +96,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
       builder.redirectError(output).redirectOutput(output);
     }
   }
+
   public String[] getCommandLine(String received, String approved)
   {
     String full = String.format(arguments, "{received}", "{approved}");
@@ -98,10 +107,12 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     commands.addAll(argsSplitOnSpace);
     return commands.toArray(new String[0]);
   }
+
   public boolean isWorkingInThisEnvironment(String forFile)
   {
     return checkFileExists() && isFileExtensionHandled(forFile);
   }
+
   public boolean checkFileExists()
   {
     boolean exists = new File(diffProgram).exists();
@@ -111,15 +122,18 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     }
     return exists;
   }
+
   public boolean isFileExtensionHandled(String forFile)
   {
     return isFileExtensionValid(forFile, validExtensions);
   }
+
   public static boolean isFileExtensionValid(String forFile, List<String> validExtensionsWithDot)
   {
     String extensionWithDot = FileUtils.getExtensionWithDot(forFile);
     return validExtensionsWithDot.contains(extensionWithDot);
   }
+
   @Override
   public String toString()
   {

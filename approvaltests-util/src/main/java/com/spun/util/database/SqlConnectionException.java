@@ -24,6 +24,7 @@ public class SqlConnectionException extends RuntimeException
     this.database = database;
     this.userName = userName;
   }
+
   public String getMessage()
   {
     return "Problems Connecting to " + url + "\n" + "Message  : " + getCause().getMessage() + "\n" + "protocol  : "

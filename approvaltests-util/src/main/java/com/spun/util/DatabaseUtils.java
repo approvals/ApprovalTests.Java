@@ -43,10 +43,12 @@ public class DatabaseUtils
   {
     return DATABASE_TYPES[type];
   }
+
   public static int getDatabaseType(Statement stmt)
   {
     return ObjectUtils.throwAsError(() -> getDatabaseType(stmt.getConnection()));
   }
+
   public static int getDatabaseType(Connection con)
   {
     String dbName = ObjectUtils.throwAsError(() -> con.getMetaData().getDatabaseProductName());
@@ -57,6 +59,7 @@ public class DatabaseUtils
     }
     throw new Error("Unrecognized database product name: " + dbName);
   }
+
   /**
    * Finds the database type name for a jdbc sql type
    */
@@ -98,6 +101,7 @@ public class DatabaseUtils
     }
     return name;
   }
+
   /**
    * Finds the java object or primative for a sql type
    */
@@ -203,6 +207,7 @@ public class DatabaseUtils
     }
     return name;
   }
+
   public static boolean isSqlServer(int databaseType)
   {
     switch (databaseType)
@@ -215,6 +220,7 @@ public class DatabaseUtils
         return false;
     }
   }
+
   public static String makeSQL2000URL(String protocol, String server, String port, String database)
   {
     String theURL = "";
@@ -225,6 +231,7 @@ public class DatabaseUtils
     theURL = protocol + server + port + database + ";SelectMethod=cursor";
     return theURL;
   }
+
   /**
    * Creates a connection to the Database.
    */
@@ -238,6 +245,7 @@ public class DatabaseUtils
     theURL = protocol + server + port + database;
     return theURL;
   }
+
   /**
    * Creates a connection to the Database, and stores it in the cookies table.
    */
@@ -260,6 +268,7 @@ public class DatabaseUtils
     }
     throw new Error("Database Type '" + type + "' not supported");
   }
+
   /**
    * Creates a connection to the Database. This is for Access, which is crap!
    */
@@ -270,6 +279,7 @@ public class DatabaseUtils
     theURL = protocol + database;
     return theURL;
   }
+
   /**
    * Creates a connection to the Database.
    */
@@ -298,6 +308,7 @@ public class DatabaseUtils
     }
     return con;
   }
+
   public static void printSQLValues()
   {
     SimpleLogger.variable("java.sql.Types.BIT           = " + java.sql.Types.BIT);
@@ -329,14 +340,17 @@ public class DatabaseUtils
     SimpleLogger.variable("java.sql.Types.CLOB          = " + java.sql.Types.CLOB);
     SimpleLogger.variable("java.sql.Types.REF           = " + java.sql.Types.REF);
   }
+
   public static String getMethodName(String databaseName)
   {
     return getVariableName(databaseName, true);
   }
+
   public static String getVariableName(String databaseName)
   {
     return getVariableName(databaseName, false);
   }
+
   public static String getVariableName(String databaseName, boolean capFirstLetter)
   {
     StringBuffer returning = new StringBuffer(databaseName.length());
@@ -361,10 +375,12 @@ public class DatabaseUtils
     }
     return returning.toString();
   }
+
   public static String formatNullableObject(Object o)
   {
     return formatNullableObject(o, POSTGRESQL);
   }
+
   public static String formatNullableObject(Object o, int type)
   {
     if (o == null)
@@ -400,6 +416,7 @@ public class DatabaseUtils
       }
     }
   }
+
   public static String toEscapeMSSQL(String unformattedString)
   {
     if (unformattedString.indexOf('\'') == -1)
@@ -418,6 +435,7 @@ public class DatabaseUtils
     }
     return b.toString();
   }
+
   public static String toEscapeACCESS_SQL(String unformattedString)
   {
     if ((unformattedString.indexOf('\'') == -1) && (unformattedString.indexOf('\"') == -1)
@@ -442,6 +460,7 @@ public class DatabaseUtils
     }
     return b.toString();
   }
+
   public static String toEscapeSQL(String unformattedString)
   {
     if ((unformattedString == null) || ((unformattedString.indexOf('\'') == -1)
@@ -463,14 +482,17 @@ public class DatabaseUtils
     }
     return b.toString();
   }
+
   public static void beginTransaction(Statement stmt)
   {
     ObjectUtils.throwAsError(() -> beginTransaction(stmt.getConnection(), 2));
   }
+
   public static void beginTransaction(Connection con)
   {
     beginTransaction(con, 2);
   }
+
   private static void beginTransaction(Connection con, int offset)
   {
     try
@@ -494,6 +516,7 @@ public class DatabaseUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static DatabaseTransactionInfo getConnection(ArrayList<DatabaseTransactionInfo> connections2,
       Connection con)
   {
@@ -504,14 +527,17 @@ public class DatabaseUtils
     }
     return null;
   }
+
   public static void commit(Statement stmt)
   {
     ObjectUtils.throwAsError(() -> commit(stmt.getConnection(), 2));
   }
+
   public static void commit(Connection con)
   {
     commit(con, 2);
   }
+
   private static void commit(Connection con, int offset)
   {
     DatabaseTransactionInfo commit = null;
@@ -545,10 +571,12 @@ public class DatabaseUtils
       }
     }
   }
+
   public static void rollback(Statement stmt)
   {
     ObjectUtils.throwAsError(() -> rollback(stmt.getConnection()));
   }
+
   public static void rollback(Connection con)
   {
     if (con != null)
@@ -556,10 +584,12 @@ public class DatabaseUtils
       ObjectUtils.throwAsError(() -> con.rollback());
     }
   }
+
   public static String formatBoolean(boolean b)
   {
     return b ? "'1'" : "'0'"; // added quotes for postgres
   }
+
   /**
    * This is for none space single words, such as email, name, handle
    */
@@ -577,10 +607,12 @@ public class DatabaseUtils
     }
     return true;
   }
+
   public static String getLike(int databaseType)
   {
     return databaseType == POSTGRESQL ? "ILIKE" : "LIKE";
   }
+
   /**
    * A convenience function to turn the int's into readable text for debuging.
    *
@@ -608,6 +640,7 @@ public class DatabaseUtils
     }
     return value;
   }
+
   public static void saveAll(DatabaseObject[] databaseObjects, Statement stmt)
   {
     for (int i = 0; i < databaseObjects.length; i++)
@@ -615,6 +648,7 @@ public class DatabaseUtils
       databaseObjects[i].save(stmt);
     }
   }
+
   public static void close(ResultSet rs)
   {
     if (rs != null)
@@ -629,6 +663,7 @@ public class DatabaseUtils
       }
     }
   }
+
   public static void close(Statement stmt)
   {
     if (stmt != null)
@@ -643,6 +678,7 @@ public class DatabaseUtils
       }
     }
   }
+
   public static void close(Connection con)
   {
     if (con != null)

@@ -15,6 +15,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
   private PkeyVariableSetter()
   {
   }
+
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     try
@@ -51,18 +52,22 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private void loadBySequenceMySQL(DatabaseObject forObject, Statement stmt)
   {
     setPkey(forObject, stmt, "SELECT LAST_INSERT_ID()");
   }
+
   private void loadBySequence(DatabaseObject forObject, int atStage, Statement stmt)
   {
     setPkey(forObject, stmt, "SELECT currval('" + forObject.getMetadata().getTableName() + "_pkey_seq')");
   }
+
   private void loadBySQL(DatabaseObject forObject, int atStage, Statement stmt)
   {
     setPkey(forObject, stmt, "SELECT @@IDENTITY");
   }
+
   private void setPkey(DatabaseObject forObject, Statement stmt, String sql)
   {
     try (ResultSet rs = stmt.executeQuery(sql))
@@ -77,6 +82,7 @@ public class PkeyVariableSetter implements AutomaticVariableSetter
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private void loadByJDBC(DatabaseObject forObject, int atStage, Statement stmt)
   {
     try (ResultSet rs = stmt.getGeneratedKeys())

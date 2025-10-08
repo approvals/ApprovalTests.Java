@@ -15,6 +15,7 @@ public class WebPageApproval
     captureWebPage(uri, imageFile);
     Approvals.verify(new File(imageFile));
   }
+
   public static void captureWebPage(URI uri, String imageFile) throws Error
   {
     try
@@ -28,6 +29,7 @@ public class WebPageApproval
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static File createPhantomjsCommand(URI uri, String imageFile) throws Throwable
   {
     File jsFile = File.createTempFile("capture", ".js");
@@ -37,6 +39,7 @@ public class WebPageApproval
     FileUtils.writeFile(jsFile, js);
     return jsFile;
   }
+
   public static String convertToLegalFileName(URI uri, String extentionWithoutDot)
   {
     return uri.toString().replaceAll("[^a-zA-Z0-9\\.\\-]", "_") + "." + extentionWithoutDot;

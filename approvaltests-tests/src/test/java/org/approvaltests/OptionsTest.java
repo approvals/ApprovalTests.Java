@@ -45,6 +45,7 @@ public class OptionsTest
       assertTrue(reporter.hasBeenCalled());
     }
   }
+
   @Test
   void verifyWithReporterFromOptionsBuilder()
   {
@@ -59,6 +60,7 @@ public class OptionsTest
       assertTrue(reporter.hasBeenCalled());
     }
   }
+
   @Test
   @UseReporter(UseReporterTest.TestReporter.class)
   void verifyWithoutReporter()
@@ -66,6 +68,7 @@ public class OptionsTest
     FirstWorkingReporter reporter = (FirstWorkingReporter) new Options().getReporter();
     assertEquals(UseReporterTest.TestReporter.class, reporter.getReporters()[1].getClass());
   }
+
   @Test
   void testTheVerifyApi()
   {
@@ -74,6 +77,7 @@ public class OptionsTest
     methodList = Query.orderBy(methodList, m -> m.toString());
     Approvals.verifyAll("verifyMethods", methodList, m -> m.toString(), new Options());
   }
+
   @Test
   void testEachMethodHasOneWithOptions()
   {
@@ -82,12 +86,14 @@ public class OptionsTest
       verifyEachVerifyMethodHasOneWithOptions(c, "verify");
     }
   }
+
   public static List<Class<?>> getApprovalClasses()
   {
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
         VelocityApprovals.class, JsonJacksonApprovals.class, JsonXstreamApprovals.class, XmlXomApprovals.class);
     // TODO: missing verification that JsonApprovals, JsonJacksonApprovals and JsonXStreamApprovals offer the same verify methods
   }
+
   public static void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass, String methodPrefix)
   {
     Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());
@@ -115,23 +121,27 @@ public class OptionsTest
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
     assertNotEquals(0, methodsWithoutOptions.size());
   }
+
   private static Class<?>[] getWithoutOptions(Class<?>[] parameterTypes)
   {
     Class<?>[] parameters = Query.where(parameterTypes, t -> !t.equals(Options.class)).toArray(new Class[0]);
     return parameters;
   }
+
   public static boolean isOptionsPresent(Method m)
   {
     Class<?>[] parameterTypes = m.getParameterTypes();
     return 0 < parameterTypes.length && (ArrayUtils.getLast(parameterTypes).equals(Options.class)
         || ArrayUtils.getFirst(parameterTypes).equals(Options.class));
   }
+
   @Test
   void verifyFileExtension()
   {
     Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
         new Options().forFile().withExtension(".html"));
   }
+
   @Test
   void verifyFileName()
   {
@@ -150,12 +160,14 @@ public class OptionsTest
     {
       this.hasBeenCalled = false;
     }
+
     @Override
     public boolean report(String received, String approved)
     {
       hasBeenCalled = true;
       return true;
     }
+
     public boolean hasBeenCalled()
     {
       return hasBeenCalled;
@@ -168,6 +180,7 @@ public class OptionsTest
     ApprovalWriter writer = options.createWriter("any text");
     Approvals.verify(writer);
   }
+
   @Test
   void testCustomWriter()
   {
@@ -181,11 +194,13 @@ public class OptionsTest
     {
       return new MyWriter();
     }
+
     @Override
     public File writeReceivedFile(File received)
     {
       return null;
     }
+
     @Override
     public String getFileExtensionWithDot()
     {
@@ -197,6 +212,7 @@ public class OptionsTest
   {
     Approvals.verify("The approval file is empty", new Options().withComparator((a, b) -> VerifyResult.SUCCESS));
   }
+
   @Test
   void testAddReporter()
   {

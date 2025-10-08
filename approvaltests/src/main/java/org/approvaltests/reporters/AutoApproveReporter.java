@@ -19,6 +19,7 @@ public class AutoApproveReporter implements ReporterWithApprovalPower
     FileUtils.copyFile(r, a);
     return true;
   }
+
   @Override
   public VerifyResult approveWhenReported()
   {

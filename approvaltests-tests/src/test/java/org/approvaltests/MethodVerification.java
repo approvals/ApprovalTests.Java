@@ -24,6 +24,7 @@ public class MethodVerification
     Options options = new Options();
     Approvals.verifyAll(header, methods, c -> c.toString(), options);
   }
+
   public static Queryable<Class<?>> getClasses(String startingDirectory, Function1<String, Boolean> pathSelector,
       Function1<String, Boolean> secondaryPathSelector)
   {
@@ -33,6 +34,7 @@ public class MethodVerification
     paths = paths.where(pathSelector).where(secondaryPathSelector);
     return paths.select(f -> MethodVerification.getJavaClass(f));
   }
+
   public static Class<?> getJavaClass(String path)
   {
     String className = getJavaClassNameFromPath(path);
@@ -48,6 +50,7 @@ public class MethodVerification
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static String getJavaClassNameFromPath(String path)
   {
     String className = path.substring(0, path.length() - ".java".length());

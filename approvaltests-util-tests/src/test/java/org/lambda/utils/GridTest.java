@@ -10,6 +10,7 @@ public class GridTest
   {
     Approvals.verify(Grid.print(2, 3, "."));
   }
+
   @Test
   public void testMultiply()
   {

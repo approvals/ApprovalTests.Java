@@ -9,6 +9,7 @@ public class LinuxOpener implements Opener
   {
     return executeOnLinux(fileName, "xdg-open");
   }
+
   public static boolean executeOnLinux(String fileName, String program)
   {
     if (which(program) == null)
@@ -17,6 +18,7 @@ public class LinuxOpener implements Opener
     Opener.execute(cmd);
     return true;
   }
+
   public static String which(String command)
   {
     try

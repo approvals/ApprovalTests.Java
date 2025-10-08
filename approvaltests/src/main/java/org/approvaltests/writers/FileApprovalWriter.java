@@ -14,11 +14,13 @@ public class FileApprovalWriter implements ApprovalWriter
     this.newFile = newFile;
     extensionWithDot = FileUtils.getExtensionWithDot(newFile.getName());
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
     return newFile;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

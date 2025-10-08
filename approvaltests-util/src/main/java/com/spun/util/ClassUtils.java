@@ -24,12 +24,14 @@ public class ClassUtils
     int divider = name.lastIndexOf(".");
     return name.substring(divider + 1);
   }
+
   public static String getClassPath(Class<?> clazz)
   {
     String name = clazz.getName();
     int divider = name.lastIndexOf(".");
     return name.substring(0, divider);
   }
+
   public static Class<?> getWrapperClass(Class<?> primativeType)
   {
     if (boolean.class.equals(primativeType))
@@ -69,6 +71,7 @@ public class ClassUtils
       return primativeType;
     }
   }
+
   public static boolean hasMethod(Class<?> clazz, String methodName, Class<?>... parameterTypes)
   {
     try
@@ -84,6 +87,7 @@ public class ClassUtils
       return false;
     }
   }
+
   public static File getSourceDirectory(Class<?> clazz)
   {
     return getSourceDirectory(clazz, new Function1<String, String>()
@@ -94,6 +98,7 @@ public class ClassUtils
       }
     });
   }
+
   public static File getSourceDirectory(Class<?> clazz, Function1<String, String> createLastFileName)
   {
     final String name = clazz.getName();
@@ -105,6 +110,7 @@ public class ClassUtils
     { throw new FormattedException("Didn't find %s under %s", name, FileUtils.getCurrentDirectory()); }
     return found.getParentFile();
   }
+
   /**
    * This returns the {@link com.spun.util.ClassUtils#APPROVALTESTS_PROJECT_DIRECTORY APPROVALTESTS_PROJECT_DIRECTORY} system property if it is set, otherwise it returns the working directory.
    */
@@ -116,10 +122,12 @@ public class ClassUtils
     { return System.getenv(APPROVALTESTS_PROJECT_DIRECTORY); }
     return ".";
   }
+
   public static File getSourceDirectory(Class<?> clazz, final String fileName)
   {
     return getSourceDirectory(clazz, __ -> fileName);
   }
+
   public static File find(File file, List<String> matches)
   {
     ArrayList<String> copy = new ArrayList<String>();
@@ -127,6 +135,7 @@ public class ClassUtils
     copy.add(0, "*");
     return find2(file, copy);
   }
+
   public static File find2(File file, List<String> matches)
   {
     SearchingFileFilter searchingFileFilter = new SearchingFileFilter(matches);
@@ -146,6 +155,7 @@ public class ClassUtils
     }
     return null;
   }
+
   public static <T> T create(Class<T> clazz)
   {
     try
@@ -157,15 +167,18 @@ public class ClassUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static boolean IsPublicStatic(Field field)
   {
     return field != null && Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers());
   }
+
   public static boolean isPrimitiveField(Field field)
   {
     return field != null && (field.getType().isArray() || field.getType().isPrimitive()
         || field.getType().isAssignableFrom(String.class));
   }
+
   public static Method getMethod(Class<?> clazz, String methodName)
   {
     try
@@ -177,6 +190,7 @@ public class ClassUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static <T> Class<?> getGreatestCommonBaseType(List<T> list)
   {
     if (list == null)
@@ -198,6 +212,7 @@ public class ClassUtils
     }
     return greatestCommonType;
   }
+
   /**
    * Greatest Common Interface is the shared interface with the most methods. In case of a tie,
    * it's the first declared in the first item of the list.
@@ -219,6 +234,7 @@ public class ClassUtils
     Class first = Queryable.as(allCommon).orderBy(Order.Descending, x -> x.getMethods().length).first();
     return first;
   }
+
   public static File getAdjacentFile(Class<?> aClass, String relativeFileName)
   {
     return new File(getSourceDirectory(aClass), relativeFileName);

@@ -19,6 +19,7 @@ public class GettingStartedTest
     Approvals.verify(objectToBeVerified);
     // end-snippet
   }
+
   // begin-snippet: verifying_strings
   @Test
   public void testBuildString()
@@ -31,6 +32,7 @@ public class GettingStartedTest
     // Verify the resulting string
     Approvals.verify(s);
   }
+
   // end-snippet
   // begin-snippet: verifying_objects
   @Test
@@ -43,6 +45,7 @@ public class GettingStartedTest
     // Verify the rectangle is properly defined
     Approvals.verify(objectUnderTest.toString());
   }
+
   // end-snippet
   @Test
   public void testObjectWithJson()
@@ -56,6 +59,7 @@ public class GettingStartedTest
     JsonApprovals.verifyAsJson(objectUnderTest);
     // end-snippet
   }
+
   // begin-snippet: verifying_arrays
   @Test
   public void testArray()
@@ -69,6 +73,7 @@ public class GettingStartedTest
     // Verify the array
     Approvals.verifyAll("Text", s);
   }
+
   // end-snippet
   @Test
   public void testTvGuide()
@@ -88,6 +93,7 @@ public class GettingStartedTest
     AwtApprovals.verify(tv);
     // end-snippet
   }
+
   @Test
   public void testCombinations()
   {

@@ -20,15 +20,18 @@ public class DateRange
     this.start = start;
     this.end = end;
   }
+
   public <T> Filter<T> getFilter(Function1<T, Date> converter)
   {
     return new DateRangeFilter<T>(this, converter);
   }
+
   public boolean contains(Date time)
   {
     time = (time == null) ? new Date() : time;
     return (start.getTime() <= time.getTime()) && (time.getTime() < end.getTime());
   }
+
   public static DateRange getRangeContaining(DateRange[] ranges, DateRange target)
   {
     for (DateRange dateRange : ranges)
@@ -38,23 +41,28 @@ public class DateRange
     }
     return null;
   }
+
   private boolean contains(DateRange range)
   {
     return contains(range.end) || contains(range.start);
   }
+
   public Date getEnd()
   {
     return end;
   }
+
   public Date getStart()
   {
     return start;
   }
+
   @Override
   public int hashCode()
   {
     return ObjectUtils.generateHashCode(start.getTime(), end.getTime());
   }
+
   @Override
   public boolean equals(Object object)
   {
@@ -72,16 +80,19 @@ public class DateRange
       return false;
     }
   }
+
   @Override
   public String toString()
   {
     return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(),
         new TemplateDate(end).getDateAndTime());
   }
+
   public DateRange[] getWeeks()
   {
     return getUnits(new WeekAware());
   }
+
   private DateRange[] getUnits(UnitAware unit)
   {
     ArrayList<DateRange> ranges = new ArrayList<DateRange>();
@@ -98,18 +109,22 @@ public class DateRange
     }
     return ranges.toArray(new DateRange[ranges.size()]);
   }
+
   public DateRange[] getMonths()
   {
     return getUnits(new MonthAware());
   }
+
   public DateRange[] getQuarters()
   {
     return getUnits(new QuarterAware());
   }
+
   public boolean containsDayOfWeek(int day)
   {
     return getFirst(day) != null;
   }
+
   public Date getFirst(int day)
   {
     Calendar start = DateUtils.asCalendar(getStart());
@@ -131,6 +146,7 @@ public class DateRange
       this.range = range;
       this.converter = converter;
     }
+
     public boolean isExtracted(T t) throws IllegalArgumentException
     {
       return range.contains(converter.call(t));

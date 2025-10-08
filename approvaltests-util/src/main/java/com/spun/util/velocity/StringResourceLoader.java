@@ -35,15 +35,18 @@ public class StringResourceLoader extends ResourceLoader
   public void init(ExtProperties extProperties)
   {
   }
+
   @Override
   public Reader getResourceReader(String source, String encoding)
   {
     return new StringReader(source);
   }
+
   public boolean isSourceModified(Resource resource)
   {
     return true;
   }
+
   public long getLastModified(Resource resource)
   {
     return 0;

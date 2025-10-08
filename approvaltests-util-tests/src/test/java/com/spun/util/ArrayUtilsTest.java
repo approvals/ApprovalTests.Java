@@ -24,12 +24,14 @@ public class ArrayUtilsTest
     // end-snippet
     assertArrayEquals(resulting, numbers);
   }
+
   @Test
   public void testAddToArray()
   {
     Integer[] i = {5, 6, 7};
     Approvals.verifyAll("numbers", ArrayUtils.addToArray(i, 1));
   }
+
   @Test
   public void testCombine()
   {
@@ -37,6 +39,7 @@ public class ArrayUtilsTest
     List<Integer> list2 = Arrays.asList(5, 6, 7);
     assertEquals("[1, 2, 3, 5, 6, 7]", ArrayUtils.combine(list1, list2).toString());
   }
+
   @Test
   public void testCombineArrays()
   {
@@ -95,6 +98,7 @@ public class ArrayUtilsTest
     Approvals.verifyAll("", result,
         a -> String.format("%s = %s", a.getClass().getSimpleName(), Arrays.toString(a)));
   }
+
   @Test
   void testToArray()
   {

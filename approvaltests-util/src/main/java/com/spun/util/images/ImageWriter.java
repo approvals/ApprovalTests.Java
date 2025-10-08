@@ -26,10 +26,12 @@ public class ImageWriter
     this.out = out;
     this.type = type;
   }
+
   public static void writeImage(BufferedImage image, OutputStream out, Encoding type)
   {
     new ImageWriter(image, out, type).start();
   }
+
   public static BufferedImage toBufferedImage(Image image)
   {
     BufferedImage bimage = new BufferedImage(image.getWidth(null), image.getHeight(null),
@@ -39,6 +41,7 @@ public class ImageWriter
     g.dispose();
     return bimage;
   }
+
   public void start()
   {
     try
@@ -58,15 +61,18 @@ public class ImageWriter
       SimpleLogger.warning(e);
     }
   }
+
   private void encodeJPEG() throws IOException
   {
     ImageIO.write(image, "jpg", out);
   }
+
   private void encodeGIF() throws IOException
   {
     SimpleLogger.variable("making GIF");
     ImageIO.write(image, "GIF", out);
   }
+
   public static synchronized int getImageId()
   {
     return (index++);

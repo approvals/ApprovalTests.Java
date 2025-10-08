@@ -15,6 +15,7 @@ public class KitchenScheduler
   {
     return print(new LoadShiftsFromDatabase(day), day);
   }
+
   // begin-snippet: entry_point_test
   // Called by tests and the above function
   public static String print(Loader<List<Shift>> shifts, Calendar day)

@@ -7,6 +7,7 @@ public class Settings
   {
     return location;
   }
+
   public Object getValue()
   {
     return value;
@@ -17,6 +18,7 @@ public class Settings
     this.value = value;
     this.location = location;
   }
+
   @Override
   public String toString()
   {

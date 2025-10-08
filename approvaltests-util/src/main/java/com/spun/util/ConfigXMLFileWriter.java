@@ -33,6 +33,7 @@ public class ConfigXMLFileWriter
     }
     writeToIndentedXMLFile(fileName, domDocument);
   }
+
   private static void addLine(Field field, Document domDocument)
   {
     Element elem = domDocument.createElement(field.getName());
@@ -51,6 +52,7 @@ public class ConfigXMLFileWriter
     }
     domDocument.getDocumentElement().appendChild(elem);
   }
+
   public static Field[] getFields(Class<?> clazz, String... exclude)
   {
     Field[] fields = clazz.getFields();
@@ -60,6 +62,7 @@ public class ConfigXMLFileWriter
     fields = Query.where(fields, selector).toArray(new Field[0]);
     return Query.orderBy(fields, a -> (a.getName()));
   }
+
   private static Document createDocument()
   {
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -68,6 +71,7 @@ public class ConfigXMLFileWriter
     DocumentBuilder documentBuilder = ObjectUtils.throwAsError(() -> documentBuilderFactory.newDocumentBuilder());
     return documentBuilder.getDOMImplementation().createDocument("", "XML", null);
   }
+
   public static void writeToIndentedXMLFile(String configFile, Document domDocument)
   {
     try

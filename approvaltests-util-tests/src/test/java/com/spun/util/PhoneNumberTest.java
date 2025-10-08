@@ -25,6 +25,7 @@ public class PhoneNumberTest
   {
     return Stream.of(useCases).map(u -> Arguments.of(u));
   }
+
   @ParameterizedTest
   @MethodSource("getUseCases")
   public void testUseCase(UseCase useCase)
@@ -61,6 +62,7 @@ class UseCase
     this.usa = usa;
     this.international = international;
   }
+
   @Override
   public String toString()
   {

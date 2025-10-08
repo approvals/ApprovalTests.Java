@@ -16,6 +16,7 @@ public class ComponentApprovalWriter implements ApprovalWriter
     BufferedImage image = drawComponent(c);
     this.image = new ImageApprovalWriter(image);
   }
+
   public static BufferedImage drawComponent(Component c)
   {
     validateComponent(c);
@@ -25,6 +26,7 @@ public class ComponentApprovalWriter implements ApprovalWriter
     g.dispose();
     return image;
   }
+
   private static void validateComponent(Component c)
   {
     if (!c.isValid())
@@ -34,11 +36,13 @@ public class ComponentApprovalWriter implements ApprovalWriter
       frame.pack();
     }
   }
+
   @Override
   public File writeReceivedFile(File filename)
   {
     return image.writeReceivedFile(filename);
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

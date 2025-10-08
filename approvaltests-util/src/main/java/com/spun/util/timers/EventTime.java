@@ -31,12 +31,14 @@ public class EventTime
   public EventTime()
   {
   }
+
   public EventTime(String eventName, long timeLimit)
   {
     this.label = eventName;
     this.timeLimit = timeLimit;
     this.timeLimitExceeded = (timeLimit > 0) ? new Counter() : null;
   }
+
   public static int convertEnumerationString(String enumm)
   {
     int found = 0;
@@ -50,6 +52,7 @@ public class EventTime
     }
     return found;
   }
+
   public void add(long time)
   {
     totalTime += time;
@@ -61,6 +64,7 @@ public class EventTime
       timeLimitExceeded.inc();
     }
   }
+
   public void reset()
   {
     maxTime = 0;
@@ -68,54 +72,67 @@ public class EventTime
     count = 0;
     totalTime = 0;
   }
+
   public int getCount()
   {
     return count;
   }
+
   public String getLabel()
   {
     return label;
   }
+
   public long getTotalTime()
   {
     return totalTime;
   }
+
   public long getMaxTime()
   {
     return maxTime;
   }
+
   public DateDifference getMaxTimeAsDateDifference()
   {
     return new DateDifference(maxTime);
   }
+
   public long getTimeLimit()
   {
     return timeLimit;
   }
+
   public DateDifference getTimeLimitAsDateDifference()
   {
     return new DateDifference(timeLimit);
   }
+
   public Counter getTimeLimitExceededCounter()
   {
     return timeLimitExceeded;
   }
+
   public long getMinTime()
   {
     return minTime;
   }
+
   public DateDifference getMinTimeAsDateDifference()
   {
     return new DateDifference(minTime);
   }
+
   public long getAverageTime()
   {
     return (getCount() == 0) ? 0 : getTotalTime() / getCount();
   }
+
   public DateDifference getAverageTimeAsDateDifference()
   {
     return new DateDifference(getAverageTime());
   }
+
   public String toString()
   {
     String value = "com.spun.util.timers.EventTime[";
@@ -138,6 +155,7 @@ public class EventTime
       this.type = type;
       this.asc = asc ? 1 : -1;
     }
+
     public int compare(EventTime o1, EventTime o2) throws java.lang.ClassCastException
     {
       if ((o1 instanceof EventTime) && (o2 instanceof EventTime))

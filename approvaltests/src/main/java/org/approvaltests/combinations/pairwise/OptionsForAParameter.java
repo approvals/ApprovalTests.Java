@@ -11,22 +11,27 @@ public class OptionsForAParameter<T>
     this.position = position;
     this.values = values;
   }
+
   public String getPosition()
   {
     return "" + (position + 1);
   }
+
   public T[] toArray()
   {
     return values;
   }
+
   public int size()
   {
     return values.length;
   }
+
   public T get(int index)
   {
     return values[index];
   }
+
   @Override
   public String toString()
   {

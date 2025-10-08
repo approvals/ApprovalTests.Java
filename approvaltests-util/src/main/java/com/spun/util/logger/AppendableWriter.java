@@ -11,17 +11,21 @@ public class AppendableWriter extends Writer
   {
     this.appendable = appendable;
   }
+
   public void write(char[] chars, int offset, int length)
   {
     ObjectUtils.throwAsError(() -> appendable.append(new String(chars), offset, offset + length));
   }
+
   public void write(int i)
   {
     ObjectUtils.throwAsError(() -> appendable.append((char) i));
   }
+
   public void flush()
   {
   }
+
   public void close()
   {
   }

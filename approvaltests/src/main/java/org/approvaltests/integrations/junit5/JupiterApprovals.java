@@ -27,6 +27,7 @@ public class JupiterApprovals
       }
     });
   }
+
   private static void checkOptionsWasUsed(Options actual, Options expected)
   {
     String actualAdditionalInformation = actual.forFile().getNamer().getAdditionalInformation();
@@ -39,6 +40,7 @@ public class JupiterApprovals
       throw new RuntimeException(helpMessage);
     }
   }
+
   public static String convertToLegalFileName(String uri)
   {
     return uri.replaceAll("[^a-zA-Z0-9\\.\\-]", "_");

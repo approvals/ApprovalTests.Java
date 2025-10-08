@@ -17,6 +17,7 @@ public class ApprovalTracker
     { throw new ApprovalsDuplicateVerifyException(approved); }
     tracked.add(approved);
   }
+
   public void addAllowedDuplicates(Function1<String, Boolean> duplicateChecker)
   {
     allowedDuplicates.add(duplicateChecker);

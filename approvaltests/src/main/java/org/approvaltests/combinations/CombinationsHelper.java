@@ -26,6 +26,7 @@ public class CombinationsHelper
         parameters8, parameters9, addToOutput);
     Approvals.verify(output, options);
   }
+
   private static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> String getCombinationText(
       Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1 in11, IN2 in12, IN3 in13, IN4 in14,
       IN5 in15, IN6 in16, IN7 in17, IN8 in18, IN9 in19)
@@ -45,6 +46,7 @@ public class CombinationsHelper
     }
     return String.format("%s => %s \n", filterEmpty(in11, in12, in13, in14, in15, in16, in17, in18, in19), result);
   }
+
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9> void doForAllCombinations(IN1[] parameters1,
       IN2[] parameters2, IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6,
       IN7[] parameters7, IN8[] parameters8, IN9[] parameters9,
@@ -79,6 +81,7 @@ public class CombinationsHelper
       }
     }
   }
+
   public static List<Object> filterEmpty(Object... objects)
   {
     return Query.where(objects, o -> o != EMPTY_ENTRY);

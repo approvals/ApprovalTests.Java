@@ -15,16 +15,19 @@ public class JUnitReporterTest
   {
     verifyReporter(new Junit3Reporter());
   }
+
   @Test
   void testJUnit4()
   {
     verifyReporter(new Junit4Reporter());
   }
+
   @Test
   void testJUnit5()
   {
     verifyReporter(new Junit5Reporter());
   }
+
   private void verifyReporter(ApprovalFailureReporter reporter)
   {
     try (QuietAutoCloseable l = SimpleLogger.quiet())

@@ -17,6 +17,7 @@ public class MarkdownTableTest
     }
     Approvals.verify(table);
   }
+
   @Test
   void testDefaultJustification()
   {

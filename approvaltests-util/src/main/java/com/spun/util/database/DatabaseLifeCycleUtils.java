@@ -38,6 +38,7 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
+
   private static void backupMySQL(String databaseName, String fileName)
   {
     try
@@ -58,6 +59,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void backupPostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
   {
     String commandLine = null;
@@ -94,6 +96,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static boolean getPasswordPrompt(Process process)
   {
     try
@@ -135,6 +138,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void sendPassword(Process process, String password)
   {
     try
@@ -152,12 +156,14 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void backupSQLServer(Statement stmt, String databaseName, String fileName)
   {
     String sql = "BACKUP DATABASE " + databaseName + " TO DISK = '" + fileName + "'";
     SimpleLogger.query("BACKUP", sql);
     ObjectUtils.throwAsError(() -> stmt.execute(sql));
   }
+
   public static void restoreDatabase(Statement stmt, String databaseName, DatabaseConfiguration config,
       String fileName)
   {
@@ -178,12 +184,14 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(config.type));
     }
   }
+
   private static void restoreMySQL(Statement stmt, String databaseName, String fileName)
   {
     String restoreCommand = "LOAD DATA INFILE '" + fileName + "' REPLACE ...";
     SimpleLogger.query(restoreCommand);
     ObjectUtils.throwAsError(() -> stmt.execute(restoreCommand));
   }
+
   private static void restorePostgreSQL(String databaseName, DatabaseConfiguration config, String fileName)
   {
     try
@@ -236,6 +244,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void restoreSQLServer(Statement stmt, String databaseName, String fileName)
   {
     try
@@ -251,11 +260,13 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static String extractError(String commandLine, InputStream error)
   {
     String errorText = extractText(error);
     return "Error Executing '" + commandLine + /*"' AS USER '" + userName + */"'- " + errorText;
   }
+
   public static String extractText(InputStream inStream)
   {
     try
@@ -276,6 +287,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void deleteTable(String tableName, int databaseType, Statement stmt)
   {
     switch (databaseType)
@@ -295,10 +307,12 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
+
   private static void deleteMySqlTable(String tableName, Statement stmt)
   {
     ObjectUtils.throwAsError(() -> stmt.executeUpdate("TRUNCATE " + tableName));
   }
+
   private static void deletePostgreSQLTable(String tableName, Statement stmt)
   {
     try
@@ -313,6 +327,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void resetTableIndex(String tableName, int databaseType, Statement stmt)
   {
     switch (databaseType)
@@ -330,6 +345,7 @@ public class DatabaseLifeCycleUtils
         throw new Error("Unhandled database type: " + DatabaseUtils.getDatabaseType(databaseType));
     }
   }
+
   private static void resetPostgreIndex(String tableName, Statement stmt)
   {
     String sql = "select setval('" + tableName + "_pkey_seq',(select max(pkey) + 1 from " + tableName + "))";
@@ -342,6 +358,7 @@ public class DatabaseLifeCycleUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private static void deleteSQLServerTable(String tableName, Statement stmt)
   {
     try

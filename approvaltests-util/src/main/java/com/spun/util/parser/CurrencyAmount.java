@@ -6,14 +6,17 @@ public class CurrencyAmount extends TemplateDouble
   {
     super(amount, "$", "", 2, 2);
   }
+
   public String toString()
   {
     return inFormat("$", 2, 2, null, true);
   }
+
   public static String inDefaultFormat(double d)
   {
     return inFormat(d, "$", 2, 2, null, true);
   }
+
   public String withoutCents()
   {
     return inFormat("$", 0, 0, null, true);

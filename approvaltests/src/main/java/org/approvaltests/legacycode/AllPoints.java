@@ -13,6 +13,7 @@ public class AllPoints
     {
       super(x, y);
     }
+
     @Override
     public String toString()
     {

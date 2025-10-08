@@ -36,6 +36,7 @@ public class JUnit5StackTraceNamerTest
   {
     StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "testGetApprovalName");
   }
+
   @ParameterizedTest
   @ValueSource(strings = {"A", "B"})
   public void parameterizedTest(String input)
@@ -58,11 +59,13 @@ public class JUnit5StackTraceNamerTest
   {
     StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "testWithDisplayName");
   }
+
   @RepeatedTest(2)
   public void repeatedTest(RepetitionInfo repetitionInfo)
   {
     StackTraceNamerUtils.assertNamerForFramework(getClass().getSimpleName(), "repeatedTest");
   }
+
   @Test
   void approvalFromInsideLambda()
   {
@@ -81,6 +84,7 @@ public class JUnit5StackTraceNamerTest
     if (caught[0] != null)
     { throw ObjectUtils.throwAsError(caught[0]); }
   }
+
   @Test
   void testOverridingDirectoryFinder()
   {
@@ -93,6 +97,7 @@ public class JUnit5StackTraceNamerTest
     }
     StackTraceNamerUtils.assertSourceFilePath(this.getClass().getSimpleName(), new StackTraceNamer());
   }
+
   @TestFactory
   Collection<DynamicTest> testFactory()
   {
@@ -110,6 +115,7 @@ public class JUnit5StackTraceNamerTest
             (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
                 "testFactory.test_2", o.forFile().getNamer())));
   }
+
   @TestFactory
   Collection<DynamicTest> testFactory2()
   {
@@ -122,6 +128,7 @@ public class JUnit5StackTraceNamerTest
       assertEquals(helpMessage, result.getMessage());
     }));
   }
+
   // begin-snippet: java_dynamic_test
   @TestFactory
   Collection<DynamicTest> testFactory3()
@@ -129,6 +136,7 @@ public class JUnit5StackTraceNamerTest
     return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
         o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
   }
+
   // end-snippet
   @TestFactory
   Collection<DynamicTest> testMissingOptions()

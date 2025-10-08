@@ -10,16 +10,19 @@ public class MultipleFilesLabeller implements Function0<String>, AutoCloseable
   {
     last = NamerFactory.asMachineSpecificTest(this);
   }
+
   @Override
   public String call()
   {
     return "" + (count++);
   }
+
   public void next()
   {
     last.close();
     last = NamerFactory.asMachineSpecificTest(this);
   }
+
   @Override
   public void close()
   {

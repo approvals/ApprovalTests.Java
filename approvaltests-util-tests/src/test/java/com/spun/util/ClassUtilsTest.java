@@ -20,6 +20,7 @@ public class ClassUtilsTest
     assertFalse(ClassUtils.hasMethod(Serializable.class, "getClass"));
     assertTrue(ClassUtils.hasMethod(Object.class, "getClass"));
   }
+
   @Test
   public void testSourceDirectory() throws Exception
   {
@@ -27,6 +28,7 @@ public class ClassUtilsTest
     assertNotNull(dir);
     assertTrue(dir.isDirectory());
   }
+
   @Test
   void testGetGreatestCommonClass()
   {

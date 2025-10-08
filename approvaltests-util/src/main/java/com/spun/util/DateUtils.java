@@ -35,6 +35,7 @@ public class DateUtils
     { return (firstDate == secondDate); }
     return isSame(firstDate.getTime(), secondDate.getTime(), smallestUnits);
   }
+
   /**
    *
    **/
@@ -44,6 +45,7 @@ public class DateUtils
     { return (firstDate == secondDate); }
     return isSame(firstDate.getTime().getTime(), secondDate.getTime().getTime(), smallestUnits);
   }
+
   /**
    *
    **/
@@ -53,6 +55,7 @@ public class DateUtils
     { return ((Object) firstDate == (Object) secondDate); }
     return isSame(firstDate.getTime(), secondDate.getTime().getTime(), smallestUnits);
   }
+
   /**
    *
    **/
@@ -62,6 +65,7 @@ public class DateUtils
     { return ((Object) firstDate == (Object) secondDate); }
     return isSame(firstDate.getTime().getTime(), secondDate.getTime(), smallestUnits);
   }
+
   /**
    *
    **/
@@ -78,20 +82,24 @@ public class DateUtils
     //     My_System.variable("Testing if " + first.getTime().getTime() + "==" + second.getTime().getTime());
     return (first.getTime().getTime() == second.getTime().getTime());
   }
+
   public static Timestamp getStartOfYear()
   {
     GregorianCalendar gregorianCalendar = new GregorianCalendar();
     DateUtils.setSignificantDigit(gregorianCalendar, Calendar.YEAR);
     return new Timestamp(gregorianCalendar.getTime().getTime());
   }
+
   public static Timestamp getStartOfToday()
   {
     return getStartOfXDaysAgo(0);
   }
+
   public static Timestamp getStartOfXDaysAgo(int numberOfDays)
   {
     return getStartOfXDaysAgo(numberOfDays, new Date());
   }
+
   public static Timestamp getStartOfXDaysAgo(int numberOfDays, Date startingFrom)
   {
     GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -100,20 +108,24 @@ public class DateUtils
     gregorianCalendar.add(Calendar.DATE, -numberOfDays);
     return new Timestamp(gregorianCalendar.getTime().getTime());
   }
+
   public static Calendar getEndOfTodayAsCalendar()
   {
     return rollToEndOfDay(new Date());
   }
+
   public static Timestamp getEndOfToday()
   {
     return new Timestamp(getEndOfTodayAsCalendar().getTime().getTime());
   }
+
   public static Calendar setSignificantDigit(Date date, int smallestUnits)
   {
     GregorianCalendar calendar = new GregorianCalendar();
     calendar.setTimeInMillis(date.getTime());
     return setSignificantDigit(calendar, smallestUnits);
   }
+
   public static Calendar setSignificantDigit(Calendar calendar, int smallestUnits)
   {
     boolean removeOn = false;
@@ -143,6 +155,7 @@ public class DateUtils
     }
     return calendar;
   }
+
   public static Timestamp getStartOf(int unit, Date forDate)
   {
     GregorianCalendar calendar = new GregorianCalendar();
@@ -150,6 +163,7 @@ public class DateUtils
     setSignificantDigit(calendar, unit);
     return new Timestamp(calendar.getTimeInMillis());
   }
+
   public static Timestamp getEndOf(int unit, Date forDate)
   {
     GregorianCalendar calendar = new GregorianCalendar();
@@ -159,10 +173,12 @@ public class DateUtils
     calendar.add(Calendar.MILLISECOND, -1);
     return new Timestamp(calendar.getTimeInMillis());
   }
+
   public static boolean areSame(Date date1, Date date2, long accuracy)
   {
     return (compareDates(date1, date2) < accuracy);
   }
+
   /**
    *
    * {@code return 1 if date1 > date2, 0 if date1 = date2, -1 if date1 < date2 }
@@ -174,10 +190,12 @@ public class DateUtils
     long diff = l1 - l2;
     return (diff == 0) ? 0 : (int) (diff / Math.abs(diff));
   }
+
   private static long toLong(Date date)
   {
     return date == null ? 0 : date.getTime();
   }
+
   public static Date createTime(Date date)
   {
     Calendar time = new GregorianCalendar();
@@ -185,6 +203,7 @@ public class DateUtils
     time.set(1970, 0, 1);
     return time.getTime();
   }
+
   /**
    * Rolls back till that time on a 24 hour clock
    **/
@@ -199,6 +218,7 @@ public class DateUtils
     }
     return rolled.getTime();
   }
+
   public static void main(String[] args)
   {
     SimpleLogger.variable("Calendar.DATE = " + Calendar.DATE);
@@ -209,6 +229,7 @@ public class DateUtils
     SimpleLogger.variable("Minute", setSignificantDigit(new GregorianCalendar(), Calendar.MINUTE).getTime());
     SimpleLogger.variable("End Of Day", rollToEndOfDay(new Date()).getTime());
   }
+
   public static GregorianCalendar rollToEndOfDay(Date date)
   {
     GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -219,28 +240,34 @@ public class DateUtils
     gregorianCalendar.set(Calendar.MILLISECOND, 999);
     return gregorianCalendar;
   }
+
   public static Timestamp asTimestamp(Date date)
   {
     return new Timestamp(date.getTime());
   }
+
   public static boolean isToday(Date date)
   {
     return DateUtils.isSame(date, new Date(), Calendar.DATE);
   }
+
   public static Calendar asCalendar(Date date)
   {
     GregorianCalendar gregorianCalendar = new GregorianCalendar();
     gregorianCalendar.setTime(date);
     return gregorianCalendar;
   }
+
   public static Timestamp getLastOrCurrent(int dayOfWeek)
   {
     return getDayOfWeek(dayOfWeek, false);
   }
+
   public static Timestamp getNextOrCurrent(int dayOfWeek)
   {
     return getDayOfWeek(dayOfWeek, true);
   }
+
   private static Timestamp getDayOfWeek(int dayOfWeek, boolean foward)
   {
     int multiplier = foward ? -1 : 1;
@@ -252,6 +279,7 @@ public class DateUtils
     }
     throw new Error(String.format("didn't find a %s in the %s 7 days", dayOfWeek, foward ? "next" : "last"));
   }
+
   /**
    * @param date "yyyy/MM/dd"
    */
@@ -267,6 +295,7 @@ public class DateUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static boolean doesDaylightSavingsTimeStartOn(String date)
   {
     Timestamp day = parse(date);
@@ -277,27 +306,33 @@ public class DateUtils
     Date time = tomorrow.getTime();
     return !inDaylightTime && timeZone.inDaylightTime(time);
   }
+
   public static Date toDateInLocalTimeZone(LocalDateTime dateTime)
   {
     return toDate(dateTime, ZoneId.systemDefault());
   }
+
   public static Date toDateInUTC(LocalDateTime dateTime)
   {
     return toDate(dateTime, ZoneOffset.UTC);
   }
+
   public static Date toDate(LocalDateTime dateTime, ZoneId zoneId)
   {
     return Date.from(dateTime.atZone(zoneId).toInstant());
   }
+
   public static Calendar setTime(Calendar day, int hour, int minute)
   {
     return new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH),
         hour, minute);
   }
+
   public static boolean isEndOfTime(Date time)
   {
     return time.getTime() == Long.MAX_VALUE;
   }
+
   public static String toString(Date date)
   {
     if (date == null)

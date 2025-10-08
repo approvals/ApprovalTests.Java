@@ -21,6 +21,7 @@ public class Parse1InputTest
     Approvals.verifyAll(ParseInput.from(expected).getInputs(), s -> s + " -> " + s.toUpperCase(),
         new Options().inline(expected));
   }
+
   @Test
   void testWithTypesTransformersAndBoth()
   {
@@ -36,6 +37,7 @@ public class Parse1InputTest
     Queryable<Integer> inputs = ParseInput.from(expected).withTypes(Integer.class).getInputs();
     Approvals.verifyAll(inputs, i -> i + " -> " + Integer.toBinaryString(i), new Options().inline(expected));
   }
+
   @Test
   void testMultiLineSupport()
   {

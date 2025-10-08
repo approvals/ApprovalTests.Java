@@ -24,6 +24,7 @@ public class DateUtilsTest
     return new StartAndEndUseCases[]{new StartAndEndUseCases(Calendar.YEAR, "2003.05.03 15:20:20:123",
         "2003.01.01 00:00:00:000", "2003.12.31 23:59:59:999")};
   }
+
   @Test
   public void testToDate()
   {
@@ -34,6 +35,7 @@ public class DateUtilsTest
       assertEquals("02 Jan 2000 02:04:05 UTC", toUtc(DateUtils.toDate(time, ZoneOffset.ofHours(1))));
     }
   }
+
   private String toUtc(Date toDate)
   {
     SimpleDateFormat sdf = new SimpleDateFormat();
@@ -41,6 +43,7 @@ public class DateUtilsTest
     sdf.applyPattern("dd MMM yyyy HH:mm:ss z");
     return sdf.format(toDate);
   }
+
   @Test
   public void testStartAndEndUseCases()
   {
@@ -53,11 +56,13 @@ public class DateUtilsTest
       }
     }
   }
+
   private void assertStartAndEnd(StartAndEndUseCases useCase)
   {
     assertEquals(useCase.start, DateUtils.getStartOf(useCase.unit, useCase.date), "Start date ");
     assertEquals(useCase.end, DateUtils.getEndOf(useCase.unit, useCase.date), "End date ");
   }
+
   @Test
   public void testNextAndLast()
   {

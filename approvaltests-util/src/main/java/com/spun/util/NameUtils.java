@@ -56,6 +56,7 @@ public class NameUtils
                                   "Roger"};
     return names[NumberUtils.RANDOM.nextInt(names.length)];
   }
+
   public static String getRandomLastName()
   {
     String[] names = new String[]{"Smith",

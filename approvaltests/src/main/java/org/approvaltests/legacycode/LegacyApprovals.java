@@ -13,6 +13,7 @@ public class LegacyApprovals
   {
     LockDown(new Options(), call, method, parametersVariations);
   }
+
   public static void LockDown(Options options, Object call, String method, Object[]... parametersVariations)
   {
     StringBuffer sb = new StringBuffer();
@@ -38,6 +39,7 @@ public class LegacyApprovals
     }
     Approvals.verify(sb, options);
   }
+
   private static Object[] getParameters(Object[][] parametersVariations, Integer[] index)
   {
     Object[] parameters = new Object[index.length];
@@ -47,6 +49,7 @@ public class LegacyApprovals
     }
     return parameters;
   }
+
   public static Integer[] getSizes(Object[]... parametersVariations)
   {
     Integer[] sizes = new Integer[parametersVariations.length];

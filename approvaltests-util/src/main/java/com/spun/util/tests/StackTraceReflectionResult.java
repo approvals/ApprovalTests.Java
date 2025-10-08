@@ -18,22 +18,27 @@ public class StackTraceReflectionResult
     this.fullClassName = fullClassName;
     this.methodName = methodName;
   }
+
   public File getSourceFile()
   {
     return sourceFile;
   }
+
   public String getFileName()
   {
     return fileName;
   }
+
   public String getClassName()
   {
     return className;
   }
+
   public String getMethodName()
   {
     return methodName;
   }
+
   public String getFullClassName()
   {
     return fullClassName;

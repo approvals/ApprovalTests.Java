@@ -18,6 +18,7 @@ public class ApprovedFileLog
     FileUtils.createIfNeeded(FileUtils.getResolvedPath(file));
     return file;
   }
+
   public static void log(File file)
   {
     File log = get();

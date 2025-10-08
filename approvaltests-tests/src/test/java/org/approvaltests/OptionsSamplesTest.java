@@ -17,6 +17,7 @@ public class OptionsSamplesTest
             .withExtension(".json");
     // end-snippet
   }
+
   @Test
   void fileExtensions()
   {

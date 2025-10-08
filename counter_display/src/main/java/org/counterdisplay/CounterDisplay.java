@@ -25,6 +25,7 @@ public class CounterDisplay extends JPanel
     SimpleLogger.variable("Reading from", successfile.getAbsolutePath());
     this.setPreferredSize(new Dimension(200, 100));
   }
+
   @Override
   protected void paintComponent(Graphics g)
   {
@@ -42,6 +43,7 @@ public class CounterDisplay extends JPanel
     SwingUtils.drawCenteredString(g, failureCount, dx * 3, getHeight() / 2);
     repaint(800);
   }
+
   public static void main(String[] args)
   {
     String pass = (0 < args.length) ? args[0] : "counter_pass.txt";

@@ -40,6 +40,7 @@ public class AsErrorsTest
     Approvals.verifyException(() -> Actions.unchecked((m, p2, p3, p4, p5, p6, p7, p8, p9) -> returnException(m))
         .call("a", 2, 3, 4, 5, 6, 7, 8, 9));
   }
+
   private Object returnException(Object m) throws Exception
   {
     throw new Exception("Checked exception" + m);

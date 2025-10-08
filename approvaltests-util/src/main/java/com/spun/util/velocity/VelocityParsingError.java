@@ -12,14 +12,17 @@ public class VelocityParsingError extends Error
     this.message = message;
     this.info = info;
   }
+
   public String getMessage()
   {
     return message + "  " + getInfoText(info);
   }
+
   public static String getInfoText(Info i)
   {
     return " at [" + i.getLine() + "," + i.getColumn() + "]" + " in template " + i.getTemplateName();
   }
+
   public Info getInfo()
   {
     return info;

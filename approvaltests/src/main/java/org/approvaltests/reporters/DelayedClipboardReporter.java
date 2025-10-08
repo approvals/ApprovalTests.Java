@@ -24,6 +24,7 @@ public class DelayedClipboardReporter implements ApprovalFailureReporter
     WindowUtils.copyToClipBoard(text.toString(), false);
     return true;
   }
+
   /**
    * The clipboard will not be available in a headless environment.
    */

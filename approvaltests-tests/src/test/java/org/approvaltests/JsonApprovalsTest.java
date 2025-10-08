@@ -13,6 +13,7 @@ public class JsonApprovalsTest
     LocalDateWrapper localDateWrapper = new LocalDateWrapper();
     JsonApprovals.verifyAsJson(localDateWrapper, g -> g.serializeNulls());
   }
+
   @Test
   void testUsingGsonBuilderWithPrettyPrint()
   {
@@ -30,6 +31,7 @@ public class JsonApprovalsTest
     {
       return localDate;
     }
+
     public void setLocalDate(LocalDateTime localDate)
     {
       this.localDate = localDate;
@@ -56,6 +58,7 @@ public class JsonApprovalsTest
     JsonApprovals.verifyJson(variant1, true);
     JsonApprovals.verifyJson(variant2, true);
   }
+
   @Test
   void verifyJsonReorderWithArray()
   {

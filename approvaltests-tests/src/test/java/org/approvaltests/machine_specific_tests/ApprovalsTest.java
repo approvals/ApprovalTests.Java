@@ -18,6 +18,7 @@ public class ApprovalsTest extends MachineSpecificTest
     b.setPreferredSize(new Dimension(150, 20));
     AwtApprovals.verify(b);
   }
+
   @Test
   public void testTvGuide()
   {

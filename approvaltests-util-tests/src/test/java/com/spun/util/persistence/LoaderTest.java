@@ -32,12 +32,14 @@ class LoaderTest
       verifyMarkdown(KitchenScheduler.print(shifts, day));
     }
   }
+
   // end-snippet
   private void verifyMarkdown(String print)
   {
     Approvals.verify(print,
         new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
   }
+
   // begin-snippet: testing_executable_command
   @Test
   void testWithDatabaseAccess()

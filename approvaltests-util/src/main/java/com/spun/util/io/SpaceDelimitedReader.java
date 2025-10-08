@@ -19,10 +19,12 @@ public class SpaceDelimitedReader
     this.reader = new BufferedReader(new StringReader(input));
     this.trim = trim;
   }
+
   public boolean next()
   {
     return prepNext() != null;
   }
+
   public String prepNext()
   {
     try
@@ -43,10 +45,12 @@ public class SpaceDelimitedReader
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public String[] readLine(int i)
   {
     return readLine(new int[]{i});
   }
+
   public String[] readLine(int[] breakPoints)
   {
     if (lastRead == null)
@@ -58,6 +62,7 @@ public class SpaceDelimitedReader
     lastRead = null;
     return found;
   }
+
   public static String[] splitStringAtPoints(int[] breakPoints, String line, boolean trim)
   {
     if (line == null)
@@ -76,6 +81,7 @@ public class SpaceDelimitedReader
     found[breakPoints.length] = readStringPart(line, last, line.length(), trim);
     return found;
   }
+
   public static String readStringPart(String string, int start, int end, boolean trim)
   {
     if (start >= string.length())

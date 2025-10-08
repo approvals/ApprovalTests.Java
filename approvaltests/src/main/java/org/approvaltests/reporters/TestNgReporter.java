@@ -23,6 +23,7 @@ public class TestNgReporter implements ApprovalFailureReporter
     Assert.assertEquals(aText, rText);
     return true;
   }
+
   private boolean isWorkingInThisEnvironment(String forFile)
   {
     try

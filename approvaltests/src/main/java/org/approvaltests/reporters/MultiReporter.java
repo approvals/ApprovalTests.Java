@@ -14,10 +14,12 @@ public class MultiReporter implements ApprovalFailureReporter
   {
     this.reporters = reporters;
   }
+
   public MultiReporter(ApprovalFailureReporter... reporters)
   {
     this.reporters = Arrays.asList(reporters);
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -37,10 +39,12 @@ public class MultiReporter implements ApprovalFailureReporter
     MultipleExceptions.rethrowExceptions(exceptions);
     return didAnyReporterWork;
   }
+
   public ApprovalFailureReporter[] getReporters()
   {
     return reporters.toArray(new ApprovalFailureReporter[0]);
   }
+
   @Override
   public String toString()
   {

@@ -29,6 +29,7 @@ public class SimpleLoggerTest
     }
     Approvals.verify(output);
   }
+
   @Test
   void testMarkers()
   {
@@ -38,6 +39,7 @@ public class SimpleLoggerTest
     Approvals.verify(log);
     // end-snippet
   }
+
   @Test
   void testToggles()
   {
@@ -48,6 +50,7 @@ public class SimpleLoggerTest
     SimpleLogger.get().query = true;
     // end-snippet
   }
+
   @Test
   void testVariable()
   {
@@ -57,6 +60,7 @@ public class SimpleLoggerTest
       SimpleLogger.variable("name", "Scott", true);
     }
   }
+
   public void sample()
   {
     // begin-snippet: log_nothing

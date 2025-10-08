@@ -10,22 +10,27 @@ public class TemplateStringUtils
   private TemplateStringUtils()
   {
   }
+
   public String truncate(String onString, int maxLength)
   {
     return truncate(onString, maxLength, new String[]{});
   }
+
   public String plural(int number, String singular, String plural)
   {
     return String.format("%s %s", number, (number == 1 ? singular : plural));
   }
+
   public String truncate(String onString, int maxLength, String minus1, String minus2)
   {
     return truncate(onString, maxLength, new String[]{"", "", minus1, minus2});
   }
+
   public String truncate(String onString, int maxLength, String minus1)
   {
     return truncate(onString, maxLength, new String[]{"", "", minus1});
   }
+
   private String truncate(String onString, int maxLength, String[] minus)
   {
     if (onString == null || onString.equals("null"))
@@ -37,14 +42,17 @@ public class TemplateStringUtils
     maxLength = (maxLength < 0) ? 0 : maxLength;
     return StringUtils.truncate(onString, maxLength);
   }
+
   public static String clearNull(String value)
   {
     return clearNull(value, "");
   }
+
   public static String clearNull(Object value, String replacingValue)
   {
     return (("null".equals(value) || value == null) ? replacingValue : value.toString());
   }
+
   /**
    * Compare if arg [0] equals any other argument starting at [1].
    **/
@@ -52,10 +60,12 @@ public class TemplateStringUtils
   {
     return StringUtils.isIn(compare, new String[]{inParameter1, inParameter2});
   }
+
   public static boolean isIn(String compare, String inParameter1)
   {
     return StringUtils.isIn(compare, new String[]{inParameter1});
   }
+
   public static String pad(String original, int length, String paddingCharacter)
   {
     original = original == null ? "" : original;
@@ -67,10 +77,12 @@ public class TemplateStringUtils
     }
     return buffer.toString();
   }
+
   public String getFileName(String fileName)
   {
     return fileName.substring(fileName.lastIndexOf(File.separatorChar) + 1);
   }
+
   public static String formatExcelString(String in)
   {
     if ("0".equals(in) || "null".equals(in) || in == null) // So that null's & int(0) show up empty
@@ -94,26 +106,32 @@ public class TemplateStringUtils
       return buffer.toString();
     }
   }
+
   public static int getLength(String s)
   {
     return s == null ? 0 : s.length();
   }
+
   public String toHTMLEncode(String string)
   {
     return StringUtils.toHTMLEncode(clearNull(string));
   }
+
   public String toURLEncode(String string)
   {
     return StringUtils.toURLEncode(clearNull(string));
   }
+
   public static String toJavaScriptEncode(String string)
   {
     return StringUtils.toJavaScriptEncode(clearNull(string, null));
   }
+
   public static String toJavaScriptEncode(Number n)
   {
     return n == null ? "null" : n.toString();
   }
+
   public static String toJavaScriptEncode(Object n)
   {
     if (n == null)
@@ -129,6 +147,7 @@ public class TemplateStringUtils
       return toJavaScriptEncode(n.toString());
     }
   }
+
   public static String asXml(String s)
   {
     return StringUtils.escapeForXml(s);

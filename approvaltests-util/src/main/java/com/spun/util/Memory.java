@@ -22,14 +22,17 @@ public class Memory
     totalMemory = Runtime.getRuntime().totalMemory();
     usedMemory = totalMemory - freeMemory;
   }
+
   public String getUsedMemory()
   {
     return format.format(((double) usedMemory) / 1000000);
   }
+
   public String getFreeMemory()
   {
     return format.format(((double) freeMemory) / 1000000);
   }
+
   public String getTotalMemory()
   {
     return format.format(((double) totalMemory) / 1000000);

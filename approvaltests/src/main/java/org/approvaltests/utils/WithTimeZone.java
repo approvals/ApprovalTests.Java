@@ -11,12 +11,14 @@ public class WithTimeZone implements AutoCloseable
   {
     this("UTC");
   }
+
   public WithTimeZone(String zoneId)
   {
     tz = TimeZone.getDefault();
     defaultTimeZoneLock.lock();
     TimeZone.setDefault(TimeZone.getTimeZone(zoneId));
   }
+
   @Override
   public void close()
   {

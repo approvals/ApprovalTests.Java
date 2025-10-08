@@ -9,6 +9,7 @@ public class MarkdownTableHeader implements MarkdownTableElement, Resizable
   public MarkdownTableHeader()
   {
   }
+
   @Override
   public String toString()
   {
@@ -34,14 +35,17 @@ public class MarkdownTableHeader implements MarkdownTableElement, Resizable
     String dashes = StringUtils.repeat("-", dashCount);
     return front + dashes + back;
   }
+
   public int getLength()
   {
     return 1;
   }
+
   public void setPadding(int length)
   {
     padUntil = length;
   }
+
   @Override
   public void setJustification(MarkdownColumn columnProperties)
   {

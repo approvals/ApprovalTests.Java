@@ -7,6 +7,7 @@ public class SimpleDirectoryFilter implements java.io.FileFilter
   public SimpleDirectoryFilter()
   {
   }
+
   public boolean accept(File pathname)
   {
     String name = pathname.getName().toLowerCase();

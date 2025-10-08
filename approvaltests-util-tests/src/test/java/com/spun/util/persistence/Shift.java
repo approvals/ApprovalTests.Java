@@ -10,10 +10,12 @@ public class Shift
   {
     return name;
   }
+
   public String getPosition()
   {
     return position;
   }
+
   public Calendar getStartTime()
   {
     return startTime;

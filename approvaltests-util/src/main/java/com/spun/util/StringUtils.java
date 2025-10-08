@@ -36,10 +36,12 @@ public class StringUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static String loadNullableString(String i)
   {
     return StringUtils.isNonZero(i) ? i.trim() : null;
   }
+
   /**
    * Decode a URLEncoded <code>input</code> String.
    * <p>
@@ -60,10 +62,12 @@ public class StringUtils
       return null;
     }
   }
+
   public static String[] split(String string, String splitOn)
   {
     return split(string, splitOn, false);
   }
+
   public static String[] split(String string, String splitOn, boolean trim)
   {
     String[] result;
@@ -80,6 +84,7 @@ public class StringUtils
     }
     return trim ? Query.select(result, a -> a.trim()).asArray() : result;
   }
+
   public static String replace(String string, String find, String replace)
   {
     if ((string == null) || (find == null) || (replace == null))
@@ -94,10 +99,12 @@ public class StringUtils
     }
     return result.substring(0, result.length() - replace.length());
   }
+
   public static String stripWhiteSpace(String text)
   {
     return stripWhiteSpace(text, false);
   }
+
   public static String padNumber(long number, int digits)
   {
     String text = "" + number;
@@ -107,10 +114,12 @@ public class StringUtils
     }
     return text;
   }
+
   public static String padNumber(int number, int digits)
   {
     return padNumber((long) number, digits);
   }
+
   public static String stripWhiteSpace(String text, boolean all)
   {
     StringBuffer newText = new StringBuffer();
@@ -150,6 +159,7 @@ public class StringUtils
     }
     return newText.toString();
   }
+
   /**
    * Turns "mr. frank m Peter" into "Mr. Frank M Peter"
    **/
@@ -183,6 +193,7 @@ public class StringUtils
     }
     return returning.toString();
   }
+
   public static String toConvertCamelCaseString(String varName, String insertBeforeCaps)
   {
     StringBuffer staticVarName = new StringBuffer();
@@ -197,6 +208,7 @@ public class StringUtils
     }
     return staticVarName.toString();
   }
+
   /**
    * Turns "ATTRIUBE_NAME" into "AttributeName"
    **/
@@ -228,10 +240,12 @@ public class StringUtils
     }
     return returning.toString();
   }
+
   public static String stripNonNumeric(String number)
   {
     return stripNonNumeric(number, false, false);
   }
+
   public static String stripCharacters(String dirtyString, String toStrip)
   {
     StringBuffer cleanStringBuffer = new StringBuffer();
@@ -245,10 +259,12 @@ public class StringUtils
     }
     return cleanStringBuffer.toString();
   }
+
   public static String escapeForXml(String string)
   {
     return string.replaceAll("&", "&amp;");
   }
+
   public static String stripNonNumeric(String number, boolean allowDecimal, boolean allowNegative)
   {
     boolean allowExponential = allowDecimal;
@@ -304,6 +320,7 @@ public class StringUtils
     }
     return result.toString();
   }
+
   /**
    * A convenience function to check that a String has at least 1 character.
    *
@@ -315,10 +332,12 @@ public class StringUtils
   {
     return ((string != null) && string.trim().length() > 0);
   }
+
   public static boolean isEmpty(String string)
   {
     return !isNonZero(string);
   }
+
   /**
    * A convenience function to turn a vector of String objects into an Array
    * of the String objects.
@@ -351,10 +370,12 @@ public class StringUtils
     }
     return array;
   }
+
   public static int resolveEnumeration(String value, String[] enumeration)
   {
     return resolveEnumeration(value, enumeration, false);
   }
+
   public static int resolveEnumeration(String value, String[] enumeration, boolean force)
   {
     for (int i = 0; i < enumeration.length; i++)
@@ -366,16 +387,19 @@ public class StringUtils
     { throw new Error("Enumeration '" + value + "' not in " + Arrays.asList(enumeration).toString()); }
     return -1;
   }
+
   public static String truncate(String string, int maxLength)
   {
     if (string == null)
     { return null; }
     return (string.length() <= maxLength) ? string : string.substring(0, maxLength);
   }
+
   public static boolean hasNumeric(String teamId)
   {
     return isNonZero(stripNonNumeric(teamId, false, false));
   }
+
   public static String toHTMLEncode(String string)
   {
     if (string == null)
@@ -384,6 +408,7 @@ public class StringUtils
     string = string.replaceAll("\n", "<br />");
     return string;
   }
+
   public static String toJavaScriptEncode(String string)
   {
     if (string == null)
@@ -393,24 +418,29 @@ public class StringUtils
     string = string.replaceAll("\n", "\\\\n");
     return "\"" + string + "\"";
   }
+
   public static boolean isIn(String target, String... fromList)
   {
     return Arrays.asList(fromList).contains(target);
   }
+
   public static boolean isIn(String target, String[] fromList, boolean allowNulls)
   {
     return (target == null && allowNulls) ? true : isIn(target, fromList);
   }
+
   public static void assertIn(String target, String[] fromList, boolean allowNulls)
   {
     boolean valid = isIn(target, fromList, allowNulls);
     if (!valid)
     { throw new IllegalArgumentException("The value '" + target + "' not in " + Arrays.asList(fromList)); }
   }
+
   public static void assertIn(String target, boolean allowNulls, String... options)
   {
     assertIn(target, options, allowNulls);
   }
+
   public static String convertEnumeration(final Object forValue, Class<?> clazz)
   {
     Function1<Field, Boolean> filter = a -> {
@@ -433,6 +463,7 @@ public class StringUtils
       return fields.get(0).getName();
     }
   }
+
   /**
    * 'Tom S Hardy' becomes 'Tom S' - 'Hardy'
    **/
@@ -451,6 +482,7 @@ public class StringUtils
     }
     return names;
   }
+
   public static Properties createProperties(String[] properties)
   {
     Properties props = new Properties();
@@ -474,6 +506,7 @@ public class StringUtils
     }
     return props;
   }
+
   public static <T> String toString(String name, T[] array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -492,6 +525,7 @@ public class StringUtils
     }
     return buffer.toString();
   }
+
   public static <T> String toString(String name, Iterable<T> array)
   {
     StringBuffer buffer = new StringBuffer();
@@ -511,28 +545,34 @@ public class StringUtils
     }
     return buffer.toString();
   }
+
   public static String arrayStringHelper(Object o)
   {
     if (o == null)
     { return "null"; }
     return o.getClass().isArray() ? Arrays.toString((Object[]) o) : o.toString();
   }
+
   public static String getFirstName(String fullName)
   {
     return splitName(fullName)[0];
   }
+
   public static String getLastName(String fullName)
   {
     return splitName(fullName)[1];
   }
+
   public static boolean isLengthWithin(String string, int length)
   {
     return string == null || string.length() <= length;
   }
+
   public static boolean equalsIgnoreCase(String one, String two)
   {
     return (one == two || (one != null && one.equalsIgnoreCase(two)));
   }
+
   public static StringBuffer trim(StringBuffer buffer, int i)
   {
     if (buffer == null || buffer.length() < i)
@@ -540,14 +580,17 @@ public class StringUtils
     buffer.setLength(buffer.length() - i);
     return buffer;
   }
+
   public static String join(String first, String joinBy, String second)
   {
     return isEmpty(second) ? first : first + joinBy + second;
   }
+
   public static InputStream convertToInputStream(String string)
   {
     return new ByteArrayInputStream(string.getBytes(StandardCharsets.UTF_8));
   }
+
   public static String toString(Map<?, ?> map)
   {
     StringBuffer b = new StringBuffer();
@@ -570,18 +613,22 @@ public class StringUtils
     }
     return b.toString();
   }
+
   public static <T> String join(T[] list, String delimiter, Function1<T, String> convertor)
   {
     return String.join(delimiter, Query.select(list, convertor));
   }
+
   public static <T> String join(Collection<T> list, String joinWith)
   {
     return join(list, joinWith, n -> n.toString());
   }
+
   public static <T> String join(Collection<T> list, String joinWith, Function1<T, String> converter)
   {
     return String.join(joinWith, Query.select(list, converter));
   }
+
   public static String replaceAll(String input, Pattern pattern, Function1<String, String> replacer)
   {
     Matcher matcher = pattern.matcher(input);
@@ -603,6 +650,7 @@ public class StringUtils
     }
     return input;
   }
+
   public static String pad(String contents, int targetLength)
   {
     while (contents.length() < targetLength)
@@ -615,6 +663,7 @@ public class StringUtils
     }
     return contents;
   }
+
   public static String padLeft(String contents, int targetLength)
   {
     while (contents.length() < targetLength)
@@ -623,6 +672,7 @@ public class StringUtils
     }
     return contents;
   }
+
   public static String padRight(String contents, int targetLength)
   {
     while (contents.length() < targetLength)
@@ -631,18 +681,22 @@ public class StringUtils
     }
     return contents;
   }
+
   public static String removeFromEnd(String contents, String text)
   {
     return removeFromEnd(contents, text.length());
   }
+
   public static String removeFromEnd(String contents, int length)
   {
     return contents.substring(0, contents.length() - length);
   }
+
   public static String repeat(String string, int times)
   {
     return new String(new char[times]).replace("\0", string);
   }
+
   public static String ensureEnding(String contents, String desiredEnding)
   {
     if (contents == null)

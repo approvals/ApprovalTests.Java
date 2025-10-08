@@ -22,15 +22,18 @@ public class LoadersAndSaversExamplesTest
       sendOutSeniorDiscounts(database, mailServer);
       Approvals.verifyAll("", mailServer.getRecipients());
     }
+
     // end-snippet
     private MailServer initializeMailServer()
     {
       return new MailServer();
     }
+
     private DataBase initializeDatabase()
     {
       return null;
     }
+
     private void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
     {
     }
@@ -121,6 +124,7 @@ public class LoadersAndSaversExamplesTest
       sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); // +
     } // +
     // +
+
     public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader) // +
     { // +
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
@@ -133,6 +137,7 @@ public class LoadersAndSaversExamplesTest
         mailServer.sendMessage(customer, message);
       }
     }
+
     // begin-snippet: step0_b
     @Test
     public void senior_customer_list_includes_only_those_over_age_65()
@@ -143,11 +148,13 @@ public class LoadersAndSaversExamplesTest
       sendOutSeniorDiscounts(mailServer, mailingList);
       Approvals.verifyAll("", mailServer.getRecipients());
     }
+
     // end-snippet
     private MailServer initializeMailServer()
     {
       return new MailServer();
     }
+
     private DataBase initializeDatabase()
     {
       return null;
@@ -161,6 +168,7 @@ public class LoadersAndSaversExamplesTest
       Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
       sendOutSeniorDiscounts(mailServer, seniorCustomerLoader);
     }
+
     public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader)
     {
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
@@ -181,6 +189,7 @@ public class LoadersAndSaversExamplesTest
       Loader<List<Customer>> seniorCustomerLoader = database::getSeniorCustomers;
       sendOutSeniorDiscounts(mailServer, seniorCustomerLoader); // *
     }
+
     public void sendOutSeniorDiscounts(MailServer mailServer, Loader<List<Customer>> seniorCustomerLoader) // *
     {
       List<Customer> seniorCustomers = seniorCustomerLoader.load();
@@ -202,6 +211,7 @@ public class LoadersAndSaversExamplesTest
       Saver<Tuple<Customer, String>> mailSaver = Saver2.create(mailServer::sendMessage); // +
       sendOutSeniorDiscounts(mailSaver, seniorCustomerLoader); // *
     }
+
     public void sendOutSeniorDiscounts(Saver<Tuple<Customer, String>> mailSaver,
         Loader<List<Customer>> seniorCustomerLoader) // *
     {
@@ -219,6 +229,7 @@ public class LoadersAndSaversExamplesTest
   {
     return null;
   }
+
   public static Discount getSeniorDiscount()
   {
     return null;
@@ -235,6 +246,7 @@ public class LoadersAndSaversExamplesTest
     public void sendMessage(Customer customer, String message)
     {
     }
+
     public String[] getRecipients()
     {
       return new String[]{};
@@ -247,6 +259,7 @@ public class LoadersAndSaversExamplesTest
     {
       this.s = s;
     }
+
     @Override
     public String toString()
     {

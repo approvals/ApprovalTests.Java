@@ -12,6 +12,7 @@ public class SQLStatementUtils
   {
     return executeQuery(query.toString(DatabaseUtils.getDatabaseType(stmt)), stmt);
   }
+
   public static ResultSet executeQuery(String query, Statement stmt)
   {
     try
@@ -24,6 +25,7 @@ public class SQLStatementUtils
       throw new SQLInformationException(query, e);
     }
   }
+
   public static int executeUpdate(String query, Statement stmt)
   {
     try
@@ -35,6 +37,7 @@ public class SQLStatementUtils
       throw new SQLInformationException(query, e);
     }
   }
+
   public static boolean execute(String query, Statement stmt)
   {
     try

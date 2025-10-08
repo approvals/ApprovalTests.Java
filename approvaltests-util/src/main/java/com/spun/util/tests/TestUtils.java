@@ -41,6 +41,7 @@ public class TestUtils
     {
       this.original = TestUtils.getSourceDirectory.get();
     }
+
     @Override
     public void close()
     {
@@ -62,6 +63,7 @@ public class TestUtils
     frame.dispose();
     return returning;
   }
+
   public static void displayXml(String htmlOutput)
   {
     try
@@ -73,6 +75,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static String getRandomString()
   {
     if (random == null)
@@ -81,24 +84,29 @@ public class TestUtils
     }
     return Long.toString(Math.abs(random.nextLong()), 36);
   }
+
   public static void displayHtml(String htmlOutput)
   {
     displayHtml(null, ".html", htmlOutput, 3);
   }
+
   public static void displayHtmlFile(String fileName)
   {
     displayFile(fileName);
   }
+
   public static void displayHtmlFile(File file)
   {
     if (!file.exists())
     { return; }
     displayHtmlFile(file.getAbsolutePath());
   }
+
   public static void displayHtml(String outputFile, String htmlOutput)
   {
     displayHtml(outputFile, ".html", htmlOutput, 15);
   }
+
   public static void displayHtml(String outputFile, String fileExtention, String htmlOutput, int secondsTimeout)
   {
     try
@@ -117,10 +125,12 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void displayText(String output)
   {
     displayHtml(null, ".txt", output, 3);
   }
+
   public static void displayExcel(String output)
   {
     displayHtml(null, ".csv", output, 3);
@@ -132,6 +142,7 @@ public class TestUtils
   {
     openers.add(0, opener);
   }
+
   public static void displayFile(String fileName)
   {
     for (Opener opener : openers)
@@ -143,6 +154,7 @@ public class TestUtils
         + "Please add your details at https://github.com/approvals/ApprovalTests.Java/issues/251\n"
         + "In the meantime, call TestUtils.registerOpener(yourCustomOpener).");
   }
+
   public static double getTimerMultiplier()
   {
     long start = System.currentTimeMillis();
@@ -150,6 +162,7 @@ public class TestUtils
     long end = System.currentTimeMillis();
     return (end - start) / 500.00;
   }
+
   public static void displayImage(BufferedImage image)
   {
     try
@@ -163,16 +176,19 @@ public class TestUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static StackTraceReflectionResult getCurrentFileForMethod(int ignoreLevels)
   {
     return getCurrentFileForMethod(new StackElementLevelSelector(ignoreLevels + 2));
   }
+
   public static StackTraceReflectionResult getCurrentFileForMethod(StackElementSelector stackElementSelector)
   {
     StackTraceElement[] trace = ThreadUtils.getStackTrace();
     stackElementSelector.increment();
     return getCurrentFileForMethod(stackElementSelector, trace);
   }
+
   public static StackTraceReflectionResult getCurrentFileForMethod(StackElementSelector stackElementSelector,
       StackTraceElement[] trace)
   {
@@ -186,6 +202,7 @@ public class TestUtils
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   private static StackTraceReflectionResult getInfo(StackTraceElement element)
   {
     String fullClassName = element.getClassName();
@@ -196,10 +213,12 @@ public class TestUtils
     String methodName = unrollLambda(element.getMethodName());
     return new StackTraceReflectionResult(dir, fileName, className, fullClassName, methodName);
   }
+
   private static String handleInnerClasses(String className)
   {
     return className.replaceAll("\\$", ".");
   }
+
   public static String unrollLambda(String methodName)
   {
     return lambdaPatterns.select(p -> p.matcher(methodName)).where(Matcher::matches).select(m -> m.group(1))

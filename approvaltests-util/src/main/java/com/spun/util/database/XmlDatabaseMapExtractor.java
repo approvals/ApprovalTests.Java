@@ -21,6 +21,7 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
   {
     this.clazz = clazz;
   }
+
   public Object extractObjectForNode(Node node)
   {
     try
@@ -34,6 +35,7 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
       throw ObjectUtils.throwAsError(t);
     }
   }
+
   private XmlTranslator getTranslator() throws IllegalArgumentException, SecurityException, IllegalAccessException,
       InvocationTargetException, NoSuchMethodException, InstantiationException
   {
@@ -44,6 +46,7 @@ public class XmlDatabaseMapExtractor implements XmlExtractor
     }
     return translator;
   }
+
   private Method getCreator() throws SecurityException, NoSuchMethodException
   {
     if (creator == null)

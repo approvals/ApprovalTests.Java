@@ -27,6 +27,7 @@ public class EnvironmentVariableReporterTest
       EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = System::getenv;
     }
   }
+
   @Test
   void testValidEnvironmentalValues()
   {

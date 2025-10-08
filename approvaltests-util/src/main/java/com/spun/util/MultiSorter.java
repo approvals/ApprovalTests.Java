@@ -9,6 +9,7 @@ public class MultiSorter<T> implements java.util.Comparator<T>
   {
     this.comparators = comparators;
   }
+
   public int compare(T o1, T o2)
   {
     for (Comparator<T> comp : comparators)

@@ -12,6 +12,7 @@ public class ChangeDateVariableSetter implements AutomaticVariableSetter
   private ChangeDateVariableSetter()
   {
   }
+
   public void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     if (atStage == AutomaticVariableSetter.UPDATE)

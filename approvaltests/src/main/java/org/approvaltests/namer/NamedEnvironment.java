@@ -10,15 +10,18 @@ public class NamedEnvironment implements AutoCloseable
   {
     NamerFactory.setAdditionalInformation(info);
   }
+
   @Override
   public void close()
   {
     NamerFactory.getAndClearAdditionalInformation();
   }
+
   public boolean isCurrentEnvironmentValidFor(String... environment)
   {
     return isCurrentEnvironmentValidFor(true, environment);
   }
+
   public boolean isCurrentEnvironmentValidFor(boolean displayMessage, String... environment)
   {
     if (Arrays.asList(environment).contains(NamerFactory.getAdditionalInformation()))

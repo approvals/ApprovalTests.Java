@@ -12,14 +12,17 @@ public class SQLInformationException extends RuntimeException
     this.exception = e;
     this.query = query;
   }
+
   public SQLException getException()
   {
     return exception;
   }
+
   public String getQuery()
   {
     return query;
   }
+
   public String getMessage()
   {
     return "The SQL :'" + query + "'\n" + "caused the exception :'" + exception.getMessage() + "'\n"

@@ -26,12 +26,14 @@ public class FileMonitorTest
     monitor.addListener(this.new TestListener());
     Thread.sleep(1000);
   }
+
   @AfterEach
   protected void tearDown() throws Exception
   {
     monitor.stop();
     root.delete();
   }
+
   @Test
   public void testNewFileDetected() throws Exception
   {

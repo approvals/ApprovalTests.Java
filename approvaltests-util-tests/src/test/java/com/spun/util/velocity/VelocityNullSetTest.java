@@ -11,11 +11,13 @@ public class VelocityNullSetTest implements ContextAware
   {
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$s, #end", this));
   }
+
   @Test
   public void testArraySilentNulls() throws Exception
   {
     Approvals.verify(VelocityParser.parseString("#foreach($s in $array)$!s, #end", this));
   }
+
   @Override
   public void setupContext(Context context)
   {

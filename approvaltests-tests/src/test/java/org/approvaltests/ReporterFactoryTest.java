@@ -18,6 +18,7 @@ public class ReporterFactoryTest
   {
     assertEquals(ClipboardReporter.class, ReporterFactoryHelper.getClassFor());
   }
+
   @Test
   @UseReporter(DiffReporter.class)
   public void oneLayerDown()
@@ -27,6 +28,7 @@ public class ReporterFactoryTest
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
   }
+
   @Test
   public void testPrintUseReporterInJava11()
   {
@@ -35,6 +37,7 @@ public class ReporterFactoryTest
         new Class[0]);
     assertEquals("@org.approvaltests.reporters.UseReporter(value=[])", text);
   }
+
   @Test
   public void testPrintUseReporterInJava16()
   {

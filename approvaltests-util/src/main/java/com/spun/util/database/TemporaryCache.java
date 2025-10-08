@@ -14,6 +14,7 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   {
     this(object, true);
   }
+
   public TemporaryCache(T object, boolean linkBack)
   {
     this.linkBack = linkBack;
@@ -27,10 +28,12 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
       cache = Collections.EMPTY_MAP;
     }
   }
+
   public TemporaryCache(T[] objects)
   {
     this(objects, true);
   }
+
   public TemporaryCache(T[] objects, boolean linkBack)
   {
     this.linkBack = linkBack;
@@ -48,18 +51,22 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
       }
     }
   }
+
   public void forceGenericObjectType()
   {
     defaultClass = null;
   }
+
   public Class<T> getObjectType()
   {
     return defaultClass;
   }
+
   public boolean isLinkBackOn()
   {
     return linkBack;
   }
+
   /**
    * loads the chache from the database
    **/
@@ -67,6 +74,7 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }
+
   /**
    * clears the cache and reloads it from the database
    **/
@@ -74,6 +82,7 @@ public class TemporaryCache<T extends DatabaseObject> implements DatabaseCache<T
   {
     throw new UnsupportedOperationException("This only supports loaded objects");
   }
+
   /**
    * @return the object from the cache with the corosponding pkey
    **/

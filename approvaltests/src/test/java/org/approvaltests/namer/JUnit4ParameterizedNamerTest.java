@@ -21,6 +21,7 @@ public class JUnit4ParameterizedNamerTest
   {
     this.input = input;
   }
+
   @Test
   public void parameterizedTest()
   {

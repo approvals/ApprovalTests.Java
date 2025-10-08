@@ -10,6 +10,7 @@ public final class TimeOut implements Runnable
     this.time = time;
     new Thread(this).start();
   }
+
   public void run()
   {
     SimpleLogger.event("launched");

@@ -18,6 +18,7 @@ class IntelliJResolverTest
         "Users/lars/Applications/IntelliJ IDEA Community Edition.app/Contents/MacOS/idea");
     verifyPaths(IntelliJToolboxResolver::getDiffInfoMac, "Users/lars", validPaths);
   }
+
   private static void verifyPaths(Function2<String, Function1<String, Boolean>, DiffInfo> finder, String userHome,
       Queryable<String> validPaths)
   {
@@ -27,6 +28,7 @@ class IntelliJResolverTest
       assertNotEquals("", diffInfo.diffProgram, path);
     }
   }
+
   @Test
   void testFindItOnLinux()
   {
@@ -35,6 +37,7 @@ class IntelliJResolverTest
         "/home/lars/.local/share/JetBrains/Toolbox/apps/intellij-idea-community-edition/bin/idea.sh");
     verifyPaths(IntelliJToolboxResolver::getDiffInfoLinux, "/home/lars", validPaths);
   }
+
   @Test
   void testFindItOnWindows()
   {

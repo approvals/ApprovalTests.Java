@@ -30,6 +30,7 @@ public class FileApproverTest
     assertEquals("FileApproverTest", info.getClassName());
     assertEquals("testGetCurrentFileForMethod", info.getMethodName());
   }
+
   @Test
   public void testApproveTextFile()
   {
@@ -39,6 +40,7 @@ public class FileApproverTest
     f2 = createFile("1");
     assertEquals(VerifyResult.SUCCESS, FileApprover.approveTextFile(f2, f1), "files are the same");
   }
+
   @Test
   public void testApproveTextFileWithNonExsitantFile()
   {
@@ -48,6 +50,7 @@ public class FileApproverTest
     assertFalse(f2.exists());
     assertEquals(VerifyResult.FAILURE, FileApprover.approveTextFile(f2, f1));
   }
+
   private File createFile(String string)
   {
     try
@@ -61,6 +64,7 @@ public class FileApproverTest
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   @Test
   public void testCustomApprover()
   {
@@ -71,6 +75,7 @@ public class FileApproverTest
     Approvals.verify(new FileApprover(writer, namer, approveEverything));
     // end-snippet
   }
+
   @Test
   void testCustomError()
   {

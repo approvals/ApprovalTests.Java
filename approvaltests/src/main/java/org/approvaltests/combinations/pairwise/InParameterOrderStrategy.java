@@ -24,6 +24,7 @@ public final class InParameterOrderStrategy
     });
     return arrayListStream.map(chunk -> crossJoin(chunk)).collect(Collectors.toList());
   }
+
   public static List<Case> horizontalGrowth(List<Case> cases, List<Case> pairs)
   {
     List<Case> result = new ArrayList<>();
@@ -39,10 +40,12 @@ public final class InParameterOrderStrategy
     }
     return result;
   }
+
   public static List<Case> verticalGrowth(List<Case> pairs)
   {
     return removeDuplicates(pairs);
   }
+
   public static List<Case> removeDuplicates(List<Case> pairs)
   {
     List<Case> collected = new ArrayList<>();
@@ -55,6 +58,7 @@ public final class InParameterOrderStrategy
     }
     return collected;
   }
+
   public static List<Case> crossJoin(List<OptionsForAParameter> chunk)
   {
     final OptionsForAParameter multiplier = chunk.get(chunk.size() - 1);
@@ -74,6 +78,7 @@ public final class InParameterOrderStrategy
       }
     };
   }
+
   private static Tuple<String, Object> findMostUsedLastParameter(List<Case> pairs, Case aCaseParameter)
   {
     Queryable<Case> matchedPairs = Query.where(pairs, aCaseParameter::matches);
@@ -82,6 +87,7 @@ public final class InParameterOrderStrategy
     String key = matchedPairs.first().getLastKey();
     return new Tuple<>(key, Counter.getMaxValue(matchedPairs, e -> e.get(key)));
   }
+
   public static List<Case> combineAppleSauce(List<Case> createManyCases, List<Case> cases)
   {
     List<Case> horizontalAndVerticalGrowth = horizontalGrowth(createManyCases, cases);

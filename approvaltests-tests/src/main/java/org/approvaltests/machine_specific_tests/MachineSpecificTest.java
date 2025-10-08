@@ -20,6 +20,7 @@ public class MachineSpecificTest
       assumeTrue(false);
     }
   }
+
   private void displayMessage(TestInfo testInfo)
   {
     if (!DISPLAYED)

@@ -10,6 +10,7 @@ public class SimpleLoggerApprovals
   {
     return verify(new Options());
   }
+
   public static VerifySimpleLogger verify(Options options)
   {
     return new VerifySimpleLogger(options);

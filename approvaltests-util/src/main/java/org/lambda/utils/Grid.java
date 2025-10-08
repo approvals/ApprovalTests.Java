@@ -21,10 +21,12 @@ public class Grid
     }
     return b.toString();
   }
+
   public static String print(int width, int height, final String cell)
   {
     return print(width, height, (x, y) -> cell);
   }
+
   public static String printMarkdown(int width, int height, Function2<Integer, Integer, String> f2)
   {
     Queryable<Integer> numbers = Range.getAsQueryable(0, width - 1);
@@ -55,6 +57,7 @@ public class Grid
     //    }
     //    return b.toString();
   }
+
   private static String printHeader(int width)
   {
     StringBuffer b = new StringBuffer();

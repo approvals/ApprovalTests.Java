@@ -19,10 +19,12 @@ public class ZipUtils
   {
     return zipDirectory(new File(directory), new File(zipFileName));
   }
+
   public static File zipDirectory(File directory, File zipFileName)
   {
     return doCreateZipFile(FileUtils.getRecursiveFileList(directory), zipFileName);
   }
+
   public static File doCreateZipFile(File[] files, File zipFile)
   {
     try
@@ -56,6 +58,7 @@ public class ZipUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static File[] doUnzip(File destination, File zipFile)
   {
     try
@@ -99,6 +102,7 @@ public class ZipUtils
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static void main(String[] args)
   {
     zipDirectory("c:\\t", "c:\\t\\t.zip");

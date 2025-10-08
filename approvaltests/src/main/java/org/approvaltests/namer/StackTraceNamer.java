@@ -17,16 +17,19 @@ public class StackTraceNamer implements ApprovalNamer
     info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
     additionalInformation = NamerFactory.getAndClearAdditionalInformation();
   }
+
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
   {
     this.info = info;
     this.additionalInformation = additionalInformation;
   }
+
   @Override
   public String getApprovalName()
   {
     return String.format("%s.%s%s", info.getClassName(), info.getMethodName(), additionalInformation);
   }
+
   @Override
   public String getSourceFilePath()
   {
@@ -35,6 +38,7 @@ public class StackTraceNamer implements ApprovalNamer
     String baseDir = getBaseDirectory();
     return baseDir + File.separator + subdirectory;
   }
+
   public String getBaseDirectory()
   {
     String baseDir = info.getSourceFile().getAbsolutePath();
@@ -48,25 +52,30 @@ public class StackTraceNamer implements ApprovalNamer
     }
     return baseDir;
   }
+
   @Override
   public File getReceivedFile(String extensionWithDot)
   {
     return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.received + extensionWithDot);
   }
+
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
     return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
   }
+
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
   {
     return new StackTraceNamer(this.info, this.additionalInformation + "." + additionalInformation);
   }
+
   @Override
   public String getAdditionalInformation()
   {
     return additionalInformation;
   }
+
   public StackTraceReflectionResult getInfo()
   {
     return info;

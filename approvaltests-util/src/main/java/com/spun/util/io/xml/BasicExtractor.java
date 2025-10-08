@@ -47,6 +47,7 @@ public class BasicExtractor
     private StringExtractor()
     {
     }
+
     public Object extractObjectForNode(Node node)
     {
       return XMLUtils.extractStringValue(node);
@@ -58,6 +59,7 @@ public class BasicExtractor
     private DoubleExtractor()
     {
     }
+
     public Object extractObjectForNode(Node node)
     {
       return Double.valueOf(XMLUtils.extractStringValue(node));
@@ -69,6 +71,7 @@ public class BasicExtractor
     private IntegerExtractor()
     {
     }
+
     public Object extractObjectForNode(Node node)
     {
       return Integer.valueOf(XMLUtils.extractStringValue(node));
@@ -80,6 +83,7 @@ public class BasicExtractor
     private BooleanExtractor()
     {
     }
+
     public Object extractObjectForNode(Node node)
     {
       return Boolean.valueOf(XMLUtils.extractStringValue(node));
@@ -91,6 +95,7 @@ public class BasicExtractor
     private TimestampExtractor()
     {
     }
+
     public Object extractObjectForNode(Node node)
     {
       return Timestamp.valueOf(XMLUtils.extractStringValue(node));

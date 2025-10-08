@@ -44,10 +44,12 @@ public class SimpleLoggerInstance
   {
     this(0);
   }
+
   public SimpleLoggerInstance(int wrapperLevels)
   {
     this.wrapperLevels = wrapperLevels;
   }
+
   public void toggleAll(boolean t)
   {
     marker = t;
@@ -55,6 +57,7 @@ public class SimpleLoggerInstance
     variable = t;
     query = t;
   }
+
   private void clearHourGlass()
   {
     if (hourGlass > 0)
@@ -63,10 +66,12 @@ public class SimpleLoggerInstance
       hourGlass = 0;
     }
   }
+
   public void setHourGlassWrap(int numberOfDots)
   {
     hourGlassWrap = numberOfDots;
   }
+
   public void hourGlass()
   {
     if (hourGlassWrap <= hourGlass)
@@ -81,10 +86,12 @@ public class SimpleLoggerInstance
     String mark = ((hourGlass % 10) == 0) ? ("" + (hourGlass / 10)) : ".";
     log(mark);
   }
+
   public long startTimer()
   {
     return System.currentTimeMillis();
   }
+
   public void stopTimer(long startTime, long maxTime, String function)
   {
     long diff = System.currentTimeMillis() - startTime;
@@ -94,6 +101,7 @@ public class SimpleLoggerInstance
           + maxTime + "]");
     }
   }
+
   public void markerIn(String statement)
   {
     if (!marker)
@@ -101,6 +109,7 @@ public class SimpleLoggerInstance
     logLine(timeStamp() + Symbols.markerIn + statement + " - IN");
     m_indent++;
   }
+
   private String extractMarkerText()
   {
     try
@@ -116,6 +125,7 @@ public class SimpleLoggerInstance
       return "Can't Inspect Stack Trace";
     }
   }
+
   private String getIndent()
   {
     if (m_indent == 0)
@@ -127,11 +137,13 @@ public class SimpleLoggerInstance
     }
     return theIndention;
   }
+
   private String timeStamp()
   {
     clearHourGlass();
     return timeStampTextOnly();
   }
+
   private String timeStampTextOnly()
   {
     String text = "";
@@ -145,6 +157,7 @@ public class SimpleLoggerInstance
     lastTime = current;
     return text;
   }
+
   private String padNumber(long number)
   {
     String text = "" + number;
@@ -154,6 +167,7 @@ public class SimpleLoggerInstance
     }
     return text;
   }
+
   private String indentMessage(String message)
   {
     List<Integer> v = new ArrayList<>();
@@ -176,6 +190,7 @@ public class SimpleLoggerInstance
     }
     return buffer.toString();
   }
+
   public synchronized void markerOut(String text)
   {
     if (!marker)
@@ -183,12 +198,14 @@ public class SimpleLoggerInstance
     m_indent--;
     logLine(timeStamp() + Symbols.markerOut + text + " - OUT");
   }
+
   public synchronized void query(String sqlQuery)
   {
     if (!query)
     { return; }
     logLine(timeStamp() + Symbols.sql + sqlQuery);
   }
+
   /**
    * Prints to screen any variable information to be viewed.
    **/
@@ -198,16 +215,19 @@ public class SimpleLoggerInstance
     { return; }
     logLine(timeStamp() + Symbols.sql + "[" + queryName + "] - " + sqlQuery);
   }
+
   public void variableFormated(String string, Object... parameters)
   {
     variable(String.format(string, parameters));
   }
+
   public synchronized void variable(String statement)
   {
     if (!variable)
     { return; }
     logLine(timeStamp() + Symbols.variable + statement);
   }
+
   /**
    * Prints to screen any variable information to be viewed.
    **/
@@ -222,10 +242,12 @@ public class SimpleLoggerInstance
     }
     logLine(String.format("%s%s%s = '%s'%s", timeStamp(), Symbols.variable, name, value, typeInfo));
   }
+
   private void logLine(String text)
   {
     log(text + "\n");
   }
+
   private void log(String with) throws Error
   {
     try
@@ -237,6 +259,7 @@ public class SimpleLoggerInstance
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public synchronized void variable(String name, Object[] array)
   {
     if (!variable)
@@ -252,28 +275,34 @@ public class SimpleLoggerInstance
       logLine(timeStamp() + name + "[" + i + "] = " + array[i]);
     }
   }
+
   public synchronized <T> void variable(T[] array)
   {
     variable(null, array);
   }
+
   public synchronized void message(String Statement)
   {
     logLine(timeStamp() + indentMessage(Statement));
   }
+
   public void event(String Statement)
   {
     if (!event)
     { return; }
     logLine(timeStamp() + Symbols.event + Statement);
   }
+
   public synchronized void warning(String statement)
   {
     warning(statement, null);
   }
+
   public synchronized void warning(Throwable throwable)
   {
     warning(null, throwable);
   }
+
   public synchronized void warning(String statement, Throwable throwable)
   {
     clearHourGlass();
@@ -290,6 +319,7 @@ public class SimpleLoggerInstance
     }
     logLine("******************************************************************************************");
   }
+
   private void printFullTrace(Throwable throwable, boolean causedBy)
   {
     if (throwable != null)
@@ -302,6 +332,7 @@ public class SimpleLoggerInstance
       }
     }
   }
+
   private void printStackTrace(Throwable throwable)
   {
     if (!stacktraces)
@@ -319,6 +350,7 @@ public class SimpleLoggerInstance
       throwable.printStackTrace(new PrintWriter(new AppendableWriter(logTo)));
     }
   }
+
   /**
    * Logs the current memory status [total, used, free].
    * This forces garbage collection to run first.
@@ -328,6 +360,7 @@ public class SimpleLoggerInstance
     String memory = getMemoryStatus();
     logLine(memory);
   }
+
   private String getMemoryStatus()
   {
     System.gc();
@@ -339,6 +372,7 @@ public class SimpleLoggerInstance
         + format.format(usedMemory) + " , " + format.format(freeMemory) + "]";
     return statement;
   }
+
   /**
    * {@code
    * try (Markers m = SimpleLogger.useMarkers();)
@@ -351,6 +385,7 @@ public class SimpleLoggerInstance
     final String text = extractMarkerText();
     return new Markers(this, text);
   }
+
   public StringBuffer logToString()
   {
     marker = true;
@@ -363,6 +398,7 @@ public class SimpleLoggerInstance
     logTo = buffer;
     return buffer;
   }
+
   public void useOutputFile(String file, boolean addDateStamp)
   {
     try
@@ -375,6 +411,7 @@ public class SimpleLoggerInstance
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   private String addDatestampToFile(String file, boolean addDateStamp)
   {
     if (!addDateStamp)
@@ -391,10 +428,12 @@ public class SimpleLoggerInstance
     }
     return file;
   }
+
   public void logTo(Appendable writer)
   {
     logTo = writer;
   }
+
   public Appendable getLogTo()
   {
     return logTo;

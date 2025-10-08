@@ -9,15 +9,18 @@ public class Mutable<T>
   {
     this.object = object;
   }
+
   public T get()
   {
     return object;
   }
+
   public T set(T object)
   {
     this.object = object;
     return object;
   }
+
   public T update(Function1<T, T> updater)
   {
     this.object = updater.call(this.object);

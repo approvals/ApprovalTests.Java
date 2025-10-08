@@ -23,11 +23,13 @@ public class MarkdownStoryBoard implements Verifiable
   {
     return new MarkdownStoryBoard().add(initial).addFrames(additionalFrames, getNextFrame);
   }
+
   public <T> MarkdownStoryBoard add(T object)
   {
     String title = index == 0 ? "Initial" : "Frame #" + index;
     return addFrame(title, object);
   }
+
   public <T> MarkdownStoryBoard addFrame(String title, T frame)
   {
     addNewLines(Types.Frame);
@@ -39,6 +41,7 @@ public class MarkdownStoryBoard implements Verifiable
     index++;
     return this;
   }
+
   private void addNewLines(Types type)
   {
     switch (last)
@@ -57,6 +60,7 @@ public class MarkdownStoryBoard implements Verifiable
     }
     last = type;
   }
+
   public <T> MarkdownStoryBoard addFrames(int howMany, Function0<T> getNextFrame)
   {
     for (int i = 0; i < howMany; i++)
@@ -65,33 +69,39 @@ public class MarkdownStoryBoard implements Verifiable
     }
     return this;
   }
+
   @Override
   public String toString()
   {
     return stringBuffer.toString();
   }
+
   public MarkdownStoryBoard addTitle(String title)
   {
     addNewLines(Types.Description);
     stringBuffer.append("# " + title + "\n");
     return this;
   }
+
   public MarkdownStoryBoard addDescription(String description)
   {
     addNewLines(Types.Description);
     stringBuffer.append("`" + description + "`  \n");
     return this;
   }
+
   public <T> MarkdownStoryBoard addFrame(T frame)
   {
     return add(frame);
   }
+
   public <T> MarkdownStoryBoard addDescriptionWithData(String description, String data)
   {
     addNewLines(Types.Description);
     stringBuffer.append("`" + description + ": " + data + "`  \n");
     return this;
   }
+
   public MarkdownStoryBoard addCustomMarkdown(String markdown)
   {
     addNewLines(Types.Description);

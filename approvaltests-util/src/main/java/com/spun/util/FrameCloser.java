@@ -6,6 +6,7 @@ public class FrameCloser extends java.awt.event.WindowAdapter
   {
     e.getWindow().dispose();
   }
+
   public void windowClosed(java.awt.event.WindowEvent e)
   {
     System.exit(0);

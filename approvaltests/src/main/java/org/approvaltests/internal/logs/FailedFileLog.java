@@ -16,18 +16,21 @@ public class FailedFileLog
   {
     Once.runAsync(() -> LoggingUtils.downloadScriptIfMissing("approve_all"));
   }
+
   public static File get()
   {
     File file = new File(LoggingUtils.getTempDirectory() + "/.failed_comparison.log");
     FileUtils.createIfNeeded(FileUtils.getResolvedPath(file));
     return file;
   }
+
   public static void log(File received, File approved)
   {
     File log = get();
     FileUtils.appendToFile(log,
         String.format("%s -> %s\n", FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved)));
   }
+
   public static void touch()
   {
     // Allows static initializer to be called

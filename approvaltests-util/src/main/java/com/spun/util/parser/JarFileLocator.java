@@ -10,6 +10,7 @@ public class JarFileLocator implements ResourceLocator
   {
     this.basePath = basePath;
   }
+
   public String getLocation(String fileName)
   {
     String absolutePath = paths.get(fileName);

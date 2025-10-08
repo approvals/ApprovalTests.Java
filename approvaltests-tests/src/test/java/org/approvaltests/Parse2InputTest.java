@@ -22,6 +22,7 @@ public class Parse2InputTest
     ParseInput.from(expected).withTypes(Integer.class, Double.class).transformTo((i, d) -> i * d)
         .verifyAll(t -> t);
   }
+
   @Test
   void testPersonAge()
   {
@@ -38,6 +39,7 @@ public class Parse2InputTest
     ParseInput.from(expected).multiline().withTypes(String.class, Integer.class).transformTo(Person::new)
         .verifyAll(Person::toString);
   }
+
   @Test
   @UseReporter(AutoApproveReporter.class)
   public void testArrays()
@@ -50,6 +52,7 @@ public class Parse2InputTest
     ParseInput.from(expected).withTypes(Integer[].class).verifyAll(this::sum);
     ParseInput.from(expected).withTypes(Integer.class, Integer[].class).verifyAll((i, a) -> i + sum(a));
   }
+
   private Double sum(Integer[] integers)
   {
     return Queryable.of(integers).sum();

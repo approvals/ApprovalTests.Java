@@ -25,12 +25,14 @@ public class CheckedExceptionsTest
           this::getMethodsWithCheckedExceptions);
     }
   }
+
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
     return Query.where(declaredMethods,
         m -> m.getExceptionTypes().length != 0 && Modifier.isPublic(m.getModifiers()));
   }
+
   private Queryable<Class<?>> getAllClasses()
   {
     return getClasses(ClassUtils.getProjectRootPath() + "/..", p -> p.contains("main"),
