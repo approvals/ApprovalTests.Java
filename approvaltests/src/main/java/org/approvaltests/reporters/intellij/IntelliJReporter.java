@@ -21,7 +21,7 @@ public class IntelliJReporter extends GenericDiffReporter
     {
       return findJetBrainsIDEs();
     }
-    catch (Exception e)
+    catch (Throwable e)
     {
       // requires Java 9+
       return "";
