@@ -41,7 +41,6 @@ public class IntelliJReporter extends GenericDiffReporter
       Class<?> processHandleClass = Class.forName("java.lang.ProcessHandle");
       Method allProcessesMethod = processHandleClass.getMethod("allProcesses");
       Method infoMethod = processHandleClass.getMethod("info");
-      // Get the ProcessHandle.Info interface to access the command() method
       Class<?> processInfoClass = Class.forName("java.lang.ProcessHandle$Info");
       Method commandMethod = processInfoClass.getMethod("command");
       @SuppressWarnings("unchecked")
@@ -58,11 +57,10 @@ public class IntelliJReporter extends GenericDiffReporter
           }
           catch (Exception e)
           {
-            System.out.println("Failed to get command for process: " + e.getMessage());
             return Optional.<String> empty();
           }
         });
-        return processes.filter(Optional::isPresent).map(c -> c.get()).toArray(String[]::new);
+        return processes.filter(Optional::isPresent).map(Optional::get).toArray(String[]::new);
       }
       finally
       {
@@ -71,7 +69,6 @@ public class IntelliJReporter extends GenericDiffReporter
     }
     catch (Exception e)
     {
-      System.out.println("Failed to get running programs: " + e.getMessage());
       return new String[0];
     }
   }
