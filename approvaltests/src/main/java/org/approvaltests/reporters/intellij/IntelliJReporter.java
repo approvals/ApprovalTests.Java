@@ -19,7 +19,7 @@ public class IntelliJReporter extends GenericDiffReporter
   {
     try
     {
-      return findJetBrainsIDEs();
+      return findJetBrainsIdes();
     }
     catch (Throwable e)
     {
@@ -27,7 +27,13 @@ public class IntelliJReporter extends GenericDiffReporter
       return "";
     }
   }
-  public static String findJetBrainsIDEs()
+  public static String findJetBrainsIdes()
+  {
+    String[] commands = ProcessHandle.allProcesses().map(p -> p.info().command()).filter(Optional::isPresent)
+        .map(c -> c.get()).toArray(String[]::new);
+    return findJetBrainsIdes(commands);
+  }
+  public static String findJetBrainsIdes(String[] commands)
   {
     Set<String> seenPaths = new HashSet<>();
     String[] keywords = {"idea",
@@ -40,34 +46,27 @@ public class IntelliJReporter extends GenericDiffReporter
                          "rubymine",
                          "appcode",
                          "datagrip"};
-    ProcessHandle[] list = ProcessHandle.allProcesses().toArray(ProcessHandle[]::new);
-    for (ProcessHandle process : list)
+    for (String command : commands)
     {
-      Optional<String> commandOpt = process.info().command();
-      if (commandOpt.isPresent())
+      String lowerCommand = command.toLowerCase();
+      for (String keyword : keywords)
       {
-        String command = commandOpt.get();
-        String lowerCommand = command.toLowerCase();
-        for (String keyword : keywords)
+        if (lowerCommand.contains(keyword) && isMainExecutable(command, keyword))
         {
-          if (lowerCommand.contains(keyword) && isMainExecutable(command, keyword))
+          if (!seenPaths.contains(command))
           {
-            if (!seenPaths.contains(command))
-            {
-              seenPaths.add(command);
-              return command;
-            }
-            break;
+            seenPaths.add(command);
+            return command;
           }
+          break;
         }
       }
-    } ;
+    }
     return "";
   }
-  private static boolean isMainExecutable(String path, String keyword)
+  public static boolean isMainExecutable(String path, String keyword)
   {
     String lowerPath = path.toLowerCase();
-    return lowerPath.endsWith("macos/" + keyword) || lowerPath.endsWith(keyword + ".exe")
-        || lowerPath.endsWith("bin/" + keyword);
+    return lowerPath.endsWith("macos/" + keyword) || lowerPath.contains("bin\\" + keyword);
   }
 }
