@@ -21,4 +21,5 @@
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
 
-*.approved.* binary
+# We never ever want Git to modify approved files
+*.approved.* binary diff
