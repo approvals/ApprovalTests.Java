@@ -29,9 +29,13 @@ public class IntelliJReporter extends GenericDiffReporter
   }
   public static String findJetBrainsIdes()
   {
-    String[] commands = ProcessHandle.allProcesses().map(p -> p.info().command()).filter(Optional::isPresent)
-        .map(c -> c.get()).toArray(String[]::new);
-    return findJetBrainsIdes(commands);
+    String[] runningPrograms = getRunningPrograms();
+    return findJetBrainsIdes(runningPrograms);
+  }
+  private static String[] getRunningPrograms()
+  {
+    return ProcessHandle.allProcesses().map(p -> p.info().command()).filter(Optional::isPresent).map(c -> c.get())
+        .toArray(String[]::new);
   }
   public static String findJetBrainsIdes(String[] commands)
   {
