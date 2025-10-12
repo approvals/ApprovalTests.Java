@@ -7,6 +7,7 @@ import java.lang.ProcessHandle;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class IntelliJReporter extends GenericDiffReporter
 {
@@ -34,8 +35,8 @@ public class IntelliJReporter extends GenericDiffReporter
   }
   private static String[] getRunningPrograms()
   {
-    return ProcessHandle.allProcesses().map(p -> p.info().command()).filter(Optional::isPresent).map(c -> c.get())
-        .toArray(String[]::new);
+    Stream<Optional<String>> processes = ProcessHandle.allProcesses().map(p -> p.info().command());
+    return processes.filter(Optional::isPresent).map(c -> c.get()).toArray(String[]::new);
   }
   public static String findJetBrainsIdes(String[] commands)
   {
