@@ -37,7 +37,7 @@ public void testInlineApprovals()
   Approvals.verify(getGreeting(), new Options().inline(expected));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L12-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_before' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L12-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_before' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Step 2 - Run and approve by diff
@@ -63,7 +63,7 @@ public void testInlineApprovals()
   Approvals.verify(getGreeting(), new Options().inline(expected));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L26-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/InlineApprovalsExampleTest.java#L27-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-inline_approvals_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## See also:

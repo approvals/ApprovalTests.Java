@@ -25,7 +25,7 @@ StringBuffer log = SimpleLogger.logToString();
 new Sample().methodThatLogs();
 Approvals.verify(log);
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L35-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_to_string' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L36-L40' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_to_string' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## See also

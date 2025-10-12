@@ -61,7 +61,7 @@ scheduler.rsvp();
 i.set("Steve");
 scheduler.bookHotel();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/utils/MutableTest.java#L20-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-mutable_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/utils/MutableTest.java#L21-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-mutable_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will produce the following:

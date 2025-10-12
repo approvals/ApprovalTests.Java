@@ -26,7 +26,7 @@ void sampleParameterizedTest(String parameter)
   Approvals.verify(output, Approvals.NAMES.withParameters(parameter));
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/SamplesTest.java#L38-L47' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/SamplesTest.java#L41-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-parameterized_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This code sample ensures that the approved file includes the parameters. For example:  

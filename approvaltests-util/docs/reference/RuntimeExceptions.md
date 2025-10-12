@@ -36,7 +36,7 @@ catch (Throwable t)
   throw ObjectUtils.throwAsError(t);
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L67-L78' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L72-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 There are two things to note in this implementation.
@@ -58,7 +58,7 @@ the use of lambdas. Here are examples with and without return values:
 ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedException());
 int i = ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedExceptionWithReturnValue());
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L83-L86' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error_lambda' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L89-L92' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_error_lambda' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## 3. Wrapping Actions/Functions
@@ -73,7 +73,7 @@ Queryable<String> paths = files.select(Functions.unchecked(
     // throws IOException
     s -> new File(s).getCanonicalPath()));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L92-L96' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L99-L103' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---

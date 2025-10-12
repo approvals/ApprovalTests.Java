@@ -46,7 +46,7 @@ SimpleLogger.get().event = false;
 SimpleLogger.get().variable = false;
 SimpleLogger.get().query = true;
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L44-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_toggles' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L46-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_toggles' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 * **Can be used concurrently with SimpleLogger**  
@@ -67,6 +67,7 @@ public void methodThatLogs()
     }
   }
 }
+
 private void innerMethod(int i)
 {
   try (Markers markers = SimpleLogger.useMarkers())
@@ -75,7 +76,7 @@ private void innerMethod(int i)
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/Sample.java#L5-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_use_markers' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/Sample.java#L5-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-simple_logger_use_markers' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Will produce the following logs:
@@ -137,5 +138,5 @@ if you want to turn them all off just run
 ```java
 SimpleLogger.logToNothing();
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L62-L64' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/logger/SimpleLoggerTest.java#L66-L68' title='Snippet source file'>snippet source</a> | <a href='#snippet-log_nothing' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

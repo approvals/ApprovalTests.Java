@@ -40,7 +40,7 @@ try (NamedEnvironment namer = NamerFactory.withParameters("title", "chapter"))
   Approvals.verify("data");
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L27-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L28-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will result in a file named:
@@ -54,7 +54,7 @@ With the addition of `Options` you can now set additional naming information in 
 ```java
 Approvals.verify("data", Approvals.NAMES.withParameters("title", "chapter"));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L37-L39' title='Snippet source file'>snippet source</a> | <a href='#snippet-additional_information_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-additional_information_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will result in a file named:
@@ -71,7 +71,7 @@ ApprovalNamer namer = options.forFile().getNamer();
 String name = namer.getApprovedFile(".txt").getName();
 assertEquals("NamerFactoryForOptionsTest.testMachineSpecificTest.Mac_OS_X.lars-mbp-14.approved.txt", name);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L46-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_and' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L49-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_and' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will result in a file named: 

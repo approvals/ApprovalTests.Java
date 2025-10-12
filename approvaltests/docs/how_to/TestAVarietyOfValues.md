@@ -25,7 +25,7 @@ If you have more than one parameter that you want to vary, check out [Testing Co
 String[] inputs = {"input.value1", "input.value2"};
 Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L43-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyAllStartingPoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L46-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-VerifyAllStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify the input container for your chosen values.
@@ -64,7 +64,7 @@ VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Ca
 table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
 Approvals.verify(table);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L28-L34' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/TableTest.java#L30-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-markdown_table_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce:

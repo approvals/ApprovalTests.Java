@@ -32,7 +32,7 @@ Here is an example:
 CustomPanel panel = new CustomPanel(true, 20);
 AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L39-L42' title='Snippet source file'>snippet source</a> | <a href='#snippet-file_capture_reporter_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/awt/ApprovalsTest.java#L41-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-file_capture_reporter_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The example above demonstrates how to use FileCaptureReporter with ApprovalTests to capture received files on test failure.

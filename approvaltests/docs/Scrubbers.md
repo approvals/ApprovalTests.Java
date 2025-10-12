@@ -35,7 +35,7 @@ For example:
 ```java
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L42-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L44-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Guid Scrubbing
@@ -50,7 +50,7 @@ String[] guids = {"2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-ad49-447d-96a8-deda585a9aa5",
                   "2fd78d4a-ad49-447d-96a8-deda585a9aa5 and text"};
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L35-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L37-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 You can make this output deterministic by using a scrubber in the options.
 For example:
@@ -59,7 +59,7 @@ For example:
 ```java
 Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L42-L44' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L44-L46' title='Snippet source file'>snippet source</a> | <a href='#snippet-guid-scrubbing-2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 This will result in the following `.approved.txt` file
 <!-- snippet: /src/test/java/org/approvaltests/scrubbers/ScrubberTest.scrubGuids.approved.txt -->
@@ -108,7 +108,7 @@ The easiest way to scrub a date is by calling
 ```java
 Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.java#L54-L56' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.java#L57-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce
@@ -162,7 +162,7 @@ Scrubber scrubber = Scrubbers.scrubAll(portScrubber, dateScrubber, signatureScru
 Approvals.verify("http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
     new Options(scrubber));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L49-L56' title='Snippet source file'>snippet source</a> | <a href='#snippet-MultiScrubber' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L52-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-MultiScrubber' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will result in

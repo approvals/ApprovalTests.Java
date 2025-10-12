@@ -28,7 +28,7 @@ Collection<DynamicTest> testFactory3()
       o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L125-L132' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L132-L140' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Kotlin

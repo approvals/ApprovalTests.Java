@@ -20,7 +20,7 @@ public static void verifyAsJson(Object o, Options options)
   Approvals.verify(JsonUtils.asJson(o), options.forFile().withExtension(".json"));
 }
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L53-L58' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/JsonApprovals.java#L62-L67' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_as_json' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Create a `Verifiable` Object
@@ -52,11 +52,13 @@ public static class MarkdownParagraph implements Verifiable
     this.title = title;
     this.paragraph = paragraph;
   }
+
   @Override
   public VerifyParameters getVerifyParameters(Options options)
   {
     return new VerifyParameters(options.forFile().withExtension(".md"));
   }
+
   @Override
   public String toString()
   {
@@ -64,6 +66,6 @@ public static class MarkdownParagraph implements Verifiable
   }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/core/VerifiableTest.java#L9-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/core/VerifiableTest.java#L9-L37' title='Snippet source file'>snippet source</a> | <a href='#snippet-verifiable_object_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
   

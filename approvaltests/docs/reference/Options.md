@@ -55,7 +55,7 @@ If you want to change the file extension of both the approved and received files
 ```java
 Approvals.verify("text to be verified", new Options().forFile().withExtension(".xyz"));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/OptionsSamplesTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_approval_with_file_extension' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/OptionsSamplesTest.java#L24-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_approval_with_file_extension' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **Note:** `withExtension()` returns an `Options` object, so it's possible to keep appending more `with...()` calls.

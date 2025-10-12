@@ -52,7 +52,7 @@ For Example Action3 has the single method:
 ```java
 public void call(In1 a, In2 b, In3 c);
 ```
-<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L10-L12' title='Snippet source file'>snippet source</a> | <a href='#snippet-action3_call' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util/src/main/java/org/lambda/actions/Action3.java#L11-L13' title='Snippet source file'>snippet source</a> | <a href='#snippet-action3_call' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The first 3 have native java equivalents (that are hard to remember).  

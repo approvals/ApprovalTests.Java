@@ -71,7 +71,7 @@ Once split, we will have a second method that looks like this:
 // Called by tests and the above function
 public static String print(Loader<List<Shift>> shifts, Calendar day)
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/KitchenScheduler.java#L18-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-entry_point_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/KitchenScheduler.java#L19-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-entry_point_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The important part about this method is that it has no knowledge of a database.
@@ -94,7 +94,7 @@ void testWithMockedData()
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L22-L35' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L22-L36' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Summary
@@ -127,7 +127,7 @@ void testWithDatabaseAccess()
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L41-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L43-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Testing Executable Commands
@@ -144,10 +144,11 @@ package com.spun.util.persistence;
 public interface ExecutableCommand
 {
   public String getCommand();
+
   public String executeCommand(String command);
 }
 ```
-<sup><a href='/approvaltests-util/src/main/java/com/spun/util/persistence/ExecutableCommand.java#L1-L7' title='Snippet source file'>snippet source</a> | <a href='#snippet-ExecutableCommand.java' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util/src/main/java/com/spun/util/persistence/ExecutableCommand.java#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-ExecutableCommand.java' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 As you can see an ExecutableCommand is a simple interface that allows you to **get a command** as a text string and allows you to **give a command** as text and also get a result as text.
