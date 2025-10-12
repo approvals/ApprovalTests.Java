@@ -12,6 +12,6 @@ public class IntelliJReporterTest
   {
     String[] commands = {"C:\\Program Files\\JetBrains\\PyCharm 2025.1.1.1\\bin\\pycharm64.exe"};
     String result = IntelliJReporter.findJetBrainsIdes(commands);
-    assertEquals("C:\\Program Files\\JetBrains\\PyCharm 2025.1.1.1\\bin\\pycharm64.exe", result);
+    assertEquals(commands[0], result);
   }
 }
