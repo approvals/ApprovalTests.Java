@@ -24,12 +24,14 @@ public class PrintableTest
     assertEquals("#2)", two.toString());
     // end-snippet
   }
+
   @Test
   void testOverridingToString()
   {
     Integer[] p1 = {1, 2, 3, 4, 5};
     CombinationApprovals.verifyAllCombinations(n -> n.get(), Printable.create(n -> "#" + n, p1));
   }
+
   @Test
   void testCreate()
   {
@@ -38,6 +40,7 @@ public class PrintableTest
     Approvals.verifyAll("Custom toString method", numbers, p -> String.format("%s -> %s", p, p.get()));
     // end-snippet
   }
+
   @Test
   void testLabels()
   {

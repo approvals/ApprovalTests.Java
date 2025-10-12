@@ -6,10 +6,12 @@ public enum VerifyResult {
   {
     return success ? SUCCESS : FAILURE;
   }
+
   public boolean isSuccessful()
   {
     return this == SUCCESS;
   }
+
   public boolean isFailure()
   {
     return this == FAILURE;

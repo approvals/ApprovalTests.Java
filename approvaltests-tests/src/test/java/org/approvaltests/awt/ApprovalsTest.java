@@ -26,12 +26,14 @@ public class ApprovalsTest
   {
     Approvals.settings().allowMultipleVerifyCallsForThisClass();
   }
+
   @Test
   void customPanel()
   {
     CustomPanel panel = new CustomPanel();
     AwtApprovals.verify(panel);
   }
+
   @Disabled("continue here next week")
   @Test
   void customPanelWithText()
@@ -41,6 +43,7 @@ public class ApprovalsTest
     AwtApprovals.verify(panel, new Options(new FileCaptureReporter()));
     // end-snippet
   }
+
   @Test
   @UseReporter(ImageWebReporter.class)
   void testSequence()
@@ -51,6 +54,7 @@ public class ApprovalsTest
     // end-snippet
     AwtApprovals.verifySequence(5, Duration.ofMillis(500), f1 -> squareDrawer.setSquareSize(f1 * 10));
   }
+
   @Test
   @UseReporter(ImageWebReporter.class)
   void testSequenceWithInitialState()
@@ -62,6 +66,7 @@ public class ApprovalsTest
     AwtApprovals.verifySequence(squareDrawer, 4, Duration.ofMillis(500),
         f1 -> squareDrawer.setSquareSize(f1 * 10 + 1));
   }
+
   @Test
   @UseReporter(ImageWebReporter.class)
   void testSequenceWithTimings()
@@ -70,6 +75,7 @@ public class ApprovalsTest
     AwtApprovals.verifySequenceWithTimings(5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
   }
+
   @Test
   @UseReporter(FileCaptureReporter.class)
   void testBufferedImage()

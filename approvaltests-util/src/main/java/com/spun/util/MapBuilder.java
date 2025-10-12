@@ -9,6 +9,7 @@ public class MapBuilder<K, V> extends HashMap<K, V>
   {
     and(key, value);
   }
+
   public MapBuilder<K, V> and(K key, V value)
   {
     put(key, value);

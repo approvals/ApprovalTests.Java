@@ -30,6 +30,7 @@ public class SQLQuery
   {
     this(0);
   }
+
   public SQLQuery(int tableAliasOffset)
   {
     this.tableAliasOffset = tableAliasOffset;
@@ -40,22 +41,27 @@ public class SQLQuery
     groupBy = new ArrayList<String>();
     having = new ArrayList<String>();
   }
+
   public void addSelect(String part)
   {
     select.add(part);
   }
+
   public void addSelect(String part, String alias)
   {
     select.add(part + " AS " + alias);
   }
+
   public void addDistinct()
   {
     distinct = true;
   }
+
   public boolean isDistinct()
   {
     return distinct;
   }
+
   public String getFirstAliasForTableName(String tableName)
   {
     for (int i = 0; i < from.size(); i++)
@@ -66,40 +72,49 @@ public class SQLQuery
     }
     return null;
   }
+
   public void addFromPart(FromPart from)
   {
     this.from.add(from);
   }
+
   public void addOrderByPart(OrderByPart orderBy)
   {
     this.orderBy.add(orderBy);
   }
+
   public void setLimitPart(LimitPart limit)
   {
     this.limitPart = limit;
   }
+
   public int getAliasCount()
   {
     return getFromParts().length;
   }
+
   public String addFrom(String table)
   {
     String alias = "" + (char) ('a' + tableAliasOffset + from.size());
     from.add(new FromPart(table + " AS " + alias, false));
     return alias;
   }
+
   public String addFromWithInnerJoin(String table, String joinWith, String joinOn)
   {
     return addFromWithJoin(table, joinWith, joinOn, JOINS.INNER_JOIN);
   }
+
   public String addFromWithLeftOuterJoin(String table, String joinWith, String joinOn)
   {
     return addFromWithJoin(table, joinWith, joinOn, JOINS.LEFT_OUTER_JOIN);
   }
+
   public String addFromWithRightOuterJoin(String table, String joinWith, String joinOn)
   {
     return addFromWithJoin(table, joinWith, joinOn, JOINS.RIGHT_OUTER_JOIN);
   }
+
   public String addFromWithJoin(String table, String joinWith, String joinOn, String joinType)
   {
     String alias = "" + (char) ('a' + tableAliasOffset + from.size());
@@ -107,26 +122,32 @@ public class SQLQuery
     from.add(new FromPart(sql, true));
     return alias;
   }
+
   public void addWhere(String part)
   {
     addWhere(new SQLWhere(part), true);
   }
+
   public void addWhere(SQLWhere part)
   {
     addWhere(part, true);
   }
+
   public void addWhere(String part, boolean joinWithAnd)
   {
     addWhere(new SQLWhere(part), joinWithAnd);
   }
+
   public void addWhere(SQLWhere part, boolean joinWithAnd)
   {
     where = joinWithAnd ? SQLWhere.joinByAnd(where, part) : SQLWhere.joinByOr(where, part);
   }
+
   public String toString()
   {
     return toString(DatabaseUtils.SQLSERVER);
   }
+
   public String toString(Statement stmt)
   {
     try
@@ -138,11 +159,13 @@ public class SQLQuery
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public String toString(int databaseType)
   {
     SQLQueryWriter writer = getSQLQueryWriter(databaseType);
     return writer.toString(this);
   }
+
   private SQLQueryWriter getSQLQueryWriter(int databaseType)
   {
     if (limitPart == null || DatabaseUtils.MY_SQL == databaseType)
@@ -158,65 +181,80 @@ public class SQLQuery
       return new ReverseOrderLimitQueryWriter(databaseType);
     }
   }
+
   public void addOrderBy(String orderByClause, boolean ascending)
   {
     orderBy.add(new OrderByPart(orderByClause, ascending));
   }
+
   public void addOrderBy(ColumnMetadata submitted, String alias, boolean ascending)
   {
     addOrderBy(submitted.getNameWithPrefix(alias), ascending);
   }
+
   public void addGroupBy(String groupByClause)
   {
     groupBy.add(groupByClause);
   }
+
   public void addHaving(String havingClause)
   {
     having.add(havingClause);
   }
+
   public void setOrderReversed(boolean reversed)
   {
     this.reversed = reversed;
   }
+
   public boolean isOrderReversed()
   {
     return reversed;
   }
+
   public void addLimit(int startingZeroBasedIndex, int numberOfRowsDesired, String mainTableAlias,
       String mainTablePkeyColumn)
   {
     this.limitPart = new LimitPart(startingZeroBasedIndex, numberOfRowsDesired, mainTableAlias,
         mainTablePkeyColumn);
   }
+
   public void addLimit(int startingZeroBasedIndex, int numberOfRowsDesired, String mainTableAlias,
       ColumnMetadata mainTablePkeyColumn)
   {
     addLimit(startingZeroBasedIndex, numberOfRowsDesired, mainTableAlias, mainTablePkeyColumn.getName());
   }
+
   public LimitPart getLimitPart()
   {
     return limitPart;
   }
+
   public String[] getSelectParts()
   {
     return StringUtils.toArray(select);
   }
+
   public String[] getGroupByParts()
   {
     return StringUtils.toArray(groupBy);
   }
+
   public String[] getHavingParts()
   {
     return StringUtils.toArray(having);
   }
+
   public FromPart[] getFromParts()
   {
     return (FromPart[]) from.toArray(new FromPart[from.size()]);
   }
+
   public SQLWhere getWherePart()
   {
     return where;
   }
+
   public OrderByPart[] getOrderByParts()
   {
     return (OrderByPart[]) orderBy.toArray(new OrderByPart[orderBy.size()]);
@@ -236,10 +274,12 @@ public class SQLQuery
       this.mainTableAlias = mainTableAlias;
       this.mainTablePkeyColumn = mainTablePkeyColumn;
     }
+
     public int getStartingZeroBasedIndex()
     {
       return startingZeroBasedIndex;
     }
+
     public void setStartingZeroBasedIndex(int startingZeroBasedIndex)
     {
       if (startingZeroBasedIndex < 0)
@@ -256,6 +296,7 @@ public class SQLQuery
       this.part = part;
       this.ascending = ascending;
     }
+
     public String toString(boolean isFirst)
     {
       String sql = part + (ascending ? " ASC " : " DESC ");
@@ -275,6 +316,7 @@ public class SQLQuery
       this.part = part;
       this.isJoin = isJoin;
     }
+
     public String toString(boolean isFirst)
     {
       String sql = part;

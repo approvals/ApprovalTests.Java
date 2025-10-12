@@ -7,11 +7,17 @@ public interface DatabaseObject
 {
   public static DatabaseObject Null = new NullDatabaseObject();
   public boolean isNew();
+
   public void setNew(boolean b);
+
   public int getPkey();
+
   public boolean setPkey(int i);
+
   public Metadata getMetadata();
+
   public boolean save(Statement stmt);
+
   public boolean deleteFromDatabase(java.sql.Statement stmt);
   /**                     Inner Classes                                 **/
   public static class FilterNew implements com.spun.util.filters.Filter<DatabaseObject>
@@ -39,6 +45,7 @@ public interface DatabaseObject
         object.save(stmt, set, false);
       }
     }
+
     public static <T extends DatabaseObject> T get(int pkey, T[] from)
     {
       if (from == null)
@@ -50,6 +57,7 @@ public interface DatabaseObject
       }
       return null;
     }
+
     public static <T extends DatabaseObject> T get(int pkey, Collection<T> from)
     {
       for (T object : from)

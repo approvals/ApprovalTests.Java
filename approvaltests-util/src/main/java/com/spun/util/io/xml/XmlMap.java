@@ -19,25 +19,30 @@ public class XmlMap
     this.settingFunction = settingFunction;
     this.type = type;
   }
+
   public XmlMap(String xmlName, String settingFunction)
   {
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
   }
+
   public Method getSettingMethod()
   {
     return settingMethod;
   }
+
   public String getNodeName()
   {
     return xmlName;
   }
+
   public XmlMap(String xmlName, String settingFunction, XmlExtractor extractor)
   {
     this.xmlName = xmlName;
     this.settingFunction = settingFunction;
     this.extractor = extractor;
   }
+
   public void initialize(Class<?> clazz)
   {
     List<Method> methods = Query.where(clazz.getMethods(), m -> isSetterMethod(m, type, settingFunction));
@@ -48,6 +53,7 @@ public class XmlMap
       extractor = getExtractorFor(takes);
     }
   }
+
   private XmlExtractor getExtractorFor(Class<?> takes)
   {
     XmlExtractor extractor = BasicExtractor.get(takes);
@@ -65,6 +71,7 @@ public class XmlMap
     }
     return extractor;
   }
+
   private Method getBestMethodFit(List<Method> methods)
   {
     if (methods.size() == 0)
@@ -80,10 +87,12 @@ public class XmlMap
       throw new Error("Need to Find best method for '" + settingFunction + "' from " + methods);
     }
   }
+
   public XmlExtractor getExtractor()
   {
     return extractor;
   }
+
   public static boolean isSetterMethod(Method method, Class<?> clazz, String methodName)
   {
     return method.getParameterTypes().length == 1 && (clazz == null || method.getParameterTypes()[0] == clazz)

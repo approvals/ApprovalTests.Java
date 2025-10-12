@@ -15,19 +15,23 @@ public class OrderBy<T, Out extends Comparable<?>> implements Comparator<T>
   {
     this(Order.Ascending, f1);
   }
+
   public OrderBy(Order order, Function1<T, Out> f1)
   {
     this.f1 = f1;
     this.ascending = order == Order.Ascending ? 1 : -1;
   }
+
   public static <T, Out extends Comparable<Out>> OrderBy<T, Out> ascending(Function1<T, Out> f1)
   {
     return new OrderBy<>(Order.Ascending, f1);
   }
+
   public static <T, Out extends Comparable<Out>> OrderBy<T, Out> descending(Function1<T, Out> f1)
   {
     return new OrderBy<>(Order.Descending, f1);
   }
+
   @Override
   public int compare(T a, T b)
   {
@@ -37,6 +41,7 @@ public class OrderBy<T, Out extends Comparable<?>> implements Comparator<T>
     { return compareNull(v1, v2); }
     return v1.compareTo((Object) v2) * ascending;
   }
+
   public static int compareNull(Object o1, Object o2)
   {
     if (o1 == o2)

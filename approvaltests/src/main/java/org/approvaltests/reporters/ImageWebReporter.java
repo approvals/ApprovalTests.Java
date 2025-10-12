@@ -18,6 +18,7 @@ public class ImageWebReporter implements ApprovalFailureReporter
     TestUtils.displayHtml(text);
     return true;
   }
+
   private static String getHtml(String received, String approved, String moveText)
   {
     //language=HTML
@@ -34,6 +35,7 @@ public class ImageWebReporter implements ApprovalFailureReporter
     text = String.format(text, approved, received, received, moveText);
     return text;
   }
+
   /**
    * We assume any environment that is not headless will have a web browser to display the image in a web page.
    */

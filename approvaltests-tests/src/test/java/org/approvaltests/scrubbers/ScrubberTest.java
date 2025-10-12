@@ -18,6 +18,7 @@ class ScrubberTest
     String output = Scrubbers.scrubGuid(input);
     assertEquals("just normal text", output);
   }
+
   @Test
   void scrubGuid()
   {
@@ -29,6 +30,7 @@ class ScrubberTest
     Approvals.verify(input, new Options(Scrubbers::scrubGuid));
     Approvals.verify(input, new Options().withScrubber(Scrubbers::scrubGuid));
   }
+
   @Test
   void scrubGuids()
   {
@@ -43,6 +45,7 @@ class ScrubberTest
     Approvals.verifyAll("guids", guids, new Options(Scrubbers::scrubGuid));
     // end-snippet
   }
+
   @Test
   void scrubMultipleThings()
   {

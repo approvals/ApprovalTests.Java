@@ -14,10 +14,12 @@ public class LambdaThreadLauncher implements Runnable
   {
     this(function, 0);
   }
+
   public LambdaThreadLauncher(Action0 function, Duration delay)
   {
     this(function, delay.toMillis());
   }
+
   public LambdaThreadLauncher(Action0 function, long delay)
   {
     this.delay = delay;
@@ -25,10 +27,12 @@ public class LambdaThreadLauncher implements Runnable
     thread = new Thread(this);
     thread.start();
   }
+
   public Thread getThread()
   {
     return thread;
   }
+
   @Override
   public void run()
   {

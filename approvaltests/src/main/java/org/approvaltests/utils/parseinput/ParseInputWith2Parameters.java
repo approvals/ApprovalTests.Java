@@ -17,6 +17,7 @@ public class ParseInputWith2Parameters<IN1, IN2>
     this.transformer = transformer;
     this.options = options;
   }
+
   public static <IN1, IN2> ParseInputWith2Parameters<IN1, IN2> create(String expected, Function1<String, IN1> t1,
       Function1<String, IN2> t2, ParseInput.ParseInputOptions options)
   {
@@ -28,10 +29,12 @@ public class ParseInputWith2Parameters<IN1, IN2>
     };
     return new ParseInputWith2Parameters<>(expected, f, options);
   }
+
   private ParseInput<Tuple<IN1, IN2>> getParseInput()
   {
     return new ParseInput<>(expected, s -> new Tuple<>(s, transformer.call(s)), options);
   }
+
   public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function2<IN1, IN2, OUT> transform)
   {
     Function1<String, OUT> f1 = (t) -> {
@@ -40,10 +43,12 @@ public class ParseInputWith2Parameters<IN1, IN2>
     };
     return new ParseInputWith1Parameters<>(expected, f1, options);
   }
+
   public void verifyAll(Function2<IN1, IN2, Object> transform)
   {
     getParseInput().verifyAll((t) -> transform.call(t.getFirst(), t.getSecond()));
   }
+
   public void verifyAll(Function1<Tuple<IN1, IN2>, Object> transform)
   {
     getParseInput().verifyAll(transform);

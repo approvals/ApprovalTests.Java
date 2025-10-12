@@ -23,16 +23,19 @@ public class ClipboardReporter implements ApprovalFailureReporter
     WindowUtils.copyToClipBoard(getCommandLine(received, approved), false);
     return true;
   }
+
   public static String getCommandLine(String received, String approved)
   {
     File r = new File(received);
     File a = new File(approved);
     return ClipboardReporter.getAcceptApprovalText(r.getAbsolutePath(), a.getAbsolutePath());
   }
+
   public static String getAcceptApprovalText(String received, String approved)
   {
     return getAcceptApprovalText(received, approved, SystemUtils.isWindowsEnvironment());
   }
+
   public static String getAcceptApprovalText(String received, String approved, boolean windowsEnviroment)
   {
     if (windowsEnviroment)
@@ -45,6 +48,7 @@ public class ClipboardReporter implements ApprovalFailureReporter
           formatFilePathForCommandLine(approved));
     }
   }
+
   private static String formatFilePathForCommandLine(String filePath)
   {
     if (filePath.contains(" "))

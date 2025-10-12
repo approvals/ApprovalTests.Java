@@ -700,10 +700,12 @@ public class Colors
     int blue = decrease(color.getBlue(), 10);
     return new Color(red, green, blue);
   }
+
   private static int decrease(int amount, int decreaseBy)
   {
     return Math.max(0, amount - decreaseBy);
   }
+
   public static Color lighten(Color color)
   {
     int red = increase(color.getRed(), 10);
@@ -711,23 +713,28 @@ public class Colors
     int blue = increase(color.getBlue(), 10);
     return new Color(red, green, blue);
   }
+
   private static int increase(int amount, int increaseBy)
   {
     return Math.min(255, amount + increaseBy);
   }
+
   public static Color getRandomColor()
   {
     return new Color(RANDOM.nextInt(255), RANDOM.nextInt(255), RANDOM.nextInt(255));
   }
+
   public static void mockRandom()
   {
     RANDOM.setSeed(5);
   }
+
   public static int calculateTransparency(int percentTransparent)
   {
     int opacity = (percentTransparent * 255) / 100;
     return (255 - opacity);
   }
+
   public static Color getTransparentVersion(Color color, int percentTransparency)
   {
     return new Color(color.getRed(), color.getGreen(), color.getBlue(),

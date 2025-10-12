@@ -23,6 +23,7 @@ public class ConsoleOutputTests
       console.verifyOutput(new Options().inline(expected));
     }
   }
+
   @Test
   void testVerifyError()
   {
@@ -38,6 +39,7 @@ public class ConsoleOutputTests
       console.verifyError(new Options().inline(expected));
     }
   }
+
   @Test
   void testVerifyAll()
   {

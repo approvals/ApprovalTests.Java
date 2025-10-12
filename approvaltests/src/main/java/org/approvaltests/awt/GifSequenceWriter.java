@@ -45,6 +45,7 @@ public class GifSequenceWriter implements AutoCloseable
     gifWriter.setOutput(outputStream);
     ObjectUtils.throwAsError(() -> gifWriter.prepareWriteSequence(null));
   }
+
   private IIOMetadata getMetadata(Duration timeBetweenFramesMS)
   {
     ImageTypeSpecifier imageTypeSpecifier = ImageTypeSpecifier.createFromBufferedImageType(imageType);
@@ -68,12 +69,14 @@ public class GifSequenceWriter implements AutoCloseable
     ObjectUtils.throwAsError(() -> imageMetaData2.setFromTree(metaFormatName, root));
     return imageMetaData2;
   }
+
   public static byte[] getBytesForLoopContinuously(boolean loopContinuously)
   {
     byte[] loop = {1, 0, 0};
     byte[] once = {1, 1, 0};
     return loopContinuously ? loop : once;
   }
+
   static File writeAnimatedGif(File imageFile, List<Tuple<BufferedImage, Duration>> images)
   {
     try (ImageOutputStream output = new FileImageOutputStream(imageFile))
@@ -93,15 +96,18 @@ public class GifSequenceWriter implements AutoCloseable
     }
     return imageFile;
   }
+
   public void writeToSequence(RenderedImage img, Duration timeBetweenFrames)
   {
     ObjectUtils.throwAsError(
         () -> gifWriter.writeToSequence(new IIOImage(img, null, getMetadata(timeBetweenFrames)), imageWriteParam));
   }
+
   public void close()
   {
     ObjectUtils.throwAsError(() -> gifWriter.endWriteSequence());
   }
+
   private static ImageWriter getWriter()
   {
     Iterator<ImageWriter> iter = ImageIO.getImageWritersBySuffix("gif");
@@ -114,6 +120,7 @@ public class GifSequenceWriter implements AutoCloseable
       return iter.next();
     }
   }
+
   private static IIOMetadataNode getNode(IIOMetadataNode rootNode, String nodeName)
   {
     int nNodes = rootNode.getLength();

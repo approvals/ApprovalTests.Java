@@ -9,11 +9,13 @@ public class MockClock extends Clock
   {
     setTime(time);
   }
+
   @Override
   public long getTime()
   {
     return time;
   }
+
   public void setTime(long time)
   {
     this.time = time;

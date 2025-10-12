@@ -12,6 +12,7 @@ public class PokemonLoader implements ExecutableCommand
   {
     this.ability = abilityNumber;
   }
+
   /* (non-Javadoc)
    * @see org.approvaltests.tests.ExecutableQuery#getQuery()
    */
@@ -19,6 +20,7 @@ public class PokemonLoader implements ExecutableCommand
   {
     return PATH + "ability/" + ability;
   }
+
   /* (non-Javadoc)
    * @see org.approvaltests.tests.ExecutableQuery#executeQuery(java.lang.String)
    */

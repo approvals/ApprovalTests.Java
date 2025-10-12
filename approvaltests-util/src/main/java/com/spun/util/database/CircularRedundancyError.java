@@ -14,19 +14,23 @@ public class CircularRedundancyError extends Error
     this.causedBy = causedBy;
     this.xmlState = xmlState;
   }
+
   public String getMessage()
   {
     return "Circular Redundancy occurred while saving :" + ObjectUtils.getClassName(source) + "\n" + "cause by :"
         + causedBy + "\n" + "state : " + xmlState;
   }
+
   public String getCausedBy()
   {
     return causedBy;
   }
+
   public DatabaseObject getSource()
   {
     return source;
   }
+
   public String getXmlState()
   {
     return xmlState;

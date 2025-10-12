@@ -15,10 +15,12 @@ public class PaintableMultiFrame
     this.numberOfFrames = numberOfFrames;
     this.frameGetter = frameGetter;
   }
+
   public int getNumberOfFrames()
   {
     return numberOfFrames;
   }
+
   public Function1<Integer, Tuple<Paintable, Duration>> getFrameGetter()
   {
     return frameGetter;

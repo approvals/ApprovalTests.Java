@@ -51,6 +51,7 @@ public class SQLQueryUtils
     counter.addSelect("count(*) AS thecount ");
     return counter;
   }
+
   public static SQLQuery refineLimitQuery(int maximum, SQLQuery query)
   {
     LimitPart limitPart = query.getLimitPart();
@@ -64,20 +65,24 @@ public class SQLQueryUtils
     }
     return query;
   }
+
   public static int executeCountOnQuery(SQLQuery query, Statement stmt)
   {
     return executeSingleIntQuery(extractCountingQuery(query).toString(), stmt);
   }
+
   public static int executeSingleIntQuery(String sql, Statement stmt)
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new IntegerExtractor());
   }
+
   public static Timestamp executeSingleDateQuery(String sql, Statement stmt)
   {
     ResultSet rs = SQLStatementUtils.executeQuery(sql, stmt);
     return extractSingleRow(sql, rs, new TimestampExtractor());
   }
+
   private static <T> T extractSingleRow(String sql, ResultSet rs, ResultSetExtractor<T> extractor)
   {
     try

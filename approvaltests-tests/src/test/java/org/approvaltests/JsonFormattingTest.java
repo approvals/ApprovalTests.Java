@@ -15,18 +15,21 @@ public class JsonFormattingTest
       JsonApprovals.verifyAsJson(Circular.getIndirectCircularReference());
     });
   }
+
   @Test
   public void testBasicFormatting()
   {
     String json = "{\"infos\":{\"address\":\"my address\",\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
     JsonApprovals.verifyJson(json);
   }
+
   @Test
   public void testIncorrectFormatting()
   {
     String json = "{\"infos\":{address:my address,\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
     JsonApprovals.verifyJson(json);
   }
+
   @Test
   void demonstrateNullIssueInVerifyJson()
   {
@@ -69,6 +72,7 @@ public class JsonFormattingTest
     JsonApprovals.verifyJson(JsonUtils.reorderFields(json1));
     JsonApprovals.verifyJson(JsonUtils.reorderFields(json2));
   }
+
   @Test
   public void testJsonFieldOrderingWithNulls()
   {

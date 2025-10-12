@@ -17,6 +17,7 @@ class FirstWorkingReporterTest
       {
         return true;
       }
+
       @Override
       public VerifyResult approveWhenReported()
       {

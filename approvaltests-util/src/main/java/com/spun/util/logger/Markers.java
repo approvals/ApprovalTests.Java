@@ -10,6 +10,7 @@ public class Markers implements AutoCloseable
     this.text = text;
     log.markerIn(text);
   }
+
   @Override
   public void close()
   {

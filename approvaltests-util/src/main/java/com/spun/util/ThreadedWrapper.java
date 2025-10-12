@@ -9,6 +9,7 @@ public class ThreadedWrapper<T> implements Wrapper<T>
   {
     this.instance = ThreadLocal.withInitial(lambda);
   }
+
   @Override
   public T get()
   {

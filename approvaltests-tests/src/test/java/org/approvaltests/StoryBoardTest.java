@@ -24,6 +24,7 @@ public class StoryBoardTest
     Approvals.verify(new StoryBoard().add(gameOfLife).addFrames(3, gameOfLife::advance));
     // end-snippet
   }
+
   @Test
   void gameOfLifeWithDescription()
   {
@@ -41,6 +42,7 @@ public class StoryBoardTest
       storyboard.addFrames(1, gameOfLife::advance);
     }
   }
+
   @Test
   //  @UseReporter(QuietReporter.class)
   void gameOfLifeInMarkdown()
@@ -67,6 +69,7 @@ public class StoryBoardTest
     {
       this.board = board;
     }
+
     public GameOfLife advance()
     {
       final Function2<Integer, Integer, Boolean> old = this.board;
@@ -80,21 +83,25 @@ public class StoryBoardTest
       };
       return this;
     }
+
     @Override
     public String toString()
     {
       return Grid.print(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol + " " : deadSymbol + " ");
     }
+
     @Override
     public String toMarkdown()
     {
       return Grid.printMarkdown(5, 5, (x, y) -> board.call(x, y) ? aliveSymbol : deadSymbol);
     }
+
     public String setAliveCell(String s)
     {
       this.aliveSymbol = s;
       return s;
     }
+
     public String setDeadCell(String s)
     {
       this.deadSymbol = s;

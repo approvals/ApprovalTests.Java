@@ -23,12 +23,14 @@ public class TestFilesTest
           getAllClasses(), this::getTestMethods);
     }
   }
+
   private List<Method> getTestMethods(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
     return Query.where(declaredMethods,
         m -> Queryable.as(m.getAnnotations()).any(a -> a.toString().contains("Test")));
   }
+
   private Queryable<Class<?>> getAllClasses()
   {
     return getClasses(".", p -> p.contains(".test."), p1 -> !p1.contains("Test.java"));

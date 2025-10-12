@@ -44,6 +44,7 @@ public class PairWiseTest
     Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
         new Options().forFile().withExtension("include.md"));
   }
+
   private void addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
   {
     Object[] p = Range.get(1, variations);
@@ -56,12 +57,14 @@ public class PairWiseTest
     DecimalFormat df = new DecimalFormat("###,###,###");
     table.addRow(pCount, p.length, df.format(totalPossibleSize), cases.size());
   }
+
   @Test
   public void testPairs()
   {
     CombinationApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{1, 2, 3, 4, 5},
         new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"}, new Double[]{1.1, 2.2, 3.3, 4.4});
   }
+
   @Test
   public void testPairsScrubbed()
   {
@@ -70,6 +73,7 @@ public class PairWiseTest
         new Integer[]{441, 442, 443, 444},
         new Options().withScrubber(new RegExScrubber("\\d{3}", a -> "input-" + a)));
   }
+
   @Test
   public void testPairProperties()
   {
@@ -79,6 +83,7 @@ public class PairWiseTest
     Integer[] input4 = {441, 442, 443, 444};
     assertPairwiseCombinations(input1, input2, input3, input4);
   }
+
   @Test
   public void testPairPropertiesAgain()
   {
@@ -91,6 +96,7 @@ public class PairWiseTest
     Integer[] input7 = {771, 772, 773};
     assertPairwiseCombinations(input1, input2, input3, input4, input5, input6, input7);
   }
+
   private void assertPairwiseCombinations(Integer[]... inputs)
   {
     HashMap<String, Integer> pairCount = getAllPairsCount(inputs);
@@ -99,16 +105,19 @@ public class PairWiseTest
     //assertEquals(121, allPairCombinationCount);
     assertEquals(allPairCombinationCount, pairCount.size());
   }
+
   public int calculateAllPairCombinationCount(Integer[]... inputs)
   {
     int[] allPairCombinationCount = {0};
     actOnAllPairs(inputs, (i1, i2) -> allPairCombinationCount[0] += i1.length * i2.length);
     return allPairCombinationCount[0];
   }
+
   public void assertAllPairsPresent(HashMap<String, Integer> pairCount, Integer[]... inputs)
   {
     actOnAllPairs(inputs, (i1, i2) -> assertAllPairsPresent(i1, i2, pairCount));
   }
+
   public void actOnAllPairs(Integer[][] inputs, Action2<Integer[], Integer[]> action)
   {
     for (int i1 = 0; i1 < inputs.length - 1; i1++)
@@ -119,6 +128,7 @@ public class PairWiseTest
       }
     }
   }
+
   public HashMap<String, Integer> getAllPairsCount(Integer[]... inputs)
   {
     Pairwise pairwise = Pairwise.toPairWise(inputs);
@@ -138,6 +148,7 @@ public class PairWiseTest
     }
     return pairCount;
   }
+
   public void assertAllPairsPresent(Integer[] input1, Integer[] input3, HashMap<String, Integer> pairCount)
   {
     for (Integer i1 : input1)
@@ -152,16 +163,19 @@ public class PairWiseTest
       }
     }
   }
+
   public String getKey(Integer i1, Integer i2)
   {
     return i1 + "," + i2;
   }
+
   private void addPair(Integer in1, Integer in2, HashMap<String, Integer> pairCount)
   {
     String key = getKey(in1, in2);
     Integer count = pairCount.computeIfAbsent(key, __ -> 0) + 1;
     pairCount.put(key, count);
   }
+
   @Test
   public void testStrategyGeneratePairs()
   {
@@ -173,6 +187,7 @@ public class PairWiseTest
     List result = InParameterOrderStrategy.generatePairs(list);
     Approvals.verifyAll("Generate Pairs", result);
   }
+
   @Test
   public void testRemoveDuplicateCases()
   {
@@ -185,6 +200,7 @@ public class PairWiseTest
     output += "\nvertical Growth results in\n" + toString(result);
     Approvals.verify(output);
   }
+
   @Test
   void testHorizontalGrowth()
   {
@@ -205,6 +221,7 @@ public class PairWiseTest
         .verify("Cases before: \n" + casesBefore + " \n Cases after: \n" + toString(cases) + "\nPairs before: \n"
             + pairsBefore + " \n Pairs after: \n" + toString(pairs) + "\n Result: \n" + toString(result));
   }
+
   // duplicate to 1st test, but with some result analysis
   @Test
   void testGeneratePairs()
@@ -218,6 +235,7 @@ public class PairWiseTest
     // empty list, list with bloodtype+name, list with bloodtype+town and 3town+name cases
     Approvals.verify(strb.toString());
   }
+
   List<List<Case>> generatePairs(Object[]... parameters)
   {
     ArrayList<OptionsForAParameter<?>> list = new ArrayList<>();
@@ -227,6 +245,7 @@ public class PairWiseTest
     }
     return InParameterOrderStrategy.generatePairs(list);
   }
+
   @Test
   void crossJoinFiveParametersWithOneVariations()
   {
@@ -241,6 +260,7 @@ public class PairWiseTest
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);
     Approvals.verifyAll("CrossJoin", cases);
   }
+
   @Test
   void crossJoinThreeParametersWithMultipleVariations()
   {
@@ -257,6 +277,7 @@ public class PairWiseTest
     List<Case> cases = InParameterOrderStrategy.crossJoin(names);
     Approvals.verifyAll("CrossJoin", cases);
   }
+
   public String toString(List<Case> result)
   {
     return result.stream().map(Case::toString).collect(Collectors.joining("\n"));

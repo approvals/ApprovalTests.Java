@@ -18,12 +18,14 @@ public class VelocityUtilsTest
   {
     VelocityApprovals.verify(c -> c.put("array", new String[]{"one", "two", "three", "four", "five"}));
   }
+
   @Test
   public void testList()
   {
     VelocityApprovals.verify(c -> c.put("array", Arrays.asList("one", "two", "three")),
         new Options().forFile().withExtension(".html"));
   }
+
   @Test
   public void testDate()
   {
@@ -34,6 +36,7 @@ public class VelocityUtilsTest
           new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
     }
   }
+
   @Test
   public void testWithTimeZoneExample()
   {

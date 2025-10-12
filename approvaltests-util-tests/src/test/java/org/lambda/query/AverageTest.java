@@ -15,6 +15,7 @@ public class AverageTest
     List<Integer> numbers = Arrays.asList(3, 5, 7, 9);
     assertEquals(6, Query.average(numbers, a -> a), 0.00);
   }
+
   @Test
   public void testSum() throws Exception
   {
@@ -22,6 +23,7 @@ public class AverageTest
     assertEquals(5, Query.sum(numbers, a -> (a % 2)), 0.00);
     assertEquals(45, Query.sum(numbers), 0.00);
   }
+
   @Test
   public void testMaxAndMin() throws Exception
   {

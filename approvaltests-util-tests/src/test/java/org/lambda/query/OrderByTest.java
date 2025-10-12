@@ -17,18 +17,21 @@ public class OrderByTest
     Integer[] numbers = {6, 5, 8, 4, 9, 10};
     Approvals.verifyAll("i", Query.orderBy(numbers, a -> a));
   }
+
   @Test
   public void testString()
   {
     String[] names = {"Robert", "Lynn", "Samantha", "Marsha", "Llewellyn"};
     Approvals.verifyAll("i", Query.orderBy(names, a -> a));
   }
+
   @Test
   public void testStringMethods()
   {
     String[] names = {"Robert", "Lynn", "Samantha", "Marsha", "Llewellynn"};
     Approvals.verifyAll("i", Query.orderBy(names, a -> a.length()));
   }
+
   @Test
   public void testDates()
   {

@@ -11,10 +11,12 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
   {
     this.reporters = reporters;
   }
+
   public static FirstWorkingReporter combine(ApprovalFailureReporter front, ApprovalFailureReporter last)
   {
     return new FirstWorkingReporter(front, last);
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -28,6 +30,7 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
     }
     return false;
   }
+
   private void checkApprovalPower(ApprovalFailureReporter reporter)
   {
     if (reporter instanceof ReporterWithApprovalPower)
@@ -35,15 +38,18 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
       approvalOutcome = ((ReporterWithApprovalPower) reporter).approveWhenReported();
     }
   }
+
   public ApprovalFailureReporter[] getReporters()
   {
     return reporters;
   }
+
   @Override
   public String toString()
   {
     return getClass().getName();
   }
+
   @Override
   public VerifyResult approveWhenReported()
   {

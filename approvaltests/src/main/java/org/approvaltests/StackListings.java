@@ -17,10 +17,12 @@ public class StackListings<T>
   {
     methods.add(found);
   }
+
   public void addToClassList(T found)
   {
     classes.add(found);
   }
+
   @Override
   public String toString()
   {
@@ -32,6 +34,7 @@ public class StackListings<T>
     sb.append("]\n]");
     return sb.toString();
   }
+
   /**
    * The reason for this method is that the built-in toString() method
    * on an annotation is platform dependent. It prints something different
@@ -51,6 +54,7 @@ public class StackListings<T>
       return text;
     }
   }
+
   public static String printUserReporter(String text, Class<? extends ApprovalFailureReporter>[] values)
   {
     text = makeConsistentBetweenJavaVersions(text);
@@ -66,10 +70,12 @@ public class StackListings<T>
     sb.append("])");
     return sb.toString();
   }
+
   private static String makeConsistentBetweenJavaVersions(String text)
   {
     return text.replace(".UseReporter({", ".UseReporter(value={");
   }
+
   public T getFirst()
   {
     if (!methods.isEmpty())

@@ -19,6 +19,7 @@ public class ReporterWithApprovalPowerTest
     {
       return true;
     }
+
     @Override
     public VerifyResult approveWhenReported()
     {

@@ -23,11 +23,13 @@ public class ApprovalsTest
     Approvals.verify(objectUnderTest, options);
     // end-snippet
   }
+
   @Test
   public void testAsJson()
   {
     JsonApprovals.verifyAsJson(new Rectangle(5, 10, 100, 200));
   }
+
   @Test
   public void testWrongCall()
   {
@@ -37,6 +39,7 @@ public class ApprovalsTest
       Approvals.verify(b, new Options(new ReportNothing()));
     });
   }
+
   @Test
   void verifyAllTemplate()
   {
@@ -45,6 +48,7 @@ public class ApprovalsTest
     Approvals.verifyAll("TITLE", inputs, s -> "placeholder " + s);
     // end-snippet
   }
+
   @Test
   void testTwoVerify()
   {

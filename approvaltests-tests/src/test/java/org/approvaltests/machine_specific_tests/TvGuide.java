@@ -20,6 +20,7 @@ public class TvGuide extends JPanel
     add(new JLabel("Shows :"));
     add(new JList<String>(new String[]{"The IT Crowd", "Futurama", "Firefly"}));
   }
+
   public void selectTime(String string)
   {
     times.setSelectedIndex(0);

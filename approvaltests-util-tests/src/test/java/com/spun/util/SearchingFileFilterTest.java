@@ -17,6 +17,7 @@ public class SearchingFileFilterTest
     assertFalse(new SearchingFileFilter("something").accept("anything", true));
     assertTrue(new SearchingFileFilter("*", "temp.htm").accept("temp.htm", false));
   }
+
   @Test
   public void testFinding() throws Exception
   {

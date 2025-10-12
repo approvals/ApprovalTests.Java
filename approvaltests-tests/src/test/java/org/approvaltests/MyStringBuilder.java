@@ -7,6 +7,7 @@ public class MyStringBuilder
   {
     builder.append(string);
   }
+
   @Override
   public String toString()
   {

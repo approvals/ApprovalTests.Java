@@ -10,6 +10,7 @@ public class ThrowAsErrorExamples
   void examples()
   {
   }
+
   Integer whyReturnIsNeeded()
   {
     // begin-snippet: throw_as_error_does_not_compile
@@ -24,6 +25,7 @@ public class ThrowAsErrorExamples
     // end-snippet
     return 0;
   }
+
   Integer withReturn()
   {
     // begin-snippet: throw_as_error_with_return
@@ -38,6 +40,7 @@ public class ThrowAsErrorExamples
     }
     // end-snippet
   }
+
   Integer withThrow()
   {
     // begin-snippet: throw_as_error_with_throw
@@ -51,6 +54,7 @@ public class ThrowAsErrorExamples
     }
     // end-snippet
   }
+
   private Integer methodThatThrowsCheckedException() throws IOException
   {
     return 1;

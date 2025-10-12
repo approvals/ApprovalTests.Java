@@ -14,23 +14,28 @@ public class JsonJacksonApprovals
   {
     verifyAsJson(o, new Options());
   }
+
   public static void verifyAsJson(Object o, Options options)
   {
     verifyAsJson(o, a -> a, options);
   }
+
   public static void verifyAsJson(Object o, Function1<ObjectMapper, ObjectMapper> objectMapperBuilder)
   {
     verifyAsJson(o, objectMapperBuilder, new Options());
   }
+
   public static void verifyAsJson(Object o, Function1<ObjectMapper, ObjectMapper> objectMapperBuilder,
       Options options)
   {
     Approvals.verify(asJson(o, objectMapperBuilder), options.forFile().withExtension(".json"));
   }
+
   public static String asJson(Object o)
   {
     return asJson(o, a -> a);
   }
+
   public static String asJson(Object o, Function1<ObjectMapper, ObjectMapper> objectMapperBuilder)
   {
     try

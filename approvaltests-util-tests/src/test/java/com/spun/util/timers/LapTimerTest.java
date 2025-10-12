@@ -32,6 +32,7 @@ public class LapTimerTest
       fail(e.getMessage());
     }
   }
+
   public void checkTimer(LapTimer timer, int totalTime, int[] lapTimes)
   {
     assertEquals(totalTime * 1000L, (Object) timer.getTotalTime(), "Total time");

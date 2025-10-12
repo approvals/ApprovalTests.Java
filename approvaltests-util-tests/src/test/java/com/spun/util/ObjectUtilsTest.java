@@ -22,6 +22,7 @@ public class ObjectUtilsTest
         "getClass");
     assertEquals(Object.class, gcd.getDeclaringClass());
   }
+
   @Test
   public void test()
   {
@@ -44,18 +45,22 @@ public class ObjectUtilsTest
       this.c = c;
       this.d = d;
     }
+
     public int getA()
     {
       return a;
     }
+
     public String getB()
     {
       return b;
     }
+
     public String getC()
     {
       return c;
     }
+
     public Date getD()
     {
       return d;
@@ -77,6 +82,7 @@ public class ObjectUtilsTest
     }
     // end-snippet
   }
+
   @Test
   void throwLambdaExecution()
   {
@@ -85,6 +91,7 @@ public class ObjectUtilsTest
     int i = ObjectUtils.throwAsError(() -> methodThatMightThrowCheckedExceptionWithReturnValue());
     // end-snippet
   }
+
   @Test
   void uncheckedLambdas()
   {
@@ -95,16 +102,20 @@ public class ObjectUtilsTest
         s -> new File(s).getCanonicalPath()));
     // end-snippet
   }
+
   private int methodThatMightThrowCheckedExceptionWithReturnValue() throws Exception
   {
     return 1;
   }
+
   private void methodThatMightThrowError() throws Error
   {
   }
+
   private void methodThatMightThrowRuntimeException() throws RuntimeException
   {
   }
+
   private void methodThatMightThrowCheckedException() throws Exception
   {
   }

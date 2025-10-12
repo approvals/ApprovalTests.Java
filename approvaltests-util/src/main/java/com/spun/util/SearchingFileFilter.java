@@ -13,17 +13,20 @@ public class SearchingFileFilter implements FilenameFilter
   {
     this.matches = matches;
   }
+
   public SearchingFileFilter(String... matches)
   {
     ArrayList<String> m = new ArrayList<String>();
     m.addAll(Arrays.asList(matches));
     this.matches = m;
   }
+
   public boolean accept(File dir, String name)
   {
     boolean directory = new File(dir, name).isDirectory();
     return accept(name, directory);
   }
+
   public boolean accept(String name, boolean directory)
   {
     if (name.startsWith("."))
@@ -32,6 +35,7 @@ public class SearchingFileFilter implements FilenameFilter
     { return directory || name.equals(matches.get(1)); }
     return name.equals(matches.get(0));
   }
+
   public List<String> getSubset(String file2)
   {
     if (matches.get(0).equals("*"))

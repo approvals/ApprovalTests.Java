@@ -19,12 +19,14 @@ public class AttributeStackSelectorTest
     StackTraceElement element = ThreadUtils.getStackTrace()[2];
     assertTrue(AttributeStackSelector.isTestableMethod(element));
   }
+
   @Example()
   void testDetectionOfAnnotationsThatAreIndirectlyMarkedTestable()
   {
     StackTraceElement element = ThreadUtils.getStackTrace()[2];
     assertTrue(AttributeStackSelector.isTestableMethod(element));
   }
+
   @Test
   void unrollLambda()
   {
@@ -32,6 +34,7 @@ public class AttributeStackSelectorTest
     Approvals.verifyAll("unroll lambda", methodNames,
         m -> String.format("%s -> %s", m, TestUtils.unrollLambda(m)));
   }
+
   @RepeatedTest(10)
   public void selectElement()
   {
@@ -40,6 +43,7 @@ public class AttributeStackSelectorTest
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
     assertEquals(stackTrace[2], selector.selectElement(stackTrace));
   }
+
   private void callUnusedMethods()
   {
     selectElement("");
@@ -47,17 +51,21 @@ public class AttributeStackSelectorTest
     selectElement((AttributeStackSelectorTest) null);
     selectElement((StackTraceElement) null);
   }
+
   // these methods are overloads of the test method
   // to simulate flaky failures
   public void selectElement(String unused)
   {
   }
+
   public void selectElement(Integer unused)
   {
   }
+
   public void selectElement(AttributeStackSelectorTest unused)
   {
   }
+
   public void selectElement(StackTraceElement unused)
   {
   }

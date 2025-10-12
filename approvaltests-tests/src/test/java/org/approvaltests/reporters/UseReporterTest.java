@@ -19,12 +19,14 @@ public class UseReporterTest
     assertEquals(TortoiseTextDiffReporter.class,
         ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
   }
+
   @UseReporter({TortoiseTextDiffReporter.class, ClipboardReporter.class})
   @Test
   public void testMultipleUseReporter()
   {
     assertEquals(MultiReporter.class, ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
   }
+
   @UseReporter(TestReporter.class)
   @Test
   void testUseReporterIsCalledWhenMethodIsNotPublic()
@@ -45,6 +47,7 @@ public class UseReporterTest
     {
       return last;
     }
+
     @Override
     public boolean report(String received, String approved)
     {

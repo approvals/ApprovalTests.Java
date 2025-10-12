@@ -10,6 +10,7 @@ public class JsonXstreamApprovalTest
     Circular middle = Circular.getIndirectCircularReference();
     JsonXstreamApprovals.verifyAsJson(middle);
   }
+
   @Test
   public void testBasicFormatting()
   {

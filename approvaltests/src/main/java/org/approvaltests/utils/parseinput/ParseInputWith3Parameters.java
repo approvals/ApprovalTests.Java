@@ -18,6 +18,7 @@ public class ParseInputWith3Parameters<IN1, IN2, IN3>
     this.transformer = transformer;
     this.options = options;
   }
+
   public static <IN1, IN2, IN3> ParseInputWith3Parameters<IN1, IN2, IN3> create(String expected,
       Function1<String, IN1> t1, Function1<String, IN2> t2, Function1<String, IN3> t3,
       ParseInput.ParseInputOptions options)
@@ -31,10 +32,12 @@ public class ParseInputWith3Parameters<IN1, IN2, IN3>
     };
     return new ParseInputWith3Parameters<>(expected, f, options);
   }
+
   private ParseInput<Tuple3<IN1, IN2, IN3>> getParseInput()
   {
     return new ParseInput<>(expected, s -> new Tuple<>(s, transformer.call(s)), options);
   }
+
   public <OUT> ParseInputWith1Parameters<OUT> transformTo(Function3<IN1, IN2, IN3, OUT> transform)
   {
     Function1<String, OUT> f1 = (t) -> {
@@ -43,10 +46,12 @@ public class ParseInputWith3Parameters<IN1, IN2, IN3>
     };
     return new ParseInputWith1Parameters<>(expected, f1, options);
   }
+
   public void verifyAll(Function1<Tuple3<IN1, IN2, IN3>, Object> transform)
   {
     getParseInput().verifyAll(transform);
   }
+
   public void verifyAll(Function3<IN1, IN2, IN3, Object> transform)
   {
     getParseInput().verifyAll((t) -> transform.call(t.getFirst(), t.getSecond(), t.getThird()));

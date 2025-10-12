@@ -24,6 +24,7 @@ public class DocumentHelpersTest
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
+
   @Test
   void testLineNumbers()
   {
@@ -35,21 +36,25 @@ public class DocumentHelpersTest
         .first(m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
     Approvals.verify(verifyAll, new Options().inline(expected));
   }
+
   public static String showParameters(Method m)
   {
     Queryable<Parameter> withoutOptions = Query.where(m.getParameters(), p -> true);
     return StringUtils.join(withoutOptions.select(p1 -> String.format("%s", p1.getType().getSimpleName())), ",");
   }
+
   public static String showParametersWithGrayedOutOptions(Method m)
   {
     Queryable<Parameter> withoutOptions = Queryable.as(m.getParameters());
     return StringUtils.join(withoutOptions.select(DocumentHelpersTest::formatTypesWithGrayedOutOptions), ", ");
   }
+
   private static String formatTypesWithGrayedOutOptions(Parameter p1)
   {
     String simpleName = p1.getType().getSimpleName();
     return simpleName.equals("Options") ? "$\\color{#AAA}{\\textsf{Options}}$" : simpleName;
   }
+
   public static String getLink(Method m)
   {
     String baseUrl = "https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java";
@@ -59,6 +64,7 @@ public class DocumentHelpersTest
     int end = methodLines.end.line;
     return String.format("%s/%s#L%s-L%s", baseUrl, file, start, end);
   }
+
   private Queryable<Method> getAllVerifyFunctionsWithOptions(List<Class<?>> approvalClasses)
   {
     Queryable<Method> methods = new Queryable<>(Method.class);

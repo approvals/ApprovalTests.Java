@@ -21,6 +21,7 @@ public class WebPageChangeDetectorGui extends JPanel
     this.controller = controller;
     initialize();
   }
+
   private void initialize()
   {
     this.setPreferredSize(new Dimension(400, 50));

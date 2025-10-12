@@ -19,22 +19,26 @@ public class DatabaseWriterTest
     ResultSet rs = mockResultSetFromFile("query.csv");
     Approvals.verify(rs);
   }
+
   @Test
   public void testSimpleQuery2()
   {
     ResultSet rs = queryDatabase();
     Approvals.verify(rs);
   }
+
   public ResultSet queryDatabase()
   {
     return mockResultSetFromFile("sample_result_set.csv");
   }
+
   private ResultSet mockResultSetFromFile(String fileName)
   {
     String resultSet = FileUtils.readFromClassPath(getClass(), fileName).trim();
     String[][] data = CommaDelimitedFileParser.parse(resultSet);
     return mockResultSet(data);
   }
+
   private ResultSet mockResultSet(String[][] data)
   {
     try

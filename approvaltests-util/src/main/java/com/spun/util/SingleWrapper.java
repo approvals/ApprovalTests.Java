@@ -7,6 +7,7 @@ public class SingleWrapper<T> implements Wrapper<T>
   {
     this.instance = instance;
   }
+
   @Override
   public T get()
   {

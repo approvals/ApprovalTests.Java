@@ -18,6 +18,7 @@ public class MapTest
       Approvals.verify(p);
     }
   }
+
   public static MapBuilder<String, Object> params(String key, Object value)
   {
     return new MapBuilder<>(key, value);

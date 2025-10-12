@@ -19,10 +19,12 @@ public class NetUtils
   {
     return loadWebPage(url, null);
   }
+
   public static String loadWebPage(String url, String parameters)
   {
     return loadWebPage(url, parameters, null);
   }
+
   public static String loadWebPage(String url, String parameters, Duration timeout)
   {
     HttpURLConnection connection = null;
@@ -59,6 +61,7 @@ public class NetUtils
       }
     }
   }
+
   /**
    * @deprecated Use {@link #loadWebPage(String)} instead.
    */

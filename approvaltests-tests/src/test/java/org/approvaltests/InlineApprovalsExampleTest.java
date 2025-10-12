@@ -17,6 +17,7 @@ public class InlineApprovalsExampleTest
           """;
       Approvals.verify(getGreeting(), new Options().inline(expected));
     }
+
     // end-snippet
     private String getGreeting()
     {
@@ -33,6 +34,7 @@ public class InlineApprovalsExampleTest
         """;
     Approvals.verify(getGreeting(), new Options().inline(expected));
   }
+
   // end-snippet
   private String getGreeting()
   {

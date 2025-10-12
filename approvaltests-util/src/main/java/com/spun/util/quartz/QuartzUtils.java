@@ -17,6 +17,7 @@ public class QuartzUtils
         .build();
     return newTrigger;
   }
+
   public static String toString(Trigger trigger)
   {
     return String.format("Trigger:\n  Key: %s\n  Job Key: %s\n  Start Time: %s\n  End Time: %s", trigger.getKey(),

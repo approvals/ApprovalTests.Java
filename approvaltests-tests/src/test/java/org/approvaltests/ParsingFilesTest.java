@@ -13,6 +13,7 @@ public class ParsingFilesTest
   {
     ParserUtilities.SOURCE_PATHS.add(ClassUtils.getProjectRootPath() + "/../approvaltests/src/main/java");
   }
+
   @Test
   public void getLineNumberOfThisMethod() throws Exception
   {

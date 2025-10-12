@@ -41,18 +41,21 @@ public class NetUtilsTest
     File f2 = SshUtils.sftpDownload(config, createTempFile(), remoteString);
     assertEquals(FileUtils.readFile(f), FileUtils.readFile(f2));
   }
+
   private File createFile() throws IOException
   {
     File file = createTempFile();
     FileUtils.writeFile(file, "Unexpected Text" + NumberUtils.getNumberOfDigits(3));
     return file;
   }
+
   private File createTempFile() throws IOException
   {
     File file = File.createTempFile("Test", ".txt");
     file.deleteOnExit();
     return file;
   }
+
   @Test
   void testReadWebPageReturnsPageContent()
   {
@@ -61,6 +64,7 @@ public class NetUtilsTest
     String s = NetUtils.loadWebPage(server.url("/").toString());
     Approvals.verify(s);
   }
+
   @Test
   void testLoadWebPageWithQueryParams() throws InterruptedException
   {
@@ -71,6 +75,7 @@ public class NetUtilsTest
     assertEquals("/api?query=param", recordedRequest.getPath());
     Approvals.verify(page);
   }
+
   @Test
   void testReadWebPageWithoutQueryParams() throws InterruptedException
   {
@@ -80,6 +85,7 @@ public class NetUtilsTest
     RecordedRequest recordedRequest = server.takeRequest();
     assertEquals("/api", recordedRequest.getPath());
   }
+
   @Disabled("Run if you want a real-world test")
   @Test
   void testWebPageFromGitHub()
@@ -88,6 +94,7 @@ public class NetUtilsTest
     String file = "resources/approve_all" + ".bat";
     Approvals.verify(NetUtils.loadWebPage(github + file, null));
   }
+
   @Test
   void testTimeout()
   {

@@ -12,10 +12,12 @@ public class MultiScrubber implements Scrubber
   {
     this.scrubbers = ArrayUtils.combine(one, others);
   }
+
   public MultiScrubber(Collection<Scrubber> scrubbers)
   {
     this.scrubbers = scrubbers.toArray(new Scrubber[0]);
   }
+
   @Override
   public String scrub(String input)
   {

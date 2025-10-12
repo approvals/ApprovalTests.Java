@@ -16,11 +16,13 @@ class LoadShiftsFromDatabase implements SqlLoader<List<Shift>>
     // Loads lots of stuff from DB
     this.day = day;
   }
+
   @Override
   public List<Shift> load()
   {
     return null;
   }
+
   @Override
   public SQLQuery getQuery()
   {
@@ -32,6 +34,7 @@ class LoadShiftsFromDatabase implements SqlLoader<List<Shift>>
         shifts + ".FOR_DAY = '" + new java.sql.Date(DateUtils.asTimestamp(day.getTime()).getTime()) + "'");
     return query;
   }
+
   @Override
   public Statement getStatement()
   {

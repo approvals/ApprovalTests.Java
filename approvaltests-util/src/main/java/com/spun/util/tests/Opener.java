@@ -5,6 +5,7 @@ import com.spun.util.ObjectUtils;
 public interface Opener
 {
   public boolean open(String fileName);
+
   public static void execute(String cmd)
   {
     try

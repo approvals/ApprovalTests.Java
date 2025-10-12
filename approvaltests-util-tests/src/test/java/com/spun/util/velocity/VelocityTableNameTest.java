@@ -13,10 +13,12 @@ public class VelocityTableNameTest implements ContextAware
     String template = "${main.getObjectName()}Metadata.TABLE_NAME, ";
     assertEquals("CompanyMetadata.TABLE_NAME, ", VelocityParser.parseString(template, this));
   }
+
   public String getObjectName()
   {
     return "Company";
   }
+
   @Override
   public void setupContext(Context context)
   {

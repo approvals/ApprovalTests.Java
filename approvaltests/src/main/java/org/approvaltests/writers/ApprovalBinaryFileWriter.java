@@ -18,15 +18,18 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
     this.data = charSequence;
     this.fileExtension = fileExtensionWithoutDot;
   }
+
   public ApprovalBinaryFileWriter(InputStream stream, String fileExtensionWithoutDot)
   {
     this.dataStream = stream;
     this.fileExtension = fileExtensionWithoutDot;
   }
+
   public ApprovalBinaryFileWriter(ReadableByteChannel stream, String fileExtensionWithoutDot)
   {
     this(Channels.newInputStream(stream), fileExtensionWithoutDot);
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
@@ -40,6 +43,7 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
     }
     return received;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {

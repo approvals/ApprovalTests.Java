@@ -16,23 +16,28 @@ public class RegExScrubber implements Scrubber
   {
     this(compilePattern(pattern), replacement);
   }
+
   public RegExScrubber(String pattern, String replacement)
   {
     this(compilePattern(pattern), replacement);
   }
+
   private static Pattern compilePattern(String pattern)
   {
     return StringUtils.isNonZero(pattern) ? Pattern.compile(pattern) : null;
   }
+
   public RegExScrubber(Pattern pattern, String replacement)
   {
     this(pattern, n -> replacement);
   }
+
   public RegExScrubber(Pattern pattern, Function1<Integer, String> replacement)
   {
     this.pattern = pattern;
     this.replacement = replacement;
   }
+
   @Override
   public String scrub(String input)
   {
@@ -45,10 +50,12 @@ public class RegExScrubber implements Scrubber
     };
     return StringUtils.replaceAll(input, pattern, replacer);
   }
+
   public Pattern getPattern()
   {
     return this.pattern;
   }
+
   @Override
   public String toString()
   {

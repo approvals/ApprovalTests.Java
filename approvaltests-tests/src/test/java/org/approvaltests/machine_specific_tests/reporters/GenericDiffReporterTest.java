@@ -22,12 +22,14 @@ public class GenericDiffReporterTest extends MachineSpecificTest
   {
     approveGenericReporter("a12.txt", "b12.txt", new TortoiseTextDiffReporter());
   }
+
   @Disabled("requires windows and WinMerge installed")
   @Test
   public void testWinMerge()
   {
     approveGenericReporter("a3.txt", "b13.txt", new WinMergeReporter());
   }
+
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter)
   {
     File directory = ClassUtils.getSourceDirectory(getClass());

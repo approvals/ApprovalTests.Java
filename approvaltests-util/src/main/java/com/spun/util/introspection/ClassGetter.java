@@ -22,6 +22,7 @@ public class ClassGetter
     }
     return classes;
   }
+
   private static String getJavaName(File file, String pathHead)
   {
     String path = file.getAbsolutePath();

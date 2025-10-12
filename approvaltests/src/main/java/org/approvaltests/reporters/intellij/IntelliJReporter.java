@@ -16,6 +16,7 @@ public class IntelliJReporter extends GenericDiffReporter
   {
     super(new DiffInfo(getPath(), "diff %s %s", GenericDiffReporter.TEXT_FILE_EXTENSIONS));
   }
+
   private static String getPath()
   {
     try
@@ -28,11 +29,13 @@ public class IntelliJReporter extends GenericDiffReporter
       return "";
     }
   }
+
   public static String findJetBrainsIdes()
   {
     String[] runningPrograms = getRunningPrograms();
     return findJetBrainsIdes(runningPrograms);
   }
+
   private static String[] getRunningPrograms()
   {
     try
@@ -72,6 +75,7 @@ public class IntelliJReporter extends GenericDiffReporter
       return new String[0];
     }
   }
+
   public static String findJetBrainsIdes(String[] commands)
   {
     Set<String> seenPaths = new HashSet<>();
@@ -103,6 +107,7 @@ public class IntelliJReporter extends GenericDiffReporter
     }
     return "";
   }
+
   public static boolean isMainExecutable(String path, String keyword)
   {
     String lowerPath = path.toLowerCase();

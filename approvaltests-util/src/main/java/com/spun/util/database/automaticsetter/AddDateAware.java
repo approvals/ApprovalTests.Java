@@ -9,6 +9,7 @@ import java.util.Date;
 public interface AddDateAware
 {
   public boolean setAddDate(Timestamp time);
+
   public Timestamp getAddDate();
   public static class FilterBeforeAddDate implements Filter<AddDateAware>
   {
@@ -17,6 +18,7 @@ public interface AddDateAware
     {
       this.date = date;
     }
+
     public boolean isExtracted(AddDateAware object) throws IllegalArgumentException
     {
       ObjectUtils.assertInstance(AddDateAware.class, object);

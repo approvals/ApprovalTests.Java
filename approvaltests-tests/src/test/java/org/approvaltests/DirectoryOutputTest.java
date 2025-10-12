@@ -17,6 +17,7 @@ public class DirectoryOutputTest
     createFilesFor(directory, 3);
     Approvals.verifyEachFileInDirectory(directory);
   }
+
   private void createFilesFor(File directory, int numberOfFiles)
   {
     for (int i = 1; i < numberOfFiles + 1; i++)

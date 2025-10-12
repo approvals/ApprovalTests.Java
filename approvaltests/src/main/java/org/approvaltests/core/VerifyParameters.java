@@ -7,6 +7,7 @@ public class VerifyParameters
   {
     this.options = options;
   }
+
   public Options getOptions()
   {
     return options;

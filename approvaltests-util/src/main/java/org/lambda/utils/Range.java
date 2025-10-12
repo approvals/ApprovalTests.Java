@@ -15,6 +15,7 @@ public class Range
     }
     return (Integer[]) a.toArray(new Integer[a.size()]);
   }
+
   public static Queryable<Integer> getAsQueryable(int start, int stop)
   {
     return Queryable.as(get(start, stop));

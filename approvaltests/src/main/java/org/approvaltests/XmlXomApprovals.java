@@ -14,10 +14,12 @@ public class XmlXomApprovals
   {
     verifyXml(xml, new Options());
   }
+
   public static void verifyXml(String xml, Options options)
   {
     Approvals.verifyXml(xml, x -> prettyPrintXml(x, 2), options);
   }
+
   public static String prettyPrintXml(String minimizedXml, int indent)
   {
     try

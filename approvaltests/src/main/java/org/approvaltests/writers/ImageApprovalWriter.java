@@ -19,10 +19,12 @@ public class ImageApprovalWriter implements ApprovalWriter
   {
     this.image = image;
   }
+
   public static NamedEnvironment asJreAware()
   {
     return asMachineSpecificTest(() -> getJreInformation());
   }
+
   private static String getJreInformation()
   {
     String javaVersion = System.getProperty("java.version");
@@ -31,17 +33,20 @@ public class ImageApprovalWriter implements ApprovalWriter
     int major = Integer.parseInt(majorVersion);
     return major < 11 ? "jdkPre11" : "jdkPost11";
   }
+
   @Override
   public File writeReceivedFile(File received)
   {
     ObjectUtils.throwAsError(() -> ImageIO.write(image, "png", received));
     return received;
   }
+
   @Override
   public String getFileExtensionWithDot()
   {
     return ".png";
   }
+
   public static Options asJreAware(Options options)
   {
     return options.forFile().withAdditionalInformation(getJreInformation());

@@ -16,6 +16,7 @@ public abstract class AbstractJUnitReporter implements ApprovalFailureReporter
   {
     this.className = className;
   }
+
   public void assertEquals(String expected, String actual)
   {
     try
@@ -33,6 +34,7 @@ public abstract class AbstractJUnitReporter implements ApprovalFailureReporter
       throw ObjectUtils.throwAsError(throwable);
     }
   }
+
   @Override
   public boolean report(String received, String approved)
   {
@@ -45,6 +47,7 @@ public abstract class AbstractJUnitReporter implements ApprovalFailureReporter
     assertEquals(aText, rText);
     return true;
   }
+
   private boolean isWorkingInThisEnvironment(String forFile)
   {
     boolean present = ObjectUtils.isClassPresent(className);

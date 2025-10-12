@@ -10,6 +10,7 @@ public class IdeLabeller implements Function0<String>
   {
     return getIde(ThreadUtils.getStackTrace());
   }
+
   private String getIde(StackTraceElement[] stackTrace)
   {
     for (StackTraceElement stackTraceElement : stackTrace)

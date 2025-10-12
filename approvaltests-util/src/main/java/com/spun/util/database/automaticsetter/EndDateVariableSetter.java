@@ -13,6 +13,7 @@ public class EndDateVariableSetter implements AutomaticVariableSetter
   private EndDateVariableSetter()
   {
   }
+
   public synchronized void setFor(DatabaseObject forObject, int atStage, Statement stmt)
   {
     // Grab a lock

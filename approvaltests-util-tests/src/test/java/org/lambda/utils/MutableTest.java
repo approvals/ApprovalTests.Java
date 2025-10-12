@@ -14,6 +14,7 @@ public class MutableTest
     Function0<Integer> counter = () -> i[0]++;
     // end-snippet
   }
+
   @Test
   public void exampleOfMutable()
   {
@@ -36,18 +37,22 @@ public class MutableTest
     {
       this.namer = namer;
     }
+
     public void rsvp()
     {
       log += "rsvping as " + namer.call() + "\n";
     }
+
     public void addEvent()
     {
       log += "adding event as " + namer.call() + "\n";
     }
+
     public void bookHotel()
     {
       log += "booking hotel as " + namer.call() + "\n";
     }
+
     @Override
     public String toString()
     {

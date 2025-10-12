@@ -20,10 +20,12 @@ public class Query<In>
     }
     return out;
   }
+
   public static <In, Out> Queryable<Out> select(In[] list, Function1<In, Out> function)
   {
     return select(ArrayUtils.asList(list), function);
   }
+
   public static <In> Queryable<In> where(Iterable<In> list, Function1<In, Boolean> funct)
   {
     Queryable<In> out = new Queryable<In>();
@@ -36,18 +38,22 @@ public class Query<In>
     }
     return out;
   }
+
   public static <In> In first(Iterable<In> iterable)
   {
     return first(iterable, __ -> true);
   }
+
   public static <In> In first(In[] list)
   {
     return first(list, __ -> true);
   }
+
   public static <In> In first(In[] list, Function1<In, Boolean> filter)
   {
     return first(ArrayUtils.asList(list), filter);
   }
+
   public static <In> In first(Iterable<In> list, Function1<In, Boolean> filter)
   {
     for (In i : list)
@@ -57,11 +63,13 @@ public class Query<In>
     }
     return null;
   }
+
   public static <In, E extends Throwable> In firstOrThrow(In[] list, Function1<In, Boolean> filter,
       Function0<E> exception) throws E
   {
     return firstOrThrow(Arrays.asList(list), filter, exception);
   }
+
   public static <In, E extends Throwable> In firstOrThrow(Iterable<In> list, Function1<In, Boolean> filter,
       Function0<E> exception) throws E
   {
@@ -70,6 +78,7 @@ public class Query<In>
     { throw exception.call(); }
     return i;
   }
+
   public static <In> Queryable<In> where(In[] list, Function1<In, Boolean> filter)
   {
     Queryable<In> out = new Queryable<In>();
@@ -82,26 +91,32 @@ public class Query<In>
     }
     return out;
   }
+
   public static <In, Out extends Comparable<Out>> In max(Iterable<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, 1);
   }
+
   public static <In, Out extends Comparable<Out>> In max(In[] list, Function1<In, Out> f1)
   {
     return getTop(list, f1, 1);
   }
+
   public static <In, Out extends Comparable<Out>> In min(In[] array, Function1<In, Out> f1)
   {
     return min(Arrays.asList(array), f1);
   }
+
   public static <In, Out extends Comparable<Out>> In min(Iterable<In> list, Function1<In, Out> f1)
   {
     return getTop(list, f1, -1);
   }
+
   public static <In> Double average(In[] array, Function1<In, Number> f1)
   {
     return average(Arrays.asList(array), f1);
   }
+
   public static <In> Double average(Iterable<In> list, Function1<In, Number> f1)
   {
     double total = 0.00;
@@ -111,10 +126,12 @@ public class Query<In>
     }
     return total / ArrayUtils.size(list);
   }
+
   private static <In, Out extends Comparable<Out>> In getTop(In[] list, Function1<In, Out> f1, int modifier)
   {
     return getTop(Arrays.asList(list), f1, modifier);
   }
+
   private static <In, Out extends Comparable<Out>> In getTop(Iterable<In> list, Function1<In, Out> f1,
       int modifier)
   {
@@ -133,24 +150,29 @@ public class Query<In>
     }
     return found;
   }
+
   public static <T, Out extends Comparable<Out>> T[] orderBy(T[] list, Function1<T, Out> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
+
   public static <T, Out extends Comparable<Out>> T[] orderBy(T[] list, Order order, Function1<T, Out> f1)
   {
     Arrays.sort(list, new OrderBy<T, Out>(order, f1));
     return list;
   }
+
   public static <T> Queryable<T> orderBy(List<T> list, Function1<T, Comparable<?>> f1)
   {
     return orderBy(list, Order.Ascending, f1);
   }
+
   public static <T> Queryable<T> orderBy(List<T> list, Order order, Function1<T, Comparable<?>> f1)
   {
     Collections.sort(list, new OrderBy<T, Comparable<?>>(order, f1));
     return Queryable.as(list);
   }
+
   /**
    * Why does sum() return double? see {@link #sum(Number[])}
    */
@@ -158,6 +180,7 @@ public class Query<In>
   {
     return sum(ArrayUtils.asList(list), f1);
   }
+
   /**
    * Why does sum() return double? see {@link #sum(Number[])}
    */
@@ -170,6 +193,7 @@ public class Query<In>
     }
     return sum;
   }
+
   /**
    * Why does sum() return double? see {@link #sum(Number[])}
    */
@@ -177,6 +201,7 @@ public class Query<In>
   {
     return sum(list, a -> a);
   }
+
   /**
    * <H1>Why does sum() return double?</H1><br>
    * sum() needs to handle possible overflow.<br>
@@ -189,45 +214,55 @@ public class Query<In>
   {
     return sum(list, a -> a);
   }
+
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static <In extends Number> In max(Iterable<In> numbers)
   {
     return (In) max(numbers, (a) -> (Comparable) a);
   }
+
   public static <In extends Number> In max(In[] numbers)
   {
     return max(ArrayUtils.asList(numbers));
   }
+
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static <In extends Number> In min(In[] numbers)
   {
     return min(Arrays.asList(numbers));
   }
+
   @SuppressWarnings({"rawtypes", "unchecked"})
   public static <In extends Number> In min(Iterable<In> numbers)
   {
     return (In) min((Iterable) numbers, (Comparable a) -> a);
   }
+
   public static <In> boolean all(In[] array, Function1<In, Boolean> funct)
   {
     return array.length == where(array, funct).size();
   }
+
   public static <In> boolean all(Iterable<In> array, Function1<In, Boolean> funct)
   {
     return ArrayUtils.size(array) == where(array, funct).size();
   }
+
   public static <In> boolean any(Iterable<In> array, Function1<In, Boolean> funct)
   {
     return first(array, funct) != null;
   }
+
   public static <In> boolean any(In[] array, Function1<In, Boolean> funct)
   {
     return first(array, funct) != null;
   }
+
   public static <In> Queryable<In> distinct(In[] array)
   {
     return distinct(Arrays.asList(array));
   }
+
   public static <In> Queryable<In> distinct(Iterable<In> list)
   {
     Queryable<In> distinct = new Queryable<>();
@@ -240,18 +275,22 @@ public class Query<In>
     }
     return distinct;
   }
+
   public static <In> In last(In[] list)
   {
     return last(Arrays.asList(list));
   }
+
   static <In> In last(Iterable<In> asList)
   {
     return ArrayUtils.getLast(asList);
   }
+
   public static <Out, In> Queryable<Out> selectMany(In[] array, Function1<In, Collection<Out>> selector)
   {
     return selectMany(Arrays.asList(array), selector);
   }
+
   public static <Out, In> Queryable<Out> selectMany(Iterable<In> list, Function1<In, Collection<Out>> selector)
   {
     Queryable<Out> out = new Queryable<Out>();
@@ -261,10 +300,12 @@ public class Query<In>
     }
     return out;
   }
+
   public static <Out, In> Queryable<Out> selectManyArray(In[] array, Function1<In, Out[]> selector)
   {
     return selectManyArray(Arrays.asList(array), selector);
   }
+
   public static <Out, In> Queryable<Out> selectManyArray(Iterable<In> list, Function1<In, Out[]> selector)
   {
     Queryable<Out> out = new Queryable<Out>();
@@ -274,22 +315,26 @@ public class Query<In>
     }
     return out;
   }
+
   public static <Key, In> Queryable<Map.Entry<Key, Queryable<In>>> groupBy(In[] array,
       Function1<In, Key> keySelector)
   {
     return groupBy(Arrays.asList(array), keySelector);
   }
+
   public static <Key, In> Queryable<Map.Entry<Key, Queryable<In>>> groupBy(Iterable<In> list,
       Function1<In, Key> keySelector)
   {
     return groupBy(list, keySelector, v -> v, r -> r);
   }
+
   public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(In[] array,
       Function1<In, Key> keySelector, Function1<In, Out1> valueSelector,
       Function1<Queryable<Out1>, Out2> resultSelector)
   {
     return groupBy(Arrays.asList(array), keySelector, valueSelector, resultSelector);
   }
+
   public static <Key, In, Out1, Out2> Queryable<Entry<Key, Out2>> groupBy(Iterable<In> list,
       Function1<In, Key> keySelector, Function1<In, Out1> valueSelector,
       Function1<Queryable<Out1>, Out2> resultSelector)
@@ -312,6 +357,7 @@ public class Query<In>
     }
     return tuples.select(t -> new SimpleEntry<>(t.getKey(), resultSelector.call(t.getValue())));
   }
+
   public static <In> Queryable<In> skip(Iterable<In> list, int number)
   {
     Queryable<In> result = new Queryable<>();
@@ -328,6 +374,7 @@ public class Query<In>
     }
     return result;
   }
+
   public static <In> Queryable<In> skip(In[] list, int number)
   {
     if (list == null || list.length <= number)
@@ -335,6 +382,7 @@ public class Query<In>
     In[] ins = Arrays.copyOfRange(list, number, list.length);
     return Queryable.as(ins);
   }
+
   public static <In> Queryable<In> take(Iterable<In> list, int number)
   {
     Queryable<In> result = new Queryable<>();
@@ -355,6 +403,7 @@ public class Query<In>
     }
     return result;
   }
+
   public static <In> Queryable<In> take(In[] list, int number)
   {
     if (list == null)
@@ -362,11 +411,13 @@ public class Query<In>
     In[] ins = Arrays.copyOfRange(list, 0, Math.min(number, list.length));
     return Queryable.as(ins);
   }
+
   public static <In> Queryable<In> selectRecursivelyUntil(In[] array, Function1<In, In> selector,
       Function1<In, Boolean> until)
   {
     return selectRecursivelyUntil(Queryable.as(array), selector, until);
   }
+
   public static <In> Queryable<In> selectRecursivelyUntil(List<In> list, Function1<In, In> selector,
       Function1<In, Boolean> until)
   {

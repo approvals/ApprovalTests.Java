@@ -10,6 +10,7 @@ public class Printer<T>
   {
     return (from + "\n => \n" + to + "\n" + "------------------------------------");
   }
+
   public static String printLine(Object from, Object to)
   {
     return from + " => " + to + "\n";

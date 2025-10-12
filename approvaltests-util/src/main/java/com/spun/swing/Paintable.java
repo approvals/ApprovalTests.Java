@@ -8,6 +8,8 @@ import java.awt.Graphics;
 public interface Paintable
 {
   Dimension getSize();
+
   void paint(Graphics g);
+
   void registerRepaint(Action0 repaint);
 }

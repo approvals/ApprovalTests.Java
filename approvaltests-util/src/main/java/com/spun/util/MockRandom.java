@@ -11,14 +11,17 @@ public class MockRandom extends Random
   {
     this.returnValue = returnValue;
   }
+
   protected int next(int arg0)
   {
     return returnValue[counter++ % returnValue.length];
   }
+
   public int nextInt()
   {
     return next(0);
   }
+
   public int nextInt(int arg0)
   {
     return next(arg0);

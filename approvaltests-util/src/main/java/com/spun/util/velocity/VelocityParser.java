@@ -33,6 +33,7 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(file, props, new ContextAware[]{process, Default.INSTANCE});
   }
+
   public static String parseJar(String template, ContextAware process)
   {
     Properties props = new Properties();
@@ -46,6 +47,7 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
+
   public static String parseString(String template, ContextAware process)
   {
     Properties props = new Properties();
@@ -56,16 +58,19 @@ public class VelocityParser
     props.put("velocimacro.permissions.allow.inline.local.scope", "" + true);
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
+
   public static String parse(String template, Properties props, ContextAware process)
   {
     return parse(template, props, new ContextAware[]{process, Default.INSTANCE});
   }
+
   public static String parse(String template, Properties props, ContextAware[] process)
   {
     StringWriter out = new StringWriter();
     parse(template, props, process, out);
     return out.toString();
   }
+
   public static Writer parse(String template, Properties props, ContextAware[] process, Writer out)
   {
     try
@@ -88,6 +93,7 @@ public class VelocityParser
       throw ObjectUtils.throwAsError(e);
     }
   }
+
   public static synchronized VelocityEngine initializeEngine(Properties props)
   {
     if (currentEngine == null || isDifferentForProperties(props, currentEngine,
@@ -98,6 +104,7 @@ public class VelocityParser
     }
     return currentEngine;
   }
+
   private static boolean isDifferentForProperties(Properties props, VelocityEngine velo, String[] keys)
   {
     for (int i = 0; i < keys.length; i++)
@@ -108,6 +115,7 @@ public class VelocityParser
     }
     return false;
   }
+
   /**
    * Parse a File to a File
    **/
@@ -115,6 +123,7 @@ public class VelocityParser
   {
     return parseFile(templateFileName, new File(outputFileName), process);
   }
+
   /**
    * Parse a File to a File
    **/

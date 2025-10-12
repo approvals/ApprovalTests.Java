@@ -21,11 +21,13 @@ public class VerifiableTest
       this.title = title;
       this.paragraph = paragraph;
     }
+
     @Override
     public VerifyParameters getVerifyParameters(Options options)
     {
       return new VerifyParameters(options.forFile().withExtension(".md"));
     }
+
     @Override
     public String toString()
     {

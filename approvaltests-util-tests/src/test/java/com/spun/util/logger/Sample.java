@@ -13,6 +13,7 @@ public class Sample
       }
     }
   }
+
   private void innerMethod(int i)
   {
     try (Markers markers = SimpleLogger.useMarkers())
