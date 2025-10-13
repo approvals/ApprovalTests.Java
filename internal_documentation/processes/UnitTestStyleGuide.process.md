@@ -18,7 +18,7 @@
 
 If you are printing dates, guids, or any other non-deterministic values to an `.approved.` file. 
 Always use the scrubbers provided by ApprovalTests.
-Please read [Scrubbers](../approvaltests/docs/Scrubbers.md) and add on Options to the Approvals.verify call.
+Please read [Scrubbers](../../approvaltests/docs/Scrubbers.md) and add on Options to the Approvals.verify call.
 
 Either use Scrubbers or DateScrubber.
 #### Scrubbers Example:

@@ -23,7 +23,7 @@ use: `./.windsurf/scripts/git_status.sh`
 
 ## Commiting Code
 
-Read [Arlo Commit Notation](../ArloCommitNotation.process.md) and follow the instructions.
+Read [Arlo Commit Notation](../../internal_documentation/processes/ArloCommitNotation.process.md) and follow the instructions.
 
 ## Changing files
 
