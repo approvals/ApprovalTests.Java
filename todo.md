@@ -11,7 +11,6 @@
 * NamedEnvironment with execute around pattern?
 * easier API for custom file name & location?! (issue 2, 51)
 ** Options for file path
-** update mrunit and fix tests
 
 * Think about removing MethodExecutionPath (not now)
 * remove all warnings
