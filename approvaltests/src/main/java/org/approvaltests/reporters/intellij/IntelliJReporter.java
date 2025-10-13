@@ -14,20 +14,7 @@ public class IntelliJReporter extends GenericDiffReporter
   public static final IntelliJReporter INSTANCE = new IntelliJReporter();
   public IntelliJReporter()
   {
-    super(new DiffInfo(getPath(), "diff %s %s", GenericDiffReporter.TEXT_FILE_EXTENSIONS));
-  }
-
-  private static String getPath()
-  {
-    try
-    {
-      return findJetBrainsIdes();
-    }
-    catch (Throwable e)
-    {
-      // requires Java 9+
-      return "";
-    }
+    super(new DiffInfo(findJetBrainsIdes(), "diff %s %s", GenericDiffReporter.TEXT_FILE_EXTENSIONS));
   }
 
   public static String findJetBrainsIdes()
