@@ -91,7 +91,6 @@
         <module>approvaltests-util-tests</module>
         <module>approvaltests</module>
         <module>approvaltests-tests</module>
-        <!--<module>approvaltests-hadoop</module> https://github.com/approvals/ApprovalTests.Java/issues/131 -->
         <module>counter_display</module>
         <module>html_locker</module>
     </modules>

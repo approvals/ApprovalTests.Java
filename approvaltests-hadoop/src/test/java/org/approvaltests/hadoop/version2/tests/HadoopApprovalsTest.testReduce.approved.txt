@@ -1,7 +1,0 @@
-(life, [7, 35])
-
- -> reduces via ReducerWrapper to -> 
-
-
-
-(life, 42)
