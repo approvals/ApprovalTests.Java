@@ -11,7 +11,7 @@ ApprovalTests.Java is a snapshot-based testing library that simplifies assertion
 This is a multi-module Maven project with the following key modules:
 
 - **approvaltests**: Main library containing core functionality (`Approvals.java`, writers, reporters, namers)
-- **approvaltests-util**: Shared utilities and helper classes
+- **approvaltests-util**: Shared utilities and helper classes (used as a dependency by approvaltests)
 - **approvaltests-tests**: Integration tests and examples
 - **approvaltests-util-tests**: Tests for utility classes
 - **counter_display**: Sample application
@@ -23,35 +23,19 @@ The core API is in `org.approvaltests.Approvals` class, which provides static me
 
 ### Build and Test
 ```bash
-# Full build with all tests
-mvn install
-
-# Build and test (recommended)
+# Build and test via Mise (requires mise installed)
 ./build_and_test
-
-# Skip tests if some are machine/locale dependent
-mvn install -DskipTests
-
-# Run tests for specific module
-mvn verify -pl approvaltests-tests/
 ```
 
-### Development
-```bash
-# Format code
-mvn formatter:format
-
-# Run just the main tests
-./run_tests_without_compile_dependencies.sh
-```
+**Note:** The project uses [Mise](https://mise.jdx.dev/) for task automation. The `.mise.toml` file defines tasks like `build_and_test` and `format`. Java version is specified in `.java-version` file.
 
 ## Key Files and Concepts
 
-- **Approved files**: `*.approved.*` files must be committed to source control and treated as binary in git (add `*.approved.* binary` to `.gitattributes`)
-- **Received files**: Generated during test failures, showing actual output vs approved
-- **Reporters**: Tools that show diffs when tests fail (IntelliJ, Beyond Compare, etc.)
-- **Namers**: Determine approval file naming based on test method/class
-- **Writers**: Generate the actual content to be approved
+- **Approved files**: `*.approved.*` files must be committed to source control. These are automatically treated as binary in git via `.gitattributes` (`*.approved.* binary diff`)
+- **Received files**: `*.received.*` files generated during test failures, showing actual output vs approved. These should not be committed
+- **Reporters**: Tools that show diffs when tests fail (IntelliJ, Beyond Compare, etc.). Located in `org.approvaltests.reporters`
+- **Namers**: Determine approval file naming based on test method/class. Located in `org.approvaltests.namer`
+- **Writers**: Generate the actual content to be approved. Located in `org.approvaltests.writers`
 
 ## Running Single Tests
 
@@ -60,6 +44,8 @@ Individual test methods can be run using standard Maven/IDE approaches:
 mvn test -Dtest=ClassName#methodName
 ```
 
+**Note:** Tests run with `en_US` locale by default (configured in surefire plugin) to ensure consistent output across different environments.
+
 ## Code Style
 
-The project uses the formatter plugin with configuration in `spun.xml`. Code formatting is enforced via Maven build.
+There is an automatic code formatter that is used every time you build the project.
