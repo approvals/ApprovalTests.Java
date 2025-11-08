@@ -8,6 +8,7 @@ import org.lambda.utils.Grid;
 
 import java.awt.Point;
 import java.util.HashMap;
+import java.util.function.Function;
 
 @UseReporter(TortoiseTextDiffReporter.class)
 public class F2Test
@@ -27,6 +28,14 @@ public class F2Test
   public void testDiagonal() throws Exception
   {
     String out = Grid.print(6, 5, (a, b) -> (a == b ? "X" : "."));
+    Approvals.verify(out);
+  }
+
+  @Test
+  void testAndThen() {
+    Function2<Integer, Integer, String> standardNotation = (a, b) -> (a == b ? "X" : ".");
+    Function<String, String> notationUpdater = character -> character.replace(".", "-");
+    String out = Grid.print(6, 5, standardNotation.andThen(notationUpdater));
     Approvals.verify(out);
   }
 }
