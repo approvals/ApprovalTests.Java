@@ -85,10 +85,9 @@ public class IntelliJReporter extends GenericDiffReporter
     return "";
   }
 
-  public static boolean isMainExecutable(String path, String keyword)
+  private static boolean isMainExecutable(String path, String keyword)
   {
-    String lowerPath = path.toLowerCase();
-    return lowerPath.endsWith("macos/" + keyword) || lowerPath.contains("bin\\" + keyword)
-        || lowerPath.contains("bin/" + keyword);
+    return path.endsWith("macos/" + keyword) || path.contains("bin\\" + keyword)
+        || path.contains("bin/" + keyword);
   }
 }
