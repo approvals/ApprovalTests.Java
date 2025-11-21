@@ -18,7 +18,7 @@ public class IntelliJReporterTest
   @Test
   public void testFindJetBrainsIdesLinux()
   {
-    String[] commands = {"/opt/JetBrains/PyCharm 2025.1.1.1/bin/pycharm64.exe"};
+    String[] commands = {"/opt/JetBrains/PyCharm 2025.1.1.1/bin/pycharm64.sh"};
     String result = IntelliJReporter.findJetBrainsIdes(commands);
     assertEquals(commands[0], result);
   }
