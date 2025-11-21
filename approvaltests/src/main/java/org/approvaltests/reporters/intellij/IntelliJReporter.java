@@ -4,9 +4,7 @@ import org.approvaltests.reporters.DiffInfo;
 import org.approvaltests.reporters.GenericDiffReporter;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 public class IntelliJReporter extends GenericDiffReporter
@@ -65,7 +63,6 @@ public class IntelliJReporter extends GenericDiffReporter
 
   public static String findJetBrainsIdes(String[] commands)
   {
-    Set<String> seenPaths = new HashSet<>();
     String[] keywords = {"idea",
                          "pycharm",
                          "webstorm",
@@ -82,14 +79,7 @@ public class IntelliJReporter extends GenericDiffReporter
       for (String keyword : keywords)
       {
         if (lowerCommand.contains(keyword) && isMainExecutable(command, keyword))
-        {
-          if (!seenPaths.contains(command))
-          {
-            seenPaths.add(command);
-            return command;
-          }
-          break;
-        }
+        { return command; }
       }
     }
     return "";
