@@ -5,6 +5,7 @@ import com.spun.util.FormattedException;
 import com.spun.util.JsonUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
+import com.spun.util.io.XMLUtils;
 import com.spun.util.persistence.ExecutableCommand;
 import com.spun.util.persistence.Loader;
 import com.spun.util.persistence.SqlLoader;
@@ -21,7 +22,6 @@ import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.NamerFactoryForOptions;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
-import org.approvaltests.writers.ApprovalXmlWriter;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
@@ -235,7 +235,7 @@ public class Approvals
 
   public static void verifyXml(String xml, Options options)
   {
-    verifyXml(xml, x -> ApprovalXmlWriter.prettyPrint(x, 2), options);
+    verifyXml(xml, x -> XMLUtils.prettyPrint(x, 2), options);
   }
 
   public static void verifyXml(String xml, Function1<String, String> prettyPrinter)

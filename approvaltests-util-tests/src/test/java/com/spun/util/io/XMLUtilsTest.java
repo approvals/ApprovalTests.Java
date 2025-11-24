@@ -1,6 +1,9 @@
 package com.spun.util.io;
 
 import com.spun.util.io.xml.XmlExtractorUtil;
+
+import org.approvaltests.Approvals;
+import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
@@ -10,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class XMLUtilsTest
 {
   @Test
-  public void testXML() throws Exception
+  void testXML() throws Exception
   {
     // String xml = "<?xml version=\"1.0\" ?><QBXML><QBXMLMsgsRs><ItemQueryRs requestID=\"2\" statusCode=\"0\" statusSeverity=\"Info\" statusMessage=\"Status OK\">1</ItemQueryRs></QBXMLMsgsRs></QBXML>";
     String xml = "<?xml version=\"1.0\" ?>\n" + "<QBXML>\n" + "<QBXMLMsgsRs>\n"
@@ -28,5 +31,22 @@ public class XMLUtilsTest
     Document document = XMLUtils.parseXML(xml);
     assertTrue(document.hasChildNodes());
     assertNotNull(XmlExtractorUtil.traverseToTag("HostRet", document));
+  }
+
+  @Test
+  void testPrettyPrint()
+  {
+    var expected = """
+      <?xml version="1.0" encoding="UTF-8"?><root>
+        <child>value</child>
+        <nested>
+          <deep>content</deep>
+        </nested>
+      </root>
+      """;
+    String compactXml = "<root><child>value</child><nested><deep>content</deep></nested></root>";
+    String result = XMLUtils.prettyPrint(compactXml, 2);
+
+    Approvals.verify(result, new Options().inline(expected));
   }
 }
