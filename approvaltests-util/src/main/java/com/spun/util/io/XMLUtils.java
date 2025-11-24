@@ -1,23 +1,5 @@
 package com.spun.util.io;
 
-import com.spun.util.ObjectUtils;
-import com.spun.util.StringUtils;
-import com.spun.util.logger.SimpleLogger;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,6 +9,26 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.spun.util.ObjectUtils;
+import com.spun.util.StringUtils;
+import com.spun.util.logger.SimpleLogger;
 
 public class XMLUtils
 {
@@ -111,9 +113,18 @@ public class XMLUtils
 
   public static String prettyPrint(String input, int indent)
   {
+    return XMLUtils.prettyPrint(input, indent, false);
+  }
+
+  public static String prettyPrint(String input, int indent, boolean reorder)
+  {
     try
     {
       Source xmlInput = new StreamSource(new StringReader(input));
+      if (reorder)
+      {
+        xmlInput = sortXml(xmlInput);
+      }
       StringWriter stringWriter = new StringWriter();
       StreamResult xmlOutput = new StreamResult(stringWriter);
       TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -129,6 +140,65 @@ public class XMLUtils
     catch (TransformerException | IOException e)
     {
       return input;
+    }
+  }
+
+  private static Source sortXml(Source xmlInput)
+  {
+    try
+    {
+      Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+          .parse(new InputSource(((StreamSource) xmlInput).getReader()));
+      sortNode(doc.getDocumentElement());
+      return new DOMSource(doc);
+    }
+    catch (Exception e)
+    {
+      throw ObjectUtils.throwAsError(e);
+    }
+  }
+
+  private static void sortNode(Node node)
+  {
+    sortAttributes(node);
+    NodeList children = node.getChildNodes();
+    java.util.List<Node> elementNodes = new java.util.ArrayList<Node>();
+    for (int i = 0; i < children.getLength(); i++)
+    {
+      Node child = children.item(i);
+      if (child.getNodeType() == Node.ELEMENT_NODE)
+      {
+        sortNode(child);
+        elementNodes.add(child);
+      }
+    }
+    elementNodes.sort((a, b) -> a.getNodeName().compareTo(b.getNodeName()));
+    for (Node child : elementNodes)
+    {
+      node.removeChild(child);
+      node.appendChild(child);
+    }
+  }
+
+  private static void sortAttributes(Node node)
+  {
+    if (node.hasAttributes())
+    {
+      org.w3c.dom.NamedNodeMap attrs = node.getAttributes();
+      java.util.TreeMap<String, Node> sortedAttrs = new java.util.TreeMap<String, Node>();
+      for (int i = 0; i < attrs.getLength(); i++)
+      {
+        Node attr = attrs.item(i);
+        sortedAttrs.put(attr.getNodeName(), attr);
+      }
+      for (int i = attrs.getLength() - 1; i >= 0; i--)
+      {
+        attrs.removeNamedItem(attrs.item(i).getNodeName());
+      }
+      for (Node attr : sortedAttrs.values())
+      {
+        attrs.setNamedItem(attr);
+      }
     }
   }
 }
