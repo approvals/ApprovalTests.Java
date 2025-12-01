@@ -37,18 +37,6 @@
         <url>https://github.com/approvals/ApprovalTests.Java</url>
     </scm>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>tools.jackson</groupId>
-                <artifactId>jackson-bom</artifactId>
-                <version>3.0.2</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>com.approvaltests</groupId>
@@ -95,6 +83,7 @@
         <dependency>
             <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>3.0.2</version>
             <optional>true</optional>
         </dependency>
         <dependency>
