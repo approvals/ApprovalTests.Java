@@ -78,7 +78,7 @@ public class IntelliJReporter extends GenericDiffReporter
       String lowerCommand = command.toLowerCase();
       for (String keyword : keywords)
       {
-        if (lowerCommand.contains(keyword) && isMainExecutable(command, keyword))
+        if (lowerCommand.contains(keyword) && isMainExecutable(lowerCommand, keyword))
         { return command; }
       }
     }
