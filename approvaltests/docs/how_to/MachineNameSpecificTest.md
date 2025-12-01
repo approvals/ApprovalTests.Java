@@ -26,11 +26,11 @@ The actual test code should be placed after this condition.
 ```java
 try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
 {
-  if (!namedEnvironment.isCurrentEnvironmentValidFor(".lars-mbp-14"))
+  if (!namedEnvironment.isCurrentEnvironmentValidFor(".RSI-FQ61HDHJ0K"))
   { return; }
   // the rest of your test...
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L13-L19' title='Snippet source file'>snippet source</a> | <a href='#snippet-runOnlyOnSpecificMachines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-runOnlyOnSpecificMachines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 **please note:** this will also append the machine name to the ApprovalTest so that each specific
