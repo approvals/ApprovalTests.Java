@@ -6,7 +6,7 @@ import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
 @UseReporter(AutoApproveReporter.class)
-public class ConsoleOutputTests
+public class ConsoleOutputTest
 {
   @Test
   void testVerifyOutput()
