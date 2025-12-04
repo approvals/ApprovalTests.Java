@@ -79,7 +79,6 @@ You can make custom instances of these or extend them to report however you need
 * [How to Configure Reporters](../how_to/ConfigureReporters.md)
 * [How to Create Your Own Custom Reporter](../how_to/CreateCustomReporter.md)
 * [How to capture .received. files from CI](../how_to/CaptureFilesFromCI.md)
-* [Benefits of different reporters](../explanations/BenefitsOfDifferentReporters.md)
 
 ---
 

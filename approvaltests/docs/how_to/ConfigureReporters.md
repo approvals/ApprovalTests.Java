@@ -15,7 +15,6 @@
 
 ## Problem Statement
 Reporters are the part of Approval Tests that launch diff tools when things do not match.
-The can also do [other things](../explanations/BenefitsOfDifferentReporters.md).
 On this page we show you three different ways to configure which reporters are used.
 
 ## Principle of Least Surprise

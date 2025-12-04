@@ -54,7 +54,6 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 ## Explanations
 * [Why we don't use checked exceptions](explanations/NoCheckedExceptions.md)
 * [Best configuration practices](explanations/BestConfigurationPractices.md)
-* [Benefits of different reporters](explanations/BenefitsOfDifferentReporters.md)
 * [Inline Approvals Workflow](explanations/InlineApprovalsWorkflow.md)
 * [Approval Testing Concepts](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/approval_testing.md)
 * [Place to modify output](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/creating_output.md)
