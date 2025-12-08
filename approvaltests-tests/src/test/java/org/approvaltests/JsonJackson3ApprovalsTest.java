@@ -45,8 +45,7 @@ class JsonJackson3ApprovalsTest
         metadata.put("mango", "middle");
       }
     }
-    JsonJackson3Approvals.verifyAsJson(new Event(),
-        om -> om.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS));
+    JsonJackson3Approvals.verifyAsJson(new Event());
   }
 
   @Test

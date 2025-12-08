@@ -1,10 +1,13 @@
 package org.approvaltests;
 
-import com.spun.util.ObjectUtils;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
+
+import com.spun.util.ObjectUtils;
+
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
 
 public class JsonJackson3Approvals
@@ -43,7 +46,8 @@ public class JsonJackson3Approvals
   {
     try
     {
-      ObjectMapper objectMapper = objectMapperBuilder.call(JsonMapper.builder()).build();
+      ObjectMapper objectMapper = objectMapperBuilder
+          .call(JsonMapper.builder().enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)).build();
       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
     }
     catch (JacksonException e)
