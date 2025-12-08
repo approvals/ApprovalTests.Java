@@ -1,12 +1,12 @@
 package org.approvaltests;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spun.util.ObjectUtils;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
 
-import java.util.function.Function;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.spun.util.ObjectUtils;
 
 public class JsonJacksonApprovals
 {
@@ -40,7 +40,8 @@ public class JsonJacksonApprovals
   {
     try
     {
-      ObjectMapper objectMapper = objectMapperBuilder.call(new ObjectMapper().findAndRegisterModules());
+      ObjectMapper objectMapper = objectMapperBuilder.call(
+          new ObjectMapper().findAndRegisterModules().enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS));
       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
     }
     catch (JsonProcessingException e)

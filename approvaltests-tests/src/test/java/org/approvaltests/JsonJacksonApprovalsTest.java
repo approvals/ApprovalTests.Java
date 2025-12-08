@@ -6,13 +6,11 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.google.gson.GsonBuilder;
-import org.junit.jupiter.api.Test;
 
 public class JsonJacksonApprovalsTest
 {
@@ -45,8 +43,7 @@ public class JsonJacksonApprovalsTest
         metadata.put("mango", "middle");
       }
     }
-    JsonJacksonApprovals.verifyAsJson(new Event(), om -> om.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
-        .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY));
+    JsonJacksonApprovals.verifyAsJson(new Event(), om -> om.enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY));
   }
 
   @Test
