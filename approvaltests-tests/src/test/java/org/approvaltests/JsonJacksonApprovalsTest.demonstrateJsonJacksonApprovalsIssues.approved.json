@@ -1,0 +1,13 @@
+{
+  "capacity" : 500,
+  "createdAt" : 1704067200.000000000,
+  "date" : [ 2024, 3, 15 ],
+  "location" : "Berlin",
+  "metadata" : {
+    "apple" : "first",
+    "mango" : "middle",
+    "zebra" : "last"
+  },
+  "name" : "Conference",
+  "startTime" : [ 2024, 3, 15, 9, 0 ]
+}

@@ -1,8 +1,16 @@
 package org.approvaltests;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +21,32 @@ public class JsonJacksonApprovalsTest
   {
     MyClass o = new MyClass();
     JsonJacksonApprovals.verifyAsJson(o, (om) -> om.setSerializationInclusion(JsonInclude.Include.NON_NULL));
+  }
+
+  @Test
+  void demonstrateJsonJacksonApprovalsIssues()
+  {
+    // Create an object with:
+    // 1. Java 8 time types (will fail serialization or produce ugly output)
+    // 2. Multiple properties (to show non-deterministic property order)
+    // 3. A Map field (to show non-deterministic map entry order)
+    class Event
+    {
+      public String              name      = "Conference";
+      public LocalDateTime       startTime = LocalDateTime.of(2024, 3, 15, 9, 0);
+      public LocalDate           date      = LocalDate.of(2024, 3, 15);
+      public Instant             createdAt = Instant.parse("2024-01-01T00:00:00Z");
+      public Map<String, String> metadata  = new LinkedHashMap<>();
+      public String              location  = "Berlin";
+      public int                 capacity  = 500;
+      {
+        metadata.put("zebra", "last");
+        metadata.put("apple", "first");
+        metadata.put("mango", "middle");
+      }
+    }
+    JsonJacksonApprovals.verifyAsJson(new Event(), om -> om.enable(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS)
+        .enable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY));
   }
 
   @Test

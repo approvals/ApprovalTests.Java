@@ -40,7 +40,7 @@ public class JsonJacksonApprovals
   {
     try
     {
-      ObjectMapper objectMapper = objectMapperBuilder.call(new ObjectMapper());
+      ObjectMapper objectMapper = objectMapperBuilder.call(new ObjectMapper().findAndRegisterModules());
       return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(o);
     }
     catch (JsonProcessingException e)
