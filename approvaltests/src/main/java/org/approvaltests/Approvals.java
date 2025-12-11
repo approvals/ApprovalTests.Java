@@ -111,45 +111,46 @@ public class Approvals
     verify(text, options);
   }
 
-  public static <T> void verifyAll(T[] values, Function1<T, String> f1)
+  public static <T> void verifyAll(T[] values, Function1<T, String> formatter)
   {
-    verifyAll(values, f1, new Options());
+    verifyAll(values, formatter, new Options());
   }
 
-  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> f1)
+  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> formatter)
   {
-    verifyAll(values, f1, new Options());
+    verifyAll(values, formatter, new Options());
   }
 
-  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> f1, Options options)
+  public static <T> void verifyAll(Iterable<T> values, Function1<T, String> formatter, Options options)
   {
-    verifyAll("", values, f1, options);
+    verifyAll("", values, formatter, options);
   }
 
-  public static <T> void verifyAll(T[] values, Function1<T, String> f1, Options options)
+  public static <T> void verifyAll(T[] values, Function1<T, String> formatter, Options options)
   {
-    String text = ArrayUtils.toString(values, f1);
+    String text = ArrayUtils.toString(values, formatter);
     verify(text, options);
   }
 
-  public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1)
+  public static <T> void verifyAll(String header, T[] values, Function1<T, String> formatter)
   {
-    verifyAll(header, values, f1, new Options());
+    verifyAll(header, values, formatter, new Options());
   }
 
-  public static <T> void verifyAll(String header, T[] values, Function1<T, String> f1, Options options)
+  public static <T> void verifyAll(String header, T[] values, Function1<T, String> formatter, Options options)
   {
-    verifyAll(header, Arrays.asList(values), f1, options);
+    verifyAll(header, Arrays.asList(values), formatter, options);
   }
 
-  public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1)
+  public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> formatter)
   {
-    verifyAll(header, array, f1, new Options());
+    verifyAll(header, array, formatter, new Options());
   }
 
-  public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> f1, Options options)
+  public static <T> void verifyAll(String header, Iterable<T> array, Function1<T, String> formatter,
+      Options options)
   {
-    String text = formatHeader(header) + ArrayUtils.toString(array, f1);
+    String text = formatHeader(header) + ArrayUtils.toString(array, formatter);
     verify(text, options);
   }
 
