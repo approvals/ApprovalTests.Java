@@ -9,6 +9,7 @@ import org.approvaltests.utils.ConsoleOutput;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -238,5 +239,17 @@ public class DateScrubberTest
     {
       DateScrubber.clearCustomScrubbers();
     }
+  }
+
+  @Test
+  void testForSimpleDateFormat()
+  {
+    var expected = """
+        created at [Date1]
+        """;
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    DateScrubber scrubber = DateScrubber.forSimpleDateFormat(sdf);
+    String result = "created at " + sdf.format(new Date());
+    Approvals.verify(result, new Options().inline(expected).withScrubber(scrubber));
   }
 }

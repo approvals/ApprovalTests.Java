@@ -8,7 +8,9 @@ import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -115,6 +117,12 @@ public class DateScrubber extends RegExScrubber
   public static Scrubber getScrubberForDate()
   {
     return DateScrubber.getScrubberFor(new java.util.Date(0).toString());
+  }
+
+  public static DateScrubber forSimpleDateFormat(SimpleDateFormat simpleDateFormat)
+  {
+    String formattedExample = simpleDateFormat.format(new Date(0));
+    return getScrubberFor(formattedExample);
   }
 
   public static void addScrubber(String example, String regex)
