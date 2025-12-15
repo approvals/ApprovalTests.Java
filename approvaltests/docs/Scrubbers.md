@@ -108,7 +108,7 @@ The easiest way to scrub a date is by calling
 ```java
 Approvals.verify("created at 03:14:15", new Options().withScrubber(DateScrubber.getScrubberFor("00:00:00")));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.java#L57-L59' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/DateScrubberTest.java#L58-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-scrub-date-example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 which will produce
