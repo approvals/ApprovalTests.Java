@@ -26,4 +26,14 @@ class FirstWorkingReporterTest
     };
     Approvals.verify("test", new Options(new FirstWorkingReporter(t)));
   }
+
+  @Test
+  void testToString()
+  {
+    var expected = """
+        FirstWorkingReporter(ReporterForTesting(True), ReporterForTesting(False))
+        """;
+    var reporter = new FirstWorkingReporter(new ReporterForTesting(true), new ReporterForTesting(false));
+    Approvals.verify(reporter.toString(), new Options().inline(expected));
+  }
 }
