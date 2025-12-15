@@ -2,6 +2,7 @@ package org.approvaltests.reporters;
 
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.VerifyResult;
+import org.lambda.query.Queryable;
 
 public class FirstWorkingReporter implements ReporterWithApprovalPower
 {
@@ -47,17 +48,7 @@ public class FirstWorkingReporter implements ReporterWithApprovalPower
   @Override
   public String toString()
   {
-    StringBuilder sb = new StringBuilder("FirstWorkingReporter(");
-    for (int i = 0; i < reporters.length; i++)
-    {
-      if (i > 0)
-      {
-        sb.append(", ");
-      }
-      sb.append(reporters[i].toString());
-    }
-    sb.append(")");
-    return sb.toString();
+    return "FirstWorkingReporter(" + Queryable.as(reporters).join(", ", Object::toString) + ")";
   }
 
   @Override
