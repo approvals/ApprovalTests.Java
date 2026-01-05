@@ -77,6 +77,13 @@ public class ClassUtilsTest
     assertNull(found, "Should return null for non-existent file");
   }
 
+  @Test
+  void testFindNonExistentPath()
+  {
+    File found = findInSourceRoot("com", "spun", "junk", "util", "ClassUtilsTest.java");
+    assertNull(found, "Should return null for non-existent file");
+  }
+
   private File findInSourceRoot(String... pathSegments)
   {
     File sourceDir = ClassUtils.getSourceDirectory(getClass());

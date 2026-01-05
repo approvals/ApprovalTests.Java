@@ -130,24 +130,45 @@ public class ClassUtils
 
   public static File find(File file, List<String> matches)
   {
-    // Try with full package path first, then progressively strip leading segments.
-    // This supports Kotlin's recommended directory structure where the common root
-    // package is omitted from the directory structure.
-    // See: https://github.com/approvals/ApprovalTests.Java/issues/352
     for (int skipSegments = 0; skipSegments < matches.size(); skipSegments++)
     {
+      if (skipSegments > 0 && directoryExistsAnywhere(file, matches.get(skipSegments - 1)))
+      { return null; }
       List<String> reducedMatches = matches.subList(skipSegments, matches.size());
-      ArrayList<String> copy = new ArrayList<String>();
-      copy.addAll(reducedMatches);
-      copy.add(0, "*");
-      File found = find2(file, copy);
+      File found = findByPathSegments(file, prepend("*", reducedMatches));
       if (found != null)
       { return found; }
     }
     return null;
   }
 
-  public static File find2(File file, List<String> matches)
+  private static boolean directoryExistsAnywhere(File root, String dirName)
+  {
+    File[] files = root.listFiles();
+    if (files == null)
+    { return false; }
+    for (File f : files)
+    {
+      if (f.isDirectory())
+      {
+        if (f.getName().equals(dirName))
+        { return true; }
+        if (directoryExistsAnywhere(f, dirName))
+        { return true; }
+      }
+    }
+    return false;
+  }
+
+  private static <T> List<T> prepend(T element, List<T> list)
+  {
+    ArrayList<T> result = new ArrayList<>();
+    result.add(element);
+    result.addAll(list);
+    return result;
+  }
+
+  private static File findByPathSegments(File file, List<String> matches)
   {
     SearchingFileFilter searchingFileFilter = new SearchingFileFilter(matches);
     File[] listFiles = file.listFiles(searchingFileFilter);
@@ -155,7 +176,7 @@ public class ClassUtils
     {
       if (file2.isDirectory())
       {
-        File found = find2(file2, searchingFileFilter.getSubset(file2.getName()));
+        File found = findByPathSegments(file2, searchingFileFilter.getSubset(file2.getName()));
         if (found != null)
         { return found; }
       }
