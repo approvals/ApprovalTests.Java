@@ -130,10 +130,21 @@ public class ClassUtils
 
   public static File find(File file, List<String> matches)
   {
-    ArrayList<String> copy = new ArrayList<String>();
-    copy.addAll(matches);
-    copy.add(0, "*");
-    return find2(file, copy);
+    // Try with full package path first, then progressively strip leading segments.
+    // This supports Kotlin's recommended directory structure where the common root
+    // package is omitted from the directory structure.
+    // See: https://github.com/approvals/ApprovalTests.Java/issues/352
+    for (int skipSegments = 0; skipSegments < matches.size(); skipSegments++)
+    {
+      List<String> reducedMatches = matches.subList(skipSegments, matches.size());
+      ArrayList<String> copy = new ArrayList<String>();
+      copy.addAll(reducedMatches);
+      copy.add(0, "*");
+      File found = find2(file, copy);
+      if (found != null)
+      { return found; }
+    }
+    return null;
   }
 
   public static File find2(File file, List<String> matches)
