@@ -118,9 +118,12 @@ public class PackageSettings
   public String   name        = "Test Name";
   private boolean rating      = true;
   public String   ratingScale = "logarithmic";
+  private PackageSettings()
+  {
+  }
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java#L1-L8' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java#L1-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-/approvaltests-tests/src/test/java/org/packagesettings/subpackage/PackageSettings.java' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 and you ran the same code but from the org.packagesettings.subpackage  
