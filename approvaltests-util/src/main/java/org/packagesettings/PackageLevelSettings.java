@@ -1,15 +1,17 @@
 package org.packagesettings;
 
-import com.spun.util.ObjectUtils;
-import com.spun.util.ThreadUtils;
-import org.lambda.functions.Function0;
-
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+
+import org.lambda.functions.Function0;
+
+import com.spun.util.ObjectUtils;
+import com.spun.util.ThreadUtils;
 
 public class PackageLevelSettings
 {
@@ -48,7 +50,7 @@ public class PackageLevelSettings
     {
       Class<?> clazz = loadClass(packageName + "." + PACKAGE_SETTINGS);
       Field[] declaredFields = clazz.getDeclaredFields();
-      Object o = clazz.newInstance();
+      Object o = createInstance(clazz);
       for (Field field : declaredFields)
       {
         if (Modifier.isStatic(field.getModifiers()))
@@ -81,6 +83,13 @@ public class PackageLevelSettings
       //ignore
     }
     return null;
+  }
+
+  private static Object createInstance(Class<?> clazz) throws Exception
+  {
+    Constructor<?> constructor = clazz.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    return constructor.newInstance();
   }
 
   public static String getNextLevel(String className)
