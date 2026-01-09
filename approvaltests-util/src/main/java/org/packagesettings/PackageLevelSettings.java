@@ -50,7 +50,7 @@ public class PackageLevelSettings
     {
       Class<?> clazz = loadClass(packageName + "." + PACKAGE_SETTINGS);
       Field[] declaredFields = clazz.getDeclaredFields();
-      Object o = createInstance(clazz);
+      Object o = null;
       for (Field field : declaredFields)
       {
         if (Modifier.isStatic(field.getModifiers()))
@@ -59,6 +59,10 @@ public class PackageLevelSettings
         }
         else
         {
+          if (o == null)
+          {
+            o = createInstance(clazz);
+          }
           settings.put(field.getName(), getFieldValue(field, o));
         }
       }
