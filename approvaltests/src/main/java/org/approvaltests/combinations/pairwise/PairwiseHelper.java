@@ -41,11 +41,11 @@ public class PairwiseHelper
 
   private static void appendHeader(Labels labels, StringBuffer output)
   {
+    output.append("\n");
     if (labels.hasHeader())
     {
-      output.append("\n").append(labels.getHeader()).append("\n\n");
+      output.append(labels.getHeader()).append("\n\n\n");
     }
-    output.append("\n");
   }
 
   private static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> String getCombinationText(Labels labels,
