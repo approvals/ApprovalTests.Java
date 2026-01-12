@@ -1,4 +1,0 @@
-lastName : Falco [from org.packagesettings.PackageSettings] 
-name : Test Name [from org.packagesettings.subpackage_static.PackageSettings] 
-rating : true [from org.packagesettings.subpackage_static.PackageSettings] 
-ratingScale : logarithmic [from org.packagesettings.subpackage_static.PackageSettings] 

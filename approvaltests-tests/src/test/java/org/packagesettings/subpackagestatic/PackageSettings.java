@@ -1,4 +1,4 @@
-package org.packagesettings.subpackage_static;
+package org.packagesettings.subpackagestatic;
 
 final class PackageSettings
 {

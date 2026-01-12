@@ -1,4 +1,4 @@
-package org.packagesettings.subpackage_static;
+package org.packagesettings.subpackagestatic;
 
 import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
