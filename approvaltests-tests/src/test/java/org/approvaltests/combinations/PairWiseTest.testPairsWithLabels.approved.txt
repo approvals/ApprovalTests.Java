@@ -1,0 +1,27 @@
+Testing an optimized 25/400 scenarios:
+
+[number: 1, letter: a, uppercase: L, decimal: 4.4] =>  
+[number: 2, letter: b, uppercase: L, decimal: 2.2] =>  
+[number: 3, letter: c, uppercase: L, decimal: 1.1] =>  
+[number: 4, letter: d, uppercase: L, decimal: 3.3] =>  
+[number: 5, letter: a, uppercase: L, decimal: 2.2] =>  
+[number: 1, letter: b, uppercase: M, decimal: 1.1] =>  
+[number: 2, letter: a, uppercase: M, decimal: 3.3] =>  
+[number: 3, letter: d, uppercase: M, decimal: 4.4] =>  
+[number: 4, letter: c, uppercase: M, decimal: 2.2] =>  
+[number: 5, letter: b, uppercase: M, decimal: 4.4] =>  
+[number: 1, letter: c, uppercase: N, decimal: 3.3] =>  
+[number: 2, letter: d, uppercase: N, decimal: 1.1] =>  
+[number: 3, letter: a, uppercase: N, decimal: 2.2] =>  
+[number: 4, letter: b, uppercase: N, decimal: 4.4] =>  
+[number: 5, letter: c, uppercase: N, decimal: 4.4] =>  
+[number: 1, letter: d, uppercase: O, decimal: 2.2] =>  
+[number: 2, letter: c, uppercase: O, decimal: 4.4] =>  
+[number: 3, letter: b, uppercase: O, decimal: 3.3] =>  
+[number: 4, letter: a, uppercase: O, decimal: 1.1] =>  
+[number: 5, letter: d, uppercase: O, decimal: 1.1] =>  
+[number: 1, letter: a, uppercase: P, decimal: 4.4] =>  
+[number: 2, letter: b, uppercase: P, decimal: 2.2] =>  
+[number: 3, letter: c, uppercase: P, decimal: 1.1] =>  
+[number: 4, letter: d, uppercase: P, decimal: 3.3] =>  
+[number: 5, letter: d, uppercase: P, decimal: 3.3] =>  

@@ -2,6 +2,7 @@ package org.approvaltests.combinations.pairwise;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationsHelper;
+import org.approvaltests.combinations.Labels;
 import org.approvaltests.combinations.SkipCombination;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function9;
@@ -15,39 +16,92 @@ public class PairwiseHelper
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
+    verifyBestCoveringPairs(new Labels(), call, parameters1, parameters2, parameters3, parameters4, parameters5,
+        parameters6, parameters7, parameters8, parameters9, options);
+  }
+
+  public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyBestCoveringPairs(Labels labels,
+      Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, IN1[] parameters1, IN2[] parameters2,
+      IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
+      IN8[] parameters8, IN9[] parameters9, Options options)
+  {
     Pairwise pairwise = Pairwise.toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5,
         parameters6, parameters7, parameters8, parameters9);
     final List<Case> cases = pairwise.getCases();
     StringBuffer output = new StringBuffer();
     int totalPossibleSize = pairwise.getTotalPossibleCombinations();
-    output.append(String.format("Testing an optimized %s/%s scenarios:\n\n", cases.size(), totalPossibleSize));
+    output.append(String.format("Testing an optimized %s/%s scenarios:\n", cases.size(), totalPossibleSize));
+    appendHeader(labels, output);
     for (Case params : cases)
     {
-      String result;
-      final IN1 in1 = (IN1) params.get(0);
-      final IN2 in2 = (IN2) params.get(1);
-      final IN3 in3 = (IN3) params.get(2);
-      final IN4 in4 = (IN4) params.get(3);
-      final IN5 in5 = (IN5) params.get(4);
-      final IN6 in6 = (IN6) params.get(5);
-      final IN7 in7 = (IN7) params.get(6);
-      final IN8 in8 = (IN8) params.get(7);
-      final IN9 in9 = (IN9) params.get(8);
-      try
-      {
-        result = "" + call.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
-      }
-      catch (SkipCombination e)
-      {
-        continue;
-      }
-      catch (Throwable t)
-      {
-        result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
-      }
-      output.append(String.format("%s => %s \n",
-          CombinationsHelper.filterEmpty(in1, in2, in3, in4, in5, in6, in7, in8, in9), result));
+      output.append(getCombinationText(labels, call, params));
     }
     Approvals.verify(output, options);
+  }
+
+  private static void appendHeader(Labels labels, StringBuffer output)
+  {
+    if (labels.hasHeader())
+    {
+      output.append("\n").append(labels.getHeader()).append("\n\n");
+    }
+    output.append("\n");
+  }
+
+  private static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> String getCombinationText(Labels labels,
+      Function9<IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> call, Case params)
+  {
+    final IN1 in1 = (IN1) params.get(0);
+    final IN2 in2 = (IN2) params.get(1);
+    final IN3 in3 = (IN3) params.get(2);
+    final IN4 in4 = (IN4) params.get(3);
+    final IN5 in5 = (IN5) params.get(4);
+    final IN6 in6 = (IN6) params.get(5);
+    final IN7 in7 = (IN7) params.get(6);
+    final IN8 in8 = (IN8) params.get(7);
+    final IN9 in9 = (IN9) params.get(8);
+    String result;
+    try
+    {
+      result = "" + call.call(in1, in2, in3, in4, in5, in6, in7, in8, in9);
+    }
+    catch (SkipCombination e)
+    {
+      return "";
+    }
+    catch (Throwable t)
+    {
+      result = String.format("%s: %s", t.getClass().getName(), t.getMessage());
+    }
+    String inputText = formatInputs(labels, in1, in2, in3, in4, in5, in6, in7, in8, in9);
+    return String.format("%s => %s \n", inputText, result);
+  }
+
+  private static String formatInputs(Labels labels, Object... objects)
+  {
+    List<Object> values = CombinationsHelper.filterEmpty(objects);
+    if (!labels.hasLabels())
+    { return values.toString(); }
+    String[] labelNames = labels.getLabels();
+    StringBuilder output = new StringBuilder();
+    output.append("[");
+    for (int i = 0; i < values.size(); i++)
+    {
+      if (i > 0)
+      {
+        output.append(", ");
+      }
+      String label = i < labelNames.length ? labelNames[i] : null;
+      if (label != null && !label.isEmpty())
+      {
+        output.append(label).append(": ").append(values.get(i));
+      }
+      else
+      {
+        output.append(values.get(i));
+      }
+    }
+    output.append("]");
+    return output.toString();
   }
 }

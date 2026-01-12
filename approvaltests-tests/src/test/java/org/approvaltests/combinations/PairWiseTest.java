@@ -66,6 +66,34 @@ public class PairWiseTest
   }
 
   @Test
+  public void testPairsWithHeader()
+  {
+    CombinationApprovals.verifyBestCoveringPairs(
+        new Labels().withHeader("processCall(int, String, String, double)"), (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"},
+        new Double[]{1.1, 2.2, 3.3, 4.4});
+  }
+
+  @Test
+  public void testPairsWithLabels()
+  {
+    CombinationApprovals.verifyBestCoveringPairs(
+        new Labels().withLabels("number", "letter", "uppercase", "decimal"), (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"},
+        new Double[]{1.1, 2.2, 3.3, 4.4});
+  }
+
+  @Test
+  public void testPairsWithHeaderAndLabels()
+  {
+    CombinationApprovals.verifyBestCoveringPairs(
+        new Labels().withHeader("processCall(int, String, String, double)").withLabels("number", "letter",
+            "uppercase", "decimal"),
+        (a, b, c, d) -> "", new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"},
+        new String[]{"L", "M", "N", "O", "P"}, new Double[]{1.1, 2.2, 3.3, 4.4});
+  }
+
+  @Test
   public void testPairsScrubbed()
   {
     CombinationApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{112, 111, 113, 114, 115},
