@@ -28,31 +28,23 @@ public class CombinationTest
   @Test
   public void testHeader()
   {
-    CombinationApprovals.verifyAllCombinations(
-            Labels.header("processCall(String, Int)"),
-            this::processCall,
-            new Integer[]{1, 2, 3, 4, 5},
-            new String[]{"a", "b", "c", "d"});
+    CombinationApprovals.verifyAllCombinations(new Labels().withHeader("processCall(String, Int)"),
+        this::processCall, new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
 
-    @Test
-    public void testLabels()
-    {
-        CombinationApprovals.verifyAllCombinations(
-                Labels.label("number", "letter"),
-                this::processCall,
-                new Integer[]{1, 2, 3, 4, 5},
-                new String[]{"a", "b", "c", "d"});
-    }
+  @Test
+  public void testLabels()
+  {
+    CombinationApprovals.verifyAllCombinations(new Labels().withLabels("number", "letter"), this::processCall,
+        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
+  }
 
   @Test
   public void testHeadersAndLabels()
   {
-      CombinationApprovals.verifyAllCombinations(
-              Labels.header("processCall(String, Int)").label("number", "letter"),
-              this::processCall,
-              new Integer[]{1, 2, 3, 4, 5},
-              new String[]{"a", "b", "c", "d"});
+    CombinationApprovals.verifyAllCombinations(
+        new Labels().withHeader("processCall(String, Int)").withLabels("number", "letter"), this::processCall,
+        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
 
   @Test
