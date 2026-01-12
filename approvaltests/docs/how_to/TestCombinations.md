@@ -26,7 +26,7 @@ String[] inputs1 = {"input1.value1", "input1.value2"};
 String[] inputs2 = {"input2.value1", "input2.value2", "input2.value3"};
 CombinationApprovals.verifyAllCombinations((a, b) -> "placeholder", inputs1, inputs2);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.java#L47-L51' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.java#L69-L73' title='Snippet source file'>snippet source</a> | <a href='#snippet-CombinationsStartingPoint' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 2. Modify each input container for your chosen values.
@@ -66,7 +66,7 @@ String[] strings = {"hello", "world"};
 Integer[] numbers = {1, 2, 3};
 CombinationApprovals.verifyAllCombinations((s, i) -> String.format("(%s,%s)", s, i), strings, numbers);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.java#L57-L61' title='Snippet source file'>snippet source</a> | <a href='#snippet-YouCanVerifyCombinationsOf2' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/combinations/CombinationTest.java#L79-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-YouCanVerifyCombinationsOf2' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 The format is carefully chosen to show both inputs and outputs, to make the test results easy to interpret. The output looks like this:
