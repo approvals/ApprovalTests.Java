@@ -1,0 +1,16 @@
+[number: 1, letter: a] => [1, a]
+[number: 1, letter: b] => [1, b]
+[number: 1, letter: c] => [1, c]
+[number: 2, letter: a] => [2, a]
+[number: 2, letter: b] => [2, b]
+[number: 2, letter: c] => [2, c]
+[number: 3, letter: a] => [3, a]
+[number: 3, letter: b] => [3, b]
+[number: 3, letter: c] => [3, c]
+[number: 4, letter: a] => [4, a]
+[number: 4, letter: b] => [4, b]
+[number: 4, letter: c] => [4, c]
+[number: 5, letter: a] => java.lang.RuntimeException: 5 is not alive
+[number: 5, letter: b] => java.lang.RuntimeException: 5 is not alive
+[number: 5, letter: c] => java.lang.RuntimeException: 5 is not alive
+[number: 5, letter: d] => java.lang.RuntimeException: 5 is not alive
