@@ -6,6 +6,7 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.macosx.BeyondCompareMacReporter;
 import org.approvaltests.reporters.macosx.P4MergeReporter;
 import org.approvaltests.reporters.macosx.TkDiffReporter;
 import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
@@ -111,5 +112,14 @@ public class GenericDiffReporterTest
   {
     GenericDiffReporter genericDiffReporter = new GenericDiffReporter("false");
     assertFalse(genericDiffReporter.launch("received.txt", "approved.txt"));
+  }
+
+  @Test
+  void testChangingTextFileExtension()
+  {
+    BeyondCompareMacReporter beyondCompareMacReporter = new BeyondCompareMacReporter();
+    GenericDiffReporter.TEXT_FILE_EXTENSIONS.add(".we_are_adding_this_extension");
+    assertTrue(beyondCompareMacReporter.isFileExtensionHandled("a.we_are_adding_this_extension"));
+    GenericDiffReporter.TEXT_FILE_EXTENSIONS.remove(".we_are_adding_this_extension");
   }
 }

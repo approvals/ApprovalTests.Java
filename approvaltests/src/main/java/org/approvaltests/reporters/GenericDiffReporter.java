@@ -5,6 +5,7 @@ import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
 import com.spun.util.logger.SimpleLogger;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.lambda.query.Queryable;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -15,16 +16,16 @@ import java.util.stream.Collectors;
 
 public class GenericDiffReporter implements ApprovalFailureReporter
 {
+  public static List<String> TEXT_FILE_EXTENSIONS  = Queryable.of(".txt", ".csv", ".htm", ".html", ".xml", ".eml",
+      ".java", ".css", ".js", ".json", ".md", ".jsonl", ".yaml", ".yml", ".adoc", ".asciidoc");
+  public static List<String> IMAGE_FILE_EXTENSIONS = Queryable.of(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
+      ".tiff");
   public static final String STANDARD_ARGUMENTS    = "%s %s";
   public static boolean      REPORT_MISSING_FILES  = false;
   protected String           diffProgram;
   protected String           arguments;
   protected String           diffProgramNotFoundMessage;
   private List<String>       validExtensions;
-  public static List<String> TEXT_FILE_EXTENSIONS  = Arrays.asList(".txt", ".csv", ".htm", ".html", ".xml", ".eml",
-      ".java", ".css", ".js", ".json", ".md", ".jsonl", ".yaml", ".yml", ".adoc", ".asciidoc");
-  public static List<String> IMAGE_FILE_EXTENSIONS = Arrays.asList(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
-      ".tiff");
   public GenericDiffReporter(String diffProgram)
   {
     this(diffProgram, STANDARD_ARGUMENTS, "Couldn't find: " + diffProgram);
