@@ -28,6 +28,7 @@
 * show [nulls in verifyAsJson](how_to/ShowNullsInJson.md#top)
 * [test a variety of values](reference/CombinationApprovals.md)
 * [capture .received. files from CI](how_to/CaptureFilesFromCI.md)
+* [configure project directory for CI and build tools](how_to/ConfigureProjectDirectory.md)
 * Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
 * [Use Inline Approvals](how_to/InlineApprovals.md)
 * Use [@TestFactory](how_to/UseTestFactory.md)
