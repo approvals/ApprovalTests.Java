@@ -51,7 +51,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 ```java
 @UseReporter(DiffMergeReporter.class)
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/GenericDiffReporterTest.java#L22-L24' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/GenericDiffReporterTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 #### Multiple Reporters
 
