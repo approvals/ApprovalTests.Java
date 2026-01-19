@@ -58,6 +58,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 * [Place to modify output](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/creating_output.md)
 * [What are Approvals](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/what_are_approvals.md)
 * [Overview of Approval Scripts](https://github.com/approvals/ApprovalTests.CommonScripts/blob/main/docs/explanations/overview.md)
+* [Benefits of Different Reporters](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/benefits_of_different_reporters.md)
 
 
 ## Main concepts for ApprovalTests  
