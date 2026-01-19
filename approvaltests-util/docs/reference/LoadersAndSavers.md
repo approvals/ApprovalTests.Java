@@ -10,7 +10,8 @@
   * [Savers](#savers)
   * [Common Usage Patterns](#common-usage-patterns)
   * [Testing](#testing)
-  * [ExecutableCommand](#executablecommand)<!-- endToc -->
+  * [ExecutableCommand](#executablecommand)
+  * [Links](#links)<!-- endToc -->
 ## What it is
 
 Loaders and Savers is a very simple abstraction to help separate business logic from a database / services layer.

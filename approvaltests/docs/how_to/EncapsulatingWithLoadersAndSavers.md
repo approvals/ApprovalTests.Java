@@ -10,7 +10,8 @@
     * [Starting Example](#starting-example)
     * [The solution](#the-solution)
     * [Why this is better](#why-this-is-better)
-  * [Example Test](#example-test)<!-- endToc -->
+  * [Example Test](#example-test)
+  * [Links](#links)<!-- endToc -->
 
 
 ## The problem
