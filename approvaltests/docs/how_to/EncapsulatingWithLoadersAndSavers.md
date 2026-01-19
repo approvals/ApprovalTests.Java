@@ -114,3 +114,7 @@ public void testOnlyAvailableItemsAreReserved()
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/demos/LoaderTest.java#L54-L67' title='Snippet source file'>snippet source</a> | <a href='#snippet-seperating_loaders_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
+
+
+## Links
+* [Loaders & Savers](../../../approvaltests-util/docs/reference/LoadersAndSavers.md)
