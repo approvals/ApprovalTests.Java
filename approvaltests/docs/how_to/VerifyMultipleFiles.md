@@ -25,7 +25,7 @@ public void testAllFilesInDirectory()
   Approvals.verifyEachFileInDirectory(directory);
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/DirectoryOutputTest.java#L13-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_multiple_files' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/DirectoryOutputTest.java#L13-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_multiple_files' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can also filter which files to verify using a `FileFilter` or `FilenameFilter`:
