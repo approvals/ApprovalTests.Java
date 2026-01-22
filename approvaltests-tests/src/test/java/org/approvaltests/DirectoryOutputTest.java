@@ -20,6 +20,16 @@ public class DirectoryOutputTest
     // end-snippet
   }
 
+  @Test
+  public void testAllFilesInDirectoryWithFilter()
+  {
+    File directory = FileUtils.createTempDirectory();
+    createFilesFor(directory, 3);
+    // begin-snippet: verify_multiple_files_with_filter
+    Approvals.verifyEachFileInDirectory(directory, f -> f.getName().endsWith(".txt"));
+    // end-snippet
+  }
+
   private void createFilesFor(File directory, int numberOfFiles)
   {
     for (int i = 1; i < numberOfFiles + 1; i++)
