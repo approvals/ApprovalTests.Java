@@ -24,6 +24,6 @@ Approvals.verifyEachFileInDirectory(directory);
 
 You can also filter which files to verify using a `FileFilter` or `FilenameFilter`:
 
-<!-- snippet: verify_multiple_files_with_filter -->
+snippet: verify_multiple_files_with_filter
 
 **Note:** If any files do not match their approved versions, the test will report all mismatched files together rather than failing on the first mismatch.
