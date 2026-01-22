@@ -24,6 +24,12 @@ Approvals.verifyEachFileInDirectory(directory);
 
 You can also filter which files to verify using a `FileFilter` or `FilenameFilter`:
 
-snippet: verify_multiple_files_with_filter
+<!-- snippet: verify_multiple_files_with_filter -->
+<a id='snippet-verify_multiple_files_with_filter'></a>
+```java
+Approvals.verifyEachFileInDirectory(directory, f -> !f.getName().endsWith("ignore.txt"));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/DirectoryOutputTest.java#L29-L31' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_multiple_files_with_filter' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 **Note:** If any files do not match their approved versions, the test will report all mismatched files together rather than failing on the first mismatch.

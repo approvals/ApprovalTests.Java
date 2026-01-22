@@ -31,7 +31,8 @@ public class DirectoryOutputTest
     // end-snippet
   }
 
-  private static void createIgnoredFile(File directory) {
+  private static void createIgnoredFile(File directory)
+  {
     File file = new File(directory, "ignore.txt");
     FileUtils.writeFile(file, "ignore.txt");
   }
