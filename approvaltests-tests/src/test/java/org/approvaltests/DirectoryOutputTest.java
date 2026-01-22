@@ -25,9 +25,15 @@ public class DirectoryOutputTest
   {
     File directory = FileUtils.createTempDirectory();
     createFilesFor(directory, 3);
+    createIgnoredFile(directory);
     // begin-snippet: verify_multiple_files_with_filter
-    Approvals.verifyEachFileInDirectory(directory, f -> f.getName().endsWith(".txt"));
+    Approvals.verifyEachFileInDirectory(directory, f -> !f.getName().endsWith("ignore.txt"));
     // end-snippet
+  }
+
+  private static void createIgnoredFile(File directory) {
+    File file = new File(directory, "ignore.txt");
+    FileUtils.writeFile(file, "ignore.txt");
   }
 
   private void createFilesFor(File directory, int numberOfFiles)
