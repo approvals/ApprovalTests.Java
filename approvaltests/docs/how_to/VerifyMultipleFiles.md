@@ -17,15 +17,9 @@ This is particularly useful for integration tests where a process generates mult
 <!-- snippet: verify_multiple_files -->
 <a id='snippet-verify_multiple_files'></a>
 ```java
-@Test
-public void testAllFilesInDirectory()
-{
-  File directory = FileUtils.createTempDirectory();
-  createFilesFor(directory, 3);
-  Approvals.verifyEachFileInDirectory(directory);
-}
+Approvals.verifyEachFileInDirectory(directory);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/DirectoryOutputTest.java#L13-L21' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_multiple_files' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/DirectoryOutputTest.java#L18-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-verify_multiple_files' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 You can also filter which files to verify using a `FileFilter` or `FilenameFilter`:
