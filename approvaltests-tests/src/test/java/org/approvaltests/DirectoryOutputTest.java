@@ -10,6 +10,7 @@ import java.io.File;
 @UseReporter(DiffReporter.class)
 public class DirectoryOutputTest
 {
+  // begin-snippet: verify_multiple_files
   @Test
   public void testAllFilesInDirectory()
   {
@@ -17,6 +18,7 @@ public class DirectoryOutputTest
     createFilesFor(directory, 3);
     Approvals.verifyEachFileInDirectory(directory);
   }
+  // end-snippet
 
   private void createFilesFor(File directory, int numberOfFiles)
   {
