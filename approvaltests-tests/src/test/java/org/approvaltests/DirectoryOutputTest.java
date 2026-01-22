@@ -10,15 +10,15 @@ import java.io.File;
 @UseReporter(DiffReporter.class)
 public class DirectoryOutputTest
 {
-  // begin-snippet: verify_multiple_files
   @Test
   public void testAllFilesInDirectory()
   {
     File directory = FileUtils.createTempDirectory();
     createFilesFor(directory, 3);
+    // begin-snippet: verify_multiple_files
     Approvals.verifyEachFileInDirectory(directory);
+    // end-snippet
   }
-  // end-snippet
 
   private void createFilesFor(File directory, int numberOfFiles)
   {
