@@ -93,8 +93,8 @@ public class DateScrubber extends RegExScrubber
       { return scrubber; }
     }
     throw new FormattedException(
-        "No match found for %s.\n Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 \n Current supported formats are: %s",
-        formattedExample, Query.select(getSupportedFormats(), SupportedFormat::getRegex));
+        "No match found for %s.\nFeel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 \nCurrent supported formats are: \n\t%s",
+        formattedExample, Query.select(getSupportedFormats(), SupportedFormat::getRegex).join("\n\t"));
   }
 
   public static DateScrubber getNull()
