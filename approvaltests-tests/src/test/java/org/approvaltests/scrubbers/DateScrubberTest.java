@@ -252,4 +252,11 @@ public class DateScrubberTest
     String result = "created at " + sdf.format(new Date());
     Approvals.verify(result, new Options().inline(expected).withScrubber(scrubber));
   }
+
+  @Test
+  @UseReporter(AutoApproveReporter.class)
+  void testDateFormatNotFoundMessage()
+  {
+      Approvals.verifyException(() -> DateScrubber.getScrubberFor("this format does not exist"));
+  }
 }

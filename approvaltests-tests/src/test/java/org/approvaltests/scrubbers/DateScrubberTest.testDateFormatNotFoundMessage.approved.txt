@@ -1,0 +1,23 @@
+com.spun.util.FormattedException: No match found for this format does not exist.
+Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 
+Current supported formats are: 
+	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2}
+	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} [a-zA-Z]{3,4} \d{4}
+	(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} GMT
+	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{4} \d{2}:\d{2}:\d{2}.\d{3}
+	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} -\d{4} \d{4}
+	\d{2} [a-zA-Z]{3} \d{4} \d{2}:\d{2}:\d{2},\d{3}
+	[A-Za-z]{3} \d{2} \d{2}:\d{2}
+	[a-zA-Z]{3} \d{2}, \d{4} \d{2}:\d{2}:\d{2} [a-zA-Z]{2} [a-zA-Z]{3}
+	\d{2}:\d{2}:\d{2}
+	\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}(\.\d{3})?
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}Z
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}Z
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}\:\d{2}\.\d{3}Z
+	\d{8}T\d{6}Z
+	\d{4}-\d{2}-\d{2}
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}(\.\d{1,9})?Z
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}(\.\d{1,9})?[+-]\d{2}:\d{2}
+	\d{4}-\d{1,2}-\d{1,2}T\d{1,2}:\d{2}:\d{2}(\.\d{1,9})?
+	\d{2}[-/.]\d{2}[-/.]\d{4}\s\d{2}:\d{2}(:\d{2})?( (?:pm|am|PM|AM))?
+	\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+
