@@ -1,5 +1,7 @@
-com.spun.util.FormattedException: No match found for this format does not exist.
-Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112 
+com.spun.util.FormattedException: No match found for "this format does not exist".
+
+Feel free to add your date at https://github.com/approvals/ApprovalTests.Java/issues/112.
+
 Current supported formats are: 
 	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2}
 	[a-zA-Z]{3} [a-zA-Z]{3} \d{2} \d{2}:\d{2}:\d{2} [a-zA-Z]{3,4} \d{4}
