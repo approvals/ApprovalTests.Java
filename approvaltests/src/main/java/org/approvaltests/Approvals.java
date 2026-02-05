@@ -29,6 +29,7 @@ import org.lambda.query.Query;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
+import java.nio.file.Path;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -190,14 +191,24 @@ public class Approvals
     verify(response, options.forFile().withExtension(".html"));
   }
 
-  public static void verify(File generateFile)
+  public static void verify(Path path)
   {
-    verify(generateFile, new Options());
+    verify(path, new Options());
   }
 
-  public static void verify(File generateFile, Options options)
+  public static void verify(Path path, Options options)
   {
-    verify(options.createWriter(generateFile), options);
+    verify(path.toFile(), options);
+  }
+
+  public static void verify(File file)
+  {
+    verify(file, new Options());
+  }
+
+  public static void verify(File file, Options options)
+  {
+    verify(options.createWriter(file), options);
   }
 
   /**

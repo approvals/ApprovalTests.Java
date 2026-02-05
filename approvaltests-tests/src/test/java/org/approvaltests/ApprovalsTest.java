@@ -1,5 +1,6 @@
 package org.approvaltests;
 
+import com.spun.util.io.FileUtils;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.*;
 import org.approvaltests.reporters.windows.BeyondCompareReporter;
@@ -8,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.StringReader;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -54,5 +58,12 @@ public class ApprovalsTest
   {
     Approvals.verify("one");
     assertThrows(ApprovalsDuplicateVerifyException.class, () -> Approvals.verify("two"));
+  }
+
+  @Test
+  void verifyPath()
+  {
+    File file = FileUtils.saveToFile("pre_", ".txt", new StringReader("hello from Path"));
+    Approvals.verify(file.toPath());
   }
 }

@@ -2,8 +2,6 @@ package com.spun.util.io;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.reporters.ClipboardReporter;
-import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -19,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FileUtilsTest
 {
   @Test
-  public void testDirectoryName() throws Exception
+  public void testDirectoryName()
   {
     String name = "Set Enterprises Inc.";
     assertEquals("Set Enterprises Inc", FileUtils.getDirectoryFriendlyName(name));
@@ -28,25 +26,25 @@ public class FileUtilsTest
   }
 
   @Test
-  public void testExtensionWithDot() throws Exception
+  public void testExtensionWithDot()
   {
     assertEquals(".txt", FileUtils.getExtensionWithDot("c:\\some.thing\\there\\a.txt"));
   }
 
   @Test
-  public void testExtensionWithoutDot() throws Exception
+  public void testExtensionWithoutDot()
   {
     assertEquals("txt", FileUtils.getExtensionWithoutDot("c:\\some.thing\\there\\a.txt"));
   }
 
   @Test
-  public void testIsNonEmptyFile() throws Exception
+  public void testIsNonEmptyFile()
   {
     assertTrue(FileUtils.isNonEmptyFile(adjacentFile("FileTestUtils.java")));
   }
 
   @Test
-  public void testIsDefaultText() throws Exception
+  public void testIsDefaultText()
   {
     String text = FileUtils.readFile(new File(adjacentFile("missing_file.txt")), "default text");
     assertEquals("default text", text);
@@ -74,12 +72,11 @@ public class FileUtilsTest
     assertEquals(first.length(), (Object) second.length(), "File sizes ");
   }
 
-  @UseReporter(ClipboardReporter.class)
   @Test
   public void testSaveToFile()
   {
     Reader input = new StringReader("hello Approvals");
-    File file = FileUtils.saveToFile("pre_", input);
+    File file = FileUtils.saveToFile("pre_", ".txt", input);
     Approvals.verify(file);
   }
 

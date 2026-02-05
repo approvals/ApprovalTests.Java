@@ -299,9 +299,14 @@ public class FileUtils
 
   public static File saveToFile(String prefix, Reader input)
   {
+    return saveToFile(prefix, null, input);
+  }
+
+  public static File saveToFile(String prefix, String extensionWithDot, Reader input)
+  {
     try
     {
-      File file = File.createTempFile(prefix, null);
+      File file = File.createTempFile(prefix, extensionWithDot);
       try (BufferedWriter bw = Files.newBufferedWriter(file.toPath(), StandardCharsets.UTF_8))
       {
         try (BufferedReader inputReader = new BufferedReader(input))

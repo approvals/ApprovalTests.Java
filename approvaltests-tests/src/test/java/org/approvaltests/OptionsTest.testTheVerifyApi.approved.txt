@@ -14,6 +14,8 @@ public static void org.approvaltests.Approvals.verify(java.lang.Object,java.lang
 public static void org.approvaltests.Approvals.verify(java.lang.Object,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(java.lang.String)
 public static void org.approvaltests.Approvals.verify(java.lang.String,org.approvaltests.core.Options)
+public static void org.approvaltests.Approvals.verify(java.nio.file.Path)
+public static void org.approvaltests.Approvals.verify(java.nio.file.Path,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(java.sql.ResultSet)
 public static void org.approvaltests.Approvals.verify(java.sql.ResultSet,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verify(java.util.Map)
