@@ -254,7 +254,6 @@ public class DateScrubberTest
   }
 
   @Test
-  @UseReporter(AutoApproveReporter.class)
   void testDateFormatNotFoundMessage()
   {
     Approvals.verifyException(() -> DateScrubber.getScrubberFor("this format does not exist"));
