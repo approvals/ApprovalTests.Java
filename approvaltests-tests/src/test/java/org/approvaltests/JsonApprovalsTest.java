@@ -3,6 +3,7 @@ package org.approvaltests;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class JsonApprovalsTest
@@ -37,6 +38,26 @@ public class JsonApprovalsTest
       this.localDate = localDate;
     }
     private LocalDateTime localDate;
+  }
+
+  @Test
+  void nullInstantTest()
+  {
+      InstantWrapper instantWrapper = new InstantWrapper();
+      JsonApprovals.verifyAsJson(instantWrapper, g -> g.serializeNulls());
+  }
+  private class InstantWrapper
+  {
+    public Instant getInstant()
+    {
+      return instant;
+    }
+
+    public void setInstant(Instant instant)
+    {
+      this.instant = instant;
+    }
+    private Instant instant;
   }
   @Test
   void verifyJsonReorderWithoutArray()
