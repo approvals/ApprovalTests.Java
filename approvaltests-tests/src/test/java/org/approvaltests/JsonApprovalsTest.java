@@ -39,12 +39,11 @@ public class JsonApprovalsTest
     }
     private LocalDateTime localDate;
   }
-
   @Test
   void nullInstantTest()
   {
-      InstantWrapper instantWrapper = new InstantWrapper();
-      JsonApprovals.verifyAsJson(instantWrapper, g -> g.serializeNulls());
+    InstantWrapper instantWrapper = new InstantWrapper();
+    JsonApprovals.verifyAsJson(instantWrapper, g -> g.serializeNulls());
   }
   private class InstantWrapper
   {
