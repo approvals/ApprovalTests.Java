@@ -147,7 +147,14 @@ public class JsonUtils
     @Override
     public void write(JsonWriter jsonWriter, Instant instant) throws IOException
     {
-      jsonWriter.value(instant.toString());
+      if (instant == null)
+      {
+        jsonWriter.nullValue();
+      }
+      else
+      {
+        jsonWriter.value("" + instant);
+      }
     }
 
     @Override
