@@ -1,0 +1,36 @@
+Buy Groceries
+=============
+Bob puts two items in the shopping cart
+
+User: Bob
+
+ShoppingCart:
+Articles:
+
+Subtotal:0
+Shipping:1
+Total:1
+
+Add oranges to the cart
+-----------------------
+User: Bob
+
+ShoppingCart:
+Articles:
+    Oranges price: 5 quantity: 1
+Subtotal:5
+Shipping:1
+Total:6
+
+Add apples to the cart
+----------------------
+User: Bob
+
+ShoppingCart:
+Articles:
+    Oranges price: 5 quantity: 1
+    Apples price: 4 quantity: 3
+Subtotal:17
+Shipping:1
+Total:18
+
