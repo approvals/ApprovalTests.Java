@@ -22,17 +22,20 @@ Currently the search goes in this order:
 <!-- snippet: mac_diff_reporters -->
 <a id='snippet-mac_diff_reporters'></a>
 ```java
-BeyondCompareMacReporter.INSTANCE,
-DiffMergeMacOsReporter.INSTANCE,
-KaleidoscopeDiffReporter.INSTANCE,
-P4MergeReporter.INSTANCE,
-AraxisMergeReporter.INSTANCE,
-KDiff3MacReporter.INSTANCE,
-TkDiffReporter.INSTANCE,
-IntelliJReporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
+ReportWithDiffMergeMac.INSTANCE,
+ReportWithFileMergeMac.INSTANCE,
+ReportWithBeyondCompareMac.INSTANCE,
+ReportWithKaleidoscopeMac.INSTANCE,
+ReportWithKaleidoscope3Mac.INSTANCE,
+ReportWithKdiff3Mac.INSTANCE,
+ReportWithP4mergeMac.INSTANCE,
+ReportWithTkDiffMac.INSTANCE,
+ReportWithVisualStudioCodeMac.INSTANCE,
+ReportWithAraxisMergeMac.INSTANCE,
+ReportWithDiffCommandLineMac.INSTANCE,
+ReportWithSublimeMergeMac.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/MacDiffReporter.java#L13-L23' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/ReportWithDiffToolOnMac.java#L14-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -41,16 +44,21 @@ VisualStudioCodeReporter.INSTANCE
 <!-- snippet: windows_diff_reporters -->
 <a id='snippet-windows_diff_reporters'></a>
 ```java
-TortoiseDiffReporter.INSTANCE,
-BeyondCompareReporter.INSTANCE,
-WinMergeReporter.INSTANCE,
-AraxisMergeReporter.INSTANCE,
-CodeCompareReporter.INSTANCE,
-KDiff3WindowsReporter.INSTANCE,
-IntelliJReporter.INSTANCE,
-VisualStudioCodeReporter.INSTANCE
+ReportWithBeyondCompare3Windows.INSTANCE,
+ReportWithBeyondCompare4Windows.INSTANCE,
+ReportWithBeyondCompare5Windows.INSTANCE,
+ReportWithTortoiseImageDiffWindows.INSTANCE,
+ReportWithTortoiseTextDiffWindows.INSTANCE,
+ReportWithTortoiseGitImageDiffWindows.INSTANCE,
+ReportWithTortoiseGitTextDiffWindows.INSTANCE,
+ReportWithWinMergeReporterWindows.INSTANCE,
+ReportWithAraxisMergeWindows.INSTANCE,
+ReportWithCodeCompareWindows.INSTANCE,
+ReportWithKdiff3Windows.INSTANCE,
+ReportWithVisualStudioCodeWindows.INSTANCE,
+ReportWithSublimeMergeWindows.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/WindowsDiffReporter.java#L13-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/windows/ReportWithDiffToolOnWindows.java#L14-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-windows_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Linux
@@ -58,12 +66,13 @@ VisualStudioCodeReporter.INSTANCE
 <!-- snippet: linux_diff_reporters -->
 <a id='snippet-linux_diff_reporters'></a>
 ```java
-DiffMergeLinuxReporter.INSTANCE,
-MeldMergeReporter.INSTANCE,
-IntelliJReporter.INSTANCE,
-KDiff3LinuxReporter.INSTANCE
+ReportWithDiffMergeLinux.INSTANCE,
+ReportWithMeldMergeLinux.INSTANCE,
+ReportWithKdiff3Linux.INSTANCE,
+ReportWithDiffCommandLineLinux.INSTANCE,
+ReportWithSublimeMergeLinux.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/LinuxDiffReporter.java#L13-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/ReportWithDiffToolOnLinux.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Combining Reporters

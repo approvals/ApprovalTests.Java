@@ -35,7 +35,7 @@ All the [verify](./reference/Verify.md) functions have an overload that takes an
 <!-- snippet: configure_reporter_with_options -->
 <a id='snippet-configure_reporter_with_options'></a>
 ```java
-Options options = new Options().withReporter(BeyondCompareReporter.INSTANCE);
+Options options = new Options().withReporter(ReportWithBeyondCompare.INSTANCE);
 Approvals.verify(objectUnderTest, options);
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/ApprovalsTest.java#L25-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-configure_reporter_with_options' title='Start of snippet'>anchor</a></sup>
@@ -49,7 +49,7 @@ At both the class and method level you can use the @UseReporter attribute to set
 <!-- snippet: use_reporter_single -->
 <a id='snippet-use_reporter_single'></a>
 ```java
-@UseReporter(DiffMergeReporter.class)
+@UseReporter(ReportWithDiffMerge.class)
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/GenericDiffReporterTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_single' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
@@ -75,8 +75,8 @@ You can also assign a default for an entire package (and all sub-packages) by cr
 ```java
 public class PackageSettings
 {
-  public static TkDiffReporter   UseReporter         = TkDiffReporter.INSTANCE;
-  public static CountingReporter FrontloadedReporter = new CountingReporter();
+  public static ReportWithTkDiffMac UseReporter         = ReportWithTkDiffMac.INSTANCE;
+  public static CountingReporter    FrontloadedReporter = new CountingReporter();
 }
 ```
 <sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/packagesettings/PackageSettings.java#L5-L11' title='Snippet source file'>snippet source</a> | <a href='#snippet-use_reporter_package_settings' title='Start of snippet'>anchor</a></sup>
