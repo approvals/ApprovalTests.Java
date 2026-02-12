@@ -11,6 +11,7 @@ public class ReportWithDiffToolOnWindows extends FirstWorkingReporter
   {
     super(
     // @formatter:off
+        // begin-snippet: windows_diff_reporters
         ReportWithBeyondCompare3Windows.INSTANCE,
         ReportWithBeyondCompare4Windows.INSTANCE,
         ReportWithBeyondCompare5Windows.INSTANCE,
@@ -24,6 +25,7 @@ public class ReportWithDiffToolOnWindows extends FirstWorkingReporter
         ReportWithKdiff3Windows.INSTANCE,
         ReportWithVisualStudioCodeWindows.INSTANCE,
         ReportWithSublimeMergeWindows.INSTANCE
+        // end-snippet
     // @formatter:on
     );
   }

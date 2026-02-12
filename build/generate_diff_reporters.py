@@ -198,6 +198,7 @@ def generate_os_aggregator(os_name, os_rows):
     guard = os_guard_condition(os_name)
 
     refs = [f'{class_name_for_row(r)}.INSTANCE' for r in os_rows]
+    snippet_name = f'{os_name.lower()}_diff_reporters'
 
     lines = [GENERATED_HEADER]
     lines.append(f'package org.approvaltests.reporters.{os_pkg};')
@@ -212,9 +213,11 @@ def generate_os_aggregator(os_name, os_rows):
     lines.append('  {')
     lines.append('    super(')
     lines.append('    // @formatter:off')
+    lines.append(f'        // begin-snippet: {snippet_name}')
     for i, ref in enumerate(refs):
         comma = ',' if i < len(refs) - 1 else ''
         lines.append(f'        {ref}{comma}')
+    lines.append('        // end-snippet')
     lines.append('    // @formatter:on')
     lines.append('    );')
     lines.append('  }')

@@ -11,6 +11,7 @@ public class ReportWithDiffToolOnMac extends FirstWorkingReporter
   {
     super(
     // @formatter:off
+        // begin-snippet: mac_diff_reporters
         ReportWithDiffMergeMac.INSTANCE,
         ReportWithFileMergeMac.INSTANCE,
         ReportWithBeyondCompareMac.INSTANCE,
@@ -23,6 +24,7 @@ public class ReportWithDiffToolOnMac extends FirstWorkingReporter
         ReportWithAraxisMergeMac.INSTANCE,
         ReportWithDiffCommandLineMac.INSTANCE,
         ReportWithSublimeMergeMac.INSTANCE
+        // end-snippet
     // @formatter:on
     );
   }

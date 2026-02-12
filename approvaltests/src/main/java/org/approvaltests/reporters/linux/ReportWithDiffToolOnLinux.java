@@ -11,11 +11,13 @@ public class ReportWithDiffToolOnLinux extends FirstWorkingReporter
   {
     super(
     // @formatter:off
+        // begin-snippet: linux_diff_reporters
         ReportWithDiffMergeLinux.INSTANCE,
         ReportWithMeldMergeLinux.INSTANCE,
         ReportWithKdiff3Linux.INSTANCE,
         ReportWithDiffCommandLineLinux.INSTANCE,
         ReportWithSublimeMergeLinux.INSTANCE
+        // end-snippet
     // @formatter:on
     );
   }
