@@ -4,6 +4,7 @@ maven = "latest"
 [tasks]
 build_and_test = "mvn --quiet -B verify --file pom.xml"
 format = "mvn --quiet formatter:format"
+generate_diff_reporters = "python build/generate_diff_reporters.py"
 
 [settings]
 # we put the java version in the .java-version file instead of here so that it's easy to override in the CI matrix
