@@ -4,9 +4,6 @@ import com.spun.util.DateUtils;
 import com.spun.util.persistence.test.MockLoader;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.DiffMergeReporter;
-import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.macosx.DiffMergeMacOsReporter;
 import org.approvaltests.scrubbers.NormalizeSpacesScrubber;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
@@ -18,7 +15,6 @@ import java.util.List;
 class LoaderTest
 {
   @Test
-  @UseReporter(DiffMergeReporter.class)
   // begin-snippet: testing_rendered_data
   void testWithMockedData()
   {

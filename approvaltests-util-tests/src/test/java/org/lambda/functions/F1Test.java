@@ -2,8 +2,6 @@ package org.lambda.functions;
 
 import org.approvaltests.Approvals;
 import org.lambda.utils.Range;
-import org.approvaltests.reporters.UseReporter;
-import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.query.Query;
 
@@ -12,7 +10,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@UseReporter(TortoiseTextDiffReporter.class)
 public class F1Test
 {
   @Test
