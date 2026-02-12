@@ -10,10 +10,6 @@ public class ReportWithKdiff3 extends FirstWorkingReporter
   public static final ReportWithKdiff3 INSTANCE = new ReportWithKdiff3();
   public ReportWithKdiff3()
   {
-    super(
-        ReportWithKdiff3Mac.INSTANCE,
-        ReportWithKdiff3Windows.INSTANCE,
-        ReportWithKdiff3Linux.INSTANCE
-    );
+    super(ReportWithKdiff3Mac.INSTANCE, ReportWithKdiff3Windows.INSTANCE, ReportWithKdiff3Linux.INSTANCE);
   }
 }

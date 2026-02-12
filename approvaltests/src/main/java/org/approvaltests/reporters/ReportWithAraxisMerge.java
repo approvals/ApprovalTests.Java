@@ -9,9 +9,6 @@ public class ReportWithAraxisMerge extends FirstWorkingReporter
   public static final ReportWithAraxisMerge INSTANCE = new ReportWithAraxisMerge();
   public ReportWithAraxisMerge()
   {
-    super(
-        ReportWithAraxisMergeMac.INSTANCE,
-        ReportWithAraxisMergeWindows.INSTANCE
-    );
+    super(ReportWithAraxisMergeMac.INSTANCE, ReportWithAraxisMergeWindows.INSTANCE);
   }
 }

@@ -9,9 +9,6 @@ public class ReportWithTortoise extends FirstWorkingReporter
   public static final ReportWithTortoise INSTANCE = new ReportWithTortoise();
   public ReportWithTortoise()
   {
-    super(
-        ReportWithTortoiseImageDiffWindows.INSTANCE,
-        ReportWithTortoiseTextDiffWindows.INSTANCE
-    );
+    super(ReportWithTortoiseImageDiffWindows.INSTANCE, ReportWithTortoiseTextDiffWindows.INSTANCE);
   }
 }

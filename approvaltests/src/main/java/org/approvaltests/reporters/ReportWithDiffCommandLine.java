@@ -9,9 +9,6 @@ public class ReportWithDiffCommandLine extends FirstWorkingReporter
   public static final ReportWithDiffCommandLine INSTANCE = new ReportWithDiffCommandLine();
   public ReportWithDiffCommandLine()
   {
-    super(
-        ReportWithDiffCommandLineLinux.INSTANCE,
-        ReportWithDiffCommandLineMac.INSTANCE
-    );
+    super(ReportWithDiffCommandLineLinux.INSTANCE, ReportWithDiffCommandLineMac.INSTANCE);
   }
 }

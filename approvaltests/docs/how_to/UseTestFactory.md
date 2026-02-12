@@ -35,7 +35,7 @@ Collection<DynamicTest> testFactory3()
 Here is an example of how to do this in Kotlin:
 
 <!-- snippet: kotlin_dynamic_test -->
-<a id='snippet-kotlin_dynamic_test'></a>
+<a id='snippet-https://raw.githubusercontent.com/approvals/Approvaltests.Kotlin.StarterProject/refs/heads/main/src/test/kotlin/com/sample/SampleTest.kt%23kotlin_dynamic_test'></a>
 ```kt
 @TestFactory
 fun `test factory`(): List<DynamicTest> {
@@ -46,7 +46,7 @@ fun `test factory`(): List<DynamicTest> {
     }
 }
 ```
-<sup><a href='#snippet-kotlin_dynamic_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='https://raw.githubusercontent.com/approvals/Approvaltests.Kotlin.StarterProject/refs/heads/main/src/test/kotlin/com/sample/SampleTest.kt#kotlin_dynamic_test' title='Snippet source file'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---

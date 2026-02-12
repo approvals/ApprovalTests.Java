@@ -9,9 +9,6 @@ public class ReportWithKaleidoscope extends FirstWorkingReporter
   public static final ReportWithKaleidoscope INSTANCE = new ReportWithKaleidoscope();
   public ReportWithKaleidoscope()
   {
-    super(
-        ReportWithKaleidoscopeMac.INSTANCE,
-        ReportWithKaleidoscope3Mac.INSTANCE
-    );
+    super(ReportWithKaleidoscopeMac.INSTANCE, ReportWithKaleidoscope3Mac.INSTANCE);
   }
 }

@@ -9,9 +9,6 @@ public class ReportWithVisualStudioCode extends FirstWorkingReporter
   public static final ReportWithVisualStudioCode INSTANCE = new ReportWithVisualStudioCode();
   public ReportWithVisualStudioCode()
   {
-    super(
-        ReportWithVisualStudioCodeMac.INSTANCE,
-        ReportWithVisualStudioCodeWindows.INSTANCE
-    );
+    super(ReportWithVisualStudioCodeMac.INSTANCE, ReportWithVisualStudioCodeWindows.INSTANCE);
   }
 }

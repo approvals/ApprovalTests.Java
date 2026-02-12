@@ -10,10 +10,7 @@ public class ReportWithSublimeMerge extends FirstWorkingReporter
   public static final ReportWithSublimeMerge INSTANCE = new ReportWithSublimeMerge();
   public ReportWithSublimeMerge()
   {
-    super(
-        ReportWithSublimeMergeMac.INSTANCE,
-        ReportWithSublimeMergeWindows.INSTANCE,
-        ReportWithSublimeMergeLinux.INSTANCE
-    );
+    super(ReportWithSublimeMergeMac.INSTANCE, ReportWithSublimeMergeWindows.INSTANCE,
+        ReportWithSublimeMergeLinux.INSTANCE);
   }
 }

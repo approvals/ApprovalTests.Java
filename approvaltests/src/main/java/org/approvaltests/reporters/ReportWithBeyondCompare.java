@@ -11,11 +11,7 @@ public class ReportWithBeyondCompare extends FirstWorkingReporter
   public static final ReportWithBeyondCompare INSTANCE = new ReportWithBeyondCompare();
   public ReportWithBeyondCompare()
   {
-    super(
-        ReportWithBeyondCompareMac.INSTANCE,
-        ReportWithBeyondCompare3Windows.INSTANCE,
-        ReportWithBeyondCompare4Windows.INSTANCE,
-        ReportWithBeyondCompare5Windows.INSTANCE
-    );
+    super(ReportWithBeyondCompareMac.INSTANCE, ReportWithBeyondCompare3Windows.INSTANCE,
+        ReportWithBeyondCompare4Windows.INSTANCE, ReportWithBeyondCompare5Windows.INSTANCE);
   }
 }

@@ -9,9 +9,6 @@ public class ReportWithDiffMerge extends FirstWorkingReporter
   public static final ReportWithDiffMerge INSTANCE = new ReportWithDiffMerge();
   public ReportWithDiffMerge()
   {
-    super(
-        ReportWithDiffMergeMac.INSTANCE,
-        ReportWithDiffMergeLinux.INSTANCE
-    );
+    super(ReportWithDiffMergeMac.INSTANCE, ReportWithDiffMergeLinux.INSTANCE);
   }
 }

@@ -27,6 +27,7 @@ public class ReportWithDiffToolOnWindows extends FirstWorkingReporter
     // @formatter:on
     );
   }
+
   @Override
   public boolean report(String received, String approved)
   {

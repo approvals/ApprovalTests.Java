@@ -9,9 +9,6 @@ public class ReportWithTortoiseGit extends FirstWorkingReporter
   public static final ReportWithTortoiseGit INSTANCE = new ReportWithTortoiseGit();
   public ReportWithTortoiseGit()
   {
-    super(
-        ReportWithTortoiseGitImageDiffWindows.INSTANCE,
-        ReportWithTortoiseGitTextDiffWindows.INSTANCE
-    );
+    super(ReportWithTortoiseGitImageDiffWindows.INSTANCE, ReportWithTortoiseGitTextDiffWindows.INSTANCE);
   }
 }

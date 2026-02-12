@@ -26,6 +26,7 @@ public class ReportWithDiffToolOnMac extends FirstWorkingReporter
     // @formatter:on
     );
   }
+
   @Override
   public boolean report(String received, String approved)
   {
