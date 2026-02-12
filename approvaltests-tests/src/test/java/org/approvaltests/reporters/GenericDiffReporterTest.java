@@ -6,10 +6,10 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.Options;
-import org.approvaltests.reporters.macosx.BeyondCompareMacReporter;
-import org.approvaltests.reporters.macosx.P4MergeReporter;
-import org.approvaltests.reporters.macosx.TkDiffReporter;
-import org.approvaltests.reporters.macosx.VisualStudioCodeReporter;
+import org.approvaltests.reporters.macosx.ReportWithBeyondCompareMac;
+import org.approvaltests.reporters.macosx.ReportWithP4mergeMac;
+import org.approvaltests.reporters.macosx.ReportWithTkDiffMac;
+import org.approvaltests.reporters.macosx.ReportWithVisualStudioCodeMac;
 import org.junit.jupiter.api.Test;
 import com.spun.util.logger.SimpleLogger;
 
@@ -21,13 +21,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GenericDiffReporterTest
 {
   // begin-snippet: use_reporter_single
-  @UseReporter(DiffMergeReporter.class)
+  @UseReporter(ReportWithDiffMerge.class)
   // end-snippet
   @Test
   public void testArgumentParsing()
   {
     Approvals.verifyAll("CommandLine",
-        VisualStudioCodeReporter.INSTANCE.getCommandLine("received.txt", "approved.txt"));
+        ReportWithVisualStudioCodeMac.INSTANCE.getCommandLine("received.txt", "approved.txt"));
   }
 
   @Test
@@ -48,7 +48,7 @@ public class GenericDiffReporterTest
     var expected = """
         /Applications/TkDiff.app/Contents/MacOS/tkdiff %s %s
         """;
-    approveGenericReporter("a1.txt", "b1.txt", new TkDiffReporter(), expected);
+    approveGenericReporter("a1.txt", "b1.txt", new ReportWithTkDiffMac(), expected);
   }
 
   @Test
@@ -57,7 +57,7 @@ public class GenericDiffReporterTest
     var expected = """
         /Applications/p4merge.app/Contents/MacOS/p4merge %s %s
         """;
-    approveGenericReporter("a1.png", "b1.png", new P4MergeReporter(), expected);
+    approveGenericReporter("a1.png", "b1.png", new ReportWithP4mergeMac(), expected);
   }
 
   @Test
@@ -117,7 +117,7 @@ public class GenericDiffReporterTest
   @Test
   void testChangingTextFileExtension()
   {
-    BeyondCompareMacReporter beyondCompareMacReporter = new BeyondCompareMacReporter();
+    ReportWithBeyondCompareMac beyondCompareMacReporter = new ReportWithBeyondCompareMac();
     GenericDiffReporter.TEXT_FILE_EXTENSIONS.add(".we_are_adding_this_extension");
     assertTrue(beyondCompareMacReporter.isFileExtensionHandled("a.we_are_adding_this_extension"));
     GenericDiffReporter.TEXT_FILE_EXTENSIONS.remove(".we_are_adding_this_extension");

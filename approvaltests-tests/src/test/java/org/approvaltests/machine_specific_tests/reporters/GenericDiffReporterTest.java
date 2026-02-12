@@ -6,9 +6,8 @@ import org.approvaltests.Approvals;
 import org.approvaltests.machine_specific_tests.MachineSpecificTest;
 import org.approvaltests.reporters.GenericDiffReporter;
 import org.approvaltests.reporters.QueryableDiffReporterHarness;
-import org.approvaltests.reporters.macosx.MacDiffReporter;
-import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
-import org.approvaltests.reporters.windows.WinMergeReporter;
+import org.approvaltests.reporters.windows.ReportWithTortoiseTextDiffWindows;
+import org.approvaltests.reporters.windows.ReportWithWinMergeReporterWindows;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +19,14 @@ public class GenericDiffReporterTest extends MachineSpecificTest
   @Test
   public void testTortoiseDiff()
   {
-    approveGenericReporter("a12.txt", "b12.txt", new TortoiseTextDiffReporter());
+    approveGenericReporter("a12.txt", "b12.txt", new ReportWithTortoiseTextDiffWindows());
   }
 
   @Disabled("requires windows and WinMerge installed")
   @Test
   public void testWinMerge()
   {
-    approveGenericReporter("a3.txt", "b13.txt", new WinMergeReporter());
+    approveGenericReporter("a3.txt", "b13.txt", new ReportWithWinMergeReporterWindows());
   }
 
   private void approveGenericReporter(String a, String b, GenericDiffReporter reporter)

@@ -1,16 +1,14 @@
 package org.approvaltests.reporters;
 
-import org.approvaltests.reporters.macosx.KaleidoscopeDiffReporter;
-import org.approvaltests.reporters.windows.BeyondCompareReporter;
-import org.approvaltests.reporters.windows.TortoiseGitImageDiffReporter;
-import org.approvaltests.reporters.windows.TortoiseImageDiffReporter;
+import org.approvaltests.reporters.windows.ReportWithTortoiseGitImageDiffWindows;
+import org.approvaltests.reporters.windows.ReportWithTortoiseImageDiffWindows;
 
 public class ImageReporter extends FirstWorkingReporter
 {
   public ImageReporter()
   {
-    super(TortoiseImageDiffReporter.INSTANCE, TortoiseGitImageDiffReporter.INSTANCE,
-        BeyondCompareReporter.INSTANCE, KaleidoscopeDiffReporter.INSTANCE, ImageWebReporter.INSTANCE,
+    super(ReportWithTortoiseImageDiffWindows.INSTANCE, ReportWithTortoiseGitImageDiffWindows.INSTANCE,
+        ReportWithBeyondCompare.INSTANCE, ReportWithKaleidoscope.INSTANCE, ImageWebReporter.INSTANCE,
         QuietReporter.INSTANCE);
   }
 }

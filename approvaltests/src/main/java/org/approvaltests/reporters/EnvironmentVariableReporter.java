@@ -4,15 +4,14 @@ import com.spun.util.ClassUtils;
 import com.spun.util.MapBuilder;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.reporters.intellij.IntelliJReporter;
-import org.approvaltests.reporters.linux.MeldMergeReporter;
-import org.approvaltests.reporters.macosx.KaleidoscopeDiffReporter;
-import org.approvaltests.reporters.macosx.P4MergeReporter;
-import org.approvaltests.reporters.macosx.TkDiffReporter;
-import org.approvaltests.reporters.windows.AraxisMergeReporter;
-import org.approvaltests.reporters.windows.CodeCompareReporter;
-import org.approvaltests.reporters.windows.TortoiseDiffReporter;
-import org.approvaltests.reporters.windows.WinMergeReporter;
-import org.approvaltests.reporters.windows.WindowsDiffReporter;
+import org.approvaltests.reporters.linux.ReportWithDiffToolOnLinux;
+import org.approvaltests.reporters.linux.ReportWithMeldMergeLinux;
+import org.approvaltests.reporters.macosx.ReportWithDiffToolOnMac;
+import org.approvaltests.reporters.macosx.ReportWithP4mergeMac;
+import org.approvaltests.reporters.macosx.ReportWithTkDiffMac;
+import org.approvaltests.reporters.windows.ReportWithCodeCompareWindows;
+import org.approvaltests.reporters.windows.ReportWithDiffToolOnWindows;
+import org.approvaltests.reporters.windows.ReportWithWinMergeReporterWindows;
 import org.lambda.functions.Function1;
 import org.lambda.query.Queryable;
 
@@ -24,33 +23,33 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
 {
   // @formatter:off
   private static final Map<String, Class<? extends ApprovalFailureReporter>> REPORTER_MAP =
-          new MapBuilder("AraxisMergeReporter", AraxisMergeReporter.class)
+          new MapBuilder("AraxisMergeReporter", ReportWithAraxisMerge.class)
           .and("AutoApproveReporter", AutoApproveReporter.class)
           .and("AutoApproveWhenEmptyReporter", AutoApproveWhenEmptyReporter.class)
-          .and("BeyondCompareReporter", BeyondCompareReporter.class)
+          .and("BeyondCompareReporter", ReportWithBeyondCompare.class)
           .and("ClipboardReporter", ClipboardReporter.class)
-          .and("CodeCompareReporter", CodeCompareReporter.class)
+          .and("CodeCompareReporter", ReportWithCodeCompareWindows.class)
           .and("DelayedClipboardReporter", DelayedClipboardReporter.class)
-          .and("DiffMergeReporter", DiffMergeReporter.class)
+          .and("DiffMergeReporter", ReportWithDiffMerge.class)
           .and("DiffReporter", DiffReporter.class)
           .and("FileCaptureReporter", FileCaptureReporter.class)
           .and("ImageReporter", ImageReporter.class)
           .and("ImageWebReporter", ImageWebReporter.class)
           .and("IntelliJReporter", IntelliJReporter.class)
           .and("JunitReporter", JunitReporter.class)
-          .and("KDiff3Reporter", KDiff3Reporter.class)
-          .and("KaleidoscopeDiffReporter", KaleidoscopeDiffReporter.class)
-          .and("MeldMergeReporter", MeldMergeReporter.class)
-          .and("P4MergeReporter", P4MergeReporter.class)
+          .and("KDiff3Reporter", ReportWithKdiff3.class)
+          .and("KaleidoscopeDiffReporter", ReportWithKaleidoscope.class)
+          .and("MeldMergeReporter", ReportWithMeldMergeLinux.class)
+          .and("P4MergeReporter", ReportWithP4mergeMac.class)
           .and("PitReporter", PitReporter.class)
           .and("QuietReporter", QuietReporter.class)
           .and("TestNgReporter", TestNgReporter.class)
           .and("TextWebReporter", TextWebReporter.class)
-          .and("TkDiffReporter", TkDiffReporter.class)
-          .and("TortoiseDiffReporter", TortoiseDiffReporter.class)
-          .and("VisualStudioCodeReporter", VisualStudioCodeReporter.class)
-          .and("WinMergeReporter", WinMergeReporter.class)
-          .and("WindowsDiffReporter", WindowsDiffReporter.class);
+          .and("TkDiffReporter", ReportWithTkDiffMac.class)
+          .and("TortoiseDiffReporter", ReportWithTortoise.class)
+          .and("VisualStudioCodeReporter", ReportWithVisualStudioCode.class)
+          .and("WinMergeReporter", ReportWithWinMergeReporterWindows.class)
+          .and("WindowsDiffReporter", ReportWithDiffToolOnWindows.class);
     // @formatter:on
   public static final String                                                 ENVIRONMENT_VARIABLE_NAME = "APPROVAL_TESTS_USE_REPORTER";
   public static Function1<String, String>                                    ENVIRONMENT_VARIABLES     = System::getenv;

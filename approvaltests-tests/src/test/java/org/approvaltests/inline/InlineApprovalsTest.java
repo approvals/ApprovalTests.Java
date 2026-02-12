@@ -3,7 +3,7 @@ package org.approvaltests.inline;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.AutoApproveReporter;
-import org.approvaltests.reporters.DiffMergeReporter;
+import org.approvaltests.reporters.ReportWithDiffMerge;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.ReportNothing;
 import org.approvaltests.reporters.UseReporter;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class InlineApprovalsTest
 {
   @Test
-  @UseReporter(DiffMergeReporter.class)
+  @UseReporter(ReportWithDiffMerge.class)
   public void testWithBuiltinReporter()
   {
     var expected = """
@@ -33,14 +33,14 @@ public class InlineApprovalsTest
     Approvals.verify("Hello There***", inline);
   }
 
-  @UseReporter(DiffMergeReporter.class)
+  @UseReporter(ReportWithDiffMerge.class)
   @Test
   public void testWithSpecificReporter()
   {
     var expected = """
         Hello Lada***
         """;
-    Options inline = new Options().inline(expected).withReporter(DiffMergeReporter.INSTANCE);
+    Options inline = new Options().inline(expected).withReporter(ReportWithDiffMerge.INSTANCE);
     Approvals.verify("Hello Lada***", inline);
   }
 

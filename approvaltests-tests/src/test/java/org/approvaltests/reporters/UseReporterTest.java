@@ -5,22 +5,22 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.core.ApprovalFailureReporter;
-import org.approvaltests.reporters.windows.TortoiseTextDiffReporter;
+import org.approvaltests.reporters.windows.ReportWithTortoiseTextDiffWindows;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UseReporterTest
 {
-  @UseReporter(TortoiseTextDiffReporter.class)
+  @UseReporter(ReportWithTortoiseTextDiffWindows.class)
   @Test
   public void testUseReporter()
   {
-    assertEquals(TortoiseTextDiffReporter.class,
+    assertEquals(ReportWithTortoiseTextDiffWindows.class,
         ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
   }
 
-  @UseReporter({TortoiseTextDiffReporter.class, ClipboardReporter.class})
+  @UseReporter({ReportWithTortoiseTextDiffWindows.class, ClipboardReporter.class})
   @Test
   public void testMultipleUseReporter()
   {

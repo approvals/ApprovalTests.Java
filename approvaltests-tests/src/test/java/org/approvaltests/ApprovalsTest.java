@@ -3,7 +3,7 @@ package org.approvaltests;
 import com.spun.util.io.FileUtils;
 import org.approvaltests.core.Options;
 import org.approvaltests.reporters.*;
-import org.approvaltests.reporters.windows.BeyondCompareReporter;
+import org.approvaltests.reporters.ReportWithBeyondCompare;
 import org.junit.jupiter.api.Test;
 
 import javax.swing.JButton;
@@ -23,7 +23,7 @@ public class ApprovalsTest
   {
     Rectangle objectUnderTest = new Rectangle(5, 10, 100, 200);
     // begin-snippet: configure_reporter_with_options
-    Options options = new Options().withReporter(BeyondCompareReporter.INSTANCE);
+    Options options = new Options().withReporter(ReportWithBeyondCompare.INSTANCE);
     Approvals.verify(objectUnderTest, options);
     // end-snippet
   }
