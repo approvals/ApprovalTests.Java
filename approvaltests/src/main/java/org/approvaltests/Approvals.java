@@ -399,24 +399,6 @@ public class Approvals
   }
 
   /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyJson(String json)
-  {
-    JsonApprovals.verifyJson(json);
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyJson(String json, Options options)
-  {
-    JsonApprovals.verifyJson(json, options);
-  }
-
-  /**
    * @deprecated View method source for example.
    */
   @Deprecated

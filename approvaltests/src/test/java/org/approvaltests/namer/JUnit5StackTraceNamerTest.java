@@ -5,6 +5,7 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.tests.TestUtils;
 import com.spun.util.tests.TestUtils.SourceDirectoryRestorer;
 import org.approvaltests.Approvals;
+import org.approvaltests.JsonApprovals;
 import org.approvaltests.integrations.junit5.JupiterApprovals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -145,7 +146,7 @@ public class JUnit5StackTraceNamerTest
       switch (number)
       {
         case 1 :
-          Approvals.verifyAsJson("This should work: " + number, o);
+          JsonApprovals.verifyJson("This should work: " + number, o);
           break;
         case 2 :
           RuntimeException result = assertThrows(RuntimeException.class,
