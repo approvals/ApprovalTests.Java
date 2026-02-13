@@ -12,7 +12,7 @@ public class JsonApprovalsTest
   void nullDateTest()
   {
     LocalDateWrapper localDateWrapper = new LocalDateWrapper();
-    JsonApprovals.verifyAsJson(localDateWrapper, g -> g.serializeNulls());
+    JsonApprovals.verifyAsJson(localDateWrapper, (GsonBuilder g) -> g.serializeNulls());
   }
 
   @Test
@@ -43,7 +43,7 @@ public class JsonApprovalsTest
   void nullInstantTest()
   {
     InstantWrapper instantWrapper = new InstantWrapper();
-    JsonApprovals.verifyAsJson(instantWrapper, g -> g.serializeNulls());
+    JsonApprovals.verifyAsJson(instantWrapper, (GsonBuilder g) -> g.serializeNulls());
   }
   private class InstantWrapper
   {
