@@ -6,7 +6,7 @@
 - Tests run with `en_US` locale (surefire config). Java target is 1.8.
 
 ## Architecture
-Multi-module Maven project: **approvaltests** (core library), **approvaltests-util** (shared utilities), **approvaltests-tests** and **approvaltests-util-tests** (tests). Core API: `org.approvaltests.Approvals` with `verify()`, `verifyAll()`, `verifyAsJson()`. Pattern: Writers (generate output) → Namers (file naming) → Reporters (show diffs on failure).
+See **ARCHITECTURE.md** for the full codemap (module structure, key types, and the verify flow). In short: Writers generate output → Namers determine file paths → Approvers compare received vs. approved → Reporters show diffs on failure. Entry point: `Approvals.verify()`.
 
 ## Key Rules
 - **NEVER** approve a test (update `.approved.*` files) automatically — always prompt the user. Commit `.approved.*` files; never commit `.received.*` files.
