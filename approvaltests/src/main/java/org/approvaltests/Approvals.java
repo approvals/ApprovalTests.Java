@@ -2,7 +2,6 @@ package org.approvaltests;
 
 import com.spun.util.ArrayUtils;
 import com.spun.util.FormattedException;
-import com.spun.util.JsonUtils;
 import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.io.XMLUtils;
@@ -211,15 +210,6 @@ public class Approvals
     verify(options.createWriter(file), options);
   }
 
-  /**
-   * @deprecated Use {@link #verify(ApprovalWriter, ApprovalNamer, Options)} instead.
-   */
-  @Deprecated
-  public static void verify(ApprovalWriter writer, ApprovalNamer namer, ApprovalFailureReporter reporter)
-  {
-    verify(new FileApprover(writer, namer), new Options(reporter));
-  }
-
   public static void verify(ApprovalWriter writer, ApprovalNamer namer)
   {
     verify(writer, namer, new Options());
@@ -264,15 +254,6 @@ public class Approvals
   public static void verify(ApprovalApprover approver)
   {
     verify(approver, new Options());
-  }
-
-  /**
-   * @deprecated Use {@link #verify(ApprovalApprover, Options)} instead.
-   */
-  @Deprecated
-  public static void verify(ApprovalApprover approver, ApprovalFailureReporter reporter)
-  {
-    verify(approver, new Options(reporter));
   }
 
   public static void verify(ApprovalApprover approver, Options options)
@@ -398,83 +379,9 @@ public class Approvals
     return Query.select(mismatched, a -> a.getName()).toString();
   }
 
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyJson(String json)
-  {
-    JsonApprovals.verifyJson(json);
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyJson(String json, Options options)
-  {
-    JsonApprovals.verifyJson(json, options);
-  }
-
-  /**
-   * @deprecated View method source for example.
-   */
-  @Deprecated
-  public static void verify(Object actual, String fileExtensionWithoutDot)
-  {
-    verify(actual, fileExtensionWithoutDot, new Options());
-  }
-
-  /**
-   * @deprecated View method source for example.
-   */
-  @Deprecated
-  public static void verify(Object actual, String fileExtensionWithoutDot, Options options)
-  {
-    verify("" + actual, options.forFile().withExtension(fileExtensionWithoutDot));
-  }
-
   public static ApprovalFailureReporter getReporter()
   {
     return ReporterFactory.get();
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyAsJson(Object o)
-  {
-    JsonApprovals.verifyAsJson(o);
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass)
-  {
-    verifyAsJson(o, gsonBuilder, gsonBuilderClass, new Options());
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Class<T> gsonBuilderClass,
-      Options options)
-  {
-    verify(JsonUtils.asJsonWithBuilder(o, gsonBuilder, gsonBuilderClass),
-        options.forFile().withExtension(".json"));
-  }
-
-  /**
-   * @deprecated Use JsonApprovals
-   */
-  @Deprecated
-  public static void verifyAsJson(Object o, Options options)
-  {
-    JsonApprovals.verifyAsJson(o, options);
   }
 
   public static void verifyException(Action0 runnableBlock)
