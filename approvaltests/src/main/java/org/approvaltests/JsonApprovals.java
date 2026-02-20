@@ -1,6 +1,5 @@
 package org.approvaltests;
 
-import com.google.gson.GsonBuilder;
 import com.spun.util.JsonUtils;
 import org.approvaltests.core.Options;
 import org.lambda.functions.Function1;
@@ -25,17 +24,17 @@ public class JsonApprovals
     verifyJson(json, reorderJson, new Options());
   }
 
-  public static void verifyJson(String json, boolean reorderJson, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  public static <T> void verifyJson(String json, boolean reorderJson, Function1<T, T> gsonBuilder)
   {
     verifyJson(json, reorderJson, gsonBuilder, new Options());
   }
 
-  public static void verifyJson(String json, boolean reorderJson, Function1<GsonBuilder, GsonBuilder> gsonBuilder,
-      Options options)
+  @SuppressWarnings("unchecked")
+  public static <T> void verifyJson(String json, boolean reorderJson, Function1<T, T> gsonBuilder, Options options)
   {
     String formattedJson = reorderJson
-        ? JsonUtils.reorderFields(json, gsonBuilder)
-        : JsonUtils.prettyPrint(json, gsonBuilder);
+        ? JsonUtils.reorderFields(json, (Function1) gsonBuilder)
+        : JsonUtils.prettyPrint(json, (Function1) gsonBuilder);
     Approvals.verify(formattedJson, options.forFile().withExtension(".json"));
   }
 
@@ -49,14 +48,15 @@ public class JsonApprovals
     verifyAsJson(o, new Options());
   }
 
-  public static void verifyAsJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder)
+  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder)
   {
     verifyAsJson(o, gsonBuilder, new Options());
   }
 
-  public static void verifyAsJson(Object o, Function1<GsonBuilder, GsonBuilder> gsonBuilder, Options options)
+  @SuppressWarnings("unchecked")
+  public static <T> void verifyAsJson(Object o, Function1<T, T> gsonBuilder, Options options)
   {
-    Approvals.verify(JsonUtils.asJson(o, gsonBuilder), options.forFile().withExtension(".json"));
+    Approvals.verify(JsonUtils.asJson(o, (Function1) gsonBuilder), options.forFile().withExtension(".json"));
   }
 
   // begin-snippet: verify_as_json

@@ -78,6 +78,6 @@ public class JsonFormattingTest
   {
     Approvals.settings().allowMultipleVerifyCallsForThisMethod();
     String json1 = "{\"infos\":{\"address\":null,\"phone\":\"my phone\"},\"insurance\":{\"forks\":[14,53,123],\"prices\":[5,8,\"3%\"]}}";
-    JsonApprovals.verifyJson(json1, true, g -> g.serializeNulls());
+    JsonApprovals.verifyJson(json1, true, (GsonBuilder g) -> g.serializeNulls());
   }
 }
