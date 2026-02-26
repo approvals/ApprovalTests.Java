@@ -91,7 +91,7 @@ public class OptionsTest
   {
     return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
         VelocityApprovals.class, JsonJacksonApprovals.class, JsonJackson3Approvals.class,
-        JsonXstreamApprovals.class, XmlXomApprovals.class);
+        JsonXstreamApprovals.class, XmlXomApprovals.class, SqlApprovals.class);
     // TODO: missing verification that JsonApprovals, JsonJacksonApprovals and JsonXStreamApprovals offer the same verify methods
   }
 

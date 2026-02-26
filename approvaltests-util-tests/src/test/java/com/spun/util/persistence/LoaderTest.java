@@ -3,6 +3,7 @@ package com.spun.util.persistence;
 import com.spun.util.DateUtils;
 import com.spun.util.persistence.test.MockLoader;
 import org.approvaltests.Approvals;
+import org.approvaltests.SqlApprovals;
 import org.approvaltests.core.Options;
 import org.approvaltests.scrubbers.NormalizeSpacesScrubber;
 import org.approvaltests.utils.WithTimeZone;
@@ -43,7 +44,7 @@ class LoaderTest
     try (WithTimeZone withTimeZone = new WithTimeZone())
     {
       Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
-      Approvals.verify(new LoadShiftsFromDatabase(day));
+      SqlApprovals.verify(new LoadShiftsFromDatabase(day));
     }
   }
   // end-snippet

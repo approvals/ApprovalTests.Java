@@ -7,7 +7,6 @@ import com.spun.util.StringUtils;
 import com.spun.util.io.XMLUtils;
 import com.spun.util.persistence.ExecutableCommand;
 import com.spun.util.persistence.Loader;
-import com.spun.util.persistence.SqlLoader;
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -29,7 +28,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.nio.file.Path;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -293,26 +291,6 @@ public class Approvals
   public static void verify(Map<?, ?> map, Options options)
   {
     verify(StringUtils.toString(map), options);
-  }
-
-  public static void verify(ResultSet rs)
-  {
-    verify(rs, new Options());
-  }
-
-  public static void verify(ResultSet rs, Options options)
-  {
-    verify(options.createWriter(rs), options);
-  }
-
-  public static <T> void verify(SqlLoader<T> loader)
-  {
-    verify(loader, new Options());
-  }
-
-  public static <T> void verify(SqlLoader<T> loader, Options options)
-  {
-    verify(new SqlLoader.ExecutableWrapper<T>(loader), options);
   }
 
   public static ApprovalNamer createApprovalNamer()

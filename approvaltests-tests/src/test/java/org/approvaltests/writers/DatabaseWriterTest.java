@@ -3,7 +3,7 @@ package org.approvaltests.writers;
 import com.spun.util.ObjectUtils;
 import com.spun.util.io.CommaDelimitedFileParser;
 import com.spun.util.io.FileUtils;
-import org.approvaltests.Approvals;
+import org.approvaltests.SqlApprovals;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
 
@@ -17,14 +17,14 @@ public class DatabaseWriterTest
   public void testSimpleQuery()
   {
     ResultSet rs = mockResultSetFromFile("query.csv");
-    Approvals.verify(rs);
+    SqlApprovals.verify(rs);
   }
 
   @Test
   public void testSimpleQuery2()
   {
     ResultSet rs = queryDatabase();
-    Approvals.verify(rs);
+    SqlApprovals.verify(rs);
   }
 
   public ResultSet queryDatabase()
