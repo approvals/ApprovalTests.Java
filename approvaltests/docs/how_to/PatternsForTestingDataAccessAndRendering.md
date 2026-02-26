@@ -94,7 +94,7 @@ void testWithMockedData()
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L18-L32' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L19-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_rendered_data' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Summary
@@ -123,11 +123,11 @@ void testWithDatabaseAccess()
   try (WithTimeZone withTimeZone = new WithTimeZone())
   {
     Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
-    Approvals.verify(new LoadShiftsFromDatabase(day));
+    SqlApprovals.verify(new LoadShiftsFromDatabase(day));
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L39-L49' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoaderTest.java#L40-L50' title='Snippet source file'>snippet source</a> | <a href='#snippet-testing_executable_command' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Testing Executable Commands
