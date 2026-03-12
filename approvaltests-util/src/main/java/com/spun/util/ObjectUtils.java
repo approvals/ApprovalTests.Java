@@ -159,18 +159,6 @@ public class ObjectUtils
     return found;
   }
 
-  public static Object executeMethod(Object object, String method, Class<?>[] methodSignature, Object[] parameters)
-  {
-    try
-    {
-      return object.getClass().getMethod(method, methodSignature).invoke(object, parameters);
-    }
-    catch (Throwable t)
-    {
-      throw throwAsError(t);
-    }
-  }
-
   public static void assertInstance(Class<?> clazz, Object object)
   {
     assertInstance(new Class[]{clazz}, object);
@@ -203,30 +191,6 @@ public class ObjectUtils
     {
       assertInstance(type, value);
     }
-  }
-
-  public static void move(Object from, Object to, String[] getters)
-  {
-    try
-    {
-      for (String method : getters)
-      {
-        Method getMethod = from.getClass().getMethod("get" + method, (Class[]) null);
-        Object value = getMethod.invoke(from, (Object[]) null);
-        Method m = MethodExecutionPath.Parameters.getBestFitMethod(to.getClass(), "set" + method,
-            new Class[]{getBestClass(value, getMethod)});
-        m.invoke(to, value);
-      }
-    }
-    catch (Exception e)
-    {
-      throw throwAsError(e);
-    }
-  }
-
-  private static Class<?> getBestClass(Object value, Method method)
-  {
-    return value == null ? method.getReturnType() : value.getClass();
   }
 
   public static boolean isClassPresent(String className)

@@ -103,6 +103,13 @@ public class ObjectUtilsTest
     // end-snippet
   }
 
+  @Test
+  void isIn()
+  {
+    Integer[] array = {1, 2, 3};
+    assertTrue(ObjectUtils.isIn(1, array));
+  }
+
   private int methodThatMightThrowCheckedExceptionWithReturnValue() throws Exception
   {
     return 1;

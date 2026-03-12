@@ -1,7 +1,6 @@
 # Code
 * easier API for custom file name & location?! (issue 2, 51)
-* Think about removing MethodExecutionPath (not now)
-* make the list Query returns  to extendable to reverse polish notation
+* make the list Query returns to extendable to reverse polish notation
 
 # Documentation
 * Docs for Options

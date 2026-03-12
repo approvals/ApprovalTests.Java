@@ -2,7 +2,6 @@ package org.approvaltests.combinations;
 
 import org.approvaltests.combinations.pairwise.PairwiseHelper;
 import org.approvaltests.core.Options;
-import org.approvaltests.legacycode.LegacyApprovals;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
@@ -16,17 +15,6 @@ import org.lambda.functions.Function9;
 public class CombinationApprovals
 {
   static Object[] EMPTY = CombinationsHelper.EMPTY;
-  public static void verifyAllCombinations(Object call, String method, Object[]... parametersVariations)
-  {
-    LegacyApprovals.LockDown(call, method, parametersVariations);
-  }
-
-  public static void verifyAllCombinations(Options options, Object call, String method,
-      Object[]... parametersVariations)
-  {
-    LegacyApprovals.LockDown(options, call, method, parametersVariations);
-  }
-
   /**
    * Use SkipCombination exception for invalid combinations
    */
