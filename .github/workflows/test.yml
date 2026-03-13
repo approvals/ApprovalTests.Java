@@ -32,7 +32,7 @@ jobs:
     - name: Set Java version for matrix testing
       run: echo "zulu-${{ matrix.java }}" > .java-version
       shell: bash
-    - uses: jdx/mise-action@v3
+    - uses: jdx/mise-action@v4
     - run: ./set_formatting_off.sh
       shell: bash
     - name: Build and Test
