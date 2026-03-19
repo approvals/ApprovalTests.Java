@@ -49,5 +49,4 @@ public class ApprovedFileLogTest
   {
     assertFalse(LoggingUtils.downloadScriptIfMissing("test_script", true));
   }
-
 }
