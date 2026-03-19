@@ -11,6 +11,14 @@ public class LoggingUtils
 {
   public static void downloadScriptIfMissing(String scriptName)
   {
+    boolean disabled = "1".equals(System.getenv("APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS"));
+    downloadScriptIfMissing(scriptName, disabled);
+  }
+
+  public static boolean downloadScriptIfMissing(String scriptName, boolean disabled)
+  {
+    if (disabled)
+    { return false; }
     try
     {
       String extension = ".py";
@@ -22,11 +30,13 @@ public class LoggingUtils
         FileUtils.writeFile(script, NetUtils.loadWebPage(github + file, null, Duration.ofSeconds(3)));
         script.setExecutable(true);
       }
+      return true;
     }
     catch (Throwable e)
     {
       // do nothing
     }
+    return false;
   }
 
   public static File getTempDirectory()

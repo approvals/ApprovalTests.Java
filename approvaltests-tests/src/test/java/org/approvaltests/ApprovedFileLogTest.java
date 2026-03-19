@@ -43,4 +43,11 @@ public class ApprovedFileLogTest
     String currentDirectory = File.separator + "." + File.separator;
     assertFalse(absolutePath.contains(currentDirectory), absolutePath);
   }
+
+  @Test
+  void testDownloadScriptWithDisabledFlag()
+  {
+    assertFalse(LoggingUtils.downloadScriptIfMissing("test_script", true));
+  }
+
 }
