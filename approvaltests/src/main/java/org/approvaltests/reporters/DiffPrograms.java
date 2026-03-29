@@ -32,9 +32,11 @@ public class DiffPrograms
         "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code", "-d %s %s", TEXT);
     public static DiffInfo ARAXIS_MERGE       = new DiffInfo(
         "/Applications/Araxis Merge.app/Contents/Utilities/compare", TEXT_AND_IMAGE);
-    public static DiffInfo DIFF_COMMAND_LINE  = new DiffInfo("/usr/bin/diff", "-u %s %s", TEXT);
     public static DiffInfo SUBLIME_MERGE      = new DiffInfo(
         "/Applications/Sublime Merge.app/Contents/SharedSupport/bin/smerge", "mergetool %s %s", TEXT);
+    public static DiffInfo CURSOR             = new DiffInfo(
+        "/Applications/Cursor.app/Contents/Resources/app/bin/code", "-d %s %s", TEXT);
+    public static DiffInfo DIFF_COMMAND_LINE  = new DiffInfo("/usr/bin/diff", "-u %s %s", TEXT);
   }
   public static class Windows
   {
@@ -69,7 +71,7 @@ public class DiffPrograms
     public static DiffInfo DIFF_MERGE        = new DiffInfo("/usr/bin/diffmerge", "--nosplash %s %s", TEXT);
     public static DiffInfo MELD_MERGE        = new DiffInfo("/usr/bin/meld", "%s %s", TEXT);
     public static DiffInfo KDIFF3            = new DiffInfo("/usr/bin/kdiff3", "%s %s -m", TEXT);
-    public static DiffInfo DIFF_COMMAND_LINE = new DiffInfo("/usr/bin/diff", "-u %s %s", TEXT);
     public static DiffInfo SUBLIME_MERGE     = new DiffInfo("/usr/bin/smerge", "mergetool %s %s", TEXT);
+    public static DiffInfo DIFF_COMMAND_LINE = new DiffInfo("/usr/bin/diff", "-u %s %s", TEXT);
   }
 }

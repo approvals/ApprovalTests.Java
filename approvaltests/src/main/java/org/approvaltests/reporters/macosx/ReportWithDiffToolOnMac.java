@@ -22,8 +22,9 @@ public class ReportWithDiffToolOnMac extends FirstWorkingReporter
         ReportWithTkDiffMac.INSTANCE,
         ReportWithVisualStudioCodeMac.INSTANCE,
         ReportWithAraxisMergeMac.INSTANCE,
-        ReportWithDiffCommandLineMac.INSTANCE,
-        ReportWithSublimeMergeMac.INSTANCE
+        ReportWithSublimeMergeMac.INSTANCE,
+        ReportWithCursorMac.INSTANCE,
+        ReportWithDiffCommandLineMac.INSTANCE
         // end-snippet
     // @formatter:on
     );

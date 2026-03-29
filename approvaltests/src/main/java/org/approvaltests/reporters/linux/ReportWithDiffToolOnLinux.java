@@ -15,8 +15,8 @@ public class ReportWithDiffToolOnLinux extends FirstWorkingReporter
         ReportWithDiffMergeLinux.INSTANCE,
         ReportWithMeldMergeLinux.INSTANCE,
         ReportWithKdiff3Linux.INSTANCE,
-        ReportWithDiffCommandLineLinux.INSTANCE,
-        ReportWithSublimeMergeLinux.INSTANCE
+        ReportWithSublimeMergeLinux.INSTANCE,
+        ReportWithDiffCommandLineLinux.INSTANCE
         // end-snippet
     // @formatter:on
     );
