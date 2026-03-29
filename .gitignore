@@ -1,3 +1,5 @@
+.ignore/
+
 .secrets
 *.class
 /webPageImages

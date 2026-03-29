@@ -7,10 +7,15 @@ Run via: mise run generate_diff_reporters
 import csv
 from collections import OrderedDict
 from pathlib import Path
+import subprocess
 
 SCRIPT_DIR = Path(__file__).parent
+
+_DIFF_TOOLS_REPO_URL = "https://github.com/approvals/DiffTools"
+
 PROJECT_ROOT = SCRIPT_DIR.parent
-CSV_PATH = PROJECT_ROOT / 'approvaltests' / 'DiffTools' / 'diff_reporters.csv'
+_DIFF_TOOLS_DIR = PROJECT_ROOT / '.ignore/DiffTools'
+CSV_PATH = _DIFF_TOOLS_DIR / 'diff_reporters.csv'
 BASE_OUTPUT = (PROJECT_ROOT / 'approvaltests' / 'src' / 'main' / 'java'
                / 'org' / 'approvaltests' / 'reporters')
 
@@ -232,6 +237,22 @@ def generate_os_aggregator(os_name, os_rows):
     lines.append('')
     write_java(BASE_OUTPUT / os_pkg / f'{cls}.java', '\n'.join(lines))
 
+def clone_and_update_diff_tools() -> None:
+    if not _DIFF_TOOLS_DIR.exists():
+        subprocess.run(
+            ["git", "clone", _DIFF_TOOLS_REPO_URL, _DIFF_TOOLS_DIR.as_posix()],
+            check=True,
+        )
+        return
+
+    if not _DIFF_TOOLS_DIR.joinpath(".git").exists():
+        raise RuntimeError(f"{_DIFF_TOOLS_DIR} exists but is not a git repository")
+
+    subprocess.run(
+        ["git", "-C", _DIFF_TOOLS_DIR.as_posix(), "pull", "--ff-only"],
+        check=True,
+    )
+
 
 # ---------------------------------------------------------------------------
 # Main
@@ -240,6 +261,8 @@ def generate_os_aggregator(os_name, os_rows):
 def main():
     print('Generating diff reporter classes from diff_reporters.csv...')
     print()
+
+    clone_and_update_diff_tools()
 
     with open(CSV_PATH, newline='', encoding='utf-8') as f:
         rows = list(csv.DictReader(f))
