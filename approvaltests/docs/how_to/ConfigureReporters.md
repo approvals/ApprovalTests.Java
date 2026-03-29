@@ -90,7 +90,7 @@ Lastly, it is possible to set the `APPROVAL_TESTS_USE_REPORTER` environment vari
 
 The environment variable can take any combination of the following values. Multiple values should be separated by a comma, without whitespace.
 
-snippets: EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt
+snippet: EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt
 
 For example, setting `APPROVAL_TESTS_USE_REPORTER=AutoApproveReporter` allows you to approve all pending changes at once
 without modifying the source code and rebuilding the code to temporarily choose a different reporter. Similarly, setting
