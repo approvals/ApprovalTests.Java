@@ -32,10 +32,11 @@ ReportWithP4mergeMac.INSTANCE,
 ReportWithTkDiffMac.INSTANCE,
 ReportWithVisualStudioCodeMac.INSTANCE,
 ReportWithAraxisMergeMac.INSTANCE,
-ReportWithDiffCommandLineMac.INSTANCE,
-ReportWithSublimeMergeMac.INSTANCE
+ReportWithSublimeMergeMac.INSTANCE,
+ReportWithCursorMac.INSTANCE,
+ReportWithDiffCommandLineMac.INSTANCE
 ```
-<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/ReportWithDiffToolOnMac.java#L14-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/macosx/ReportWithDiffToolOnMac.java#L14-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-mac_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 
@@ -69,8 +70,8 @@ ReportWithSublimeMergeWindows.INSTANCE
 ReportWithDiffMergeLinux.INSTANCE,
 ReportWithMeldMergeLinux.INSTANCE,
 ReportWithKdiff3Linux.INSTANCE,
-ReportWithDiffCommandLineLinux.INSTANCE,
-ReportWithSublimeMergeLinux.INSTANCE
+ReportWithSublimeMergeLinux.INSTANCE,
+ReportWithDiffCommandLineLinux.INSTANCE
 ```
 <sup><a href='/approvaltests/src/main/java/org/approvaltests/reporters/linux/ReportWithDiffToolOnLinux.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-linux_diff_reporters' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
