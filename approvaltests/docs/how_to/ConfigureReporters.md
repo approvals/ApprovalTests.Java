@@ -90,7 +90,39 @@ Lastly, it is possible to set the `APPROVAL_TESTS_USE_REPORTER` environment vari
 
 The environment variable can take any combination of the following values. Multiple values should be separated by a comma, without whitespace.
 
-snippet: EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt
+<!-- snippet: EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt -->
+<a id='snippet-EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt'></a>
+```txt
+AraxisMergeReporter
+AutoApproveReporter
+AutoApproveWhenEmptyReporter
+BeyondCompareReporter
+ClipboardReporter
+CodeCompareReporter
+DelayedClipboardReporter
+DiffMergeReporter
+DiffReporter
+FileCaptureReporter
+ImageReporter
+ImageWebReporter
+IntelliJReporter
+JunitReporter
+KDiff3Reporter
+KaleidoscopeDiffReporter
+MeldMergeReporter
+P4MergeReporter
+PitReporter
+QuietReporter
+TestNgReporter
+TextWebReporter
+TkDiffReporter
+TortoiseDiffReporter
+VisualStudioCodeReporter
+WinMergeReporter
+WindowsDiffReporter
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt#L1-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 For example, setting `APPROVAL_TESTS_USE_REPORTER=AutoApproveReporter` allows you to approve all pending changes at once
 without modifying the source code and rebuilding the code to temporarily choose a different reporter. Similarly, setting
