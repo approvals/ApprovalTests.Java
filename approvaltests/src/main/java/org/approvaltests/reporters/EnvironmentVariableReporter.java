@@ -52,7 +52,7 @@ public class EnvironmentVariableReporter implements ApprovalFailureReporter
           .and("WindowsDiffReporter", ReportWithDiffToolOnWindows.class);
     // @formatter:on
   public static final String                                                 ENVIRONMENT_VARIABLE_NAME = "APPROVAL_TESTS_USE_REPORTER";
-  public static Function1<String, String>                                    GET_ENVIRONMENT_VARIABLE = System::getenv;
+  public static Function1<String, String>                                    GET_ENVIRONMENT_VARIABLE  = System::getenv;
   public static final EnvironmentVariableReporter                            INSTANCE                  = new EnvironmentVariableReporter();
   private ApprovalFailureReporter                                            reporter                  = null;
   public EnvironmentVariableReporter()
