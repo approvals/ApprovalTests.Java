@@ -18,13 +18,13 @@ public class EnvironmentVariableReporterTest
         """;
     try
     {
-      EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = (s) -> "DiffReporter,QuietReporter";
+      EnvironmentVariableReporter.GET_ENVIRONMENT_VARIABLE = (s) -> "DiffReporter,QuietReporter";
       var reporter = new EnvironmentVariableReporter().getReporter();
       Approvals.verify(reporter, new Options().inline(expected));
     }
     finally
     {
-      EnvironmentVariableReporter.ENVIRONMENT_VARIABLES = System::getenv;
+      EnvironmentVariableReporter.GET_ENVIRONMENT_VARIABLE = System::getenv;
     }
   }
 
