@@ -20,7 +20,7 @@
             <dependency>
                 <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
