@@ -1,6 +1,7 @@
 package org.approvaltests.reporters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.approvaltests.reporters.intellij.IntelliJReporter;
 import org.junit.jupiter.api.Test;
@@ -21,5 +22,13 @@ public class IntelliJReporterTest
     String[] commands = {"/opt/JetBrains/PyCharm 2025.1.1.1/bin/pycharm64.sh"};
     String result = IntelliJReporter.findJetBrainsIdes(commands);
     assertEquals(commands[0], result);
+  }
+
+  @Test
+  public void testNoJetBrainsIdeIsNotAWorkingReporter()
+  {
+    String result = IntelliJReporter.findJetBrainsIdes(new String[0]);
+    assertEquals("", result);
+    assertFalse(new GenericDiffReporter(result).isWorkingInThisEnvironment("a.txt"));
   }
 }

@@ -43,6 +43,12 @@ public class GenericDiffReporterTest
   }
 
   @Test
+  public void testEmptyDiffProgramIsNotWorking()
+  {
+    assertFalse(new GenericDiffReporter("", "").isWorkingInThisEnvironment("a6.txt"));
+  }
+
+  @Test
   public void testTkDiff()
   {
     var expected = """

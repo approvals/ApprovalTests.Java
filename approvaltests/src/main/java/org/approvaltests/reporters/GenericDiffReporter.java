@@ -116,7 +116,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
 
   public boolean checkFileExists()
   {
-    boolean exists = new File(diffProgram).exists();
+    boolean exists = diffProgram != null && !diffProgram.trim().isEmpty() && new File(diffProgram).exists();
     if (REPORT_MISSING_FILES && !exists)
     {
       SimpleLogger.event(String.format("%s can't find '%s'", this.getClass().getSimpleName(), diffProgram));
