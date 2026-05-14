@@ -1,3 +1,5 @@
+TimeZone.getDefault(): sun.util.calendar.ZoneInfo[id="PST",offset=-28800000,dstSavings=3600000,useDaylight=true,transitions=311,lastRule=java.util.SimpleTimeZone[id=PST,offset=-28800000,dstSavings=3600000,useDaylight=true,startYear=0,startMode=3,startMonth=2,startDay=8,startDayOfWeek=1,startTime=7200000,startTimeMode=0,endMode=3,endMonth=10,endDay=1,endDayOfWeek=1,endTime=7200000,endTimeMode=0]]
+
 02/01/2010, 03/01/2010 => 28 Days, 0 Hours
 02/02/2010, 03/02/2010 => 28 Days, 0 Hours
 02/03/2010, 03/03/2010 => 28 Days, 0 Hours
