@@ -4,6 +4,7 @@ import com.spun.util.parser.TemplateDate;
 import com.spun.util.parser.TemplateStringUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.utils.WithTimeZone;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function1;
 
@@ -140,9 +141,10 @@ public class DateDifferenceTest
     }
   }
 
-  @Test
+  @RepeatedTest(100000)
   public void testFebruaryAndDaylightSavingsTime()
   {
+    Approvals.settings().allowMultipleVerifyCallsForThisMethod();
     try (WithTimeZone tz = new WithTimeZone("PST"))
     {
       StringBuilder buffer = new StringBuilder();
