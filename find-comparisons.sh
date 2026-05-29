@@ -32,8 +32,8 @@ if [ ${#TARGETS[@]} -eq 0 ]; then
 fi
 
 if [ "$FIX_MODE" = true ]; then
-    echo "🔧 Fixing comparison operators"
-    echo "=============================="
+    echo "🔧 Refactoring comparison operators"
+    echo "===================================="
     echo ""
 
     FIXED_COUNT=0
@@ -48,27 +48,36 @@ if [ "$FIX_MODE" = true ]; then
         FILES=$(find "$TARGET" -type f -name "*.java" -exec grep -l -E '>|>=' {} \; 2>/dev/null)
 
         for FILE in $FILES; do
-            # Skip if file contains comment markers (rough check)
-            # Replace >= with <= first (to avoid replacing the > in >=)
-            if grep -q ">=" "$FILE"; then
-                sed -i.bak 's/>=/\<=/g' "$FILE"
-                FIXED_COUNT=$((FIXED_COUNT + $(grep -c ">=" "$FILE".bak)))
-                rm -f "$FILE".bak
-                echo "✓ Fixed >= operators in: $FILE"
-            fi
+            # Count occurrences before
+            BEFORE_GTE=$(grep -o ">=" "$FILE" | wc -l)
+            BEFORE_GT=$(grep -o " > " "$FILE" | wc -l)
 
-            # Then replace > with <
-            if grep -q " > " "$FILE"; then
-                sed -i.bak 's/ > / < /g' "$FILE"
-                FIXED_COUNT=$((FIXED_COUNT + $(grep -c " > " "$FILE".bak)))
-                rm -f "$FILE".bak
-                echo "✓ Fixed > operators in: $FILE"
+            # Use perl for more powerful regex that handles:
+            # - Simple identifiers: x >= y
+            # - Method calls: obj.method() >= 5
+            # - Complex expressions with parentheses/dots
+
+            # Replace >= with <= AND swap operands
+            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>=\s*(\w+(?:\.\w+)*(?:\([^)]*\))?)/\2 <= \1/g' "$FILE"
+
+            # Replace > with < AND swap operands
+            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>\s*(\w+(?:\.\w+)*(?:\([^)]*\))?)/\2 < \1/g' "$FILE"
+
+            rm -f "$FILE".bak
+
+            AFTER_GTE=$(grep -o ">=" "$FILE" | wc -l)
+            AFTER_GT=$(grep -o " > " "$FILE" | wc -l)
+
+            FIXED=$((BEFORE_GTE - AFTER_GTE + BEFORE_GT - AFTER_GT))
+            if [ "$FIXED" -gt 0 ]; then
+                FIXED_COUNT=$((FIXED_COUNT + FIXED))
+                echo "✓ Refactored $FIXED operators in: $FILE"
             fi
         done
     done
 
     echo ""
-    echo "Fixed $FIXED_COUNT comparison operators"
+    echo "Refactored $FIXED_COUNT comparison operators"
     echo "⚠️  Review changes with: git diff"
 else
     echo "Scanning for comparison operators"

@@ -4,11 +4,11 @@ public class TestComparison {
         int y = 10;
 
         // These should trigger violations
-        if (x < y) {
+        if (y < x) {
             System.out.println("x is greater than y");
         }
 
-        if (x <= y) {
+        if (y <= x) {
             System.out.println("x is greater than or equal to y");
         }
 
@@ -22,12 +22,12 @@ public class TestComparison {
         }
 
         // Chained comparison
-        if (x < 0 && x < 100) {
+        if (0 < x && x < 100) {
             System.out.println("x is between 0 and 100");
         }
 
         // Greater than in while loop
-        while (x < 0) {
+        while (0 < x) {
             x--;
         }
     }
