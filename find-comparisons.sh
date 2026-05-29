@@ -52,19 +52,24 @@ if [ "$FIX_MODE" = true ]; then
             BEFORE_GTE=$(grep -o ">=" "$FILE" | wc -l)
             BEFORE_GT=$(grep -o " > " "$FILE" | wc -l)
 
-            # Use perl for more powerful regex that handles:
+            # Improved pattern that handles:
             # - Simple identifiers: x >= y
             # - Method calls: obj.method() >= 5
-            # - Complex expressions with parentheses/dots
-            # BUT excludes generics like List<Integer>
+            # - Chained calls: obj.method().property >= value
+            # - Complex expressions: m.getParameterTypes().length >= 1
+            # - BUT excludes generics like List<Integer>
+
+            # Pattern explanation:
+            # (\w+(?:(?:\.\w+)|(?:\([^)]*\)))*) captures complex expressions
+            # \s*>=\s* captures >= with optional whitespace
+            # (\w+) captures right operand (simple identifier or number)
+            # (?!>) negative lookahead to avoid matching inside generics
 
             # Replace >= with <= AND swap operands
-            # Negative lookbehind (?<!<) ensures we don't match inside generics
-            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>=\s*(\w+)(?!>)/\2 <= \1/g unless /<[^>]*>/' "$FILE"
+            perl -i.bak -pe 's/(\w+(?:(?:\.\w+)|(?:\([^)]*\)))*)\s*>=\s*(\w+(?:(?:\.\w+)|(?:\([^)]*\)))*)(?!>)/\2 <= \1/g unless /<[^>]*>/' "$FILE"
 
             # Replace > with < AND swap operands
-            # Negative lookbehind (?<!<) and lookahead (?!>) to avoid generics
-            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>\s*(\w+)(?!>)/\2 < \1/g unless /<[^>]*>/' "$FILE"
+            perl -i.bak -pe 's/(\w+(?:(?:\.\w+)|(?:\([^)]*\)))*)\s*>\s*(\w+(?:(?:\.\w+)|(?:\([^)]*\)))*)(?!>)/\2 < \1/g unless /<[^>]*>/' "$FILE"
 
             rm -f "$FILE".bak
 
