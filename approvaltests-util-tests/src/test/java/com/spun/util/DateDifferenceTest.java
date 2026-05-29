@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -145,6 +146,7 @@ public class DateDifferenceTest
     try (WithTimeZone tz = new WithTimeZone("PST"))
     {
       StringBuilder buffer = new StringBuilder();
+      buffer.append("TimeZone.getDefault(): " + TimeZone.getDefault() + "\n\n");
       DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
       for (int i = 1; i <= 28; i++)
       {
