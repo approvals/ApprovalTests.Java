@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Flip Comparison Operators"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>Detects greater than operators and suggests flipping them</description>
+
+    <rule name="FlipGreaterThan"
+          language="java"
+          message="Found '&gt;' operator. Consider flipping to '&lt;'"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>Detects greater-than operators in comparisons</description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+//InfixExpression[contains(self::node()/@Image, '>') and not(contains(self::node()/@Image, '>='))]
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule name="FlipGreaterThanOrEqual"
+          language="java"
+          message="Found '&gt;=' operator. Consider flipping to '&lt;='"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>Detects greater-than-or-equal operators in comparisons</description>
+        <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+//InfixExpression[contains(self::node()/@Image, '>=')]
+                </value>
+            </property>
+        </properties>
+    </rule>
+</ruleset>
