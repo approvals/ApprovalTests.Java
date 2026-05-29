@@ -56,12 +56,15 @@ if [ "$FIX_MODE" = true ]; then
             # - Simple identifiers: x >= y
             # - Method calls: obj.method() >= 5
             # - Complex expressions with parentheses/dots
+            # BUT excludes generics like List<Integer>
 
             # Replace >= with <= AND swap operands
-            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>=\s*(\w+(?:\.\w+)*(?:\([^)]*\))?)/\2 <= \1/g' "$FILE"
+            # Negative lookbehind (?<!<) ensures we don't match inside generics
+            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>=\s*(\w+)(?!>)/\2 <= \1/g unless /<[^>]*>/' "$FILE"
 
             # Replace > with < AND swap operands
-            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>\s*(\w+(?:\.\w+)*(?:\([^)]*\))?)/\2 < \1/g' "$FILE"
+            # Negative lookbehind (?<!<) and lookahead (?!>) to avoid generics
+            perl -i.bak -pe 's/(\w+(?:\.\w+)*(?:\([^)]*\))?)\s*>\s*(\w+)(?!>)/\2 < \1/g unless /<[^>]*>/' "$FILE"
 
             rm -f "$FILE".bak
 

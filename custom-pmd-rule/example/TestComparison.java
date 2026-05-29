@@ -1,7 +1,16 @@
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 public class TestComparison {
     public static void main(String[] args) {
         int x = 5;
         int y = 10;
+
+        // Generics - should NOT be changed
+        List<Integer> intList = new java.util.ArrayList<>();
+        Map<String, Integer> map = new HashMap<>();
+        List<String> strings = new java.util.ArrayList<>();
 
         // These should trigger violations
         if (y < x) {
