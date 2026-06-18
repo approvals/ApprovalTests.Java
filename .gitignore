@@ -23,7 +23,6 @@ target
 .vscode/
 build/venv*/
 __pycache__/
-**/.jqwik-database
 *.bak
 
 .gitmessage
