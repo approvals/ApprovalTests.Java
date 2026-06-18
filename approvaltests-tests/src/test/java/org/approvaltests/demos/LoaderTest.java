@@ -22,7 +22,7 @@ public class LoaderTest
       Item[] items = getInventory();
       for (Item item : items)
       {
-        if (ids.contains(item.id) && item.inventoryCount > 0)
+        if (ids.contains(item.id) && 0 < item.inventoryCount)
         {
           registerHold(item);
         }
@@ -43,7 +43,7 @@ public class LoaderTest
       Item[] items = loader.load();
       for (Item item : items)
       {
-        if (ids.contains(item.id) && item.inventoryCount > 0)
+        if (ids.contains(item.id) && 0 < item.inventoryCount)
         {
           itemReserver.save(item);
         }

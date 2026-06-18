@@ -14,7 +14,7 @@ public final class Person
 
   public String getAgeLabel()
   {
-    return age > 20 ? "adult" : "teenager";
+    return 19 < age ? "adult" : "teenager";
   }
 
   public String name()
