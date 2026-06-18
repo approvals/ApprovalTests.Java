@@ -88,45 +88,11 @@ You can find out more about [Package Level settings here](../reference/PackageSe
 
 Lastly, it is possible to set the `APPROVAL_TESTS_USE_REPORTER` environment variable to influence the reporters. Setting a reporter through the environment overrides all other reporters - so use this sparingly and only to change reporter behaviour for individual runs or on individual machines.
 
-The environment variable can take any combination of the following values. Multiple values should be separated by a comma, without whitespace.
+The environment variable accepts a fully-qualified Java class name. Multiple values should be separated by a comma, without whitespace.
 
-<!-- snippet: EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt -->
-<a id='snippet-EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt'></a>
-```txt
-AraxisMergeReporter
-AutoApproveReporter
-AutoApproveWhenEmptyReporter
-BeyondCompareReporter
-ClipboardReporter
-CodeCompareReporter
-DelayedClipboardReporter
-DiffMergeReporter
-DiffReporter
-FileCaptureReporter
-ImageReporter
-ImageWebReporter
-IntelliJReporter
-JunitReporter
-KDiff3Reporter
-KaleidoscopeDiffReporter
-MeldMergeReporter
-P4MergeReporter
-PitReporter
-QuietReporter
-TestNgReporter
-TextWebReporter
-TkDiffReporter
-TortoiseDiffReporter
-VisualStudioCodeReporter
-WinMergeReporter
-WindowsDiffReporter
-```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/reporters/EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt#L1-L27' title='Snippet source file'>snippet source</a> | <a href='#snippet-EnvironmentVariableReporterTest.testValidEnvironmentalValues.approved.txt' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-For example, setting `APPROVAL_TESTS_USE_REPORTER=AutoApproveReporter` allows you to approve all pending changes at once
+For example, setting `APPROVAL_TESTS_USE_REPORTER=org.approvaltests.reporters.AutoApproveReporter` allows you to approve all pending changes at once
 without modifying the source code and rebuilding the code to temporarily choose a different reporter. Similarly, setting
-`APPROVAL_TESTS_USE_REPORTER=MeldMergeReporter` allows you to explicitly choose a reporter you want to use locally,
+`APPROVAL_TESTS_USE_REPORTER=org.approvaltests.reporters.linux.ReportWithMeldMergeLinux` allows you to explicitly choose a reporter you want to use locally,
 without influencing the default reporter priorities and setup for fellow developers.
 
 See Also: [Reporters](../reference/Reporters.md)
