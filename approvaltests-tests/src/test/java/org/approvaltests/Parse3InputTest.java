@@ -35,7 +35,7 @@ public class Parse3InputTest
     var expected = """
         lars, 20, 1,2,3 -> Person[
             name=lars
-            label=teenager
+            label=adult
         ] = 6.0
         """;
     ParseInput.from(expected).multiline().withTypes(String.class, Integer.class, Integer[].class)
