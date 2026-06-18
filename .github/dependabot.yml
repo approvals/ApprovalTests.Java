@@ -13,6 +13,9 @@ updates:
           - "com.fasterxml.*"
     commit-message:
       prefix: "- r "
+    ignore:
+      - dependency-name: "net.jqwik:jqwik*"
+        versions: ["> 1.10.0"]
     open-pull-requests-limit: 10
 
   - package-ecosystem: "github-actions"
