@@ -29,7 +29,7 @@ jobs:
             - macos
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Set Java version for matrix testing
       run: echo "zulu-${{ matrix.java }}" > .java-version
       shell: bash
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: auto-merge
         if: |
           github.actor == 'dependabot[bot]' &&
