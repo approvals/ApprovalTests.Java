@@ -4,10 +4,6 @@ import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class EnvironmentVariableReporterTest
 {
   @Test
@@ -18,7 +14,8 @@ public class EnvironmentVariableReporterTest
         """;
     try
     {
-      EnvironmentVariableReporter.GET_ENVIRONMENT_VARIABLE = (s) -> "DiffReporter,QuietReporter";
+      EnvironmentVariableReporter.GET_ENVIRONMENT_VARIABLE = (
+          s) -> "org.approvaltests.reporters.DiffReporter,org.approvaltests.reporters.QuietReporter";
       var reporter = new EnvironmentVariableReporter().getReporter();
       Approvals.verify(reporter, new Options().inline(expected));
     }
@@ -26,13 +23,5 @@ public class EnvironmentVariableReporterTest
     {
       EnvironmentVariableReporter.GET_ENVIRONMENT_VARIABLE = System::getenv;
     }
-  }
-
-  @Test
-  void testValidEnvironmentalValues()
-  {
-    Set<String> reporters = new EnvironmentVariableReporter().getReporterMapping().keySet();
-    List<String> sortedReporters = reporters.stream().sorted().collect(Collectors.toList());
-    Approvals.verifyAll("", sortedReporters, x -> x);
   }
 }
