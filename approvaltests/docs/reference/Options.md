@@ -8,10 +8,17 @@
   * [Introduction](#introduction)
   * [Fluent Interface](#fluent-interface)
   * [Reporters](#reporters)
+    * [Adding a Reporter](#adding-a-reporter)
   * [Scrubbers](#scrubbers)
   * [File Options](#file-options)
     * [File Extensions](#file-extensions)
+    * [File Base Name](#file-base-name)
+    * [File Name and Extension](#file-name-and-extension)
+    * [Custom Namer](#custom-namer)
+    * [Additional Information](#additional-information)
   * [Custom Comparators](#custom-comparators)
+  * [Inline Approvals](#inline-approvals)
+  * [Applying Options Functions](#applying-options-functions)
   * [Defaults](#defaults)
   * [Adding to Existing Options object](#adding-to-existing-options-object)<!-- endToc -->
 
@@ -37,6 +44,15 @@ new Options().withReporter(new ReportNothing()).withScrubber(new GuidScrubber())
 
 [Reporters](/docs/reference/Reporters.md#top) launch diff tools upon failure.  Read how to configure them with `Options` [here](Reporters.md#via-options):
 
+### Adding a Reporter
+
+If you want to add a reporter alongside the existing one (rather than replacing it), use `addReporter()`.
+This wraps both reporters in a `MultiReporter` so both are invoked on failure.
+
+```java
+options.addReporter(new TextWebReporter());
+```
+
 ## Scrubbers
 
 [Scrubbers](/docs/explanations/Scrubbers.md#top) clean output to help remove inconsistent pieces of text, such as dates.  Read how to set up Scrubbers [here](../Scrubbers.md#configuring-scrubbers):
@@ -60,11 +76,62 @@ Approvals.verify("text to be verified", new Options().forFile().withExtension(".
 
 **Note:** `withExtension()` returns an `Options` object, so it's possible to keep appending more `with...()` calls.
 
+### File Base Name
+
+To override just the base name of the approved/received files (keeping the current extension and directory), use `withBaseName()`.
+
+```java
+Approvals.verify("text", new Options().forFile().withBaseName("my_custom_name"));
+```
+
+### File Name and Extension
+
+To override both the base name and extension at once, use `withName()`.
+
+```java
+Approvals.verify("text", new Options().forFile().withName("my_custom_name", ".json"));
+```
+
+### Custom Namer
+
+To supply a fully custom `ApprovalNamer` (controlling both the directory and file name), use `withNamer()`.
+
+```java
+Approvals.verify("text", new Options().forFile().withNamer(myCustomNamer));
+```
+
+### Additional Information
+
+To append extra context to the file name (useful for parameterised tests), use `withAdditionalInformation()`.
+
+```java
+Approvals.verify("text", new Options().forFile().withAdditionalInformation("scenario_1"));
+```
+
 ## Custom Comparators
 By default Approval Tests will only check if the `.approved` and `.received` files are _exactly_ matching.
 The only accomodations it makes is for differences in line endings.
 
 If you would like to create a more flexible comparison, you can do it by using the `Options.withComparator()` function.
+
+## Inline Approvals
+
+`inline()` lets you embed the expected value directly in your test source code rather than in a separate `.approved` file.
+
+```java
+Approvals.verify("hello world", new Options().inline("hello world"));
+```
+
+When the received output differs from the expected string, Approval Tests can update the source file automatically (depending on your `InlineOptions` settings).
+
+## Applying Options Functions
+
+The `and()` method applies a function that transforms an `Options` object. This is useful for extracting reusable option configurations.
+
+```java
+Function1<Options, Options> myOptions = o -> o.withReporter(new ReportNothing());
+Approvals.verify("text", new Options().and(myOptions));
+```
 
 ## Defaults
 
