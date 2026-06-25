@@ -25,7 +25,7 @@ snippet: basic_approval_with_file_extension
 
 ## Fluent Interface
 
-`Options` has a "fluent" interface, allowing you to chain together commands: each returned object is a new copy of `Options` which you can configure futher. For example:
+`Options` has a "fluent" interface, allowing you to chain together commands: each returned object is a new copy of `Options` which you can configure further. For example:
 
 <!-- snippet: specify_all_the_options -->
 <a id='snippet-specify_all_the_options'></a>
