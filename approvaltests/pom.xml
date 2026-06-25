@@ -130,7 +130,7 @@
         <dependency>
             <groupId>xom</groupId>
             <artifactId>xom</artifactId>
-            <version>1.4.5</version>
+            <version>1.4.6</version>
             <scope>compile</scope>
             <optional>true</optional>
         </dependency>
