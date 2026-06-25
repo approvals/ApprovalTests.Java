@@ -17,12 +17,15 @@
 
 ## Introduction
 
-There are many things you might want to tweak with Approval Tests. `Options` is the entry-point for many of the changes.
-It is on all `verify()` methods, as an optional parameter.
+ApprovalTests has many `verify...()` functions that need the same optional parameters, of which there are many. Instead of overloading every `verify...()` function in the same way, over and over, we put those options into an `Options` object that all the `verify...()` functions can take as an optional parameter.
+
+For example:
+
+snippet: basic_approval_with_file_extension
 
 ## Fluent Interface
 
-`Options` utilizes a fluent interface, allowing you to chain together commands. Each returned object is a new copy.
+`Options` has a "fluent" interface, allowing you to chain together commands: each returned object is a new copy of `Options` which you can configure further. For example:
 
 <!-- snippet: specify_all_the_options -->
 <a id='snippet-specify_all_the_options'></a>
