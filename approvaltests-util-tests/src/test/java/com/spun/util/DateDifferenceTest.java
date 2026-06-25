@@ -146,7 +146,7 @@ public class DateDifferenceTest
     try (WithTimeZone tz = new WithTimeZone("PST"))
     {
       StringBuilder buffer = new StringBuilder();
-      buffer.append("TimeZone.getDefault(): " + TimeZone.getDefault() + "\n\n");
+      buffer.append("TimeZone.getDefault(): " + TimeZone.getDefault().getID() + "\n\n");
       DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
       for (int i = 1; i <= 28; i++)
       {
