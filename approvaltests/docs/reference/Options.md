@@ -28,7 +28,13 @@ ApprovalTests has many `verify...()` functions that need the same optional param
 
 For example:
 
-snippet: basic_approval_with_file_extension
+<!-- snippet: basic_approval_with_file_extension -->
+<a id='snippet-basic_approval_with_file_extension'></a>
+```java
+Approvals.verify("text to be verified", new Options().forFile().withExtension(".xyz"));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/OptionsSamplesTest.java#L24-L26' title='Snippet source file'>snippet source</a> | <a href='#snippet-basic_approval_with_file_extension' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
 
 ## Fluent Interface
 
