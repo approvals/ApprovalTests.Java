@@ -2,6 +2,8 @@ package org.lambda.query;
 
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
+import org.approvaltests.reporters.AutoApproveReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 import org.lambda.Extendable;
 import org.lambda.utils.Range;
@@ -15,6 +17,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@UseReporter(AutoApproveReporter.class)
 class QueryableTest
 {
   // begin-snippet: implementing-extendable
@@ -259,5 +262,16 @@ class QueryableTest
     assertEquals(3, queryable.firstOrThrow(i -> 2 < i, () -> new RuntimeException("Nothing bigger than 2")));
     Approvals.verifyException(() -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")),
         new Options().inline(expected));
+  }
+
+  @Test
+  void testSplit()
+  {
+    var expected = """
+        [[], [1, 2], [4, 5], [7, 8]]
+        """;
+    var q = Range.getAsQueryable(0, 10);
+    var result = q.split(i -> i % 3 == 0);
+    Approvals.verify(result, new Options().inline(expected));
   }
 }
