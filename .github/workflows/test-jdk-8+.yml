@@ -20,7 +20,7 @@ jobs:
       shell: bash
     - run: mise exec -- mvn -B install --file pom.xml
     - name: Set up JDK8 for runtime testing
-      uses: actions/setup-java@v5.6.0
+      uses: actions/setup-java@v5.7.0
       with:
         distribution: 'zulu'
         java-version: '8'
@@ -44,7 +44,7 @@ jobs:
       with:
         report_paths: '**/target/surefire-reports/*.xml'
     - name: Set up JDK11 for runtime testing
-      uses: actions/setup-java@v5.6.0
+      uses: actions/setup-java@v5.7.0
       with:
         distribution: 'zulu'
         java-version: '11'
