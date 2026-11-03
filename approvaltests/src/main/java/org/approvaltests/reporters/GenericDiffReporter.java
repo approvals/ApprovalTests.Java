@@ -47,7 +47,7 @@ public class GenericDiffReporter implements ApprovalFailureReporter
     this.diffProgram = diffProgram;
     this.arguments = argumentsFormat;
     this.diffProgramNotFoundMessage = diffProgramNotFoundMessage;
-    validExtensions = validFileExtensions;
+    this.validExtensions = validFileExtensions;
   }
 
   public GenericDiffReporter(DiffInfo info)
