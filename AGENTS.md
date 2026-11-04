@@ -18,3 +18,7 @@ See **ARCHITECTURE.md** for the full codemap (module structure, key types, and t
 - Uses custom `org.lambda` utilities over Java Streams in core code.
 - Heavy use of `public static` overloaded methods for the main API.
 - Do not add unnecessary comments. Follow existing patterns in neighboring files.
+
+## Commit messages
+Use `internal_documentation/scripts/create-commit-message.sh` to build every commit message in this repo. Run `bash internal_documentation/scripts/create-commit-message.sh <risk> <intention> "<message>"` and use its stdout as the commit message.
+See `internal_documentation/processes/ArloCommitNotation.process.md` for what the risk and intention codes mean.
