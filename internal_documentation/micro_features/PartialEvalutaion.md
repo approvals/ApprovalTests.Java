@@ -11,6 +11,12 @@ Users want a trimmed ApprovalTests for any of these reasons:
 - **Smaller audit surface**: less code to review for security or license compliance.
 - **Constrained runtimes**: Android, GraalVM native-image, and similar environments where unused code causes problems.
 
+## Workflow
+- **Develop** against the full ApprovalTests jar, as usual.
+- **Release** with the partial jar. The CLI runs at release time, to build a jar containing only what your selection uses.
+
+Discoverability is not a goal of the partial jar. Unused code is simply deleted, not replaced with helpful errors. While developing you have the full jar, so everything is available.
+
 ## Overview
 The feature has two parts. They are connected by a single **selection config file**:
 
@@ -46,9 +52,9 @@ org.approvaltests.core.Options.forFile()
 
 ### Tree Shaking
 Code is removed by **Tree Shaking**:
-1. Every entry point that was **not** selected has its body replaced with a stub that throws a `RuntimeException`. The message explains how to enable it in the config (see [Excluded Code Behavior](#excluded-code-behavior)).
-2. Every runtime discovery set to `remove` or `ignore` is handled as described in [Runtime Discoveries](#runtime-discoveries).
-3. Starting from what is still reachable, any code nothing reaches anymore (classes, methods, and third-party dependencies) is shaken out of the jar.
+1. Starting from the selected entry points (and the runtime discoveries set to `keep` or `remove`), find everything that is reachable.
+2. Delete every method and class that is not reachable, including public methods on the API classes. Unselected entry points are deleted, not stubbed.
+3. Third-party dependencies that only the deleted code used go away with it.
 
 ### Runtime Discoveries
 Some behavior is triggered by the environment, reflection, or configuration, not by a direct call. Examples:
@@ -73,16 +79,15 @@ Example: the `CI` environment variable
 - **ignore**: it doesn't check and doesn't care whether `CI` is set. That code is gone.
 
 ### Excluded Code Behavior
-The custom jar is a **drop-in replacement**:
-- It uses the same package names, class names, and public method signatures.
-- User code compiles unchanged against it.
+The partial jar keeps the same package names, class names and signatures for everything it contains. It is a drop-in replacement **only for code that uses what was selected**.
 
-Calling an unselected entry point, or triggering a runtime discovery set to `remove`, throws a `RuntimeException` that explains how to enable it in the config. It never fails with a `NoClassDefFoundError`:
-```
-org.approvaltests.Approvals.verifyAll(java.lang.String, java.lang.Object[]) is not included in this partial evaluation of ApprovalTests.
-To enable it, add this to "entryPoints" in approvaltests-selection.json and rebuild:
-  "org.approvaltests.Approvals.verifyAll(java.lang.String, java.lang.Object[])"
-```
+Anything not selected is simply gone:
+- Code that calls it fails to compile against the partial jar.
+- Code already compiled against the full jar fails with `NoSuchMethodError` / `NoClassDefFoundError`.
+
+So the selection must cover everything your code calls. Run your tests against the partial jar before you release. The [codebase detection tool](#future-work) is meant to make the selection complete automatically.
+
+A runtime discovery set to `remove` still throws a `RuntimeException` that explains how to enable it:
 ```
 Runtime discovery "environment.CI" is set to remove in this partial evaluation of ApprovalTests, and the CI environment variable is set.
 To enable it, set it in "runtimeDiscoveries" in approvaltests-selection.json and rebuild:
@@ -174,7 +179,7 @@ All outputs go into `output.directory`, which is resolved relative to the config
 
 ### Report
 The HTML report contains:
-- **Summary**: source files kept / deleted / changed / untouched, lines of source kept, compiled `.class` files and bytes, jar size, number of stubbed entry points, and third-party packages still imported. Each one is compared to the original.
+- **Summary**: source files kept / deleted / changed / untouched, lines of source kept, compiled `.class` files and bytes, jar size, and third-party packages still imported. Each one is compared to the original.
 - **Inputs**: the selection file and its location, the ApprovalTests version and tag, the selected entry points in readable form (`Approvals.verify(String)`), the runtime discoveries with what each mode means, the output location, and the raw JSON.
 - **By module** and **By package**: files and lines before and after, with a kept/removed bar.
 - **Third-party dependencies**: each third-party package imported by the original, and whether it's still referenced.
@@ -204,27 +209,26 @@ Build and test the tool itself with `approvaltests-partial/build_and_test.sh`.
 5. Build again with `-Dmaven.test.skip=true`, since the shaken code no longer supports the repo's own tests.
 6. Merge both jars into `approvaltests-<version>.jar` (`JarBuilder`), and write the HTML report (`HtmlReport`).
 
-For the StarterProject (`Approvals.verify(String)`, `JsonApprovals.verifyAsJson(Object)` and `DiffReporter.INSTANCE`), a run takes about 13 seconds. The result is 253 of 448 files, 49% of the source lines and a 519 KB jar, and the shaken code compiles.
+For the StarterProject (`Approvals.verify(String)`, `JsonApprovals.verifyAsJson(Object)` and `DiffReporter.INSTANCE`), a run takes about 13 seconds. The result is 231 of 448 files, 44% of the source lines and a 451 KB jar (48% of the original 948 KB), and the shaken code compiles.
 
 ### How Tree Shaking Works
 Tree Shaking works on the source code, using JavaParser and its symbol solver. Runtime discoveries are all treated as `keep` for now.
 
 **Mark** (find what's reachable, starting from the entry points):
-- Method calls are resolved with the symbol solver. If a call can't be resolved (e.g. it calls into a third-party library), every method with that name and number of arguments is kept, to be safe.
+- Method calls are resolved with the symbol solver. If a call can't be resolved (e.g. an argument comes from a third-party library), every method with that name and number of arguments is kept, to be safe. This is limited to the class the call names, e.g. `Approvals.verify(...)` only keeps `Approvals.verify` overloads. A call with no class prefix uses the enclosing classes and static imports. If nothing matches there, it falls back to keeping by name everywhere.
+- When a call passes a lambda or method reference, every overload with the same name and number of arguments in that class is kept. The symbol solver sometimes picks the wrong overload for lambdas.
 - Any type referenced from reachable code is kept, along with all its fields, initializers and constructors.
 - Instance methods of kept types are kept if they are abstract, `@Override`, implement an inherited abstract method, have a name that is called anywhere, or belong to a type with a third-party supertype.
 - A string literal that equals one of our fully qualified class names keeps that class. This is the stand-in for reflection.
 
 **Sweep** (remove what isn't reachable):
 - Files with no kept types are deleted.
-- In classes that declare a selected entry point, unreached public methods become stubs that throw the "not included" message. Types in their signatures are kept, so the stubs compile.
-- Everywhere else, unreached methods and nested types are deleted.
+- Every unreached method and nested type is deleted, including unselected public methods on API classes like `Approvals`. Nothing is stubbed.
 - Imports pointing at removed types or members are removed.
 - Files are rewritten with formatting preserved, so the diff stays minimal.
 
 ### Known Gaps
-- **Unselected API classes are deleted.** Only classes that hold a *selected* entry point get stubs. Classes like `CombinationApprovals` are deleted, so calling them gives `NoClassDefFoundError` instead of the message. This doesn't match the spec yet.
-- **Too many dependencies are kept.** Of 16 third-party packages, 12 are still imported (Jackson, XStream, Quartz, servlet, JUnit, ...). This comes from the safe choices above: unresolved calls kept by name, all fields and constructors kept, and stub signatures kept.
+- **Too many dependencies are kept.** Of 16 third-party packages, 9 are still imported (Gson, servlet, Apache, JUnit, Quartz, SLF4J, ...). This comes from the safe choices above: unresolved calls kept by name, and all fields and constructors of kept classes kept.
 - **Computed class names are missed.** Reflection by class names built at runtime (e.g. reporters from `APPROVAL_TESTS_USE_REPORTER`) isn't detected.
 - **Runtime behavior is untested.** The partial jar compiles but hasn't been run against the StarterProject's tests yet.
 

@@ -13,7 +13,6 @@ public class ShakeReport
   public List<String>         missingEntryPoints = new ArrayList<>();
   public List<String>         deletedFiles       = new ArrayList<>();
   public List<String>         removedTypes       = new ArrayList<>();
-  public List<String>         stubbedMethods     = new ArrayList<>();
   public Map<String, Integer> removedMethods     = new TreeMap<>();
   public void removedMethod(String file)
   {
@@ -28,7 +27,6 @@ public class ShakeReport
         .append(totalFiles - deletedFiles.size()).append(" kept\n");
     b.append("Unresolved calls (kept by name): ").append(unresolvedCalls).append("\n");
     section(b, "Missing entry points", missingEntryPoints);
-    section(b, "Stubbed methods", stubbedMethods);
     List<String> removed = new ArrayList<>();
     removedMethods.forEach((file, count) -> removed.add(file + " (" + count + ")"));
     section(b, "Removed methods", removed);

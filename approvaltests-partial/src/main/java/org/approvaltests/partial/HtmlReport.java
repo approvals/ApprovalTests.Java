@@ -22,7 +22,6 @@ import java.util.stream.Stream;
 
 public class HtmlReport
 {
-  private static final String   STUB    = "is not included in this partial evaluation";
   private static final String[] OURS    = {"com.spun", "org.approvaltests", "org.lambda", "java.", "javax."};
   private static final Pattern  IMPORTS = Pattern.compile("^import\\s+(?:static\\s+)?([\\w.]+)", Pattern.MULTILINE);
   public static class Inputs
@@ -36,7 +35,7 @@ public class HtmlReport
     public File                jar;
   }
   private record FileRecord(String path, String packageName, String module, String status, int before, int after,
-      int stubs, Set<String> dependenciesBefore, Set<String> dependenciesAfter)
+      Set<String> dependenciesBefore, Set<String> dependenciesAfter)
   {
   }
   public static Map<String, String> snapshot(File checkout)
@@ -74,7 +73,7 @@ public class HtmlReport
       String after = current.exists() ? FileUtils.readFile(current) : "";
       String status = !current.exists() ? "deleted" : before.equals(after) ? "unchanged" : "changed";
       records.add(new FileRecord(path, packageOf(path), path.substring(0, path.indexOf('/')), status, lines(before),
-          lines(after), count(after, STUB), thirdParty(before), thirdParty(after)));
+          lines(after), thirdParty(before), thirdParty(after)));
     }
     Map<String, List<String>> diffs = diffs(in.checkout);
     int totalBefore = records.stream().mapToInt(FileRecord::before).sum();
@@ -82,7 +81,6 @@ public class HtmlReport
     long deleted = records.stream().filter(r -> r.status.equals("deleted")).count();
     long changed = records.stream().filter(r -> r.status.equals("changed")).count();
     long unchanged = records.size() - deleted - changed;
-    int stubs = records.stream().mapToInt(FileRecord::stubs).sum();
     Set<String> dependenciesBefore = new TreeSet<>();
     Set<String> dependenciesAfter = new TreeSet<>();
     records.forEach(r -> {
@@ -111,7 +109,6 @@ public class HtmlReport
             + pct(in.partialStats.classBytes, in.originalStats.classBytes) + "%)");
     tile(h, "Jar size", kb(in.partialStats.jarBytes), "vs. " + kb(in.originalStats.jarBytes) + " for the original jars ("
         + pct(in.partialStats.jarBytes, in.originalStats.jarBytes) + "%)");
-    tile(h, "Stubbed entry points", String.valueOf(stubs), "throw “not included” message");
     tile(h, "Third-party packages",
         dependenciesAfter.size() + " <span class=\"sub\">/ " + dependenciesBefore.size() + "</span>", "still imported");
     h.append("</div>\n");
@@ -159,11 +156,10 @@ public class HtmlReport
         .append(")</h2>\n<div class=\"muted\">Sorted by lines removed. Expand for the diff against the original.</div>\n");
     for (FileRecord r : changedFiles)
     {
-      String stubText = r.stubs > 0 ? " · <span class=\"stub\">" + r.stubs + " stubs</span>" : "";
       h.append("<details><summary><code>").append(esc(r.path.substring(r.path.indexOf("/src/main/java/") + 15)))
           .append("</code> <span class=\"muted\">").append(String.format("%,d → %,d lines (%+,d)", r.before, r.after,
               r.after - r.before))
-          .append(stubText).append("</span>").append(bar(r.after, r.before)).append("</summary><pre class=\"diff\">");
+          .append("</span>").append(bar(r.after, r.before)).append("</summary><pre class=\"diff\">");
       for (String line : diffs.getOrDefault(r.path, List.of()))
       {
         String cls = line.startsWith("+") ? "add" : line.startsWith("-") ? "del" : line.startsWith("@@") ? "hunk" : "";
@@ -206,7 +202,7 @@ public class HtmlReport
         .append(esc(config.approvaltestsVersion)).append("</div><div class=\"sub\">cloned from the <code>")
         .append(esc(config.approvaltestsVersion)).append("</code> tag of approvals/ApprovalTests.Java</div>\n</div>\n");
     h.append("<div class=\"tile\">\n<div class=\"label\">Entry points you selected (").append(config.entryPoints.size())
-        .append(")</div><div class=\"sub\">Everything kept is reachable from these. Other public methods in the same classes become stubs.</div>\n")
+        .append(")</div><div class=\"sub\">Everything kept is reachable from these. Everything else is deleted.</div>\n")
         .append("<table class=\"plain\"><tr><th>Call</th><th>Kind</th><th>Package</th></tr>");
     for (String entryPoint : config.entryPoints)
     {
@@ -349,19 +345,19 @@ public class HtmlReport
   private static final String CSS = """
       :root {
         --bg: #fbfaf8; --surface: #ffffff; --text: #1d1d1f; --muted: #6b6b70; --border: #e4e2dd;
-        --kept: #3b7d5c; --gone: #c9553f; --gone-soft: #f6e3de; --kept-soft: #e0efe6; --stub: #8a5a00;
+        --kept: #3b7d5c; --gone: #c9553f; --gone-soft: #f6e3de; --kept-soft: #e0efe6;
         --code-bg: #f4f2ee;
       }
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
           --bg: #161617; --surface: #1f1f21; --text: #ececee; --muted: #9a9aa0; --border: #333336;
-          --kept: #5fb88a; --gone: #e2775f; --gone-soft: #3a2420; --kept-soft: #1d3327; --stub: #e3b25a;
+          --kept: #5fb88a; --gone: #e2775f; --gone-soft: #3a2420; --kept-soft: #1d3327;
           --code-bg: #19191b;
         }
       }
       :root[data-theme="dark"] {
         --bg: #161617; --surface: #1f1f21; --text: #ececee; --muted: #9a9aa0; --border: #333336;
-        --kept: #5fb88a; --gone: #e2775f; --gone-soft: #3a2420; --kept-soft: #1d3327; --stub: #e3b25a;
+        --kept: #5fb88a; --gone: #e2775f; --gone-soft: #3a2420; --kept-soft: #1d3327;
         --code-bg: #19191b;
       }
       * { box-sizing: border-box; }
@@ -393,7 +389,6 @@ public class HtmlReport
       pre.diff span { display: block; }
       pre.diff .add { background: var(--kept-soft); } pre.diff .del { background: var(--gone-soft); }
       pre.diff .hunk { color: var(--muted); }
-      .stub { color: var(--stub); }
       .legend span { display: inline-flex; align-items: center; gap: 6px; margin-right: 16px; }
       .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
       .inputs { display: grid; grid-template-columns: minmax(200px, 1fr) minmax(280px, 2fr) minmax(220px, 1fr); gap: 12px; margin-bottom: 8px; }

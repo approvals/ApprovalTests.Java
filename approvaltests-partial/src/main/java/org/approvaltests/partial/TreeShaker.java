@@ -3,7 +3,6 @@ package org.approvaltests.partial;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseResult;
 import com.github.javaparser.ParserConfiguration;
-import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.ImportDeclaration;
 import com.github.javaparser.ast.Node;
@@ -15,9 +14,11 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.RecordDeclaration;
 import com.github.javaparser.ast.body.TypeDeclaration;
+import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.expr.MethodReferenceExpr;
 import com.github.javaparser.ast.expr.Name;
+import com.github.javaparser.ast.expr.ObjectCreationExpr;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.expr.StringLiteralExpr;
 import com.github.javaparser.ast.nodeTypes.NodeWithImplements;
@@ -45,6 +46,7 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -61,8 +63,6 @@ public class TreeShaker
   private final Map<String, List<MethodDeclaration>>    methodsByName  = new HashMap<>();
   private final Set<TypeDeclaration<?>>                 keptTypes      = identitySet();
   private final Set<CallableDeclaration<?>>             reachable      = identitySet();
-  private final Set<TypeDeclaration<?>>                 apiTypes       = identitySet();
-  private final Set<MethodDeclaration>                  stubbed        = identitySet();
   private final Set<String>                             calledNames    = new HashSet<>();
   private final Deque<Node>                             work           = new ArrayDeque<>();
   public static ShakeReport shake(File checkout, List<String> entryPoints)
@@ -134,7 +134,7 @@ public class TreeShaker
     {
       drain();
     }
-    while (keepVirtualMethods() | keepStubSignatures());
+    while (keepVirtualMethods());
   }
 
   private void markEntryPoint(String entryPoint)
@@ -163,7 +163,6 @@ public class TreeShaker
       report.missingEntryPoints.add(entryPoint);
       return;
     }
-    apiTypes.add(declaringType(method));
     keepCallable(method);
   }
 
@@ -265,19 +264,21 @@ public class TreeShaker
       ResolvedMethodDeclaration resolved = call.resolve();
       String owner = resolved.declaringType().getQualifiedName();
       MethodDeclaration method = methodsByKey.get(key(resolved));
-      if (method != null)
+      boolean passesFunction = call.getArguments().stream()
+          .anyMatch(a -> a.isLambdaExpr() || a.isMethodReferenceExpr());
+      if (method != null && !passesFunction)
       {
         keepCallable(method);
       }
       else if (typesByName.containsKey(owner))
       {
-        keepByName(name, call.getArguments().size());
+        keepByName(name, call.getArguments().size(), withSupertypes(List.of(typesByName.get(owner))));
       }
     }
     catch (Exception | StackOverflowError e)
     {
       report.unresolvedCalls++;
-      keepByName(name, call.getArguments().size());
+      keepByName(name, call.getArguments().size(), possibleOwners(call, call.getScope()));
     }
   }
 
@@ -300,20 +301,84 @@ public class TreeShaker
     {
       report.unresolvedCalls++;
     }
-    keepByName(name, -1);
+    keepByName(name, -1, possibleOwners(reference, Optional.of(reference.getScope())));
   }
 
-  private void keepByName(String name, int arity)
+  private void keepByName(String name, int arity, List<TypeDeclaration<?>> owners)
   {
+    List<MethodDeclaration> candidates = new ArrayList<>();
     for (MethodDeclaration method : methodsByName.getOrDefault(name, Collections.emptyList()))
     {
       int parameters = method.getParameters().size();
       boolean varArgs = parameters > 0 && method.getParameter(parameters - 1).isVarArgs();
       if (arity < 0 || parameters == arity || (varArgs && arity >= parameters - 1))
       {
-        keepCallable(method);
+        candidates.add(method);
       }
     }
+    List<MethodDeclaration> owned = candidates.stream()
+        .filter(m -> owners != null && owners.stream().anyMatch(o -> o == declaringType(m)))
+        .collect(Collectors.toList());
+    (owned.isEmpty() ? candidates : owned).forEach(this::keepCallable);
+  }
+
+  private List<TypeDeclaration<?>> possibleOwners(Node call, Optional<Expression> scope)
+  {
+    CompilationUnit cu = call.findCompilationUnit().get();
+    List<TypeDeclaration<?>> owners = new ArrayList<>();
+    if (scope.isPresent())
+    {
+      Expression expression = scope.get();
+      String name = expression.isNameExpr() ? expression.asNameExpr().getNameAsString()
+          : expression.isTypeExpr() ? expression.asTypeExpr().getType().asString()
+          : expression.isFieldAccessExpr() ? expression.toString() : null;
+      if (name == null || !Character.isUpperCase(name.charAt(name.lastIndexOf('.') + 1)))
+      { return null; }
+      TypeDeclaration<?> type = typesByName.containsKey(name) ? typesByName.get(name)
+          : resolveTypeName(cu, name.substring(name.lastIndexOf('.') + 1));
+      if (type == null)
+      { return null; }
+      owners.add(type);
+      return withSupertypes(owners);
+    }
+    for (Node node = call; node != null; node = node.getParentNode().orElse(null))
+    {
+      if (node instanceof TypeDeclaration)
+      {
+        owners.add((TypeDeclaration<?>) node);
+      }
+      if (node instanceof ObjectCreationExpr && ((ObjectCreationExpr) node).getAnonymousClassBody().isPresent())
+      {
+        TypeDeclaration<?> type = resolveTypeName(cu, ((ObjectCreationExpr) node).getType().getNameAsString());
+        if (type == null)
+        { return null; }
+        owners.add(type);
+      }
+    }
+    for (ImportDeclaration declaration : cu.getImports())
+    {
+      if (declaration.isStatic())
+      {
+        String name = declaration.getNameAsString();
+        TypeDeclaration<?> type = typesByName
+            .get(declaration.isAsterisk() ? name : name.substring(0, name.lastIndexOf('.')));
+        if (type != null)
+        {
+          owners.add(type);
+        }
+      }
+    }
+    return withSupertypes(owners);
+  }
+
+  private List<TypeDeclaration<?>> withSupertypes(List<TypeDeclaration<?>> types)
+  {
+    List<TypeDeclaration<?>> result = new ArrayList<>(types);
+    for (TypeDeclaration<?> type : types)
+    {
+      supertypes(type).stream().filter(s -> result.stream().noneMatch(r -> r == s)).forEach(result::add);
+    }
+    return result;
   }
 
   private boolean keepVirtualMethods()
@@ -352,27 +417,6 @@ public class TreeShaker
     return changed;
   }
 
-  private boolean keepStubSignatures()
-  {
-    boolean changed = false;
-    for (TypeDeclaration<?> type : apiTypes)
-    {
-      for (MethodDeclaration method : type.getMethods())
-      {
-        if (method.isPublic() && !reachable.contains(method) && stubbed.add(method))
-        {
-          method.getParameters().forEach(this::scan);
-          scan(method.getType());
-          method.getThrownExceptions().forEach(this::scan);
-          method.getTypeParameters().forEach(this::scan);
-          changed = true;
-        }
-      }
-    }
-    drain();
-    return changed;
-  }
-
   private void sweep()
   {
     for (Map.Entry<CompilationUnit, File> entry : files.entrySet())
@@ -392,16 +436,7 @@ public class TreeShaker
         }
         for (MethodDeclaration method : new ArrayList<>(type.getMethods()))
         {
-          if (reachable.contains(method))
-          {
-            continue;
-          }
-          if (stubbed.contains(method))
-          {
-            stub(type, method);
-            report.stubbedMethods.add(signature(type, method));
-          }
-          else
+          if (!reachable.contains(method))
           {
             method.remove();
             report.removedMethod(path);
@@ -431,17 +466,6 @@ public class TreeShaker
         FileUtils.writeFile(entry.getValue(), LexicalPreservingPrinter.print(entry.getKey()));
       }
     }
-  }
-
-  private void stub(TypeDeclaration<?> type, MethodDeclaration method)
-  {
-    String signature = signature(type, method);
-    String message = signature + " is not included in this partial evaluation of ApprovalTests.\n"
-        + "To enable it, add this to \"entryPoints\" in approvaltests-selection.json and rebuild:\n  \""
-        + signature + "\"";
-    method.setBody(StaticJavaParser
-        .parseBlock("{ throw new RuntimeException(\"" + message.replace("\\", "\\\\").replace("\"", "\\\"")
-            .replace("\n", "\\n") + "\"); }"));
   }
 
   private void removeDeadImports(CompilationUnit cu)
@@ -584,7 +608,7 @@ public class TreeShaker
     return result;
   }
 
-  private static java.util.Optional<TypeDeclaration<?>> enclosingType(Node node)
+  private static Optional<TypeDeclaration<?>> enclosingType(Node node)
   {
     return node.getParentNode().filter(p -> p instanceof TypeDeclaration).map(p -> (TypeDeclaration<?>) p);
   }
@@ -648,26 +672,6 @@ public class TreeShaker
     if (type.isTypeVariable())
     { return type.asTypeParameter().getName(); }
     return type.describe();
-  }
-
-  private static String signature(TypeDeclaration<?> type, MethodDeclaration method)
-  {
-    List<String> parameters = new ArrayList<>();
-    for (Parameter parameter : method.getParameters())
-    {
-      String name;
-      try
-      {
-        name = parameter.getType().resolve().erasure().describe();
-      }
-      catch (Exception | StackOverflowError e)
-      {
-        name = erase(parameter.getType());
-      }
-      parameters.add(name + (parameter.isVarArgs() ? "[]" : ""));
-    }
-    return type.getFullyQualifiedName().get() + "." + method.getNameAsString() + "("
-        + String.join(", ", parameters) + ")";
   }
 
   private String relative(File file)
