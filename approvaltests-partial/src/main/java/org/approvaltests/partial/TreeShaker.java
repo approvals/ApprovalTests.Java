@@ -29,6 +29,7 @@ import com.github.javaparser.resolution.declarations.ResolvedMethodDeclaration;
 import com.github.javaparser.resolution.types.ResolvedType;
 import com.github.javaparser.symbolsolver.JavaSymbolSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.CombinedTypeSolver;
+import com.github.javaparser.symbolsolver.resolution.typesolvers.JarTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.ReflectionTypeSolver;
 import com.spun.util.io.FileUtils;
@@ -65,19 +66,35 @@ public class TreeShaker
   private final Set<CallableDeclaration<?>>             reachable      = identitySet();
   private final Set<String>                             calledNames    = new HashSet<>();
   private final Deque<Node>                             work           = new ArrayDeque<>();
-  public static ShakeReport shake(File checkout, List<String> entryPoints)
+  private final Map<Node, Node>                         keptBy         = new IdentityHashMap<>();
+  private final Map<Node, String>                       keptWhy        = new IdentityHashMap<>();
+  private Node                                          current;
+  private String                                        why;
+  public static ShakeReport shake(File checkout, List<String> entryPoints, List<File> thirdPartyJars)
   {
-    TreeShaker shaker = new TreeShaker(checkout);
+    TreeShaker shaker = new TreeShaker(checkout, thirdPartyJars);
     shaker.mark(entryPoints);
+    shaker.explainKeptTypes();
     shaker.sweep();
     return shaker.report;
   }
 
-  private TreeShaker(File checkout)
+  private TreeShaker(File checkout, List<File> thirdPartyJars)
   {
     this.checkout = checkout;
     ParserConfiguration typeSolverConfiguration = configuration();
     CombinedTypeSolver solver = new CombinedTypeSolver(new ReflectionTypeSolver(true));
+    for (File jar : thirdPartyJars)
+    {
+      try
+      {
+        solver.add(new JarTypeSolver(jar));
+      }
+      catch (IOException e)
+      {
+        throw new RuntimeException(e);
+      }
+    }
     for (String root : SOURCE_ROOTS)
     {
       solver.add(new JavaParserTypeSolver(new File(checkout, root), typeSolverConfiguration));
@@ -148,6 +165,8 @@ public class TreeShaker
         report.missingEntryPoints.add(entryPoint);
         return;
       }
+      current = null;
+      why = "entry point " + entryPoint;
       keepType(type);
       return;
     }
@@ -163,6 +182,8 @@ public class TreeShaker
       report.missingEntryPoints.add(entryPoint);
       return;
     }
+    current = null;
+    why = "entry point " + entryPoint;
     keepCallable(method);
   }
 
@@ -171,6 +192,7 @@ public class TreeShaker
     while (!work.isEmpty())
     {
       Node node = work.pop();
+      current = node;
       if (node instanceof TypeDeclaration)
       {
         scanTypeLevel((TypeDeclaration<?>) node);
@@ -186,16 +208,39 @@ public class TreeShaker
   {
     if (!keptTypes.add(type))
     { return; }
+    record(type);
     work.push(type);
-    enclosingType(type).ifPresent(this::keepType);
+    Optional<TypeDeclaration<?>> enclosing = enclosingType(type);
+    if (enclosing.isPresent())
+    {
+      because(type, "it encloses a kept nested type", () -> keepType(enclosing.get()));
+    }
   }
 
   private void keepCallable(CallableDeclaration<?> callable)
   {
     if (!reachable.add(callable))
     { return; }
-    keepType(declaringType(callable));
+    record(callable);
+    because(callable, "it declares a kept method", () -> keepType(declaringType(callable)));
     work.push(callable);
+  }
+
+  private void record(Node node)
+  {
+    keptBy.put(node, current);
+    keptWhy.put(node, why);
+  }
+
+  private void because(Node source, String reason, Runnable keep)
+  {
+    Node previousNode = current;
+    String previousWhy = why;
+    current = source;
+    why = reason;
+    keep.run();
+    current = previousNode;
+    why = previousWhy;
   }
 
   private void scanTypeLevel(TypeDeclaration<?> type)
@@ -229,12 +274,20 @@ public class TreeShaker
       {
         reachable.add(member.asConstructorDeclaration());
       }
-      scan(member);
+      why = "referenced by " + describeMember(member) + " (fields, initializers and constructors of kept types are always kept)";
+      scanReferences(member);
     }
   }
 
   private void scan(Node node)
   {
+    why = node instanceof CallableDeclaration ? "referenced in its body" : "referenced in its declaration";
+    scanReferences(node);
+  }
+
+  private void scanReferences(Node node)
+  {
+    String referenced = why;
     CompilationUnit cu = node.findCompilationUnit().get();
     Set<String> identifiers = new HashSet<>();
     node.findAll(SimpleName.class).forEach(n -> identifiers.add(n.getIdentifier()));
@@ -248,11 +301,21 @@ public class TreeShaker
       TypeDeclaration<?> type = typesByName.get(literal.getValue());
       if (type != null)
       {
+        why = "its name appears in the string literal " + literal;
         keepType(type);
       }
     }
-    node.findAll(MethodCallExpr.class).forEach(this::keepCall);
-    node.findAll(MethodReferenceExpr.class).forEach(this::keepMethodReference);
+    for (MethodCallExpr call : node.findAll(MethodCallExpr.class))
+    {
+      why = referenced.replace("referenced", "called") + ": " + call;
+      keepCall(call);
+    }
+    for (MethodReferenceExpr reference : node.findAll(MethodReferenceExpr.class))
+    {
+      why = referenced.replace("referenced", "method reference") + ": " + reference;
+      keepMethodReference(reference);
+    }
+    why = referenced;
   }
 
   private void keepCall(MethodCallExpr call)
@@ -272,12 +335,15 @@ public class TreeShaker
       }
       else if (typesByName.containsKey(owner))
       {
+        why += passesFunction ? " (passes a lambda, so every overload with this arity is kept)"
+            : " (resolved method not found, kept by name)";
         keepByName(name, call.getArguments().size(), withSupertypes(List.of(typesByName.get(owner))));
       }
     }
     catch (Exception | StackOverflowError e)
     {
       report.unresolvedCalls++;
+      why += " (could not resolve, kept by name and arity)";
       keepByName(name, call.getArguments().size(), possibleOwners(call, call.getScope()));
     }
   }
@@ -301,11 +367,14 @@ public class TreeShaker
     {
       report.unresolvedCalls++;
     }
+    why += " (could not resolve, kept by name)";
     keepByName(name, -1, possibleOwners(reference, Optional.of(reference.getScope())));
   }
 
   private void keepByName(String name, int arity, List<TypeDeclaration<?>> owners)
   {
+    if (owners != null && owners.isEmpty())
+    { return; }
     List<MethodDeclaration> candidates = new ArrayList<>();
     for (MethodDeclaration method : methodsByName.getOrDefault(name, Collections.emptyList()))
     {
@@ -332,12 +401,14 @@ public class TreeShaker
       String name = expression.isNameExpr() ? expression.asNameExpr().getNameAsString()
           : expression.isTypeExpr() ? expression.asTypeExpr().getType().asString()
           : expression.isFieldAccessExpr() ? expression.toString() : null;
-      if (name == null || !Character.isUpperCase(name.charAt(name.lastIndexOf('.') + 1)))
+      String simpleName = name == null ? "" : name.substring(name.lastIndexOf('.') + 1);
+      boolean looksLikeType = !simpleName.isEmpty() && Character.isUpperCase(simpleName.charAt(0))
+          && !simpleName.equals(simpleName.toUpperCase());
+      if (!looksLikeType)
       { return null; }
-      TypeDeclaration<?> type = typesByName.containsKey(name) ? typesByName.get(name)
-          : resolveTypeName(cu, name.substring(name.lastIndexOf('.') + 1));
+      TypeDeclaration<?> type = typesByName.containsKey(name) ? typesByName.get(name) : resolveTypeName(cu, simpleName);
       if (type == null)
-      { return null; }
+      { return owners; }
       owners.add(type);
       return withSupertypes(owners);
     }
@@ -402,19 +473,70 @@ public class TreeShaker
         }
         String name = method.getNameAsString();
         boolean overrides = method.isAnnotationPresent("Override");
-        if (method.getBody().isEmpty() || overrides || calledNames.contains(name)
-            || inheritedAbstract.contains(name) || (externalSupertype && method.isPublic()))
+        String reason = method.getBody().isEmpty() ? "it is abstract"
+            : overrides ? "it is @Override"
+            : inheritedAbstract.contains(name) ? "it implements an inherited abstract method"
+            : calledNames.contains(name) ? "a method named " + name + "() is called somewhere"
+            : externalSupertype && method.isPublic() ? "its class has a third-party supertype" : null;
+        if (reason != null)
         {
+          current = type;
+          why = reason + " (instance methods of kept types)";
           keepCallable(method);
           changed = true;
           if (overrides)
           {
+            current = method;
+            why = "it is overridden by a kept @Override method";
             supertypes.forEach(s -> s.getMethodsByName(name).forEach(this::keepCallable));
           }
         }
       }
     }
     return changed;
+  }
+
+  private void explainKeptTypes()
+  {
+    for (TypeDeclaration<?> type : keptTypes)
+    {
+      report.keptBecause.put(type.getFullyQualifiedName().orElse(type.getNameAsString()), explain(type));
+    }
+  }
+
+  private List<String> explain(Node node)
+  {
+    List<String> chain = new ArrayList<>();
+    Set<Node> seen = identitySet();
+    for (Node n = node; n != null && seen.add(n); n = keptBy.get(n))
+    {
+      chain.add(describe(n) + " <- " + keptWhy.get(n));
+    }
+    return chain;
+  }
+
+  private static String describe(Node node)
+  {
+    if (node instanceof TypeDeclaration)
+    { return ((TypeDeclaration<?>) node).getFullyQualifiedName().orElse("?"); }
+    if (node instanceof CallableDeclaration)
+    {
+      CallableDeclaration<?> callable = (CallableDeclaration<?>) node;
+      String parameters = callable.getParameters().stream().map(TreeShaker::erase).collect(Collectors.joining(", "));
+      return enclosingType(callable).flatMap(TypeDeclaration::getFullyQualifiedName).orElse("?") + "."
+          + callable.getNameAsString() + "(" + parameters + ")";
+    }
+    return node.getClass().getSimpleName();
+  }
+
+  private static String describeMember(BodyDeclaration<?> member)
+  {
+    if (member.isFieldDeclaration())
+    { return "field " + member.asFieldDeclaration().getVariables().stream().map(v -> v.getNameAsString())
+        .collect(Collectors.joining(", ")); }
+    if (member.isConstructorDeclaration())
+    { return "constructor " + describe(member); }
+    return member.getClass().getSimpleName();
   }
 
   private void sweep()

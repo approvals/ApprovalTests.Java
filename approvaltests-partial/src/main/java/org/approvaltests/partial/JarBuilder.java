@@ -26,7 +26,8 @@ public class JarBuilder
   }
   public static List<File> build(File checkout)
   {
-    Shell.run(checkout, "mvn", "-B", "-q", "-pl", String.join(",", MODULES), "clean", "package", "-Dmaven.test.skip=true",
+    Shell.run(checkout, "mvn", "-B", "-q", "-pl", String.join(",", MODULES), "clean", "package",
+        "dependency:build-classpath", "-Dmdep.outputFile=target/partial-classpath.txt", "-Dmaven.test.skip=true",
         "-Dformatter.skip=true");
     List<File> jars = new ArrayList<>();
     for (String module : MODULES)
@@ -34,6 +35,25 @@ public class JarBuilder
       jars.add(findJar(new File(checkout, module + "/target")));
     }
     return jars;
+  }
+
+  public static List<File> thirdPartyJars(File checkout)
+  {
+    Set<File> jars = new java.util.LinkedHashSet<>();
+    for (String module : MODULES)
+    {
+      File classpath = new File(checkout, module + "/target/partial-classpath.txt");
+      if (!classpath.exists())
+      { return null; }
+      for (String entry : com.spun.util.io.FileUtils.readFile(classpath).trim().split(File.pathSeparator))
+      {
+        if (entry.endsWith(".jar") && !new File(entry).getName().startsWith("approvaltests"))
+        {
+          jars.add(new File(entry));
+        }
+      }
+    }
+    return new ArrayList<>(jars);
   }
 
   private static File findJar(File target)

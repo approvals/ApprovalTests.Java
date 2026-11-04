@@ -14,6 +14,7 @@ public class TreeShakerTest
     String localRepository = "file://" + new File("..").getAbsoluteFile().toPath().normalize();
     File checkout = SourceCheckout.cloneTag(localRepository, config.approvaltestsVersion,
         new File(".local/test/approvaltests-" + config.approvaltestsVersion));
-    Approvals.verify(TreeShaker.shake(checkout, config.entryPoints));
+    JarBuilder.build(checkout);
+    Approvals.verify(TreeShaker.shake(checkout, config.entryPoints, JarBuilder.thirdPartyJars(checkout)));
   }
 }

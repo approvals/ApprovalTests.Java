@@ -13,7 +13,8 @@ public class ShakeReport
   public List<String>         missingEntryPoints = new ArrayList<>();
   public List<String>         deletedFiles       = new ArrayList<>();
   public List<String>         removedTypes       = new ArrayList<>();
-  public Map<String, Integer> removedMethods     = new TreeMap<>();
+  public Map<String, Integer>      removedMethods = new TreeMap<>();
+  public Map<String, List<String>> keptBecause    = new TreeMap<>();
   public void removedMethod(String file)
   {
     removedMethods.merge(file, 1, Integer::sum);
