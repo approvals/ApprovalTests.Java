@@ -13,6 +13,7 @@ public class ShakeReport
   public List<String>         missingEntryPoints = new ArrayList<>();
   public List<String>         deletedFiles       = new ArrayList<>();
   public List<String>         removedTypes       = new ArrayList<>();
+  public List<String>         deletedDirectories = new ArrayList<>();
   public Map<String, Integer>      removedMethods = new TreeMap<>();
   public Map<String, List<String>> keptBecause    = new TreeMap<>();
   public void removedMethod(String file)
@@ -33,6 +34,7 @@ public class ShakeReport
     section(b, "Removed methods", removed);
     section(b, "Removed nested types", removedTypes);
     section(b, "Deleted files", deletedFiles);
+    section(b, "Deleted directories", deletedDirectories);
     return b.toString();
   }
 

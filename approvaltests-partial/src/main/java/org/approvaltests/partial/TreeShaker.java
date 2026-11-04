@@ -41,6 +41,7 @@ import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -587,6 +588,31 @@ public class TreeShaker
         removeDeadImports(entry.getKey());
         FileUtils.writeFile(entry.getValue(), LexicalPreservingPrinter.print(entry.getKey()));
       }
+    }
+    for (String root : SOURCE_ROOTS)
+    {
+      deleteEmptyDirectories(new File(checkout, root));
+    }
+  }
+
+  private void deleteEmptyDirectories(File root)
+  {
+    try (Stream<Path> paths = Files.walk(root.toPath()))
+    {
+      List<File> directories = paths.map(Path::toFile).filter(File::isDirectory).filter(d -> !d.equals(root))
+          .sorted(Comparator.comparing(File::getPath).reversed()).collect(Collectors.toList());
+      for (File directory : directories)
+      {
+        String[] contents = directory.list();
+        if (contents != null && contents.length == 0 && directory.delete())
+        {
+          report.deletedDirectories.add(relative(directory));
+        }
+      }
+    }
+    catch (IOException e)
+    {
+      throw new RuntimeException(e);
     }
   }
 
