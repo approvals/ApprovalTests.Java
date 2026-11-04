@@ -22,7 +22,6 @@ If you don't have the URL of the issue or pull request, ask for it.
     *   Ensure **all** other tests continue to pass, verifying no regressions were introduced.
 
 5.  **Commit the Changes**:
-    *   Use the Arlo Commit Notation (`<Risk Symbol> B <Title>`). Typically, the risk symbol will be `-` (Tested) if you wrote a unit test.
+    *   Use the `bug` intention. Typically, the risk will be `proven` if you wrote a unit test.
     *   Reference the fixed issue number in the commit message body (e.g., `Fixes #<issue_number>`).
-    *   Include any necessary co-authors (refer to `ArloCommitNotation.process.md`).
-    *   Build the commit message with `internal_documentation/scripts/create-commit-message.sh` (see `ArloCommitNotation.process.md`).
+    *   Build the commit message with `internal_documentation/scripts/create-commit-message.sh`.

@@ -2,7 +2,6 @@
 # Create a commit message: <risk char> <intention char> <message>
 #
 # Usage: create-commit-message.sh RISK INTENTION MESSAGE
-# See internal_documentation/processes/ArloCommitNotation.process.md for the codes.
 set -e
 
 name=$(basename "$0")
