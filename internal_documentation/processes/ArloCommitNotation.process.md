@@ -42,6 +42,7 @@ Following the risk symbol, a letter denotes the intention of the commit:
 | `F` | Feature       | Add or modify a feature.                          |
 | `B` | Bugfix        | Fix a bug or error.                               |
 | `r` | Refactoring   | Improve code structure without changing behavior. |
+| `t` | Test          | Add or modify tests only.                         |
 | `d` | Documentation | Update or add documentation.                      |
 | `e` | Environment    | Changes for the dev environment (e.g., CI, scripts, setup). |
 
@@ -54,8 +55,17 @@ Following the risk symbol, a letter denotes the intention of the commit:
 
 ## Commit cli
 
-Commit code using: `.windsurf/scripts/commit.sh "<message>"`
-This will stage everything and commit.
+Build the commit message using: `bash internal_documentation/scripts/create-commit-message.sh <risk> <intention> "<message>"`
+Use its stdout as the commit message.
+
+| Risk argument     | Symbol |
+| ----------------- | ------ |
+| `completely_safe` | `.`    |
+| `proven`          | `-`    |
+| `single_item`     | `!`    |
+| `other`           | `@`    |
+
+Intention arguments: `feature`, `bug`, `refactor`, `test`, `documentation`, `environment`.
 
 ## Commit Message Format
 
@@ -98,12 +108,12 @@ The general format for commit messages is:
 4. Only proceed to commit after explicit user confirmation.
 
 ### Co-Author Handling
-- The `.windsurf/coauthors.txt` file should list only co-authors other than yourself (the committer).
+- The `internal_documentation/processes/coauthors.txt` file should list only co-authors other than yourself (the committer).
 - **Do not add yourself as a co-author**; only list collaborators who are not the committer.
 - Co-authors are credited at the bottom of the commit message, one per line.
 
 #### Example Workflow
-1. Suggest a commit message and list the current co-authors from `.windsurf/coauthors.txt`.
+1. Suggest a commit message and list the current co-authors from `internal_documentation/processes/coauthors.txt`.
 2. Format the co-authors section as shown below.
 
 ### Co-Authors Table
@@ -132,7 +142,7 @@ Co-authored-by: Lars <LarsEckart@users.noreply.github.com>
 
 **Multiple Co-Authors Example:**
 ```
-. e Update script: `commit.sh`
+. e Update script: `create-commit-message.sh`
 
 Improved commit scripts to check status.
 
@@ -144,7 +154,7 @@ Co-authored-by: Jay <JayBazuzi@users.noreply.github.com>
 
 ## Troubleshooting & FAQ
 
-**Q: How should `.windsurf/coauthors.txt` be managed?**
+**Q: How should `internal_documentation/processes/coauthors.txt` be managed?**
 A: Only list co-authors who are not yourself.
 
 **Q: What if a co-author is not in the table?**
