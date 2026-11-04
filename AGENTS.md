@@ -21,4 +21,3 @@ See **ARCHITECTURE.md** for the full codemap (module structure, key types, and t
 
 ## Commit messages
 Use `internal_documentation/scripts/create-commit-message.sh` to build every commit message in this repo. Run `bash internal_documentation/scripts/create-commit-message.sh <risk> <intention> "<message>"` and use its stdout as the commit message.
-See `internal_documentation/processes/ArloCommitNotation.process.md` for what the risk and intention codes mean.
