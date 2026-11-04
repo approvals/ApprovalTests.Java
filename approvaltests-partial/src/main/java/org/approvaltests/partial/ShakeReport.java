@@ -14,6 +14,7 @@ public class ShakeReport
   public List<String>         deletedFiles       = new ArrayList<>();
   public List<String>         removedTypes       = new ArrayList<>();
   public List<String>         deletedDirectories = new ArrayList<>();
+  public List<String>         droppedStringOnlyTypes = new ArrayList<>();
   public Map<String, Integer>      removedMethods = new TreeMap<>();
   public Map<String, List<String>> keptBecause    = new TreeMap<>();
   public void removedMethod(String file)
@@ -33,6 +34,7 @@ public class ShakeReport
     removedMethods.forEach((file, count) -> removed.add(file + " (" + count + ")"));
     section(b, "Removed methods", removed);
     section(b, "Removed nested types", removedTypes);
+    section(b, "Dropped (only named in a string, nothing left inside)", droppedStringOnlyTypes);
     section(b, "Deleted files", deletedFiles);
     section(b, "Deleted directories", deletedDirectories);
     return b.toString();

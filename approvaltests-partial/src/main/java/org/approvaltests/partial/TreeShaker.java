@@ -57,6 +57,7 @@ public class TreeShaker
 {
   public static final String[]                          SOURCE_ROOTS   = {"approvaltests-util/src/main/java",
                                                                           "approvaltests/src/main/java"};
+  private static final String                           STRING_LITERAL = "its name appears in the string literal ";
   private final File                                    checkout;
   private final ShakeReport                             report         = new ShakeReport();
   private final Map<CompilationUnit, File>              files          = new IdentityHashMap<>();
@@ -67,6 +68,7 @@ public class TreeShaker
   private final Set<CallableDeclaration<?>>             reachable      = identitySet();
   private final Set<String>                             calledNames    = new HashSet<>();
   private final Deque<Node>                             work           = new ArrayDeque<>();
+  private final Set<TypeDeclaration<?>>                 usedInCode     = identitySet();
   private final Map<Node, Node>                         keptBy         = new IdentityHashMap<>();
   private final Map<Node, String>                       keptWhy        = new IdentityHashMap<>();
   private Node                                          current;
@@ -75,6 +77,7 @@ public class TreeShaker
   {
     TreeShaker shaker = new TreeShaker(checkout, thirdPartyJars);
     shaker.mark(entryPoints);
+    shaker.dropEmptyStringOnlyTypes();
     shaker.explainKeptTypes();
     shaker.sweep();
     return shaker.report;
@@ -207,6 +210,10 @@ public class TreeShaker
 
   private void keepType(TypeDeclaration<?> type)
   {
+    if (why == null || !why.startsWith(STRING_LITERAL))
+    {
+      usedInCode.add(type);
+    }
     if (!keptTypes.add(type))
     { return; }
     record(type);
@@ -302,7 +309,7 @@ public class TreeShaker
       TypeDeclaration<?> type = typesByName.get(literal.getValue());
       if (type != null)
       {
-        why = "its name appears in the string literal " + literal;
+        why = STRING_LITERAL + literal;
         keepType(type);
       }
     }
@@ -497,6 +504,21 @@ public class TreeShaker
     return changed;
   }
 
+  private void dropEmptyStringOnlyTypes()
+  {
+    for (TypeDeclaration<?> type : new ArrayList<>(keptTypes))
+    {
+      boolean empty = type.getMembers().stream()
+          .allMatch(m -> (m.isMethodDeclaration() && !reachable.contains(m.asMethodDeclaration()))
+              || (m.isTypeDeclaration() && !keptTypes.contains(m.asTypeDeclaration())));
+      if (!usedInCode.contains(type) && empty)
+      {
+        keptTypes.remove(type);
+        report.droppedStringOnlyTypes.add(type.getFullyQualifiedName().orElse(type.getNameAsString()));
+      }
+    }
+  }
+
   private void explainKeptTypes()
   {
     for (TypeDeclaration<?> type : keptTypes)
@@ -637,11 +659,21 @@ public class TreeShaker
         TypeDeclaration<?> type = typesByName.get(name);
         dead = type != null && !keptTypes.contains(type);
       }
-      if (dead)
+      if (dead || !isUsed(cu, declaration))
       {
         declaration.remove();
       }
     }
+  }
+
+  private static boolean isUsed(CompilationUnit cu, ImportDeclaration declaration)
+  {
+    if (declaration.isAsterisk())
+    { return true; }
+    String name = declaration.getName().getIdentifier();
+    return cu.getTypes().stream().anyMatch(type -> type.findAll(SimpleName.class).stream()
+        .anyMatch(n -> n.getIdentifier().equals(name))
+        || type.findAll(Name.class).stream().anyMatch(n -> n.getIdentifier().equals(name)));
   }
 
   private static boolean hasMember(TypeDeclaration<?> type, String name)
