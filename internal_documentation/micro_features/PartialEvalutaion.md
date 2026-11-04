@@ -2,7 +2,7 @@
 
 > Status: brainstorm / interface spec only. Implementation is intentionally not covered yet.
 
-Lets a user select the exact ApprovalTests entry points they use and build a custom jar that contains only the code reachable from those entry points.
+Lets a user select the exact ApprovalTests entry points they use and build a custom jar that contains only the code reachable from those entry points. Everything else is removed by **Tree Shaking**.
 
 ## Purpose
 Users want a trimmed ApprovalTests for any of these reasons:
@@ -39,27 +39,53 @@ org.approvaltests.core.Options.withScrubber(org.approvaltests.core.Scrubber)
 org.approvaltests.core.Options.forFile()
 ```
 
-### Runtime Components
-Some code is reached through reflection or configuration, not through direct calls. These are also selected explicitly:
-- **Reporters**: e.g. `DiffReporter`, `QuietReporter`, `AutoApproveReporter`, specific diff tools.
-- **Default reporter auto-detection**: whether to include the "first working reporter" discovery and which candidates it may consider.
-- **PackageSettings** lookup.
-- Other reflectively loaded pieces (namers, writers, etc.) as they are identified.
+### Tree Shaking
+Code is removed by **Tree Shaking**:
+1. Every entry point that was **not** selected has its body replaced with a stub that throws a `RuntimeException`. The message explains how to enable it in the config (see [Excluded Code Behavior](#excluded-code-behavior)).
+2. Every runtime discovery set to `remove` or `ignore` is handled as described in [Runtime Discoveries](#runtime-discoveries).
+3. Starting from what is still reachable, any code nothing reaches anymore (classes, methods, and third-party dependencies) is shaken out of the jar.
+
+### Runtime Discoveries
+Some behavior is triggered by the environment, reflection, or configuration, not by a direct call. Examples:
+- the `CI` environment variable
+- default reporter auto-detection, and each diff tool it can find
+- the `PackageSettings` lookup
+- other reflectively loaded pieces (namers, writers, etc.) as they are identified
+
+Every runtime discovery is set **explicitly** to one of three modes. A discovery that is missing from the config is treated as `remove`.
+
+| Mode | Detection code | When the discovery is triggered |
+|---|---|---|
+| `keep` | Kept | It works normally. |
+| `remove` | Kept | It throws a `RuntimeException` with a message on how to enable it. |
+| `ignore` | Tree-shaken out | Nothing happens. The code is gone, so it behaves as if the discovery was never triggered. |
+
+Example: the `CI` environment variable
+- **keep**: it works.
+- **remove**: it still checks, and throws an exception if `CI` is set in the environment.
+- **ignore**: it doesn't check and doesn't care whether `CI` is set. That code is gone.
 
 ### Excluded Code Behavior
 The custom jar is a **drop-in replacement**:
 - It uses the same package names, class names, and public method signatures.
 - User code compiles unchanged against it.
 
-Calling an entry point or runtime component that was not selected fails **at runtime** with a clear message, never with a `NoClassDefFoundError`:
+Calling an unselected entry point, or triggering a runtime discovery set to `remove`, throws a `RuntimeException` that explains how to enable it in the config. It never fails with a `NoClassDefFoundError`:
 ```
-org.approvaltests.Approvals.verifyAll(java.lang.String, java.lang.Object[]) is not included in this custom build of ApprovalTests.
-Add it to approvaltests-selection.json and rebuild, or use the full ApprovalTests jar.
+org.approvaltests.Approvals.verifyAll(java.lang.String, java.lang.Object[]) is not included in this partial evaluation of ApprovalTests.
+To enable it, add this to "entryPoints" in approvaltests-selection.json and rebuild:
+  "org.approvaltests.Approvals.verifyAll(java.lang.String, java.lang.Object[])"
+```
+```
+Runtime discovery "environment.CI" is set to remove in this partial evaluation of ApprovalTests, and the CI environment variable is set.
+To enable it, set it in "runtimeDiscoveries" in approvaltests-selection.json and rebuild:
+  "environment.CI": "keep"
+Or use "ignore" to not check for it at all.
 ```
 
 ## Selector Page
 - It lists every available entry point, grouped by class (`Approvals`, `JsonApprovals`, `CombinationApprovals`, `Options`, ...).
-- It lists runtime components (reporters, etc.) in their own section.
+- It lists runtime discoveries in their own section. Each one has a `keep` / `remove` / `ignore` choice, and the default is `remove`.
 - It has search and filter by name.
 - Selecting a method shows what else it pulls in: the classes it reaches and any third-party dependencies (e.g. "requires Gson").
 - It shows a running summary of the selection: number of entry points, estimated size, and required third-party dependencies.
@@ -79,13 +105,13 @@ Default name: `approvaltests-selection.json`
     "org.approvaltests.JsonApprovals.verifyAsJson(java.lang.Object)",
     "org.approvaltests.core.Options.withScrubber(org.approvaltests.core.Scrubber)"
   ],
-  "runtimeComponents": {
-    "reporters": [
-      "org.approvaltests.reporters.DiffReporter",
-      "org.approvaltests.reporters.QuietReporter"
-    ],
-    "defaultReporterAutoDetection": true,
-    "packageSettings": true
+  "runtimeDiscoveries": {
+    "environment.CI": "keep",
+    "packageSettings": "keep",
+    "reporters.autoDetection": "keep",
+    "reporters.DiffReporter": "keep",
+    "reporters.QuietReporter": "keep",
+    "reporters.IntelliJReporter": "ignore"
   },
   "output": {
     "directory": "build/approvaltests-custom",
@@ -115,8 +141,8 @@ approvaltests-partial explain --config approvaltests-selection.json [--entry-poi
 ```
 
 ### Commands
-- **build**: Reads the config file and produces the custom jar.
-- **list**: Prints all available entry points and runtime components for a version. The Selector Page is built from the same data.
+- **build**: Reads the config file and produces the custom jar using Tree Shaking.
+- **list**: Prints all available entry points and runtime discoveries for a version. The Selector Page is built from the same data.
 - **explain**: Shows why each class or dependency is included, i.e. which entry point reaches it. Useful for audits and for trimming a selection further.
 
 ### Output Flags
