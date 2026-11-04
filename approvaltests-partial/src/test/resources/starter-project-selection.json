@@ -1,0 +1,18 @@
+{
+  "approvaltestsVersion": "31.0.0",
+  "entryPoints": [
+    "org.approvaltests.Approvals.verify(java.lang.String)",
+    "org.approvaltests.JsonApprovals.verifyAsJson(java.lang.Object)",
+    "org.approvaltests.reporters.DiffReporter.INSTANCE"
+  ],
+  "runtimeDiscoveries": {
+    "*": "keep"
+  },
+  "output": {
+    "directory": "target/approvaltests-custom",
+    "version": "31.0.0-custom",
+    "pom": true,
+    "sources": true,
+    "install": "none"
+  }
+}
