@@ -1,7 +1,6 @@
 package org.approvaltests.partial;
 
 import java.io.File;
-import java.io.IOException;
 
 public class SourceCheckout
 {
@@ -13,31 +12,20 @@ public class SourceCheckout
 
   public static File cloneTag(String repository, String version, File directory)
   {
-    if (new File(directory, ".git").exists())
+    File absolute = directory.getAbsoluteFile();
+    if (new File(absolute, ".git").exists())
     {
-      run("git", "-C", directory.getAbsolutePath(), "reset", "--hard", "--quiet");
-      run("git", "-C", directory.getAbsolutePath(), "clean", "-fdq");
+      Shell.run(absolute, "git", "fetch", "--quiet", "--force", "--depth", "1", "origin", "tag", version);
+      Shell.run(absolute, "git", "-c", "advice.detachedHead=false", "checkout", "--quiet", "--force", version);
+      Shell.run(absolute, "git", "reset", "--hard", "--quiet", version);
+      Shell.run(absolute, "git", "clean", "-fdq");
     }
     else
     {
-      directory.getParentFile().mkdirs();
-      run("git", "-c", "advice.detachedHead=false", "clone", "--quiet", "--depth", "1", "--branch", version,
-          repository, directory.getAbsolutePath());
+      absolute.getParentFile().mkdirs();
+      Shell.run(absolute.getParentFile(), "git", "-c", "advice.detachedHead=false", "clone", "--quiet", "--depth",
+          "1", "--branch", version, repository, absolute.getPath());
     }
-    return directory;
-  }
-
-  private static void run(String... command)
-  {
-    try
-    {
-      int exitCode = new ProcessBuilder(command).inheritIO().start().waitFor();
-      if (exitCode != 0)
-      { throw new RuntimeException(String.join(" ", command) + " failed with exit code " + exitCode); }
-    }
-    catch (IOException | InterruptedException e)
-    {
-      throw new RuntimeException(e);
-    }
+    return absolute;
   }
 }

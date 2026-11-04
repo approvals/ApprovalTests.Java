@@ -1,6 +1,6 @@
 # Partial Evaluation (Custom ApprovalTests Jar)
 
-> Status: brainstorm / interface spec only. Implementation is intentionally not covered yet.
+> Status: interface spec, plus a working first pass of the CLI (see [Current Implementation](#current-implementation-first-pass)).
 
 Lets a user select the exact ApprovalTests entry points they use and build a custom jar that contains only the code reachable from those entry points. Everything else is removed by **Tree Shaking**.
 
@@ -33,6 +33,11 @@ org.approvaltests.JsonApprovals.verifyAsJson(java.lang.Object)
 ```
 Selection is always at the **method/overload** level. Selecting `Approvals.verify(String)` does **not** select `Approvals.verify(Object)`.
 
+A public static field can also be an entry point. It has no parentheses:
+```
+org.approvaltests.reporters.DiffReporter.INSTANCE
+```
+
 `Options` methods (scrubbers, file extensions, reporters, etc.) are ordinary entry points too:
 ```
 org.approvaltests.core.Options.withScrubber(org.approvaltests.core.Scrubber)
@@ -53,6 +58,8 @@ Some behavior is triggered by the environment, reflection, or configuration, not
 - other reflectively loaded pieces (namers, writers, etc.) as they are identified
 
 Every runtime discovery is set **explicitly** to one of three modes. A discovery that is missing from the config is treated as `remove`.
+
+The key `"*"` sets the mode for every discovery at once, e.g. `"*": "keep"`.
 
 | Mode | Detection code | When the discovery is triggered |
 |---|---|---|
@@ -128,8 +135,10 @@ The CLI is a **standalone** executable jar. It is not a Maven or Gradle plugin.
 
 ### Source of ApprovalTests Code
 The CLI does not bundle ApprovalTests. For each run it:
-1. Clones `https://github.com/approvals/ApprovalTests.Java.git` into a temp folder.
-2. Checks out the tag that matches `approvaltestsVersion` (tags are plain version numbers, e.g. `31.0.0`).
+1. Gets a checkout of `https://github.com/approvals/ApprovalTests.Java.git` at `.local/approvaltests-<version>/`:
+   - If that folder doesn't exist yet, it shallow-clones the tag that matches `approvaltestsVersion` (tags are plain version numbers, e.g. `31.0.0`).
+   - If it already exists, it fetches the tag, then force-checks it out, `git reset --hard` and `git clean`. It does not clone again.
+2. Applies Tree Shaking to that checkout. The checkout is kept, so `git -C .local/approvaltests-<version> diff` shows exactly what changed.
 3. Builds the custom jar from that checkout.
 
 Because of this, one CLI can build any ApprovalTests version, and the config version never has to match the CLI's version.
@@ -157,10 +166,67 @@ Output is configurable through flags or the `output` section of the config file.
 | `--install none\|maven-local` | Optionally install into the local Maven repository |
 
 ### Outputs
+All outputs go into `output.directory`, which is resolved relative to the config file.
 - `approvaltests-<version>.jar`: `approvaltests` and `approvaltests-util` merged into one jar. As in the regular ApprovalTests jar, the `.java` source files for the included classes sit next to the `.class` files.
 - `approvaltests-<version>.pom` (optional)
 - `approvaltests-<version>-sources.jar` (optional)
-- A build report (included entry points, included classes, required dependencies, size compared to the full jar).
+- `approvaltests-<version>-report.html`: an HTML report comparing the partial build to the original (see [Report](#report)).
+
+### Report
+The HTML report contains:
+- **Summary**: source files kept / deleted / changed / untouched, lines of source kept, compiled `.class` files and bytes, jar size, number of stubbed entry points, and third-party packages still imported. Each one is compared to the original.
+- **Inputs**: the selection file and its location, the ApprovalTests version and tag, the selected entry points in readable form (`Approvals.verify(String)`), the runtime discoveries with what each mode means, the output location, and the raw JSON.
+- **By module** and **By package**: files and lines before and after, with a kept/removed bar.
+- **Third-party dependencies**: each third-party package imported by the original, and whether it's still referenced.
+- **Changed files**: every modified file, sorted by lines removed, with an expandable diff against the original.
+- **Deleted files**: grouped by package.
+
+## Current Implementation (first pass)
+Lives in `approvaltests-partial/`, a standalone Maven module (Java 17). It is not part of the main reactor build.
+
+### Running It
+From your project folder (the one with `approvaltests-selection.json`):
+```bash
+path/to/ApprovalTests.Java/approvaltests-partial/CreatePartailApprovals.sh [approvaltests-selection.json]
+```
+- The config file defaults to `approvaltests-selection.json` in the current folder.
+- The script compiles the CLI on every run (about 3 seconds), so it never runs a stale build.
+- All projects share one checkout in `approvaltests-partial/.local/` (set with `-Dapprovaltests.partial.local=<dir>`), so no `.local/` folder appears in your project.
+- Only `build` is implemented. `list`, `explain`, the output flags, and the `pom` / `sources` / `install` settings are not yet.
+
+Build and test the tool itself with `approvaltests-partial/build_and_test.sh`.
+
+### Build Pipeline
+1. Check out the tag (clone, or fetch and reset).
+2. Build the original `approvaltests-util` and `approvaltests` jars, to get the baseline for the report.
+3. Snapshot the original sources, also for the report.
+4. Tree Shaking (`TreeShaker`).
+5. Build again with `-Dmaven.test.skip=true`, since the shaken code no longer supports the repo's own tests.
+6. Merge both jars into `approvaltests-<version>.jar` (`JarBuilder`), and write the HTML report (`HtmlReport`).
+
+For the StarterProject (`Approvals.verify(String)`, `JsonApprovals.verifyAsJson(Object)` and `DiffReporter.INSTANCE`), a run takes about 13 seconds. The result is 253 of 448 files, 49% of the source lines and a 519 KB jar, and the shaken code compiles.
+
+### How Tree Shaking Works
+Tree Shaking works on the source code, using JavaParser and its symbol solver. Runtime discoveries are all treated as `keep` for now.
+
+**Mark** (find what's reachable, starting from the entry points):
+- Method calls are resolved with the symbol solver. If a call can't be resolved (e.g. it calls into a third-party library), every method with that name and number of arguments is kept, to be safe.
+- Any type referenced from reachable code is kept, along with all its fields, initializers and constructors.
+- Instance methods of kept types are kept if they are abstract, `@Override`, implement an inherited abstract method, have a name that is called anywhere, or belong to a type with a third-party supertype.
+- A string literal that equals one of our fully qualified class names keeps that class. This is the stand-in for reflection.
+
+**Sweep** (remove what isn't reachable):
+- Files with no kept types are deleted.
+- In classes that declare a selected entry point, unreached public methods become stubs that throw the "not included" message. Types in their signatures are kept, so the stubs compile.
+- Everywhere else, unreached methods and nested types are deleted.
+- Imports pointing at removed types or members are removed.
+- Files are rewritten with formatting preserved, so the diff stays minimal.
+
+### Known Gaps
+- **Unselected API classes are deleted.** Only classes that hold a *selected* entry point get stubs. Classes like `CombinationApprovals` are deleted, so calling them gives `NoClassDefFoundError` instead of the message. This doesn't match the spec yet.
+- **Too many dependencies are kept.** Of 16 third-party packages, 12 are still imported (Jackson, XStream, Quartz, servlet, JUnit, ...). This comes from the safe choices above: unresolved calls kept by name, all fields and constructors kept, and stub signatures kept.
+- **Computed class names are missed.** Reflection by class names built at runtime (e.g. reporters from `APPROVAL_TESTS_USE_REPORTER`) isn't detected.
+- **Runtime behavior is untested.** The partial jar compiles but hasn't been run against the StarterProject's tests yet.
 
 ## Future Work
 - **Codebase detection tool**: scans a user's codebase (source or compiled tests) to find which ApprovalTests entry points and reporters are used, then pre-fills the Selector Page or the config file.

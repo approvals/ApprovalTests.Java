@@ -1,6 +1,8 @@
 package org.approvaltests.partial;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 public class PartialEvaluationCli
 {
@@ -17,12 +19,35 @@ public class PartialEvaluationCli
 
   public static void build(File configFile)
   {
+    configFile = configFile.getAbsoluteFile().toPath().normalize().toFile();
     SelectionConfig config = SelectionConfig.load(configFile);
-    File checkout = new File(".local/approvaltests-" + config.approvaltestsVersion);
-    System.out.println("Checking out ApprovalTests " + config.approvaltestsVersion + " into " + checkout + "...");
-    SourceCheckout.cloneTag(config.approvaltestsVersion, checkout);
+    String version = config.approvaltestsVersion;
+    File checkout = new File(System.getProperty("approvaltests.partial.local", ".local"), "approvaltests-" + version);
+    System.out.println("Checking out ApprovalTests " + version + " into " + checkout + "...");
+    checkout = SourceCheckout.cloneTag(version, checkout);
+    System.out.println("Building original jars...");
+    JarBuilder.Stats originalStats = JarBuilder.stats(JarBuilder.build(checkout));
+    Map<String, String> originalSources = HtmlReport.snapshot(checkout);
     System.out.println("Tree Shaking...");
     System.out.println(TreeShaker.shake(checkout, config.entryPoints));
-    System.out.println("To see the changes: git -C " + checkout + " status");
+    System.out.println("Building partial jar...");
+    List<File> jars = JarBuilder.build(checkout);
+    File outputDirectory = new File(configFile.getParentFile(), config.output.directory);
+    String artifactVersion = config.output.version == null ? version + "-custom" : config.output.version;
+    File jar = JarBuilder.merge(jars, new File(outputDirectory, "approvaltests-" + artifactVersion + ".jar"),
+        artifactVersion);
+    HtmlReport.Inputs inputs = new HtmlReport.Inputs();
+    inputs.config = config;
+    inputs.configFile = configFile;
+    inputs.checkout = checkout;
+    inputs.originalSources = originalSources;
+    inputs.originalStats = originalStats;
+    inputs.partialStats = JarBuilder.stats(List.of(jar));
+    inputs.jar = jar;
+    File report = HtmlReport.write(inputs,
+        new File(outputDirectory, "approvaltests-" + artifactVersion + "-report.html"));
+    System.out.println("Jar:     " + jar);
+    System.out.println("Report:  " + report);
+    System.out.println("Changes: git -C " + checkout + " status");
   }
 }
