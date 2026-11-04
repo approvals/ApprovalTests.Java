@@ -11,8 +11,40 @@ fail() {
     exit 1
 }
 
+usage() {
+    cat <<EOF
+usage: $name risk intention message
+
+Prints: <risk char> <intention char> <message>
+
+risk:
+  completely_safe  .  We are completely certain that it can't break production
+  proven           -  Whole system is verified with comprehensive (unit) testing, before and after this change
+  single_item      !  This behavior change is verified with automated tests
+  other            @  No verification
+
+intention:
+  feature          F  Feature (user visible)
+  bug              B  Bugfix (user visible)
+  refactor         r  Refactoring, no behavior change
+  test             t  Test-only change
+  documentation    d  Documentation
+  environment      e  Development environment (risk must be completely_safe)
+
+examples:
+  $name completely_safe documentation "Update TODO"
+  $name proven refactor "Extract function"
+  $name single_item feature "Add custom date format scrubbers"
+EOF
+}
+
+if [ "$1" = --help ] || [ "$1" = -h ]; then
+    usage
+    exit 0
+fi
+
 if [ $# -ne 3 ]; then
-    echo "$name: usage: $name risk intention message" >&2
+    echo "$name: usage: $name risk intention message (see --help)" >&2
     exit 2
 fi
 
