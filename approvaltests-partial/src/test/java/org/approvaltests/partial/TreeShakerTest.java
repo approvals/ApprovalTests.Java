@@ -13,7 +13,7 @@ public class TreeShakerTest
     SelectionConfig config = SelectionConfig.load(new File("src/test/resources/starter-project-selection.json"));
     String localRepository = "file://" + new File("..").getAbsoluteFile().toPath().normalize();
     File checkout = SourceCheckout.cloneTag(localRepository, config.approvaltestsVersion,
-        new File(".local/test/approvaltests-" + config.approvaltestsVersion));
+        new File(System.getProperty("java.io.tmpdir"), "approvaltests-partial-test/approvaltests-" + config.approvaltestsVersion));
     JarBuilder.build(checkout);
     Approvals.verify(TreeShaker.shake(checkout, config.entryPoints, JarBuilder.thirdPartyJars(checkout)));
   }

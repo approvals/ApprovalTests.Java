@@ -199,8 +199,10 @@ public class HtmlReport
         .append("<div class=\"label\">Selection file</div><div><code>").append(esc(configName)).append("</code></div>")
         .append("<div class=\"sub\">").append(esc(in.configFile.getAbsoluteFile().getParent())).append("</div>\n")
         .append("<div class=\"label\" style=\"margin-top:12px\">ApprovalTests version</div><div class=\"value\">")
-        .append(esc(config.approvaltestsVersion)).append("</div><div class=\"sub\">cloned from the <code>")
-        .append(esc(config.approvaltestsVersion)).append("</code> tag of approvals/ApprovalTests.Java</div>\n</div>\n");
+        .append(esc(config.approvaltestsVersion)).append("</div><div class=\"sub\">")
+        .append(config.approvaltestsVersion.startsWith("master@") ? "built with --current, from the latest master"
+            : "cloned from the <code>" + esc(config.approvaltestsVersion) + "</code> tag")
+        .append(" of approvals/ApprovalTests.Java</div>\n</div>\n");
     h.append("<div class=\"tile\">\n<div class=\"label\">Entry points you selected (").append(config.entryPoints.size())
         .append(")</div><div class=\"sub\">Everything kept is reachable from these. Everything else is deleted.</div>\n")
         .append("<table class=\"plain\"><tr><th>Call</th><th>Kind</th><th>Package</th></tr>");

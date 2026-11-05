@@ -1,22 +1,42 @@
 package org.approvaltests.partial;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class PartialEvaluationCli
 {
-  public static final String USAGE = "usage: approvaltests-partial build --config <approvaltests-selection.json>\n"
-      + "       approvaltests-partial explain --config <approvaltests-selection.json> <class or package prefix>";
+  public static final String USAGE = "usage: approvaltests-partial build [--current] --config <approvaltests-selection.json>\n"
+      + "       approvaltests-partial explain [--current] --config <approvaltests-selection.json> <class or package prefix>\n"
+      + "  --current  build from the latest master on GitHub instead of the approvaltestsVersion tag";
   public static void main(String[] args)
   {
-    if (args.length == 3 && "build".equals(args[0]) && "--config".equals(args[1]))
+    boolean current = false;
+    File config = null;
+    List<String> positional = new ArrayList<>();
+    for (int i = 0; i < args.length; i++)
     {
-      build(new File(args[2]));
+      if ("--current".equals(args[i]))
+      {
+        current = true;
+      }
+      else if ("--config".equals(args[i]) && i + 1 < args.length)
+      {
+        config = new File(args[++i]);
+      }
+      else
+      {
+        positional.add(args[i]);
+      }
     }
-    else if (args.length == 4 && "explain".equals(args[0]) && "--config".equals(args[1]))
+    if (config != null && positional.size() == 1 && "build".equals(positional.get(0)))
     {
-      explain(new File(args[2]), args[3]);
+      build(config, current);
+    }
+    else if (config != null && positional.size() == 2 && "explain".equals(positional.get(0)))
+    {
+      explain(config, positional.get(1), current);
     }
     else
     {
@@ -25,12 +45,27 @@ public class PartialEvaluationCli
     }
   }
 
-  public static void explain(File configFile, String prefix)
+  private static File checkout(SelectionConfig config, boolean current)
+  {
+    File root = new File(System.getProperty("approvaltests.partial.local",
+        new File(System.getProperty("user.home"), ".approvaltests-partial").getPath()));
+    if (current)
+    {
+      File checkout = new File(root, "approvaltests-master");
+      System.out.println("Checking out the latest ApprovalTests master into " + checkout + "...");
+      checkout = SourceCheckout.cloneBranch("master", checkout);
+      config.approvaltestsVersion = "master@" + SourceCheckout.shortCommit(checkout);
+      return checkout;
+    }
+    File checkout = new File(root, "approvaltests-" + config.approvaltestsVersion);
+    System.out.println("Checking out ApprovalTests " + config.approvaltestsVersion + " into " + checkout + "...");
+    return SourceCheckout.cloneTag(config.approvaltestsVersion, checkout);
+  }
+
+  public static void explain(File configFile, String prefix, boolean current)
   {
     SelectionConfig config = SelectionConfig.load(configFile);
-    File checkout = new File(System.getProperty("approvaltests.partial.local", ".local"),
-        "approvaltests-" + config.approvaltestsVersion);
-    checkout = SourceCheckout.cloneTag(config.approvaltestsVersion, checkout);
+    File checkout = checkout(config, current);
     List<File> thirdPartyJars = JarBuilder.thirdPartyJars(checkout);
     if (thirdPartyJars == null)
     {
@@ -48,14 +83,11 @@ public class PartialEvaluationCli
     });
   }
 
-  public static void build(File configFile)
+  public static void build(File configFile, boolean current)
   {
     configFile = configFile.getAbsoluteFile().toPath().normalize().toFile();
     SelectionConfig config = SelectionConfig.load(configFile);
-    String version = config.approvaltestsVersion;
-    File checkout = new File(System.getProperty("approvaltests.partial.local", ".local"), "approvaltests-" + version);
-    System.out.println("Checking out ApprovalTests " + version + " into " + checkout + "...");
-    checkout = SourceCheckout.cloneTag(version, checkout);
+    File checkout = checkout(config, current);
     System.out.println("Building original jars...");
     JarBuilder.Stats originalStats = JarBuilder.stats(JarBuilder.build(checkout));
     Map<String, String> originalSources = HtmlReport.snapshot(checkout);
@@ -64,9 +96,10 @@ public class PartialEvaluationCli
     System.out.println("Building partial jar...");
     List<File> jars = JarBuilder.build(checkout);
     File outputDirectory = new File(configFile.getParentFile(), config.output.directory);
-    String artifactVersion = config.output.version == null ? version + "-custom" : config.output.version;
+    String artifactVersion = current ? "master-custom"
+        : config.output.version == null ? config.approvaltestsVersion + "-custom" : config.output.version;
     File jar = JarBuilder.merge(jars, new File(outputDirectory, "approvaltests-" + artifactVersion + ".jar"),
-        artifactVersion);
+        current ? config.approvaltestsVersion + "-custom" : artifactVersion);
     HtmlReport.Inputs inputs = new HtmlReport.Inputs();
     inputs.config = config;
     inputs.configFile = configFile;
