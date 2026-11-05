@@ -16,6 +16,7 @@
   * [How to get it](#how-to-get-it)
     * [Maven](#maven)
     * [Gradle](#gradle)
+    * [Minimizer](#minimizer)
   * [Podcasts](#podcasts)
   * [Examples](#examples)
   * [Approved File Artifacts](#approved-file-artifacts)
@@ -98,6 +99,11 @@ dependencies {
 ```
 
 or [download the jars from maven central repository](https://repo1.maven.org/maven2/com/approvaltests/approvaltests/)
+
+### Minimizer
+
+**Just what you use, Nothing you don't.**
+[ApprovalTests.Java.Minimizer](https://github.com/approvals/ApprovalTests.Java.Minimizer) scans your project for the ApprovalTests calls you actually make, and builds a custom ApprovalTests jar that contains only that code. For the StarterProject the jar shrinks from 948 KB to 252 KB, and it no longer needs Jackson, XStream, Quartz and other dependencies it doesn't use.
 
 [Video Tutorials](https://www.youtube.com/playlist?list=PLFBA98F47156EFAA9&feature=view_all)
 ---
