@@ -35,7 +35,7 @@ public class CheckedExceptionsTest
 
   private Queryable<Class<?>> getAllClasses()
   {
-    return getClasses(ClassUtils.getProjectRootPath() + "/..", p -> p.contains("main") && !p.contains(".local."),
+    return getClasses(ClassUtils.getProjectRootPath() + "/..", p -> p.contains("main"),
         p1 -> p1.contains(".approvaltests.src.") || p1.contains(".approvaltests-util."));
   }
 }
