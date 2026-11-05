@@ -140,11 +140,11 @@ The CLI is a **standalone** executable jar. It is not a Maven or Gradle plugin.
 
 ### Source of ApprovalTests Code
 The CLI does not bundle ApprovalTests. For each run it:
-1. Gets a checkout of `https://github.com/approvals/ApprovalTests.Java.git` at `~/.approvaltests-partial/approvaltests-<version>/`:
+1. Gets a checkout of `https://github.com/approvals/ApprovalTests.Java.git` at `approvaltests-partial/.local/approvaltests-<version>/`:
    - If that folder doesn't exist yet, it shallow-clones the tag that matches `approvaltestsVersion` (tags are plain version numbers, e.g. `31.0.0`).
    - If it already exists, it fetches the tag, then force-checks it out, `git reset --hard` and `git clean`. It does not clone again.
-   - With `--current`, it uses the latest `master` instead of the tag, at `~/.approvaltests-partial/approvaltests-master/`. The report shows the commit, e.g. `master@63044b7`, and the jar is named `approvaltests-master-custom.jar`.
-2. Applies Tree Shaking to that checkout. The checkout is kept, so `git -C ~/.approvaltests-partial/approvaltests-<version> diff` shows exactly what changed.
+   - With `--current`, it uses the latest `master` instead of the tag, at `approvaltests-partial/.local/approvaltests-master/`. The report shows the commit, e.g. `master@63044b7`, and the jar is named `approvaltests-master-custom.jar`.
+2. Applies Tree Shaking to that checkout. The checkout is kept, so `git -C approvaltests-partial/.local/approvaltests-<version> diff` shows exactly what changed.
 3. Builds the custom jar from that checkout.
 
 Because of this, one CLI can build any ApprovalTests version, and the config version never has to match the CLI's version.
@@ -200,7 +200,7 @@ path/to/ApprovalTests.Java/approvaltests-partial/CreatePartailApprovals.sh expla
 - The script compiles the CLI on every run (about 3 seconds), so it never runs a stale build.
 - `--current` builds from the latest `master` on GitHub instead of the `approvaltestsVersion` tag. Use it to try changes to ApprovalTests before they are released.
 - `explain` prints, for every kept class matching the prefix, the chain of reasons back to an entry point.
-- All projects share checkouts in `~/.approvaltests-partial/` (set with `-Dapprovaltests.partial.local=<dir>`). They live outside the repo, because shaken copies inside it break ApprovalTests' own tests (e.g. `CheckedExceptionsTest` scans for compiled classes).
+- All projects share checkouts in `approvaltests-partial/.local/` (set with `-Dapprovaltests.partial.local=<dir>`), so no `.local/` folder appears in your project. `CheckedExceptionsTest` scans the repo for ApprovalTests sources, so it skips `.local` folders to avoid picking up the shaken copies.
 - `list`, the output flags, and the `pom` / `sources` / `install` settings are not implemented yet.
 
 Build and test the tool itself with `approvaltests-partial/build_and_test.sh`.

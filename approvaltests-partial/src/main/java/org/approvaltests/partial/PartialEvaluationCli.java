@@ -47,8 +47,7 @@ public class PartialEvaluationCli
 
   private static File checkout(SelectionConfig config, boolean current)
   {
-    File root = new File(System.getProperty("approvaltests.partial.local",
-        new File(System.getProperty("user.home"), ".approvaltests-partial").getPath()));
+    File root = new File(System.getProperty("approvaltests.partial.local", ".local"));
     if (current)
     {
       File checkout = new File(root, "approvaltests-master");

@@ -23,5 +23,6 @@ fi
 
 mvn -q -B -f "$TOOL_DIR/pom.xml" compile dependency:build-classpath -Dmdep.outputFile="$TOOL_DIR/target/cp.txt"
 
-java -cp "$TOOL_DIR/target/classes:$(cat "$TOOL_DIR/target/cp.txt")" \
+java -Dapprovaltests.partial.local="$TOOL_DIR/.local" \
+  -cp "$TOOL_DIR/target/classes:$(cat "$TOOL_DIR/target/cp.txt")" \
   org.approvaltests.partial.PartialEvaluationCli "${COMMAND[@]}"
