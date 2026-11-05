@@ -9,7 +9,9 @@ public class PartialEvaluationCli
 {
   public static final String USAGE = "usage: approvaltests-partial build [--current] --config <approvaltests-selection.json>\n"
       + "       approvaltests-partial explain [--current] --config <approvaltests-selection.json> <class or package prefix>\n"
-      + "  --current  build from the latest master on GitHub instead of the approvaltestsVersion tag";
+      + "       approvaltests-partial detect [--config <approvaltests-selection.json>]\n"
+      + "  --current  build from the latest master on GitHub instead of the approvaltestsVersion tag\n"
+      + "  detect     scans the .java files from the current directory down and writes the selection file";
   public static void main(String[] args)
   {
     boolean current = false;
@@ -30,7 +32,11 @@ public class PartialEvaluationCli
         positional.add(args[i]);
       }
     }
-    if (config != null && positional.size() == 1 && "build".equals(positional.get(0)))
+    if (positional.size() == 1 && "detect".equals(positional.get(0)))
+    {
+      detect(config == null ? new File("approvaltests-selection.json") : config);
+    }
+    else if (config != null && positional.size() == 1 && "build".equals(positional.get(0)))
     {
       build(config, current);
     }
@@ -42,6 +48,67 @@ public class PartialEvaluationCli
     {
       System.err.println(USAGE);
       System.exit(1);
+    }
+  }
+
+  public static void detect(File configFile)
+  {
+    File project = new File(".").getAbsoluteFile().toPath().normalize().toFile();
+    configFile = configFile.getAbsoluteFile().toPath().normalize().toFile();
+    System.out.println("Scanning " + project + " for ApprovalTests usages...");
+    SelectionDetector.Result result = SelectionDetector.detect(project, projectClasspath(project));
+    SelectionConfig config = configFile.exists() ? SelectionConfig.load(configFile) : new SelectionConfig();
+    if (result.approvaltestsVersion != null)
+    {
+      config.approvaltestsVersion = result.approvaltestsVersion;
+    }
+    config.entryPoints = new ArrayList<>(result.entryPoints);
+    if (config.runtimeDiscoveries == null)
+    {
+      config.runtimeDiscoveries = new java.util.LinkedHashMap<>(Map.of("*", "keep"));
+    }
+    if (config.output == null)
+    {
+      config.output = new SelectionConfig.Output();
+      config.output.directory = "target/approvaltests-custom";
+      config.output.version = config.approvaltestsVersion + "-custom";
+      config.output.pom = true;
+      config.output.sources = true;
+      config.output.install = "none";
+    }
+    config.save(configFile);
+    System.out.println("Java files scanned: " + result.javaFiles);
+    System.out.println("ApprovalTests version: " + config.approvaltestsVersion);
+    System.out.println("Entry points (" + config.entryPoints.size() + "):");
+    config.entryPoints.forEach(e -> System.out.println("  " + e));
+    if (!result.unresolved.isEmpty())
+    {
+      System.out.println("Could not resolve (check these by hand):");
+      result.unresolved.forEach(u -> System.out.println("  " + u));
+    }
+    System.out.println("Wrote " + configFile);
+  }
+
+  private static List<File> projectClasspath(File project)
+  {
+    if (!new File(project, "pom.xml").exists())
+    { throw new RuntimeException("detect needs a pom.xml in " + project + " to find the ApprovalTests jars"); }
+    try
+    {
+      File output = java.nio.file.Files.createTempFile("approvaltests-classpath", ".txt").toFile();
+      Shell.output(project, "mvn", "-q", "-B", "dependency:build-classpath", "-Dmdep.includeScope=test",
+          "-Dmdep.outputFile=" + output.getAbsolutePath());
+      List<File> classpath = new ArrayList<>();
+      for (String entry : com.spun.util.io.FileUtils.readFile(output).trim().split(File.pathSeparator))
+      {
+        classpath.add(new File(entry));
+      }
+      output.delete();
+      return classpath;
+    }
+    catch (java.io.IOException e)
+    {
+      throw new RuntimeException(e);
     }
   }
 

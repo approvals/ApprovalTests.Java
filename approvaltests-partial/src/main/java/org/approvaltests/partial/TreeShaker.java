@@ -163,7 +163,8 @@ public class TreeShaker
     int paren = entryPoint.indexOf('(');
     if (paren < 0)
     {
-      TypeDeclaration<?> type = typesByName.get(entryPoint.substring(0, entryPoint.lastIndexOf('.')));
+      TypeDeclaration<?> type = typesByName.containsKey(entryPoint) ? typesByName.get(entryPoint)
+          : typesByName.get(entryPoint.substring(0, entryPoint.lastIndexOf('.')));
       if (type == null)
       {
         report.missingEntryPoints.add(entryPoint);
@@ -177,10 +178,24 @@ public class TreeShaker
     String head = entryPoint.substring(0, paren);
     String typeName = head.substring(0, head.lastIndexOf('.'));
     String methodName = head.substring(head.lastIndexOf('.') + 1);
-    String parameters = Stream.of(entryPoint.substring(paren + 1, entryPoint.length() - 1).split(","))
+    List<String> parameters = Stream.of(entryPoint.substring(paren + 1, entryPoint.length() - 1).split(","))
         .map(String::trim).filter(p -> !p.isEmpty()).map(p -> p.substring(p.lastIndexOf('.') + 1))
-        .collect(Collectors.joining(","));
-    MethodDeclaration method = methodsByKey.get(typeName + "#" + methodName + "(" + parameters + ")");
+        .collect(Collectors.toList());
+    TypeDeclaration<?> owner = typesByName.get(typeName);
+    if (owner != null && methodName.equals(owner.getNameAsString()))
+    {
+      current = null;
+      why = "entry point " + entryPoint;
+      keepType(owner);
+      return;
+    }
+    MethodDeclaration method = methodsByKey
+        .get(typeName + "#" + methodName + "(" + String.join(",", parameters) + ")");
+    if (method == null && owner != null)
+    {
+      method = owner.getMethodsByName(methodName).stream().filter(m -> matchesErased(m, parameters)).findFirst()
+          .orElse(null);
+    }
     if (method == null)
     {
       report.missingEntryPoints.add(entryPoint);
@@ -189,6 +204,36 @@ public class TreeShaker
     current = null;
     why = "entry point " + entryPoint;
     keepCallable(method);
+  }
+
+  private static boolean matchesErased(MethodDeclaration method, List<String> parameters)
+  {
+    if (method.getParameters().size() != parameters.size())
+    { return false; }
+    Set<String> typeVariables = new HashSet<>();
+    method.getTypeParameters().forEach(t -> typeVariables.add(t.getNameAsString()));
+    for (Node n = method.getParentNode().orElse(null); n != null; n = n.getParentNode().orElse(null))
+    {
+      if (n instanceof ClassOrInterfaceDeclaration)
+      {
+        ((ClassOrInterfaceDeclaration) n).getTypeParameters().forEach(t -> typeVariables.add(t.getNameAsString()));
+      }
+    }
+    for (int i = 0; i < parameters.size(); i++)
+    {
+      String declared = erase(method.getParameter(i));
+      String expected = parameters.get(i);
+      String declaredBase = declared.replace("[]", "");
+      boolean sameArrays = count(declared, "[]") == count(expected, "[]");
+      if (!declared.equals(expected) && !(typeVariables.contains(declaredBase) && sameArrays))
+      { return false; }
+    }
+    return true;
+  }
+
+  private static int count(String text, String part)
+  {
+    return (text.length() - text.replace(part, "").length()) / part.length();
   }
 
   private void drain()

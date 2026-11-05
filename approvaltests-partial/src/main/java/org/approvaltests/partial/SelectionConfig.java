@@ -1,6 +1,7 @@
 package org.approvaltests.partial;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.spun.util.io.FileUtils;
 
 import java.io.File;
@@ -24,6 +25,11 @@ public class SelectionConfig
   public static SelectionConfig load(File file)
   {
     return parse(FileUtils.readFile(file));
+  }
+
+  public void save(File file)
+  {
+    FileUtils.writeFile(file, new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(this) + "\n");
   }
 
   public static SelectionConfig parse(String json)

@@ -39,10 +39,15 @@ org.approvaltests.JsonApprovals.verifyAsJson(java.lang.Object)
 ```
 Selection is always at the **method/overload** level. Selecting `Approvals.verify(String)` does **not** select `Approvals.verify(Object)`.
 
-A public static field can also be an entry point. It has no parentheses:
+A public static field, a class, or a constructor can also be an entry point:
 ```
-org.approvaltests.reporters.DiffReporter.INSTANCE
+org.approvaltests.reporters.DiffReporter.INSTANCE      a field (no parentheses)
+org.approvaltests.reporters.UseReporter                a class (keeps the class, its fields and constructors)
+org.approvaltests.core.Options.Options()               a constructor (named like the class)
 ```
+Classes matter because Java needs every imported or declared type to exist, even if none of its methods are called.
+
+Generic parameters are written as their erasure, e.g. `verifyAll(java.lang.String, java.lang.Object[])` for `verifyAll(String label, T[] array)`.
 
 `Options` methods (scrubbers, file extensions, reporters, etc.) are ordinary entry points too:
 ```
@@ -190,6 +195,23 @@ The HTML report contains:
 ## Current Implementation (first pass)
 Lives in `approvaltests-partial/`, a standalone Maven module (Java 17). It is not part of the main reactor build.
 
+### Creating the Selection File
+From your project folder:
+```bash
+path/to/ApprovalTests.Java/approvaltests-partial/CreateSelectionJson.sh [approvaltests-selection.json]
+```
+It scans every `.java` file from the current folder down and writes the selection file.
+- **Skipped folders:** `target`, `build`, `out`, `.git`, `.local`, `.idea`, `.gradle` and `node_modules`.
+- **Classpath:** it needs a `pom.xml`. It runs `mvn dependency:build-classpath` (test scope) to get the ApprovalTests jars and the project's other jars for the symbol solver. `approvaltestsVersion` comes from the `approvaltests` jar on that classpath.
+- **What counts as usage** (anything in `org.approvaltests`, `com.spun`, `org.lambda` or `org.packagesettings`):
+  - method calls, method references and constructor calls, resolved to their exact overload
+  - static field reads, e.g. `DiffReporter.INSTANCE`
+  - every type used in a declaration, and every import (including unused ones)
+- **Existing file:** it keeps `runtimeDiscoveries` and `output`, and replaces `approvaltestsVersion` and `entryPoints`. A new file gets `"*": "keep"` and default output settings.
+- **Warnings:** usages it can't resolve are printed under "Could not resolve", to check by hand.
+
+For the StarterProject it finds 9 entry points in about 3 seconds, and the jar built from them passes the StarterProject's tests.
+
 ### Running It
 From your project folder (the one with `approvaltests-selection.json`):
 ```bash
@@ -237,4 +259,4 @@ Tree Shaking works on the source code, using JavaParser and its symbol solver. R
 - **Runtime behavior is untested.** The partial jar compiles but hasn't been run against the StarterProject's tests yet.
 
 ## Future Work
-- **Codebase detection tool**: scans a user's codebase (source or compiled tests) to find which ApprovalTests entry points and reporters are used, then pre-fills the Selector Page or the config file.
+- **Codebase detection tool**: a first version exists (`CreateSelectionJson.sh`, see [Creating the Selection File](#creating-the-selection-file)). Still to do: Gradle projects, pre-filling the Selector Page, and detecting runtime discoveries.

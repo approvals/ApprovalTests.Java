@@ -47,6 +47,7 @@ flowchart LR
 
 | Class | Responsibility |
 |---|---|
+| `SelectionDetector` | Scans a project's `.java` files with JavaParser + symbol solver, and collects the ApprovalTests methods, constructors, fields and types they use. |
 | `PartialEvaluationCli` | Parses `build` / `explain` / `--current` / `--config`, and runs the pipeline. |
 | `SelectionConfig` | The `approvaltests-selection.json` model (version, entry points, runtime discoveries, output). |
 | `SourceCheckout` | Gets the source: shallow-clone a tag or `master`, or fetch and `reset --hard` an existing checkout. |
@@ -55,6 +56,26 @@ flowchart LR
 | `ShakeReport` | Results of a shake: deleted files and directories, removed methods and types, and the "kept because" chain for every kept class. |
 | `HtmlReport` | Compares the original source snapshot with the shaken checkout, and writes the HTML report. |
 | `Shell` | Runs `git` and `mvn` processes. |
+
+## Creating the Selection File
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant S as CreateSelectionJson.sh
+    participant CLI as PartialEvaluationCli detect
+    participant M as mvn (your project)
+    participant D as SelectionDetector
+    participant P as Your project
+
+    S->>CLI: detect --config approvaltests-selection.json
+    CLI->>M: dependency:build-classpath (test scope)
+    M-->>CLI: jars (approvaltests + third-party)
+    CLI->>D: detect(project folder, classpath)
+    D->>P: read every .java (skipping target, build, .git, .local, ...)
+    D-->>CLI: version + entry points + unresolved
+    CLI->>P: write approvaltests-selection.json (keeping runtimeDiscoveries and output)
+```
 
 ## Build Pipeline
 
