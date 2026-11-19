@@ -1,0 +1,15 @@
+# APPROVAL TEST FAILED
+    approved: /abs/path/Foo.test.approved.txt
+    received: /abs/path/Foo.test.received.txt
+    approve_with: mv -f /abs/path/Foo.test.received.txt /abs/path/Foo.test.approved.txt
+
+    ## APPROVED
+    ```txt
+    ** Error reading APPROVED file **
+    ```
+
+    ## RECEIVED
+    ```txt
+    hello world
+    ```
+----------------------

@@ -7,7 +7,7 @@ public class DefaultFrontLoadedReporter extends FirstWorkingReporter
   {
     super(
         // begin-snippet: default_front_loaded_reporter
-        PitReporter.INSTANCE, EnvironmentVariableReporter.INSTANCE
+        PitReporter.INSTANCE, EnvironmentVariableReporter.INSTANCE, AiCodingAgentReporter.INSTANCE
     // end-snippet
     );
   }
