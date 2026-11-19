@@ -14,7 +14,10 @@ public class MarkdownStoryBoard implements Verifiable
     return new VerifyParameters(options.forFile().withExtension(".md"));
   }
   enum Types {
-              None, Description, Frame, Custom
+    None,
+    Description,
+    Frame,
+    Custom
   }
   private StringBuffer stringBuffer = new StringBuffer();
   int                  index        = 0;

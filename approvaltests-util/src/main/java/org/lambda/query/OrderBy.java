@@ -7,7 +7,8 @@ import java.util.Comparator;
 public class OrderBy<T, Out extends Comparable<?>> implements Comparator<T>
 {
   public static enum Order {
-                            Ascending, Descending
+    Ascending,
+    Descending
   }
   private Function1<T, Out> f1;
   private int               ascending;

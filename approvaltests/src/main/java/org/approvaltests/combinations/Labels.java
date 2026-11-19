@@ -9,7 +9,8 @@ import java.util.Map;
 public class Labels
 {
   private enum Fields {
-                       HEADER, LABELS;
+    HEADER,
+    LABELS;
   }
   private final Map<Fields, Object> fields = new EnumMap<>(Fields.class);
   public Labels()

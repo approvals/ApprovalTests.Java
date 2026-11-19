@@ -13,7 +13,8 @@ import java.util.Random;
 public class ImageWriter
 {
   public enum Encoding {
-                        JPEG, GIF
+    JPEG,
+    GIF
   }
   private OutputStream  out   = null;
   private BufferedImage image = null;

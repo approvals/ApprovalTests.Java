@@ -1,7 +1,8 @@
 package org.approvaltests.core;
 
 public enum VerifyResult {
-                          SUCCESS, FAILURE;
+  SUCCESS,
+  FAILURE;
   public static VerifyResult from(boolean success)
   {
     return success ? SUCCESS : FAILURE;

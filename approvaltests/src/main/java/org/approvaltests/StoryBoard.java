@@ -5,7 +5,9 @@ import org.lambda.functions.Function0;
 public class StoryBoard
 {
   enum Types {
-              None, Description, Frame
+    None,
+    Description,
+    Frame
   }
   private StringBuffer stringBuffer = new StringBuffer();
   int                  index        = 0;

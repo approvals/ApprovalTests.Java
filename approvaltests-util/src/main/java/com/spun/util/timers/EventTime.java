@@ -11,7 +11,13 @@ import java.io.Serializable;
 public class EventTime
 {
   public enum SortBy {
-                      NAME, COUNT, TOTAL_TIME, AVERAGE_TIME, MIN_TIME, MAX_TIME, EXCEEDED_COUNT
+    NAME,
+    COUNT,
+    TOTAL_TIME,
+    AVERAGE_TIME,
+    MIN_TIME,
+    MAX_TIME,
+    EXCEEDED_COUNT
   }
   private static final String[] enumeration       = {"unknown",
                                                      "name",

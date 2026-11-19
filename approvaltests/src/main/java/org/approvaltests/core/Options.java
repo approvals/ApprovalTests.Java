@@ -22,7 +22,12 @@ import java.util.Map;
 public class Options
 {
   private enum Fields {
-                       SCRUBBER, REPORTER, FILE_OPTIONS_FILE_EXTENSION, FILE_OPTIONS_NAMER, WRITER, COMPARATOR;
+    SCRUBBER,
+    REPORTER,
+    FILE_OPTIONS_FILE_EXTENSION,
+    FILE_OPTIONS_NAMER,
+    WRITER,
+    COMPARATOR;
   }
   private final Map<Fields, Object> fields = new EnumMap<>(Fields.class);
   public Options()
