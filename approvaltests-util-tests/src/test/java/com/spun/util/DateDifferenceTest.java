@@ -1,18 +1,18 @@
 package com.spun.util;
 
-import com.spun.util.parser.TemplateDate;
 import com.spun.util.parser.TemplateStringUtils;
 import org.approvaltests.Approvals;
 import org.approvaltests.utils.WithTimeZone;
 import org.junit.jupiter.api.Test;
 import org.lambda.functions.Function1;
 
-import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.MessageFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -143,21 +143,18 @@ public class DateDifferenceTest
   @Test
   public void testFebruaryAndDaylightSavingsTime()
   {
-    try (WithTimeZone tz = new WithTimeZone("PST"))
+    ZoneId zone = ZoneId.of("America/Los_Angeles");
+    DateTimeFormatter f = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+    StringBuilder buffer = new StringBuilder("Zone: " + zone + "\n\n");
+    for (int day = 1; day <= 28; day++)
     {
-      StringBuilder buffer = new StringBuilder();
-      buffer.append("TimeZone.getDefault(): " + TimeZone.getDefault().getID() + "\n\n");
-      DateFormat f = TemplateDate.FORMATS.DATE_SHORT;
-      for (int i = 1; i <= 28; i++)
-      {
-        Timestamp a = DateUtils.parse("2010/02/0" + i);
-        Timestamp b = DateUtils.parse("2010/03/0" + i);
-        DateDifference dif = new DateDifference(a, b);
-        String standardTimeText = dif.getStandardTimeText(2, "days", "seconds", null, null);
-        buffer.append(String.format("%s, %s => %s\n", f.format(a), f.format(b), standardTimeText));
-      }
-      Approvals.verify(buffer.toString());
+      LocalDate a = LocalDate.of(2010, 2, day);
+      LocalDate b = LocalDate.of(2010, 3, day);
+      long millis = Duration.between(a.atStartOfDay(zone), b.atStartOfDay(zone)).toMillis();
+      String standardTimeText = new DateDifference(millis).getStandardTimeText(2, "days", "seconds", null, null);
+      buffer.append(String.format("%s, %s => %s\n", f.format(a), f.format(b), standardTimeText));
     }
+    Approvals.verify(buffer.toString());
   }
 
   @Test

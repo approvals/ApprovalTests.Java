@@ -1,4 +1,4 @@
-TimeZone.getDefault(): PST
+Zone: America/Los_Angeles
 
 02/01/2010, 03/01/2010 => 28 Days, 0 Hours
 02/02/2010, 03/02/2010 => 28 Days, 0 Hours
