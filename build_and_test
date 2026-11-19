@@ -8,4 +8,4 @@ if ! command -v mise &> /dev/null; then
 fi
 
 mise --quiet install
-mise task run build_and_test
+mise task run build_and_test -- "$@"

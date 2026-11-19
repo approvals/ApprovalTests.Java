@@ -2,7 +2,7 @@
 
 ## Build & Test
 - **Full build:** `./build_and_test` (takes 1-2 min; auto-formats code via Maven formatter plugin)
-- **Single test:** `mvn test -pl approvaltests-tests -Dtest=ClassName#methodName`
+- **Single test:** `./build_and_test -pl approvaltests-tests -Dtest=ClassName#methodName`
 - Tests run with `en_US` locale (surefire config). Java target is 1.8.
 
 ## Architecture
