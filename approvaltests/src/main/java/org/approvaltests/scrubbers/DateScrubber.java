@@ -33,6 +33,8 @@ public class DateScrubber extends RegExScrubber
     return new SupportedFormat[]{__("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2}", "Tue May 13 16:30:00"),
                                  __("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2} [a-zA-Z]{3,4} \\d{4}",
                                      "Wed Nov 17 22:28:33 EET 2021"),
+                                 __("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{2}:\\d{2}:\\d{2} GMT[+-]\\d{2}:\\d{2} \\d{4}",
+                                     "Wed Dec 31 16:00:00 GMT-08:00 1969"),
                                  __("(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} GMT",
                                      "Wed, 21 Oct 2015 07:28:00 GMT"),
                                  __("[a-zA-Z]{3} [a-zA-Z]{3} \\d{2} \\d{4} \\d{2}:\\d{2}:\\d{2}.\\d{3}",
