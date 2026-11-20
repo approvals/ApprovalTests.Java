@@ -13,6 +13,6 @@ public class ApprovalDirectoryConfigTest
   public void testApprovalSubdirectory()
   {
     String path = Approvals.createApprovalNamer().getSourceFilePath();
-    assertTrue(path.endsWith(File.separator + "approvals" + File.separator));
+    assertTrue(path.endsWith("/approvals/"), path);
   }
 }

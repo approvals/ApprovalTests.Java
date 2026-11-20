@@ -27,15 +27,14 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public String getApprovalName()
   {
-    return String.format("%s.%s%s", template.testFileName, template.testCaseName, template.additionalInformation);
+    return TemplatedCustomNamer
+        .resolveTemplate("{test_file_name}.{test_case_name}{additional_information}", template);
   }
 
   @Override
   public String getSourceFilePath()
   {
-    String sub = template.approvalsSubdirectory;
-    String subdirectory = StringUtils.isEmpty(sub) ? "" : sub + File.separator;
-    return template.testSourceDirectory + File.separator + subdirectory;
+    return TemplatedCustomNamer.resolveTemplate("{test_source_directory}/{approvals_subdirectory}/", template);
   }
 
   public String getBaseDirectory()
