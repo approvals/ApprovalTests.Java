@@ -13,9 +13,8 @@ public class StackTraceNamer implements ApprovalNamer
   private TemplateFieldValues        template;
   public StackTraceNamer()
   {
-    info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
-    additionalInformation = NamerFactory.getAndClearAdditionalInformation();
-    template = createTemplateFieldValues();
+    this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()),
+        NamerFactory.getAndClearAdditionalInformation());
   }
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
