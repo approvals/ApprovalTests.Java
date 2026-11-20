@@ -1,6 +1,6 @@
 # Desired Namer Architecture
 
-This is a proposed, language-neutral namer design based on the Go implementation. Go has the simplest working design of the five implementations analyzed in [CurrentNamerArchitecture.md](CurrentNamerArchitecture.md):
+This is a proposed, language-neutral namer design based on the Go implementation. Go has the simplest working design of the five implementations we analyzed.
 
 - one small interface;
 - a factory that creates a namer for each `verify`;
