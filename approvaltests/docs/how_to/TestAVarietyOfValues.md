@@ -59,8 +59,8 @@ Here's an example:
 <a id='snippet-markdown_table_example'></a>
 ```java
 String[] inputs = {"verify json", "verify all", "verify parameters", "verify as json"};
-VerifiableMarkdownTable table = VerifiableMarkdownTable.withHeaders("Input", "Camel Case", "Snake Case",
-    "Kebab Case");
+VerifiableMarkdownTable table = VerifiableMarkdownTable
+    .withHeaders("Input", "Camel Case", "Snake Case", "Kebab Case");
 table.addRowsForInputs(inputs, this::toCamelCase, this::toSnakeCase, this::toKebabCase);
 Approvals.verify(table);
 ```

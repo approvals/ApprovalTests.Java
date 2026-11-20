@@ -24,11 +24,14 @@ Here is an example of how to do this in Java:
 @TestFactory
 Collection<DynamicTest> testFactory3()
 {
-  return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
-      o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
+  return Stream.of(1, 2)
+      .map(
+          number -> JupiterApprovals
+              .dynamicTest("test " + number, o -> Approvals.verify("content for " + number, o)))
+      .collect(Collectors.toList());
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L133-L141' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L146-L157' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Kotlin

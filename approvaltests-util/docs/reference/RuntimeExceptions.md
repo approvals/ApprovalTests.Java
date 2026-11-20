@@ -69,11 +69,12 @@ Here's an example which allows us to wrap a lambda that throws an `IOException`:
 <!-- snippet: throw_as_unchecked -->
 <a id='snippet-throw_as_unchecked'></a>
 ```java
-Queryable<String> paths = files.select(Functions.unchecked(
-    // throws IOException
-    s -> new File(s).getCanonicalPath()));
+Queryable<String> paths = files.select(
+    Functions.unchecked(
+        // throws IOException
+        s -> new File(s).getCanonicalPath()));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L99-L103' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/ObjectUtilsTest.java#L99-L104' title='Snippet source file'>snippet source</a> | <a href='#snippet-throw_as_unchecked' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---

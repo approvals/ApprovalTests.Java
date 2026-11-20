@@ -115,8 +115,8 @@ The following code extracts the words from the following sentences, and orders t
 <!-- snippet: queryable_select_many -->
 <a id='snippet-queryable_select_many'></a>
 ```java
-Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven years ago",
-    "When in the course of human events");
+Queryable<String> names = Queryable
+    .as("Now is the time", "Fourscore and seven years ago", "When in the course of human events");
 Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L155-L159' title='Snippet source file'>snippet source</a> | <a href='#snippet-queryable_select_many' title='Start of snippet'>anchor</a></sup>
@@ -182,8 +182,8 @@ Here is an example of doing all three to count the number of words of the same l
 <a id='snippet-group_by_full'></a>
 ```java
 Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
-Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
-    r -> r.join("_"));
+Queryable<Entry<Object, Object>> result = words
+    .groupBy(w -> w.length(), w -> w.toLowerCase(), r -> r.join("_"));
 ```
 <sup><a href='/approvaltests-util-tests/src/test/java/org/lambda/query/QueryableTest.java#L192-L196' title='Snippet source file'>snippet source</a> | <a href='#snippet-group_by_full' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->

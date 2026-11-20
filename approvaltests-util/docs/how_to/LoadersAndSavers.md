@@ -52,7 +52,7 @@ public void sendOutSeniorDiscounts(DataBase database, MailServer mailServer)
   }
 }
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L71-L82' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L72-L83' title='Snippet source file'>snippet source</a> | <a href='#snippet-step1' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 In this case, we want to replace the functions that use the DataBase object with Loaders :
@@ -113,10 +113,11 @@ Step 3: Create a result object populated with these values (or at least enough o
 <!-- snippet: step_fake_data -->
 <a id='snippet-step_fake_data'></a>
 ```java
-List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
+List.of(
+    new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
     new Customer("Mary, Smith, 345 Oak St., Mason, VA, 04-MAY-1944"));
 ```
-<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L62-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-step_fake_data' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-util-tests/src/test/java/com/spun/util/persistence/LoadersAndSaversExamplesTest.java#L62-L66' title='Snippet source file'>snippet source</a> | <a href='#snippet-step_fake_data' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ### Step 4: In the original method, replace the function call with a Loader
