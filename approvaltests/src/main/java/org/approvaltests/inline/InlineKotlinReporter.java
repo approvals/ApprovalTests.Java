@@ -82,8 +82,7 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     String file = sourceFilePath + getSourceFileName(template);
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
-    String fullText = this.createNewReceivedFileText
-        .call(text, actual + additionalLines, template.testCaseName);
+    String fullText = this.createNewReceivedFileText.call(text, actual + additionalLines, template.testCaseName);
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
