@@ -19,8 +19,13 @@ public class DocumentHelpersTest
   {
     ParsingFilesTest.addApprovalTestPath();
     Queryable<Method> methods = getAllVerifyFunctionsWithOptions(OptionsTest.getApprovalClasses());
-    Queryable<String> lines = methods.select(m -> String.format("%s. [%s ](%s) (%s)",
-        m.getDeclaringClass().getSimpleName(), m.getName(), getLink(m), showParametersWithGrayedOutOptions(m)))
+    Queryable<String> lines = methods.select(
+        m -> String.format(
+            "%s. [%s ](%s) (%s)",
+            m.getDeclaringClass().getSimpleName(),
+            m.getName(),
+            getLink(m),
+            showParametersWithGrayedOutOptions(m)))
         .orderBy(s -> s.replaceAll("#L\\d+-L\\d+", ""));
     Approvals.verifyAll("", lines, l -> String.format(" * %s  ", l), new Options().forFile().withExtension(".md"));
   }
@@ -32,8 +37,9 @@ public class DocumentHelpersTest
     var expected = """
         https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L112-L115
         """;
-    String verifyAll = getLink(Queryable.as(Approvals.class.getMethods()).orderBy(m -> m.getParameterCount())
-        .first(m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
+    String verifyAll = getLink(
+        Queryable.as(Approvals.class.getMethods()).orderBy(m -> m.getParameterCount())
+            .first(m -> m.getName().equals("verifyAll") && m.getParameterTypes()[0].equals(Object[].class)));
     Approvals.verify(verifyAll, new Options().inline(expected));
   }
 
@@ -71,8 +77,9 @@ public class DocumentHelpersTest
     for (Class<?> c : approvalClasses)
     {
       Queryable<Method> declaredMethods = Queryable.as(c.getDeclaredMethods());
-      Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith("verify")
-          && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
+      Queryable<Method> methodList = declaredMethods.where(
+          m -> m.getName().startsWith("verify") && Modifier.isPublic(m.getModifiers())
+              && !m.isAnnotationPresent(Deprecated.class));
       List<Method> methodsWithOptions = methodList.where(OptionsTest::isOptionsPresent);
       methods.addAll(methodsWithOptions);
     }

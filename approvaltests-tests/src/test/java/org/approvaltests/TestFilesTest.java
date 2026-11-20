@@ -20,15 +20,16 @@ public class TestFilesTest
     {
       verifyMethodSignatures(
           "Test Methods in files that do not contain the word 'Test' (these will not be run in our CI build)",
-          getAllClasses(), this::getTestMethods);
+          getAllClasses(),
+          this::getTestMethods);
     }
   }
 
   private List<Method> getTestMethods(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
-    return Query.where(declaredMethods,
-        m -> Queryable.as(m.getAnnotations()).any(a -> a.toString().contains("Test")));
+    return Query
+        .where(declaredMethods, m -> Queryable.as(m.getAnnotations()).any(a -> a.toString().contains("Test")));
   }
 
   private Queryable<Class<?>> getAllClasses()

@@ -27,14 +27,17 @@ public class MachineSpecificTest
     {
       DISPLAYED = true;
       String testName = testInfo.getTestClass().get().getName();
-      String message = String.format("" //
-          + "This machine isn't configured to run MachineSpecificTest.\n" //
-          + "\n" //
-          + "To run these either\n" //
-          + "  1) Set machine_specific_tests.MachineSpecific.FORCE_RUN=true\n" //
-          + "  2) Add \"%s\" to machine_specific_tests.MachineSpecific.MACHINES\n" //
-          + "\n" //
-          + "Triggered by %s", SystemUtils.getComputerName(), testName);
+      String message = String.format(
+          "" //
+              + "This machine isn't configured to run MachineSpecificTest.\n" //
+              + "\n" //
+              + "To run these either\n" //
+              + "  1) Set machine_specific_tests.MachineSpecific.FORCE_RUN=true\n" //
+              + "  2) Add \"%s\" to machine_specific_tests.MachineSpecific.MACHINES\n" //
+              + "\n" //
+              + "Triggered by %s",
+          SystemUtils.getComputerName(),
+          testName);
       SimpleLogger.warning(message);
     }
   }

@@ -9,7 +9,9 @@ public class WhiteSpaceStripperTest
   public void test()
   {
     String[] useCases = {"  hello \n    \n   \n", "  hello \r\n    \n a \n", "  hello  "};
-    Approvals.verifyAll("whitespace", useCases,
+    Approvals.verifyAll(
+        "whitespace",
+        useCases,
         u -> String.format("---\n%s\n--- ->---\n%s\n---\n", u, WhiteSpaceStripper.stripBlankLines(u)));
   }
 }

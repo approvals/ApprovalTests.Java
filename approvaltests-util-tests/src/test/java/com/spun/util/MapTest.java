@@ -13,8 +13,8 @@ public class MapTest
   {
     try (WithTimeZone i = new WithTimeZone())
     {
-      Map<String, Object> p = params("name", "Llewellyn").and("age", 40).and("date",
-          DateUtils.parse("2001/01/01"));
+      Map<String, Object> p = params("name", "Llewellyn").and("age", 40)
+          .and("date", DateUtils.parse("2001/01/01"));
       Approvals.verify(p);
     }
   }

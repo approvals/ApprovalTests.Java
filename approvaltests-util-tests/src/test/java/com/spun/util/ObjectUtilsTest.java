@@ -18,8 +18,8 @@ public class ObjectUtilsTest
   @Test
   public void testGreatestCommonDenominator() throws Exception
   {
-    Method gcd = ObjectUtils.getGreatestCommonDenominator(new Object[]{"this", new ArrayList<Object>()},
-        "getClass");
+    Method gcd = ObjectUtils
+        .getGreatestCommonDenominator(new Object[]{"this", new ArrayList<Object>()}, "getClass");
     assertEquals(Object.class, gcd.getDeclaringClass());
   }
 
@@ -97,9 +97,10 @@ public class ObjectUtilsTest
   {
     Queryable<String> files = Queryable.as("1.txt", "2.txt", "3.txt");
     // begin-snippet: throw_as_unchecked
-    Queryable<String> paths = files.select(Functions.unchecked(
-        // throws IOException
-        s -> new File(s).getCanonicalPath()));
+    Queryable<String> paths = files.select(
+        Functions.unchecked(
+            // throws IOException
+            s -> new File(s).getCanonicalPath()));
     // end-snippet
   }
 

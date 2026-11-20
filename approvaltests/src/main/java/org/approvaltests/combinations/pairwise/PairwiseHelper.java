@@ -16,8 +16,19 @@ public class PairwiseHelper
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
-    verifyBestCoveringPairs(new Labels(), call, parameters1, parameters2, parameters3, parameters4, parameters5,
-        parameters6, parameters7, parameters8, parameters9, options);
+    verifyBestCoveringPairs(
+        new Labels(),
+        call,
+        parameters1,
+        parameters2,
+        parameters3,
+        parameters4,
+        parameters5,
+        parameters6,
+        parameters7,
+        parameters8,
+        parameters9,
+        options);
   }
 
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyBestCoveringPairs(Labels labels,
@@ -25,8 +36,16 @@ public class PairwiseHelper
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
-    Pairwise pairwise = Pairwise.toPairWise(parameters1, parameters2, parameters3, parameters4, parameters5,
-        parameters6, parameters7, parameters8, parameters9);
+    Pairwise pairwise = Pairwise.toPairWise(
+        parameters1,
+        parameters2,
+        parameters3,
+        parameters4,
+        parameters5,
+        parameters6,
+        parameters7,
+        parameters8,
+        parameters9);
     final List<Case> cases = pairwise.getCases();
     StringBuffer output = new StringBuffer();
     int totalPossibleSize = pairwise.getTotalPossibleCombinations();

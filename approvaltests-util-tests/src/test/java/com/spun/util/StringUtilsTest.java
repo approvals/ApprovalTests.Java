@@ -49,8 +49,14 @@ public class StringUtilsTest
                             new SplitUseCase("quick**brown**fox", "\\*\\*"),
                             new SplitUseCase(" quick   brown fox ", " "),
                             new SplitUseCase("quick brown fox", "brown"),};
-    Approvals.verifyAll(split, a -> String.format("'%s'.split(%s) => %s", a.start, a.splitOn,
-        Arrays.toString(StringUtils.split(a.start, a.splitOn, true))), new Options().inline(expected));
+    Approvals.verifyAll(
+        split,
+        a -> String.format(
+            "'%s'.split(%s) => %s",
+            a.start,
+            a.splitOn,
+            Arrays.toString(StringUtils.split(a.start, a.splitOn, true))),
+        new Options().inline(expected));
   }
 
   @Test
@@ -90,8 +96,11 @@ public class StringUtilsTest
   {
     for (int i = 0; i < replaceUseCases.length; i++)
     {
-      assertEquals(StringUtils.replace(replaceUseCases[i].startingString, replaceUseCases[i].find,
-          replaceUseCases[i].replace), replaceUseCases[i].expectedString, "Replace failed");
+      assertEquals(
+          StringUtils
+              .replace(replaceUseCases[i].startingString, replaceUseCases[i].find, replaceUseCases[i].replace),
+          replaceUseCases[i].expectedString,
+          "Replace failed");
     }
   }
 

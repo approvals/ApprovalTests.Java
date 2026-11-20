@@ -41,7 +41,9 @@ public class PhoneNumberTest
     }
     if (useCase.international != null)
     {
-      assertEquals(useCase.international, ph.getValueAsInternational(),
+      assertEquals(
+          useCase.international,
+          ph.getValueAsInternational(),
           "[" + useCase.original + " " + ph.getValueAsInternational() + "]International format");
     }
     else

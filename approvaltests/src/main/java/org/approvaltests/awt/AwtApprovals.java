@@ -22,11 +22,13 @@ public class AwtApprovals
 {
   static
   {
-    DefaultApprovalWriterFactory.addDefault(c -> c instanceof Component,
+    DefaultApprovalWriterFactory.addDefault(
+        c -> c instanceof Component,
         (Object c, Options o) -> new ComponentApprovalWriter((Component) c));
-    DefaultApprovalWriterFactory.addDefault(o -> o instanceof Paintable,
-        (c, o) -> new PaintableApprovalWriter((Paintable) c));
-    DefaultApprovalWriterFactory.addDefault(o -> o instanceof PaintableMultiFrame,
+    DefaultApprovalWriterFactory
+        .addDefault(o -> o instanceof Paintable, (c, o) -> new PaintableApprovalWriter((Paintable) c));
+    DefaultApprovalWriterFactory.addDefault(
+        o -> o instanceof PaintableMultiFrame,
         (c, o) -> new PaintableMultiframeWriter((PaintableMultiFrame) c));
   }
   public static void verify(Image image)

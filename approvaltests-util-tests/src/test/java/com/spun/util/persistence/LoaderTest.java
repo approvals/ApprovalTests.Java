@@ -23,9 +23,9 @@ class LoaderTest
     {
       Calendar day = DateUtils.asCalendar(DateUtils.parse("2020/01/02"));
       // Mocked data
-      MockLoader<List<Shift>> shifts = new MockLoader<>(
-          Arrays.asList(new Shift("Scott", "Chef", DateUtils.setTime(day, 8, 0)),
-              new Shift("Llewellyn", "Dishwasher", DateUtils.setTime(day, 9, 30))));
+      MockLoader<List<Shift>> shifts = new MockLoader<>(Arrays.asList(
+          new Shift("Scott", "Chef", DateUtils.setTime(day, 8, 0)),
+          new Shift("Llewellyn", "Dishwasher", DateUtils.setTime(day, 9, 30))));
       verifyMarkdown(KitchenScheduler.print(shifts, day));
     }
   }
@@ -33,8 +33,8 @@ class LoaderTest
   // end-snippet
   private void verifyMarkdown(String print)
   {
-    Approvals.verify(print,
-        new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
+    Approvals
+        .verify(print, new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
   }
 
   // begin-snippet: testing_executable_command

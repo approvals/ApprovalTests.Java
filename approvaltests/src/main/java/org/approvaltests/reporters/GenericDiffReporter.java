@@ -16,10 +16,25 @@ import java.util.stream.Collectors;
 
 public class GenericDiffReporter implements ApprovalFailureReporter
 {
-  public static List<String> TEXT_FILE_EXTENSIONS  = Queryable.of(".txt", ".csv", ".htm", ".html", ".xml", ".eml",
-      ".java", ".css", ".js", ".json", ".md", ".jsonl", ".yaml", ".yml", ".adoc", ".asciidoc");
-  public static List<String> IMAGE_FILE_EXTENSIONS = Queryable.of(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif",
-      ".tiff");
+  public static List<String> TEXT_FILE_EXTENSIONS  = Queryable.of(
+      ".txt",
+      ".csv",
+      ".htm",
+      ".html",
+      ".xml",
+      ".eml",
+      ".java",
+      ".css",
+      ".js",
+      ".json",
+      ".md",
+      ".jsonl",
+      ".yaml",
+      ".yml",
+      ".adoc",
+      ".asciidoc");
+  public static List<String> IMAGE_FILE_EXTENSIONS = Queryable
+      .of(".png", ".gif", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff");
   public static final String STANDARD_ARGUMENTS    = "%s %s";
   public static boolean      REPORT_MISSING_FILES  = false;
   protected String           diffProgram;

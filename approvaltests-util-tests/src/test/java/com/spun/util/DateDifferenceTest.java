@@ -108,7 +108,9 @@ public class DateDifferenceTest
       long milli = getRoundedDifferenceUseCases[i][2];
       long expected = getRoundedDifferenceUseCases[i][3];
       DateDifference d = new DateDifference(milli);
-      assertEquals(expected, (Object) d.getRemainingDifference(wanted, round),
+      assertEquals(
+          expected,
+          (Object) d.getRemainingDifference(wanted, round),
           "getRoundedDifference(" + wanted + ", " + round + ") on " + milli);
     }
   }
@@ -135,9 +137,17 @@ public class DateDifferenceTest
   {
     try (WithTimeZone tz = new WithTimeZone())
     {
-      Approvals.verifyAll("getTimeText", getTimeTextUseCases(),
-          useCase -> useCase + " -> " + new DateDifference(useCase.milli).getTimeText(useCase.amount,
-              useCase.maxUnit, useCase.minUnit, useCase.nowText, useCase.agoText, useCase.units));
+      Approvals.verifyAll(
+          "getTimeText",
+          getTimeTextUseCases(),
+          useCase -> useCase + " -> "
+              + new DateDifference(useCase.milli).getTimeText(
+                  useCase.amount,
+                  useCase.maxUnit,
+                  useCase.minUnit,
+                  useCase.nowText,
+                  useCase.agoText,
+                  useCase.units));
     }
   }
   private class GetTimeTextUseCase
@@ -185,8 +195,14 @@ public class DateDifferenceTest
     {
       Function1<String, String> pad = s -> TemplateStringUtils.pad(s, 6, " ");
       Function1<String, String> printEmpty = s -> pad.call(s.isEmpty() ? "\"\"" : s);
-      return MessageFormat.format("({0}, {1}, {2}, {3}, {4}) on {5}", amount, units[maxUnit], units[minUnit],
-          printEmpty.call(nowText), printEmpty.call(agoText), StringUtils.padNumber(milli, 12));
+      return MessageFormat.format(
+          "({0}, {1}, {2}, {3}, {4}) on {5}",
+          amount,
+          units[maxUnit],
+          units[minUnit],
+          printEmpty.call(nowText),
+          printEmpty.call(agoText),
+          StringUtils.padNumber(milli, 12));
     }
   }
 }

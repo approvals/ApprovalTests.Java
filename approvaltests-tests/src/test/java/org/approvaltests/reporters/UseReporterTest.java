@@ -16,7 +16,8 @@ public class UseReporterTest
   @Test
   public void testUseReporter()
   {
-    assertEquals(ReportWithTortoiseTextDiffWindows.class,
+    assertEquals(
+        ReportWithTortoiseTextDiffWindows.class,
         ReporterFactory.getFromAnnotation(ThreadUtils.getStackTrace()).getClass());
   }
 

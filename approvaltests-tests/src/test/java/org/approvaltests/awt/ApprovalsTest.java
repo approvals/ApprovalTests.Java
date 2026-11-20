@@ -63,8 +63,8 @@ public class ApprovalsTest
     squareDrawer.setSquareSize(80);
     AwtApprovals.verifySequence(squareDrawer, 4, f -> squareDrawer.setSquareSize(f * 10 + 1));
     squareDrawer.setSquareSize(80);
-    AwtApprovals.verifySequence(squareDrawer, 4, Duration.ofMillis(500),
-        f1 -> squareDrawer.setSquareSize(f1 * 10 + 1));
+    AwtApprovals
+        .verifySequence(squareDrawer, 4, Duration.ofMillis(500), f1 -> squareDrawer.setSquareSize(f1 * 10 + 1));
   }
 
   @Test
@@ -72,7 +72,8 @@ public class ApprovalsTest
   void testSequenceWithTimings()
   {
     SquareDrawer squareDrawer = new SquareDrawer();
-    AwtApprovals.verifySequenceWithTimings(5,
+    AwtApprovals.verifySequenceWithTimings(
+        5,
         f -> new Tuple<>(squareDrawer.setSquareSize(f * 10), Duration.ofSeconds(1 + f)));
   }
 

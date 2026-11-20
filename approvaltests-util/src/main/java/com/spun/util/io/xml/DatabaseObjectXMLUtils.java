@@ -37,7 +37,9 @@ public class DatabaseObjectXMLUtils
   private static DatabaseObject[] extract(Node node, XmlMap[] xmlMaps) throws Exception
   {
     ArrayList<DatabaseObject> list = new ArrayList<DatabaseObject>();
-    XmlExtractorUtil.extractAndTranslateForNode(XmlExtractorUtil.traverseToTag("data", node), list,
+    XmlExtractorUtil.extractAndTranslateForNode(
+        XmlExtractorUtil.traverseToTag("data", node),
+        list,
         XmlMapTranslator.get(ArrayList.class, xmlMaps));
     return list.toArray(new DatabaseObject[list.size()]);
   }

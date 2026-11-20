@@ -121,8 +121,9 @@ public class QueryTest
         .where(m -> !m.getName().startsWith("lambda$"));
     Queryable<Method> arrays = declaredMethods
         .where(m -> m.getParameterTypes().length >= 1 && m.getParameterTypes()[0].isArray());
-    Queryable<Method> iterables = declaredMethods.where(m -> m.getParameterTypes().length >= 1
-        && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
+    Queryable<Method> iterables = declaredMethods.where(
+        m -> m.getParameterTypes().length >= 1
+            && ObjectUtils.isThisInstanceOfThat(m.getParameterTypes()[0], Iterable.class));
     arrays = arrays.where(m -> !hasMatchingMethod(m, declaredMethods, true));
     iterables = iterables.where(m -> !hasMatchingMethod(m, declaredMethods, false));
     Queryable<String> missingMethods = arrays.combine(iterables).select(this::printMethod).orderBy(m -> m);
@@ -150,7 +151,7 @@ public class QueryTest
 
   private String showParameters(Method m)
   {
-    return StringUtils.join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())),
-        ",");
+    return StringUtils
+        .join(Query.select(m.getParameters(), p -> String.format("%s", p.getType().getSimpleName())), ",");
   }
 }

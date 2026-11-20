@@ -46,7 +46,8 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     }
     String alias = outer.addFrom("(" + innerQuery + ")");
     String pkeyColumn = "." + query.getLimitPart().mainTablePkeyColumn;
-    outer.addWhere(alias + pkeyColumn + " = " + replacer.replace(query.getLimitPart().mainTableAlias) + pkeyColumn,
+    outer.addWhere(
+        alias + pkeyColumn + " = " + replacer.replace(query.getLimitPart().mainTableAlias) + pkeyColumn,
         true);
     OrderByPart[] orderByParts = query.getOrderByParts();
     for (int i = 0; i < orderByParts.length; i++)
@@ -58,8 +59,9 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     {
       outer.addSelect(replacer.replace(selects[i]));
     }
-    outer.setLimitPart(new LimitPart(0, query.getLimitPart().numberOfRowsDesired,
-        query.getLimitPart().mainTableAlias, query.getLimitPart().mainTablePkeyColumn));
+    outer.setLimitPart(
+        new LimitPart(0, query.getLimitPart().numberOfRowsDesired, query.getLimitPart().mainTableAlias,
+            query.getLimitPart().mainTablePkeyColumn));
     return outer;
   }
 
@@ -79,11 +81,13 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     {
       inner.addOrderByPart(orderByParts[i]);
     }
-    inner.addSelect(query.getLimitPart().mainTableAlias + "." + query.getLimitPart().mainTablePkeyColumn + " AS "
-        + query.getLimitPart().mainTablePkeyColumn);
-    inner.setLimitPart(new LimitPart(0,
-        query.getLimitPart().numberOfRowsDesired + query.getLimitPart().getStartingZeroBasedIndex(),
-        query.getLimitPart().mainTableAlias, query.getLimitPart().mainTablePkeyColumn));
+    inner.addSelect(
+        query.getLimitPart().mainTableAlias + "." + query.getLimitPart().mainTablePkeyColumn + " AS "
+            + query.getLimitPart().mainTablePkeyColumn);
+    inner.setLimitPart(
+        new LimitPart(0,
+            query.getLimitPart().numberOfRowsDesired + query.getLimitPart().getStartingZeroBasedIndex(),
+            query.getLimitPart().mainTableAlias, query.getLimitPart().mainTablePkeyColumn));
     return inner;
   }
 
@@ -92,12 +96,16 @@ public class ReverseOrderLimitQueryWriter implements SQLQueryWriter
     String[] assertions = new String[]{"groupByNull", "limitExists", "mainTableValid", "mainTablePkeyValid"};
     ValidationError error = new ValidationError(assertions);
     error.setError("groupByNull", query.getGroupByParts().length > 0, "Cannot have group by in limit query.");
-    error.setError("limitExists",
+    error.setError(
+        "limitExists",
         query.getLimitPart() == null || query.getLimitPart().getStartingZeroBasedIndex() == 0,
         "Must have a lower limit.");
-    error.setError("mainTableValid", query.getLimitPart() == null || query.getLimitPart().mainTableAlias == null,
+    error.setError(
+        "mainTableValid",
+        query.getLimitPart() == null || query.getLimitPart().mainTableAlias == null,
         "Must define main table.");
-    error.setError("mainTablePkeyValid",
+    error.setError(
+        "mainTablePkeyValid",
         query.getLimitPart() == null || query.getLimitPart().mainTablePkeyColumn == null,
         "Must define main table pkey column name.");
     if (!error.isOk())

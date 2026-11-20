@@ -89,17 +89,26 @@ public class OptionsTest
 
   public static List<Class<?>> getApprovalClasses()
   {
-    return Arrays.asList(Approvals.class, CombinationApprovals.class, AwtApprovals.class, JsonApprovals.class,
-        VelocityApprovals.class, JsonJacksonApprovals.class, JsonJackson3Approvals.class,
-        JsonXstreamApprovals.class, XmlXomApprovals.class, SqlApprovals.class);
+    return Arrays.asList(
+        Approvals.class,
+        CombinationApprovals.class,
+        AwtApprovals.class,
+        JsonApprovals.class,
+        VelocityApprovals.class,
+        JsonJacksonApprovals.class,
+        JsonJackson3Approvals.class,
+        JsonXstreamApprovals.class,
+        XmlXomApprovals.class,
+        SqlApprovals.class);
     // TODO: missing verification that JsonApprovals, JsonJacksonApprovals and JsonXStreamApprovals offer the same verify methods
   }
 
   public static void verifyEachVerifyMethodHasOneWithOptions(Class<?> approvalsClass, String methodPrefix)
   {
     Queryable<Method> declaredMethods = Queryable.as(approvalsClass.getDeclaredMethods());
-    Queryable<Method> methodList = declaredMethods.where(m -> m.getName().startsWith(methodPrefix)
-        && Modifier.isPublic(m.getModifiers()) && !m.isAnnotationPresent(Deprecated.class));
+    Queryable<Method> methodList = declaredMethods.where(
+        m -> m.getName().startsWith(methodPrefix) && Modifier.isPublic(m.getModifiers())
+            && !m.isAnnotationPresent(Deprecated.class));
     List<Method> methodsWithOptions = methodList.where(m -> isOptionsPresent(m));
     List<Method> methodsWithoutOptions = methodList.where(m -> !(isOptionsPresent(m)));
     for (Method withOptions : methodsWithOptions)
@@ -107,7 +116,8 @@ public class OptionsTest
       String name = withOptions.getName();
       Class<?>[] parameterTypes = withOptions.getParameterTypes();
       Class<?>[] parameters = getWithoutOptions(parameterTypes);
-      boolean foundWithoutOptions = Query.any(methodsWithoutOptions,
+      boolean foundWithoutOptions = Query.any(
+          methodsWithoutOptions,
           m -> name.equals(m.getName()) && Arrays.deepEquals(m.getParameterTypes(), parameters));
       assertTrue(foundWithoutOptions, "No match found for:" + withOptions);
     }
@@ -115,8 +125,10 @@ public class OptionsTest
     {
       String name = withoutOptions.getName();
       Class[] parameters = withoutOptions.getParameterTypes();
-      boolean foundWithOptions = Query.any(methodsWithOptions, m -> name.equals(m.getName())
-          && Arrays.deepEquals(getWithoutOptions(m.getParameterTypes()), parameters));
+      boolean foundWithOptions = Query.any(
+          methodsWithOptions,
+          m -> name.equals(m.getName())
+              && Arrays.deepEquals(getWithoutOptions(m.getParameterTypes()), parameters));
       assertTrue(foundWithOptions, "No match found for:\n" + withoutOptions);
     }
     assertEquals(methodsWithOptions.size(), methodsWithoutOptions.size());
@@ -139,7 +151,8 @@ public class OptionsTest
   @Test
   void verifyFileExtension()
   {
-    Approvals.verify("<html><body><h1>hello approvals</h1></body></html>",
+    Approvals.verify(
+        "<html><body><h1>hello approvals</h1></body></html>",
         new Options().forFile().withExtension(".html"));
   }
 
@@ -149,8 +162,8 @@ public class OptionsTest
     String customFileName = "customApproval";
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(customFileName));
     String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
-    Approvals.verify(sampleText,
-        new Options().forFile().withBaseName(customFileName).forFile().withExtension(".html"));
+    Approvals
+        .verify(sampleText, new Options().forFile().withBaseName(customFileName).forFile().withExtension(".html"));
     Approvals.verify(sampleText, new Options().forFile().withName(customFileName, ".html"));
     Approvals.verify(sampleText, new Options().forFile().withBaseName(customFileName));
   }

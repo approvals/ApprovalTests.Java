@@ -54,7 +54,10 @@ public class ParseInput<OUT>
 
   public void verifyAll(Function1<OUT, Object> transform)
   {
-    Approvals.verifyAll("", parse(), s -> String.format("%s -> %s", s.getFirst(), transform.call(s.getSecond())),
+    Approvals.verifyAll(
+        "",
+        parse(),
+        s -> String.format("%s -> %s", s.getFirst(), transform.call(s.getSecond())),
         new Options().inline(expected));
   }
 
@@ -99,8 +102,8 @@ public class ParseInput<OUT>
   // ************* 2 parameters
   public <T1, T2> ParseInputWith2Parameters<T1, T2> withTypes(Class<T1> type1, Class<T2> type2)
   {
-    return ParseInputWith2Parameters.create(expected, getTransformerForClass(type1), getTransformerForClass(type2),
-        options);
+    return ParseInputWith2Parameters
+        .create(expected, getTransformerForClass(type1), getTransformerForClass(type2), options);
   }
 
   public <T1, T2> ParseInputWith2Parameters<T1, T2> transformTo(Function1<String, T1> transformer1,
@@ -112,8 +115,12 @@ public class ParseInput<OUT>
   public <T1, T2, T3> ParseInputWith3Parameters<T1, T2, T3> withTypes(Class<T1> type1, Class<T2> type2,
       Class<T3> type3)
   {
-    return ParseInputWith3Parameters.create(expected, getTransformerForClass(type1), getTransformerForClass(type2),
-        getTransformerForClass(type3), options);
+    return ParseInputWith3Parameters.create(
+        expected,
+        getTransformerForClass(type1),
+        getTransformerForClass(type2),
+        getTransformerForClass(type3),
+        options);
   }
 
   public <T1, T2, T3> ParseInputWith3Parameters<T1, T2, T3> transformTo(Function1<String, T1> transformer1,

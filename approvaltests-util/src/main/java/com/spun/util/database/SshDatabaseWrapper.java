@@ -28,8 +28,8 @@ public class SshDatabaseWrapper implements DatabaseConfigurationWrapper
         originalConfiguration.getUserName(), originalConfiguration.getPassword(), originalConfiguration.getType());
     try
     {
-      LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log",
-          "org.apache.commons.logging.impl.NoOpLog");
+      LogFactory.getFactory()
+          .setAttribute("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
       SshClient ssh = new SshClient();
       ssh.setSocketTimeout(60000);
       ssh.connect(originalConfiguration.getServer(), new IgnoreHostKeyVerification());
@@ -38,7 +38,11 @@ public class SshDatabaseWrapper implements DatabaseConfigurationWrapper
       pwd.setPassword(originalConfiguration.getPassword());
       ssh.authenticate(pwd);
       ForwardingClient client = ssh.getForwardingClient();
-      client.addLocalForwarding(config.getProtocol(), "0.0.0.0", config.getPort(), "localhost",
+      client.addLocalForwarding(
+          config.getProtocol(),
+          "0.0.0.0",
+          config.getPort(),
+          "localhost",
           originalConfiguration.getPort());
       client.startLocalForwarding(config.getProtocol());
       return new SshConnection(ssh, config.makeConnection());

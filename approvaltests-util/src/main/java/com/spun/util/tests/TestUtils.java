@@ -136,8 +136,8 @@ public class TestUtils
     displayHtml(null, ".csv", output, 3);
     //    Runtime.getRuntime().exec("notepad.exe " + outputFile);
   }
-  private static final List<Opener> openers = Queryable.as(new MacOpener(), new WindowsOpener(),
-      new LinuxOpener());
+  private static final List<Opener> openers = Queryable
+      .as(new MacOpener(), new WindowsOpener(), new LinuxOpener());
   public static void registerOpener(Opener opener)
   {
     openers.add(0, opener);
@@ -226,6 +226,6 @@ public class TestUtils
   }
   private static final Pattern            unrollJavaLambdaPattern   = Pattern.compile("lambda\\$(.*)\\$\\d+");
   private static final Pattern            unrollKotlinLambdaPattern = Pattern.compile("(.*?)(\\$lambda-\\d+)+");
-  private static final Queryable<Pattern> lambdaPatterns            = Queryable.as(unrollJavaLambdaPattern,
-      unrollKotlinLambdaPattern);
+  private static final Queryable<Pattern> lambdaPatterns            = Queryable
+      .as(unrollJavaLambdaPattern, unrollKotlinLambdaPattern);
 }

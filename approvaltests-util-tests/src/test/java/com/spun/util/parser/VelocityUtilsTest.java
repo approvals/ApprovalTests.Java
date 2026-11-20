@@ -22,7 +22,8 @@ public class VelocityUtilsTest
   @Test
   public void testList()
   {
-    VelocityApprovals.verify(c -> c.put("array", Arrays.asList("one", "two", "three")),
+    VelocityApprovals.verify(
+        c -> c.put("array", Arrays.asList("one", "two", "three")),
         new Options().forFile().withExtension(".html"));
   }
 
@@ -32,7 +33,8 @@ public class VelocityUtilsTest
     try (WithTimeZone tz = new WithTimeZone())
     {
       Timestamp date = DateUtils.parse("2001/02/03");
-      VelocityApprovals.verify(c -> c.put("date", date),
+      VelocityApprovals.verify(
+          c -> c.put("date", date),
           new Options().forFile().withExtension(".md").withScrubber(new NormalizeSpacesScrubber()));
     }
   }

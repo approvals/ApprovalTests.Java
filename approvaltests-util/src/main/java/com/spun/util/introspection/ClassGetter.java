@@ -12,8 +12,8 @@ public class ClassGetter
   public static ArrayList<Class<?>> getClasses(String packageName, String classSuffix)
   {
     ArrayList<Class<?>> classes = new ArrayList<>();
-    File[] testFiles = FileUtils.getRecursiveFileList(new File("."),
-        new JavaClassFileFilter(packageName, classSuffix));
+    File[] testFiles = FileUtils
+        .getRecursiveFileList(new File("."), new JavaClassFileFilter(packageName, classSuffix));
     String pathHead = packageName.substring(0, packageName.indexOf('.'));
     for (int i = 0; i < testFiles.length; i++)
     {
@@ -27,7 +27,8 @@ public class ClassGetter
   {
     String path = file.getAbsolutePath();
     String extension = ".class";
-    String fullName = path.substring(path.indexOf(File.separator + pathHead + File.separator) + 1,
+    String fullName = path.substring(
+        path.indexOf(File.separator + pathHead + File.separator) + 1,
         path.length() - extension.length());
     return fullName.replace(File.separatorChar, '.');
   }

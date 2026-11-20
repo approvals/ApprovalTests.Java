@@ -64,8 +64,8 @@ public class FileApprover implements ApprovalApprover
     received.delete();
     if (reporter instanceof ApprovalReporterWithCleanUp)
     {
-      ((ApprovalReporterWithCleanUp) reporter).cleanUp(FileUtils.getResolvedPath(received),
-          FileUtils.getResolvedPath(approved));
+      ((ApprovalReporterWithCleanUp) reporter)
+          .cleanUp(FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved));
     }
   }
 

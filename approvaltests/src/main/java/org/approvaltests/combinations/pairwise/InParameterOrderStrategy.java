@@ -65,16 +65,17 @@ public final class InParameterOrderStrategy
     return new ArrayList<Case>()
     {
       {
-        IntStream.range(0, chunk.get(chunk.size() - 1).size()).forEach(last -> IntStream.range(0, chunk.size() - 1)
-            .forEach(column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new Case()
-            {
-              {
-                // we believe this creates problematic order but we're unsure.
-                OptionsForAParameter parameter = chunk.get(column);
-                this.put(parameter.getPosition(), parameter.get(cursor));
-                this.put(multiplier.getPosition(), multiplier.get(last));
-              }
-            }))));
+        IntStream.range(0, chunk.get(chunk.size() - 1).size()).forEach(
+            last -> IntStream.range(0, chunk.size() - 1).forEach(
+                column -> IntStream.range(0, chunk.get(column).size()).forEach(cursor -> this.add(new Case()
+                {
+                  {
+                    // we believe this creates problematic order but we're unsure.
+                    OptionsForAParameter parameter = chunk.get(column);
+                    this.put(parameter.getPosition(), parameter.get(cursor));
+                    this.put(multiplier.getPosition(), multiplier.get(last));
+                  }
+                }))));
       }
     };
   }

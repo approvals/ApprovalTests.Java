@@ -97,8 +97,9 @@ public class SimpleLoggerInstance
     long diff = System.currentTimeMillis() - startTime;
     if (diff > maxTime)
     {
-      warning("Time Limit Exceeded - " + function + " [" + new DateDifference(diff).getStandardTimeText(2) + " > "
-          + maxTime + "]");
+      warning(
+          "Time Limit Exceeded - " + function + " [" + new DateDifference(diff).getStandardTimeText(2) + " > "
+              + maxTime + "]");
     }
   }
 
@@ -403,8 +404,11 @@ public class SimpleLoggerInstance
   {
     try
     {
-      logTo = Files.newBufferedWriter(Paths.get(addDatestampToFile(file, addDateStamp)), StandardCharsets.UTF_8,
-          StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.CREATE);
+      logTo = Files.newBufferedWriter(
+          Paths.get(addDatestampToFile(file, addDateStamp)),
+          StandardCharsets.UTF_8,
+          StandardOpenOption.TRUNCATE_EXISTING,
+          StandardOpenOption.CREATE);
     }
     catch (IOException e)
     {

@@ -50,8 +50,8 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
     String file = sourceFilePath + stackTraceNamer.getInfo().getFileName();
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
-    String fullText = this.createNewReceivedFileText.call(text, actual + additionalLines,
-        this.stackTraceNamer.getInfo().getMethodName());
+    String fullText = this.createNewReceivedFileText
+        .call(text, actual + additionalLines, this.stackTraceNamer.getInfo().getMethodName());
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
@@ -86,8 +86,8 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
 
   private static String getExpected(String actual, String tab)
   {
-    return String.format("%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n", tab, tab, indent(actual, tab), tab, tab,
-        tab);
+    return String
+        .format("%s%svar expected = \"\"\"\n%s%s%s%s\"\"\";\n", tab, tab, indent(actual, tab), tab, tab, tab);
   }
 
   private static void replaceExpected(CodeParts codeParts, String actual)

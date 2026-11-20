@@ -14,8 +14,8 @@ public class AttributeStackSelectorTest
   void unrollLambda()
   {
     String[] methodNames = {"doStuff", "lambda$handleCallback$0", "test_in_kotlin$lambda-1$lambda-0"};
-    Approvals.verifyAll("unroll lambda", methodNames,
-        m -> String.format("%s -> %s", m, TestUtils.unrollLambda(m)));
+    Approvals
+        .verifyAll("unroll lambda", methodNames, m -> String.format("%s -> %s", m, TestUtils.unrollLambda(m)));
   }
 
   @RepeatedTest(10)

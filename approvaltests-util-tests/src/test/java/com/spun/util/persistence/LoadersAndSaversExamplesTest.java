@@ -60,7 +60,8 @@ public class LoadersAndSaversExamplesTest
       {
         return
         // begin-snippet: step_fake_data
-        List.of(new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
+        List.of(
+            new Customer("Bob, Jones, 123 Elm St., Tempe, AZ, 14-MAR-1958"),
             new Customer("Mary, Smith, 345 Oak St., Mason, VA, 04-MAY-1944"));
         // end-snippet
       }
@@ -142,8 +143,8 @@ public class LoadersAndSaversExamplesTest
     @Test
     public void senior_customer_list_includes_only_those_over_age_65()
     {
-      Loader<List<Customer>> mailingList = () -> List.of(new Customer("Bob"), new Customer("Mary"),
-          new Customer("Tom"));
+      Loader<List<Customer>> mailingList = () -> List
+          .of(new Customer("Bob"), new Customer("Mary"), new Customer("Tom"));
       MailServer mailServer = initializeMailServer();
       sendOutSeniorDiscounts(mailServer, mailingList);
       Approvals.verifyAll("", mailServer.getRecipients());

@@ -23,8 +23,8 @@ public class ReporterFactoryTest
   @UseReporter(DiffReporter.class)
   public void oneLayerDown()
   {
-    StackListings<UseReporter> listings = ReporterFactory.getAnnotationsFromStackTrace(UseReporter.class,
-        ThreadUtils.getStackTrace());
+    StackListings<UseReporter> listings = ReporterFactory
+        .getAnnotationsFromStackTrace(UseReporter.class, ThreadUtils.getStackTrace());
     Approvals.verify(listings);
     assertEquals(DiffReporter.class, listings.getFirst().value()[0]);
   }

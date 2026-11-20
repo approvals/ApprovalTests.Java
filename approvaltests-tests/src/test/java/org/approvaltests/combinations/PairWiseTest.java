@@ -41,17 +41,24 @@ public class PairWiseTest
     addPairwiseTableRow(5, 6, table);
     addPairwiseTableRow(9, 9, table);
     // added blank lines at beginning due to markdown snippets bug
-    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
+    Approvals.verify(
+        String.format("\n\n%s\n\n", table.toMarkdown()),
         new Options().forFile().withExtension("include.md"));
   }
 
   private void addPairwiseTableRow(int pCount, int variations, MarkdownTable table)
   {
     Object[] p = Range.get(1, variations);
-    Pairwise pairwise = Pairwise.toPairWise(p, p, 3 <= pCount ? p : CombinationApprovals.EMPTY,
-        4 <= pCount ? p : CombinationApprovals.EMPTY, 5 <= pCount ? p : CombinationApprovals.EMPTY,
-        6 <= pCount ? p : CombinationApprovals.EMPTY, 7 <= pCount ? p : CombinationApprovals.EMPTY,
-        8 <= pCount ? p : CombinationApprovals.EMPTY, 9 <= pCount ? p : CombinationApprovals.EMPTY);
+    Pairwise pairwise = Pairwise.toPairWise(
+        p,
+        p,
+        3 <= pCount ? p : CombinationApprovals.EMPTY,
+        4 <= pCount ? p : CombinationApprovals.EMPTY,
+        5 <= pCount ? p : CombinationApprovals.EMPTY,
+        6 <= pCount ? p : CombinationApprovals.EMPTY,
+        7 <= pCount ? p : CombinationApprovals.EMPTY,
+        8 <= pCount ? p : CombinationApprovals.EMPTY,
+        9 <= pCount ? p : CombinationApprovals.EMPTY);
     final List<Case> cases = pairwise.getCases();
     int totalPossibleSize = pairwise.getTotalPossibleCombinations();
     DecimalFormat df = new DecimalFormat("###,###,###");
@@ -61,16 +68,23 @@ public class PairWiseTest
   @Test
   public void testPairs()
   {
-    CombinationApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{1, 2, 3, 4, 5},
-        new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"}, new Double[]{1.1, 2.2, 3.3, 4.4});
+    CombinationApprovals.verifyBestCoveringPairs(
+        (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"},
+        new String[]{"L", "M", "N", "O", "P"},
+        new Double[]{1.1, 2.2, 3.3, 4.4});
   }
 
   @Test
   public void testPairsWithHeader()
   {
     CombinationApprovals.verifyBestCoveringPairs(
-        new Labels().withHeader("processCall(int, String, String, double)"), (a, b, c, d) -> "",
-        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"},
+        new Labels().withHeader("processCall(int, String, String, double)"),
+        (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"},
+        new String[]{"L", "M", "N", "O", "P"},
         new Double[]{1.1, 2.2, 3.3, 4.4});
   }
 
@@ -78,8 +92,11 @@ public class PairWiseTest
   public void testPairsWithLabels()
   {
     CombinationApprovals.verifyBestCoveringPairs(
-        new Labels().withLabels("number", "letter", "uppercase", "decimal"), (a, b, c, d) -> "",
-        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"}, new String[]{"L", "M", "N", "O", "P"},
+        new Labels().withLabels("number", "letter", "uppercase", "decimal"),
+        (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"},
+        new String[]{"L", "M", "N", "O", "P"},
         new Double[]{1.1, 2.2, 3.3, 4.4});
   }
 
@@ -87,17 +104,23 @@ public class PairWiseTest
   public void testPairsWithHeaderAndLabels()
   {
     CombinationApprovals.verifyBestCoveringPairs(
-        new Labels().withHeader("processCall(int, String, String, double)").withLabels("number", "letter",
-            "uppercase", "decimal"),
-        (a, b, c, d) -> "", new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"},
-        new String[]{"L", "M", "N", "O", "P"}, new Double[]{1.1, 2.2, 3.3, 4.4});
+        new Labels().withHeader("processCall(int, String, String, double)")
+            .withLabels("number", "letter", "uppercase", "decimal"),
+        (a, b, c, d) -> "",
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"},
+        new String[]{"L", "M", "N", "O", "P"},
+        new Double[]{1.1, 2.2, 3.3, 4.4});
   }
 
   @Test
   public void testPairsScrubbed()
   {
-    CombinationApprovals.verifyBestCoveringPairs((a, b, c, d) -> "", new Integer[]{112, 111, 113, 114, 115},
-        new Integer[]{221, 222, 223, 224}, new Integer[]{331, 332, 333, 334, 335},
+    CombinationApprovals.verifyBestCoveringPairs(
+        (a, b, c, d) -> "",
+        new Integer[]{112, 111, 113, 114, 115},
+        new Integer[]{221, 222, 223, 224},
+        new Integer[]{331, 332, 333, 334, 335},
         new Integer[]{441, 442, 443, 444},
         new Options().withScrubber(new RegExScrubber("\\d{3}", a -> "input-" + a)));
   }
@@ -245,8 +268,8 @@ public class PairWiseTest
     String pairsBefore = toString(pairs);
     String casesBefore = toString(cases);
     List<Case> result = InParameterOrderStrategy.horizontalGrowth(cases, pairs);
-    Approvals
-        .verify("Cases before: \n" + casesBefore + " \n Cases after: \n" + toString(cases) + "\nPairs before: \n"
+    Approvals.verify(
+        "Cases before: \n" + casesBefore + " \n Cases after: \n" + toString(cases) + "\nPairs before: \n"
             + pairsBefore + " \n Pairs after: \n" + toString(pairs) + "\n Result: \n" + toString(result));
   }
 

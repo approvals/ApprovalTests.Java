@@ -148,7 +148,10 @@ public class LapTimer
   {
     String value = String.format(
         "com.spun.util.timers.LapTimer[ Label = '%s',\n isPaused = %s ,\n  Lap Times = %s ,\n Total Paused Time = %s ,\n Total Time = %s]",
-        label, isPaused(), getPrintableLapTimesArray(), new DateDifference(pausedTotalTime).getStandardTimeText(1),
+        label,
+        isPaused(),
+        getPrintableLapTimesArray(),
+        new DateDifference(pausedTotalTime).getStandardTimeText(1),
         getTotalTimeAsDateDifference().getStandardTimeText(1));
     return value;
   }

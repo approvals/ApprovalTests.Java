@@ -19,7 +19,8 @@ class JsonJackson3ApprovalsTest
   void testObjectMapperOverride()
   {
     MyClass o = new MyClass();
-    JsonJackson3Approvals.verifyAsJson(o,
+    JsonJackson3Approvals.verifyAsJson(
+        o,
         jm -> jm.changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(JsonInclude.Include.NON_NULL)));
   }
 

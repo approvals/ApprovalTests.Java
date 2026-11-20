@@ -7,8 +7,10 @@ public class CombinationTest
   @Test
   public void testLockDown()
   {
-    CombinationApprovals.verifyAllCombinations((i, s) -> String.format("[%s, %s]", i, s),
-        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
+    CombinationApprovals.verifyAllCombinations(
+        (i, s) -> String.format("[%s, %s]", i, s),
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"});
   }
 
   @Test
@@ -28,30 +30,38 @@ public class CombinationTest
   @Test
   public void testHeader()
   {
-    CombinationApprovals.verifyAllCombinations(new Labels().withHeader("processCall(String, Int)"),
-        this::processCall, new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
+    CombinationApprovals.verifyAllCombinations(
+        new Labels().withHeader("processCall(String, Int)"),
+        this::processCall,
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"});
   }
 
   @Test
   public void testLabels()
   {
-    CombinationApprovals.verifyAllCombinations(new Labels().withLabels("number", "letter"), this::processCall,
-        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
+    CombinationApprovals.verifyAllCombinations(
+        new Labels().withLabels("number", "letter"),
+        this::processCall,
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"});
   }
 
   @Test
   public void testHeadersAndLabels()
   {
     CombinationApprovals.verifyAllCombinations(
-        new Labels().withHeader("processCall(String, Int)").withLabels("number", "letter"), this::processCall,
-        new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
+        new Labels().withHeader("processCall(String, Int)").withLabels("number", "letter"),
+        this::processCall,
+        new Integer[]{1, 2, 3, 4, 5},
+        new String[]{"a", "b", "c", "d"});
   }
 
   @Test
   public void testPassMethod()
   {
-    CombinationApprovals.verifyAllCombinations(this::processCall, new Integer[]{1, 2, 3, 4, 5},
-        new String[]{"a", "b", "c", "d"});
+    CombinationApprovals
+        .verifyAllCombinations(this::processCall, new Integer[]{1, 2, 3, 4, 5}, new String[]{"a", "b", "c", "d"});
   }
 
   public Object processCall(Integer i, String s)

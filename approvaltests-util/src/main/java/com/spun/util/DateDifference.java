@@ -247,7 +247,12 @@ public class DateDifference
 
   public String getStandardTimeText(int amount, String maxUnit, String minUnit, String nowText, String agoText)
   {
-    return getTimeText(amount, convertUnitString(maxUnit), convertUnitString(minUnit), nowText, agoText,
+    return getTimeText(
+        amount,
+        convertUnitString(maxUnit),
+        convertUnitString(minUnit),
+        nowText,
+        agoText,
         STANDARD_TIME_TEXT);
   }
 

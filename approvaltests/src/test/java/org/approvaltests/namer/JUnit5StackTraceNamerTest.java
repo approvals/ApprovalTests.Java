@@ -103,25 +103,38 @@ public class JUnit5StackTraceNamerTest
   Collection<DynamicTest> testFactory()
   {
     return Arrays.asList(
-        JupiterApprovals.dynamicTest("test 1",
-            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_1", o.forFile().getNamer())),
-        JupiterApprovals.dynamicTest("test 3",
-            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_3", o.forFile().getNamer())),
-        JupiterApprovals.dynamicTest("test 3",
-            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_3", o.forFile().getNamer())),
-        JupiterApprovals.dynamicTest("test 2",
-            (o) -> StackTraceNamerUtils.assertNamerForFramework(this.getClass().getSimpleName(),
-                "testFactory.test_2", o.forFile().getNamer())));
+        JupiterApprovals.dynamicTest(
+            "test 1",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(
+                this.getClass().getSimpleName(),
+                "testFactory.test_1",
+                o.forFile().getNamer())),
+        JupiterApprovals.dynamicTest(
+            "test 3",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(
+                this.getClass().getSimpleName(),
+                "testFactory.test_3",
+                o.forFile().getNamer())),
+        JupiterApprovals.dynamicTest(
+            "test 3",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(
+                this.getClass().getSimpleName(),
+                "testFactory.test_3",
+                o.forFile().getNamer())),
+        JupiterApprovals.dynamicTest(
+            "test 2",
+            (o) -> StackTraceNamerUtils.assertNamerForFramework(
+                this.getClass().getSimpleName(),
+                "testFactory.test_2",
+                o.forFile().getNamer())));
   }
 
   @TestFactory
   Collection<DynamicTest> testFactory2()
   {
     return Collections.singletonList(dynamicTest("test 4", () -> {
-      RuntimeException result = assertThrows(RuntimeException.class,
+      RuntimeException result = assertThrows(
+          RuntimeException.class,
           () -> Approvals.verify("calling this must throw an exception"));
       String helpMessage = "When using dynamic tests and Approvals, Instead use:  \n"
           + "  org.approvaltests.integrations.junit5.JupiterApprovals.dynamicTest(String, Executable)\n"
@@ -134,8 +147,11 @@ public class JUnit5StackTraceNamerTest
   @TestFactory
   Collection<DynamicTest> testFactory3()
   {
-    return Stream.of(1, 2).map(number -> JupiterApprovals.dynamicTest("test " + number,
-        o -> Approvals.verify("content for " + number, o))).collect(Collectors.toList());
+    return Stream.of(1, 2)
+        .map(
+            number -> JupiterApprovals
+                .dynamicTest("test " + number, o -> Approvals.verify("content for " + number, o)))
+        .collect(Collectors.toList());
   }
 
   // end-snippet
@@ -149,7 +165,8 @@ public class JUnit5StackTraceNamerTest
           JsonApprovals.verifyAsJson("This should work: " + number, o);
           break;
         case 2 :
-          RuntimeException result = assertThrows(RuntimeException.class,
+          RuntimeException result = assertThrows(
+              RuntimeException.class,
               () -> Approvals.verify("calling this must throw an exception"));
           String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"
               + "   wrong: o -> Approvals.verify(result);  \n" + "   right: o -> Approvals.verify(result, o);  \n"

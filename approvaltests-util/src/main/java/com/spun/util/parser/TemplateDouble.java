@@ -125,8 +125,12 @@ public class TemplateDouble
 
   public String toString()
   {
-    return inFormat(defaultPrefix, defaultMaximumPrecision, getDefaultMinimumPrecision(defaultMaximumPrecision),
-        defaultPostfix, true);
+    return inFormat(
+        defaultPrefix,
+        defaultMaximumPrecision,
+        getDefaultMinimumPrecision(defaultMaximumPrecision),
+        defaultPostfix,
+        true);
   }
 
   public double getAmount()

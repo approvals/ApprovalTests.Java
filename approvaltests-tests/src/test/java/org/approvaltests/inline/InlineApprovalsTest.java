@@ -103,8 +103,11 @@ public class InlineApprovalsTest
               verifyConversation(expected, "account lookup");
           }
         """);
-    Approvals.verifyAll("Substitution", inputs, i -> "******\n" + i + "\nBecomes:\n"
-        + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
+    Approvals.verifyAll(
+        "Substitution",
+        inputs,
+        i -> "******\n" + i + "\nBecomes:\n"
+            + InlineJavaReporter.createNewReceivedFileText(i, "1\n2", "testyMctest"));
   }
 
   @Test
@@ -115,7 +118,8 @@ public class InlineApprovalsTest
     Options inlineNoCode = new Options().inline("", InlineOptions.showCode(false));
     var resultWithCode = inlineWithCode.getReporter();
     assertEquals(InlineJavaReporter.class, resultWithCode.getClass());
-    assertEquals(ReportNothing.class,
+    assertEquals(
+        ReportNothing.class,
         ((FirstWorkingReporter) inlineNoCode.getReporter()).getReporters()[1].getClass());
   }
 

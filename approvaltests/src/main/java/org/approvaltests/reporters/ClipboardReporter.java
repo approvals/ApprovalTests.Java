@@ -44,8 +44,8 @@ public class ClipboardReporter implements ApprovalFailureReporter
     }
     else
     {
-      return String.format("mv -f %s %s", formatFilePathForCommandLine(received),
-          formatFilePathForCommandLine(approved));
+      return String
+          .format("mv -f %s %s", formatFilePathForCommandLine(received), formatFilePathForCommandLine(approved));
     }
   }
 

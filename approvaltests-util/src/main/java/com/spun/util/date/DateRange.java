@@ -84,8 +84,8 @@ public class DateRange
   @Override
   public String toString()
   {
-    return String.format("[%s - %s]", new TemplateDate(start).getDateAndTime(),
-        new TemplateDate(end).getDateAndTime());
+    return String
+        .format("[%s - %s]", new TemplateDate(start).getDateAndTime(), new TemplateDate(end).getDateAndTime());
   }
 
   public DateRange[] getWeeks()

@@ -14,7 +14,8 @@ public class StackTraceNamerTest
   {
     StackTraceNamer approvalNamer = new StackTraceNamer();
     String actual = approvalNamer.getApprovedFile(".txt").toString();
-    assertTrue(actual.contains(File.separator + "src" + File.separator),
+    assertTrue(
+        actual.contains(File.separator + "src" + File.separator),
         "actual " + actual + " does not contain /src/");
   }
 }

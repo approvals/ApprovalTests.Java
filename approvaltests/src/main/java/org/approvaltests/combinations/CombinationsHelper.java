@@ -17,8 +17,19 @@ public class CombinationsHelper
       IN3[] parameters3, IN4[] parameters4, IN5[] parameters5, IN6[] parameters6, IN7[] parameters7,
       IN8[] parameters8, IN9[] parameters9, Options options)
   {
-    verifyAllCombinations(new Labels(), call, parameters1, parameters2, parameters3, parameters4, parameters5,
-        parameters6, parameters7, parameters8, parameters9, options);
+    verifyAllCombinations(
+        new Labels(),
+        call,
+        parameters1,
+        parameters2,
+        parameters3,
+        parameters4,
+        parameters5,
+        parameters6,
+        parameters7,
+        parameters8,
+        parameters9,
+        options);
   }
 
   public static <IN1, IN2, IN3, IN4, IN5, IN6, IN7, IN8, IN9, OUT> void verifyAllCombinations(Labels labels,
@@ -32,8 +43,17 @@ public class CombinationsHelper
         in18, in19) -> {
       output.append(getCombinationText(labels, call, in11, in12, in13, in14, in15, in16, in17, in18, in19));
     };
-    doForAllCombinations(parameters1, parameters2, parameters3, parameters4, parameters5, parameters6, parameters7,
-        parameters8, parameters9, addToOutput);
+    doForAllCombinations(
+        parameters1,
+        parameters2,
+        parameters3,
+        parameters4,
+        parameters5,
+        parameters6,
+        parameters7,
+        parameters8,
+        parameters9,
+        addToOutput);
     Approvals.verify(output, options);
   }
 

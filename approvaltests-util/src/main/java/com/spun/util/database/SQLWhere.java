@@ -125,8 +125,10 @@ public class SQLWhere
 
   public static SQLWhere createBetween(Date startTime, ColumnMetadata column, String prefix, Date endTime)
   {
-    return new SQLWhere(SQLUtils.createSQLBetween(new Timestamp(startTime.getTime()).toString(),
-        column.getNameWithPrefix(prefix), new Timestamp(endTime.getTime()).toString()));
+    return new SQLWhere(SQLUtils.createSQLBetween(
+        new Timestamp(startTime.getTime()).toString(),
+        column.getNameWithPrefix(prefix),
+        new Timestamp(endTime.getTime()).toString()));
   }
 
   public static SQLWhere createInSQLStatement(ColumnMetadata metadata, String alias, Object... values)

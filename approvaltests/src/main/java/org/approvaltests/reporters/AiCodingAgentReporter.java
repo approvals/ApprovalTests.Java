@@ -15,11 +15,18 @@ import java.util.Map;
 public class AiCodingAgentReporter implements ApprovalFailureReporter
 {
   public static final AiCodingAgentReporter INSTANCE              = new AiCodingAgentReporter();
-  public static List<String>                ENVIRONMENT_VARIABLES = new ArrayList<>(
-      Arrays.asList("AI_AGENT", "APPROVAL_TESTS_AGENT", "CLAUDECODE", "CLAUDE_CODE_ENTRYPOINT", "CODEX_SANDBOX",
-          "CURSOR_AGENT", "CURSOR_TRACE_ID", "GEMINI_CLI", "OPENCODE"));
-  private static final List<String>         FALSE_VALUES          = Arrays.asList("0", "f", "F", "false", "FALSE",
-      "False");
+  public static List<String>                ENVIRONMENT_VARIABLES = new ArrayList<>(Arrays.asList(
+      "AI_AGENT",
+      "APPROVAL_TESTS_AGENT",
+      "CLAUDECODE",
+      "CLAUDE_CODE_ENTRYPOINT",
+      "CODEX_SANDBOX",
+      "CURSOR_AGENT",
+      "CURSOR_TRACE_ID",
+      "GEMINI_CLI",
+      "OPENCODE"));
+  private static final List<String>         FALSE_VALUES          = Arrays
+      .asList("0", "f", "F", "false", "FALSE", "False");
   private final Function1<String, String>   environment;
   public AiCodingAgentReporter()
   {
@@ -63,8 +70,9 @@ public class AiCodingAgentReporter implements ApprovalFailureReporter
     b.append("# APPROVAL TEST FAILED\n");
     b.append("    approved: " + approvedPath + "\n");
     b.append("    received: " + receivedPath + "\n");
-    b.append("    approve_with: " + ClipboardReporter.getAcceptApprovalText(receivedPath, approvedPath, windows)
-        + "\n");
+    b.append(
+        "    approve_with: " + ClipboardReporter.getAcceptApprovalText(receivedPath, approvedPath, windows)
+            + "\n");
     b.append("\n");
     appendFile(b, "APPROVED", approvedPath);
     b.append("\n");

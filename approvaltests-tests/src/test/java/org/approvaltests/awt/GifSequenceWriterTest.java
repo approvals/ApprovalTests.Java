@@ -10,7 +10,9 @@ class GifSequenceWriterTest
   @Test
   void applesauce()
   {
-    Approvals.verifyAll("", new Boolean[]{true, false},
+    Approvals.verifyAll(
+        "",
+        new Boolean[]{true, false},
         b -> Arrays.toString(GifSequenceWriter.getBytesForLoopContinuously(b)));
   }
 }

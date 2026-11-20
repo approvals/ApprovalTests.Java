@@ -24,8 +24,11 @@ public class SteppingIterator
     {
       if (stepping[i - 1] % stepping[i] != 0)
       {
-        String string = String.format("Invalid stepping parameters - %s is not divisible by %s in parameters %s",
-            stepping[i - 1], stepping[i], Arrays.toString(stepping));
+        String string = String.format(
+            "Invalid stepping parameters - %s is not divisible by %s in parameters %s",
+            stepping[i - 1],
+            stepping[i],
+            Arrays.toString(stepping));
         throw new Error(string);
       }
     }

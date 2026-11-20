@@ -84,7 +84,10 @@ public class ProgessFrame extends JDialog
     double speed = (progress + 1) / (double) time;
     long totalTime = (long) (this.maxSteps / speed);
     long remainingTime = totalTime - time;
-    String label = String.format("%s / %s - %s remaining", progress, maxSteps,
+    String label = String.format(
+        "%s / %s - %s remaining",
+        progress,
+        maxSteps,
         new DateDifference(remainingTime).getStandardTimeText(2));
     setState(label, progress);
   }

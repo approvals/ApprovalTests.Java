@@ -20,7 +20,11 @@ public class QuartzUtils
 
   public static String toString(Trigger trigger)
   {
-    return String.format("Trigger:\n  Key: %s\n  Job Key: %s\n  Start Time: %s\n  End Time: %s", trigger.getKey(),
-        trigger.getJobKey(), DateUtils.toString(trigger.getStartTime()), DateUtils.toString(trigger.getEndTime()));
+    return String.format(
+        "Trigger:\n  Key: %s\n  Job Key: %s\n  Start Time: %s\n  End Time: %s",
+        trigger.getKey(),
+        trigger.getJobKey(),
+        DateUtils.toString(trigger.getStartTime()),
+        DateUtils.toString(trigger.getEndTime()));
   }
 }

@@ -143,8 +143,8 @@ public class AttributeStackSelector implements StackElementSelector
   private static boolean isDynamicWrapperPresent()
   {
     StackTraceElement[] stackTrace = ThreadUtils.getStackTrace();
-    return Queryable.as(stackTrace)
-        .any(stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals"
+    return Queryable.as(stackTrace).any(
+        stackTraceElement -> "org.approvaltests.integrations.junit5.JupiterApprovals"
             .equals(stackTraceElement.getClassName()));
   }
 

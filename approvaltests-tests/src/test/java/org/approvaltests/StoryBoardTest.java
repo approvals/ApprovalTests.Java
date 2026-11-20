@@ -74,11 +74,16 @@ public class StoryBoardTest
     {
       final Function2<Integer, Integer, Boolean> old = this.board;
       this.board = (x, y) -> {
-        final int aliveNeighbours = Queryable
-            .as(old.call(x - 1, y - 1), old.call(x - 0, y - 1), old.call(x + 1, y - 1), old.call(x - 1, y - 0),
-                //            old.call(x - 0, y - 0),
-                old.call(x + 1, y - 0), old.call(x - 1, y + 1), old.call(x - 0, y + 1), old.call(x + 1, y + 1))
-            .where(a -> a).size();
+        final int aliveNeighbours = Queryable.as(
+            old.call(x - 1, y - 1),
+            old.call(x - 0, y - 1),
+            old.call(x + 1, y - 1),
+            old.call(x - 1, y - 0),
+            //            old.call(x - 0, y - 0),
+            old.call(x + 1, y - 0),
+            old.call(x - 1, y + 1),
+            old.call(x - 0, y + 1),
+            old.call(x + 1, y + 1)).where(a -> a).size();
         return aliveNeighbours == 3 || (aliveNeighbours == 2 && old.call(x, y));
       };
       return this;

@@ -95,8 +95,8 @@ public class ArrayUtilsTest
                                        ArrayUtils.combine(null),
                                        ArrayUtils.combine(new BrotherA(), null),
                                        ArrayUtils.combine(nullObject, null),};
-    Approvals.verifyAll("", result,
-        a -> String.format("%s = %s", a.getClass().getSimpleName(), Arrays.toString(a)));
+    Approvals
+        .verifyAll("", result, a -> String.format("%s = %s", a.getClass().getSimpleName(), Arrays.toString(a)));
   }
 
   @Test

@@ -143,8 +143,8 @@ class QueryableTest
   @Test
   void testSelectMany()
   {
-    Queryable<List<String>> names = Queryable.as(Arrays.asList("Anna", "Abby", "Alice"),
-        Arrays.asList("Bob", "Barbara", "Barry"));
+    Queryable<List<String>> names = Queryable
+        .as(Arrays.asList("Anna", "Abby", "Alice"), Arrays.asList("Bob", "Barbara", "Barry"));
     Queryable<String> allNames = names.selectMany(n -> n);
     Approvals.verifyAll("", allNames);
   }
@@ -153,8 +153,8 @@ class QueryableTest
   void testSelectManyCharacters()
   {
     // begin-snippet: queryable_select_many
-    Queryable<String> names = Queryable.as("Now is the time", "Fourscore and seven years ago",
-        "When in the course of human events");
+    Queryable<String> names = Queryable
+        .as("Now is the time", "Fourscore and seven years ago", "When in the course of human events");
     Queryable<String> allNames = names.selectMany(n -> Arrays.asList(n.split(" "))).orderBy(n -> n);
     // end-snippet
     Approvals.verifyAll("", allNames);
@@ -191,8 +191,8 @@ class QueryableTest
   {
     // begin-snippet: group_by_full
     Queryable<String> words = Queryable.as("One Fish Two Fish Red Fish Blue Fish".split(" "));
-    Queryable<Entry<Object, Object>> result = words.groupBy(w -> w.length(), w -> w.toLowerCase(),
-        r -> r.join("_"));
+    Queryable<Entry<Object, Object>> result = words
+        .groupBy(w -> w.length(), w -> w.toLowerCase(), r -> r.join("_"));
     // end-snippet
     Approvals.verifyAll("", result, r -> String.format("%s = %s", r.getKey(), r.getValue()));
   }
@@ -260,7 +260,8 @@ class QueryableTest
         """;
     Queryable<Integer> queryable = Queryable.as(1, 2, 3);
     assertEquals(3, queryable.firstOrThrow(i -> 2 < i, () -> new RuntimeException("Nothing bigger than 2")));
-    Approvals.verifyException(() -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")),
+    Approvals.verifyException(
+        () -> queryable.firstOrThrow(i -> i == 4, () -> new RuntimeException("4 not found")),
         new Options().inline(expected));
   }
 

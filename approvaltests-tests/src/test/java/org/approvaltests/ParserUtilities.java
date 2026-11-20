@@ -79,7 +79,8 @@ public class ParserUtilities
       SourceRoot sourceRoot = new SourceRoot(Paths.get(sourceRootPath));
       try
       {
-        cu = sourceRoot.parse(method.getDeclaringClass().getPackageName(),
+        cu = sourceRoot.parse(
+            method.getDeclaringClass().getPackageName(),
             method.getDeclaringClass().getSimpleName() + ".java");
         break;
       }
@@ -90,8 +91,10 @@ public class ParserUtilities
     }
     if (cu == null && parseException != null)
     {
-      throw new RuntimeException(String.format("Error parsing the (method, source file): (%s, %s)",
-          method.getName(), parseException.getMessage()), parseException);
+      throw new RuntimeException(String.format(
+          "Error parsing the (method, source file): (%s, %s)",
+          method.getName(),
+          parseException.getMessage()), parseException);
     }
     return cu;
   }

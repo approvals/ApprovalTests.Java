@@ -340,8 +340,8 @@ public class Query<In>
       Function1<Queryable<Out1>, Out2> resultSelector)
   {
     Queryable<Map.Entry<Key, Queryable<Out1>>> tuples = new Queryable<>();
-    Queryable<Map.Entry<Key, Out1>> objectsWithKey = Query.select(list,
-        i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
+    Queryable<Map.Entry<Key, Out1>> objectsWithKey = Query
+        .select(list, i -> new SimpleEntry<>(keySelector.call(i), valueSelector.call(i)));
     for (Entry<Key, Out1> tuple : objectsWithKey)
     {
       Map.Entry<Key, Queryable<Out1>> first = tuples.first(o -> o.getKey().equals(tuple.getKey()));

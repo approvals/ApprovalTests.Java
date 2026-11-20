@@ -27,7 +27,8 @@ public class FailedFileLog
   public static void log(File received, File approved)
   {
     File log = get();
-    FileUtils.appendToFile(log,
+    FileUtils.appendToFile(
+        log,
         String.format("%s -> %s\n", FileUtils.getResolvedPath(received), FileUtils.getResolvedPath(approved)));
   }
 

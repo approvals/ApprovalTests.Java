@@ -30,7 +30,9 @@ public class DateScrubberTest
       DateScrubber dateScrubber = new DateScrubber(supportedFormat.getRegex());
       for (String example : supportedFormat.getExamples())
       {
-        assertEquals("[Date1]", dateScrubber.scrub(example),
+        assertEquals(
+            "[Date1]",
+            dateScrubber.scrub(example),
             () -> "didn't work for regex " + supportedFormat.getRegex());
       }
     }
@@ -48,7 +50,10 @@ public class DateScrubberTest
   {
     DateScrubber scrubber = DateScrubber.getScrubberFor(formattedExample);
     String exampleText = String.format("{'date':\"%s\"}", formattedExample);
-    return String.format("Scrubbing for %s:\n" + "%s\n" + "Example: %s\n\n", formattedExample, scrubber,
+    return String.format(
+        "Scrubbing for %s:\n" + "%s\n" + "Example: %s\n\n",
+        formattedExample,
+        scrubber,
         scrubber.scrub(exampleText));
   }
 
@@ -70,8 +75,8 @@ public class DateScrubberTest
     {
       table.addRow(format.getExamples()[0], format.getRegex());
     }
-    Approvals.verify(String.format("\n\n%s\n\n", table.toMarkdown()),
-        new Options().forFile().withExtension(".md"));
+    Approvals
+        .verify(String.format("\n\n%s\n\n", table.toMarkdown()), new Options().forFile().withExtension(".md"));
   }
 
   @Disabled("use when new examples are shared at https://github.com/approvals/ApprovalTests.Java/issues/112")

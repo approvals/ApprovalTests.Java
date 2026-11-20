@@ -18,7 +18,9 @@ public class Parse1InputTest
         b -> B
         """;
     ParseInput.from(expected).verifyAll(String::toUpperCase);
-    Approvals.verifyAll(ParseInput.from(expected).getInputs(), s -> s + " -> " + s.toUpperCase(),
+    Approvals.verifyAll(
+        ParseInput.from(expected).getInputs(),
+        s -> s + " -> " + s.toUpperCase(),
         new Options().inline(expected));
   }
 

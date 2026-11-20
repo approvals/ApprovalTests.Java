@@ -45,8 +45,11 @@ public class XMLUtils
       if (file.exists())
       { return FileUtils.getResolvedPath(file); }
     }
-    throw new Error(String.format("Couldn't find '%s' from locations %s with current directory '%s'", fileLocation,
-        Arrays.asList(backupPaths), FileUtils.getResolvedPath(new File("."))));
+    throw new Error(String.format(
+        "Couldn't find '%s' from locations %s with current directory '%s'",
+        fileLocation,
+        Arrays.asList(backupPaths),
+        FileUtils.getResolvedPath(new File("."))));
   }
 
   public static HashMap<String, Object> parseProperties(String absoluteFileLocation, XMLNodeExtractor extractor)

@@ -11,8 +11,8 @@ public class SqlApprovals
 {
   static
   {
-    DefaultApprovalWriterFactory.addDefault(o -> o instanceof ResultSet,
-        (c, o) -> new ResultSetApprovalWriter((ResultSet) c));
+    DefaultApprovalWriterFactory
+        .addDefault(o -> o instanceof ResultSet, (c, o) -> new ResultSetApprovalWriter((ResultSet) c));
   }
   public static <T> void verify(SqlLoader<T> loader)
   {

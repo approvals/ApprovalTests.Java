@@ -75,7 +75,7 @@ public class NumberUtilsTest
   void testStripNonNumeric()
   {
     String[] inputs = {"11.0", "19-ea", "", null, "19", "1.8.0"};
-    Approvals.verifyAll("Strip non numeric", inputs,
-        s -> String.format("%s -> %s", s, NumberUtils.stripNonNumeric(s)));
+    Approvals
+        .verifyAll("Strip non numeric", inputs, s -> String.format("%s -> %s", s, NumberUtils.stripNonNumeric(s)));
   }
 }

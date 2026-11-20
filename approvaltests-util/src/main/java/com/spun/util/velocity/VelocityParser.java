@@ -39,8 +39,8 @@ public class VelocityParser
     Properties props = new Properties();
     props.put("resource.loader", "class");
     props.put("class.resource.loader.description", "Velocity Classpath Resource Loader");
-    props.put("class.resource.loader.class",
-        "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+    props
+        .put("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
     props.put("class.resource.cache", "" + true);
     props.put("runtime.introspector.uberspect", "com.spun.util.velocity.TestableUberspect");
     props.put("velocimacro.context.localscope", "" + true);
@@ -96,7 +96,9 @@ public class VelocityParser
 
   public static synchronized VelocityEngine initializeEngine(Properties props)
   {
-    if (currentEngine == null || isDifferentForProperties(props, currentEngine,
+    if (currentEngine == null || isDifferentForProperties(
+        props,
+        currentEngine,
         new String[]{"resource.loader", "file.resource.loader.path"}))
     {
       currentEngine = new VelocityEngine();

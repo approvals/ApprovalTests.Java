@@ -26,7 +26,8 @@ public class GenericDiffReporterTest
   @Test
   public void testArgumentParsing()
   {
-    Approvals.verifyAll("CommandLine",
+    Approvals.verifyAll(
+        "CommandLine",
         ReportWithVisualStudioCodeMac.INSTANCE.getCommandLine("received.txt", "approved.txt"));
   }
 
@@ -99,8 +100,12 @@ public class GenericDiffReporterTest
   public void testIsImage()
   {
     String[] files = {"a.png", "a.viz.png", "a.bitmap", "a.txt"};
-    Approvals.verifyAll(files, a -> String.format("Image: %s = %s", a,
-        GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
+    Approvals.verifyAll(
+        files,
+        a -> String.format(
+            "Image: %s = %s",
+            a,
+            GenericDiffReporter.isFileExtensionValid(a, GenericDiffReporter.IMAGE_FILE_EXTENSIONS)));
   }
 
   @Test

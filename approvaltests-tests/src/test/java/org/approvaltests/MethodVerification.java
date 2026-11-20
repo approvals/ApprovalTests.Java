@@ -29,8 +29,8 @@ public class MethodVerification
       Function1<String, Boolean> secondaryPathSelector)
   {
     File[] files = FileUtils.getRecursiveFileList(new File(startingDirectory), f -> f.getName().endsWith(".java"));
-    Queryable<String> paths = Query.select(files,
-        Functions.unchecked(f -> f.getCanonicalPath().replace(File.separatorChar, '.')));
+    Queryable<String> paths = Query
+        .select(files, Functions.unchecked(f -> f.getCanonicalPath().replace(File.separatorChar, '.')));
     paths = paths.where(pathSelector).where(secondaryPathSelector);
     return paths.select(f -> MethodVerification.getJavaClass(f));
   }

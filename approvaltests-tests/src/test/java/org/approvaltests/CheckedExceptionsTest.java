@@ -21,7 +21,9 @@ public class CheckedExceptionsTest
   {
     try (var l = SimpleLogger.quiet())
     {
-      verifyMethodSignatures("Methods with checked exceptions", getAllClasses(),
+      verifyMethodSignatures(
+          "Methods with checked exceptions",
+          getAllClasses(),
           this::getMethodsWithCheckedExceptions);
     }
   }
@@ -29,13 +31,15 @@ public class CheckedExceptionsTest
   private List<Method> getMethodsWithCheckedExceptions(Class<?> aClass)
   {
     Method[] declaredMethods = aClass.getDeclaredMethods();
-    return Query.where(declaredMethods,
-        m -> m.getExceptionTypes().length != 0 && Modifier.isPublic(m.getModifiers()));
+    return Query
+        .where(declaredMethods, m -> m.getExceptionTypes().length != 0 && Modifier.isPublic(m.getModifiers()));
   }
 
   private Queryable<Class<?>> getAllClasses()
   {
-    return getClasses(ClassUtils.getProjectRootPath() + "/..", p -> p.contains("main"),
+    return getClasses(
+        ClassUtils.getProjectRootPath() + "/..",
+        p -> p.contains("main"),
         p1 -> p1.contains(".approvaltests.src.") || p1.contains(".approvaltests-util."));
   }
 }
