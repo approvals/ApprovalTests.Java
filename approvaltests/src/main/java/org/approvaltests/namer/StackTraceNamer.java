@@ -8,13 +8,7 @@ import java.io.File;
 
 public class StackTraceNamer implements ApprovalNamer
 {
-  private StackTraceReflectionResult info;
-  private TemplateFieldValues        template;
-  public StackTraceReflectionResult getInfo()
-  {
-    return info;
-  }
-
+  private TemplateFieldValues template;
   public TemplateFieldValues getTemplate()
   {
     return template;
@@ -28,12 +22,11 @@ public class StackTraceNamer implements ApprovalNamer
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
   {
-    this(createTemplateFieldValues(info, additionalInformation), info);
+    this(createTemplateFieldValues(info, additionalInformation));
   }
 
-  public StackTraceNamer(TemplateFieldValues template, StackTraceReflectionResult info)
+  public StackTraceNamer(TemplateFieldValues template)
   {
-    this.info = info;
     this.template = template;
   }
 
@@ -98,9 +91,8 @@ public class StackTraceNamer implements ApprovalNamer
 
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
   {
-    return new StackTraceNamer(
-        this.template.withAdditionalInformation(this.template.additionalInformation + "." + additionalInformation),
-        this.info);
+    return new StackTraceNamer(this.template
+        .withAdditionalInformation(this.template.additionalInformation + "." + additionalInformation));
   }
 
   @Override
