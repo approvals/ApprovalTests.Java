@@ -10,31 +10,33 @@ public class StackTraceNamer implements ApprovalNamer
 {
   private StackTraceReflectionResult info;
   private String                     additionalInformation;
+  private TemplateFieldValues        template;
   public StackTraceNamer()
   {
     info = TestUtils.getCurrentFileForMethod(new AttributeStackSelector());
     additionalInformation = NamerFactory.getAndClearAdditionalInformation();
+    template = createTemplateFieldValues();
   }
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
   {
     this.info = info;
     this.additionalInformation = additionalInformation;
+    template = createTemplateFieldValues();
   }
 
   @Override
   public String getApprovalName()
   {
-    return String.format("%s.%s%s", info.getClassName(), info.getMethodName(), additionalInformation);
+    return String.format("%s.%s%s", template.testFileName, template.testCaseName, template.additionalInformation);
   }
 
   @Override
   public String getSourceFilePath()
   {
-    String sub = NamerFactory.getSubdirectory();
+    String sub = template.approvalsSubdirectory;
     String subdirectory = StringUtils.isEmpty(sub) ? "" : sub + File.separator;
-    String baseDir = getBaseDirectory();
-    return baseDir + File.separator + subdirectory;
+    return template.testSourceDirectory + File.separator + subdirectory;
   }
 
   public String getBaseDirectory()
@@ -69,12 +71,17 @@ public class StackTraceNamer implements ApprovalNamer
     return new File(TemplatedCustomNamer.resolveTemplate(TemplatedCustomNamer.DEFAULT_TEMPLATE, fields));
   }
 
+  private TemplateFieldValues createTemplateFieldValues()
+  {
+    String subdirectory = NamerFactory.getSubdirectory();
+    return new TemplateFieldValues("", StringUtils.isEmpty(subdirectory) ? "" : subdirectory, "", "",
+        info.getMethodName(), info.getClassName(), getBaseDirectory(), additionalInformation);
+  }
+
   public TemplateFieldValues getTemplateFieldValues(String approvedOrReceived, String extensionWithDot)
   {
     String extension = extensionWithDot.startsWith(".") ? extensionWithDot.substring(1) : extensionWithDot;
-    String subdirectory = NamerFactory.getSubdirectory();
-    return new TemplateFieldValues(approvedOrReceived, StringUtils.isEmpty(subdirectory) ? "" : subdirectory,
-        extension, "", info.getMethodName(), info.getClassName(), getBaseDirectory(), additionalInformation);
+    return template.with(approvedOrReceived, extension);
   }
 
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
@@ -85,7 +92,7 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public String getAdditionalInformation()
   {
-    return additionalInformation;
+    return template.additionalInformation;
   }
 
   public StackTraceReflectionResult getInfo()
