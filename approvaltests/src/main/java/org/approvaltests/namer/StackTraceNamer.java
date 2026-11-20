@@ -15,6 +15,10 @@ public class StackTraceNamer implements ApprovalNamer
     return info;
   }
 
+  public TemplateFieldValues getTemplate(){
+    return template;
+  }
+
   public StackTraceNamer()
   {
     this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()),
