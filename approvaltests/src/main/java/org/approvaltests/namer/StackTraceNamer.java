@@ -15,7 +15,8 @@ public class StackTraceNamer implements ApprovalNamer
     return info;
   }
 
-  public TemplateFieldValues getTemplate(){
+  public TemplateFieldValues getTemplate()
+  {
     return template;
   }
 

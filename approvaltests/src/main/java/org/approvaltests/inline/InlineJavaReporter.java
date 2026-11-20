@@ -5,6 +5,7 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.namer.StackTraceNamer;
+import org.approvaltests.namer.TemplatedCustomNamer;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
 
@@ -22,7 +23,8 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   {
     this.reporter = reporter;
     this.stackTraceNamer = new StackTraceNamer();
-    this.sourceFilePath = stackTraceNamer.getSourceFilePath();
+    this.sourceFilePath = TemplatedCustomNamer
+        .resolveTemplate("{test_source_directory}/{approvals_subdirectory}/", stackTraceNamer.getTemplate());
     this.createNewReceivedFileText = InlineJavaReporter::createNewReceivedFileText;
     if (footerCreator == null)
     {
@@ -40,25 +42,30 @@ public class InlineJavaReporter implements ApprovalFailureReporter, ApprovalRepo
   public boolean report(String received, String approved)
   {
     additionalLines = footerCreator.call(received, approved);
-    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getFileName();
+    String sourceFile = sourceFilePath + getSourceFileName();
     String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);
   }
 
   public String createReceived(String actual)
   {
-    String file = sourceFilePath + stackTraceNamer.getInfo().getFileName();
+    String file = sourceFilePath + getSourceFileName();
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
     String fullText = this.createNewReceivedFileText
-        .call(text, actual + additionalLines, this.stackTraceNamer.getInfo().getMethodName());
+        .call(text, actual + additionalLines, this.stackTraceNamer.getTemplate().testCaseName);
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
 
   private String getReceivedFileName()
   {
-    return sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
+    return sourceFilePath + stackTraceNamer.getTemplate().testFileName + ".received.txt";
+  }
+
+  private String getSourceFileName()
+  {
+    return TemplatedCustomNamer.resolveTemplate("{test_file_name}.java", stackTraceNamer.getTemplate());
   }
 
   public static String createNewReceivedFileText(String javaSourceCode, String actual, String methodName)
