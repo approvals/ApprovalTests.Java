@@ -10,9 +10,9 @@ public class TemplatedCustomNamerTest
   public void testGetApprovedFilename()
   {
     String expected = """
-        /my/source/directory/TestFileName.testCaseName.txt
+        /my/source/directory/TestFileName.testCaseName.additionalInformation.txt
         """;
-    String template = "/my/source/directory/{test_file_name}.{test_case_name}.{file_extension}";
+    String template = "/my/source/directory/{test_file_name}.{test_case_name}{additional_information}.{file_extension}";
     String path = TemplatedCustomNamer.resolveTemplate(template, new TemplateTestFields());
     Approvals.verify(path, new Options().inline(expected));
   }

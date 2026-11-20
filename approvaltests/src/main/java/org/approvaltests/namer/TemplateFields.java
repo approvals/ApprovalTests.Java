@@ -1,7 +1,5 @@
 package org.approvaltests.namer;
 
-import com.spun.util.tests.StackTraceReflectionResult;
-
 public class TemplateFields
 {
   public static final String APPROVED_OR_RECEIVED           = "approved_or_received";
@@ -11,6 +9,7 @@ public class TemplateFields
   public static final String TEST_CASE_NAME                 = "test_case_name";
   public static final String TEST_FILE_NAME                 = "test_file_name";
   public static final String TEST_SOURCE_DIRECTORY          = "test_source_directory";
+  public static final String ADDITIONAL_INFORMATION         = "additional_information";
   public static interface TemplateFieldsRetriever
   {
     public String getApprovedOrReceived();
@@ -26,5 +25,7 @@ public class TemplateFields
     public String getTestFileName();
 
     public String getTestSourceDirectory();
+
+    public String getAdditionalInformation();
   }
 }

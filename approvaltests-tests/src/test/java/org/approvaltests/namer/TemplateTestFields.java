@@ -43,4 +43,10 @@ public class TemplateTestFields implements TemplateFields.TemplateFieldsRetrieve
   {
     return "/my/source/directory";
   }
+
+  @Override
+  public String getAdditionalInformation()
+  {
+    return ".additionalInformation";
+  }
 }
