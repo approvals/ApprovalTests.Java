@@ -42,20 +42,6 @@ public class StackTraceNamer implements ApprovalNamer
     return TemplatedCustomNamer.resolveTemplate("{test_source_directory}", template);
   }
 
-  private String computeBaseDirectory()
-  {
-    String baseDir = info.getSourceFile().getAbsolutePath();
-    if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
-    {
-      String packageName = info.getFullClassName().substring(0, info.getFullClassName().lastIndexOf("."));
-      String packagepath = File.separator + packageName.replace('.', File.separatorChar);
-      String currentBase = baseDir.substring(0, baseDir.indexOf(packagepath) + 1);
-      String newBase = currentBase + NamerFactory.getApprovalBaseDirectory() + File.separator + packagepath;
-      baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
-    }
-    return baseDir;
-  }
-
   @Override
   public File getReceivedFile(String extensionWithDot)
   {
@@ -70,7 +56,8 @@ public class StackTraceNamer implements ApprovalNamer
 
   private File getFile(String approvedOrReceived, String extensionWithDot)
   {
-    TemplateFieldValues fields = getTemplateFieldValues(approvedOrReceived, extensionWithDot);
+    String extension = extensionWithDot.startsWith(".") ? extensionWithDot.substring(1) : extensionWithDot;
+    TemplateFieldValues fields = template.with(approvedOrReceived, extension);
     return new File(TemplatedCustomNamer.resolveTemplate(TemplatedCustomNamer.DEFAULT_TEMPLATE, fields));
   }
 
@@ -81,10 +68,18 @@ public class StackTraceNamer implements ApprovalNamer
         info.getMethodName(), info.getClassName(), computeBaseDirectory(), additionalInformation);
   }
 
-  public TemplateFieldValues getTemplateFieldValues(String approvedOrReceived, String extensionWithDot)
+  private String computeBaseDirectory()
   {
-    String extension = extensionWithDot.startsWith(".") ? extensionWithDot.substring(1) : extensionWithDot;
-    return template.with(approvedOrReceived, extension);
+    String baseDir = info.getSourceFile().getAbsolutePath();
+    if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
+    {
+      String packageName = info.getFullClassName().substring(0, info.getFullClassName().lastIndexOf("."));
+      String packagepath = File.separator + packageName.replace('.', File.separatorChar);
+      String currentBase = baseDir.substring(0, baseDir.indexOf(packagepath) + 1);
+      String newBase = currentBase + NamerFactory.getApprovalBaseDirectory() + File.separator + packagepath;
+      baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
+    }
+    return baseDir;
   }
 
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
