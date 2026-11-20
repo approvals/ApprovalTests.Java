@@ -6,6 +6,8 @@ import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalReporterWithCleanUp;
 import org.approvaltests.namer.StackTraceNamer;
+import org.approvaltests.namer.TemplateFieldValues;
+import org.approvaltests.namer.TemplatedCustomNamer;
 import org.lambda.functions.Function2;
 import org.lambda.functions.Function3;
 
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
 public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalReporterWithCleanUp
 {
   private final String                              sourceFilePath;
-  private final StackTraceNamer                     stackTraceNamer;
+  private final TemplateFieldValues                 template;
   private final Function2<String, String, String>   footerCreator;
   private final ApprovalFailureReporter             reporter;
   private String                                    additionalLines;
@@ -33,35 +35,36 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
     this.reporter = reporter;
     this.footerCreator = footerCreator != null ? footerCreator : (source, actual) -> "";
     Result result = getResult();
-    this.stackTraceNamer = result.stackTraceNamer;
+    this.template = result.template;
     this.sourceFilePath = result.sourceFilePath;
     this.createNewReceivedFileText = result.createNewReceivedFileText;
   }
 
   public static Result getResult()
   {
-    StackTraceNamer stackTraceNamer = new StackTraceNamer();
-    String sourceFilePath = stackTraceNamer.getSourceFilePath();
+    TemplateFieldValues template = new StackTraceNamer().getTemplate();
+    String sourceFilePath = TemplatedCustomNamer
+        .resolveTemplate("{test_source_directory}/{approvals_subdirectory}/", template);
     Function3<String, String, String, String> createNewReceivedFileText = (kotlinSourceCode, actual,
         methodName) -> createNewReceivedFileText(kotlinSourceCode, actual, methodName);
-    return new Result(stackTraceNamer, sourceFilePath, createNewReceivedFileText);
+    return new Result(template, sourceFilePath, createNewReceivedFileText);
   }
   public static class Result
   {
-    public final StackTraceNamer                           stackTraceNamer;
+    public final TemplateFieldValues                       template;
     public final String                                    sourceFilePath;
     public final Function3<String, String, String, String> createNewReceivedFileText;
-    public Result(StackTraceNamer stackTraceNamer, String sourceFilePath,
+    public Result(TemplateFieldValues template, String sourceFilePath,
         Function3<String, String, String, String> createNewReceivedFileText)
     {
-      this.stackTraceNamer = stackTraceNamer;
+      this.template = template;
       this.sourceFilePath = sourceFilePath;
       this.createNewReceivedFileText = createNewReceivedFileText;
     }
 
     public boolean isKotlin()
     {
-      String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".kt";
+      String sourceFile = sourceFilePath + getSourceFileName(template);
       return Files.exists(Paths.get(sourceFile));
     }
   }
@@ -69,25 +72,31 @@ public class InlineKotlinReporter implements ApprovalFailureReporter, ApprovalRe
   public boolean report(String received, String approved)
   {
     additionalLines = footerCreator.call(received, approved);
-    String sourceFile = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".kt";
+    String sourceFile = sourceFilePath + getSourceFileName(template);
     String newSource = createReceived(FileUtils.readFile(received));
     return reporter.report(newSource, sourceFile);
   }
 
   public String createReceived(String actual)
   {
-    String file = sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".kt";
+    String file = sourceFilePath + getSourceFileName(template);
     String received = getReceivedFileName();
     String text = FileUtils.readFile(file);
     String fullText = this.createNewReceivedFileText
-        .call(text, actual + additionalLines, this.stackTraceNamer.getInfo().getMethodName());
+        .call(text, actual + additionalLines, template.testCaseName);
     FileUtils.writeFile(new File(received), fullText);
     return received;
   }
 
   private String getReceivedFileName()
   {
-    return sourceFilePath + stackTraceNamer.getInfo().getClassName() + ".received.txt";
+    return sourceFilePath + template.testFileName + ".received.txt";
+  }
+
+  private static String getSourceFileName(TemplateFieldValues template)
+  {
+    String outerClass = template.testFileName.split("\\.")[0];
+    return TemplatedCustomNamer.resolveTemplate(outerClass + ".kt", template);
   }
 
   @Override
