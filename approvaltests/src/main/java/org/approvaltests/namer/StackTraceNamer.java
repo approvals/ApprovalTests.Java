@@ -4,8 +4,6 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.tests.StackTraceReflectionResult;
 import com.spun.util.tests.TestUtils;
-import org.approvaltests.writers.Writer;
-
 import java.io.File;
 
 public class StackTraceNamer implements ApprovalNamer
@@ -56,13 +54,27 @@ public class StackTraceNamer implements ApprovalNamer
   @Override
   public File getReceivedFile(String extensionWithDot)
   {
-    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.received + extensionWithDot);
+    return getFile("received", extensionWithDot);
   }
 
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
-    return new File(getSourceFilePath() + "/" + getApprovalName() + Writer.approved + extensionWithDot);
+    return getFile("approved", extensionWithDot);
+  }
+
+  private File getFile(String approvedOrReceived, String extensionWithDot)
+  {
+    TemplateFieldValues fields = getTemplateFieldValues(approvedOrReceived, extensionWithDot);
+    return new File(TemplatedCustomNamer.resolveTemplate(TemplatedCustomNamer.DEFAULT_TEMPLATE, fields));
+  }
+
+  public TemplateFieldValues getTemplateFieldValues(String approvedOrReceived, String extensionWithDot)
+  {
+    String extension = extensionWithDot.startsWith(".") ? extensionWithDot.substring(1) : extensionWithDot;
+    String subdirectory = NamerFactory.getSubdirectory();
+    return new TemplateFieldValues(approvedOrReceived, StringUtils.isEmpty(subdirectory) ? "" : subdirectory,
+        extension, "", info.getMethodName(), info.getClassName(), getBaseDirectory(), additionalInformation);
   }
 
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
