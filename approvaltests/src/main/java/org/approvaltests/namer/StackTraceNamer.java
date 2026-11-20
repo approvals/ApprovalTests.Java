@@ -40,6 +40,11 @@ public class StackTraceNamer implements ApprovalNamer
 
   public String getBaseDirectory()
   {
+    return TemplatedCustomNamer.resolveTemplate("{test_source_directory}", template);
+  }
+
+  private String computeBaseDirectory()
+  {
     String baseDir = info.getSourceFile().getAbsolutePath();
     if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
     {
@@ -74,7 +79,7 @@ public class StackTraceNamer implements ApprovalNamer
   {
     String subdirectory = NamerFactory.getSubdirectory();
     return new TemplateFieldValues("", StringUtils.isEmpty(subdirectory) ? "" : subdirectory, "", "",
-        info.getMethodName(), info.getClassName(), getBaseDirectory(), additionalInformation);
+        info.getMethodName(), info.getClassName(), computeBaseDirectory(), additionalInformation);
   }
 
   public TemplateFieldValues getTemplateFieldValues(String approvedOrReceived, String extensionWithDot)
