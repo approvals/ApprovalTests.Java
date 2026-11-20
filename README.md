@@ -115,7 +115,7 @@ You can watch a bunch of short videos on getting started and [using ApprovalTest
 
 If you prefer auditory learning, you might enjoy the following podcast (Note: Some of these talk about the .net side)
 
-- [Cucumber Podcast](https://cucumber.io/blog/2017/01/26/approval-testing)
+- [Cucumber Podcast](https://cucumber.io/blog/podcast/approval-testing/)
 - [Hanselminutes](https://www.hanselminutes.com/360/approval-tests-with-llewellyn-falco)
 - [Herding Code](https://www.developerfusion.com/media/122649/herding-code-117-llewellyn-falcon-on-approval-tests/)
 

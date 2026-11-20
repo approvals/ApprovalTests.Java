@@ -195,7 +195,7 @@ AwtApprovals.verify(tv);
 
 Will Produce the following File:
 
-![Expected  Image](../../../approvaltests-tests/src/test/java/org/approvaltests/GettingStartedTest.testTvGuide.Windows_10.approved.png)
+![Expected  Image](ApprovalsTest.testTvGuide.Mac_OS_X.approved.png)
 
 
 __First__, I want to note that even though there is a UI and a select box for times,
@@ -207,7 +207,7 @@ __Second__, this will produce a .png file containing a screen shot of the JPanel
 result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
 
 __Third__, because these will render differently on different operating systems.
-These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
+These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
 
 ## Generate Combinations of Parameter Values
 To simplify getting more comprehensive sets of test cases, or expanding code coverage,

@@ -30,7 +30,7 @@ Below are three different options in order, starting with the least surprising.
 
 ### Method 1: Via Options
 
-All the [verify](./reference/Verify.md) functions have an overload that takes an `Options` parameter. You can configure the reporter via the Options like such:
+All the [verify](../reference/Verify.md) functions have an overload that takes an `Options` parameter. You can configure the reporter via the Options like such:
 
 <!-- snippet: configure_reporter_with_options -->
 <a id='snippet-configure_reporter_with_options'></a>
