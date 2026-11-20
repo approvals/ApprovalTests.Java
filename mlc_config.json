@@ -2,6 +2,15 @@
   "ignorePatterns": [
     {
       "pattern": "^/"
+    },
+    {
+      "pattern": "^https://search\\.maven\\.org/"
+    },
+    {
+      "pattern": "^https://stackoverflow\\.com/"
+    },
+    {
+      "pattern": "^https://central\\.sonatype\\.com/account"
     }
   ]
 }
