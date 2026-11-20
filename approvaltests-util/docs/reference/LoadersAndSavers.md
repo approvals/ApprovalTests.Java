@@ -85,7 +85,7 @@ loadCustomer(c -> null, s -> s);
 
 `ExecutableCommand`s extend `Loader`s to allow for easy testing of the actual `Loader`.
 
-## Links 
+## Links
 * [How to Encapsulate Data calls with Loads and Savers ](../../../approvaltests/docs/how_to/EncapsulatingWithLoadersAndSavers.md)
 * [Overview of refactoring with Loaders and Savers](../how_to/LoadersAndSavers.md)
 ---

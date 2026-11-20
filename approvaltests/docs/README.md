@@ -62,7 +62,7 @@ Configuration of ApprovalTests mainly occurs via @Annotations, PackageSettings, 
 * [Benefits of Different Reporters](https://github.com/approvals/ApprovalTests.Documentation/blob/main/explanations/benefits_of_different_reporters.md)
 
 
-## Main concepts for ApprovalTests  
+## Main concepts for ApprovalTests
 
 1. **Verify** [verify(object)](reference/Verify.md) is the main pattern to use in ApprovalTests.  
 1. **Options** allow you to [configure many aspects of Approvals](reference/Options.md)  

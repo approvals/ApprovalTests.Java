@@ -77,7 +77,7 @@ A great way to learn Approval Tests if you are new to it is to try out the [Koan
 ## How to get it
 It's on Maven Central, search for 'approvaltests'.
 
-### Maven 
+### Maven
 If you're using Maven, add this to your pom file:
 
 ``` xml
@@ -185,7 +185,7 @@ Questions?
 twitter: [@LlewellynFalco](https://twitter.com/#!/llewellynfalco) or #ApprovalTests
 
 
-## Developer notes  
+## Developer notes
 
 The suggested way to contribute to ApprovalTests is to [pair with Llewellyn](mailto:llewellyn.falco@gmail.com)  
 However, if you are set on forking please [read these notes](developer_notes.md)

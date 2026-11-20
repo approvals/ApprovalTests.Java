@@ -42,7 +42,7 @@ The approved & received files will now be created in the subdirectory `/approval
 
 You can find out more about [Package Level settings here](./reference/PackageSettings.md#top)
 
-## Alternative Base Directory for Output Files  
+## Alternative Base Directory for Output Files
 
 Approved and received files can be stored in a different branch of the code base (for example, under the `/resources/` folder).
 
@@ -61,7 +61,7 @@ public class PackageSettings
 
 The approved and received files will now be created in the directory `/source/test/resources/` for any test in the same package as this file, or any test in any under this.  
 
-## PackageLevelSettings  
+## PackageLevelSettings
 
 Package Level Settings allows for programmatic setting of configuration at the package level. It follows the principle of least surprise.   
 
