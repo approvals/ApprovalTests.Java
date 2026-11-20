@@ -30,6 +30,12 @@ public class TemplateFieldValues
         relativeTestSourceDirectory, testCaseName, testFileName, testSourceDirectory, additionalInformation);
   }
 
+  public TemplateFieldValues withAdditionalInformation(String additionalInformation)
+  {
+    return new TemplateFieldValues(approvedOrReceived, approvalsSubdirectory, fileExtension,
+        relativeTestSourceDirectory, testCaseName, testFileName, testSourceDirectory, additionalInformation);
+  }
+
   public static TemplateFieldValues from(TemplateFields.TemplateFieldsRetriever fields)
   {
     return new TemplateFieldValues(fields.getApprovedOrReceived(), fields.getApprovalsSubdirectory(),

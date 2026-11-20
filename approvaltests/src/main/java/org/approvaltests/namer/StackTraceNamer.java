@@ -9,8 +9,12 @@ import java.io.File;
 public class StackTraceNamer implements ApprovalNamer
 {
   private StackTraceReflectionResult info;
-  private String                     additionalInformation;
   private TemplateFieldValues        template;
+  public StackTraceReflectionResult getInfo()
+  {
+    return info;
+  }
+
   public StackTraceNamer()
   {
     this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()),
@@ -19,9 +23,13 @@ public class StackTraceNamer implements ApprovalNamer
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
   {
+    this(createTemplateFieldValues(info, additionalInformation), info);
+  }
+
+  public StackTraceNamer(TemplateFieldValues template, StackTraceReflectionResult info)
+  {
     this.info = info;
-    this.additionalInformation = additionalInformation;
-    template = createTemplateFieldValues();
+    this.template = template;
   }
 
   @Override
@@ -61,14 +69,15 @@ public class StackTraceNamer implements ApprovalNamer
     return new File(TemplatedCustomNamer.resolveTemplate(TemplatedCustomNamer.DEFAULT_TEMPLATE, fields));
   }
 
-  private TemplateFieldValues createTemplateFieldValues()
+  private static TemplateFieldValues createTemplateFieldValues(StackTraceReflectionResult info,
+      String additionalInformation)
   {
     String subdirectory = NamerFactory.getSubdirectory();
     return new TemplateFieldValues("", StringUtils.isEmpty(subdirectory) ? "" : subdirectory, "", "",
-        info.getMethodName(), info.getClassName(), computeBaseDirectory(), additionalInformation);
+        info.getMethodName(), info.getClassName(), computeBaseDirectory(info), additionalInformation);
   }
 
-  private String computeBaseDirectory()
+  private static String computeBaseDirectory(StackTraceReflectionResult info)
   {
     String baseDir = info.getSourceFile().getAbsolutePath();
     if (!StringUtils.isEmpty(NamerFactory.getApprovalBaseDirectory()))
@@ -84,17 +93,14 @@ public class StackTraceNamer implements ApprovalNamer
 
   public ApprovalNamer addAdditionalInformation(String additionalInformation)
   {
-    return new StackTraceNamer(this.info, this.additionalInformation + "." + additionalInformation);
+    return new StackTraceNamer(
+        this.template.withAdditionalInformation(this.template.additionalInformation + "." + additionalInformation),
+        this.info);
   }
 
   @Override
   public String getAdditionalInformation()
   {
     return template.additionalInformation;
-  }
-
-  public StackTraceReflectionResult getInfo()
-  {
-    return info;
   }
 }
