@@ -89,4 +89,4 @@ advice on effective formatting, see [Tips for Designing Strings](https://github.
 
 ---
 
-[Back to User Guide](/doc/README.md#top)
+[Back to User Guide](../README.md#top)

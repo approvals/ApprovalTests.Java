@@ -50,7 +50,7 @@ new Options().withReporter(new ReportNothing()).withScrubber(new GuidScrubber())
 
 ## Reporters
 
-[Reporters](/docs/reference/Reporters.md#top) launch diff tools upon failure.  Read how to configure them with `Options` [here](Reporters.md#via-options):
+[Reporters](Reporters.md#top) launch diff tools upon failure.  Read how to configure them with `Options` [here](Reporters.md#via-options):
 
 ### Adding a Reporter
 
@@ -63,7 +63,7 @@ options.addReporter(new TextWebReporter());
 
 ## Scrubbers
 
-[Scrubbers](/docs/explanations/Scrubbers.md#top) clean output to help remove inconsistent pieces of text, such as dates.  Read how to set up Scrubbers [here](../Scrubbers.md#configuring-scrubbers):
+[Scrubbers](../Scrubbers.md#top) clean output to help remove inconsistent pieces of text, such as dates.  Read how to set up Scrubbers [here](../Scrubbers.md#configuring-scrubbers):
 There are two ways to set a Scrubber.
 
 ## File Options
