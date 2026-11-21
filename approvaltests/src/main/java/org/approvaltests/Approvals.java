@@ -36,6 +36,11 @@ import java.util.Objects;
 public class Approvals
 {
   public static final NamerFactoryForOptions     NAMES        = NamerFactoryForOptions.INSTANCE;
+  /**
+   * @deprecated Use {@code new Options().forFile().withNamer(additionalInformation -> myNamer)} instead.
+   *             See <a href="https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/Upgrade.V31.2.0.to.V31.3.0.md">Upgrade from 31.2.0 to 31.3.0</a>
+   */
+  @Deprecated
   public static Function1<String, ApprovalNamer> namerCreater = StackTraceNamer::new;
   public static void verify(String response)
   {
