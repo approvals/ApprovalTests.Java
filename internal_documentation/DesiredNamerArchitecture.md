@@ -108,3 +108,31 @@ classDiagram
 
 Result: `tests/MyTests.adds_numbers.approved.txt`, or `tests/approvals/MyTests.adds_numbers.3_4.approved.txt` with a subdirectory and a parameter.
 
+## Java status (32.0.0)
+
+Java now matches the interface and the creator. The rest of the gaps are listed below in the order we would close them.
+
+### Done
+
+| Goal | Java |
+|---|---|
+| One small interface | `ApprovalNamer` has only `getApprovedFile(ext)` and `getReceivedFile(ext)`. They return `File`, not `String`. |
+| The namer builds the full path | Both methods resolve the whole template, including the extension. |
+| The default namer is a template | `StackTraceNamer` resolves `TemplatedCustomNamer.DEFAULT_TEMPLATE`. `MasterDirectoryNamer` and `VelocityApprovals` build on `getApprovedFile` through `NamerUtils`. |
+| A creator per `verify` | `Options.forFile().withNamer(additionalInformation -> namer)`. The global `Approvals.namerCreater` is gone. |
+| Additional information comes from Options | `Options.forFile().withAdditionalInformation(...)` and `Approvals.NAMES`. The `NamerFactory` thread-local and `NamedEnvironment` are gone. |
+| Custom templates | `TemplatedCustomNamer.create(template)` returns a namer. `withBaseName`, `withName` and `NamerWrapper` are gone. |
+
+### Remaining
+
+| Gap | Today | Desired |
+|---|---|---|
+| Name of the default namer | `StackTraceNamer`, with the template passed as a second constructor argument | `TemplatedNamer` |
+| Subdirectory from Options | Read from package settings through `NamerFactory.getSubdirectory()` when the namer is created | `FileOptions.withSubdirectory(...)`, fixed when the creator is built |
+| Template from Options | `withNamer(TemplatedCustomNamer.create(template))` | `FileOptions.withTemplate(...)` |
+| Test discovery is separate | Built into `StackTraceNamer` through `TestUtils.getCurrentFileForMethod` | A `TestDiscovery` piece the namer depends on |
+| `getNamer()` | Returns an `ApprovalNamer` | Returns the `NamerCreator` |
+| File name sanitizing | None | `FileNameSanitizer` |
+| Java-only field | `APPROVAL_BASE_DIRECTORY` (`NamerFactory.getApprovalBaseDirectory()`) moves `{TestSourceDirectory}` | Decide whether it becomes an Options value or part of `{TestSourceDirectory}` |
+
+Upgrade guides for users: [31.2.0 to 31.3.0](../approvaltests/docs/how_to/Upgrade.V31.2.0.to.V31.3.0.md) and [31.3.0 to 32.0.0](../approvaltests/docs/how_to/Upgrade.V31.3.0.to.V32.0.0.md).
