@@ -2,13 +2,15 @@ package org.approvaltests.reporters;
 
 import com.spun.util.ThreadUtils;
 import com.spun.util.io.FileUtils;
-import org.approvaltests.Approvals;
 import org.approvaltests.ReporterFactory;
 import org.approvaltests.core.ApprovalFailureReporter;
+import org.approvaltests.core.Options;
 import org.approvaltests.reporters.windows.ReportWithTortoiseTextDiffWindows;
 import org.junit.jupiter.api.Test;
+import org.lambda.query.Queryable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UseReporterTest
 {
@@ -32,14 +34,8 @@ public class UseReporterTest
   @Test
   void testUseReporterIsCalledWhenMethodIsNotPublic()
   {
-    try
-    {
-      Approvals.verify("hello");
-    }
-    catch (Throwable e)
-    {
-      assertEquals("hello\n", TestReporter.getLast());
-    }
+    FirstWorkingReporter reporter = (FirstWorkingReporter) new Options().getReporter();
+    assertTrue(Queryable.of(reporter.getReporters()).any(r -> r instanceof TestReporter));
   }
   public static class TestReporter implements ApprovalFailureReporter
   {
