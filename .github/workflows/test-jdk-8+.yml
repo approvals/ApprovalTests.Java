@@ -14,13 +14,13 @@ jobs:
     - name: Set Java version for building (JDK 21)
       run: echo "zulu-21" > .java-version
       shell: bash
-    - uses: jdx/mise-action@v5.2.7
+    - uses: jdx/mise-action@v5.2.9
     - name: Turn off formatting
       run: ./set_formatting_off.sh
       shell: bash
     - run: mise exec -- mvn -B install --file pom.xml
     - name: Set up JDK8 for runtime testing
-      uses: actions/setup-java@v6.0.1
+      uses: actions/setup-java@v6.3.0
       with:
         distribution: 'zulu'
         java-version: '8'
@@ -44,7 +44,7 @@ jobs:
       with:
         report_paths: '**/target/surefire-reports/*.xml'
     - name: Set up JDK11 for runtime testing
-      uses: actions/setup-java@v6.0.1
+      uses: actions/setup-java@v6.3.0
       with:
         distribution: 'zulu'
         java-version: '11'
