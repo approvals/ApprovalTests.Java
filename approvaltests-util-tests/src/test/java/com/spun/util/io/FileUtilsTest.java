@@ -53,8 +53,7 @@ public class FileUtilsTest
   private String adjacentFile(String name)
   {
     ApprovalNamer namer = Approvals.createApprovalNamer();
-    String file = namer.getSourceFilePath() + name;
-    return file;
+    return new File(namer.getApprovedFile(".txt").getParentFile(), name).getPath();
   }
 
   @Test

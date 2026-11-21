@@ -93,7 +93,8 @@ public class JUnit5StackTraceNamerTest
         .registerSourceDirectoryFinder((c, s) -> new File("does not exist")))
     {
       StackTraceNamer name = new StackTraceNamer();
-      File file = new File(name.getSourceFilePath() + this.getClass().getSimpleName() + ".java");
+      File file = new File(name.getApprovedFile(".txt").getParentFile(),
+          this.getClass().getSimpleName() + ".java");
       Assertions.assertFalse(file.exists());
     }
     StackTraceNamerUtils.assertSourceFilePath(this.getClass().getSimpleName(), new StackTraceNamer());
