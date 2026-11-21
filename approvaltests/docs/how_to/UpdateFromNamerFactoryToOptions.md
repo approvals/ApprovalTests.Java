@@ -43,7 +43,7 @@ After:
 ```java
 Options options = Approvals.NAMES.withParameters("title", "chapter");
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L23-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_with_parameters_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L16-L18' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_with_parameters_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 Then call `Approvals.verify(result, options)`.
@@ -66,7 +66,7 @@ After:
 ```java
 Options options = Approvals.NAMES.asOsSpecificTest();
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_os_specific_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L27-L29' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_os_specific_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Machine name specific tests
@@ -78,7 +78,7 @@ Replace `NamerFactory.asMachineNameSpecificTest()` with:
 ```java
 Options options = Approvals.NAMES.asMachineNameSpecificTest();
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L53-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_machine_specific_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_machine_specific_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Custom labels
@@ -90,7 +90,7 @@ Replace `NamerFactory.asMachineSpecificTest("jdk17")` with:
 ```java
 Options options = new Options().forFile().withAdditionalInformation("jdk17");
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L67-L69' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_custom_label_after' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L51-L53' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_custom_label_after' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Multiple files in one test
@@ -118,7 +118,7 @@ Use your test framework's assumptions instead:
 assumeTrue(SystemUtils.getComputerName().equals("RSI-FQ61HDHJ0K"));
 // the rest of your test...
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L76-L79' title='Snippet source file'>snippet source</a> | <a href='#snippet-run_only_on_specific_machines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L62-L65' title='Snippet source file'>snippet source</a> | <a href='#snippet-run_only_on_specific_machines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ---
