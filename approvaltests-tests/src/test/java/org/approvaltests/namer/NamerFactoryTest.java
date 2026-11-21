@@ -10,12 +10,9 @@ public class NamerFactoryTest
   @Test
   public void testMultipleFiles()
   {
-    try (MultipleFilesLabeller labeller = NamerFactory.useMultipleFiles())
-    {
-      Approvals.verify("one");
-      labeller.next();
-      Approvals.verify("two");
-    }
+    FileCounter labeller = Approvals.NAMES.useMultipleFiles();
+    Approvals.verify("one", labeller.next());
+    Approvals.verify("two", labeller.next());
   }
 
   @Test
