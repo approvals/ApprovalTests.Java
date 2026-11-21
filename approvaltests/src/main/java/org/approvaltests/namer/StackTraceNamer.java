@@ -42,19 +42,6 @@ public class StackTraceNamer implements ApprovalNamer
     this.fileTemplate = fileTemplate;
   }
 
-  @Override
-  public String getApprovalName()
-  {
-    return TemplatedCustomNamer
-        .resolveTemplate("{test_file_name}.{test_case_name}{additional_information}", template);
-  }
-
-  @Override
-  public String getSourceFilePath()
-  {
-    return TemplatedCustomNamer.resolveTemplate("{test_source_directory}/{approvals_subdirectory}/", template);
-  }
-
   public String getBaseDirectory()
   {
     return TemplatedCustomNamer.resolveTemplate("{test_source_directory}", template);

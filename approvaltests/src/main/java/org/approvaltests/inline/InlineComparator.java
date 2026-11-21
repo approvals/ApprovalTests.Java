@@ -57,18 +57,6 @@ public class InlineComparator implements ApprovalNamer
     return receivedFile;
   }
 
-  @Override
-  public String getApprovalName()
-  {
-    return "";
-  }
-
-  @Override
-  public String getSourceFilePath()
-  {
-    return "";
-  }
-
   public Options setForOptions(Options options)
   {
     options = inlineOptions.apply(options);

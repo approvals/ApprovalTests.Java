@@ -32,16 +32,4 @@ public class MasterDirectoryNamer implements ApprovalNamer
   {
     return namer.getReceivedFile(extensionWithDot);
   }
-
-  @Override
-  public String getApprovalName()
-  {
-    return namer.getApprovalName();
-  }
-
-  @Override
-  public String getSourceFilePath()
-  {
-    return namer.getSourceFilePath();
-  }
 }

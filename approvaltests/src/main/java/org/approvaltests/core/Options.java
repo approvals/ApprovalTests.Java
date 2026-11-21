@@ -210,18 +210,6 @@ public class Options
         {
           return new File(sourcePath + fileBaseName + Writer.received + extensionWithDot);
         }
-
-        @Override
-        public String getApprovalName()
-        {
-          return fileBaseName;
-        }
-
-        @Override
-        public String getSourceFilePath()
-        {
-          return sourcePath;
-        }
       };
     }
 
