@@ -23,8 +23,6 @@
   * [Using Alternative Base Directory for Approval Output Files](#using-alternative-base-directory-for-approval-output-files)
   * [Using Subdirectories for Approval Output Files](#using-subdirectories-for-approval-output-files)
   * [PackageLevelSettings](#packagelevelsettings)
-  * [Arlos Git Notation Prompt](#arlos-git-notation-prompt)
-  * [Faster Test Commit Revert (TCR)](#faster-test-commit-revert-tcr)
   * [Test Commit Revert (TCR)](#test-commit-revert-tcr)
     * [Usage](#usage)<!-- endToc -->
 
@@ -114,23 +112,6 @@ Approved and received files can be stored in a preferred location.
 
 Package Level Settings allows for programmatic setting of configuration at the package level.
 [More Here](Configuration.md#packagelevelsetting)
-
-## Arlos Git Notation Prompt
-
-This is a prompt that includes helper text and quick actions for use with [Arlo's Commit Notation](https://github.com/RefactoringCombos/ArlosCommitNotation).
-It is currently the default option for TCR and will produce a window that looks like:
-
-![prompt](/approvaltests-tests/src/test/java/org/approvaltests/machine_specific_tests/testcommitrevert/ArlosGitNotationPromptTest.test.Mac_OS_X.approved.png)
-
-
-
-## Faster Test Commit Revert (TCR)
-
-The startup time for swing is around 3 seconds (on my mac). This is painfully slow in some situations. 
-FasterTestCommitRevertRunner & FasterTestCommitRevertTest Solve this by shelling out to applescript, which 
-brings the time down to a few milliseconds. 
-
-Note: this currently only works on mac and will default to the normal swing otherwise. 
 
 ## Test Commit Revert (TCR)
 
