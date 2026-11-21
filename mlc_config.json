@@ -1,9 +1,12 @@
 {
   "retryOn429": true,
-  "ignorePatterns": [
+  "replacementPatterns": [
     {
-      "pattern": "^/"
-    },
+      "pattern": "^/",
+      "replacement": "{{BASEURL}}/"
+    }
+  ],
+  "ignorePatterns": [
     {
       "pattern": "^https://search\\.maven\\.org/"
     },
