@@ -207,7 +207,7 @@ __Second__, this will produce a .png file containing a screen shot of the JPanel
 result. Simply [Approve The Result](#ApprovingTheResult) when itʼs ready.
 
 __Third__, because these will render differently on different operating systems.
-These test automatically include a Machine Specific setting [NamerFactory.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/namer/NamerFactory.java) which adds the os type (e.g: Mac_OS_X) to the file name
+These test automatically include a Machine Specific setting [Approvals.NAMES.asOsSpecificTest()](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/namer/NamerFactoryForOptions.java) which adds the os type (e.g: Mac_OS_X) to the file name
 
 ## Generate Combinations of Parameter Values
 To simplify getting more comprehensive sets of test cases, or expanding code coverage,

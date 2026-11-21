@@ -5,8 +5,6 @@ import com.spun.util.Tuple;
 import com.spun.util.images.ImageWriter;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.writers.ComponentApprovalWriter;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
 import org.approvaltests.writers.ImageApprovalWriter;

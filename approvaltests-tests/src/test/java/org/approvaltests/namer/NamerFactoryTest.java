@@ -21,19 +21,18 @@ public class NamerFactoryTest
   @Test
   public void testMultipleFilesViaOptions()
   {
+    // begin-snippet: multiple_files_via_options
     FileCounter labeller = Approvals.NAMES.useMultipleFiles();
     Approvals.verify("one", labeller.next());
     Approvals.verify("two", labeller.next());
+    // end-snippet
   }
 
   @ParameterizedTest
   @CsvSource({"Oskar,4", "Birgit,1"})
   void testNamingWithMultipleParameters(String name, int age)
   {
-    try (NamedEnvironment en = NamerFactory.withParameters(name, age))
-    {
-      Object output = name + ":" + age;
-      Approvals.verify(output);
-    }
+    Object output = name + ":" + age;
+    Approvals.verify(output, Approvals.NAMES.withParameters(name, "" + age));
   }
 }

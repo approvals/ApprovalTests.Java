@@ -7,8 +7,7 @@
 
   * [Additional Naming Parameters](#additional-naming-parameters)
   * [How to do this](#how-to-do-this)
-    * [The old way](#the-old-way)
-    * [The new way](#the-new-way)
+    * [Using Options](#using-options)
       * [Adding to an existing scenario](#adding-to-an-existing-scenario)
   * [Parameterized Tests](#parameterized-tests)
   * [Only running on a specific machine](#only-running-on-a-specific-machine)
@@ -29,32 +28,16 @@ The way this is handled is through the naming factories. This will give you appr
 
 ## How to do this
 
-### The old way
-There is a global namer factory that can be accessed with a try/catch. While this way works, it is not thread-safe
-and can cause trouble when running tests in parallel. Here is an example of how to do it:
-<!-- snippet: namer_factory_example -->
-<a id='snippet-namer_factory_example'></a>
-```java
-try (NamedEnvironment namer = NamerFactory.withParameters("title", "chapter"))
-{
-  Approvals.verify("data");
-}
-```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L28-L33' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_example' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
-
-This will result in a file named:
-`ClassName.methodName.firstString.secondString.approved.txt`
-
-### The new way
-With the addition of `Options` you can now set additional naming information in a thread-safe way. Here is an example of how to do that:
+### Using Options
+You can set additional naming information in a thread-safe way with `Options`. Here is an example of how to do that:
+(If you are using `NamerFactory`, see [How to update from NamerFactory to Options](../how_to/UpdateFromNamerFactoryToOptions.md#top).)
 
 <!-- snippet: additional_information_example -->
 <a id='snippet-additional_information_example'></a>
 ```java
 Approvals.verify("data", Approvals.NAMES.withParameters("title", "chapter"));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L39-L41' title='Snippet source file'>snippet source</a> | <a href='#snippet-additional_information_example' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L28-L30' title='Snippet source file'>snippet source</a> | <a href='#snippet-additional_information_example' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will result in a file named:
@@ -71,7 +54,7 @@ ApprovalNamer namer = options.forFile().getNamer();
 String name = namer.getApprovedFile(".txt").getName();
 assertEquals("NamerFactoryForOptionsTest.testMachineSpecificTest.Mac_OS_X.lars-mbp-14.approved.txt", name);
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L49-L54' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_and' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryForOptionsTest.java#L38-L43' title='Snippet source file'>snippet source</a> | <a href='#snippet-options_and' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 This will result in a file named: 

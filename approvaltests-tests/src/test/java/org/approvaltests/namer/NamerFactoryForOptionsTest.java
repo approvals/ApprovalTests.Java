@@ -23,17 +23,6 @@ class NamerFactoryForOptionsTest
   }
 
   @Test
-  void oldExampleForDocs()
-  {
-    // begin-snippet: namer_factory_example
-    try (NamedEnvironment namer = NamerFactory.withParameters("title", "chapter"))
-    {
-      Approvals.verify("data");
-    }
-    // end-snippet
-  }
-
-  @Test
   void exampleForDocs()
   {
     // begin-snippet: additional_information_example

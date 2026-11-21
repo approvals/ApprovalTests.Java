@@ -6,32 +6,30 @@
 ## Contents
 
   * [Introduction](#introduction)
-  * [Using NamedEnvironment](#using-namedenvironment)<!-- endToc -->
+  * [Separate approved files per machine](#separate-approved-files-per-machine)<!-- endToc -->
 
 ## Introduction
-In some cases, you may want tests to run only on specific machines. 
-This can be achieved by using `NamedEnvironment` at the beginning of your tests.
+In some cases, you may want tests to run only on specific machines.
+Use your test framework's assumptions to skip the test on every other machine:
 
-
-## Using NamedEnvironment
-You can use the `NamedEnvironment` class in combination with `isCurrentEnvironmentValidFor` to achieve this.
-
-
-Here is an example that uses the NamedEnvironment class to run tests only on a specific machine.
-It checks if the current machine's name matches the specified name (e.g., ".lars-mbp-14"), and if not, the test is skipped. 
-The actual test code should be placed after this condition.
-
-<!-- snippet: runOnlyOnSpecificMachines -->
-<a id='snippet-runOnlyOnSpecificMachines'></a>
+<!-- snippet: run_only_on_specific_machines -->
+<a id='snippet-run_only_on_specific_machines'></a>
 ```java
-try (NamedEnvironment namedEnvironment = NamerFactory.asMachineNameSpecificTest())
-{
-  if (!namedEnvironment.isCurrentEnvironmentValidFor(".RSI-FQ61HDHJ0K"))
-  { return; }
-  // the rest of your test...
+assumeTrue(SystemUtils.getComputerName().equals("RSI-FQ61HDHJ0K"));
+// the rest of your test...
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/reporters/intellij/IntelliJPathResolverTest.java#L14-L20' title='Snippet source file'>snippet source</a> | <a href='#snippet-runOnlyOnSpecificMachines' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L76-L79' title='Snippet source file'>snippet source</a> | <a href='#snippet-run_only_on_specific_machines' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
-**please note:** this will also append the machine name to the ApprovalTest so that each specific
-machine gets its own `.approved` file.
+## Separate approved files per machine
+To give each machine its own `.approved` file, add the machine name to the file name:
+
+<!-- snippet: namer_factory_machine_specific_after -->
+<a id='snippet-namer_factory_machine_specific_after'></a>
+```java
+Options options = Approvals.NAMES.asMachineNameSpecificTest();
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L53-L55' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_machine_specific_after' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
+Then call `Approvals.verify(result, options)`.

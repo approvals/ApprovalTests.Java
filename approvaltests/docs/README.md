@@ -21,6 +21,7 @@
 * use [Printable Wrappers](how_to/PrintableWrappers.md#top)
 * use [Parameterized Tests](how_to/ParameterizedTest.md#top)
 * use [MachineNameSpecific Tests](how_to/MachineNameSpecificTest.md#top)
+* [update from NamerFactory to Options](how_to/UpdateFromNamerFactoryToOptions.md#top)
 * verify [Images](reference/AwtApprovals.md#top)
 * remove inconsistent output using [Scrubbers](Scrubbers.md#top)
 * have [Consistent Time Zones](how_to/ConsistentTimeZones.md#top) in your tests

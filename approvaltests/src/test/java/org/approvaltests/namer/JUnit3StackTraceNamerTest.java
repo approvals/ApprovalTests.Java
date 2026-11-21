@@ -6,7 +6,6 @@ public class JUnit3StackTraceNamerTest extends TestCase
 {
   public void testGetApprovalName()
   {
-    NamerFactory.getAndClearAdditionalInformation();
     StackTraceNamerUtils.assertNamerForFramework("JUnit3StackTraceNamerTest", "testGetApprovalName");
   }
 }
