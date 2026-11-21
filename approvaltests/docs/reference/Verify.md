@@ -96,7 +96,7 @@ Here is a list:
  * JsonXstreamApprovals. [verifyAsJson ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/JsonXstreamApprovals.java#L19-L22) (Object, $\color{#AAA}{\textsf{Options}}$)  
  * SqlApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/SqlApprovals.java#L32-L35) (ResultSet, $\color{#AAA}{\textsf{Options}}$)  
  * SqlApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/SqlApprovals.java#L22-L25) (SqlLoader, $\color{#AAA}{\textsf{Options}}$)  
- * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L17-L25) (ContextAware, $\color{#AAA}{\textsf{Options}}$)  
+ * VelocityApprovals. [verify ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/velocity/VelocityApprovals.java#L18-L27) (ContextAware, $\color{#AAA}{\textsf{Options}}$)  
  * XmlXomApprovals. [verifyXml ](https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/XmlXomApprovals.java#L18-L21) (String, $\color{#AAA}{\textsf{Options}}$)  <!-- endInclude -->
 
 ## Optional Options

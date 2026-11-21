@@ -110,7 +110,7 @@ FileCounter labeller = Approvals.NAMES.useMultipleFiles();
 Approvals.verify("one", labeller.next());
 Approvals.verify("two", labeller.next());
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryTest.java#L24-L28' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple_files_via_options' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/NamerFactoryTest.java#L21-L25' title='Snippet source file'>snippet source</a> | <a href='#snippet-multiple_files_via_options' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Running only on specific machines

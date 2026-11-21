@@ -31,7 +31,7 @@ Collection<DynamicTest> testFactory3()
       .collect(Collectors.toList());
 }
 ```
-<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L146-L157' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests/src/test/java/org/approvaltests/namer/JUnit5StackTraceNamerTest.java#L147-L158' title='Snippet source file'>snippet source</a> | <a href='#snippet-java_dynamic_test' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 ## Kotlin
