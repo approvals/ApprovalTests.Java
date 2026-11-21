@@ -10,6 +10,11 @@ public class TemplatedCustomNamer
   // begin-snippet: templated_custom_namer_default_template
   public static final String DEFAULT_TEMPLATE = "{test_source_directory}/{approvals_subdirectory}/{test_file_name}.{test_case_name}{additional_information}.{approved_or_received}.{file_extension}";
   // end-snippet
+  public static ApprovalNamer create(String template)
+  {
+    return new StackTraceNamer(new StackTraceNamer().getTemplate(), template);
+  }
+
   public static String resolveTemplate(String template, TemplateFields.TemplateFieldsRetriever fields)
   {
     return resolveTemplate(template, TemplateFieldValues.from(fields));

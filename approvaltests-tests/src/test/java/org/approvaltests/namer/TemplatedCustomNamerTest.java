@@ -16,6 +16,17 @@ public class TemplatedCustomNamerTest
     String path = TemplatedCustomNamer.resolveTemplate(template, new TemplateTestFields());
     Approvals.verify(path, new Options().inline(expected));
   }
+
+  @Test
+  public void testCreate()
+  {
+    String expected = """
+        /fixed/custom/TemplatedCustomNamerTest_testCreate.approved.txt
+        """;
+    ApprovalNamer namer = TemplatedCustomNamer
+        .create("/fixed/custom/{test_file_name}_{test_case_name}.{approved_or_received}.{file_extension}");
+    Approvals.verify(namer.getApprovedFile(".txt").getPath(), new Options().inline(expected));
+  }
   //
   //  @Test
   //  public void testGetReceivedFilename()

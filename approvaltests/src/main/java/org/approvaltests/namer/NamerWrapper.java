@@ -4,6 +4,10 @@ import org.approvaltests.writers.Writer;
 
 import java.io.File;
 
+/**
+ * @deprecated use {@code Options.forFile().withNamer(TemplatedCustomNamer.create(template))}
+ */
+@Deprecated
 public class NamerWrapper implements ApprovalNamer
 {
   private GetApprovalName   approvalBaseName;

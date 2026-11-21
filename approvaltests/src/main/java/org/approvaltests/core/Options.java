@@ -7,11 +7,12 @@ import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.inline.InlineComparator;
 import org.approvaltests.inline.InlineOptions;
 import org.approvaltests.namer.ApprovalNamer;
-import org.approvaltests.namer.NamerWrapper;
+import org.approvaltests.namer.NamerUtils;
 import org.approvaltests.reporters.MultiReporter;
 import org.approvaltests.scrubbers.NoOpScrubber;
 import org.approvaltests.writers.ApprovalWriterFactory;
 import org.approvaltests.writers.DefaultApprovalWriterFactory;
+import org.approvaltests.writers.Writer;
 import org.lambda.functions.Function1;
 import org.lambda.functions.Function2;
 
@@ -163,18 +164,56 @@ public class Options
       return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_FILE_EXTENSION, () -> ".txt");
     }
 
+    /**
+     * @deprecated use {@code withNamer(TemplatedCustomNamer.create(template))}
+     */
+    @Deprecated
     public Options withBaseName(String fileBaseName)
     {
-      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
-      return withNamer(approvalNamer);
+      return withNamer(createBaseNameNamer(fileBaseName, getNamer()));
     }
 
+    /**
+     * @deprecated use {@code withNamer(TemplatedCustomNamer.create(template))}
+     */
+    @Deprecated
     public Options withName(String fileBaseName, String extension)
     {
-      NamerWrapper approvalNamer = new NamerWrapper(() -> fileBaseName, getNamer());
+      ApprovalNamer approvalNamer = createBaseNameNamer(fileBaseName, getNamer());
       EnumMap<Fields, Object> newFields = new EnumMap<>(fields);
       newFields.put(Fields.FILE_OPTIONS_FILE_EXTENSION, extension);
       return new Options(newFields, Fields.FILE_OPTIONS_NAMER, approvalNamer);
+    }
+
+    private static ApprovalNamer createBaseNameNamer(String fileBaseName, ApprovalNamer namer)
+    {
+      String sourcePath = NamerUtils.getSourcePath(namer);
+      return new ApprovalNamer()
+      {
+        @Override
+        public File getApprovedFile(String extensionWithDot)
+        {
+          return new File(sourcePath + fileBaseName + Writer.approved + extensionWithDot);
+        }
+
+        @Override
+        public File getReceivedFile(String extensionWithDot)
+        {
+          return new File(sourcePath + fileBaseName + Writer.received + extensionWithDot);
+        }
+
+        @Override
+        public String getApprovalName()
+        {
+          return fileBaseName;
+        }
+
+        @Override
+        public String getSourceFilePath()
+        {
+          return sourcePath;
+        }
+      };
     }
 
     public Options withAdditionalInformation(String additionalInformation)

@@ -9,6 +9,7 @@ import java.io.File;
 public class StackTraceNamer implements ApprovalNamer
 {
   private TemplateFieldValues template;
+  private final String        fileTemplate;
   public TemplateFieldValues getTemplate()
   {
     return template;
@@ -32,7 +33,13 @@ public class StackTraceNamer implements ApprovalNamer
 
   public StackTraceNamer(TemplateFieldValues template)
   {
+    this(template, TemplatedCustomNamer.DEFAULT_TEMPLATE);
+  }
+
+  public StackTraceNamer(TemplateFieldValues template, String fileTemplate)
+  {
     this.template = template;
+    this.fileTemplate = fileTemplate;
   }
 
   @Override
@@ -69,7 +76,7 @@ public class StackTraceNamer implements ApprovalNamer
   {
     String extension = extensionWithDot.startsWith(".") ? extensionWithDot.substring(1) : extensionWithDot;
     TemplateFieldValues fields = template.with(approvedOrReceived, extension);
-    return new File(TemplatedCustomNamer.resolveTemplate(TemplatedCustomNamer.DEFAULT_TEMPLATE, fields));
+    return new File(TemplatedCustomNamer.resolveTemplate(fileTemplate, fields));
   }
 
   private static TemplateFieldValues createTemplateFieldValues(StackTraceReflectionResult info,

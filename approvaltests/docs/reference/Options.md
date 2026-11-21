@@ -85,21 +85,16 @@ Approvals.verify("text to be verified", new Options().forFile().withExtension(".
 
 **Note:** `withExtension()` returns an `Options` object, so it's possible to keep appending more `with...()` calls.
 
-### File Base Name
+### File Name
 
-To override just the base name of the approved/received files (keeping the current extension and directory), use `withBaseName()`.
-
-```java
-Approvals.verify("text", new Options().forFile().withBaseName("my_custom_name"));
-```
-
-### File Name and Extension
-
-To override both the base name and extension at once, use `withName()`.
+To override the name of the approved/received files, use a templated namer.
 
 ```java
-Approvals.verify("text", new Options().forFile().withName("my_custom_name", ".json"));
+String template = "{test_source_directory}/{approvals_subdirectory}/my_custom_name.{approved_or_received}.{file_extension}";
+Approvals.verify("text", new Options().forFile().withNamer(TemplatedCustomNamer.create(template)));
 ```
+
+`withBaseName()` and `withName()` are deprecated in favor of this.
 
 ### Custom Namer
 
