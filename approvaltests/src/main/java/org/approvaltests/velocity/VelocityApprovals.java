@@ -6,6 +6,7 @@ import com.spun.util.velocity.VelocityParser;
 import org.approvaltests.Approvals;
 import org.approvaltests.core.Options;
 import org.approvaltests.namer.ApprovalNamer;
+import org.approvaltests.namer.NamerUtils;
 
 public class VelocityApprovals
 {
@@ -18,7 +19,8 @@ public class VelocityApprovals
   {
     ApprovalNamer namer = Approvals.createApprovalNamer();
     String fileExtensionWithDot = options.forFile().getFileExtension();
-    String file = namer.getSourceFilePath() + namer.getApprovalName() + ".template" + fileExtensionWithDot;
+    String file = NamerUtils.getSourcePath(namer) + NamerUtils.getApprovalName(namer) + ".template"
+        + fileExtensionWithDot;
     FileUtils.createIfNeeded(file);
     String text = VelocityParser.parseFile(file, context);
     Approvals.verify(text, options);

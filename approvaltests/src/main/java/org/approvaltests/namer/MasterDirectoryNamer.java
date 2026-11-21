@@ -23,7 +23,7 @@ public class MasterDirectoryNamer implements ApprovalNamer
   @Override
   public File getApprovedFile(String extensionWithDot)
   {
-    String dirName = namer.getSourceFilePath() + File.separator + namer.getApprovalName() + ".Files";
+    String dirName = NamerUtils.getSourcePath(namer) + NamerUtils.getApprovalName(namer) + ".Files";
     return new File(dirName + File.separator + approvedFile);
   }
 
