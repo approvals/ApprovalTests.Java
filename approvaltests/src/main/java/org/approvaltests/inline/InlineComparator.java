@@ -58,18 +58,6 @@ public class InlineComparator implements ApprovalNamer
   }
 
   @Override
-  public ApprovalNamer addAdditionalInformation(String info)
-  {
-    return this;
-  }
-
-  @Override
-  public String getAdditionalInformation()
-  {
-    return "";
-  }
-
-  @Override
   public String getApprovalName()
   {
     return "";

@@ -16,8 +16,13 @@ public class StackTraceNamer implements ApprovalNamer
 
   public StackTraceNamer()
   {
+    this("");
+  }
+
+  public StackTraceNamer(String additionalInformation)
+  {
     this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()),
-        NamerFactory.getAndClearAdditionalInformation());
+        NamerFactory.getAndClearAdditionalInformation() + additionalInformation);
   }
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)
@@ -87,17 +92,5 @@ public class StackTraceNamer implements ApprovalNamer
       baseDir = ObjectUtils.throwAsError(() -> new File(newBase).getCanonicalPath().toString());
     }
     return baseDir;
-  }
-
-  public ApprovalNamer addAdditionalInformation(String additionalInformation)
-  {
-    return new StackTraceNamer(this.template
-        .withAdditionalInformation(this.template.additionalInformation + "." + additionalInformation));
-  }
-
-  @Override
-  public String getAdditionalInformation()
-  {
-    return template.additionalInformation;
   }
 }

@@ -26,6 +26,7 @@ public class Options
     REPORTER,
     FILE_OPTIONS_FILE_EXTENSION,
     FILE_OPTIONS_NAMER,
+    FILE_OPTIONS_ADDITIONAL_INFORMATION,
     WRITER,
     COMPARATOR;
   }
@@ -141,7 +142,15 @@ public class Options
 
     public ApprovalNamer getNamer()
     {
-      return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_NAMER, Approvals::createApprovalNamer);
+      return ArrayUtils.getOrElse(
+          fields,
+          Fields.FILE_OPTIONS_NAMER,
+          () -> Approvals.createApprovalNamer(getAdditionalInformation()));
+    }
+
+    public String getAdditionalInformation()
+    {
+      return ArrayUtils.getOrElse(fields, Fields.FILE_OPTIONS_ADDITIONAL_INFORMATION, () -> "");
     }
 
     public Options withNamer(ApprovalNamer namer)
@@ -170,7 +179,8 @@ public class Options
 
     public Options withAdditionalInformation(String additionalInformation)
     {
-      return withNamer(getNamer().addAdditionalInformation(additionalInformation));
+      return new Options(fields, Fields.FILE_OPTIONS_ADDITIONAL_INFORMATION,
+          getAdditionalInformation() + "." + additionalInformation);
     }
   }
 }

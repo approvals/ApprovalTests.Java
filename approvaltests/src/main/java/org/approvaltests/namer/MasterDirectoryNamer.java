@@ -44,16 +44,4 @@ public class MasterDirectoryNamer implements ApprovalNamer
   {
     return namer.getSourceFilePath();
   }
-
-  @Override
-  public ApprovalNamer addAdditionalInformation(String info)
-  {
-    return new MasterDirectoryNamer(this.approvedFile, this.namer.addAdditionalInformation(info));
-  }
-
-  @Override
-  public String getAdditionalInformation()
-  {
-    return this.namer.getAdditionalInformation();
-  }
 }

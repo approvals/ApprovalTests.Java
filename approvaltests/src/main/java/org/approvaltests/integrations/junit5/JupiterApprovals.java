@@ -30,8 +30,8 @@ public class JupiterApprovals
 
   private static void checkOptionsWasUsed(Options actual, Options expected)
   {
-    String actualAdditionalInformation = actual.forFile().getNamer().getAdditionalInformation();
-    String expectedAdditionalInformation = expected.forFile().getNamer().getAdditionalInformation();
+    String actualAdditionalInformation = actual.forFile().getAdditionalInformation();
+    String expectedAdditionalInformation = expected.forFile().getAdditionalInformation();
     if (!actualAdditionalInformation.startsWith(expectedAdditionalInformation))
     {
       String helpMessage = "When using dynamic tests and Approvals, all calls to verify() must use the original Options or a derivative:  \n"

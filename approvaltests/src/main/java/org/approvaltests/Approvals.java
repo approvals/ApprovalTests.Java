@@ -6,7 +6,6 @@ import com.spun.util.ObjectUtils;
 import com.spun.util.StringUtils;
 import com.spun.util.io.XMLUtils;
 import com.spun.util.persistence.ExecutableCommand;
-import com.spun.util.persistence.Loader;
 import org.approvaltests.approvers.ApprovalApprover;
 import org.approvaltests.approvers.FileApprover;
 import org.approvaltests.core.ApprovalFailureReporter;
@@ -36,14 +35,8 @@ import java.util.Objects;
 
 public class Approvals
 {
-  public static final NamerFactoryForOptions NAMES        = NamerFactoryForOptions.INSTANCE;
-  public static Loader<ApprovalNamer>        namerCreater = new Loader<ApprovalNamer>()
-                                                          {
-                                                            public ApprovalNamer load()
-                                                            {
-                                                              return new StackTraceNamer();
-                                                            }
-                                                          };
+  public static final NamerFactoryForOptions     NAMES        = NamerFactoryForOptions.INSTANCE;
+  public static Function1<String, ApprovalNamer> namerCreater = StackTraceNamer::new;
   public static void verify(String response)
   {
     verify(response, new Options());
@@ -295,7 +288,12 @@ public class Approvals
 
   public static ApprovalNamer createApprovalNamer()
   {
-    return namerCreater.load();
+    return createApprovalNamer("");
+  }
+
+  public static ApprovalNamer createApprovalNamer(String additionalInformation)
+  {
+    return namerCreater.call(additionalInformation);
   }
 
   public static void verifyEachFileInDirectory(File directory)
