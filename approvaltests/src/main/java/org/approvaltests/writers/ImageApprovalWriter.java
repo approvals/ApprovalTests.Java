@@ -20,6 +20,11 @@ public class ImageApprovalWriter implements ApprovalWriter
     this.image = image;
   }
 
+  /**
+   * @deprecated Use {@code Approvals.verify(result, ImageApprovalWriter.asJreAware(new Options()))} instead.
+   *             See <a href="https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UpdateFromNamerFactoryToOptions.md">How to update from NamerFactory to Options</a>
+   */
+  @Deprecated
   public static NamedEnvironment asJreAware()
   {
     return asMachineSpecificTest(() -> getJreInformation());

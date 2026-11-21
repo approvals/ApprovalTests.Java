@@ -1,7 +1,5 @@
 package org.approvaltests;
 
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
 import org.approvaltests.reporters.ClipboardReporter;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;

@@ -3,11 +3,12 @@ package org.approvaltests;
 import org.approvaltests.awt.AwtApprovals;
 import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.machine_specific_tests.TvGuide;
-import org.approvaltests.namer.NamedEnvironment;
-import org.approvaltests.namer.NamerFactory;
+import org.approvaltests.namer.OsEnvironmentLabeller;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class GettingStartedTest
 {
@@ -78,11 +79,7 @@ public class GettingStartedTest
   @Test
   public void testTvGuide()
   {
-    try (NamedEnvironment namedEnvironment = NamerFactory.asOsSpecificTest())
-    {
-      if (!namedEnvironment.isCurrentEnvironmentValidFor(false, "Windows_10"))
-      { return; }
-    }
+    assumeTrue(new OsEnvironmentLabeller().call().equals("Windows_10"));
     // begin-snippet: verifying_gui
     /* Do */
     // create a TV Guide and select a show for 3pm

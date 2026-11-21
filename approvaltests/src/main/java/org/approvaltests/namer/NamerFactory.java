@@ -40,6 +40,11 @@ public class NamerFactory
    */
   @Deprecated
   public static ApprovalResults ApprovalResults = new ApprovalResults();
+  /**
+   * @deprecated Use {@code Approvals.verify(result, new Options().forFile().withAdditionalInformation(environmentLabeller.call()))} instead.
+   *             See <a href="https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UpdateFromNamerFactoryToOptions.md">How to update from NamerFactory to Options</a>
+   */
+  @Deprecated
   public static NamedEnvironment asMachineSpecificTest(Function0<String> environmentLabeller)
   {
     return asMachineSpecificTest(environmentLabeller.call());
@@ -75,6 +80,11 @@ public class NamerFactory
     return new NamedEnvironment(environmentName);
   }
 
+  /**
+   * @deprecated Use {@code Approvals.NAMES.useMultipleFiles()} and pass {@code counter.next()} to each verify.
+   *             See <a href="https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UpdateFromNamerFactoryToOptions.md">How to update from NamerFactory to Options</a>
+   */
+  @Deprecated
   public static MultipleFilesLabeller useMultipleFiles()
   {
     return new MultipleFilesLabeller();
