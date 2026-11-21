@@ -7,4 +7,9 @@ public interface ApprovalWriter
   public File writeReceivedFile(File received);
 
   public String getFileExtensionWithDot();
+
+  default void cleanUpReceived(File received)
+  {
+    received.delete();
+  }
 }

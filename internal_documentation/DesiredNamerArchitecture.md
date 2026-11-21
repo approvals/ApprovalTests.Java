@@ -34,7 +34,7 @@ The writer never builds file names; that is the namer's job.
 | Language | Today | Change needed |
 |---|---|---|
 | C++ | `getFileExtensionWithDot`, `write`, `cleanUpReceived` | Rename `write` to `writeReceivedFile` |
-| Java | `getFileExtensionWithDot`, `writeReceivedFile` (returns `File`) | Add `cleanUpReceived` |
+| Java | `getFileExtensionWithDot`, `writeReceivedFile` (returns `File`), `cleanUpReceived` (default deletes the file) | Done |
 | .NET | `GetApprovalFilename`, `GetReceivedFilename`, `WriteReceivedFile` | Move file naming to the namer; add `GetFileExtensionWithDot` and `CleanUpReceived` |
 | Python | `write_received_file`; extension comes from Options | Add `get_file_extension_with_dot` and `clean_up_received` |
 | Go | No writer; `Verify` takes an `io.Reader` and the extension comes from Options | Add an `ApprovalWriter` interface |

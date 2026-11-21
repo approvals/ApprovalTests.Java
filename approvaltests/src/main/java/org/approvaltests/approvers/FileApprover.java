@@ -61,7 +61,7 @@ public class FileApprover implements ApprovalApprover
 
   public void cleanUpAfterSuccess(ApprovalFailureReporter reporter)
   {
-    received.delete();
+    writer.cleanUpReceived(received);
     if (reporter instanceof ApprovalReporterWithCleanUp)
     {
       ((ApprovalReporterWithCleanUp) reporter)
