@@ -25,7 +25,7 @@ public class TemplatedCustomNamerTest
         """;
     ApprovalNamer namer = TemplatedCustomNamer
         .create("/fixed/custom/{test_file_name}_{test_case_name}.{approved_or_received}.{file_extension}");
-    Approvals.verify(namer.getApprovedFile(".txt").getPath(), new Options().inline(expected));
+    Approvals.verify(namer.getApprovedFile(".txt").getPath().replace('\\', '/'), new Options().inline(expected));
   }
   //
   //  @Test
