@@ -35,7 +35,7 @@ public class DocumentHelpersTest
   {
     ParsingFilesTest.addApprovalTestPath();
     var expected = """
-        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L110-L113
+        https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/src/main/java/org/approvaltests/Approvals.java#L104-L107
         """;
     String verifyAll = getLink(
         Queryable.as(Approvals.class.getMethods()).orderBy(m -> m.getParameterCount())

@@ -13,7 +13,7 @@
   * [Multiple files in one test](#multiple-files-in-one-test)
   * [Running only on specific machines](#running-only-on-specific-machines)<!-- endToc -->
 
-This page is part of [Upgrade from 31.2.0 to 31.3.0](Upgrade.V31.2.0.to.V31.3.0.md#top).
+This page is part of [Upgrade from 31.2.0 to 31.3.0](Upgrade.V31.2.0.to.V31.3.0.md#top). The `NamerFactory` methods shown as "Before" were removed in [32.0.0](Upgrade.V31.3.0.to.V32.0.0.md#top).
 
 ## Why
 
@@ -29,16 +29,12 @@ The approved file names stay the same, so you do not need to re-approve anything
 
 Before:
 
-<!-- snippet: namer_factory_with_parameters_before -->
-<a id='snippet-namer_factory_with_parameters_before'></a>
 ```java
 try (NamedEnvironment en = NamerFactory.withParameters("title", "chapter"))
 {
   before = getApprovedFileName(new Options());
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L17-L22' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_with_parameters_before' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
 
 After:
 
@@ -56,16 +52,12 @@ Then call `Approvals.verify(result, options)`.
 
 Before:
 
-<!-- snippet: namer_factory_os_specific_before -->
-<a id='snippet-namer_factory_os_specific_before'></a>
 ```java
 try (NamedEnvironment en = NamerFactory.asOsSpecificTest())
 {
   before = getApprovedFileName(new Options());
 }
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/namer/UpdateFromNamerFactoryToOptionsTest.java#L33-L38' title='Snippet source file'>snippet source</a> | <a href='#snippet-namer_factory_os_specific_before' title='Start of snippet'>anchor</a></sup>
-<!-- endSnippet -->
 
 After:
 

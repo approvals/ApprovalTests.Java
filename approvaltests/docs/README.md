@@ -23,6 +23,7 @@
 * use [MachineNameSpecific Tests](how_to/MachineNameSpecificTest.md#top)
 * [update from NamerFactory to Options](how_to/UpdateFromNamerFactoryToOptions.md#top)
 * [upgrade from 31.2.0 to 31.3.0](how_to/Upgrade.V31.2.0.to.V31.3.0.md#top)
+* [upgrade from 31.3.0 to 32.0.0](how_to/Upgrade.V31.3.0.to.V32.0.0.md#top)
 * verify [Images](reference/AwtApprovals.md#top)
 * remove inconsistent output using [Scrubbers](Scrubbers.md#top)
 * have [Consistent Time Zones](how_to/ConsistentTimeZones.md#top) in your tests

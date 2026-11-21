@@ -93,7 +93,7 @@ String template = "{test_source_directory}/{approvals_subdirectory}/my_custom_na
 Approvals.verify("text", new Options().forFile().withNamer(TemplatedCustomNamer.create(template)));
 ```
 
-`withBaseName()` and `withName()` are deprecated in favor of this.
+`withBaseName()` and `withName()` were removed in 32.0.0. See [Upgrade from 31.3.0 to 32.0.0](../how_to/Upgrade.V31.3.0.to.V32.0.0.md#top).
 
 ### Custom Namer
 

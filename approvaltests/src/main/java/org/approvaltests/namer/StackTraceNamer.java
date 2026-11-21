@@ -22,8 +22,7 @@ public class StackTraceNamer implements ApprovalNamer
 
   public StackTraceNamer(String additionalInformation)
   {
-    this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()),
-        NamerFactory.getAndClearAdditionalInformation() + additionalInformation);
+    this(TestUtils.getCurrentFileForMethod(new AttributeStackSelector()), additionalInformation);
   }
 
   public StackTraceNamer(StackTraceReflectionResult info, String additionalInformation)

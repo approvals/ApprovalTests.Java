@@ -15,7 +15,7 @@ Apply the sections below in order. For each section:
 3. Build and run the tests. They should pass without new `.received.` files.
 
 When you are done, compile with deprecation warnings on (`-Xlint:deprecation` for javac).
-There should be no deprecation warnings left that come from `org.approvaltests`. Then you are ready for 32.0.0.
+There should be no deprecation warnings left that come from `org.approvaltests`. Then you are ready for [32.0.0](Upgrade.V31.3.0.to.V32.0.0.md#top).
 
 ## Contents
 

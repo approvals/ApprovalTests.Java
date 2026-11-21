@@ -56,8 +56,7 @@ Implementations of `ApprovalWriter`. `ApprovalTextWriter` handles the common tex
 
 ### `namer/`
 
-Implementations of `ApprovalNamer`. `StackTraceNamer` is the default — it inspects the call stack to derive `ClassName.methodName` and the source directory. `NamerFactory` and `NamerFactoryForOptions` provide labelling (e.g., parameterized test names). `ApprovalResults` offers static helpers for customizing the namer from within a test.
-
+Implementations of `ApprovalNamer`. `StackTraceNamer` is the default — it inspects the call stack to derive `ClassName.methodName` and the source directory. `NamerFactory` and `NamerFactoryForOptions` provide labelling (e.g., parameterized test names).
 ### `approvers/`
 
 `ApprovalApprover` is the interface for the approve/report lifecycle (`approve()`, `reportFailure()`, `cleanUpAfterSuccess()`). `FileApprover` is the standard implementation — it orchestrates the core verify loop: write the received file, compare it with the approved file, and report on failure. `ApprovalTracker` detects duplicate `verify()` calls in a single test.

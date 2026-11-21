@@ -4,13 +4,10 @@ import com.spun.util.NumberUtils;
 import com.spun.util.ObjectUtils;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
-import org.approvaltests.namer.NamedEnvironment;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
-import static org.approvaltests.namer.NamerFactory.asMachineSpecificTest;
 
 public class ImageApprovalWriter implements ApprovalWriter
 {
@@ -18,16 +15,6 @@ public class ImageApprovalWriter implements ApprovalWriter
   public ImageApprovalWriter(BufferedImage image)
   {
     this.image = image;
-  }
-
-  /**
-   * @deprecated Use {@code Approvals.verify(result, ImageApprovalWriter.asJreAware(new Options()))} instead.
-   *             See <a href="https://github.com/approvals/ApprovalTests.Java/blob/master/approvaltests/docs/how_to/UpdateFromNamerFactoryToOptions.md">How to update from NamerFactory to Options</a>
-   */
-  @Deprecated
-  public static NamedEnvironment asJreAware()
-  {
-    return asMachineSpecificTest(() -> getJreInformation());
   }
 
   private static String getJreInformation()

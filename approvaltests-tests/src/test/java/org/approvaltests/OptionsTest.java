@@ -7,6 +7,7 @@ import org.approvaltests.combinations.CombinationApprovals;
 import org.approvaltests.core.ApprovalFailureReporter;
 import org.approvaltests.core.ApprovalWriter;
 import org.approvaltests.core.Options;
+import org.approvaltests.namer.TemplatedCustomNamer;
 import org.approvaltests.core.VerifyResult;
 import org.approvaltests.reporters.FirstWorkingReporter;
 import org.approvaltests.reporters.Junit4Reporter;
@@ -162,10 +163,11 @@ public class OptionsTest
     String customFileName = "customApproval";
     FileApprover.tracker.addAllowedDuplicates(f -> f.contains(customFileName));
     String sampleText = "<html><body><h1>hello approvals</h1></body></html>";
-    Approvals
-        .verify(sampleText, new Options().forFile().withBaseName(customFileName).forFile().withExtension(".html"));
-    Approvals.verify(sampleText, new Options().forFile().withName(customFileName, ".html"));
-    Approvals.verify(sampleText, new Options().forFile().withBaseName(customFileName));
+    String template = "{test_source_directory}/{approvals_subdirectory}/" + customFileName
+        + ".{approved_or_received}.{file_extension}";
+    Options options = new Options().forFile().withNamer(TemplatedCustomNamer.create(template));
+    Approvals.verify(sampleText, options.forFile().withExtension(".html"));
+    Approvals.verify(sampleText, options);
   }
   static class ApprovalFailureReporterSpy implements ApprovalFailureReporter
   {
