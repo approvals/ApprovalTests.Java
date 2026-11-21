@@ -8,6 +8,37 @@ This is a proposed, language-neutral namer design based on the Go implementation
 
 The only part that has to be language-specific is how the current test is found.
 
+## The Writer
+
+The writer follows C++, with Java's method name for writing.
+
+```mermaid
+classDiagram
+    class ApprovalWriter {
+        <<interface>>
+        +getFileExtensionWithDot() String
+        +writeReceivedFile(receivedPath)
+        +cleanUpReceived(receivedPath)
+    }
+    ApprovalWriter ..> ApprovalNamer : extension passed to getApprovedFile / getReceivedFile
+```
+
+| Member | Purpose |
+|---|---|
+| `getFileExtensionWithDot()` | The extension for both files. The approver passes it to the namer's path methods. Text writers take it from `FileOptions.withExtension(...)`. |
+| `writeReceivedFile(receivedPath)` | Writes the received output to the path the namer chose. |
+| `cleanUpReceived(receivedPath)` | Removes the received file after a pass. Writers that wrap an existing file can leave it in place. |
+
+The writer never builds file names; that is the namer's job.
+
+| Language | Today | Change needed |
+|---|---|---|
+| C++ | `getFileExtensionWithDot`, `write`, `cleanUpReceived` | Rename `write` to `writeReceivedFile` |
+| Java | `getFileExtensionWithDot`, `writeReceivedFile` (returns `File`) | Add `cleanUpReceived` |
+| .NET | `GetApprovalFilename`, `GetReceivedFilename`, `WriteReceivedFile` | Move file naming to the namer; add `GetFileExtensionWithDot` and `CleanUpReceived` |
+| Python | `write_received_file`; extension comes from Options | Add `get_file_extension_with_dot` and `clean_up_received` |
+| Go | No writer; `Verify` takes an `io.Reader` and the extension comes from Options | Add an `ApprovalWriter` interface |
+
 ## Goals
 
 - **One small interface.** It has the two path methods that C++ and Go share.
