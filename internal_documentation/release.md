@@ -4,6 +4,14 @@
 
 GitHub workflows will do the rest.
 
+## Upgrade guide
+
+When a release changes something users touch (an interface, a removed or deprecated API, a changed file name), write an upgrade guide before releasing:
+
+- Add `approvaltests/docs/how_to/Upgrade.V<old>.to.V<new>.md`, following the earlier ones. Start with a numbered "For AI coding agents" section.
+- Link it under "Upgrades" in `approvaltests/docs/README.md`.
+- Link it from the GitHub release notes.
+
 ## Troubleshooting
 
 - We only deploy `approvaltests` and `approvaltests-util`, the other projects do not need to be deployed
