@@ -21,7 +21,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Verify | Verify an object as JSON | [`JsonApprovals.verifyAsJson`](../how_to/ShowNullsInJson.md#top) |
 | Verify | Verify XML | `Approvals.verifyXml` |
 | Verify | Verify HTML | `Approvals.verifyHtml` |
-| Verify | Verify binary data | ❌ missing |
+| Verify | Verify binary data | [`Approvals.verifyBinary`](../how_to/VerifyBinary.md#top) |
 | Verify | Verify images | [`AwtApprovals.verify`](AwtApprovals.md#top) |
 | Verify | Verify a markdown table of inputs and outputs | [`VerifiableMarkdownTable`](../how_to/TestAVarietyOfValues.md#tables) |
 | Verify | Verify console output | `ConsoleOutput` |

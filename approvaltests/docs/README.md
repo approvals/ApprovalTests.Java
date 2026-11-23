@@ -32,6 +32,7 @@
 * [configure project directory for CI and build tools](how_to/ConfigureProjectDirectory.md)
 * [disable automatic script downloads](how_to/DisableScriptDownloads.md)
 * Create [customized verify methods](how_to/CreateCustomizedVerifyMethods.md)
+* [Verify binary data](how_to/VerifyBinary.md#top)
 * [Use Inline Approvals](how_to/InlineApprovals.md)
 * Use [@TestFactory](how_to/UseTestFactory.md)
 

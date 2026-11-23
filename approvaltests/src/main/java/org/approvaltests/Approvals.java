@@ -19,10 +19,12 @@ import org.approvaltests.namer.MasterDirectoryNamer;
 import org.approvaltests.namer.NamerFactoryForOptions;
 import org.approvaltests.namer.StackTraceNamer;
 import org.approvaltests.reporters.ExecutableQueryFailure;
+import org.approvaltests.writers.ApprovalBinaryFileWriter;
 import org.lambda.actions.Action0;
 import org.lambda.functions.Function1;
 import org.lambda.query.Query;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -178,6 +180,19 @@ public class Approvals
   public static void verifyHtml(String response, Options options)
   {
     verify(response, options.forFile().withExtension(".html"));
+  }
+
+  public static void verifyBinary(byte[] data, String fileExtension)
+  {
+    verifyBinary(data, fileExtension, new Options());
+  }
+
+  public static void verifyBinary(byte[] data, String fileExtension, Options options)
+  {
+    String extensionWithoutDot = fileExtension.startsWith(".") ? fileExtension.substring(1) : fileExtension;
+    verify(
+        new ApprovalBinaryFileWriter(new ByteArrayInputStream(data), extensionWithoutDot),
+        options.forFile().withExtension(fileExtension));
   }
 
   public static void verify(Path path)
