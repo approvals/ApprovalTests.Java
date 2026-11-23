@@ -12,7 +12,7 @@ public class VerifyBinaryTest
   void verifyBinary() throws Exception
   {
     // begin-snippet: verify_binary
-    File image = new File(ClassUtils.getSourceDirectory(getClass()), "reporters/a.png");
+    File image = new File(ClassUtils.getSourceDirectory(getClass()), "smiley.png");
     byte[] png = Files.readAllBytes(image.toPath());
     Approvals.verifyBinary(png, ".png");
     // end-snippet

@@ -189,10 +189,8 @@ public class Approvals
 
   public static void verifyBinary(byte[] data, String fileExtension, Options options)
   {
-    String extensionWithoutDot = fileExtension.startsWith(".") ? fileExtension.substring(1) : fileExtension;
-    verify(
-        new ApprovalBinaryFileWriter(new ByteArrayInputStream(data), extensionWithoutDot),
-        options.forFile().withExtension(fileExtension));
+    options = options.forFile().withExtension(fileExtension);
+    verify(new ApprovalBinaryFileWriter(new ByteArrayInputStream(data), options), options);
   }
 
   public static void verify(Path path)

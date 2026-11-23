@@ -2,6 +2,7 @@ package org.approvaltests.writers;
 
 import com.spun.util.io.FileUtils;
 import org.approvaltests.core.ApprovalWriter;
+import org.approvaltests.core.Options;
 
 import java.io.File;
 import java.io.InputStream;
@@ -11,23 +12,50 @@ import java.nio.channels.ReadableByteChannel;
 public class ApprovalBinaryFileWriter implements ApprovalWriter
 {
   private CharSequence data;
-  private String       fileExtension;
+  private String       fileExtensionWithDot;
   private InputStream  dataStream;
+  /**
+   * @deprecated Use {@link #ApprovalBinaryFileWriter(CharSequence, Options)} instead.
+   */
+  @Deprecated
   public ApprovalBinaryFileWriter(CharSequence charSequence, String fileExtensionWithoutDot)
   {
-    this.data = charSequence;
-    this.fileExtension = fileExtensionWithoutDot;
+    this(charSequence, new Options().forFile().withExtension(fileExtensionWithoutDot));
   }
 
+  public ApprovalBinaryFileWriter(CharSequence charSequence, Options options)
+  {
+    this.data = charSequence;
+    this.fileExtensionWithDot = options.forFile().getFileExtension();
+  }
+
+  /**
+   * @deprecated Use {@link #ApprovalBinaryFileWriter(InputStream, Options)} instead.
+   */
+  @Deprecated
   public ApprovalBinaryFileWriter(InputStream stream, String fileExtensionWithoutDot)
   {
-    this.dataStream = stream;
-    this.fileExtension = fileExtensionWithoutDot;
+    this(stream, new Options().forFile().withExtension(fileExtensionWithoutDot));
   }
 
+  public ApprovalBinaryFileWriter(InputStream stream, Options options)
+  {
+    this.dataStream = stream;
+    this.fileExtensionWithDot = options.forFile().getFileExtension();
+  }
+
+  /**
+   * @deprecated Use {@link #ApprovalBinaryFileWriter(ReadableByteChannel, Options)} instead.
+   */
+  @Deprecated
   public ApprovalBinaryFileWriter(ReadableByteChannel stream, String fileExtensionWithoutDot)
   {
-    this(Channels.newInputStream(stream), fileExtensionWithoutDot);
+    this(stream, new Options().forFile().withExtension(fileExtensionWithoutDot));
+  }
+
+  public ApprovalBinaryFileWriter(ReadableByteChannel stream, Options options)
+  {
+    this(Channels.newInputStream(stream), options);
   }
 
   @Override
@@ -47,6 +75,6 @@ public class ApprovalBinaryFileWriter implements ApprovalWriter
   @Override
   public String getFileExtensionWithDot()
   {
-    return "." + fileExtension;
+    return fileExtensionWithDot;
   }
 }

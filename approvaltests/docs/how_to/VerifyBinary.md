@@ -11,7 +11,7 @@ The bytes are written to the received file unchanged and compared byte for byte.
 <!-- snippet: verify_binary -->
 <a id='snippet-verify_binary'></a>
 ```java
-File image = new File(ClassUtils.getSourceDirectory(getClass()), "reporters/a.png");
+File image = new File(ClassUtils.getSourceDirectory(getClass()), "smiley.png");
 byte[] png = Files.readAllBytes(image.toPath());
 Approvals.verifyBinary(png, ".png");
 ```

@@ -38,6 +38,8 @@ public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.l
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.String,java.lang.Iterable,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.String,java.lang.Object[])
 public static void org.approvaltests.Approvals.verifyAll(java.lang.String,java.lang.String,java.lang.Object[],org.approvaltests.core.Options)
+public static void org.approvaltests.Approvals.verifyBinary(byte[],java.lang.String)
+public static void org.approvaltests.Approvals.verifyBinary(byte[],java.lang.String,org.approvaltests.core.Options)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File,java.io.FileFilter)
 public static void org.approvaltests.Approvals.verifyEachFileInDirectory(java.io.File,java.io.FileFilter,org.approvaltests.core.Options)
