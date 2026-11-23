@@ -42,6 +42,7 @@
 * [upgrade from 31.2.0 to 31.3.0](how_to/Upgrade.V31.2.0.to.V31.3.0.md#top)
 * [upgrade from 31.3.0 to 32.0.0](how_to/Upgrade.V31.3.0.to.V32.0.0.md#top)
 * [upgrade from 32.0.0 to 32.1.0](how_to/Upgrade.V32.0.0.to.V32.1.0.md#top)
+* [upgrade from 32.1.0 to 32.2.0](how_to/Upgrade.V32.1.0.to.V32.2.0.md#top)
 
 ## Reference
 
