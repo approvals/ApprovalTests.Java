@@ -46,7 +46,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Scrubbers | Scrub with a regular expression | [`RegExScrubber`](../Scrubbers.md#regex-scrubbing) |
 | Scrubbers | Combine scrubbers | [`Scrubbers.scrubAll`](../Scrubbers.md#scrubbing-multiple-parts-of-a-string) |
 | Scrubbers | Normalize whitespace | `NormalizeSpacesScrubber` |
-| Scrubbers | Remove lines that contain some text | ❌ missing |
+| Scrubbers | Remove lines that contain some text | [`Scrubbers.removeLinesContaining`](../Scrubbers.md#line-scrubbing) |
 | Naming | Name files after the test | [✅](Naming.md#top) |
 | Naming | Add extra information to the file name | [`Options.forFile().withAdditionalInformation`](Naming.md#additional-naming-parameters) |
 | Naming | Name files for parameterized tests | [`Approvals.NAMES.withParameters`](../how_to/ParameterizedTest.md#top) |

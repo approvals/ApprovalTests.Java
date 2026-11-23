@@ -47,6 +47,27 @@ class ScrubberTest
   }
 
   @Test
+  void removeLinesContaining()
+  {
+    var expected = """
+        first line
+        keep me
+        last line
+        """;
+    // begin-snippet: line-scrubbing
+    String text = """
+        first line
+        DEBUG: one
+        DEBUG: two
+        keep me
+        DEBUG: three
+        last line
+        """;
+    Approvals.verify(text, new Options().withScrubber(Scrubbers.removeLinesContaining("DEBUG")).inline(expected));
+    // end-snippet
+  }
+
+  @Test
   void scrubMultipleThings()
   {
     // begin-snippet: MultiScrubber

@@ -2,6 +2,9 @@ package org.approvaltests.scrubbers;
 
 import org.approvaltests.core.Scrubber;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Scrubbers
 {
   public static String scrubGuid(String input)
@@ -12,6 +15,21 @@ public class Scrubbers
   public static Scrubber scrubAll(Scrubber one, Scrubber... others)
   {
     return new MultiScrubber(one, others);
+  }
+
+  public static Scrubber removeLinesContaining(String text)
+  {
+    return input -> {
+      List<String> kept = new ArrayList<>();
+      for (String line : input.split("\\r?\\n", -1))
+      {
+        if (!line.contains(text))
+        {
+          kept.add(line);
+        }
+      }
+      return String.join("\n", kept);
+    };
   }
   /**
    * Provides methods that can be inlined as example code.

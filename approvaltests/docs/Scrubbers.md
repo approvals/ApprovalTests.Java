@@ -12,6 +12,7 @@
   * [Date Scrubbing](#date-scrubbing)
     * [How to do it](#how-to-do-it)
     * [Supported formats](#supported-formats)
+  * [Line Scrubbing](#line-scrubbing)
   * [Scrubbing multiple parts of a string](#scrubbing-multiple-parts-of-a-string)
   * [Using templates](#using-templates)<!-- endToc -->
 
@@ -151,6 +152,26 @@ created at [Date1]
 
 <!-- endInclude -->
 
+## Line Scrubbing
+
+To remove every line that contains some text, use `Scrubbers.removeLinesContaining`:
+
+<!-- snippet: line-scrubbing -->
+<a id='snippet-line-scrubbing'></a>
+```java
+String text = """
+    first line
+    DEBUG: one
+    DEBUG: two
+    keep me
+    DEBUG: three
+    last line
+    """;
+Approvals.verify(text, new Options().withScrubber(Scrubbers.removeLinesContaining("DEBUG")).inline(expected));
+```
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L57-L67' title='Snippet source file'>snippet source</a> | <a href='#snippet-line-scrubbing' title='Start of snippet'>anchor</a></sup>
+<!-- endSnippet -->
+
 ## Scrubbing multiple parts of a string
 
 If you need to do scrubbing of multiple things, the easiest way is to create multiple scrubbers and then combine them.
@@ -166,7 +187,7 @@ Approvals.verify(
     "http://127.0.0.1:55079/foo/bar?Date=20210505T091112Z&Signature=4a7dd6f09c1e",
     new Options(scrubber));
 ```
-<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L52-L60' title='Snippet source file'>snippet source</a> | <a href='#snippet-MultiScrubber' title='Start of snippet'>anchor</a></sup>
+<sup><a href='/approvaltests-tests/src/test/java/org/approvaltests/scrubbers/ScrubberTest.java#L73-L81' title='Snippet source file'>snippet source</a> | <a href='#snippet-MultiScrubber' title='Start of snippet'>anchor</a></sup>
 <!-- endSnippet -->
 
 will result in
