@@ -50,7 +50,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Naming | Name files for parameterized tests | [`Approvals.NAMES.withParameters`](../how_to/ParameterizedTest.md#top) |
 | Naming | Separate approved files per OS | [`Approvals.NAMES.asOsSpecificTest`](../how_to/UpdateFromNamerFactoryToOptions.md#os-specific-tests) |
 | Naming | Separate approved files per machine | [`Approvals.NAMES.asMachineNameSpecificTest`](../how_to/MachineNameSpecificTest.md#top) |
-| Naming | Several approved files in one test | `Approvals.NAMES.useMultipleFiles` |
+| Naming | Several approved files in one test | [`Approvals.NAMES.useMultipleFiles`](../how_to/UpdateFromNamerFactoryToOptions.md#multiple-files-in-one-test) |
 | Naming | Name files with a template | `TemplatedCustomNamer` |
 | Naming | Use a custom namer | [`Options.forFile().withNamer`](Options.md#custom-namer) |
 | Naming | Put approved files in a subdirectory | [`ApprovalTestPackageSettings.USE_APPROVAL_SUBDIRECTORY`](../Features.md#using-subdirectories-for-approval-output-files) |
