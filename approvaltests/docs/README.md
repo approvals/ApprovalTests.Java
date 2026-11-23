@@ -45,6 +45,7 @@
 ## Reference
 
 * [AWTApprovals](reference/AwtApprovals.md)
+* [Feature Map](reference/FeatureMap.md#top)
 * [Approval File Names](reference/Naming.md)
 * [CombinationApprovals](reference/CombinationApprovals.md)
 * [FrontLoadedReporters](reference/FrontLoadedReporter.md)
