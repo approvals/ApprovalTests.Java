@@ -21,6 +21,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Verify | Verify an object as JSON | [`JsonApprovals.verifyAsJson`](../how_to/ShowNullsInJson.md#top) |
 | Verify | Verify XML | `Approvals.verifyXml` |
 | Verify | Verify HTML | `Approvals.verifyHtml` |
+| Verify | Verify binary data | ❌ missing |
 | Verify | Verify images | [`AwtApprovals.verify`](AwtApprovals.md#top) |
 | Verify | Verify a markdown table of inputs and outputs | [`VerifiableMarkdownTable`](../how_to/TestAVarietyOfValues.md#tables) |
 | Verify | Verify console output | `ConsoleOutput` |
@@ -45,6 +46,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Scrubbers | Scrub with a regular expression | [`RegExScrubber`](../Scrubbers.md#regex-scrubbing) |
 | Scrubbers | Combine scrubbers | [`Scrubbers.scrubAll`](../Scrubbers.md#scrubbing-multiple-parts-of-a-string) |
 | Scrubbers | Normalize whitespace | `NormalizeSpacesScrubber` |
+| Scrubbers | Remove lines that contain some text | ❌ missing |
 | Naming | Name files after the test | [✅](Naming.md#top) |
 | Naming | Add extra information to the file name | [`Options.forFile().withAdditionalInformation`](Naming.md#additional-naming-parameters) |
 | Naming | Name files for parameterized tests | [`Approvals.NAMES.withParameters`](../how_to/ParameterizedTest.md#top) |
@@ -72,6 +74,7 @@ What you can do with ApprovalTests.Java, one row per feature.
 | Configuration | Configure the project directory | [`APPROVALTESTS_PROJECT_DIRECTORY`](../how_to/ConfigureProjectDirectory.md#top) |
 | Configuration | Disable approval script downloads | [`APPROVALTESTS_DISABLE_SCRIPT_DOWNLOADS`](../how_to/DisableScriptDownloads.md#top) |
 | Safety | Fail when a test calls verify twice | `Approvals.settings().allowMultipleVerifyCallsForThisMethod` |
+| Utilities | Assert against a file without a test namer | ❌ missing |
 | Utilities | Run tests in a fixed time zone | [`WithTimeZone`](../how_to/ConsistentTimeZones.md#top) |
 | Utilities | Customize how objects print | [`Printable`](../how_to/PrintableWrappers.md#top) |
 | Utilities | Test, commit, or revert (TCR) | [`TestCommitRevertTest`](../Features.md#test-commit-revert-tcr) |
